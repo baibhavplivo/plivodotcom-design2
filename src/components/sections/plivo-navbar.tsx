@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   ChevronDown,
   Menu,
@@ -13,6 +13,28 @@ import {
   ShieldCheck,
   Smartphone,
   EyeOff,
+  Target,
+  Headphones,
+  Calendar,
+  TrendingUp,
+  Bell,
+  Truck,
+  HeartPulse,
+  Landmark,
+  ShoppingCart,
+  Plane,
+  GraduationCap,
+  Building,
+  BookOpen,
+  Code,
+  Package,
+  Activity,
+  HelpCircle,
+  Users,
+  PenLine,
+  Folder,
+  Star,
+  Briefcase,
 } from "lucide-react";
 
 import { cn } from "@/lib/utils";
@@ -52,12 +74,35 @@ const iconMap: Record<string, React.ReactNode> = {
   "eye-off": <EyeOff className="h-5 w-5" />,
   "smartphone": <Smartphone className="h-5 w-5" />,
   "sip": <SipIcon className="h-5 w-5" />,
+  "target": <Target className="h-5 w-5" />,
+  "headphones": <Headphones className="h-5 w-5" />,
+  "calendar": <Calendar className="h-5 w-5" />,
+  "trending-up": <TrendingUp className="h-5 w-5" />,
+  "bell": <Bell className="h-5 w-5" />,
+  "truck": <Truck className="h-5 w-5" />,
+  "heart-pulse": <HeartPulse className="h-5 w-5" />,
+  "landmark": <Landmark className="h-5 w-5" />,
+  "shopping-cart": <ShoppingCart className="h-5 w-5" />,
+  "plane": <Plane className="h-5 w-5" />,
+  "graduation-cap": <GraduationCap className="h-5 w-5" />,
+  "building": <Building className="h-5 w-5" />,
+  "book-open": <BookOpen className="h-5 w-5" />,
+  "code": <Code className="h-5 w-5" />,
+  "package": <Package className="h-5 w-5" />,
+  "activity": <Activity className="h-5 w-5" />,
+  "help-circle": <HelpCircle className="h-5 w-5" />,
+  "users": <Users className="h-5 w-5" />,
+  "pen-line": <PenLine className="h-5 w-5" />,
+  "folder": <Folder className="h-5 w-5" />,
+  "star": <Star className="h-5 w-5" />,
+  "briefcase": <Briefcase className="h-5 w-5" />,
 };
 
 export const PlivoNavbar = ({ currentPage }: { currentPage: string }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [isScrolled, setIsScrolled] = useState(false);
+  const navRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     if (isMenuOpen) {
@@ -76,6 +121,17 @@ export const PlivoNavbar = ({ currentPage }: { currentPage: string }) => {
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (navRef.current && !navRef.current.contains(event.target as Node)) {
+        setOpenDropdown(null);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   const hasDropdown = (item: typeof mainNavigation[0]) => {
@@ -103,17 +159,16 @@ export const PlivoNavbar = ({ currentPage }: { currentPage: string }) => {
           </a>
 
           {/* Desktop Navigation */}
-          <nav className="hidden items-center lg:flex">
+          <nav ref={navRef} className="hidden items-center lg:flex">
             <ul className="flex items-center">
               {mainNavigation.map((item) =>
                 hasDropdown(item) ? (
                   <li
                     key={item.title}
                     className="relative"
-                    onMouseEnter={() => setOpenDropdown(item.title)}
-                    onMouseLeave={() => setOpenDropdown(null)}
                   >
                     <button
+                      onClick={() => setOpenDropdown(openDropdown === item.title ? null : item.title)}
                       className="flex items-center gap-1 px-3 py-6 text-[15px] font-normal text-black transition-colors hover:text-gray-600"
                     >
                       {item.title}
@@ -125,121 +180,69 @@ export const PlivoNavbar = ({ currentPage }: { currentPage: string }) => {
                       />
                     </button>
 
-                    {/* Platform Mega Menu - Full Width */}
+                    {/* Mega Menu - Full Width */}
                     {item.sections && (
                       <div
                         className={cn(
-                          "fixed left-0 right-0 top-[72px] border-t border-gray-100 bg-white shadow-lg transition-all duration-200",
+                          "fixed left-0 right-0 top-[72px] border-t border-gray-100 bg-white shadow-lg transition-all duration-300 ease-out origin-top",
                           openDropdown === item.title
-                            ? "visible opacity-100"
-                            : "invisible opacity-0"
+                            ? "visible opacity-100 translate-y-0 scale-y-100"
+                            : "invisible opacity-0 -translate-y-2 scale-y-[0.98]"
                         )}
                       >
                         {/* Main content */}
-                        <div className="mx-auto max-w-[1200px] px-6 py-10">
-                          <div className="grid grid-cols-3 gap-12">
-                            {/* Features Column */}
-                            <div>
-                              <h3 className="mb-4 text-[13px] font-semibold text-[#4f5aff]">
-                                Features
-                              </h3>
-                              <div className="space-y-6">
-                                {item.sections[0]?.items.map((subItem) => (
-                                  <a
-                                    key={subItem.title}
-                                    href={subItem.href}
-                                    className="flex items-start gap-3 group rounded-lg p-2 -m-2 transition-colors hover:bg-gray-50"
-                                  >
-                                    {subItem.icon && iconMap[subItem.icon] && (
-                                      <span className="mt-0.5 text-[#4f5aff]">
-                                        {iconMap[subItem.icon]}
-                                      </span>
-                                    )}
-                                    <div>
-                                      <span className="block text-[14px] font-semibold text-gray-900 group-hover:text-[#4f5aff]">
-                                        {subItem.title}
-                                      </span>
-                                      {subItem.description && (
-                                        <span className="block text-[13px] text-gray-500 mt-0.5 leading-snug">
-                                          {subItem.description}
+                        <div className="mx-auto max-w-[1200px] px-6 py-8">
+                          <div className="grid grid-cols-2 gap-20">
+                            {item.sections.map((section) => (
+                              <div key={section.title}>
+                                <h3 className="mb-6 text-[13px] font-semibold uppercase tracking-wider text-[#4f5aff]">
+                                  {section.title}
+                                </h3>
+                                <div className="space-y-1">
+                                  {section.items.map((subItem) => (
+                                    <a
+                                      key={subItem.title}
+                                      href={subItem.href}
+                                      className="flex items-start gap-4 p-3 rounded-lg transition-colors hover:bg-gray-50 group"
+                                      onClick={() => setOpenDropdown(null)}
+                                    >
+                                      {subItem.icon && iconMap[subItem.icon] && (
+                                        <span className="mt-0.5 text-[#4f5aff]">
+                                          {iconMap[subItem.icon]}
                                         </span>
                                       )}
-                                    </div>
-                                  </a>
-                                ))}
-                              </div>
-                            </div>
-
-                            {/* Channels Column - Left */}
-                            <div>
-                              <h3 className="mb-4 text-[13px] font-semibold text-[#4f5aff]">
-                                Channels
-                              </h3>
-                              <div className="space-y-6">
-                                {item.sections[1]?.items.slice(0, 3).map((subItem) => (
-                                  <a
-                                    key={subItem.title}
-                                    href={subItem.href}
-                                    className="flex items-start gap-3 group rounded-lg p-2 -m-2 transition-colors hover:bg-gray-50"
-                                  >
-                                    {subItem.icon && iconMap[subItem.icon] && (
-                                      <span className="mt-0.5 text-[#4f5aff]">
-                                        {iconMap[subItem.icon]}
-                                      </span>
-                                    )}
-                                    <div>
-                                      <span className="block text-[14px] font-semibold text-gray-900 group-hover:text-[#4f5aff]">
-                                        {subItem.title}
-                                      </span>
-                                      {subItem.description && (
-                                        <span className="block text-[13px] text-gray-500 mt-0.5 leading-snug">
-                                          {subItem.description}
-                                        </span>
-                                      )}
-                                    </div>
-                                  </a>
-                                ))}
-                              </div>
-                            </div>
-
-                            {/* Channels Column - Right */}
-                            <div>
-                              <h3 className="mb-4 text-[13px] font-semibold text-transparent">
-                                &nbsp;
-                              </h3>
-                              <div className="space-y-6">
-                                {item.sections[1]?.items.slice(3).map((subItem) => (
-                                  <a
-                                    key={subItem.title}
-                                    href={subItem.href}
-                                    className="flex items-start gap-3 group rounded-lg p-2 -m-2 transition-colors hover:bg-gray-50"
-                                  >
-                                    {subItem.icon && iconMap[subItem.icon] && (
-                                      <span className="mt-0.5 text-[#4f5aff]">
-                                        {iconMap[subItem.icon]}
-                                      </span>
-                                    )}
-                                    <div>
-                                      <div className="flex items-center gap-2">
-                                        <span className="text-[14px] font-semibold text-gray-900 group-hover:text-[#4f5aff]">
+                                      <div>
+                                        <span className="block text-[14px] font-semibold text-gray-900 group-hover:text-[#4f5aff] transition-colors">
                                           {subItem.title}
                                         </span>
-                                        {subItem.badge && (
-                                          <span className="rounded border border-gray-300 px-1.5 py-0.5 text-[10px] font-medium text-gray-500">
-                                            {subItem.badge}
+                                        {subItem.description && (
+                                          <span className="block text-[13px] text-gray-500 mt-1 leading-relaxed">
+                                            {subItem.description}
                                           </span>
                                         )}
+                                        {subItem.subLinks && subItem.subLinks.length > 0 && (
+                                          <div className="flex items-center gap-4 mt-2">
+                                            {subItem.subLinks.map((link) => (
+                                              <span
+                                                key={link.title}
+                                                onClick={(e) => {
+                                                  e.preventDefault();
+                                                  e.stopPropagation();
+                                                  window.location.href = link.href;
+                                                }}
+                                                className="text-[13px] text-[#4f5aff] hover:underline cursor-pointer"
+                                              >
+                                                {link.title}
+                                              </span>
+                                            ))}
+                                          </div>
+                                        )}
                                       </div>
-                                      {subItem.description && (
-                                        <span className="block text-[13px] text-gray-500 mt-0.5 leading-snug">
-                                          {subItem.description}
-                                        </span>
-                                      )}
-                                    </div>
-                                  </a>
-                                ))}
+                                    </a>
+                                  ))}
+                                </div>
                               </div>
-                            </div>
+                            ))}
                           </div>
                         </div>
 
@@ -249,13 +252,14 @@ export const PlivoNavbar = ({ currentPage }: { currentPage: string }) => {
                             <div className="mx-auto max-w-[1200px] px-6 py-5">
                               <div className="flex items-center gap-10">
                                 <span className="text-[13px] font-medium text-gray-500">
-                                  Other Products
+                                  More
                                 </span>
                                 {item.bottomItems.map((bottomItem) => (
                                   <a
                                     key={bottomItem.title}
                                     href={bottomItem.href}
                                     className="flex items-center gap-2 text-[14px] font-medium text-gray-900 hover:text-[#4f5aff]"
+                                    onClick={() => setOpenDropdown(null)}
                                   >
                                     {bottomItem.icon && iconMap[bottomItem.icon] && (
                                       <span className="text-[#4f5aff]">

@@ -21,7 +21,7 @@ const SocialIcon = ({ icon }: { icon: string }) => {
 export const PlivoFooter = () => {
   const footerSections = [
     footerNavigation.platform,
-    footerNavigation.channels,
+    footerNavigation.communications,
     footerNavigation.aiAgents,
     footerNavigation.apiPlatform,
     footerNavigation.resources,
