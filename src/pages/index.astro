@@ -1,0 +1,313 @@
+---
+import PlivoLayout from '@/layouts/PlivoLayout.astro';
+import { PlivoHero } from '@/components/sections/plivo-hero';
+import Logos from '@/components/sections/logos';
+---
+
+<PlivoLayout
+  title="AI Voice Agents"
+  description="Build, train, and manage conversational AI agents that answer calls with lifelike speech, and extend the same intelligence to SMS, WhatsApp, and chat from a single, scalable platform."
+>
+  <!-- Hero Section -->
+  <PlivoHero
+    client:load
+    headline="AI Agents that handle your conversations just like humans"
+    subheadline="Build, train, and manage conversational AI agents that answer calls with lifelike speech, and extend the same intelligence to SMS, WhatsApp, and chat from a single, scalable platform."
+    ctaText="Get Access"
+    ctaHref="https://console.plivo.com/accounts/register/"
+  />
+
+  <!-- Client Logos Marquee -->
+  <section class="py-8">
+    <Logos client:load />
+  </section>
+
+  <!-- Go Live Section -->
+  <section class="py-12 lg:py-16">
+    <div class="mx-auto max-w-[1200px] px-6">
+      <div class="mx-auto mb-12 max-w-3xl text-center">
+        <h2 class="mb-4 font-sora text-[2.5rem] font-normal leading-[1.25] tracking-[-0.02em] text-black">
+          Go live with AI agents in minutes
+        </h2>
+        <p class="text-[1.125rem] text-black leading-[1.6]">With Plivo's guided setup, you can build, test, and launch production-ready agents, without code or complexity.</p>
+      </div>
+
+      <div class="grid gap-6 md:grid-cols-3">
+        <!-- Step 1 -->
+        <div class="overflow-hidden rounded-xl border border-gray-200 bg-white">
+          <div class="p-6">
+            <div class="mb-4 flex h-10 w-10 items-center justify-center rounded bg-[#323dfe0d]">
+              <span class="text-[1.25rem] text-[#181d27] opacity-70">01</span>
+            </div>
+            <h3 class="mb-3 text-[18px] font-semibold text-[#1e3a5f]">Describe your use case</h3>
+            <p class="text-[#475467] text-[15px] leading-[1.6]">Share what you want your agent to do. Vibe understands your intent and gets to work.</p>
+          </div>
+          <div class="px-4 pb-4">
+            <img src="/images/mockups/step-1.avif" alt="Describe your use case" class="w-full rounded-lg" loading="lazy" />
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="overflow-hidden rounded-xl border border-gray-200 bg-white">
+          <div class="p-6">
+            <div class="mb-4 flex h-10 w-10 items-center justify-center rounded bg-[#323dfe0d]">
+              <span class="text-[1.25rem] text-[#181d27] opacity-70">02</span>
+            </div>
+            <h3 class="mb-3 text-[18px] font-semibold text-[#1e3a5f]">Let Vibe Agent build the flow</h3>
+            <p class="text-[#475467] text-[15px] leading-[1.6]">Vibe connects the dots - setting up actions, triggers, and integrations automatically.</p>
+          </div>
+          <div class="px-4 pb-4">
+            <img src="/images/mockups/step-2.avif" alt="Vibe Agent builds the flow" class="w-full rounded-lg" loading="lazy" />
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="overflow-hidden rounded-xl border border-gray-200 bg-white">
+          <div class="p-6">
+            <div class="mb-4 flex h-10 w-10 items-center justify-center rounded bg-[#323dfe0d]">
+              <span class="text-[1.25rem] text-[#181d27] opacity-70">03</span>
+            </div>
+            <h3 class="mb-3 text-[18px] font-semibold text-[#1e3a5f]">Review and launch</h3>
+            <p class="text-[#475467] text-[15px] leading-[1.6]">Test the experience, make quick tweaks, and deploy your agent across channels with a single click.</p>
+          </div>
+          <div class="px-4 pb-4">
+            <img src="/images/mockups/step-3.avif" alt="Review and launch" class="w-full rounded-lg" loading="lazy" />
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <a href="/contact/sales/" class="inline-flex items-center justify-center rounded-lg border border-gray-300 bg-white px-6 py-3.5 text-[15px] font-medium text-black transition-all hover:bg-gray-50">Contact Sales</a>
+        <a href="https://console.plivo.com/accounts/register/" class="inline-flex items-center justify-center rounded-lg bg-black px-6 py-3.5 text-[15px] font-medium text-white transition-all hover:bg-black/90">Get Started Now</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Everything You Need Section -->
+  <section class="py-12 lg:py-16">
+    <div class="mx-auto max-w-[1200px] px-6">
+      <div class="mx-auto mb-16 max-w-3xl text-center">
+        <h2 class="mb-4 font-sora text-[2.5rem] font-normal leading-[1.25] tracking-[-0.02em] text-black">Everything you need to build and launch AI agents</h2>
+        <p class="text-[1.125rem] text-black leading-[1.6]">Whether you're a product owner or a developer, building with Plivo is effortless.</p>
+      </div>
+
+      <!-- Feature 1: Build agents your way -->
+      <div class="mb-12 grid items-center gap-12 lg:grid-cols-2">
+        <div class="order-2 lg:order-1">
+          <img src="/images/mockups/feature-build.avif" alt="Build AI agents dashboard" class="w-full rounded-lg" loading="lazy" />
+        </div>
+        <div class="order-1 lg:order-2">
+          <h3 class="mb-6 text-[1.25rem] font-semibold text-black">Build agents your way</h3>
+          <div class="space-y-5">
+            <div class="flex items-start gap-3">
+              <img src="/images/icons/check-circle.svg" alt="" class="mt-0.5 h-4 w-4 shrink-0" />
+              <div>
+                <span class="font-semibold text-[1rem] text-black">Describe your use case</span>
+                <p class="text-[1rem] text-black opacity-70 mt-1">Just prompt what the agent should do and the vibe builder automatically builds the agent for you.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <img src="/images/icons/check-circle.svg" alt="" class="mt-0.5 h-4 w-4 shrink-0" />
+              <div>
+                <span class="font-semibold text-[1rem] text-black">Works with your tools</span>
+                <p class="text-[1rem] text-black opacity-70 mt-1">Connect to Shopify, Calendly, Zendesk, and more right away.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <img src="/images/icons/check-circle.svg" alt="" class="mt-0.5 h-4 w-4 shrink-0" />
+              <div>
+                <span class="font-semibold text-[1rem] text-black">Edit without code</span>
+                <p class="text-[1rem] text-black opacity-70 mt-1">Use a simple drag-and-drop interface to customize flows.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature 2: Voices that feel real -->
+      <div class="mb-12 grid items-center gap-12 lg:grid-cols-2">
+        <div class="order-1 lg:order-2">
+          <img src="/images/mockups/feature-voices.avif" alt="Voice customization" class="w-full rounded-lg" loading="lazy" />
+        </div>
+        <div class="order-2 lg:order-1">
+          <h3 class="mb-6 text-[1.25rem] font-semibold text-black">Voices that feel real</h3>
+          <div class="space-y-5">
+            <div class="flex items-start gap-3">
+              <img src="/images/icons/check-circle.svg" alt="" class="mt-0.5 h-4 w-4 shrink-0" />
+              <div>
+                <span class="font-semibold text-[1rem] text-black">Human-like, not robotic</span>
+                <p class="text-[1rem] text-black opacity-70 mt-1">Voices sound natural and fluid. No awkward pauses or flat tones.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <img src="/images/icons/check-circle.svg" alt="" class="mt-0.5 h-4 w-4 shrink-0" />
+              <div>
+                <span class="font-semibold text-[1rem] text-black">Multilingual by default</span>
+                <p class="text-[1rem] text-black opacity-70 mt-1">Speak 10+ languages and accents. No extra setup.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <img src="/images/icons/check-circle.svg" alt="" class="mt-0.5 h-4 w-4 shrink-0" />
+              <div>
+                <span class="font-semibold text-[1rem] text-black">On-brand tone</span>
+                <p class="text-[1rem] text-black opacity-70 mt-1">Control style, pace, and emotion. Stay consistent.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature 3: Full-stack platform -->
+      <div class="grid items-center gap-12 lg:grid-cols-2">
+        <div class="order-2 lg:order-1">
+          <img src="/images/mockups/feature-telephony.png" alt="Full-stack platform" class="w-full rounded-lg" loading="lazy" />
+        </div>
+        <div class="order-1 lg:order-2">
+          <h3 class="mb-6 text-[1.25rem] font-semibold text-black">A full-stack platform for building AI agents</h3>
+          <div class="space-y-5">
+            <div class="flex items-start gap-3">
+              <img src="/images/icons/check-circle.svg" alt="" class="mt-0.5 h-4 w-4 shrink-0" />
+              <div>
+                <span class="font-semibold text-[1rem] text-black">Built-in telephony and phone numbers</span>
+                <p class="text-[1rem] text-black opacity-70 mt-1">Provision numbers and handle calls without third-party providers.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <img src="/images/icons/check-circle.svg" alt="" class="mt-0.5 h-4 w-4 shrink-0" />
+              <div>
+                <span class="font-semibold text-[1rem] text-black">Multi-channel support</span>
+                <p class="text-[1rem] text-black opacity-70 mt-1">Serve customers on voice, SMS, WhatsApp, and chat from one platform.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <img src="/images/icons/check-circle.svg" alt="" class="mt-0.5 h-4 w-4 shrink-0" />
+              <div>
+                <span class="font-semibold text-[1rem] text-black">Multimodal AI</span>
+                <p class="text-[1rem] text-black opacity-70 mt-1">Generate and process audio, images, and text for richer interactions.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-16 flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <a href="/contact/sales/" class="inline-flex items-center justify-center rounded-lg border border-gray-300 bg-white px-6 py-3.5 text-[15px] font-medium text-black transition-all hover:bg-gray-50">Contact Sales</a>
+        <a href="https://console.plivo.com/accounts/register/" class="inline-flex items-center justify-center rounded-lg bg-black px-6 py-3.5 text-[15px] font-medium text-white transition-all hover:bg-black/90">Get Started Now</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Fully Customizable Section -->
+  <section class="py-12 lg:py-16">
+    <div class="mx-auto max-w-[1200px] px-6">
+      <div class="mx-auto mb-12 max-w-3xl text-center">
+        <h2 class="font-sora text-[2.5rem] font-normal leading-[1.25] tracking-[-0.02em] text-black">Fully customizable to your brand and connected to your systems</h2>
+      </div>
+      <div class="grid gap-8 md:grid-cols-2">
+        <div class="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-lg">
+          <div class="p-6 pb-0">
+            <h3 class="mb-2 font-sora text-xl font-semibold text-gray-900">Connect to the tools you already use</h3>
+            <p class="text-sm text-gray-600">Plivo supports both API-based and MCP integrations, so your agents can take action across CRMs, helpdesks, e-commerce, productivity tools, and more, right out of the box.</p>
+          </div>
+          <div class="p-4">
+            <img src="/images/mockups/integrations.png" alt="Integration ecosystem" class="w-full rounded-lg" loading="lazy" />
+          </div>
+        </div>
+        <div class="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-lg">
+          <div class="p-6 pb-0">
+            <h3 class="mb-2 font-sora text-xl font-semibold text-gray-900">Conversations that sound like you and stay accurate</h3>
+            <p class="text-sm text-gray-600">AI agents adapt to your brand voice and pull answers from your latest knowledge base and connected data sources.</p>
+          </div>
+          <div class="p-4">
+            <img src="/images/mockups/knowledge-base-new.png" alt="Knowledge base" class="w-full rounded-lg" loading="lazy" />
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <a href="/contact/sales/" class="inline-flex items-center justify-center rounded-lg border border-gray-300 bg-white px-6 py-3.5 text-[15px] font-medium text-black transition-all hover:bg-gray-50">Contact Sales</a>
+        <a href="https://console.plivo.com/accounts/register/" class="inline-flex items-center justify-center rounded-lg bg-black px-6 py-3.5 text-[15px] font-medium text-white transition-all hover:bg-black/90">Get Started Now</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust Section -->
+  <section class="py-12 lg:py-16">
+    <div class="mx-auto max-w-[1200px] px-6">
+      <div class="mx-auto max-w-4xl text-center">
+        <h2 class="mb-12 font-sora text-[2.5rem] font-normal leading-[1.25] tracking-[-0.02em] text-black">Enterprise-grade reliability, guaranteed.</h2>
+
+        <!-- Compliance Badges -->
+        <div class="flex flex-wrap items-start justify-center gap-12 lg:gap-20">
+          <div class="flex flex-col items-center gap-4">
+            <div class="flex h-20 w-20 items-center justify-center rounded-xl border border-gray-200 bg-white p-3">
+              <img src="/images/compliance/hipaa.svg" alt="HIPAA" class="h-full w-full object-contain" />
+            </div>
+            <span class="text-[1.125rem] text-[#1e3a5f]">HIPAA</span>
+          </div>
+          <div class="flex flex-col items-center gap-4">
+            <div class="flex h-20 w-20 items-center justify-center rounded-xl border border-gray-200 bg-white p-3">
+              <img src="/images/compliance/gdpr.svg" alt="GDPR" class="h-full w-full object-contain" />
+            </div>
+            <span class="text-[1.125rem] text-[#1e3a5f]">GDPR</span>
+          </div>
+          <div class="flex flex-col items-center gap-4">
+            <div class="flex h-20 w-20 items-center justify-center rounded-xl border border-gray-200 bg-white p-3">
+              <img src="/images/compliance/soc2.svg" alt="AICPA SOC 2" class="h-full w-full object-contain" />
+            </div>
+            <span class="text-[1.125rem] text-[#1e3a5f]">AICPA SOC 2</span>
+          </div>
+          <div class="flex flex-col items-center gap-4">
+            <div class="flex h-20 w-20 items-center justify-center rounded-xl border border-gray-200 bg-white p-3">
+              <img src="/images/compliance/pci.svg" alt="PCI DSS" class="h-full w-full object-contain" />
+            </div>
+            <span class="text-[1.125rem] text-[#1e3a5f]">PCI DSS</span>
+          </div>
+          <div class="flex flex-col items-center gap-4">
+            <div class="flex h-20 w-20 items-center justify-center rounded-xl border border-gray-200 bg-white p-3">
+              <img src="/images/compliance/star.svg" alt="STAR" class="h-full w-full object-contain" />
+            </div>
+            <span class="text-[1.125rem] text-[#1e3a5f]">STAR</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="py-12 lg:py-16">
+    <div class="mx-auto max-w-[1200px] px-6">
+      <div class="text-center">
+        <h2 class="mb-12 font-sora text-[2.5rem] font-normal leading-[1.25] tracking-[-0.02em] text-black whitespace-nowrap">Trusted by Fortune 500 companies worldwide</h2>
+
+        <div class="flex flex-wrap items-center justify-center gap-16 lg:gap-32">
+          <div class="text-center">
+            <div class="text-[3.5rem] font-normal leading-[1.1] bg-gradient-to-r from-[#cd3ef9] to-[#323dfe] bg-clip-text text-transparent">99.99%</div>
+            <div class="mt-2 text-[1.125rem] text-black">Platform Uptime</div>
+          </div>
+          <div class="text-center">
+            <div class="text-[3.5rem] font-normal leading-[1.1] bg-gradient-to-r from-[#cd3ef9] to-[#323dfe] bg-clip-text text-transparent">1 Billion+</div>
+            <div class="mt-2 text-[1.125rem] text-black">Conversations Processed Annually</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="relative bg-[#0a0a0a] py-16 lg:py-20 overflow-hidden">
+    <!-- Grid background pattern -->
+    <div class="absolute inset-0" style="background-image: linear-gradient(#222 1px, transparent 1px), linear-gradient(90deg, #222 1px, transparent 1px); background-size: 100px 100px;"></div>
+    <!-- Small cross markers at grid intersections -->
+    <div class="absolute inset-0" style="background-image: radial-gradient(circle, #333 1px, transparent 1px); background-size: 100px 100px; background-position: 0 0;"></div>
+
+    <div class="relative mx-auto max-w-[1200px] px-6 text-center">
+      <h2 class="mb-4 font-sora text-[2.5rem] font-normal leading-[1.25] tracking-[-0.02em] text-white">Start building your AI agent now</h2>
+      <p class="mb-8 text-[1.125rem] text-white/70 leading-[1.6]">No coding required. Get your agents up and running in &lt;30 mins.</p>
+      <div class="flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <a href="/contact/sales/" class="inline-flex items-center justify-center rounded-lg border border-white/30 bg-transparent px-6 py-3.5 text-[15px] font-medium text-white transition-all hover:bg-white/10">Contact Sales</a>
+        <a href="/request-trial/" class="inline-flex items-center justify-center rounded-lg bg-white px-6 py-3.5 text-[15px] font-medium text-black transition-all hover:bg-white/90">Request Trial</a>
+      </div>
+    </div>
+  </section>
+</PlivoLayout>

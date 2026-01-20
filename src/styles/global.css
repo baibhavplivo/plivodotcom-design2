@@ -1,0 +1,232 @@
+/* Google Fonts import for Sora and Inter */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@400;500;600;700;800&display=swap');
+
+@import "tailwindcss";
+
+@plugin 'tailwindcss-animate';
+@plugin '@tailwindcss/typography';
+
+@variant dark (&:is(.dark *));
+
+@theme {
+  /* Plivo Fonts */
+  --font-sora: "Sora", "sans-serif";
+  --font-inter: "Inter", "sans-serif";
+
+  /* Plivo Brand Colors */
+  --color-plivo-purple: #cd3ef9;
+  --color-plivo-blue: #323dfe;
+  --color-plivo-dark: rgb(15, 17, 23);
+
+  /* Theme Colors */
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+
+  --spacing-9xl: 100rem;
+
+  /* Animations */
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+  --animate-marquee: marquee 40s linear infinite;
+  --animate-marquee-reverse: marquee 40s linear infinite reverse;
+  --animate-fade-in: fadeIn 0.5s ease-out;
+  --animate-slide-up: slideUp 0.5s ease-out;
+
+  @keyframes accordion-down {
+    from { height: 0; }
+    to { height: var(--radix-accordion-content-height); }
+  }
+  @keyframes accordion-up {
+    from { height: var(--radix-accordion-content-height); }
+    to { height: 0; }
+  }
+  @keyframes marquee {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-100%); }
+  }
+  @keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+  @keyframes slideUp {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+}
+
+@utility container {
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+  @media (width >= --theme(--breakpoint-sm)) {
+    max-width: none;
+  }
+  @media (width >= 1400px) {
+    max-width: 1228px;
+  }
+}
+
+/* Plivo gradient utilities */
+@utility bg-plivo-gradient {
+  background: linear-gradient(90deg, #cd3ef9, #323dfe);
+}
+
+@utility bg-plivo-gradient-vertical {
+  background: linear-gradient(180deg, #cd3ef9, #323dfe);
+}
+
+@utility text-gradient {
+  background: linear-gradient(90deg, #cd3ef9, #323dfe);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+@utility section-dark {
+  background-color: rgb(15, 17, 23);
+  color: #ffffff;
+}
+
+@utility hover-lift {
+  transition: transform 0.2s ease-out;
+  &:hover {
+    transform: translateY(-0.5rem);
+  }
+}
+
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
+}
+
+@layer utilities {
+  body {
+    font-family: var(--font-inter), sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-sora), sans-serif;
+  }
+}
+
+@layer components {
+  button {
+    cursor: pointer;
+  }
+  [class*="border"] {
+    @apply border-border;
+  }
+
+  /* Plivo Button Styles */
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-lg px-6 py-3 text-sm font-semibold text-white transition-all duration-200;
+    background: linear-gradient(90deg, #cd3ef9, #323dfe);
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 30px rgba(205, 62, 249, 0.4);
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center rounded-lg border border-border bg-transparent px-6 py-3 text-sm font-semibold transition-all duration-200;
+  }
+  .btn-secondary:hover {
+    @apply bg-secondary;
+  }
+}
+
+@layer base {
+  :root {
+    /* Light mode - Plivo themed */
+    --background: 0 0% 100%; /* #FFFFFF */
+    --foreground: 225 21% 7%; /* rgb(15, 17, 23) */
+    --card: 0 0% 100%; /* #FFFFFF */
+    --card-foreground: 225 21% 7%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 225 21% 7%;
+    --primary: 285 94% 61%; /* #cd3ef9 Plivo Purple */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 225 21% 7%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 220 9% 46%; /* rgb(107, 114, 128) */
+    --accent: 238 99% 60%; /* #323dfe Plivo Blue */
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 0% / 0.09;
+    --input: 0 0% 90%;
+    --ring: 285 94% 61%; /* Plivo Purple for focus ring */
+  }
+
+  .dark {
+    /* Dark mode - Plivo themed */
+    --background: 225 21% 7%; /* rgb(15, 17, 23) */
+    --foreground: 0 0% 100%;
+    --card: 225 21% 10%;
+    --card-foreground: 0 0% 100%;
+    --popover: 225 21% 7%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 285 94% 61%; /* Plivo Purple */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 225 21% 12%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 225 21% 12%;
+    --muted-foreground: 220 9% 65%;
+    --accent: 238 99% 60%; /* Plivo Blue */
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 100% / 0.1;
+    --input: 225 21% 12%;
+    --ring: 285 94% 61%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+html,
+body {
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+body {
+  position: relative;
+}

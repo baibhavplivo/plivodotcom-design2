@@ -1,0 +1,13 @@
+# Plivo robots.txt
+# https://www.plivo.com/robots.txt
+
+# Allow all crawlers
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /console/
+Disallow: /_astro/
+Disallow: /admin/
+
+# Sitemap location
+Sitemap: https://www.plivo.com/sitemap-index.xml

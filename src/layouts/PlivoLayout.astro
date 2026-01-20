@@ -1,0 +1,25 @@
+---
+import BaseHead from '@/components/BaseHead.astro';
+import { PlivoNavbar } from '@/components/sections/plivo-navbar';
+import { PlivoFooter } from '@/components/sections/plivo-footer';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "Plivo enables businesses to communicate with their customers through voice, messaging, and more with APIs that simplify cloud communications." } = Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <BaseHead title={`${title} | Plivo`} description={description} />
+  </head>
+  <body class="min-h-screen antialiased">
+    <PlivoNavbar currentPage={Astro.url.pathname} client:load />
+    <main class="pt-[72px]">
+      <slot />
+    </main>
+    <PlivoFooter client:visible />
+  </body>
+</html>
