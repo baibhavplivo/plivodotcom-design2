@@ -713,16 +713,22 @@ export const collections = { blog, customers };
 
 All major issues have been fixed to match plivo.com:
 
-### Header/Navbar ✅
+### Header/Navbar ✅ (FULLY COMPLETE - Jan 2025)
 - [x] **Logo**: Actual Plivo SVG logo downloaded and implemented
-- [x] **Menu Structure**: Updated to match plivo.com:
-  - Platform (dropdown with icons)
-  - Channels (dropdown with icons)
-  - Other Products (dropdown)
-  - Pricing (direct link)
-- [x] **Menu Icons**: Added Lucide icons to all dropdown items
-- [x] **CTA Buttons**: "Documentation", "Contact Sales" + "Get Access" (blue #323dfe)
-- [x] **Sticky Behavior**: Activates on 5px scroll with backdrop blur
+- [x] **Menu Structure**: New structure implemented:
+  - **Products**: AI Agents (Programmable AI Agents, No-code AI Agent Studio) + Communications (Voice, Messaging, WhatsApp)
+  - **Solutions**: 8 Use Cases + 7 Industries with icons and descriptions
+  - **Developers**: Documentation + Support sections
+  - **Resources**: Learn + Company sections
+  - **Pricing**: Direct link
+- [x] **Menu Icons**: 30+ Lucide icons for all dropdown items
+- [x] **Click-based dropdowns**: Changed from hover to click behavior
+- [x] **Click-outside to close**: Dropdowns close when clicking outside
+- [x] **Stripe-like animation**: Smooth scale/opacity/translate animation on appear
+- [x] **Hover states**: Full-row hover for items without sublinks, title-only hover for items with sublinks
+- [x] **SubLinks**: Voice and Messaging have inline sublinks (Audio Streaming, SIP Trunking, SMS, Chat, RCS)
+- [x] **CTA Buttons**: "Contact Sales" + "Get Access" (black)
+- [x] **Sticky Behavior**: Activates on 5px scroll with shadow
 
 ### Hero Section ✅
 - [x] **Headline**: "AI Agents that handle your conversations just like humans"
@@ -756,12 +762,13 @@ All major issues have been fixed to match plivo.com:
 - [x] **Secondary/Outline**: Border with transparent bg
 - [x] **Hover**: translateY(-0.5rem) elevation + shadow
 
-### Footer ✅
-- [x] **Structure**: 6-column grid (Platform, Channels, AI Agents, API Platform, Resources, Company)
+### Footer ✅ (FULLY COMPLETE - Jan 2025)
+- [x] **Structure**: 6-column grid (Platform, Communications, AI Agents, API Platform, Resources, Company)
 - [x] **Links**: All sections with correct links
 - [x] **Social Icons**: YouTube, X, Facebook, LinkedIn, GitHub
-- [x] **Copyright**: "Copyright © 2025 Plivo Inc."
+- [x] **Copyright**: "Copyright © {currentYear} Plivo Inc." (dynamic)
 - [x] **Dark Background**: #0f1117
+- [x] **Centered copyright**: Properly centered at bottom
 
 ### Remaining Tasks
 - [ ] Download and add actual customer logos (Meta, Discord, etc.)

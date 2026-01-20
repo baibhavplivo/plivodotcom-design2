@@ -380,11 +380,153 @@ Then compare with local implementation.
 
 ## Current Status
 
-**Phase:** Ready to copy templates and customize
+**Phase:** Base work complete, now building individual pages
 **Base Template:** Streamline (structure + core)
 **Mix in from:** Lumen (marquee, testimonials), Metafi (hero, tabs, CTA), Aspect (navbar, pricing, FAQ)
 
 See `plan.md` for page-by-page implementation details.
+
+---
+
+## ⚠️ CRITICAL: Base Work Protection
+
+The following components are **COMPLETE and LOCKED**. Do NOT modify unless explicitly requested:
+
+### Locked Components (DO NOT CHANGE)
+| Component | File | Status |
+|-----------|------|--------|
+| **Navbar** | `src/components/sections/plivo-navbar.tsx` | ✅ LOCKED |
+| **Footer** | `src/components/sections/plivo-footer.tsx` | ✅ LOCKED |
+| **Navigation Data** | `src/data/navigation.ts` | ✅ LOCKED |
+| **Global Styles** | `src/styles/global.css` | ✅ LOCKED |
+| **Tailwind Config** | `tailwind.config.mjs` | ✅ LOCKED |
+| **Base Layout** | `src/layouts/Layout.astro` | ✅ LOCKED |
+| **Homepage** | `src/pages/index.astro` | ✅ LOCKED |
+
+### What This Means
+1. **New pages** must use the existing Layout.astro which includes navbar and footer
+2. **New pages** must follow the established design tokens (colors, fonts, spacing)
+3. **Do NOT** create alternative navbars, footers, or layouts
+4. **Do NOT** modify the navigation structure without explicit request
+5. **Do NOT** change global CSS variables or Tailwind config
+
+---
+
+## Design System (MUST FOLLOW for all new pages)
+
+### Typography
+```css
+/* Headlines - ALWAYS use font-sora */
+font-family: 'Sora', sans-serif
+H1: text-[3rem] md:text-[3.5rem] font-normal leading-[1.1] tracking-[-0.02em]
+H2: text-[2.5rem] font-normal leading-[1.25] tracking-[-0.02em]
+H3: text-[1.25rem] font-semibold
+
+/* Body - ALWAYS use font-inter (default) */
+font-family: 'Inter', sans-serif
+Body: text-[1rem] or text-[1.125rem]
+Small: text-[0.875rem] or text-[13px]
+```
+
+### Colors
+```css
+/* Primary */
+--plivo-purple: #cd3ef9
+--plivo-blue: #323dfe
+--plivo-gradient: linear-gradient(90deg, #cd3ef9, #323dfe)
+
+/* Backgrounds */
+White sections: bg-white
+Alternating sections: bg-gray-50
+Dark sections: bg-[#0f1117]
+
+/* Text */
+Primary: text-black or text-gray-900
+Muted: text-gray-500 or text-gray-600
+On dark: text-white
+```
+
+### Spacing
+```css
+/* Section padding */
+Standard: py-12 lg:py-16
+Large: py-16 lg:py-24
+
+/* Container */
+max-w-7xl mx-auto px-4
+```
+
+### Buttons
+```css
+/* Primary CTA */
+bg-black text-white hover:bg-gray-800
+
+/* Secondary/Outline */
+border border-gray-300 text-black hover:bg-gray-50
+
+/* Gradient (special) */
+bg-gradient-to-r from-[#cd3ef9] to-[#323dfe] text-white
+```
+
+### Patterns to Reuse
+```jsx
+// Gradient text
+<span className="bg-gradient-to-r from-[#cd3ef9] to-[#323dfe] bg-clip-text text-transparent">
+
+// Section with heading
+<section className="py-12 lg:py-16 bg-white">
+  <div className="container mx-auto max-w-7xl px-4">
+    <h2 className="font-sora text-[2.5rem] font-normal leading-[1.25] tracking-[-0.02em] text-black text-center mb-12">
+      Section Title
+    </h2>
+    {/* Content */}
+  </div>
+</section>
+
+// Feature item with icon
+<div className="flex items-start gap-3">
+  <CheckCircle className="h-5 w-5 text-[#4f5aff] mt-0.5 flex-shrink-0" />
+  <div>
+    <span className="font-semibold text-[1rem] text-black">Feature Title</span>
+    <p className="text-[1rem] text-black opacity-70 mt-1">Description</p>
+  </div>
+</div>
+```
+
+---
+
+## Building New Pages
+
+### Required Structure
+Every new page MUST:
+1. Import and use `Layout` from `@/layouts/Layout.astro`
+2. Set appropriate `title` and `description` props
+3. Follow the typography scale above
+4. Use consistent section spacing
+5. Match the visual style of the homepage
+
+### Example New Page Template
+```astro
+---
+import Layout from "@/layouts/Layout.astro";
+---
+
+<Layout title="Page Title | Plivo" description="Page description for SEO">
+  <!-- Hero Section -->
+  <section className="py-16 lg:py-24 bg-white">
+    <div className="container mx-auto max-w-7xl px-4">
+      <h1 className="font-sora text-[3rem] md:text-[3.5rem] font-normal leading-[1.1] tracking-[-0.02em] text-black text-center">
+        Page Headline
+      </h1>
+      <p className="text-[1.125rem] text-gray-600 text-center mt-6 max-w-3xl mx-auto">
+        Subheadline text
+      </p>
+    </div>
+  </section>
+
+  <!-- Additional sections... -->
+</Layout>
+```
 
 ---
 
