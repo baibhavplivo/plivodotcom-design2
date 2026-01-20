@@ -199,47 +199,71 @@ export const PlivoNavbar = ({ currentPage }: { currentPage: string }) => {
                                   {section.title}
                                 </h3>
                                 <div className="space-y-1">
-                                  {section.items.map((subItem) => (
-                                    <a
-                                      key={subItem.title}
-                                      href={subItem.href}
-                                      className="flex items-start gap-4 p-3 rounded-lg transition-colors hover:bg-gray-50 group"
-                                      onClick={() => setOpenDropdown(null)}
-                                    >
-                                      {subItem.icon && iconMap[subItem.icon] && (
-                                        <span className="mt-0.5 text-[#4f5aff]">
-                                          {iconMap[subItem.icon]}
-                                        </span>
-                                      )}
-                                      <div>
-                                        <span className="block text-[14px] font-semibold text-gray-900 group-hover:text-[#4f5aff] transition-colors">
-                                          {subItem.title}
-                                        </span>
-                                        {subItem.description && (
-                                          <span className="block text-[13px] text-gray-500 mt-1 leading-relaxed">
-                                            {subItem.description}
+                                  {section.items.map((subItem) =>
+                                    subItem.subLinks && subItem.subLinks.length > 0 ? (
+                                      // Items with subLinks - no hover bg on container
+                                      <div
+                                        key={subItem.title}
+                                        className="flex items-start gap-4 p-3"
+                                      >
+                                        {subItem.icon && iconMap[subItem.icon] && (
+                                          <span className="mt-0.5 text-[#4f5aff]">
+                                            {iconMap[subItem.icon]}
                                           </span>
                                         )}
-                                        {subItem.subLinks && subItem.subLinks.length > 0 && (
+                                        <div>
+                                          <a
+                                            href={subItem.href}
+                                            className="block text-[14px] font-semibold text-gray-900 hover:text-[#4f5aff] transition-colors"
+                                            onClick={() => setOpenDropdown(null)}
+                                          >
+                                            {subItem.title}
+                                          </a>
+                                          {subItem.description && (
+                                            <span className="block text-[13px] text-gray-500 mt-1 leading-relaxed">
+                                              {subItem.description}
+                                            </span>
+                                          )}
                                           <div className="flex items-center gap-4 mt-2">
                                             {subItem.subLinks.map((link) => (
-                                              <span
+                                              <a
                                                 key={link.title}
-                                                onClick={(e) => {
-                                                  e.preventDefault();
-                                                  e.stopPropagation();
-                                                  window.location.href = link.href;
-                                                }}
-                                                className="text-[13px] text-[#4f5aff] hover:underline cursor-pointer"
+                                                href={link.href}
+                                                className="text-[13px] text-[#4f5aff] hover:underline"
+                                                onClick={() => setOpenDropdown(null)}
                                               >
                                                 {link.title}
-                                              </span>
+                                              </a>
                                             ))}
                                           </div>
-                                        )}
+                                        </div>
                                       </div>
-                                    </a>
-                                  ))}
+                                    ) : (
+                                      // Items without subLinks - full hover bg
+                                      <a
+                                        key={subItem.title}
+                                        href={subItem.href}
+                                        className="flex items-start gap-4 p-3 rounded-lg transition-colors hover:bg-gray-50 group"
+                                        onClick={() => setOpenDropdown(null)}
+                                      >
+                                        {subItem.icon && iconMap[subItem.icon] && (
+                                          <span className="mt-0.5 text-[#4f5aff]">
+                                            {iconMap[subItem.icon]}
+                                          </span>
+                                        )}
+                                        <div>
+                                          <span className="block text-[14px] font-semibold text-gray-900 group-hover:text-[#4f5aff] transition-colors">
+                                            {subItem.title}
+                                          </span>
+                                          {subItem.description && (
+                                            <span className="block text-[13px] text-gray-500 mt-1 leading-relaxed">
+                                              {subItem.description}
+                                            </span>
+                                          )}
+                                        </div>
+                                      </a>
+                                    )
+                                  )}
                                 </div>
                               </div>
                             ))}
