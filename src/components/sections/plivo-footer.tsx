@@ -30,7 +30,7 @@ export const PlivoFooter = () => {
 
   return (
     <footer className="bg-[#0f1117] border-t border-gray-800">
-      <div className="container mx-auto max-w-7xl px-4 py-16">
+      <div className="container mx-auto max-w-7xl px-4 pt-16 pb-8">
         {/* Main Footer Grid */}
         <div className="grid grid-cols-2 gap-8 md:grid-cols-3 lg:grid-cols-6">
           {footerSections.map((section) => (

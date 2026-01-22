@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 import {
-  ChevronDown,
   Menu,
   X,
   PhoneCall,
@@ -169,15 +168,24 @@ export const PlivoNavbar = ({ currentPage }: { currentPage: string }) => {
                   >
                     <button
                       onClick={() => setOpenDropdown(openDropdown === item.title ? null : item.title)}
-                      className="flex items-center gap-1 px-3 py-6 text-[15px] font-normal text-black transition-colors hover:text-gray-600"
+                      className={cn(
+                        "flex items-center gap-1.5 px-3 py-6 text-[15px] font-normal transition-colors hover:text-gray-600",
+                        openDropdown === item.title
+                          ? "text-black border-b-2 border-black -mb-[2px]"
+                          : "text-black"
+                      )}
                     >
                       {item.title}
-                      <ChevronDown
-                        className={cn(
-                          "h-4 w-4 transition-transform duration-200",
-                          openDropdown === item.title ? "rotate-180" : ""
-                        )}
-                      />
+                      <svg
+                        className="h-2 w-2"
+                        viewBox="0 0 8 8"
+                        fill="currentColor"
+                      >
+                        <circle cx="2" cy="2" r="1" />
+                        <circle cx="6" cy="2" r="1" />
+                        <circle cx="2" cy="6" r="1" />
+                        <circle cx="6" cy="6" r="1" />
+                      </svg>
                     </button>
 
                     {/* Mega Menu - Full Width */}
@@ -326,18 +334,18 @@ export const PlivoNavbar = ({ currentPage }: { currentPage: string }) => {
                 <a
                   key={item.title}
                   href={item.href}
-                  className="inline-flex items-center justify-center rounded-lg border border-black bg-white px-5 py-2.5 text-[14px] font-medium text-black transition-all hover:bg-gray-50"
+                  className="inline-flex items-center justify-center rounded-md border border-black bg-white px-5 py-2.5 text-[14px] font-medium text-black transition-all hover:bg-gray-50"
                 >
                   {item.title}
                 </a>
               ))}
             </div>
 
-            {/* CTA Button - Get Access */}
+            {/* CTA Button - Get started now */}
             <a
               href={ctaNavigation.href}
               className={cn(
-                "hidden rounded-lg bg-black px-5 py-2.5 text-[14px] font-medium text-white transition-all hover:bg-black/90 sm:inline-flex",
+                "hidden rounded-md bg-black px-5 py-2.5 text-[14px] font-medium text-white transition-all hover:bg-black/90 sm:inline-flex items-center gap-2",
                 isMenuOpen && "max-lg:hidden"
               )}
               {...(ctaNavigation.external && {
@@ -345,6 +353,10 @@ export const PlivoNavbar = ({ currentPage }: { currentPage: string }) => {
                 rel: "noopener noreferrer",
               })}
             >
+              <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="4 17 10 11 4 5" />
+                <line x1="12" y1="19" x2="20" y2="19" />
+              </svg>
               {ctaNavigation.title}
             </a>
 
@@ -378,8 +390,12 @@ export const PlivoNavbar = ({ currentPage }: { currentPage: string }) => {
           <div className="mb-6">
             <a
               href={ctaNavigation.href}
-              className="block w-full rounded-lg bg-black py-3 text-center text-[14px] font-medium text-white"
+              className="flex w-full items-center justify-center gap-2 rounded-md bg-black py-3 text-[14px] font-medium text-white"
             >
+              <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="4 17 10 11 4 5" />
+                <line x1="12" y1="19" x2="20" y2="19" />
+              </svg>
               {ctaNavigation.title}
             </a>
           </div>
@@ -398,12 +414,16 @@ export const PlivoNavbar = ({ currentPage }: { currentPage: string }) => {
                     className="flex w-full items-center justify-between py-4 text-[16px] font-medium text-gray-900"
                   >
                     {item.title}
-                    <ChevronDown
-                      className={cn(
-                        "h-5 w-5 text-gray-400 transition-transform",
-                        openDropdown === item.title ? "rotate-180" : ""
-                      )}
-                    />
+                    <svg
+                      className="h-2 w-2 text-gray-400"
+                      viewBox="0 0 8 8"
+                      fill="currentColor"
+                    >
+                      <circle cx="2" cy="2" r="1" />
+                      <circle cx="6" cy="2" r="1" />
+                      <circle cx="2" cy="6" r="1" />
+                      <circle cx="6" cy="6" r="1" />
+                    </svg>
                   </button>
                   <div
                     className={cn(

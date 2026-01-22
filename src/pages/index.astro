@@ -5,80 +5,315 @@ import Logos from '@/components/sections/logos';
 ---
 
 <PlivoLayout
-  title="AI Voice Agents"
-  description="Build, train, and manage conversational AI agents that answer calls with lifelike speech, and extend the same intelligence to SMS, WhatsApp, and chat from a single, scalable platform."
+  title="Human-like AI Agents | Plivo"
+  description="Build, deploy, and monitor voice AI agents that sound human. Multilingual support, real-time analytics, and seamless extension to SMS, WhatsApp, and chat. Start free."
 >
   <!-- Hero Section -->
   <PlivoHero
     client:load
-    headline="AI Agents that handle your conversations just like humans"
-    subheadline="Build, train, and manage conversational AI agents that answer calls with lifelike speech, and extend the same intelligence to SMS, WhatsApp, and chat from a single, scalable platform."
-    ctaText="Get Access"
-    ctaHref="https://console.plivo.com/accounts/register/"
+    headline="Human-like AI Agents"
+    subheadline="Build voice AI agents that listen, understand, and respond naturally in 25+ languages. Extend to other channels."
   />
 
   <!-- Client Logos Marquee -->
-  <section class="py-8">
-    <Logos client:load />
-  </section>
+  <Logos client:load />
 
-  <!-- Go Live Section -->
+  <!-- Fully Customizable Section -->
   <section class="py-12 lg:py-16">
     <div class="mx-auto max-w-[1200px] px-6">
       <div class="mx-auto mb-12 max-w-3xl text-center">
-        <h2 class="mb-4 font-sora text-[2.5rem] font-normal leading-[1.25] tracking-[-0.02em] text-black">
-          Go live with AI agents in minutes
+        <h2 class="font-sora text-[2.5rem] font-normal leading-[1.25] tracking-[-0.02em] text-black whitespace-nowrap">One AI Agent Platform, Two Ways to Build</h2>
+        <p class="mt-4 text-[1.125rem] text-black leading-[1.6]">Whether you're a developer wanting granular control of the AI agent pipeline or a business looking for a turnkey no-code solution, we've got you covered.</p>
+      </div>
+      <div class="grid gap-8 md:grid-cols-2">
+        <div class="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-lg">
+          <div class="p-6 pb-0">
+            <h3 class="mb-2 font-sora text-xl font-semibold text-gray-900">Programmable AI Agents</h3>
+            <p class="text-sm text-gray-600">Start with our fully managed stack or strip it down to just audio streaming. Swap in your own LLM, customize ASR and TTS. Full control, zero hassle.</p>
+            <div class="mt-4 flex items-center gap-3">
+              <a href="/platform/ai-agents/" class="inline-flex items-center gap-1 rounded border border-gray-200 px-3 py-1 text-xs font-medium text-gray-700 hover:bg-gray-50 transition-colors">Learn more</a>
+              <a href="https://console.plivo.com/accounts/register/" class="inline-flex items-center gap-1 rounded bg-black px-3 py-1 text-xs font-medium text-white hover:bg-gray-800 transition-colors">Get started</a>
+            </div>
+          </div>
+          <div class="p-4">
+            <img src="/images/mockups/integrations.png" alt="Programmable AI Agents" class="w-full rounded-lg" loading="lazy" />
+          </div>
+        </div>
+        <div class="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-lg">
+          <div class="p-6 pb-0">
+            <h3 class="mb-2 font-sora text-xl font-semibold text-gray-900">No-code AI Agent Studio</h3>
+            <p class="text-sm text-gray-600">Build, test, and deploy omni-channel AI agents in minutes. No code required. Best for teams who want to move fast and focus on outcomes.</p>
+            <div class="mt-4 flex items-center gap-3">
+              <a href="/platform/ai-agents-builder/" class="inline-flex items-center gap-1 rounded-full border border-gray-200 px-3 py-1 text-xs font-medium text-gray-700 hover:bg-gray-50 transition-colors">Learn more</a>
+              <a href="https://console.plivo.com/accounts/register/" class="inline-flex items-center gap-1 rounded-full bg-black px-3 py-1 text-xs font-medium text-white hover:bg-gray-800 transition-colors">Get started</a>
+            </div>
+          </div>
+          <div class="p-4">
+            <img src="/images/mockups/knowledge-base-new.png" alt="No-code AI Agent Studio" class="w-full rounded-lg" loading="lazy" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What Makes Voice AI Agents Human-like Section -->
+  <section class="py-12 lg:py-16">
+    <div class="mx-auto max-w-[1200px] px-6">
+      <div class="mx-auto mb-12 max-w-3xl text-center">
+        <h2 class="font-sora text-[2.5rem] font-normal leading-[1.25] tracking-[-0.02em] text-black whitespace-nowrap">
+          What Makes Voice AI Agents Human-like?
         </h2>
-        <p class="text-[1.125rem] text-black leading-[1.6]">With Plivo's guided setup, you can build, test, and launch production-ready agents, without code or complexity.</p>
       </div>
 
-      <div class="grid gap-6 md:grid-cols-3">
-        <!-- Step 1 -->
-        <div class="overflow-hidden rounded-xl border border-gray-200 bg-white">
-          <div class="p-6">
-            <div class="mb-4 flex h-10 w-10 items-center justify-center rounded bg-[#323dfe0d]">
-              <span class="text-[1.25rem] text-[#181d27] opacity-70">01</span>
+      <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+        <!-- Latency -->
+        <div>
+          <div class="mb-6 aspect-[4/3] overflow-hidden rounded-2xl bg-gradient-to-br from-[#ede9fe] via-[#e4deff] to-[#ddd6fe] relative">
+            <!-- Multi-hop card - top center, white bg -->
+            <div class="absolute top-[10%] left-1/2 -translate-x-1/2 bg-white rounded-xl px-4 py-2 shadow-sm">
+              <span class="text-[12px] text-gray-500 whitespace-nowrap">Multi-hop - 95 ms</span>
             </div>
-            <h3 class="mb-3 text-[18px] font-semibold text-[#1e3a5f]">Describe your use case</h3>
-            <p class="text-[#475467] text-[15px] leading-[1.6]">Share what you want your agent to do. Vibe understands your intent and gets to work.</p>
+            <!-- One-hop card - below multi-hop, white -->
+            <div class="absolute top-[28%] left-1/2 -translate-x-1/2 bg-white rounded-xl px-5 py-3 shadow-md min-w-[160px] text-center">
+              <span class="text-[13px] text-gray-500">One- hop - </span>
+              <span class="text-[13px] font-bold text-gray-800">15 ms</span>
+            </div>
+            <!-- Route card - behind phone icon -->
+            <div class="absolute top-[62%] left-1/2 -translate-x-1/2 bg-white rounded-xl px-4 py-2.5 shadow-md">
+              <span class="text-[12px] text-gray-600 whitespace-nowrap">1 route - 1 hop, 100 mi</span>
+            </div>
+            <!-- Phone icon - purple circle, center, on top of route card -->
+            <div class="absolute top-[48%] left-1/2 -translate-x-1/2 w-10 h-10 bg-[#818cf8] rounded-full flex items-center justify-center shadow-lg z-10">
+              <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+              </svg>
+            </div>
           </div>
-          <div class="px-4 pb-4">
-            <img src="/images/mockups/step-1.avif" alt="Describe your use case" class="w-full rounded-lg" loading="lazy" />
-          </div>
+          <h3 class="mb-4 text-[18px] font-semibold text-black">Latency</h3>
+          <ul class="space-y-2">
+            <li class="flex items-start gap-2">
+              <span class="mt-1.5 h-2 w-2 shrink-0 rounded-sm bg-[#cd3ef9]"></span>
+              <span class="text-sm text-gray-600">Optimal latency for Voice AI (700-900ms)</span>
+            </li>
+          </ul>
         </div>
 
-        <!-- Step 2 -->
-        <div class="overflow-hidden rounded-xl border border-gray-200 bg-white">
-          <div class="p-6">
-            <div class="mb-4 flex h-10 w-10 items-center justify-center rounded bg-[#323dfe0d]">
-              <span class="text-[1.25rem] text-[#181d27] opacity-70">02</span>
+        <!-- Conversation Quality -->
+        <div>
+          <div class="mb-6 aspect-[4/3] overflow-hidden rounded-2xl bg-gradient-to-br from-[#ede9fe] via-[#e4deff] to-[#ddd6fe] p-4 relative">
+            <!-- Waveform - purple bars at top left -->
+            <div class="absolute top-4 left-5 flex items-end gap-[2px]">
+              <div class="w-[2px] h-2 bg-[#7c3aed] rounded-full opacity-40"></div>
+              <div class="w-[2px] h-4 bg-[#7c3aed] rounded-full opacity-50"></div>
+              <div class="w-[2px] h-3 bg-[#7c3aed] rounded-full opacity-60"></div>
+              <div class="w-[2px] h-5 bg-[#7c3aed] rounded-full opacity-70"></div>
+              <div class="w-[2px] h-4 bg-[#7c3aed] rounded-full opacity-80"></div>
+              <div class="w-[2px] h-6 bg-[#7c3aed] rounded-full opacity-90"></div>
+              <div class="w-[2px] h-5 bg-[#7c3aed] rounded-full"></div>
+              <div class="w-[2px] h-7 bg-[#7c3aed] rounded-full"></div>
+              <div class="w-[2px] h-5 bg-[#7c3aed] rounded-full opacity-90"></div>
+              <div class="w-[2px] h-6 bg-[#7c3aed] rounded-full opacity-80"></div>
+              <div class="w-[2px] h-4 bg-[#7c3aed] rounded-full opacity-70"></div>
+              <div class="w-[2px] h-5 bg-[#7c3aed] rounded-full opacity-60"></div>
+              <div class="w-[2px] h-3 bg-[#7c3aed] rounded-full opacity-50"></div>
+              <div class="w-[2px] h-4 bg-[#7c3aed] rounded-full opacity-40"></div>
             </div>
-            <h3 class="mb-3 text-[18px] font-semibold text-[#1e3a5f]">Let Vibe Agent build the flow</h3>
-            <p class="text-[#475467] text-[15px] leading-[1.6]">Vibe connects the dots - setting up actions, triggers, and integrations automatically.</p>
+            <!-- Star icon - gradient purple circle with glow, top right -->
+            <div class="absolute top-3 right-4">
+              <div class="w-11 h-11 bg-gradient-to-br from-[#818cf8] to-[#6366f1] rounded-full flex items-center justify-center shadow-lg shadow-purple-300/50">
+                <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 3L14.5 8.5L20.5 9.5L16 14L17 20L12 17L7 20L8 14L3.5 9.5L9.5 8.5L12 3Z" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+            </div>
+            <!-- Personality card - bottom left -->
+            <div class="absolute bottom-12 left-3 bg-white rounded-xl p-3 shadow-md w-[100px]">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-[10px] font-semibold text-gray-700">Personality</span>
+                <span class="text-gray-400 text-[10px]">...</span>
+              </div>
+              <div class="flex items-end gap-[6px] mb-2">
+                <div class="w-[10px] h-[18px] bg-[#a5b4fc] rounded-sm"></div>
+                <div class="w-[10px] h-[26px] bg-[#818cf8] rounded-sm"></div>
+                <div class="w-[10px] h-[22px] bg-[#a5b4fc] rounded-sm"></div>
+                <div class="w-[10px] h-[14px] bg-[#c7d2fe] rounded-sm"></div>
+              </div>
+              <div class="flex gap-1 text-[6px] text-gray-400">
+                <span>Friendly</span>
+                <span>Empathetic</span>
+                <span>Kind</span>
+              </div>
+            </div>
+            <!-- Tone of Voice card - center right, larger -->
+            <div class="absolute bottom-3 right-2 bg-white rounded-xl p-3 shadow-md w-[115px]">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-[10px] font-semibold text-gray-700">Tone of Voice</span>
+                <span class="text-gray-400 text-[10px]">...</span>
+              </div>
+              <!-- Waveform visualization -->
+              <div class="flex items-center justify-center gap-[1px] mb-2 h-4">
+                <div class="w-[1px] h-1 bg-gray-300 rounded-full"></div>
+                <div class="w-[1px] h-2 bg-gray-300 rounded-full"></div>
+                <div class="w-[1px] h-3 bg-gray-400 rounded-full"></div>
+                <div class="w-[1px] h-2 bg-gray-300 rounded-full"></div>
+                <div class="w-[1px] h-4 bg-gray-400 rounded-full"></div>
+                <div class="w-[1px] h-2 bg-gray-300 rounded-full"></div>
+                <div class="w-[1px] h-3 bg-gray-400 rounded-full"></div>
+                <div class="w-[1px] h-1 bg-gray-300 rounded-full"></div>
+                <div class="w-[1px] h-2 bg-gray-300 rounded-full"></div>
+                <div class="w-[1px] h-3 bg-gray-400 rounded-full"></div>
+                <div class="w-[1px] h-2 bg-gray-300 rounded-full"></div>
+                <div class="w-[1px] h-4 bg-gray-400 rounded-full"></div>
+                <div class="w-[1px] h-2 bg-gray-300 rounded-full"></div>
+                <div class="w-[1px] h-3 bg-gray-400 rounded-full"></div>
+                <div class="w-[1px] h-1 bg-gray-300 rounded-full"></div>
+              </div>
+              <div class="flex flex-wrap gap-1">
+                <span class="text-[6px] bg-gray-100 text-gray-600 px-1.5 py-0.5 rounded border border-gray-200">Casual & Warm</span>
+                <span class="text-[6px] bg-gray-100 text-gray-600 px-1.5 py-0.5 rounded border border-gray-200">Crisp & Professional</span>
+              </div>
+              <div class="mt-1">
+                <span class="text-[6px] bg-gray-100 text-gray-600 px-1.5 py-0.5 rounded border border-gray-200">Empathetic & Supportive</span>
+              </div>
+            </div>
           </div>
-          <div class="px-4 pb-4">
-            <img src="/images/mockups/step-2.avif" alt="Vibe Agent builds the flow" class="w-full rounded-lg" loading="lazy" />
-          </div>
+          <h3 class="mb-4 text-[18px] font-semibold text-black">Conversation Quality</h3>
+          <ul class="space-y-2">
+            <li class="flex items-start gap-2">
+              <span class="mt-1.5 h-2 w-2 shrink-0 rounded-sm bg-[#cd3ef9]"></span>
+              <span class="text-sm text-gray-600">Noise cancellation</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="mt-1.5 h-2 w-2 shrink-0 rounded-sm bg-[#cd3ef9]"></span>
+              <span class="text-sm text-gray-600">Accents & Languages</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="mt-1.5 h-2 w-2 shrink-0 rounded-sm bg-[#cd3ef9]"></span>
+              <span class="text-sm text-gray-600">Tonality, Hallucination</span>
+            </li>
+          </ul>
         </div>
 
-        <!-- Step 3 -->
-        <div class="overflow-hidden rounded-xl border border-gray-200 bg-white">
-          <div class="p-6">
-            <div class="mb-4 flex h-10 w-10 items-center justify-center rounded bg-[#323dfe0d]">
-              <span class="text-[1.25rem] text-[#181d27] opacity-70">03</span>
+        <!-- Natural Turn Taking -->
+        <div>
+          <div class="mb-6 aspect-[4/3] overflow-hidden rounded-2xl bg-gradient-to-br from-[#ede9fe] via-[#e4deff] to-[#ddd6fe] p-4 relative">
+            <!-- User message with photo avatar - top right -->
+            <div class="absolute top-3 right-3 flex items-center gap-2">
+              <!-- Photo avatar -->
+              <div class="w-8 h-8 rounded-full overflow-hidden border-2 border-white shadow-sm">
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=face" alt="User" class="w-full h-full object-cover" />
+              </div>
+              <div class="bg-white rounded-lg px-3 py-2 shadow-sm max-w-[130px]">
+                <div class="flex items-center gap-1.5 mb-1">
+                  <!-- Waveform icon -->
+                  <div class="flex items-center gap-[1px]">
+                    <div class="w-[1px] h-1.5 bg-gray-400 rounded-full"></div>
+                    <div class="w-[1px] h-2.5 bg-gray-400 rounded-full"></div>
+                    <div class="w-[1px] h-1 bg-gray-400 rounded-full"></div>
+                    <div class="w-[1px] h-2 bg-gray-400 rounded-full"></div>
+                    <div class="w-[1px] h-1.5 bg-gray-400 rounded-full"></div>
+                  </div>
+                </div>
+                <span class="text-[8px] text-gray-600 leading-tight block">I need a home loan for $300K</span>
+              </div>
             </div>
-            <h3 class="mb-3 text-[18px] font-semibold text-[#1e3a5f]">Review and launch</h3>
-            <p class="text-[#475467] text-[15px] leading-[1.6]">Test the experience, make quick tweaks, and deploy your agent across channels with a single click.</p>
+            <!-- Large purple mic icon with glow ring - center -->
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+              <!-- Outer glow ring -->
+              <div class="absolute inset-0 w-20 h-20 -m-3 rounded-full bg-purple-200/30"></div>
+              <div class="relative w-14 h-14 bg-[#7c3aed] rounded-full flex items-center justify-center shadow-xl">
+                <svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
+                </svg>
+              </div>
+              <!-- Sound waves on sides -->
+              <div class="absolute left-[-24px] top-1/2 -translate-y-1/2 flex items-center gap-[2px]">
+                <div class="w-[2px] h-3 bg-gray-400 rounded-full opacity-40"></div>
+                <div class="w-[2px] h-5 bg-gray-400 rounded-full opacity-50"></div>
+                <div class="w-[2px] h-4 bg-gray-400 rounded-full opacity-60"></div>
+              </div>
+              <div class="absolute right-[-24px] top-1/2 -translate-y-1/2 flex items-center gap-[2px]">
+                <div class="w-[2px] h-4 bg-gray-400 rounded-full opacity-60"></div>
+                <div class="w-[2px] h-5 bg-gray-400 rounded-full opacity-50"></div>
+                <div class="w-[2px] h-3 bg-gray-400 rounded-full opacity-40"></div>
+              </div>
+            </div>
+            <!-- AI response - bottom left -->
+            <div class="absolute bottom-3 left-3 flex items-center gap-2">
+              <!-- AI sparkle icon -->
+              <div class="w-6 h-6 bg-[#818cf8] rounded-full flex items-center justify-center shadow-sm">
+                <svg class="w-3 h-3 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 3L14.5 8.5L20.5 9.5L16 14L17 20L12 17L7 20L8 14L3.5 9.5L9.5 8.5L12 3Z" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <div class="bg-white rounded-lg px-3 py-2 shadow-sm max-w-[150px]">
+                <span class="text-[8px] text-gray-600 leading-tight block">Got it! Our mortgage specialist will contact you today.</span>
+              </div>
+            </div>
           </div>
-          <div class="px-4 pb-4">
-            <img src="/images/mockups/step-3.avif" alt="Review and launch" class="w-full rounded-lg" loading="lazy" />
-          </div>
+          <h3 class="mb-4 text-[18px] font-semibold text-black">Natural Turn Taking</h3>
+          <ul class="space-y-2">
+            <li class="flex items-start gap-2">
+              <span class="mt-1.5 h-2 w-2 shrink-0 rounded-sm bg-[#cd3ef9]"></span>
+              <span class="text-sm text-gray-600">Interruption detection</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="mt-1.5 h-2 w-2 shrink-0 rounded-sm bg-[#cd3ef9]"></span>
+              <span class="text-sm text-gray-600">Turn detection</span>
+            </li>
+          </ul>
         </div>
-      </div>
 
-      <div class="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
-        <a href="/contact/sales/" class="inline-flex items-center justify-center rounded-lg border border-gray-300 bg-white px-6 py-3.5 text-[15px] font-medium text-black transition-all hover:bg-gray-50">Contact Sales</a>
-        <a href="https://console.plivo.com/accounts/register/" class="inline-flex items-center justify-center rounded-lg bg-black px-6 py-3.5 text-[15px] font-medium text-white transition-all hover:bg-black/90">Get Started Now</a>
+        <!-- Self Improving -->
+        <div>
+          <div class="mb-6 aspect-[4/3] overflow-hidden rounded-2xl bg-gradient-to-br from-[#ede9fe] via-[#e4deff] to-[#ddd6fe] p-4 relative flex items-center justify-center">
+            <!-- Curved arrows and elements -->
+            <div class="relative w-[120px] h-[120px]">
+              <!-- Two curved arrows -->
+              <svg class="absolute inset-0 w-full h-full" viewBox="0 0 120 120" fill="none">
+                <!-- Top-right curved arrow -->
+                <path d="M60 15 Q95 15 100 55" stroke="#818cf8" stroke-width="3" fill="none" stroke-linecap="round"/>
+                <path d="M95 50 L100 55 L105 48" stroke="#818cf8" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                <!-- Bottom-left curved arrow -->
+                <path d="M60 105 Q25 105 20 65" stroke="#818cf8" stroke-width="3" fill="none" stroke-linecap="round"/>
+                <path d="M25 70 L20 65 L15 72" stroke="#818cf8" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <!-- Center gear icon - larger -->
+              <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-[#e5e7eb] rounded-full flex items-center justify-center">
+                <svg class="w-10 h-10 text-[#9ca3af]" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 15.5A3.5 3.5 0 0 1 8.5 12 3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5 3.5 3.5 0 0 1-3.5 3.5m7.43-2.53c.04-.32.07-.64.07-.97 0-.33-.03-.66-.07-1l2.11-1.63c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.31-.61-.22l-2.49 1c-.52-.39-1.06-.73-1.69-.98l-.37-2.65A.506.506 0 0 0 14 2h-4c-.25 0-.46.18-.5.42l-.37 2.65c-.63.25-1.17.59-1.69.98l-2.49-1c-.22-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64L4.57 11c-.04.34-.07.67-.07 1 0 .33.03.65.07.97l-2.11 1.66c-.19.15-.25.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1.01c.52.4 1.06.74 1.69.99l.37 2.65c.04.24.25.42.5.42h4c.25 0 .46-.18.5-.42l.37-2.65c.63-.26 1.17-.59 1.69-.99l2.49 1.01c.22.08.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.66Z"/>
+                </svg>
+              </div>
+              <!-- Purple star on the gear -->
+              <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-[#6366f1] rounded-full flex items-center justify-center shadow-lg">
+                <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 3L14.5 8.5L20.5 9.5L16 14L17 20L12 17L7 20L8 14L3.5 9.5L9.5 8.5L12 3Z" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <!-- Green checkmark - top right, no circle -->
+              <div class="absolute top-0 right-0">
+                <svg class="w-8 h-8 text-[#22c55e]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+              </div>
+            </div>
+          </div>
+          <h3 class="mb-4 text-[18px] font-semibold text-black">Self Improving</h3>
+          <ul class="space-y-2">
+            <li class="flex items-start gap-2">
+              <span class="mt-1.5 h-2 w-2 shrink-0 rounded-sm bg-[#cd3ef9]"></span>
+              <span class="text-sm text-gray-600">Simulation</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="mt-1.5 h-2 w-2 shrink-0 rounded-sm bg-[#cd3ef9]"></span>
+              <span class="text-sm text-gray-600">Observability</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="mt-1.5 h-2 w-2 shrink-0 rounded-sm bg-[#cd3ef9]"></span>
+              <span class="text-sm text-gray-600">Goals/Outcome</span>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
@@ -191,42 +426,13 @@ import Logos from '@/components/sections/logos';
       </div>
 
       <div class="mt-16 flex flex-col items-center justify-center gap-4 sm:flex-row">
-        <a href="/contact/sales/" class="inline-flex items-center justify-center rounded-lg border border-gray-300 bg-white px-6 py-3.5 text-[15px] font-medium text-black transition-all hover:bg-gray-50">Contact Sales</a>
-        <a href="https://console.plivo.com/accounts/register/" class="inline-flex items-center justify-center rounded-lg bg-black px-6 py-3.5 text-[15px] font-medium text-white transition-all hover:bg-black/90">Get Started Now</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Fully Customizable Section -->
-  <section class="py-12 lg:py-16">
-    <div class="mx-auto max-w-[1200px] px-6">
-      <div class="mx-auto mb-12 max-w-3xl text-center">
-        <h2 class="font-sora text-[2.5rem] font-normal leading-[1.25] tracking-[-0.02em] text-black">Fully customizable to your brand and connected to your systems</h2>
-      </div>
-      <div class="grid gap-8 md:grid-cols-2">
-        <div class="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-lg">
-          <div class="p-6 pb-0">
-            <h3 class="mb-2 font-sora text-xl font-semibold text-gray-900">Connect to the tools you already use</h3>
-            <p class="text-sm text-gray-600">Plivo supports both API-based and MCP integrations, so your agents can take action across CRMs, helpdesks, e-commerce, productivity tools, and more, right out of the box.</p>
-          </div>
-          <div class="p-4">
-            <img src="/images/mockups/integrations.png" alt="Integration ecosystem" class="w-full rounded-lg" loading="lazy" />
-          </div>
-        </div>
-        <div class="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-lg">
-          <div class="p-6 pb-0">
-            <h3 class="mb-2 font-sora text-xl font-semibold text-gray-900">Conversations that sound like you and stay accurate</h3>
-            <p class="text-sm text-gray-600">AI agents adapt to your brand voice and pull answers from your latest knowledge base and connected data sources.</p>
-          </div>
-          <div class="p-4">
-            <img src="/images/mockups/knowledge-base-new.png" alt="Knowledge base" class="w-full rounded-lg" loading="lazy" />
-          </div>
-        </div>
-      </div>
-
-      <div class="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
-        <a href="/contact/sales/" class="inline-flex items-center justify-center rounded-lg border border-gray-300 bg-white px-6 py-3.5 text-[15px] font-medium text-black transition-all hover:bg-gray-50">Contact Sales</a>
-        <a href="https://console.plivo.com/accounts/register/" class="inline-flex items-center justify-center rounded-lg bg-black px-6 py-3.5 text-[15px] font-medium text-white transition-all hover:bg-black/90">Get Started Now</a>
+        <a href="https://console.plivo.com/accounts/register/" class="group inline-flex items-center justify-center gap-2 rounded-md bg-black px-6 py-3.5 text-[15px] font-medium text-white transition-all hover:bg-gray-800 hover:shadow-md">
+          <svg class="h-4 w-4 transition-transform group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="4 17 10 11 4 5" />
+            <line x1="12" y1="19" x2="20" y2="19" />
+          </svg>
+          Get started now
+        </a>
       </div>
     </div>
   </section>
@@ -305,8 +511,13 @@ import Logos from '@/components/sections/logos';
       <h2 class="mb-4 font-sora text-[2.5rem] font-normal leading-[1.25] tracking-[-0.02em] text-white">Start building your AI agent now</h2>
       <p class="mb-8 text-[1.125rem] text-white/70 leading-[1.6]">No coding required. Get your agents up and running in &lt;30 mins.</p>
       <div class="flex flex-col items-center justify-center gap-4 sm:flex-row">
-        <a href="/contact/sales/" class="inline-flex items-center justify-center rounded-lg border border-white/30 bg-transparent px-6 py-3.5 text-[15px] font-medium text-white transition-all hover:bg-white/10">Contact Sales</a>
-        <a href="/request-trial/" class="inline-flex items-center justify-center rounded-lg bg-white px-6 py-3.5 text-[15px] font-medium text-black transition-all hover:bg-white/90">Request Trial</a>
+        <a href="https://console.plivo.com/accounts/register/" class="group inline-flex items-center justify-center gap-2 rounded-md bg-white px-6 py-3.5 text-[15px] font-medium text-black transition-all hover:bg-white/90">
+          <svg class="h-4 w-4 transition-transform group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="4 17 10 11 4 5" />
+            <line x1="12" y1="19" x2="20" y2="19" />
+          </svg>
+          Get started now
+        </a>
       </div>
     </div>
   </section>

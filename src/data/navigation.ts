@@ -36,6 +36,10 @@ export const mainNavigation: NavDropdown[] = [
             description: "Modular building blocks from Audio Streaming to ASR, Turn detection, TTS to build your voice AI agents",
             href: "/platform/ai-agents/",
             icon: "sparkles",
+            subLinks: [
+              { title: "Audio Streaming", href: "/voice/audio-streaming/" },
+              { title: "Bring your own LLM", href: "/platform/bring-your-own-llm/" },
+            ],
           },
           {
             title: "No-code AI Agent Studio",
@@ -54,7 +58,6 @@ export const mainNavigation: NavDropdown[] = [
             href: "/voice/overview/",
             icon: "phone-call",
             subLinks: [
-              { title: "Audio Streaming", href: "/voice/audio-streaming/" },
               { title: "SIP Trunking", href: "/sip-trunking/" },
             ],
           },
@@ -320,7 +323,7 @@ export const secondaryNavigation: NavItem[] = [
 
 // CTA button
 export const ctaNavigation: NavItem = {
-  title: "Get Access",
+  title: "Get started now",
   href: "https://console.plivo.com/accounts/register/",
   external: true,
 };

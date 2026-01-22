@@ -1,48 +1,52 @@
+import { Marquee } from '@/components/magicui/marquee';
+
 const LOGOS = [
-  { name: "Meta", src: "/images/logos/meta.svg" },
-  { name: "Uber", src: "/images/logos/uber.svg" },
-  { name: "Hoka", src: "/images/logos/hoka.svg" },
-  { name: "Discord", src: "/images/logos/discord.svg" },
-  { name: "DocuSign", src: "/images/logos/docusign.svg" },
-  { name: "Trip.com", src: "/images/logos/trip.svg" },
-  { name: "GoDaddy", src: "/images/logos/godaddy.svg" },
-  { name: "Atomberg", src: "/images/logos/atomberg.svg" },
-  { name: "Tata 1mg", src: "/images/logos/tata1mg.svg" },
+  { name: "Meta", src: "/images/logos/meta.svg", className: "h-7" },
+  { name: "Uber", src: "/images/logos/uber.svg", className: "h-7" },
+  { name: "Hoka", src: "/images/logos/hoka.svg", className: "h-5" },
+  { name: "Discord", src: "/images/logos/discord.svg", className: "h-7" },
+  { name: "DocuSign", src: "/images/logos/docusign.svg", className: "h-7" },
+  { name: "Trip.com", src: "/images/logos/trip.svg", className: "h-7" },
+  { name: "GoDaddy", src: "/images/logos/godaddy.svg", className: "h-7" },
+  { name: "Atomberg", src: "/images/logos/atomberg.svg", className: "h-7" },
+  { name: "Tata 1mg", src: "/images/logos/tata1mg.svg", className: "h-7" },
 ];
 
 export default function Logos() {
   return (
-    <div className="relative overflow-hidden">
-      {/* Constrained width to match hero video above */}
-      <div className="mx-auto max-w-[1200px] px-6">
-        <div className="relative overflow-hidden py-6">
-          <div className="flex w-full">
-            {/* First marquee group */}
-            <div className="animate-marquee flex shrink-0 items-center gap-14 pr-14">
-              {LOGOS.map((logo, index) => (
-                <div key={index} className="flex items-center justify-center">
-                  <img
-                    src={logo.src}
-                    alt={logo.name}
-                    className="h-5 w-auto max-w-[90px] object-contain"
-                  />
-                </div>
-              ))}
+    <div className="relative py-4 lg:py-6">
+      {/* Heading */}
+      <div className="text-center mb-4">
+        <p className="text-[15px] font-normal text-gray-600 lg:text-[16px]">
+          Trusted by 10,000+ startups and enterprises worldwide
+        </p>
+      </div>
+
+      {/* Marquee with fade mask - darker in center, lighter at edges */}
+      <div
+        style={{
+          maskImage: 'linear-gradient(to right, transparent 0%, rgba(0,0,0,0.3) 10%, rgba(0,0,0,0.7) 25%, black 40%, black 60%, rgba(0,0,0,0.7) 75%, rgba(0,0,0,0.3) 90%, transparent 100%)',
+          WebkitMaskImage: 'linear-gradient(to right, transparent 0%, rgba(0,0,0,0.3) 10%, rgba(0,0,0,0.7) 25%, black 40%, black 60%, rgba(0,0,0,0.7) 75%, rgba(0,0,0,0.3) 90%, transparent 100%)',
+        }}
+      >
+        <Marquee
+          pauseOnHover
+          repeat={4}
+          className="[--duration:40s] [--gap:3.5rem]"
+        >
+          {LOGOS.map((logo) => (
+            <div
+              key={logo.name}
+              className="flex items-center justify-center shrink-0 w-[90px]"
+            >
+              <img
+                src={logo.src}
+                alt={logo.name}
+                className={`${logo.className} w-auto object-contain grayscale opacity-60 hover:opacity-90 transition-opacity`}
+              />
             </div>
-            {/* Second marquee group (duplicate for seamless loop) */}
-            <div className="animate-marquee flex shrink-0 items-center gap-14 pr-14">
-              {LOGOS.map((logo, index) => (
-                <div key={`dup-${index}`} className="flex items-center justify-center">
-                  <img
-                    src={logo.src}
-                    alt={logo.name}
-                    className="h-5 w-auto max-w-[90px] object-contain"
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
+          ))}
+        </Marquee>
       </div>
     </div>
   );
