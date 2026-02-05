@@ -1,0 +1,66 @@
+---
+// ClientLogos.astro - Logo marquee section
+
+const logos = [
+  { src: "/images/client-logos/atomberg-seeklogo-2 1.svg", alt: "Atomberg" },
+  { src: "/images/client-logos/GoDaddy_id30Py4bC__0 1.svg", alt: "GoDaddy" },
+  { src: "/images/client-logos/Group 1.svg", alt: "Group 1" },
+  { src: "/images/client-logos/TATA 1mg.svg", alt: "TATA 1mg" },
+  { src: "/images/client-logos/Yahoo!_(2019) 2.svg", alt: "Yahoo" },
+  { src: "/images/client-logos/Discord-Logo-Black 1.svg", alt: "Discord" },
+  { src: "/images/client-logos/greatlearning-brand 2.svg", alt: "Great Learning" },
+  { src: "/images/client-logos/Masai-School_Logo 2.svg", alt: "Masai School" },
+  { src: "/images/client-logos/Trip.com_idzG1j8E6i_0 1.svg", alt: "Trip.com" },
+  { src: "/images/client-logos/zolve_logo 2.svg", alt: "Zolve" },
+];
+---
+
+<section class="logo-marquee bg-white relative overflow-hidden py-12">
+  <div class="marquee-container max-w-[1400px] mx-auto overflow-hidden">
+    <div class="marquee-content flex gap-8 sm:gap-16 items-center">
+      {/* First set of logos */}
+      {logos.map((logo) => (
+        <div class="marquee-item flex-shrink-0">
+          <img
+            src={logo.src}
+            alt={logo.alt}
+            class="logo-img h-6 w-auto grayscale transition-all duration-300 hover:grayscale-0"
+          />
+        </div>
+      ))}
+      {/* Duplicate for seamless loop */}
+      {logos.map((logo) => (
+        <div class="marquee-item flex-shrink-0">
+          <img
+            src={logo.src}
+            alt={logo.alt}
+            class="logo-img h-6 w-auto grayscale transition-all duration-300 hover:grayscale-0"
+          />
+        </div>
+      ))}
+    </div>
+  </div>
+
+  {/* Fade edges */}
+  <div class="marquee-fade-left absolute inset-y-0 left-0 w-12 sm:w-24 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
+  <div class="marquee-fade-right absolute inset-y-0 right-0 w-12 sm:w-24 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
+</section>
+
+<style>
+  .marquee-content {
+    animation: marquee 30s linear infinite;
+  }
+
+  .marquee-container:hover .marquee-content {
+    animation-play-state: paused;
+  }
+
+  @keyframes marquee {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+</style>

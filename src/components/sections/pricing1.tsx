@@ -71,7 +71,7 @@ export function Pricing1({ headerTag = "h2" }: { headerTag?: "h1" | "h2" }) {
               Pricing
             </h2>
           )}
-          <p className="text-muted-foreground text-balance text-lg">
+          <p className="text-balance text-lg text-muted-foreground">
             Use Streamline for free with your whole team. Upgrade to enable
             unlimited issues, enhanced security controls, and additional
             features.
@@ -98,13 +98,13 @@ export function Pricing1({ headerTag = "h2" }: { headerTag?: "h1" | "h2" }) {
               <Card
                 className={cn(
                   "h-full border-none bg-zinc-100 dark:bg-zinc-900",
-                  plan.popular && "bg-background relative ring-2 ring-black",
+                  plan.popular && "relative bg-background ring-2 ring-black",
                 )}
               >
                 <CardHeader>
                   <h3 className="text-2xl font-semibold">{plan.name}</h3>
                   <div className="mt-2">
-                    <p className="text-muted-foreground text-lg font-medium">
+                    <p className="text-lg font-medium text-muted-foreground">
                       {isAnnual ? plan.annualPrice : plan.monthlyPrice}
                       {(plan.monthlyPerUnit || plan.annualPerUnit) &&
                         " " +
@@ -124,7 +124,7 @@ export function Pricing1({ headerTag = "h2" }: { headerTag?: "h1" | "h2" }) {
                     {plan.features.map((feature) => (
                       <div key={feature} className="flex items-center gap-3">
                         <Check className="size-4 shrink-0" />
-                        <span className="text-muted-foreground text-sm">
+                        <span className="text-sm text-muted-foreground">
                           {feature}
                         </span>
                       </div>

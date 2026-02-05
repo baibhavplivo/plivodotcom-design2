@@ -1,8 +1,8 @@
-import React from 'react';
+import React from "react";
 
-import { cn } from '@/lib/utils';
+import { cn } from "@/lib/utils";
 
-interface MarqueeProps extends React.ComponentPropsWithoutRef<'div'> {
+interface MarqueeProps extends React.ComponentPropsWithoutRef<"div"> {
   /**
    * Optional CSS class name to apply custom styles
    */
@@ -46,15 +46,15 @@ export function Marquee({
     <div
       {...props}
       className={cn(
-        'group flex overflow-hidden p-2 [--duration:40s] [--gap:1rem]',
+        "group flex overflow-hidden p-2 [--duration:40s] [--gap:1rem]",
         {
-          'flex-row': !vertical,
-          'flex-col': vertical,
+          "flex-row": !vertical,
+          "flex-col": vertical,
         },
         className,
       )}
       style={{
-        gap: 'var(--gap)',
+        gap: "var(--gap)",
       }}
     >
       {Array(repeat)
@@ -62,14 +62,14 @@ export function Marquee({
         .map((_, i) => (
           <div
             key={i}
-            className={cn('flex shrink-0', {
-              'flex-row': !vertical,
-              'flex-col': vertical,
-              'group-hover:[animation-play-state:paused]': pauseOnHover,
+            className={cn("flex shrink-0", {
+              "flex-row": !vertical,
+              "flex-col": vertical,
+              "group-hover:[animation-play-state:paused]": pauseOnHover,
             })}
             style={{
-              gap: 'var(--gap)',
-              animation: `marquee var(--duration) linear infinite${reverse ? ' reverse' : ''}`,
+              gap: "var(--gap)",
+              animation: `marquee var(--duration) linear infinite${reverse ? " reverse" : ""}`,
             }}
           >
             {children}

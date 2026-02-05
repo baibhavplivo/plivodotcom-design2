@@ -14,10 +14,10 @@ const MetafiLogos = () => {
   return (
     <section
       id="metafi-logos"
-      className="bg-background overflow-hidden px-6 lg:px-0"
+      className="overflow-hidden bg-background px-6 lg:px-0"
     >
       <div className="container px-0 py-10 text-center sm:py-12 md:px-6 md:py-20">
-        <p className="text-muted-foreground text-sm sm:text-base">
+        <p className="text-sm text-muted-foreground sm:text-base">
           Trusted by beloved partner and customer
         </p>
 

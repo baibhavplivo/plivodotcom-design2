@@ -23,10 +23,10 @@ export default function MetafiTeam({
       <div className="container px-0 py-16 sm:py-20 md:px-6 md:py-24">
         <div className="text-center">
           <p className="text-tagline text-sm sm:text-base">{overline}</p>
-          <h2 className="text-foreground mt-4 text-3xl font-medium leading-tight tracking-tight sm:text-5xl">
+          <h2 className="mt-4 text-3xl font-medium leading-tight tracking-tight text-foreground sm:text-5xl">
             {title}
           </h2>
-          <p className="text-muted-foreground mx-auto mt-4 max-w-2xl text-sm sm:text-base">
+          <p className="mx-auto mt-4 max-w-2xl text-sm text-muted-foreground sm:text-base">
             {subtitle}
           </p>
         </div>
@@ -34,7 +34,7 @@ export default function MetafiTeam({
         <ul className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {members.map((m) => (
             <li key={m.name}>
-              <article className="bg-card border-border-light shadow-light rounded-[12px] border p-4 pb-5">
+              <article className="border-border-light shadow-light rounded-[12px] border bg-card p-4 pb-5">
                 <div className="relative h-[250px] w-full overflow-hidden rounded-[10px]">
                   <img
                     src={m.imageSrc}
@@ -47,10 +47,10 @@ export default function MetafiTeam({
 
                 {/* Meta */}
                 <div className="mt-3 sm:mt-4">
-                  <h3 className="text-foreground text-xl font-medium">
+                  <h3 className="text-xl font-medium text-foreground">
                     {m.name}
                   </h3>
-                  <p className="text-muted-foreground text-md mt-2">{m.role}</p>
+                  <p className="text-md mt-2 text-muted-foreground">{m.role}</p>
                 </div>
               </article>
             </li>

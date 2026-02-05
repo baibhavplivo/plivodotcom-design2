@@ -1,0 +1,76 @@
+---
+// Compliance.astro - Enterprise security & compliance section
+
+const badges = [
+  { src: "/images/compliance/hipaa.svg", alt: "HIPAA", label: "HIPAA" },
+  { src: "/images/compliance/gdpr.svg", alt: "GDPR", label: "GDPR" },
+  { src: "/images/compliance/AICPA.svg", alt: "AICPA SOC 2", label: "SOC 2" },
+  { src: "/images/compliance/PCI DSS.svg", alt: "PCI DSS", label: "PCI DSS" },
+  { src: "/images/compliance/star.svg", alt: "STAR", label: "STAR" },
+];
+
+const features = [
+  {
+    title: "Encryption everywhere",
+    description: "TLS in transit. AES-256 at rest. No exceptions.",
+  },
+  {
+    title: "Data residency",
+    description: "Choose US, EU, or APAC. Your data stays where you need it.",
+  },
+  {
+    title: "Audit-ready",
+    description: "Full access logs, RBAC, and compliance reports on demand.",
+  },
+];
+---
+
+<section class="compliance-section bg-white py-12 sm:py-16 md:py-20">
+  <div class="container mx-auto max-w-7xl px-4">
+    <h2 class="font-sora text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] font-normal leading-[1.25] tracking-[-0.02em] text-black text-center mb-6 max-w-3xl mx-auto">
+      Enterprise-grade security<br />& compliance
+    </h2>
+
+    {/* Grid container similar to ImpactStats */}
+    <div class="overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm">
+      {/* Top section - Compliance badges */}
+      <div class="px-6 py-8 sm:px-8 lg:px-10 lg:py-10">
+        <div class="grid grid-cols-5 gap-4">
+          {badges.map((badge) => (
+            <div class="flex flex-col items-center gap-3">
+              <div class="w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center">
+                <img src={badge.src} alt={badge.alt} class="max-w-full max-h-full" />
+              </div>
+              <span class="text-xs sm:text-sm font-medium text-gray-500">{badge.label}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Features row with grid dividers */}
+      <div class="grid grid-cols-1 sm:grid-cols-3 border-t border-gray-200">
+        {features.map((feature, index) => (
+          <div class={`flex flex-col justify-center px-6 py-5 sm:px-8 sm:py-6 ${index < features.length - 1 ? 'border-b sm:border-b-0 sm:border-r border-gray-200' : ''}`}>
+            <div class="flex items-start gap-3">
+              <svg
+                class="w-5 h-5 text-[#323dfe] mt-0.5 flex-shrink-0"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+              <div>
+                <h4 class="font-semibold text-black text-sm sm:text-base">{feature.title}</h4>
+                <p class="text-xs sm:text-sm text-gray-500 mt-1">{feature.description}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

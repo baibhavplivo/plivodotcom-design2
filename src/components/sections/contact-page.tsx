@@ -47,7 +47,7 @@ export const ContactPage = () => {
         <h1 className="text-center text-4xl font-semibold tracking-tight sm:text-5xl">
           Contact us
         </h1>
-        <p className="text-muted-foreground mt-4 text-center">
+        <p className="mt-4 text-center text-muted-foreground">
           Hopefully this form gets through our spam filters.
         </p>
 
@@ -56,7 +56,7 @@ export const ContactPage = () => {
           <div className="space-y-10 md:pe-14">
             <div>
               <h2 className="text-lg font-semibold">Corporate office</h2>
-              <p className="text-muted-foreground mt-3 text-lg font-medium tracking-tight">
+              <p className="mt-3 text-lg font-medium tracking-tight text-muted-foreground">
                 1 Carlsberg Close
                 <br />
                 1260 Hillview, Australia
@@ -70,7 +70,7 @@ export const ContactPage = () => {
                   <p>Careers</p>
                   <a
                     href="mailto:careers@streamline.com"
-                    className="text-muted-foreground mt-3 text-lg font-medium tracking-tight"
+                    className="mt-3 text-lg font-medium tracking-tight text-muted-foreground"
                   >
                     careers@streamline.com
                   </a>
@@ -79,7 +79,7 @@ export const ContactPage = () => {
                   <p>Press</p>
                   <a
                     href="mailto:press@streamline.com"
-                    className="text-muted-foreground mt-3 text-lg font-medium tracking-tight"
+                    className="mt-3 text-lg font-medium tracking-tight text-muted-foreground"
                   >
                     press@streamline.com
                   </a>

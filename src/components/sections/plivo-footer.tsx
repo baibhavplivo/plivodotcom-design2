@@ -29,8 +29,8 @@ export const PlivoFooter = () => {
   ];
 
   return (
-    <footer className="bg-[#0f1117] border-t border-gray-800">
-      <div className="container mx-auto max-w-7xl px-4 pt-16 pb-8">
+    <footer className="border-t border-gray-800 bg-[#0f1117]">
+      <div className="container mx-auto max-w-7xl px-4 pb-8 pt-16">
         {/* Main Footer Grid */}
         <div className="grid grid-cols-2 gap-8 md:grid-cols-3 lg:grid-cols-6">
           {footerSections.map((section) => (
@@ -63,14 +63,14 @@ export const PlivoFooter = () => {
           {/* Logo */}
           <a href="/" className="flex items-center">
             <img
-              src="/images/plivo-logo.svg"
+              src="/images/plivo-logo-white.svg"
               alt="Plivo"
-              className="h-5 w-auto invert"
+              className="h-5 w-auto"
             />
           </a>
 
           {/* Copyright - Centered */}
-          <p className="text-sm text-gray-400 md:absolute md:left-1/2 md:-translate-x-1/2">
+          <p className="text-sm text-gray-500 md:absolute md:left-1/2 md:-translate-x-1/2">
             Copyright &copy; {new Date().getFullYear()} Plivo Inc.
           </p>
 

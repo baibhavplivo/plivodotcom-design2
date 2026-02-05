@@ -36,7 +36,7 @@ const PLANS: Plan[] = [
       "Unlimited users",
       "Pause & Cancel anytime",
     ],
-    ctaLabel: "Get Started",
+    ctaLabel: "Get started",
     ctaHref: "/pricing",
     highlight: true,
     badge: "🔥 30% off",
@@ -51,7 +51,7 @@ const PLANS: Plan[] = [
       "Unlimited users",
       "Pause & Cancel anytime",
     ],
-    ctaLabel: "Contact Sales",
+    ctaLabel: "Contact sales",
     ctaHref: "/contact",
   },
 ];
@@ -65,18 +65,18 @@ export default function MetafiPricingHero() {
         <div className="bg-features-hero relative overflow-hidden">
           <div className="mx-auto max-w-4xl px-6 py-12 text-center sm:px-8 sm:py-16 md:py-20">
             <p className="text-tagline text-sm sm:text-base">Pricing</p>
-            <h1 className="text-foreground mt-4 text-balance text-4xl font-medium leading-tight tracking-tight sm:text-5xl md:text-[68px]">
+            <h1 className="mt-4 text-balance text-4xl font-medium leading-tight tracking-tight text-foreground sm:text-5xl md:text-[68px]">
               Simple, Flexible
               <br className="hidden sm:block" /> Pricing
             </h1>
-            <p className="text-muted-foreground mx-auto mt-4 max-w-2xl text-base sm:text-lg">
+            <p className="mx-auto mt-4 max-w-2xl text-base text-muted-foreground sm:text-lg">
               Pricing plans for businesses at every stage of growth.
             </p>
 
             <div className="mt-6 flex items-center justify-center gap-3">
               <span
                 className={cn(
-                  "text-muted-foreground text-sm sm:text-base",
+                  "text-sm text-muted-foreground sm:text-base",
                   !yearly && "text-muted-foreground",
                 )}
               >
@@ -113,10 +113,10 @@ export default function MetafiPricingHero() {
                 <article
                   key={plan.name}
                   className={cn(
-                    "shadow-card rounded-[20px] border",
+                    "rounded-[20px] border shadow-card",
                     plan.highlight
-                      ? "bg-tagline text-primary-foreground border-transparent"
-                      : "bg-card border-border-light",
+                      ? "bg-tagline border-transparent text-primary-foreground"
+                      : "border-border-light bg-card",
                   )}
                 >
                   {/* two-column interior */}
@@ -135,12 +135,12 @@ export default function MetafiPricingHero() {
                           {plan.name}
                         </h3>
                         {yearly && plan.badge && plan.highlight && (
-                          <span className="bg-primary-foreground/95 text-tagline rounded-md px-2 py-0.5 text-xs">
+                          <span className="text-tagline rounded-md bg-primary-foreground/95 px-2 py-0.5 text-xs">
                             {plan.badge}
                           </span>
                         )}
                         {yearly && plan.badge && !plan.highlight && (
-                          <span className="bg-accent text-foreground rounded-md px-2 py-0.5 text-xs">
+                          <span className="bg-accent rounded-md px-2 py-0.5 text-xs text-foreground">
                             {plan.badge}
                           </span>
                         )}
@@ -242,7 +242,7 @@ export default function MetafiPricingHero() {
                         className={cn(
                           "h-12 w-full rounded-[12px]",
                           plan.highlight &&
-                            "bg-primary-foreground text-tagline hover:bg-primary-foreground/90",
+                            "text-tagline bg-primary-foreground hover:bg-primary-foreground/90",
                         )}
                         variant={plan.highlight ? "default" : "default"}
                       >

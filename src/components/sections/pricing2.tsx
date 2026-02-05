@@ -235,7 +235,7 @@ const FeatureSections = ({ selectedPlan }: { selectedPlan: number }) => (
         {section.features.map((feature, featureIndex) => (
           <div
             key={featureIndex}
-            className="text-primary/90 grid grid-cols-2 border-b py-2 font-medium max-md:last:border-b-0 md:grid-cols-4"
+            className="grid grid-cols-2 border-b py-2 font-medium text-primary/90 max-md:last:border-b-0 md:grid-cols-4"
           >
             <span className="flex items-center py-3">{feature.name}</span>
             {/* Mobile View - Only Selected Plan */}
@@ -249,11 +249,11 @@ const FeatureSections = ({ selectedPlan }: { selectedPlan: number }) => (
                   ][selectedPlan];
                   return typeof value === "boolean" ? (
                     value ? (
-                      <Check className="text-primary/80 size-5" />
+                      <Check className="size-5 text-primary/80" />
                     ) : null
                   ) : (
                     <div className="flex items-center gap-1">
-                      <Check className="text-primary/80 size-4" />
+                      <Check className="size-4 text-primary/80" />
                       <span>{value}</span>
                     </div>
                   );
@@ -267,11 +267,11 @@ const FeatureSections = ({ selectedPlan }: { selectedPlan: number }) => (
                   <div key={i} className="flex items-center py-3">
                     {typeof value === "boolean" ? (
                       value ? (
-                        <Check className="text-primary/80 size-5" />
+                        <Check className="size-5 text-primary/80" />
                       ) : null
                     ) : (
                       <div className="flex items-center gap-1">
-                        <Check className="text-primary/80 size-4" />
+                        <Check className="size-4 text-primary/80" />
                         <span>{value}</span>
                       </div>
                     )}

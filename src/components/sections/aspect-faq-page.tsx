@@ -154,11 +154,11 @@ const faqItems: FAQItem[] = [
 
 export const AspectFAQPage = () => {
   return (
-    <section className="relative overflow-hidden bg-obsidian px-2.5 lg:px-0">
+    <section className="bg-obsidian relative overflow-hidden px-2.5 lg:px-0">
       <div className="container px-0">
-        <div className="bg-jet border border-t-0 border-dark-gray">
+        <div className="bg-jet border-dark-gray border border-t-0">
           <div className="px-6 py-12 text-center md:py-32">
-            <h1 className="text-foreground text-4xl font-medium tracking-tight sm:text-5xl">
+            <h1 className="text-4xl font-medium tracking-tight text-foreground sm:text-5xl">
               Frequently Asked Questions
             </h1>
             <p className="mx-auto mt-4 max-w-2xl text-balance text-muted-foreground">
@@ -168,18 +168,18 @@ export const AspectFAQPage = () => {
             </p>
           </div>
         </div>
-        <div className="container h-20 border-b border-l border-r border-b-dark-gray border-l-dark-gray border-r-dark-gray"></div>
+        <div className="border-b-dark-gray border-l-dark-gray border-r-dark-gray container h-20 border-b border-l border-r"></div>
 
         {categories.map((cat) => {
           const items = faqItems.filter((f) => f.category === cat.name);
           return (
             <div
               key={cat.name}
-              className="border-l border-r border-l-dark-gray border-r-dark-gray px-0"
+              className="border-l-dark-gray border-r-dark-gray border-l border-r px-0"
             >
               <div className="flex flex-col md:flex-row">
-                <div className="w-full border-b border-b-dark-gray px-8 py-8 md:w-1/3 md:border-r md:border-r-dark-gray md:px-6">
-                  <h2 className="text-foreground mb-4 text-3xl font-medium tracking-tight md:text-4xl">
+                <div className="border-b-dark-gray md:border-r-dark-gray w-full border-b px-8 py-8 md:w-1/3 md:border-r md:px-6">
+                  <h2 className="mb-4 text-3xl font-medium tracking-tight text-foreground md:text-4xl">
                     {cat.name}
                   </h2>
                   <p className="text-mid-gray">{cat.description}</p>
@@ -195,7 +195,7 @@ export const AspectFAQPage = () => {
                       <AccordionItem
                         key={i}
                         value={`${cat.name}-${i}`}
-                        className="data-[state=open]:bg-jet border-b border-b-dark-gray p-6"
+                        className="data-[state=open]:bg-jet border-b-dark-gray border-b p-6"
                       >
                         <AccordionTrigger className="text-xl">
                           {faq.question}
@@ -208,7 +208,7 @@ export const AspectFAQPage = () => {
                   </Accordion>
                 </div>
               </div>
-              <div className="container h-20 border-b border-b-dark-gray"></div>
+              <div className="border-b-dark-gray container h-20 border-b"></div>
             </div>
           );
         })}

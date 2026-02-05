@@ -232,7 +232,7 @@ export const FAQPage = () => {
           <h1 className="text-center text-4xl font-semibold tracking-tight sm:text-5xl">
             We've got answers
           </h1>
-          <p className="text-muted-foreground mx-auto mt-4 max-w-xl text-balance text-center">
+          <p className="mx-auto mt-4 max-w-xl text-balance text-center text-muted-foreground">
             This really should be an LLM but we're waiting for RAG to truly
             reach commodity stage before we touch it.
           </p>
@@ -292,12 +292,12 @@ export const FAQPage = () => {
                       <AccordionItem
                         key={i}
                         value={`${category}-${i}`}
-                        className="border-muted border-b last:border-0"
+                        className="border-b border-muted last:border-0"
                       >
                         <AccordionTrigger className="text-base font-medium hover:no-underline">
                           {item.question}
                         </AccordionTrigger>
-                        <AccordionContent className="text-muted-foreground text-base font-medium">
+                        <AccordionContent className="text-base font-medium text-muted-foreground">
                           {item.answer}
                         </AccordionContent>
                       </AccordionItem>

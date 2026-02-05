@@ -1,0 +1,39 @@
+---
+// VoiceChannelHero.astro - Side-by-side hero with Press to Talk demo
+import VoiceDemoCompact from "./VoiceDemoCompact";
+---
+
+<section class="hero bg-white pt-16 sm:pt-20 md:pt-24 pb-8">
+  <div class="container mx-auto max-w-7xl px-4">
+    <div class="grid gap-8 lg:grid-cols-2 lg:gap-12 items-center">
+      <!-- Left Content -->
+      <div class="order-1 lg:order-1 text-center lg:text-left">
+        <h1 class="font-sora text-[2rem] sm:text-[2.5rem] md:text-[3rem] font-normal leading-[1.1] tracking-[-0.02em] text-black">
+          Voice AI agents that handle all your customer requests
+        </h1>
+        <p class="text-base sm:text-lg text-gray-600 mt-4 max-w-[540px] mx-auto lg:mx-0 leading-relaxed">
+          Deliver human-quality service at machine scale with Voice agent that can schedule appointments, manage orders & bookings, and resolve support issues.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-3 mt-8 justify-center lg:justify-start">
+          <a
+            href="/use-cases"
+            class="inline-flex items-center justify-center px-6 py-3 text-base font-medium border border-gray-300 text-black rounded-md hover:bg-gray-50 transition-colors"
+          >
+            Explore use cases
+          </a>
+          <a
+            href="https://console.plivo.com/accounts/register/"
+            class="inline-flex items-center justify-center px-6 py-3 text-base font-medium bg-black text-white rounded-md hover:bg-gray-800 transition-colors"
+          >
+            Try the agent
+          </a>
+        </div>
+      </div>
+
+      <!-- Right Content - Demo -->
+      <div class="order-2 lg:order-2">
+        <VoiceDemoCompact client:visible />
+      </div>
+    </div>
+  </div>
+</section>

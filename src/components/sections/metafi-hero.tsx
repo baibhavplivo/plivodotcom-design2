@@ -8,7 +8,7 @@ const MetafiHero = () => {
   return (
     <section
       id="metafi-hero"
-      className="bg-background border-b-border relative overflow-hidden border-b px-6 lg:px-0"
+      className="relative overflow-hidden border-b border-b-border bg-background px-6 lg:px-0"
     >
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute inset-x-0 bottom-0 h-[530px] md:h-[686px]">
@@ -21,17 +21,17 @@ const MetafiHero = () => {
           />
           <GridBackground className="[background-size:calc(var(--square-size,64px))_calc(var(--square-size,64px))]" />
 
-          <div className="from-background to-background/0 absolute inset-x-0 top-0 h-40 bg-gradient-to-b" />
+          <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-background to-background/0" />
         </div>
       </div>
 
       <div className="container relative px-0 md:px-6">
         <div className="mx-auto grid max-w-4xl gap-6 py-14 text-center sm:py-16 md:gap-8 md:pb-20 md:pt-24">
-          <h1 className="text-foreground text-balance text-4xl font-medium leading-tight tracking-tight sm:text-5xl md:text-[68px]">
+          <h1 className="text-balance text-4xl font-medium leading-tight tracking-tight text-foreground sm:text-5xl md:text-[68px]">
             Simplifying Payments for Growing Business
           </h1>
 
-          <p className="text-muted-foreground md:text-md mx-auto max-w-2xl text-base sm:text-lg">
+          <p className="md:text-md mx-auto max-w-2xl text-base text-muted-foreground sm:text-lg">
             Streamlining transactions for expanding enterprises. Our solutions
             simplify payment processes, empowering businesses to focus on growth
             and innovation.
@@ -44,7 +44,7 @@ const MetafiHero = () => {
               className="w-full sm:w-auto"
               asChild
             >
-              <a href="/pricing">Get Started</a>
+              <a href="/pricing">Get started</a>
             </Button>
 
             <Button
@@ -53,7 +53,7 @@ const MetafiHero = () => {
               className="w-full sm:w-auto"
               asChild
             >
-              <a href="/contact">Contact Us</a>
+              <a href="/contact">Contact us</a>
             </Button>
           </div>
         </div>

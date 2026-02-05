@@ -90,7 +90,7 @@ export const Navbar = ({ currentPage }: { currentPage: string }) => {
               {ITEMS.map((link) =>
                 link.dropdownItems ? (
                   <NavigationMenuItem key={link.label}>
-                    <NavigationMenuTrigger className="text-primary bg-transparent font-normal lg:text-base">
+                    <NavigationMenuTrigger className="bg-transparent font-normal text-primary lg:text-base">
                       {link.label}
                     </NavigationMenuTrigger>
                     <NavigationMenuContent>
@@ -106,7 +106,7 @@ export const Navbar = ({ currentPage }: { currentPage: string }) => {
                                   <div className="text-sm font-medium leading-none">
                                     {item.title}
                                   </div>
-                                  <p className="text-muted-foreground line-clamp-2 text-sm leading-tight">
+                                  <p className="line-clamp-2 text-sm leading-tight text-muted-foreground">
                                     {item.description}
                                   </p>
                                 </div>
@@ -122,7 +122,7 @@ export const Navbar = ({ currentPage }: { currentPage: string }) => {
                     <a
                       href={link.href}
                       className={cn(
-                        "text-primary p-2 lg:text-base",
+                        "p-2 text-primary lg:text-base",
                         pathname === link.href && "text-muted-foreground",
                       )}
                     >
@@ -155,7 +155,7 @@ export const Navbar = ({ currentPage }: { currentPage: string }) => {
 
             {/* Hamburger Menu Button (Mobile Only) */}
             <button
-              className="text-muted-foreground relative flex size-8 lg:hidden"
+              className="relative flex size-8 text-muted-foreground lg:hidden"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
               <span className="sr-only">Open main menu</span>
@@ -218,7 +218,7 @@ export const Navbar = ({ currentPage }: { currentPage: string }) => {
                       openDropdown === link.label ? null : link.label,
                     )
                   }
-                  className="text-primary flex w-full items-center justify-between text-lg tracking-[-0.36px]"
+                  className="flex w-full items-center justify-between text-lg tracking-[-0.36px] text-primary"
                   aria-label={`${link.label} menu`}
                   aria-expanded={openDropdown === link.label}
                 >
@@ -250,10 +250,10 @@ export const Navbar = ({ currentPage }: { currentPage: string }) => {
                       }}
                     >
                       <div>
-                        <div className="text-primary font-medium">
+                        <div className="font-medium text-primary">
                           {item.title}
                         </div>
-                        <p className="text-muted-foreground text-sm">
+                        <p className="text-sm text-muted-foreground">
                           {item.description}
                         </p>
                       </div>
@@ -266,7 +266,7 @@ export const Navbar = ({ currentPage }: { currentPage: string }) => {
                 key={link.label}
                 href={link.href}
                 className={cn(
-                  "text-primary text-lg tracking-[-0.36px]",
+                  "text-lg tracking-[-0.36px] text-primary",
                   pathname === link.href && "text-muted-foreground",
                 )}
                 onClick={() => setIsMenuOpen(false)}

@@ -34,14 +34,14 @@ const legal = [
 
 export function Footer() {
   return (
-    <footer className="text-foreground bg-obsidian px-2.5 lg:px-0">
+    <footer className="bg-obsidian px-2.5 text-foreground lg:px-0">
       <div className="container p-0">
         {/* top grid */}
-        <div className="bg-jet grid border-l border-r border-dark-gray p-0 lg:grid-cols-3">
+        <div className="bg-jet border-dark-gray grid border-l border-r p-0 lg:grid-cols-3">
           {navigation.map((section) => (
             <div
               key={section.title}
-              className="border-b border-b-dark-gray px-6 py-10 lg:border-r lg:border-r-dark-gray lg:px-8 lg:py-12"
+              className="border-b-dark-gray lg:border-r-dark-gray border-b px-6 py-10 lg:border-r lg:px-8 lg:py-12"
             >
               <h3 className="mb-4 text-2xl font-bold">{section.title}</h3>
               <ul className="space-y-3">
@@ -60,7 +60,7 @@ export function Footer() {
           ))}
 
           {/* social icons */}
-          <div className="border-b border-b-dark-gray px-6 py-10 lg:px-8 lg:py-12">
+          <div className="border-b-dark-gray border-b px-6 py-10 lg:px-8 lg:py-12">
             <div className="flex items-center gap-6 lg:justify-end">
               {socialLinks.map(({ icon: Icon, href }) => (
                 <a
@@ -78,10 +78,10 @@ export function Footer() {
         </div>
 
         {/* disclaimer + logo */}
-        <div className="bg-jet grid border-b border-l border-r border-dark-gray lg:grid-cols-2">
-          <div className="flex flex-col justify-center border-b border-b-dark-gray px-6 py-10 lg:max-w-md lg:border-b-0 lg:px-8 lg:py-12">
+        <div className="bg-jet border-dark-gray grid border-b border-l border-r lg:grid-cols-2">
+          <div className="border-b-dark-gray flex flex-col justify-center border-b px-6 py-10 lg:max-w-md lg:border-b-0 lg:px-8 lg:py-12">
             <div className="max-w-md">
-              <p className="text-foreground text-sm">Regulatory disclaimer</p>
+              <p className="text-sm text-foreground">Regulatory disclaimer</p>
               <p className="font-inter-tight text-mid-gray text-xs">
                 Aspect is a financial technology company, not a bank. Banking
                 services are provided by partner institutions and are
@@ -103,8 +103,8 @@ export function Footer() {
         </div>
 
         {/* bottom bar */}
-        <div className="bg-jet grid gap-2 border-l border-r border-dark-gray px-6 py-4 sm:grid-cols-2 lg:px-8">
-          <p className="text-foreground text-xs">@ 2025 FinSight Demi Inc.</p>
+        <div className="bg-jet border-dark-gray grid gap-2 border-l border-r px-6 py-4 sm:grid-cols-2 lg:px-8">
+          <p className="text-xs text-foreground">@ 2025 FinSight Demi Inc.</p>
 
           <div className="flex flex-col gap-2 sm:flex-row sm:justify-end">
             {legal.map((link) => (

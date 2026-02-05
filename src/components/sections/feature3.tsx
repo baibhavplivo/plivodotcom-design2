@@ -58,7 +58,7 @@ export const Feature3 = () => {
           <h2 className="flex-1 text-balance text-3xl font-semibold tracking-tight md:text-4xl lg:text-5xl">
             Streamline your resource allocation and execution
           </h2>
-          <p className="text-muted-foreground flex-1 text-lg font-medium md:max-w-md md:self-end">
+          <p className="flex-1 text-lg font-medium text-muted-foreground md:max-w-md md:self-end">
             Streamline is built on the habits that make the best product teams
             successful: staying focused, moving quickly, and always aiming for
             high-quality work.
@@ -75,12 +75,12 @@ export const Feature3 = () => {
               <TabsTrigger
                 key={feature.title}
                 value={feature.title}
-                className="w-full min-w-[200px] flex-1 justify-start whitespace-normal rounded-lg px-4 py-3 text-start text-gray-700 transition-colors duration-300 data-[state=active]:text-black data-[state=active]:shadow-xl lg:px-6 lg:py-4 dark:text-gray-300 dark:data-[state=active]:text-white"
+                className="w-full min-w-[200px] flex-1 justify-start whitespace-normal rounded-lg px-4 py-3 text-start text-gray-700 transition-colors duration-300 data-[state=active]:text-black data-[state=active]:shadow-xl dark:text-gray-300 dark:data-[state=active]:text-white lg:px-6 lg:py-4"
               >
                 <div>
                   <feature.icon className="size-7 md:size-8 lg:size-9" />
                   <h3 className="mt-3 font-semibold">{feature.title}</h3>
-                  <p className="text-muted-foreground mt-1 text-sm">
+                  <p className="mt-1 text-sm text-muted-foreground">
                     {feature.description}
                   </p>
                 </div>
@@ -91,7 +91,7 @@ export const Feature3 = () => {
           {FEATURES.map((feature) => (
             <TabsContent
               className={cn(
-                "bg-background m-0 flex-1 overflow-hidden rounded-xl",
+                "m-0 flex-1 overflow-hidden rounded-xl bg-background",
                 feature.content.className,
               )}
               key={feature.title}
@@ -101,7 +101,7 @@ export const Feature3 = () => {
                 <h4 className="inline font-semibold">
                   {feature.content.title}{" "}
                 </h4>
-                <span className="text-muted-foreground mt-2 text-pretty font-medium">
+                <span className="mt-2 text-pretty font-medium text-muted-foreground">
                   {feature.content.description}
                 </span>
               </div>

@@ -48,12 +48,12 @@ export default function AspectFaq() {
   return (
     <section
       id="aspect-faq"
-      className="relative overflow-hidden bg-obsidian px-2.5 lg:px-0"
+      className="bg-obsidian relative overflow-hidden px-2.5 lg:px-0"
     >
-      <div className="container relative border border-l-dark-gray border-r-dark-gray border-t-dark-gray px-0">
-        <div className="border-b border-b-dark-gray px-6 py-8 lg:px-8 lg:py-20">
+      <div className="border-l-dark-gray border-r-dark-gray border-t-dark-gray container relative border px-0">
+        <div className="border-b-dark-gray border-b px-6 py-8 lg:px-8 lg:py-20">
           <div className="flex max-w-lg flex-col gap-4 lg:gap-6">
-            <h1 className="text-foreground text-3xl tracking-tight">
+            <h1 className="text-3xl tracking-tight text-foreground">
               Frequently Asked Questions
             </h1>
             <p className="text-mid-gray text-base">
@@ -76,7 +76,7 @@ export default function AspectFaq() {
             <AccordionItem
               key={i}
               value={`left-${i}`}
-              className="data-[state=open]:bg-jet border-b border-b-dark-gray p-6"
+              className="data-[state=open]:bg-jet border-b-dark-gray border-b p-6"
             >
               <AccordionTrigger className="text-xl">
                 {q.question}

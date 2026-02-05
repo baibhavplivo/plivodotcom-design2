@@ -13,12 +13,12 @@ const MetafiCta = () => {
       <div className="bg-tagline pointer-events-none absolute left-1/2 top-0 h-full w-[500px] -translate-x-1/2" />
 
       <div className="container relative px-0 py-16 text-center sm:py-20 md:px-6 md:py-28">
-        <h2 className="text-primary-foreground mx-auto max-w-5xl text-balance text-4xl font-medium leading-tight sm:text-5xl md:text-6xl">
+        <h2 className="mx-auto max-w-5xl text-balance text-4xl font-medium leading-tight text-primary-foreground sm:text-5xl md:text-6xl">
           Simplifying Payments
           <br className="hidden sm:block" /> for Growing Business
         </h2>
 
-        <p className="text-primary-foreground/80 mx-auto mt-4 max-w-2xl text-base font-normal sm:text-lg">
+        <p className="mx-auto mt-4 max-w-2xl text-base font-normal text-primary-foreground/80 sm:text-lg">
           Join over 300+ partners and customers already growing with Metafi
         </p>
 
@@ -26,18 +26,18 @@ const MetafiCta = () => {
           {/* Primary button */}
           <Button
             asChild
-            className="bg-primary-foreground text-tagline hover:bg-primary-foreground/90 h-12 w-full rounded-[12px] sm:w-auto"
+            className="text-tagline h-12 w-full rounded-[12px] bg-primary-foreground hover:bg-primary-foreground/90 sm:w-auto"
           >
-            <a href="/pricing">Get Started</a>
+            <a href="/pricing">Get started</a>
           </Button>
 
           {/* Transparent button */}
           <Button
             asChild
             variant="ghost"
-            className="border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 h-12 w-full rounded-[12px] border bg-transparent sm:w-auto"
+            className="h-12 w-full rounded-[12px] border border-primary-foreground/30 bg-transparent text-primary-foreground hover:bg-primary-foreground/10 sm:w-auto"
           >
-            <a href="/contact">Contact Us</a>
+            <a href="/contact">Contact us</a>
           </Button>
         </div>
       </div>

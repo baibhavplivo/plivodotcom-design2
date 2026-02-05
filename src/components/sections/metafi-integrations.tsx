@@ -67,10 +67,10 @@ function IntegrationCard({ item }: { item: Integration }) {
       </div>
 
       <div className="pt-6">
-        <h3 className="text-foreground text-[20px] font-medium leading-tight">
+        <h3 className="text-[20px] font-medium leading-tight text-foreground">
           {item.name}
         </h3>
-        <p className="text-muted-foreground mt-2 text-base font-normal">
+        <p className="mt-2 text-base font-normal text-muted-foreground">
           {item.description}
         </p>
       </div>
@@ -86,7 +86,7 @@ const MetafiIntegrations = () => {
           Integrations
         </p>
 
-        <h2 className="text-foreground mx-auto max-w-3xl text-balance text-3xl font-medium leading-tight tracking-tight sm:text-4xl md:text-5xl">
+        <h2 className="mx-auto max-w-3xl text-balance text-3xl font-medium leading-tight tracking-tight text-foreground sm:text-4xl md:text-5xl">
           Make Payments Easier <br className="hidden sm:block" />
           with 50+ Integrations
         </h2>
@@ -97,7 +97,7 @@ const MetafiIntegrations = () => {
           ))}
         </ul>
 
-        <p className="text-muted-foreground text-md text-md mx-auto mt-10 max-w-3xl font-normal md:mt-20">
+        <p className="text-md text-md mx-auto mt-10 max-w-3xl font-normal text-muted-foreground md:mt-20">
           Streamline your business operations with seamless integrations.
           Connect with Xero, WooCommerce, Zapier, Stripe, Shopify, QuickBooks,
           and many other platforms.
@@ -105,7 +105,7 @@ const MetafiIntegrations = () => {
 
         <div className="mt-6 flex justify-center">
           <Button className="w-full sm:w-auto" asChild>
-            <a href="/integrations">See All Integrations</a>
+            <a href="/integrations">See all integrations</a>
           </Button>
         </div>
       </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { AnimatePresence,motion } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 import * as React from "react";
 
 import { cn } from "@/lib/utils";
@@ -92,10 +92,10 @@ export default function MetafiFeaturesTabs({
       <div className="container px-0 py-16 sm:py-20 md:px-6 md:py-24">
         <div className="max-w-3xl">
           <p className="text-tagline text-sm sm:text-base">{tagline}</p>
-          <h2 className="text-foreground mt-4 text-3xl font-medium leading-tight tracking-tight sm:text-5xl lg:text-[52px]">
+          <h2 className="mt-4 text-3xl font-medium leading-tight tracking-tight text-foreground sm:text-5xl lg:text-[52px]">
             {title}
           </h2>
-          <p className="text-muted-foreground mt-4 text-base sm:text-lg">
+          <p className="mt-4 text-base text-muted-foreground sm:text-lg">
             {description}
           </p>
         </div>
@@ -172,7 +172,7 @@ export default function MetafiFeaturesTabs({
                         }}
                         className="mt-3"
                       >
-                        <p className="text-muted-foreground text-sm sm:text-base">
+                        <p className="text-sm text-muted-foreground sm:text-base">
                           {it.body}
                         </p>
                       </motion.div>
@@ -218,7 +218,7 @@ export default function MetafiFeaturesTabs({
                         }}
                         className="pb-5"
                       >
-                        <p className="text-muted-foreground text-sm sm:text-base">
+                        <p className="text-sm text-muted-foreground sm:text-base">
                           {it.body}
                         </p>
                       </motion.div>

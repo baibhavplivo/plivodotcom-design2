@@ -99,8 +99,8 @@ const TESTIMONIALS: Testimonial[] = [
 
 function Card({ t }: { t: Testimonial }) {
   return (
-    <li className="bg-card flex flex-col justify-between rounded-[16px] p-6">
-      <p className="text-foreground text-base font-normal leading-relaxed md:text-base">
+    <li className="flex flex-col justify-between rounded-[16px] bg-card p-6">
+      <p className="text-base font-normal leading-relaxed text-foreground md:text-base">
         {t.quote}
       </p>
       <div className="mt-6 flex items-center gap-3">
@@ -112,10 +112,10 @@ function Card({ t }: { t: Testimonial }) {
           className="rounded-full"
         />
         <div>
-          <div className="text-foreground mb-0.5 text-base font-medium leading-tight">
+          <div className="mb-0.5 text-base font-medium leading-tight text-foreground">
             {t.name}
           </div>
-          <div className="text-muted-foreground text-sm font-normal">
+          <div className="text-sm font-normal text-muted-foreground">
             {t.role}
           </div>
         </div>
@@ -136,12 +136,12 @@ export default function MetafiTestimonials() {
           Our Customers
         </p>
 
-        <h2 className="text-foreground mx-auto max-w-4xl text-balance text-center text-3xl font-medium leading-tight tracking-tight sm:text-4xl md:text-5xl">
+        <h2 className="mx-auto max-w-4xl text-balance text-center text-3xl font-medium leading-tight tracking-tight text-foreground sm:text-4xl md:text-5xl">
           See What Our <br className="hidden sm:block" />
           Customers Are Saying
         </h2>
 
-        <p className="text-muted-foreground mx-auto mt-4 max-w-2xl text-center text-base font-normal sm:text-lg">
+        <p className="mx-auto mt-4 max-w-2xl text-center text-base font-normal text-muted-foreground sm:text-lg">
           Here&apos;s what some of our customers say about our platform.
         </p>
 
@@ -163,7 +163,7 @@ export default function MetafiTestimonials() {
           }`}
         >
           <Button onClick={() => setExpanded((s) => !s)}>
-            {expanded ? "Show Less" : "See All Customer Stories"}
+            {expanded ? "Show less" : "See all customer stories"}
           </Button>
         </div>
       </div>

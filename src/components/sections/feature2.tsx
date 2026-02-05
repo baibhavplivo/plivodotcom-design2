@@ -114,7 +114,7 @@ const Item = ({
       <CardHeader className="mb-2">
         <h3 className="inline text-balance font-semibold leading-tight">
           {title}{" "}
-          <span className="text-muted-foreground font-medium">
+          <span className="font-medium text-muted-foreground">
             {description}
           </span>
         </h3>
@@ -122,13 +122,13 @@ const Item = ({
 
       <CardContent className="relative min-h-40 flex-1 overflow-hidden p-0 lg:min-h-48">
         {fade.includes("right") && (
-          <div className="to-background bg-linear-to-r absolute inset-0 z-10 from-transparent via-transparent" />
+          <div className="bg-linear-to-r absolute inset-0 z-10 from-transparent via-transparent to-background" />
         )}
         {fade.includes("bottom") && (
-          <div className="to-background bg-linear-to-b absolute inset-0 z-10 from-transparent via-transparent" />
+          <div className="bg-linear-to-b absolute inset-0 z-10 from-transparent via-transparent to-background" />
         )}
         {fade.includes("top") && (
-          <div className="to-background bg-linear-to-t absolute inset-0 z-10 from-transparent via-transparent" />
+          <div className="bg-linear-to-t absolute inset-0 z-10 from-transparent via-transparent to-background" />
         )}
         <img
           src={image.src}

@@ -17,7 +17,7 @@ const BlogPost = ({
   return (
     <div className="relative">
       {/* Header */}
-      <div className="bg-muted/20 relative pb-8 pt-12 md:pt-20">
+      <div className="relative bg-muted/20 pb-8 pt-12 md:pt-20">
         <div className="container max-w-4xl">
           <div className="mb-8 text-center">
             <Badge variant="outline" className="mb-6 px-3 py-1 text-xs">
@@ -26,13 +26,13 @@ const BlogPost = ({
             <h1 className="mb-6 text-3xl font-bold leading-tight tracking-tight md:text-4xl lg:text-5xl">
               {title}
             </h1>
-            <p className="text-muted-foreground mx-auto max-w-3xl text-xl font-normal leading-relaxed">
+            <p className="mx-auto max-w-3xl text-xl font-normal leading-relaxed text-muted-foreground">
               {description}
             </p>
           </div>
 
           <div className="flex items-center justify-center">
-            <div className="text-muted-foreground flex items-center gap-1.5 text-sm">
+            <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
               <Clock className="h-4 w-4" />
               <span>10 min read</span>
             </div>
@@ -64,7 +64,7 @@ const BlogPost = ({
               </Avatar>
               <div>
                 <div className="font-semibold">{authorName}</div>
-                <div className="text-muted-foreground text-sm">Written by</div>
+                <div className="text-sm text-muted-foreground">Written by</div>
               </div>
             </div>
             <div className="flex gap-2">

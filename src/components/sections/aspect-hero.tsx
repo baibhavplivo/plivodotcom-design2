@@ -3,9 +3,9 @@ import { Button } from "@/components/ui/button";
 const AspectHero = () => (
   <section
     id="aspect-hero"
-    className="relative overflow-hidden bg-obsidian px-2.5 lg:px-0"
+    className="bg-obsidian relative overflow-hidden px-2.5 lg:px-0"
   >
-    <div className="container relative border-l border-r border-l-dark-gray border-r-dark-gray px-5">
+    <div className="border-l-dark-gray border-r-dark-gray container relative border-l border-r px-5">
       <div className="pointer-events-none absolute inset-0 flex size-full items-center justify-center">
         <img
           src="/images/homepage/hero-background.webp"
@@ -17,7 +17,7 @@ const AspectHero = () => (
 
       <div className="grid gap-12 py-12 lg:grid-cols-[1fr_auto] lg:py-20 lg:pl-12">
         <div className="flex flex-col items-start justify-center gap-5 lg:gap-8">
-          <h1 className="text-foreground text-3xl tracking-tight sm:text-4xl md:text-5xl lg:text-6xl">
+          <h1 className="text-3xl tracking-tight text-foreground sm:text-4xl md:text-5xl lg:text-6xl">
             All Your Financial Accounts in One Unified Dashboard
           </h1>
 

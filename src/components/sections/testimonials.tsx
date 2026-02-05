@@ -148,7 +148,7 @@ export default function Testimonials() {
                         <div className="font-semibold max-md:text-sm">
                           {testimonial.author}
                         </div>
-                        <div className="text-muted-foreground text-xs md:text-sm">
+                        <div className="text-xs text-muted-foreground md:text-sm">
                           {testimonial.company}
                         </div>
                       </CardFooter>
@@ -176,8 +176,8 @@ export default function Testimonials() {
                 </div>
 
                 <div className="flex gap-2">
-                  <CarouselPrevious className="bg-background/40 hover:bg-background/60 static size-11 translate-y-0 [&>svg]:size-6" />
-                  <CarouselNext className="bg-background/40 hover:bg-background/60 static size-11 translate-y-0 [&>svg]:size-6" />
+                  <CarouselPrevious className="static size-11 translate-y-0 bg-background/40 hover:bg-background/60 [&>svg]:size-6" />
+                  <CarouselNext className="static size-11 translate-y-0 bg-background/40 hover:bg-background/60 [&>svg]:size-6" />
                 </div>
               </div>
             </div>

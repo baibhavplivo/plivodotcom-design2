@@ -93,7 +93,7 @@ export const Hero = () => {
                     <h2 className="font-inter font-semibold">
                       {feature.title}
                     </h2>
-                    <p className="text-muted-foreground text-sm">
+                    <p className="text-sm text-muted-foreground">
                       {feature.description}
                     </p>
                   </div>

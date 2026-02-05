@@ -25,11 +25,11 @@ const contactInfo = [
 
 export default function AspectContactHero() {
   return (
-    <section className="overflow-hidden bg-obsidian px-2.5 lg:px-0">
+    <section className="bg-obsidian overflow-hidden px-2.5 lg:px-0">
       <div className="container px-0">
-        <div className="grid grid-cols-1 border-b border-l border-r border-b-dark-gray border-l-dark-gray border-r-dark-gray lg:grid-cols-2">
-          <div className="items-center border-b border-b-dark-gray px-6 py-8 lg:border-b-0 lg:border-r lg:border-r-dark-gray lg:px-16 lg:py-16">
-            <h2 className="text-foreground mb-2.5 text-3xl font-medium tracking-tight lg:text-4xl">
+        <div className="border-b-dark-gray border-l-dark-gray border-r-dark-gray grid grid-cols-1 border-b border-l border-r lg:grid-cols-2">
+          <div className="border-b-dark-gray lg:border-r-dark-gray items-center border-b px-6 py-8 lg:border-b-0 lg:border-r lg:px-16 lg:py-16">
+            <h2 className="mb-2.5 text-3xl font-medium tracking-tight text-foreground lg:text-4xl">
               Let’s Connect
             </h2>
             <p className="leading-relaxed text-muted-foreground lg:text-lg">
@@ -45,7 +45,7 @@ export default function AspectContactHero() {
                 <div className="flex flex-col gap-10">
                   {contactInfo.map(({ label, value, href }) => (
                     <div key={label}>
-                      <p className="text-foreground font-semibold">{label}</p>
+                      <p className="font-semibold text-foreground">{label}</p>
                       <a
                         href={href}
                         className="mt-2.5 text-sm font-medium tracking-tight text-muted-foreground hover:underline"
@@ -58,7 +58,7 @@ export default function AspectContactHero() {
 
                 <div className="mt-10 lg:mt-0">
                   <div className="flex lg:w-full lg:items-end lg:justify-end">
-                    <p className="text-foreground mb-2.5 font-semibold lg:text-right">
+                    <p className="mb-2.5 font-semibold text-foreground lg:text-right">
                       Socials
                     </p>
                   </div>

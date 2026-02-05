@@ -41,11 +41,11 @@ const formFields = [
 
 export default function AspectContactForm() {
   return (
-    <section className="relative overflow-hidden bg-obsidian px-2.5 lg:px-0">
+    <section className="bg-obsidian relative overflow-hidden px-2.5 lg:px-0">
       <div className="container px-0">
-        <div className="border-b border-l border-r border-b-dark-gray border-l-dark-gray border-r-dark-gray">
+        <div className="border-b-dark-gray border-l-dark-gray border-r-dark-gray border-b border-l border-r">
           <div className="md:grid md:grid-cols-[80px_minmax(0,1fr)_80px]">
-            <div className="hidden w-[80px] border-r border-r-dark-gray md:block"></div>
+            <div className="border-r-dark-gray hidden w-[80px] border-r md:block"></div>
 
             <div>
               <form className="grid md:grid-cols-2">
@@ -67,7 +67,7 @@ export default function AspectContactForm() {
                           id={field.name}
                           name={field.name}
                           placeholder={field.placeholder}
-                          className="text-foreground placeholder:text-foreground h-60 w-full resize-none rounded-none border-0 bg-transparent placeholder-white shadow-none focus:placeholder:text-muted-foreground focus-visible:ring-0"
+                          className="h-60 w-full resize-none rounded-none border-0 bg-transparent text-foreground placeholder-white shadow-none placeholder:text-foreground focus:placeholder:text-muted-foreground focus-visible:ring-0"
                         />
                       ) : (
                         <Input
@@ -75,7 +75,7 @@ export default function AspectContactForm() {
                           name={field.name}
                           type={field.type}
                           placeholder={field.placeholder}
-                          className="text-foreground placeholder:text-foreground h-20 w-full rounded-none border-0 bg-transparent placeholder-white shadow-none focus:placeholder:text-muted-foreground focus-visible:ring-0"
+                          className="h-20 w-full rounded-none border-0 bg-transparent text-foreground placeholder-white shadow-none placeholder:text-foreground focus:placeholder:text-muted-foreground focus-visible:ring-0"
                         />
                       )}
                     </div>
@@ -85,7 +85,7 @@ export default function AspectContactForm() {
                 <div className="md:col-span-2">
                   <Button
                     type="submit"
-                    className="h-20 w-full rounded-none border border-dark-gray"
+                    className="border-dark-gray h-20 w-full rounded-none border"
                   >
                     Send message
                   </Button>
@@ -93,7 +93,7 @@ export default function AspectContactForm() {
               </form>
             </div>
 
-            <div className="hidden w-[80px] border-l border-l-dark-gray md:block"></div>
+            <div className="border-l-dark-gray hidden w-[80px] border-l md:block"></div>
           </div>
         </div>
       </div>

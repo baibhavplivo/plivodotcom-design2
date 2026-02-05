@@ -66,7 +66,7 @@ export default function AspectTestimonials() {
   return (
     <section className="bg-obsidian overflow-hidden px-2.5 lg:px-0">
       <div className="border-dark-gray container flex flex-col items-center justify-center gap-8 overflow-hidden border border-t-0 py-12 text-center md:py-20">
-        <h2 className="text-foreground text-balance text-2xl tracking-tight md:text-4xl lg:text-5xl">
+        <h2 className="text-balance text-2xl tracking-tight text-foreground md:text-4xl lg:text-5xl">
           What Our Customers Are Saying
         </h2>
         <p className="text-mid-gray max-w-lg text-base">
@@ -81,7 +81,7 @@ export default function AspectTestimonials() {
             ))}
           </div>
           <div className="bg-dark-gray h-3 w-px" />
-          <p className="text-foreground text-sm">Real Results.</p>
+          <p className="text-sm text-foreground">Real Results.</p>
         </div>
       </div>
 
@@ -109,7 +109,7 @@ export default function AspectTestimonials() {
                     className="object-contain transition-opacity hover:opacity-70"
                   />
                 </a>
-                <p className="text-foreground text-xl">{item.testimonial}</p>
+                <p className="text-xl text-foreground">{item.testimonial}</p>
               </div>
               <div className="flex">
                 <img
@@ -120,10 +120,10 @@ export default function AspectTestimonials() {
                   className="rounded-full"
                 />
                 <div className="ml-4">
-                  <p className="text-foreground font-semibold">
+                  <p className="font-semibold text-foreground">
                     {item.nameSurname}
                   </p>
-                  <p className="text-foreground text-sm">{item.company}</p>
+                  <p className="text-sm text-foreground">{item.company}</p>
                 </div>
               </div>
             </div>

@@ -32,7 +32,7 @@ const SignupSection = () => {
                     placeholder="Enter your password"
                     required
                   />
-                  <p className="text-muted-foreground mt-1 text-sm">
+                  <p className="mt-1 text-sm text-muted-foreground">
                     Must be at least 8 characters.
                   </p>
                 </div>
@@ -44,9 +44,9 @@ const SignupSection = () => {
                   Sign up with Google
                 </Button>
               </div>
-              <div className="text-muted-foreground mx-auto mt-8 flex justify-center gap-1 text-sm">
+              <div className="mx-auto mt-8 flex justify-center gap-1 text-sm text-muted-foreground">
                 <p>Already have an account?</p>
-                <a href="/login" className="text-primary font-medium">
+                <a href="/login" className="font-medium text-primary">
                   Log in
                 </a>
               </div>

@@ -80,7 +80,7 @@ function FaqItem({
   return (
     <div
       className={[
-        "bg-card rounded-[16px] border px-4 py-2 sm:px-6 sm:py-4",
+        "rounded-[16px] border bg-card px-4 py-2 sm:px-6 sm:py-4",
         "border-border shadow-[0_2px_8px_-1px_rgba(13,13,18,0.04)]",
       ].join(" ")}
     >
@@ -91,7 +91,7 @@ function FaqItem({
         onClick={() => onToggle(id)}
         className={[
           "group flex w-full items-center justify-between gap-4 text-left",
-          "text-foreground text-xl font-medium leading-tight sm:text-2xl",
+          "text-xl font-medium leading-tight text-foreground sm:text-2xl",
           "hover:no-underline",
           "py-1 sm:py-2",
         ].join(" ")}
@@ -124,7 +124,7 @@ function FaqItem({
       >
         <div
           ref={contentRef}
-          className="text-muted-foreground mt-2 whitespace-pre-wrap text-sm font-normal sm:text-base"
+          className="mt-2 whitespace-pre-wrap text-sm font-normal text-muted-foreground sm:text-base"
         >
           {qa.answer}
         </div>
@@ -145,11 +145,11 @@ export default function MetafiFaq() {
           FAQ
         </p>
 
-        <h2 className="text-foreground mx-auto mb-4 max-w-3xl text-center text-3xl font-medium leading-tight tracking-tight sm:text-4xl md:text-5xl">
+        <h2 className="mx-auto mb-4 max-w-3xl text-center text-3xl font-medium leading-tight tracking-tight text-foreground sm:text-4xl md:text-5xl">
           Frequently Asked Questions
         </h2>
 
-        <p className="text-muted-foreground mx-auto max-w-2xl text-center text-base font-normal sm:text-lg">
+        <p className="mx-auto max-w-2xl text-center text-base font-normal text-muted-foreground sm:text-lg">
           Hendrerit fames metus leo ut orci pretium. Sit vitae montes egestas
           montes mauris. Auctor vitae neque urna nam nunc pellentesque.
         </p>

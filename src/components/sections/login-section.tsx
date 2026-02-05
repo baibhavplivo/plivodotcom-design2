@@ -46,7 +46,7 @@ const LoginSection = () => {
                       Remember me
                     </label>
                   </div>
-                  <a href="#" className="text-primary text-sm font-medium">
+                  <a href="#" className="text-sm font-medium text-primary">
                     Forgot password
                   </a>
                 </div>
@@ -58,9 +58,9 @@ const LoginSection = () => {
                   Sign up with Google
                 </Button>
               </div>
-              <div className="text-muted-foreground mx-auto mt-8 flex justify-center gap-1 text-sm">
+              <div className="mx-auto mt-8 flex justify-center gap-1 text-sm text-muted-foreground">
                 <p>Don&apos;t have an account?</p>
-                <a href="/signup" className="text-primary font-medium">
+                <a href="/signup" className="font-medium text-primary">
                   Sign up
                 </a>
               </div>
