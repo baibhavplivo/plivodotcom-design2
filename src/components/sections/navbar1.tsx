@@ -167,7 +167,7 @@ const Navbar1 = ({ currentPage = "/" }: Navbar1Props) => {
         isScrolled ? "bg-white/95 shadow-sm backdrop-blur-sm" : "bg-white",
       )}
     >
-      <div className="mx-auto max-w-[1200px] px-6">
+      <div className="mx-auto max-w-7xl px-4">
         <nav className="flex h-[72px] items-center justify-between">
           {/* Logo */}
           <a href="/" className="flex shrink-0 items-center">

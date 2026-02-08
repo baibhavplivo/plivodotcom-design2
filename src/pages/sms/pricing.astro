@@ -1,0 +1,17 @@
+---
+import PlivoLayout from "@/layouts/PlivoLayout.astro";
+import SMSSubNav from "@/components/sections/sms-channel/SMSSubNav.astro";
+import SMSPricingTabs from "@/components/sections/sms-channel/SMSPricingTabs";
+import SMSPreFooterCTA from "@/components/sections/sms-channel/SMSPreFooterCTA";
+---
+
+<PlivoLayout title="SMS Pricing | Plivo" description="Explore Plivo's competitive SMS pricing for the United States. View rates for SMS, MMS, phone number rental, and add-on services.">
+  <!-- SMS Sub Navigation -->
+  <SMSSubNav currentPage="pricing" />
+
+  <!-- Pricing Tabs with Country Selection -->
+  <SMSPricingTabs client:visible />
+
+  <!-- Pre-Footer CTA -->
+  <SMSPreFooterCTA client:visible />
+</PlivoLayout>

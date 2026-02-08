@@ -1,5 +1,6 @@
 ---
 import PlivoLayout from "@/layouts/PlivoLayout.astro";
+import SMSSubNav from "@/components/sections/sms-channel/SMSSubNav.astro";
 import SMSChannelHero from "@/components/sections/sms-channel/SMSChannelHero.astro";
 import ClientLogos from "@/components/sections/voice-homepage/ClientLogos.astro";
 import SMSUseCases from "@/components/sections/sms-channel/SMSUseCases";
@@ -10,6 +11,9 @@ import SMSPreFooterCTA from "@/components/sections/sms-channel/SMSPreFooterCTA";
 ---
 
 <PlivoLayout title="SMS API & Marketing Platform | Plivo" description="Send reliable SMS for OTP verification, alerts, and marketing campaigns to 190+ countries. Enterprise-grade delivery with built-in fraud prevention.">
+  <!-- SMS Sub Navigation -->
+  <SMSSubNav currentPage="overview" />
+
   <!-- Hero Section -->
   <SMSChannelHero />
 

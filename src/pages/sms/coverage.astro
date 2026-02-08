@@ -1,0 +1,17 @@
+---
+import PlivoLayout from "@/layouts/PlivoLayout.astro";
+import SMSSubNav from "@/components/sections/sms-channel/SMSSubNav.astro";
+import CoverageTabs from "@/components/sections/sms-channel/CoverageTabs";
+import CoveragePreFooterCTA from "@/components/sections/sms-channel/CoveragePreFooterCTA";
+---
+
+<PlivoLayout title="SMS Coverage | Plivo" description="Send SMS to 220+ countries with Plivo's global coverage. Explore carrier support, rates, and delivery capabilities by region.">
+  <!-- SMS Sub Navigation -->
+  <SMSSubNav currentPage="coverage" />
+
+  <!-- Coverage Tabs with Country Selection -->
+  <CoverageTabs client:visible />
+
+  <!-- Pre-Footer CTA -->
+  <CoveragePreFooterCTA client:visible />
+</PlivoLayout>
