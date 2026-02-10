@@ -1,0 +1,43 @@
+---
+interface Props {
+  currentPage?: string;
+}
+
+const { currentPage = "overview" } = Astro.props;
+
+const navItems = [
+  { id: "overview", label: "Overview", href: "/whatsapp/overview" },
+  { id: "chat-pricing", label: "Chat Pricing", href: "/whatsapp/chat-pricing" },
+  { id: "call-pricing", label: "Call Pricing", href: "/whatsapp/call-pricing" },
+];
+---
+
+<div class="border-b border-gray-200 bg-white fixed top-[72px] left-0 right-0 z-40">
+  <div class="mx-auto max-w-7xl px-4">
+    <nav class="flex items-center justify-end gap-6 overflow-x-auto scrollbar-hide">
+      {navItems.map((item) => (
+        <a
+          href={item.href}
+          class:list={[
+            "py-2 text-[13px] font-medium whitespace-nowrap transition-colors border-b-2 -mb-px",
+            currentPage === item.id
+              ? "text-black border-black"
+              : "text-gray-500 border-transparent hover:text-gray-900 hover:border-gray-300"
+          ]}
+        >
+          {item.label}
+        </a>
+      ))}
+    </nav>
+  </div>
+</div>
+
+<style>
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+</style>

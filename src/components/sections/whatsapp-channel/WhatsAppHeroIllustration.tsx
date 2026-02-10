@@ -9,35 +9,32 @@ interface Message {
   type: "incoming" | "outgoing";
   text: string;
   hasCheckmarks?: boolean;
+  link?: string;
 }
 
 const messages: Message[] = [
   {
     id: 1,
-    type: "incoming",
-    text: "Hi! I'm your AI assistant from TechStore. How can I help you today?",
-  },
-  {
-    id: 2,
     type: "outgoing",
-    text: "I need help tracking my order #45821",
+    text: "Where's my order #45821?",
     hasCheckmarks: true,
   },
   {
-    id: 3,
+    id: 2,
     type: "incoming",
-    text: "Found your order! It shipped yesterday, arriving Friday, Feb 7. Want the tracking link?",
+    text: "Your order shipped yesterday and arrives Friday, Feb 7. Want the tracking link?",
   },
   {
-    id: 4,
+    id: 3,
     type: "outgoing",
     text: "Yes please! 🙏",
     hasCheckmarks: true,
   },
   {
-    id: 5,
+    id: 4,
     type: "incoming",
-    text: "Here's your tracking: track.techstore.com/45821\n\nAnything else I can help with?",
+    text: "Here you go 📦\n\nAnything else I can help with?",
+    link: "track.techstore.com/45821",
   },
 ];
 
@@ -71,7 +68,7 @@ export default function WhatsAppHeroIllustration() {
             className="h-full w-full"
             squareSize={4}
             gridGap={6}
-            color="rgb(37, 211, 102)"
+            color="rgb(139, 92, 246)"
             maxOpacity={0.5}
             flickerChance={0.1}
           />
@@ -86,11 +83,11 @@ export default function WhatsAppHeroIllustration() {
       </div>
 
       {/* Phone container */}
-      <div className="relative h-[520px] sm:h-[560px] overflow-hidden">
+      <div className="relative h-[460px] sm:h-[500px] overflow-hidden">
         {/* Phone device */}
         <div className="w-[288px] sm:w-[320px]">
-          {/* Phone outer frame with WhatsApp green gradient */}
-          <div className="relative rounded-[32px] p-1.5 shadow-2xl" style={{ background: 'linear-gradient(135deg, rgba(37, 211, 102, 0.6) 0%, rgba(7, 94, 84, 0.6) 100%)' }}>
+          {/* Phone outer frame */}
+          <div className="relative rounded-[32px] p-1.5 shadow-2xl" style={{ background: 'linear-gradient(135deg, rgba(205, 62, 249, 0.5) 0%, rgba(50, 61, 254, 0.5) 100%)' }}>
             {/* Inner highlight for 3D effect */}
             <div className="absolute inset-0 rounded-[32px] opacity-15" style={{ background: 'linear-gradient(135deg, rgba(255,255,255,0.4) 0%, transparent 50%, rgba(0,0,0,0.2) 100%)' }} />
 
@@ -147,6 +144,9 @@ export default function WhatsAppHeroIllustration() {
                             {/* Tail */}
                             <div className="absolute -left-2 top-0 w-0 h-0 border-t-8 border-t-white border-l-8 border-l-transparent" />
                             <p className="text-[13px] text-gray-800 leading-snug whitespace-pre-line">{message.text}</p>
+                            {message.link && (
+                              <a href="#" className="text-[13px] text-[#53bdeb] underline break-all leading-snug">{message.link}</a>
+                            )}
                             <p className="text-[10px] text-gray-400 text-right mt-0.5">9:41 AM</p>
                           </div>
                         </div>
@@ -182,7 +182,7 @@ export default function WhatsAppHeroIllustration() {
                 <div className="flex-1 rounded-full px-4 py-2 bg-white">
                   <span className="text-[13px] text-gray-400">Type a message</span>
                 </div>
-                <div className="w-10 h-10 rounded-full bg-[#25D366] flex items-center justify-center">
+                <div className="w-10 h-10 rounded-full bg-[#323dfe] flex items-center justify-center">
                   <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M12 15c1.66 0 3-1.34 3-3V6c0-1.66-1.34-3-3-3S9 4.34 9 6v6c0 1.66 1.34 3 3 3zm-1 1.93c-3.94-.49-7-3.85-7-7.93h2c0 2.76 2.24 5 5 5s5-2.24 5-5h2c0 4.08-3.06 7.44-7 7.93V21h-2v-4.07z"/>
                   </svg>

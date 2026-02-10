@@ -1,0 +1,21 @@
+---
+import PlivoLayout from "@/layouts/PlivoLayout.astro";
+import SIPTrunkingSubNav from "@/components/sections/voice-channel/SIPTrunkingSubNav.astro";
+import SIPTrunkingCoverage from "@/components/sections/voice-channel/SIPTrunkingCoverage";
+import PreFooterCTA from "@/components/sections/voice-homepage/PreFooterCTA";
+---
+
+<PlivoLayout title="Zentrunk SIP Trunking Coverage | Plivo" description="Global SIP trunking coverage with outbound termination to 220+ countries and inbound origination in 55+ countries.">
+  <!-- Sub Navigation -->
+  <SIPTrunkingSubNav currentPage="coverage" />
+
+  <!-- Coverage Component -->
+  <SIPTrunkingCoverage client:visible />
+
+  <!-- Pre-Footer CTA -->
+  <PreFooterCTA
+    client:visible
+    title="It's easy to get started. Sign up for free."
+    subtitle="Create your account and receive trial credits or get in touch with us."
+  />
+</PlivoLayout>

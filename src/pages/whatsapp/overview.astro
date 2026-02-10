@@ -1,16 +1,20 @@
 ---
 import PlivoLayout from "@/layouts/PlivoLayout.astro";
+import WhatsAppSubNav from "@/components/sections/whatsapp-channel/WhatsAppSubNav.astro";
 import WhatsAppChannelHero from "@/components/sections/whatsapp-channel/WhatsAppChannelHero.astro";
 import ClientLogos from "@/components/sections/voice-homepage/ClientLogos.astro";
 import WhatsAppUseCases from "@/components/sections/whatsapp-channel/WhatsAppUseCases";
 import WhatsAppConnectivityGrid from "@/components/sections/whatsapp-channel/WhatsAppConnectivityGrid";
-import WhatsAppAIAgentsAccordion from "@/components/sections/whatsapp-channel/WhatsAppAIAgentsAccordion";
+import WhatsAppFeatureRichAgents from "@/components/sections/whatsapp-channel/WhatsAppFeatureRichAgents";
 import WhatsAppEngagementPlatform from "@/components/sections/whatsapp-channel/WhatsAppEngagementPlatform";
 import WhatsAppFAQ from "@/components/sections/whatsapp-channel/WhatsAppFAQ";
 import WhatsAppPreFooterCTA from "@/components/sections/whatsapp-channel/WhatsAppPreFooterCTA";
 ---
 
 <PlivoLayout title="WhatsApp AI Agents | Plivo" description="Let WhatsApp AI Agents handle your customer chats 24/7. Autonomous agents that answer purchase inquiries, close new sales, engage loyal customers & resolve support queries instantly.">
+  <!-- WhatsApp Sub Navigation -->
+  <WhatsAppSubNav currentPage="overview" />
+
   <!-- Hero Section -->
   <WhatsAppChannelHero />
 
@@ -20,11 +24,11 @@ import WhatsAppPreFooterCTA from "@/components/sections/whatsapp-channel/WhatsAp
   <!-- WhatsApp Use Cases Grid - Convert, Engage, Delight -->
   <WhatsAppUseCases client:visible />
 
+  <!-- Feature-Rich AI Agents - 3 Sub-category Accordion -->
+  <WhatsAppFeatureRichAgents client:visible />
+
   <!-- WhatsApp Features - 6 Card Grid -->
   <WhatsAppConnectivityGrid client:visible />
-
-  <!-- WhatsApp AI Agents Accordion -->
-  <WhatsAppAIAgentsAccordion client:visible />
 
   <!-- Complete WhatsApp Engagement Platform -->
   <WhatsAppEngagementPlatform client:visible />

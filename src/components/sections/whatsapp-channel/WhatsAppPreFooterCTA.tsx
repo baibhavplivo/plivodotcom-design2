@@ -3,14 +3,14 @@ import { FlickeringGrid } from "@/components/magicui/flickering-grid";
 export default function WhatsAppPreFooterCTA() {
   return (
     <section className="relative overflow-hidden bg-white py-12 sm:py-16 md:py-20">
-      {/* Flickering Grid Background - WhatsApp green */}
+      {/* Flickering Grid Background */}
       <div className="pointer-events-none absolute inset-0 z-[1]">
         <FlickeringGrid
           className="h-full w-full"
           squareSize={4}
           gridGap={6}
-          color="rgb(37, 211, 102)"
-          maxOpacity={0.2}
+          color="rgb(139, 92, 246)"
+          maxOpacity={0.225}
           flickerChance={0.1}
         />
       </div>
@@ -18,7 +18,7 @@ export default function WhatsAppPreFooterCTA() {
       {/* Content */}
       <div className="container relative z-10 mx-auto flex max-w-7xl flex-col items-center px-4 text-center">
         <h2 className="font-sora text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] font-normal leading-[1.25] tracking-[-0.02em] text-black">
-          Launch your WhatsApp AI Agents today
+          Launch your WhatsApp AI agents today
         </h2>
         <p className="mx-auto max-w-2xl text-base sm:text-lg text-gray-600 mt-3">
           Deploy intelligent, conversational WhatsApp agents that convert prospects, engage customers, and deliver instant support.

@@ -1,5 +1,6 @@
 ---
 import PlivoLayout from "@/layouts/PlivoLayout.astro";
+import VoiceSubNav from "@/components/sections/voice-channel/VoiceSubNav.astro";
 import VoiceChannelHero from "@/components/sections/voice-channel/VoiceChannelHero.astro";
 import ClientLogos from "@/components/sections/voice-homepage/ClientLogos.astro";
 import AIVoiceAgentsTabs from "@/components/sections/voice-channel/AIVoiceAgentsTabs";
@@ -12,6 +13,9 @@ import PreFooterCTA from "@/components/sections/voice-homepage/PreFooterCTA";
 ---
 
 <PlivoLayout title="Voice AI Agents | Plivo" description="Build, deploy, and scale voice AI agents with sub-500ms latency. Start with our no-code builder or bring your own LLM.">
+  <!-- Voice Sub Navigation -->
+  <VoiceSubNav currentPage="overview" />
+
   <!-- Hero Section -->
   <VoiceChannelHero />
 

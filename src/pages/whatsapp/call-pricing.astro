@@ -1,0 +1,17 @@
+---
+import PlivoLayout from "@/layouts/PlivoLayout.astro";
+import WhatsAppSubNav from "@/components/sections/whatsapp-channel/WhatsAppSubNav.astro";
+import WhatsAppCallPricing from "@/components/sections/whatsapp-channel/WhatsAppCallPricing";
+import WhatsAppPreFooterCTA from "@/components/sections/whatsapp-channel/WhatsAppPreFooterCTA";
+---
+
+<PlivoLayout title="WhatsApp Call Pricing | Plivo" description="Explore Plivo's WhatsApp calling pricing. Per-minute rates for inbound and outbound WhatsApp voice calls.">
+  <!-- WhatsApp Sub Navigation -->
+  <WhatsAppSubNav currentPage="call-pricing" />
+
+  <!-- WhatsApp Call Pricing with Country Selection -->
+  <WhatsAppCallPricing client:visible />
+
+  <!-- Pre-Footer CTA -->
+  <WhatsAppPreFooterCTA client:visible />
+</PlivoLayout>

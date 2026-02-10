@@ -43,11 +43,26 @@ const faqs: FAQItem[] = [
     answer:
       "Getting started is easy! Sign up for a Plivo account, and our team will help you with priority WhatsApp Business API approval. You can then use our no-code Agent Studio to build and deploy your first AI agent in minutes.",
   },
+  {
+    question: "How do I start using WhatsApp messaging with Plivo?",
+    answer:
+      "Use our integrated sign-up and registration to start using WhatsApp messaging on Plivo's console. Verify your WhatsApp numbers and begin sending messages within seconds.",
+  },
+  {
+    question: "How does the pricing work for using WhatsApp through Plivo?",
+    answer:
+      "Pricing is conversation-based, which includes Meta's fees and Plivo's pay-as-you-go platform fee. Meta charges per conversation, which is defined as a 24-hour message thread. Plivo charges a platform fee per conversation in addition to Meta's fees.",
+  },
+  {
+    question: "How does billing work with Plivo for WhatsApp messaging services?",
+    answer:
+      "Plivo consolidates all billing for both Plivo and Meta charges into a single invoice. This includes both the conversation-based charges by Meta and the platform fees by Plivo.",
+  },
 ];
 
 export default function WhatsAppFAQ() {
   return (
-    <section className="bg-gray-50 py-12 sm:py-16 md:py-20">
+    <section className="bg-white py-12 sm:py-16 md:py-20">
       <div className="container mx-auto max-w-3xl px-4">
         {/* Section Header */}
         <h2 className="font-sora text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] font-normal leading-[1.25] tracking-[-0.02em] text-black text-center mb-4">

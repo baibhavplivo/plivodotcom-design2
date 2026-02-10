@@ -63,7 +63,7 @@ export const mainNavigation: NavDropdown[] = [
               "Enable your AI agents with voice call connectivity in 100+ countries",
             href: "/voice/overview/",
             icon: "phone-call",
-            subLinks: [{ title: "SIP Trunking", href: "/sip-trunking/" }],
+            subLinks: [{ title: "SIP Trunking", href: "/voice/sip-trunking/" }],
           },
           {
             title: "Messaging",
@@ -88,6 +88,11 @@ export const mainNavigation: NavDropdown[] = [
       },
     ],
     bottomItems: [
+      {
+        title: "SIP Trunking",
+        href: "/voice/sip-trunking/",
+        icon: "phone-call",
+      },
       {
         title: "Verify",
         href: "/verify/",
