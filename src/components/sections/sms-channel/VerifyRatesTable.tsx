@@ -1,11 +1,14 @@
 "use client";
 
-// Rates table data
+// Rates table data - per-unit Plivo Verify channel rates
 const ratesTableData = [
-  { country: "US", sms: "$0.0070/sms", voice: "$0.01000/min", whatsapp: "$0.0048/conversation" },
-  { country: "Canada", sms: "$0.0070/sms", voice: "$0.01200/min", whatsapp: "$0.0048/conversation" },
-  { country: "India", sms: "$0.00018/sms", voice: "$0.00480/min", whatsapp: "$0.0022/conversation" },
-  { country: "Australia", sms: "$0.04513/sms", voice: "$0.02300/min", whatsapp: "$0.0165/conversation" },
+  { country: "United States", sms: "$0.0070/sms", voice: "$0.0100/min", whatsapp: "$0.0048/conversation" },
+  { country: "Canada", sms: "$0.0070/sms", voice: "$0.0120/min", whatsapp: "$0.0048/conversation" },
+  { country: "United Kingdom", sms: "$0.0400/sms", voice: "$0.0150/min", whatsapp: "$0.0098/conversation" },
+  { country: "India", sms: "$0.00018/sms", voice: "$0.0048/min", whatsapp: "$0.0022/conversation" },
+  { country: "Australia", sms: "$0.04513/sms", voice: "$0.0230/min", whatsapp: "$0.0165/conversation" },
+  { country: "Germany", sms: "$0.0750/sms", voice: "$0.0180/min", whatsapp: "$0.0131/conversation" },
+  { country: "Brazil", sms: "$0.0350/sms", voice: "$0.0200/min", whatsapp: "$0.0080/conversation" },
 ];
 
 export default function VerifyRatesTable() {

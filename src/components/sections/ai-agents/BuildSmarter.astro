@@ -1,0 +1,269 @@
+---
+// BuildSmarter.astro - Alternating features matching SIPTrunkingDirections pattern
+---
+
+<section class="py-12 sm:py-16 md:py-20 bg-white">
+  <div class="container mx-auto max-w-7xl px-4">
+    <!-- Section Heading -->
+    <div class="text-center mb-12 lg:mb-16">
+      <h2 class="font-sora text-[2rem] sm:text-[2.5rem] font-normal leading-[1.25] tracking-[-0.02em] text-black">
+        Build smarter, launch faster
+      </h2>
+      <p class="text-base sm:text-lg text-gray-600 mt-4 max-w-2xl mx-auto leading-relaxed">
+        Build and deploy high-performing agents without code. AI Agent connects to your tools, understands your workflows, and starts delivering results on day one.
+      </p>
+    </div>
+
+    <!-- Vibe agent builder - Features Left, Illustration Right -->
+    <div class="grid gap-8 lg:grid-cols-2 lg:gap-12 items-center mb-16 lg:mb-24">
+      <div>
+        <h3 class="font-sora text-[1.5rem] sm:text-[1.75rem] font-normal leading-[1.25] tracking-[-0.02em] text-black mb-8">
+          Vibe agent builder
+        </h3>
+        <div class="space-y-6">
+          <!-- Feature 1 -->
+          <div class="flex items-start gap-3">
+            <span class="text-[#323dfe] flex-shrink-0 mt-0.5">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" />
+              </svg>
+            </span>
+            <div>
+              <h4 class="text-base font-medium text-black mb-1">Just say what you want to build</h4>
+              <p class="text-sm text-gray-600 leading-relaxed">Describe the use case, and Vibe Agent builds the agent instantly.</p>
+            </div>
+          </div>
+          <!-- Feature 2 -->
+          <div class="flex items-start gap-3">
+            <span class="text-[#323dfe] flex-shrink-0 mt-0.5">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182" />
+              </svg>
+            </span>
+            <div>
+              <h4 class="text-base font-medium text-black mb-1">Ask to make changes anytime</h4>
+              <p class="text-sm text-gray-600 leading-relaxed">Update steps, messages, or logic in Vibe Agent by simply describing what you want. No coding required.</p>
+            </div>
+          </div>
+          <!-- Feature 3 -->
+          <div class="flex items-start gap-3">
+            <span class="text-[#323dfe] flex-shrink-0 mt-0.5">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z" />
+              </svg>
+            </span>
+            <div>
+              <h4 class="text-base font-medium text-black mb-1">Test and go live</h4>
+              <p class="text-sm text-gray-600 leading-relaxed">Test conversations in a safe environment, fine-tune responses, and go live instantly when you're ready.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="order-first lg:order-last">
+        <div class="aspect-[4/3] w-full rounded-xl overflow-hidden" style="background: linear-gradient(135deg, #f3e8ff 0%, #ede9fe 30%, #e0e7ff 60%, #dbeafe 100%);">
+          <div class="relative h-full w-full p-4 sm:p-6 flex flex-col justify-center">
+            <div class="bg-white rounded-xl shadow-lg border border-gray-200 p-4 sm:p-5">
+              <!-- Mac window controls -->
+              <div class="flex items-center gap-2 mb-3 pb-3 border-b border-gray-100">
+                <div class="flex gap-1.5">
+                  <div class="w-2.5 h-2.5 rounded-full bg-red-400" />
+                  <div class="w-2.5 h-2.5 rounded-full bg-yellow-400" />
+                  <div class="w-2.5 h-2.5 rounded-full bg-green-400" />
+                </div>
+                <span class="text-[11px] text-gray-400 ml-2">Vibe Agent Builder</span>
+              </div>
+
+              <!-- Chat interface -->
+              <div class="space-y-2.5">
+                <!-- User prompt -->
+                <div class="flex justify-end">
+                  <div class="rounded-lg rounded-br-sm px-3 py-2 bg-[#323dfe] text-white text-[11px] max-w-[85%] leading-relaxed">
+                    Build a support agent that handles order tracking and returns for my Shopify store
+                  </div>
+                </div>
+
+                <!-- AI response -->
+                <div class="flex justify-start">
+                  <div class="rounded-lg rounded-bl-sm px-3 py-2 bg-gray-50 border border-gray-100 text-[11px] text-gray-700 max-w-[85%] leading-relaxed">
+                    <div class="flex items-center gap-1.5 mb-1.5">
+                      <div class="w-4 h-4 rounded-full bg-gradient-to-br from-[#cd3ef9] to-[#323dfe]" />
+                      <span class="font-medium text-[10px]">Vibe Agent</span>
+                    </div>
+                    I'll set up your support agent:
+                    <div class="mt-1.5 space-y-1">
+                      <div class="flex items-center gap-1.5">
+                        <svg class="w-3 h-3 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                        <span class="text-[10px]">Shopify order lookup</span>
+                      </div>
+                      <div class="flex items-center gap-1.5">
+                        <svg class="w-3 h-3 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                        <span class="text-[10px]">Return initiation flow</span>
+                      </div>
+                      <div class="flex items-center gap-1.5">
+                        <svg class="w-3 h-3 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                        <span class="text-[10px]">Shipping status updates</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Follow-up prompt -->
+                <div class="flex justify-end">
+                  <div class="rounded-lg rounded-br-sm px-3 py-2 bg-[#323dfe] text-white text-[11px] max-w-[85%] leading-relaxed">
+                    Also add a refund processing step
+                  </div>
+                </div>
+
+                <!-- Input bar -->
+                <div class="flex items-center gap-2 rounded-lg border border-gray-200 px-3 py-1.5 bg-white mt-1">
+                  <span class="text-[10px] text-gray-400 flex-1">Describe what you want to change...</span>
+                  <div class="w-5 h-5 rounded-full bg-[#323dfe] flex items-center justify-center">
+                    <svg class="w-2.5 h-2.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Works across every channel - Illustration Left, Features Right -->
+    <div class="grid gap-8 lg:grid-cols-2 lg:gap-12 items-center">
+      <div>
+        <div class="aspect-[4/3] w-full rounded-xl overflow-hidden" style="background: linear-gradient(135deg, #f3e8ff 0%, #ede9fe 30%, #e0e7ff 60%, #dbeafe 100%);">
+          <div class="relative h-full w-full p-4 sm:p-6 flex flex-col justify-center">
+            <div class="bg-white rounded-xl shadow-lg border border-gray-200 p-4 sm:p-5">
+              <!-- Header -->
+              <div class="flex items-center gap-2 mb-4 pb-3 border-b border-gray-100">
+                <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-[#cd3ef9] to-[#323dfe] flex items-center justify-center">
+                  <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5" />
+                  </svg>
+                </div>
+                <div>
+                  <p class="text-sm font-semibold text-gray-900">AI Agent</p>
+                  <p class="text-[10px] text-gray-500">4 channels active</p>
+                </div>
+              </div>
+
+              <!-- Channel rows -->
+              <div class="space-y-1.5">
+                <!-- Voice -->
+                <div class="flex items-center gap-3 px-3 py-2 rounded-lg bg-gray-50 border border-gray-100">
+                  <div class="w-7 h-7 rounded-lg bg-blue-50 flex items-center justify-center flex-shrink-0">
+                    <svg class="w-3.5 h-3.5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" /></svg>
+                  </div>
+                  <div class="flex-1 min-w-0">
+                    <p class="text-xs font-medium text-gray-900">Voice</p>
+                    <p class="text-[10px] text-gray-500">Inbound & outbound calls</p>
+                  </div>
+                  <div class="flex items-center gap-1.5 flex-shrink-0">
+                    <div class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                    <span class="text-[10px] text-emerald-600 font-medium">Active</span>
+                  </div>
+                </div>
+
+                <!-- Chat -->
+                <div class="flex items-center gap-3 px-3 py-2 rounded-lg bg-gray-50 border border-gray-100">
+                  <div class="w-7 h-7 rounded-lg bg-purple-50 flex items-center justify-center flex-shrink-0">
+                    <svg class="w-3.5 h-3.5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 20.97a5.969 5.969 0 01-.474-.065 4.48 4.48 0 00.978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z" /></svg>
+                  </div>
+                  <div class="flex-1 min-w-0">
+                    <p class="text-xs font-medium text-gray-900">Web Chat</p>
+                    <p class="text-[10px] text-gray-500">Website & in-app chat</p>
+                  </div>
+                  <div class="flex items-center gap-1.5 flex-shrink-0">
+                    <div class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" style="animation-delay: 0.3s" />
+                    <span class="text-[10px] text-emerald-600 font-medium">Active</span>
+                  </div>
+                </div>
+
+                <!-- SMS -->
+                <div class="flex items-center gap-3 px-3 py-2 rounded-lg bg-gray-50 border border-gray-100">
+                  <div class="w-7 h-7 rounded-lg bg-green-50 flex items-center justify-center flex-shrink-0">
+                    <svg class="w-3.5 h-3.5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" /></svg>
+                  </div>
+                  <div class="flex-1 min-w-0">
+                    <p class="text-xs font-medium text-gray-900">SMS</p>
+                    <p class="text-[10px] text-gray-500">Two-way messaging</p>
+                  </div>
+                  <div class="flex items-center gap-1.5 flex-shrink-0">
+                    <div class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" style="animation-delay: 0.6s" />
+                    <span class="text-[10px] text-emerald-600 font-medium">Active</span>
+                  </div>
+                </div>
+
+                <!-- WhatsApp -->
+                <div class="flex items-center gap-3 px-3 py-2 rounded-lg bg-gray-50 border border-gray-100">
+                  <div class="w-7 h-7 rounded-lg bg-[#25D366]/10 flex items-center justify-center flex-shrink-0">
+                    <svg class="w-3.5 h-3.5 text-[#25D366]" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" /></svg>
+                  </div>
+                  <div class="flex-1 min-w-0">
+                    <p class="text-xs font-medium text-gray-900">WhatsApp</p>
+                    <p class="text-[10px] text-gray-500">Business messaging</p>
+                  </div>
+                  <div class="flex items-center gap-1.5 flex-shrink-0">
+                    <div class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" style="animation-delay: 0.9s" />
+                    <span class="text-[10px] text-emerald-600 font-medium">Active</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Footer -->
+              <div class="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between">
+                <span class="text-[10px] text-gray-500">Deploy once, run everywhere</span>
+                <span class="text-[10px] text-[#323dfe] font-medium">All channels synced</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h3 class="font-sora text-[1.5rem] sm:text-[1.75rem] font-normal leading-[1.25] tracking-[-0.02em] text-black mb-8">
+          Works across every channel
+        </h3>
+        <div class="space-y-6">
+          <!-- Feature 1 -->
+          <div class="flex items-start gap-3">
+            <span class="text-[#323dfe] flex-shrink-0 mt-0.5">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
+              </svg>
+            </span>
+            <div>
+              <h4 class="text-base font-medium text-black mb-1">One agent across all channels</h4>
+              <p class="text-sm text-gray-600 leading-relaxed">Build agents that work where your customers are, whether it is voice, chat, SMS or WhatsApp.</p>
+            </div>
+          </div>
+          <!-- Feature 2 -->
+          <div class="flex items-start gap-3">
+            <span class="text-[#323dfe] flex-shrink-0 mt-0.5">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12c0-1.232-.046-2.453-.138-3.662a4.006 4.006 0 00-3.7-3.7 48.678 48.678 0 00-7.324 0 4.006 4.006 0 00-3.7 3.7c-.017.22-.032.441-.046.662M19.5 12l3-3m-3 3l-3-3m-12 3c0 1.232.046 2.453.138 3.662a4.006 4.006 0 003.7 3.7 48.656 48.656 0 007.324 0 4.006 4.006 0 003.7-3.7c.017-.22.032-.441.046-.662M4.5 12l3 3m-3-3l-3 3" />
+              </svg>
+            </span>
+            <div>
+              <h4 class="text-base font-medium text-black mb-1">Consistent across touchpoints</h4>
+              <p class="text-sm text-gray-600 leading-relaxed">Agents remember context and move with the customer across every interaction.</p>
+            </div>
+          </div>
+          <!-- Feature 3 -->
+          <div class="flex items-start gap-3">
+            <span class="text-[#323dfe] flex-shrink-0 mt-0.5">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5m.75-9l3-3 2.148 2.148A12.061 12.061 0 0116.5 7.605" />
+              </svg>
+            </span>
+            <div>
+              <h4 class="text-base font-medium text-black mb-1">Every agent is multimodal and multichannel</h4>
+              <p class="text-sm text-gray-600 leading-relaxed">Agents can understand and generate text, audio, images, and video while communicating seamlessly across multiple channels.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

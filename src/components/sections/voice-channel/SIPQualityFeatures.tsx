@@ -52,14 +52,20 @@ function GuaranteedQualityIllustration() {
 
           {/* Destination */}
           <div className="flex flex-col items-center gap-1.5">
-            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#cd3ef9] to-[#323dfe] flex items-center justify-center shadow-sm">
+            <div className="w-12 h-12 rounded-xl bg-gray-100 flex items-center justify-center">
               <svg
-                className="w-6 h-6 text-white"
+                className="w-6 h-6"
                 fill="none"
-                stroke="currentColor"
                 viewBox="0 0 24 24"
               >
+                <defs>
+                  <linearGradient id="carrier-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#cd3ef9" />
+                    <stop offset="100%" stopColor="#323dfe" />
+                  </linearGradient>
+                </defs>
                 <path
+                  stroke="url(#carrier-grad)"
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   strokeWidth={1.5}
@@ -151,13 +157,19 @@ function HighAvailabilityIllustration() {
           {/* Uptime badge */}
           <div className="flex justify-center mb-4">
             <div className="flex items-center gap-2 bg-white rounded-full border border-gray-200 px-4 py-2 shadow-sm">
-              <div className="w-8 h-8 rounded-full bg-emerald-100 flex items-center justify-center">
+              <div className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center">
                 <svg
-                  className="w-4 h-4 text-emerald-600"
-                  fill="currentColor"
+                  className="w-4 h-4"
                   viewBox="0 0 20 20"
                 >
+                  <defs>
+                    <linearGradient id="shield-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="#cd3ef9" />
+                      <stop offset="100%" stopColor="#323dfe" />
+                    </linearGradient>
+                  </defs>
                   <path
+                    fill="url(#shield-grad)"
                     fillRule="evenodd"
                     d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
                     clipRule="evenodd"
@@ -166,7 +178,7 @@ function HighAvailabilityIllustration() {
               </div>
               <div>
                 <p className="text-lg font-bold text-black">99.99%</p>
-                <p className="text-[10px] text-gray-500">Guaranteed Uptime</p>
+                <p className="text-[10px] text-gray-500">Guaranteed uptime</p>
               </div>
             </div>
           </div>
@@ -219,21 +231,21 @@ interface QualityFeature {
 
 const qualityFeatures: QualityFeature[] = [
   {
-    title: "Guaranteed Quality",
+    title: "Guaranteed quality",
     description:
       "Your calls are terminated through one-hop local carriers to give you low post-dial delay, guaranteed features such as CLI and DTMF, and no out-of-region audio looping.",
     illustration: <GuaranteedQualityIllustration />,
   },
   {
-    title: "Global Infrastructure",
+    title: "Global infrastructure",
     description:
       "Our PoPs are located in seven locations (California, Virginia, Frankfurt, Mumbai, Singapore, Sydney, S\u00e3o Paulo) across five continents to ensure that you experience low latency and high voice quality.",
     illustration: <GlobalInfrastructureIllustration />,
   },
   {
-    title: "High Availability and Uptime",
+    title: "High availability and uptime",
     description:
-      "With a redundant infrastructure across multiple geographies and at least three local carrier connections across countries, Zentrunk promises 99.99% uptime.",
+      "With a redundant infrastructure across multiple geographies and at least three local carrier connections across countries, Plivo SIP trunking promises 99.99% uptime.",
     illustration: <HighAvailabilityIllustration />,
   },
 ];
@@ -245,7 +257,7 @@ export default function SIPQualityFeatures() {
         {/* Section Header */}
         <div className="text-center mb-4">
           <h2 className="font-sora text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] font-normal leading-[1.25] tracking-[-0.02em] text-black mb-4 max-w-3xl mx-auto">
-            Zentrunk is Quality SIP Trunking
+            Quality SIP trunking
           </h2>
         </div>
         <p className="text-gray-600 text-center max-w-2xl mx-auto mb-10 md:mb-14">

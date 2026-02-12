@@ -66,12 +66,12 @@ export function Globe({
   );
 
   useEffect(() => {
-    let width = 0;
+    let currentWidth = 0;
     let globe: ReturnType<typeof createGlobe> | null = null;
 
     const onResize = () => {
       if (canvasRef.current) {
-        width = canvasRef.current.offsetWidth;
+        currentWidth = canvasRef.current.offsetWidth;
       }
     };
     window.addEventListener("resize", onResize);
@@ -79,7 +79,7 @@ export function Globe({
 
     if (canvasRef.current) {
       globe = createGlobe(canvasRef.current, {
-        devicePixelRatio: window.devicePixelRatio || 1,
+        devicePixelRatio: 2,
         width: size * 2,
         height: size * 2,
         phi: 0,
@@ -107,21 +107,19 @@ export function Globe({
           { location: [19.4326, -99.1332], size: 0.04 }, // Mexico City
         ],
         onRender: (state) => {
-          // Handle interaction or auto-rotate
+          state.width = currentWidth * 2;
+          state.height = currentWidth * 2;
+
           if (pointerInteracting.current !== null) {
-            // User is dragging - use pointer movement
             const r = pointerInteractionMovement.current;
             phiRef.current += r * 0.005;
-            pointerInteractionMovement.current *= 0.9; // Damping
+            pointerInteractionMovement.current *= 0.9;
           } else {
-            // Auto-rotate when not interacting
             phiRef.current += 0.002;
           }
 
           state.phi = phiRef.current;
           state.theta = thetaRef.current;
-          state.width = width * 2;
-          state.height = width * 2;
         },
       });
     }

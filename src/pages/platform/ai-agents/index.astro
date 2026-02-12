@@ -1,0 +1,37 @@
+---
+import PlivoLayout from "@/layouts/PlivoLayout.astro";
+import AIAgentsHero from "@/components/sections/ai-agents/AIAgentsHero.astro";
+import ClientLogos from "@/components/sections/voice-homepage/ClientLogos.astro";
+import AIAgentUseCases from "@/components/sections/ai-agents/AIAgentUseCases";
+import GoLiveSteps from "@/components/sections/ai-agents/GoLiveSteps.astro";
+import BuildSmarter from "@/components/sections/ai-agents/BuildSmarter.astro";
+import IntegrationsMarquee from "@/components/sections/ai-agents/IntegrationsMarquee.astro";
+import AIFeatureCards from "@/components/sections/ai-agents/AIFeatureCards.astro";
+import PreFooterCTA from "@/components/sections/voice-homepage/PreFooterCTA";
+---
+
+<PlivoLayout title="AI Agents That Just Work | Plivo" description="Build and launch AI agents in minutes across voice, chat, SMS, and WhatsApp. No code, no guesswork — just reliable automation for key customer moments.">
+  <!-- Hero with Vimeo video -->
+  <AIAgentsHero />
+
+  <!-- Client Logos Marquee -->
+  <ClientLogos />
+
+  <!-- AI Agent Use Cases Grid -->
+  <AIAgentUseCases client:visible />
+
+  <!-- Go Live in 3 Steps -->
+  <GoLiveSteps />
+
+  <!-- Build Smarter: Vibe Builder + Multi-channel -->
+  <BuildSmarter />
+
+  <!-- Integrations Marquee -->
+  <IntegrationsMarquee />
+
+  <!-- Feature Cards: Knowledge Base + Human Handoff -->
+  <AIFeatureCards />
+
+  <!-- Pre-Footer CTA -->
+  <PreFooterCTA title="Start building your AI agent now" subtitle="No setup fees, no coding required." client:visible />
+</PlivoLayout>

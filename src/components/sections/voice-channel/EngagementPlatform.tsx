@@ -157,15 +157,12 @@ export default function EngagementPlatform() {
           </p>
         </div>
 
-        {/* Feature Sections - Bordered Layout */}
+        {/* Feature Sections - Single unified bordered box */}
         <div className="border border-gray-200 rounded-xl overflow-hidden">
           {featureSections.map((section, sectionIndex) => (
-            <div
-              key={sectionIndex}
-              className={sectionIndex !== 0 ? "border-t border-gray-200" : ""}
-            >
+            <div key={sectionIndex}>
               {/* Subheader Row */}
-              <div className="px-6 py-4 border-b border-gray-200">
+              <div className={`px-6 py-4 border-b border-gray-200 ${sectionIndex !== 0 ? "border-t border-gray-200" : ""}`}>
                 <h3 className="text-lg font-semibold text-black">
                   {section.subheader}
                 </h3>
@@ -177,19 +174,18 @@ export default function EngagementPlatform() {
                   section.items.length === 2
                     ? "grid-cols-1 sm:grid-cols-2"
                     : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4"
-                } ${
-                  sectionIndex !== featureSections.length - 1 ? "border-b border-gray-200" : ""
                 }`}
               >
                 {section.items.map((item, itemIndex) => (
                   <div
                     key={itemIndex}
                     className={`p-5 ${
-                      itemIndex !== 0 ? "border-l border-gray-200 max-sm:border-l-0 max-sm:border-t" : ""
+                      itemIndex !== 0 ? "sm:border-l border-gray-200" : ""
                     } ${
-                      section.items.length === 4 && itemIndex === 2
-                        ? "max-lg:border-l-0 max-lg:border-t"
-                        : ""
+                      itemIndex >= 1 ? "max-sm:border-t border-gray-200" : ""
+                    } ${
+                      section.items.length === 4 && itemIndex >= 2
+                        ? "max-lg:border-t max-lg:border-l-0" : ""
                     }`}
                   >
                     <span className="text-[#323dfe] mb-3 block">{item.icon}</span>

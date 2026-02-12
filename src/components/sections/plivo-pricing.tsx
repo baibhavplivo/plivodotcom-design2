@@ -1,8 +1,17 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo, useEffect, useRef } from "react";
 import { Phone, MessageSquare, Sparkles, Check, ChevronDown, X } from "lucide-react";
+import { useGeoCountry } from "@/hooks/useGeoCountry";
 import { FlickeringGrid } from "@/components/magicui/flickering-grid";
+import {
+  VOICE_RATES,
+  PHONE_RENTAL_RATES,
+  SMS_RATES,
+  WA_CHAT_RATES,
+  WA_CALL_RATES,
+  COUNTRY_NAMES,
+} from "@/data/pricing-data";
 
 // Country data with flags
 const countries = [
@@ -48,7 +57,7 @@ const countries = [
   { code: "TR", name: "Turkey", flag: "🇹🇷" },
 ];
 
-// Starts at pricing data by country
+// Starts at pricing data by country (USD for all except India in INR)
 const startsAtPricing: Record<string, {
   voice: string;
   sms: string;
@@ -57,14 +66,6 @@ const startsAtPricing: Record<string, {
   whatsappCall: string;
   aiAgents: string;
 }> = {
-  IN: {
-    voice: "₹0.74/min",
-    sms: "₹0.155/sms",
-    phoneNumbers: "₹250/month",
-    whatsappChat: "₹0.12/conversation",
-    whatsappCall: "₹0.45/min",
-    aiAgents: "₹0.30/min",
-  },
   US: {
     voice: "$0.0055/min",
     sms: "$0.0050/sms",
@@ -73,69 +74,77 @@ const startsAtPricing: Record<string, {
     whatsappCall: "$0.010/min",
     aiAgents: "$0.004/min",
   },
+  IN: {
+    voice: "₹0.74/min",
+    sms: "₹0.155/sms",
+    phoneNumbers: "₹250/month",
+    whatsappChat: "₹0.12/conversation",
+    whatsappCall: "₹0.45/min",
+    aiAgents: "₹0.30/min",
+  },
   GB: {
-    voice: "£0.008/min",
-    sms: "£0.0075/sms",
-    phoneNumbers: "£0.80/month",
-    whatsappChat: "£0.023/conversation",
-    whatsappCall: "£0.012/min",
-    aiAgents: "£0.003/min",
+    voice: "$0.0100/min",
+    sms: "$0.0095/sms",
+    phoneNumbers: "$1.00/month",
+    whatsappChat: "$0.0292/conversation",
+    whatsappCall: "$0.015/min",
+    aiAgents: "$0.004/min",
   },
   AU: {
-    voice: "A$0.0085/min",
-    sms: "A$0.0065/sms",
-    phoneNumbers: "A$1.50/month",
-    whatsappChat: "A$0.030/conversation",
-    whatsappCall: "A$0.015/min",
-    aiAgents: "A$0.005/min",
+    voice: "$0.0055/min",
+    sms: "$0.0042/sms",
+    phoneNumbers: "$0.98/month",
+    whatsappChat: "$0.0195/conversation",
+    whatsappCall: "$0.010/min",
+    aiAgents: "$0.003/min",
   },
   CA: {
-    voice: "C$0.0065/min",
-    sms: "C$0.0055/sms",
-    phoneNumbers: "C$1.00/month",
-    whatsappChat: "C$0.018/conversation",
-    whatsappCall: "C$0.012/min",
-    aiAgents: "C$0.0045/min",
+    voice: "$0.0048/min",
+    sms: "$0.0041/sms",
+    phoneNumbers: "$0.74/month",
+    whatsappChat: "$0.0133/conversation",
+    whatsappCall: "$0.009/min",
+    aiAgents: "$0.003/min",
   },
-  // European countries (EUR)
-  DE: { voice: "€0.007/min", sms: "€0.006/sms", phoneNumbers: "€0.75/month", whatsappChat: "€0.012/conversation", whatsappCall: "€0.010/min", aiAgents: "€0.004/min" },
-  FR: { voice: "€0.007/min", sms: "€0.006/sms", phoneNumbers: "€0.75/month", whatsappChat: "€0.012/conversation", whatsappCall: "€0.010/min", aiAgents: "€0.004/min" },
-  IT: { voice: "€0.007/min", sms: "€0.006/sms", phoneNumbers: "€0.75/month", whatsappChat: "€0.012/conversation", whatsappCall: "€0.010/min", aiAgents: "€0.004/min" },
-  ES: { voice: "€0.007/min", sms: "€0.006/sms", phoneNumbers: "€0.75/month", whatsappChat: "€0.012/conversation", whatsappCall: "€0.010/min", aiAgents: "€0.004/min" },
-  NL: { voice: "€0.007/min", sms: "€0.006/sms", phoneNumbers: "€0.75/month", whatsappChat: "€0.012/conversation", whatsappCall: "€0.010/min", aiAgents: "€0.004/min" },
-  BE: { voice: "€0.007/min", sms: "€0.006/sms", phoneNumbers: "€0.75/month", whatsappChat: "€0.012/conversation", whatsappCall: "€0.010/min", aiAgents: "€0.004/min" },
-  CH: { voice: "CHF0.008/min", sms: "CHF0.007/sms", phoneNumbers: "CHF0.90/month", whatsappChat: "CHF0.014/conversation", whatsappCall: "CHF0.012/min", aiAgents: "CHF0.005/min" },
-  AT: { voice: "€0.007/min", sms: "€0.006/sms", phoneNumbers: "€0.75/month", whatsappChat: "€0.012/conversation", whatsappCall: "€0.010/min", aiAgents: "€0.004/min" },
-  SE: { voice: "kr0.07/min", sms: "kr0.06/sms", phoneNumbers: "kr8/month", whatsappChat: "kr0.12/conversation", whatsappCall: "kr0.10/min", aiAgents: "kr0.04/min" },
-  NO: { voice: "kr0.08/min", sms: "kr0.07/sms", phoneNumbers: "kr9/month", whatsappChat: "kr0.14/conversation", whatsappCall: "kr0.11/min", aiAgents: "kr0.05/min" },
-  DK: { voice: "kr0.05/min", sms: "kr0.04/sms", phoneNumbers: "kr6/month", whatsappChat: "kr0.09/conversation", whatsappCall: "kr0.07/min", aiAgents: "kr0.03/min" },
-  FI: { voice: "€0.007/min", sms: "€0.006/sms", phoneNumbers: "€0.75/month", whatsappChat: "€0.012/conversation", whatsappCall: "€0.010/min", aiAgents: "€0.004/min" },
-  IE: { voice: "€0.007/min", sms: "€0.006/sms", phoneNumbers: "€0.75/month", whatsappChat: "€0.012/conversation", whatsappCall: "€0.010/min", aiAgents: "€0.004/min" },
-  PT: { voice: "€0.007/min", sms: "€0.006/sms", phoneNumbers: "€0.75/month", whatsappChat: "€0.012/conversation", whatsappCall: "€0.010/min", aiAgents: "€0.004/min" },
-  PL: { voice: "zł0.025/min", sms: "zł0.022/sms", phoneNumbers: "zł3.50/month", whatsappChat: "zł0.05/conversation", whatsappCall: "zł0.04/min", aiAgents: "zł0.015/min" },
+  // European countries
+  DE: { voice: "$0.0076/min", sms: "$0.0065/sms", phoneNumbers: "$0.82/month", whatsappChat: "$0.0131/conversation", whatsappCall: "$0.011/min", aiAgents: "$0.004/min" },
+  FR: { voice: "$0.0076/min", sms: "$0.0065/sms", phoneNumbers: "$0.82/month", whatsappChat: "$0.0131/conversation", whatsappCall: "$0.011/min", aiAgents: "$0.004/min" },
+  IT: { voice: "$0.0076/min", sms: "$0.0065/sms", phoneNumbers: "$0.82/month", whatsappChat: "$0.0131/conversation", whatsappCall: "$0.011/min", aiAgents: "$0.004/min" },
+  ES: { voice: "$0.0076/min", sms: "$0.0065/sms", phoneNumbers: "$0.82/month", whatsappChat: "$0.0131/conversation", whatsappCall: "$0.011/min", aiAgents: "$0.004/min" },
+  NL: { voice: "$0.0076/min", sms: "$0.0065/sms", phoneNumbers: "$0.82/month", whatsappChat: "$0.0131/conversation", whatsappCall: "$0.011/min", aiAgents: "$0.004/min" },
+  BE: { voice: "$0.0076/min", sms: "$0.0065/sms", phoneNumbers: "$0.82/month", whatsappChat: "$0.0131/conversation", whatsappCall: "$0.011/min", aiAgents: "$0.004/min" },
+  CH: { voice: "$0.0090/min", sms: "$0.0078/sms", phoneNumbers: "$1.01/month", whatsappChat: "$0.0157/conversation", whatsappCall: "$0.013/min", aiAgents: "$0.006/min" },
+  AT: { voice: "$0.0076/min", sms: "$0.0065/sms", phoneNumbers: "$0.82/month", whatsappChat: "$0.0131/conversation", whatsappCall: "$0.011/min", aiAgents: "$0.004/min" },
+  SE: { voice: "$0.0067/min", sms: "$0.0057/sms", phoneNumbers: "$0.76/month", whatsappChat: "$0.0114/conversation", whatsappCall: "$0.010/min", aiAgents: "$0.004/min" },
+  NO: { voice: "$0.0074/min", sms: "$0.0065/sms", phoneNumbers: "$0.84/month", whatsappChat: "$0.0130/conversation", whatsappCall: "$0.010/min", aiAgents: "$0.005/min" },
+  DK: { voice: "$0.0073/min", sms: "$0.0058/sms", phoneNumbers: "$0.88/month", whatsappChat: "$0.0131/conversation", whatsappCall: "$0.010/min", aiAgents: "$0.004/min" },
+  FI: { voice: "$0.0076/min", sms: "$0.0065/sms", phoneNumbers: "$0.82/month", whatsappChat: "$0.0131/conversation", whatsappCall: "$0.011/min", aiAgents: "$0.004/min" },
+  IE: { voice: "$0.0076/min", sms: "$0.0065/sms", phoneNumbers: "$0.82/month", whatsappChat: "$0.0131/conversation", whatsappCall: "$0.011/min", aiAgents: "$0.004/min" },
+  PT: { voice: "$0.0076/min", sms: "$0.0065/sms", phoneNumbers: "$0.82/month", whatsappChat: "$0.0131/conversation", whatsappCall: "$0.011/min", aiAgents: "$0.004/min" },
+  PL: { voice: "$0.0063/min", sms: "$0.0055/sms", phoneNumbers: "$0.88/month", whatsappChat: "$0.0125/conversation", whatsappCall: "$0.010/min", aiAgents: "$0.004/min" },
   // Americas
-  BR: { voice: "R$0.035/min", sms: "R$0.03/sms", phoneNumbers: "R$4.50/month", whatsappChat: "R$0.07/conversation", whatsappCall: "R$0.05/min", aiAgents: "R$0.02/min" },
+  BR: { voice: "$0.0063/min", sms: "$0.0054/sms", phoneNumbers: "$0.81/month", whatsappChat: "$0.0126/conversation", whatsappCall: "$0.009/min", aiAgents: "$0.004/min" },
   MX: { voice: "$0.012/min", sms: "$0.010/sms", phoneNumbers: "$1.20/month", whatsappChat: "$0.018/conversation", whatsappCall: "$0.014/min", aiAgents: "$0.006/min" },
   AR: { voice: "$0.015/min", sms: "$0.012/sms", phoneNumbers: "$1.50/month", whatsappChat: "$0.022/conversation", whatsappCall: "$0.018/min", aiAgents: "$0.007/min" },
   CL: { voice: "$0.014/min", sms: "$0.011/sms", phoneNumbers: "$1.40/month", whatsappChat: "$0.020/conversation", whatsappCall: "$0.016/min", aiAgents: "$0.006/min" },
   CO: { voice: "$0.013/min", sms: "$0.010/sms", phoneNumbers: "$1.30/month", whatsappChat: "$0.019/conversation", whatsappCall: "$0.015/min", aiAgents: "$0.006/min" },
   // Asia Pacific
-  JP: { voice: "¥0.85/min", sms: "¥0.75/sms", phoneNumbers: "¥120/month", whatsappChat: "¥2.0/conversation", whatsappCall: "¥1.5/min", aiAgents: "¥0.6/min" },
-  KR: { voice: "₩9/min", sms: "₩8/sms", phoneNumbers: "₩1200/month", whatsappChat: "₩18/conversation", whatsappCall: "₩14/min", aiAgents: "₩6/min" },
-  SG: { voice: "S$0.008/min", sms: "S$0.007/sms", phoneNumbers: "S$1.10/month", whatsappChat: "S$0.018/conversation", whatsappCall: "S$0.014/min", aiAgents: "S$0.006/min" },
-  HK: { voice: "HK$0.055/min", sms: "HK$0.048/sms", phoneNumbers: "HK$7/month", whatsappChat: "HK$0.11/conversation", whatsappCall: "HK$0.09/min", aiAgents: "HK$0.035/min" },
-  MY: { voice: "RM0.025/min", sms: "RM0.022/sms", phoneNumbers: "RM3.80/month", whatsappChat: "RM0.06/conversation", whatsappCall: "RM0.045/min", aiAgents: "RM0.018/min" },
-  TH: { voice: "฿0.25/min", sms: "฿0.22/sms", phoneNumbers: "฿30/month", whatsappChat: "฿0.50/conversation", whatsappCall: "฿0.40/min", aiAgents: "฿0.15/min" },
-  ID: { voice: "Rp90/min", sms: "Rp80/sms", phoneNumbers: "Rp13000/month", whatsappChat: "Rp200/conversation", whatsappCall: "Rp150/min", aiAgents: "Rp60/min" },
-  PH: { voice: "₱0.35/min", sms: "₱0.30/sms", phoneNumbers: "₱50/month", whatsappChat: "₱0.75/conversation", whatsappCall: "₱0.55/min", aiAgents: "₱0.22/min" },
-  VN: { voice: "₫150/min", sms: "₫130/sms", phoneNumbers: "₫20000/month", whatsappChat: "₫350/conversation", whatsappCall: "₫250/min", aiAgents: "₫100/min" },
-  NZ: { voice: "NZ$0.010/min", sms: "NZ$0.008/sms", phoneNumbers: "NZ$1.30/month", whatsappChat: "NZ$0.022/conversation", whatsappCall: "NZ$0.017/min", aiAgents: "NZ$0.007/min" },
+  JP: { voice: "$0.0057/min", sms: "$0.0050/sms", phoneNumbers: "$0.80/month", whatsappChat: "$0.0134/conversation", whatsappCall: "$0.010/min", aiAgents: "$0.004/min" },
+  KR: { voice: "$0.0067/min", sms: "$0.0059/sms", phoneNumbers: "$0.89/month", whatsappChat: "$0.0133/conversation", whatsappCall: "$0.010/min", aiAgents: "$0.004/min" },
+  SG: { voice: "$0.0059/min", sms: "$0.0052/sms", phoneNumbers: "$0.81/month", whatsappChat: "$0.0133/conversation", whatsappCall: "$0.010/min", aiAgents: "$0.004/min" },
+  HK: { voice: "$0.0070/min", sms: "$0.0061/sms", phoneNumbers: "$0.90/month", whatsappChat: "$0.0141/conversation", whatsappCall: "$0.012/min", aiAgents: "$0.004/min" },
+  MY: { voice: "$0.0055/min", sms: "$0.0048/sms", phoneNumbers: "$0.84/month", whatsappChat: "$0.0132/conversation", whatsappCall: "$0.010/min", aiAgents: "$0.004/min" },
+  TH: { voice: "$0.0070/min", sms: "$0.0062/sms", phoneNumbers: "$0.84/month", whatsappChat: "$0.0140/conversation", whatsappCall: "$0.011/min", aiAgents: "$0.004/min" },
+  ID: { voice: "$0.0057/min", sms: "$0.0050/sms", phoneNumbers: "$0.82/month", whatsappChat: "$0.0126/conversation", whatsappCall: "$0.010/min", aiAgents: "$0.004/min" },
+  PH: { voice: "$0.0063/min", sms: "$0.0054/sms", phoneNumbers: "$0.90/month", whatsappChat: "$0.0135/conversation", whatsappCall: "$0.010/min", aiAgents: "$0.004/min" },
+  VN: { voice: "$0.0060/min", sms: "$0.0052/sms", phoneNumbers: "$0.80/month", whatsappChat: "$0.0140/conversation", whatsappCall: "$0.010/min", aiAgents: "$0.004/min" },
+  NZ: { voice: "$0.0060/min", sms: "$0.0048/sms", phoneNumbers: "$0.78/month", whatsappChat: "$0.0132/conversation", whatsappCall: "$0.010/min", aiAgents: "$0.004/min" },
   // Middle East & Africa
-  ZA: { voice: "R0.12/min", sms: "R0.10/sms", phoneNumbers: "R15/month", whatsappChat: "R0.25/conversation", whatsappCall: "R0.18/min", aiAgents: "R0.07/min" },
-  AE: { voice: "د.إ0.025/min", sms: "د.إ0.022/sms", phoneNumbers: "د.إ3.20/month", whatsappChat: "د.إ0.055/conversation", whatsappCall: "د.إ0.040/min", aiAgents: "د.إ0.016/min" },
-  SA: { voice: "﷼0.025/min", sms: "﷼0.022/sms", phoneNumbers: "﷼3.20/month", whatsappChat: "﷼0.055/conversation", whatsappCall: "﷼0.040/min", aiAgents: "﷼0.016/min" },
-  IL: { voice: "₪0.022/min", sms: "₪0.019/sms", phoneNumbers: "₪3.00/month", whatsappChat: "₪0.050/conversation", whatsappCall: "₪0.038/min", aiAgents: "₪0.015/min" },
-  TR: { voice: "₺0.18/min", sms: "₺0.16/sms", phoneNumbers: "₺25/month", whatsappChat: "₺0.45/conversation", whatsappCall: "₺0.32/min", aiAgents: "₺0.13/min" },
+  ZA: { voice: "$0.0066/min", sms: "$0.0055/sms", phoneNumbers: "$0.83/month", whatsappChat: "$0.0138/conversation", whatsappCall: "$0.010/min", aiAgents: "$0.004/min" },
+  AE: { voice: "$0.0068/min", sms: "$0.0060/sms", phoneNumbers: "$0.87/month", whatsappChat: "$0.0150/conversation", whatsappCall: "$0.011/min", aiAgents: "$0.004/min" },
+  SA: { voice: "$0.0067/min", sms: "$0.0059/sms", phoneNumbers: "$0.85/month", whatsappChat: "$0.0147/conversation", whatsappCall: "$0.011/min", aiAgents: "$0.004/min" },
+  IL: { voice: "$0.0061/min", sms: "$0.0052/sms", phoneNumbers: "$0.83/month", whatsappChat: "$0.0138/conversation", whatsappCall: "$0.011/min", aiAgents: "$0.004/min" },
+  TR: { voice: "$0.0056/min", sms: "$0.0050/sms", phoneNumbers: "$0.78/month", whatsappChat: "$0.0140/conversation", whatsappCall: "$0.010/min", aiAgents: "$0.004/min" },
 };
 
 // WhatsApp icon component
@@ -147,36 +156,54 @@ function WhatsAppIcon({ className }: { className?: string }) {
   );
 }
 
-// Voice Pricing Modal Component
-function VoicePricingModal({
+// Reusable Pricing Modal Shell
+function PricingModal({
   isOpen,
   onClose,
+  title,
   selectedCountry,
-  setSelectedCountry
+  setSelectedCountry,
+  children,
 }: {
   isOpen: boolean;
   onClose: () => void;
+  title: string;
   selectedCountry: string;
   setSelectedCountry: (country: string) => void;
+  children: React.ReactNode;
 }) {
   const [isCountryDropdownOpen, setIsCountryDropdownOpen] = useState(false);
+  const [modalSearchQuery, setModalSearchQuery] = useState("");
+  const modalDropdownRef = useRef<HTMLDivElement>(null);
   const country = countries.find(c => c.code === selectedCountry) || countries[0];
+
+  const modalFilteredCountries = useMemo(() => {
+    if (!modalSearchQuery) return countries;
+    const q = modalSearchQuery.toLowerCase();
+    return countries.filter(c => c.name.toLowerCase().includes(q) || c.code.toLowerCase().includes(q));
+  }, [modalSearchQuery]);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (modalDropdownRef.current && !modalDropdownRef.current.contains(event.target as Node)) {
+        setIsCountryDropdownOpen(false);
+        setModalSearchQuery("");
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   if (!isOpen) return null;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-      {/* Backdrop */}
       <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={onClose} />
-
-      {/* Modal */}
       <div className="relative bg-white rounded-xl max-w-4xl w-full max-h-[90vh] overflow-hidden shadow-2xl">
-        {/* Header */}
         <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200">
-          <h2 className="font-inter text-xl font-semibold text-black">Voice detailed pricing</h2>
+          <h2 className="font-inter text-xl font-semibold text-black">{title}</h2>
           <div className="flex items-center gap-3">
-            {/* Country Dropdown */}
-            <div className="relative">
+            <div className="relative" ref={modalDropdownRef}>
               <button
                 onClick={() => setIsCountryDropdownOpen(!isCountryDropdownOpen)}
                 className="flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-black transition-colors hover:bg-gray-50"
@@ -185,187 +212,522 @@ function VoicePricingModal({
                 <span>{country.name}</span>
                 <ChevronDown className={`h-4 w-4 text-gray-500 transition-transform ${isCountryDropdownOpen ? 'rotate-180' : ''}`} />
               </button>
-
               {isCountryDropdownOpen && (
-                <div className="absolute right-0 top-full mt-1 z-50 w-56 max-h-64 overflow-y-auto rounded-lg border border-gray-200 bg-white py-1 shadow-lg">
-                  {countries.map((c) => (
-                    <button
-                      key={c.code}
-                      onClick={() => {
-                        setSelectedCountry(c.code);
-                        setIsCountryDropdownOpen(false);
-                      }}
-                      className={`flex w-full items-center gap-2 px-3 py-2 text-sm text-black transition-colors hover:bg-gray-50 ${
-                        c.code === selectedCountry ? 'bg-gray-50 font-medium' : ''
-                      }`}
-                    >
-                      <span className="text-base">{c.flag}</span>
-                      <span>{c.name}</span>
-                    </button>
-                  ))}
+                <div className="absolute right-0 top-full mt-1 z-50 w-56 max-h-72 overflow-hidden flex flex-col rounded-lg border border-gray-200 bg-white shadow-lg">
+                  <div className="p-2 border-b border-gray-100">
+                    <input
+                      type="text"
+                      placeholder="Search country..."
+                      value={modalSearchQuery}
+                      onChange={(e) => setModalSearchQuery(e.target.value)}
+                      className="w-full px-3 py-2 text-sm text-gray-900 bg-white border border-gray-300 rounded-md focus:outline-none focus:border-gray-500 placeholder:text-gray-400"
+                      autoFocus
+                    />
+                  </div>
+                  <div className="overflow-y-auto py-1">
+                    {modalFilteredCountries.map((c) => (
+                      <button
+                        key={c.code}
+                        onClick={() => {
+                          setSelectedCountry(c.code);
+                          setIsCountryDropdownOpen(false);
+                          setModalSearchQuery("");
+                        }}
+                        className={`flex w-full items-center gap-2 px-3 py-2 text-sm text-black transition-colors hover:bg-gray-50 ${
+                          c.code === selectedCountry ? 'bg-gray-50 font-medium' : ''
+                        }`}
+                      >
+                        <span className="text-base">{c.flag}</span>
+                        <span>{c.name}</span>
+                      </button>
+                    ))}
+                    {modalFilteredCountries.length === 0 && (
+                      <div className="px-3 py-3 text-sm text-gray-500">No countries found</div>
+                    )}
+                  </div>
                 </div>
               )}
             </div>
-            {/* Close button */}
-            <button
-              onClick={onClose}
-              className="p-2 rounded-lg hover:bg-gray-100 transition-colors"
-            >
+            <button onClick={onClose} className="p-2 rounded-lg hover:bg-gray-100 transition-colors">
               <X className="h-5 w-5 text-gray-500" />
             </button>
           </div>
         </div>
-
-        {/* Content */}
-        <div className="p-6 space-y-6 overflow-y-auto max-h-[calc(90vh-80px)]">
-          {/* Voice Calls Section */}
-          <div className="rounded-xl border border-gray-200 bg-white overflow-hidden">
-            <div className="px-6 py-4">
-              <h3 className="font-inter font-semibold text-base text-black">Voice Calls</h3>
-            </div>
-            <div className="px-6 pb-4">
-              <table className="w-full">
-                <thead>
-                  <tr className="text-left text-sm text-gray-500">
-                    <th className="pb-3 font-normal w-1/3">Number Type</th>
-                    <th className="pb-3 font-normal w-1/3">Outbound Calls</th>
-                    <th className="pb-3 font-normal w-1/3">Inbound Calls</th>
-                  </tr>
-                </thead>
-                <tbody className="text-sm">
-                  <tr className="border-t border-dashed border-gray-200">
-                    <td className="py-4 font-medium text-black">Long Codes</td>
-                    <td className="py-4 text-gray-600">
-                      <span className="text-xs text-gray-400 block">Starts at</span>
-                      $0.0093/minute
-                    </td>
-                    <td className="py-4 text-gray-600">Free</td>
-                  </tr>
-                  <tr className="border-t border-dashed border-gray-200">
-                    <td className="py-4 font-medium text-black">Toll-Free</td>
-                    <td className="py-4 text-gray-600">Not Supported</td>
-                    <td className="py-4 text-gray-600">$0.2000/minute</td>
-                  </tr>
-                  <tr className="border-t border-dashed border-gray-200">
-                    <td className="py-4 font-medium text-black">SIP Phone, Browser, or App Calls</td>
-                    <td className="py-4 text-gray-600">$0.0033/minute</td>
-                    <td className="py-4 text-gray-600">Not Supported</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-
-          {/* Phone Numbers Section */}
-          <div className="rounded-xl border border-gray-200 bg-white overflow-hidden">
-            <div className="px-6 py-4">
-              <h3 className="font-inter font-semibold text-base text-black">Phone Numbers</h3>
-            </div>
-            <div className="px-6 pb-4">
-              <table className="w-full">
-                <thead>
-                  <tr className="text-left text-sm text-gray-500">
-                    <th className="pb-3 font-normal w-1/2">Number Type</th>
-                    <th className="pb-3 font-normal w-1/2">Price</th>
-                  </tr>
-                </thead>
-                <tbody className="text-sm">
-                  <tr className="border-t border-dashed border-gray-200">
-                    <td className="py-4 font-medium text-black">Long Codes</td>
-                    <td className="py-4 text-gray-600">Not Supported</td>
-                  </tr>
-                  <tr className="border-t border-dashed border-gray-200">
-                    <td className="py-4 font-medium text-black">Toll-Free</td>
-                    <td className="py-4 text-gray-600">Not Supported</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-
-          {/* Add-On Services Section */}
-          <div className="rounded-xl border border-gray-200 bg-white overflow-hidden">
-            <div className="px-6 py-4">
-              <h3 className="font-inter font-semibold text-base text-black">Add-On Services</h3>
-            </div>
-            <div className="px-6 pb-4">
-              <table className="w-full">
-                <thead>
-                  <tr className="text-left text-sm text-gray-500">
-                    <th className="pb-3 font-normal w-1/2">Service</th>
-                    <th className="pb-3 font-normal w-1/2">Price</th>
-                  </tr>
-                </thead>
-                <tbody className="text-sm">
-                  <tr className="border-t border-dashed border-gray-200">
-                    <td className="py-4 font-medium text-black">Multilingual Text to Speech</td>
-                    <td className="py-4 text-gray-600">Included Free</td>
-                  </tr>
-                  <tr className="border-t border-dashed border-gray-200">
-                    <td className="py-4 font-medium text-black">Call Recording</td>
-                    <td className="py-4 text-gray-600">Included Free</td>
-                  </tr>
-                  <tr className="border-t border-dashed border-gray-200">
-                    <td className="py-4 font-medium text-black">Recording Storage</td>
-                    <td className="py-4 text-gray-600">$0.0004/min/month (Free for 90 days)</td>
-                  </tr>
-                  <tr className="border-t border-dashed border-gray-200">
-                    <td className="py-4 font-medium text-black">Automatic Machine Detection</td>
-                    <td className="py-4 text-gray-600">Included Free</td>
-                  </tr>
-                  <tr className="border-t border-dashed border-gray-200">
-                    <td className="py-4 font-medium text-black">Dynamic Caller ID</td>
-                    <td className="py-4 text-gray-600">Included Free</td>
-                  </tr>
-                  <tr className="border-t border-dashed border-gray-200">
-                    <td className="py-4 font-medium text-black">Concurrent Calls</td>
-                    <td className="py-4 text-gray-600">Included Free</td>
-                  </tr>
-                  <tr className="border-t border-dashed border-gray-200">
-                    <td className="py-4 font-medium text-black">Transcription</td>
-                    <td className="py-4 text-gray-600">Auto $0.0095/minute</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-
-          {/* Network Groups Section */}
-          <div className="rounded-xl border border-gray-200 bg-white overflow-hidden">
-            <div className="px-6 py-4">
-              <h3 className="font-inter font-semibold text-base text-black">Network Groups</h3>
-            </div>
-            <div className="px-6 pb-4">
-              <table className="w-full">
-                <thead>
-                  <tr className="text-left text-sm text-gray-500">
-                    <th className="pb-3 font-normal">Network Groups</th>
-                    <th className="pb-3 font-normal">Destination Prefix</th>
-                    <th className="pb-3 font-normal">Origination Prefix</th>
-                    <th className="pb-3 font-normal text-right">Price/Min</th>
-                  </tr>
-                </thead>
-                <tbody className="text-sm">
-                  <tr className="border-t border-dashed border-gray-200">
-                    <td className="py-4 font-medium text-black">India All Networks</td>
-                    <td className="py-4 text-gray-600">+91</td>
-                    <td className="py-4 text-gray-600">—</td>
-                    <td className="py-4 text-gray-600 text-right">$0.0500/min</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
+        <div className="p-6 space-y-6 overflow-y-auto max-h-[calc(90vh-80px)] min-h-[320px]">
+          {children}
         </div>
       </div>
     </div>
   );
 }
 
+// Reusable table section block
+function ModalTableSection({ title, children }: { title: string; children: React.ReactNode }) {
+  return (
+    <div className="rounded-xl border border-gray-200 bg-white overflow-hidden">
+      <div className="px-6 py-4">
+        <h3 className="font-inter font-semibold text-base text-black">{title}</h3>
+      </div>
+      <div className="px-6 pb-4">{children}</div>
+    </div>
+  );
+}
+
+// Voice Pricing Modal Content
+function VoicePricingContent({ selectedCountry }: { selectedCountry: string }) {
+  const rates = VOICE_RATES[selectedCountry];
+  const rental = PHONE_RENTAL_RATES[selectedCountry];
+  const countryName = COUNTRY_NAMES[selectedCountry] || selectedCountry;
+
+  if (!rates) {
+    return (
+      <div className="text-center py-8">
+        <p className="text-sm text-gray-500">Detailed voice pricing for {countryName} is available on request.</p>
+        <a href="/contact/sales" className="mt-3 inline-block text-sm font-medium text-[#323dfe] hover:underline">Contact sales for rates</a>
+      </div>
+    );
+  }
+
+  return (
+    <>
+      <ModalTableSection title="Voice calls">
+        <table className="w-full">
+          <thead>
+            <tr className="text-left text-sm text-gray-500">
+              <th className="pb-3 font-normal w-1/3">Number type</th>
+              <th className="pb-3 font-normal w-1/3">Outbound calls</th>
+              <th className="pb-3 font-normal w-1/3">Inbound calls</th>
+            </tr>
+          </thead>
+          <tbody className="text-sm">
+            <tr className="border-t border-dashed border-gray-200">
+              <td className="py-4 font-medium text-black">Local numbers</td>
+              <td className="py-4 text-gray-600">{rates.localOutbound}</td>
+              <td className="py-4 text-gray-600">{rates.localInbound}</td>
+            </tr>
+            <tr className="border-t border-dashed border-gray-200">
+              <td className="py-4 font-medium text-black">Toll-free</td>
+              <td className="py-4 text-gray-600">{rates.tollfreeOutbound}</td>
+              <td className="py-4 text-gray-600">{rates.tollfreeInbound}</td>
+            </tr>
+            <tr className="border-t border-dashed border-gray-200">
+              <td className="py-4 font-medium text-black">SIP / browser / app</td>
+              <td className="py-4 text-gray-600">{rates.ipOutbound}</td>
+              <td className="py-4 text-gray-600">{rates.ipInbound}</td>
+            </tr>
+            <tr className="border-t border-dashed border-gray-200">
+              <td className="py-4 font-medium text-black">Audio streaming</td>
+              <td className="py-4 text-gray-600" colSpan={2}>{rates.audioStreaming}</td>
+            </tr>
+          </tbody>
+        </table>
+      </ModalTableSection>
+
+      {rental && (
+        <ModalTableSection title="Phone number rental">
+          <table className="w-full">
+            <thead>
+              <tr className="text-left text-sm text-gray-500">
+                <th className="pb-3 font-normal w-1/2">Number type</th>
+                <th className="pb-3 font-normal w-1/2">Monthly rental</th>
+              </tr>
+            </thead>
+            <tbody className="text-sm">
+              {rental.local && (
+                <tr className="border-t border-dashed border-gray-200">
+                  <td className="py-4 font-medium text-black">Local numbers</td>
+                  <td className="py-4 text-gray-600">{rental.local.currency}{rental.local.rate.toFixed(2)}/month</td>
+                </tr>
+              )}
+              {rental.tollfree && (
+                <tr className="border-t border-dashed border-gray-200">
+                  <td className="py-4 font-medium text-black">Toll-free numbers</td>
+                  <td className="py-4 text-gray-600">{rental.tollfree.currency}{rental.tollfree.rate.toFixed(2)}/month</td>
+                </tr>
+              )}
+              {rental.mobile && (
+                <tr className="border-t border-dashed border-gray-200">
+                  <td className="py-4 font-medium text-black">Mobile numbers</td>
+                  <td className="py-4 text-gray-600">{rental.mobile.currency}{rental.mobile.rate.toFixed(2)}/month</td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </ModalTableSection>
+      )}
+
+      <ModalTableSection title="Add-on services">
+        <table className="w-full">
+          <thead>
+            <tr className="text-left text-sm text-gray-500">
+              <th className="pb-3 font-normal w-1/2">Service</th>
+              <th className="pb-3 font-normal w-1/2">Price</th>
+            </tr>
+          </thead>
+          <tbody className="text-sm">
+            {[
+              ["Multilingual text to speech", "Included free"],
+              ["Call recording", "Included free"],
+              ["Recording storage", "$0.0004/min/month (free for 90 days)"],
+              ["Automatic machine detection", "Included free"],
+              ["Dynamic caller ID", "Included free"],
+              ["Concurrent calls", "Included free"],
+              ["Transcription", "Auto $0.0095/minute"],
+            ].map(([service, price]) => (
+              <tr key={service} className="border-t border-dashed border-gray-200">
+                <td className="py-4 font-medium text-black">{service}</td>
+                <td className="py-4 text-gray-600">{price}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </ModalTableSection>
+    </>
+  );
+}
+
+// SMS Pricing Modal Content
+function SMSPricingContent({ selectedCountry }: { selectedCountry: string }) {
+  const rates = SMS_RATES[selectedCountry];
+  const countryName = COUNTRY_NAMES[selectedCountry] || selectedCountry;
+
+  if (!rates) {
+    return (
+      <div className="text-center py-8">
+        <p className="text-sm text-gray-500">Detailed SMS pricing for {countryName} is available on request.</p>
+        <a href="/contact/sales" className="mt-3 inline-block text-sm font-medium text-[#323dfe] hover:underline">Contact sales for rates</a>
+      </div>
+    );
+  }
+
+  return (
+    <>
+      <ModalTableSection title="SMS messaging">
+        <table className="w-full">
+          <thead>
+            <tr className="text-left text-sm text-gray-500">
+              <th className="pb-3 font-normal w-1/3">Number type</th>
+              <th className="pb-3 font-normal w-1/3">Outbound SMS</th>
+              <th className="pb-3 font-normal w-1/3">Inbound SMS</th>
+            </tr>
+          </thead>
+          <tbody className="text-sm">
+            {rates.sms.map((row) => (
+              <tr key={row.type} className="border-t border-dashed border-gray-200">
+                <td className="py-4 font-medium text-black">{row.type}</td>
+                <td className="py-4 text-gray-600">{row.outbound}</td>
+                <td className="py-4 text-gray-600">{row.inbound}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </ModalTableSection>
+
+      {rates.mms && rates.mms.length > 0 && (
+        <ModalTableSection title="MMS messaging">
+          <table className="w-full">
+            <thead>
+              <tr className="text-left text-sm text-gray-500">
+                <th className="pb-3 font-normal w-1/3">Number type</th>
+                <th className="pb-3 font-normal w-1/3">Outbound MMS</th>
+                <th className="pb-3 font-normal w-1/3">Inbound MMS</th>
+              </tr>
+            </thead>
+            <tbody className="text-sm">
+              {rates.mms.map((row) => (
+                <tr key={row.type} className="border-t border-dashed border-gray-200">
+                  <td className="py-4 font-medium text-black">{row.type}</td>
+                  <td className="py-4 text-gray-600">{row.outbound}</td>
+                  <td className="py-4 text-gray-600">{row.inbound}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </ModalTableSection>
+      )}
+
+      {rates.phoneNumbers && (
+        <ModalTableSection title="Phone numbers">
+          <table className="w-full">
+            <thead>
+              <tr className="text-left text-sm text-gray-500">
+                <th className="pb-3 font-normal w-1/2">Number type</th>
+                <th className="pb-3 font-normal w-1/2">Price</th>
+              </tr>
+            </thead>
+            <tbody className="text-sm">
+              {rates.phoneNumbers.types.map((t) =>
+                t.children ? (
+                  t.children.map((child) => (
+                    <tr key={child.type} className="border-t border-dashed border-gray-200">
+                      <td className="py-4 font-medium text-black">{t.type} ({child.type})</td>
+                      <td className="py-4 text-gray-600">{child.price}</td>
+                    </tr>
+                  ))
+                ) : (
+                  <tr key={t.type} className="border-t border-dashed border-gray-200">
+                    <td className="py-4 font-medium text-black">{t.type}</td>
+                    <td className="py-4 text-gray-600">{t.price}</td>
+                  </tr>
+                )
+              )}
+            </tbody>
+          </table>
+          {rates.phoneNumbers.note && (
+            <p className="text-xs text-gray-500 mt-3">{rates.phoneNumbers.note}</p>
+          )}
+        </ModalTableSection>
+      )}
+
+      {rates.hasCarrierFees && (
+        <ModalTableSection title="Carrier fees">
+          <table className="w-full">
+            <thead>
+              <tr className="text-left text-sm text-gray-500">
+                <th className="pb-3 font-normal w-1/2">Fee type</th>
+                <th className="pb-3 font-normal w-1/2">Rate</th>
+              </tr>
+            </thead>
+            <tbody className="text-sm">
+              <tr className="border-t border-dashed border-gray-200">
+                <td className="py-4 font-medium text-black">A2P 10DLC campaign registration</td>
+                <td className="py-4 text-gray-600">Varies by carrier</td>
+              </tr>
+              <tr className="border-t border-dashed border-gray-200">
+                <td className="py-4 font-medium text-black">Carrier surcharges</td>
+                <td className="py-4 text-gray-600">Passed through at cost</td>
+              </tr>
+            </tbody>
+          </table>
+        </ModalTableSection>
+      )}
+    </>
+  );
+}
+
+// WhatsApp Pricing Modal Content
+function WhatsAppPricingContent({ selectedCountry }: { selectedCountry: string }) {
+  const chatRates = WA_CHAT_RATES[selectedCountry];
+  const callRates = WA_CALL_RATES[selectedCountry];
+  const rental = PHONE_RENTAL_RATES[selectedCountry];
+  const countryName = COUNTRY_NAMES[selectedCountry] || selectedCountry;
+
+  const formatRate = (rate: number, currency: string) => {
+    if (rate === 0) return "Free";
+    return `${currency}${rate.toFixed(4)}/conversation`;
+  };
+
+  if (!chatRates) {
+    return (
+      <div className="text-center py-8">
+        <p className="text-sm text-gray-500">Detailed WhatsApp pricing for {countryName} is available on request.</p>
+        <a href="/contact/sales" className="mt-3 inline-block text-sm font-medium text-[#323dfe] hover:underline">Contact sales for rates</a>
+      </div>
+    );
+  }
+
+  return (
+    <>
+      <ModalTableSection title="WhatsApp Business conversations">
+        <table className="w-full">
+          <thead>
+            <tr className="text-left text-sm text-gray-500">
+              <th className="pb-3 font-normal w-1/2">Conversation type</th>
+              <th className="pb-3 font-normal w-1/2">Rate</th>
+            </tr>
+          </thead>
+          <tbody className="text-sm">
+            {[
+              { type: "Marketing", rate: chatRates.marketing },
+              { type: "Utility", rate: chatRates.utility },
+              { type: "Authentication", rate: chatRates.authentication },
+              { type: "Authentication (international)", rate: chatRates.authenticationIntl },
+              { type: "Service", rate: chatRates.service },
+            ].map((row) => (
+              <tr key={row.type} className="border-t border-dashed border-gray-200">
+                <td className="py-4 font-medium text-black">{row.type}</td>
+                <td className="py-4 text-gray-600">{formatRate(row.rate, chatRates.currency)}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </ModalTableSection>
+
+      {callRates && (
+        <ModalTableSection title="WhatsApp voice calls">
+          <table className="w-full">
+            <thead>
+              <tr className="text-left text-sm text-gray-500">
+                <th className="pb-3 font-normal w-1/3">Direction</th>
+                <th className="pb-3 font-normal w-1/3">Inbound</th>
+                <th className="pb-3 font-normal w-1/3">Outbound</th>
+              </tr>
+            </thead>
+            <tbody className="text-sm">
+              <tr className="border-t border-dashed border-gray-200">
+                <td className="py-4 font-medium text-black">Voice calls</td>
+                <td className="py-4 text-gray-600">{callRates.inbound}</td>
+                <td className="py-4 text-gray-600">{callRates.outbound}</td>
+              </tr>
+            </tbody>
+          </table>
+        </ModalTableSection>
+      )}
+
+      <ModalTableSection title="Platform features">
+        <table className="w-full">
+          <thead>
+            <tr className="text-left text-sm text-gray-500">
+              <th className="pb-3 font-normal w-1/2">Feature</th>
+              <th className="pb-3 font-normal w-1/2">Price</th>
+            </tr>
+          </thead>
+          <tbody className="text-sm">
+            {[
+              ["WhatsApp Business API access", "Included free"],
+              ["Template message management", "Included free"],
+              ["Rich media support", "Included free"],
+              ["Interactive buttons & lists", "Included free"],
+              ["Webhook delivery", "Included free"],
+              ["Phone number rental", rental?.local ? `From ${rental.local.currency}${rental.local.rate.toFixed(2)}/month` : "From $0.50/month"],
+            ].map(([feature, price]) => (
+              <tr key={feature} className="border-t border-dashed border-gray-200">
+                <td className="py-4 font-medium text-black">{feature}</td>
+                <td className="py-4 text-gray-600">{price}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </ModalTableSection>
+    </>
+  );
+}
+
+// AI Agents Pricing Modal Content
+function AIAgentsPricingContent({ selectedCountry }: { selectedCountry: string }) {
+  const voiceRates = VOICE_RATES[selectedCountry];
+  const rental = PHONE_RENTAL_RATES[selectedCountry];
+  const pricing = startsAtPricing[selectedCountry];
+
+  return (
+    <>
+      <ModalTableSection title="AI agent usage">
+        <table className="w-full">
+          <thead>
+            <tr className="text-left text-sm text-gray-500">
+              <th className="pb-3 font-normal w-1/2">Component</th>
+              <th className="pb-3 font-normal w-1/2">Rate</th>
+            </tr>
+          </thead>
+          <tbody className="text-sm">
+            <tr className="border-t border-dashed border-gray-200">
+              <td className="py-4 font-medium text-black">AI agent runtime</td>
+              <td className="py-4 text-gray-600">{pricing?.aiAgents || "$0.004/min"}</td>
+            </tr>
+            <tr className="border-t border-dashed border-gray-200">
+              <td className="py-4 font-medium text-black">Speech-to-text</td>
+              <td className="py-4 text-gray-600">Included</td>
+            </tr>
+            <tr className="border-t border-dashed border-gray-200">
+              <td className="py-4 font-medium text-black">Text-to-speech</td>
+              <td className="py-4 text-gray-600">Included</td>
+            </tr>
+          </tbody>
+        </table>
+      </ModalTableSection>
+
+      <ModalTableSection title="Telephony (charged separately)">
+        <table className="w-full">
+          <thead>
+            <tr className="text-left text-sm text-gray-500">
+              <th className="pb-3 font-normal w-1/2">Service</th>
+              <th className="pb-3 font-normal w-1/2">Rate</th>
+            </tr>
+          </thead>
+          <tbody className="text-sm">
+            <tr className="border-t border-dashed border-gray-200">
+              <td className="py-4 font-medium text-black">Inbound calls (local numbers)</td>
+              <td className="py-4 text-gray-600">{voiceRates?.localInbound || pricing?.voice || "Contact sales"}</td>
+            </tr>
+            <tr className="border-t border-dashed border-gray-200">
+              <td className="py-4 font-medium text-black">Outbound calls (local numbers)</td>
+              <td className="py-4 text-gray-600">{voiceRates?.localOutbound || pricing?.voice || "Contact sales"}</td>
+            </tr>
+            <tr className="border-t border-dashed border-gray-200">
+              <td className="py-4 font-medium text-black">Phone number rental</td>
+              <td className="py-4 text-gray-600">
+                {rental?.local
+                  ? `From ${rental.local.currency}${rental.local.rate.toFixed(2)}/month`
+                  : pricing?.phoneNumbers || "From $0.50/month"}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </ModalTableSection>
+
+      <ModalTableSection title="Platform features">
+        <table className="w-full">
+          <thead>
+            <tr className="text-left text-sm text-gray-500">
+              <th className="pb-3 font-normal w-1/2">Feature</th>
+              <th className="pb-3 font-normal w-1/2">Price</th>
+            </tr>
+          </thead>
+          <tbody className="text-sm">
+            {[
+              ["Knowledge base", "Included free"],
+              ["Function calling / tool use", "Included free"],
+              ["Call recording", "Included free"],
+              ["Call transfer", "Included free"],
+              ["Real-time transcription", "Included free"],
+              ["Multilingual support", "Included free"],
+            ].map(([feature, price]) => (
+              <tr key={feature} className="border-t border-dashed border-gray-200">
+                <td className="py-4 font-medium text-black">{feature}</td>
+                <td className="py-4 text-gray-600">{price}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </ModalTableSection>
+    </>
+  );
+}
+
 export function PlivoPricing() {
+  const geoCountry = useGeoCountry();
   const [selectedCountry, setSelectedCountry] = useState("US");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [mainSearchQuery, setMainSearchQuery] = useState("");
   const [isVoiceModalOpen, setIsVoiceModalOpen] = useState(false);
+  const [isSMSModalOpen, setIsSMSModalOpen] = useState(false);
+  const [isWhatsAppModalOpen, setIsWhatsAppModalOpen] = useState(false);
+  const [isAIAgentsModalOpen, setIsAIAgentsModalOpen] = useState(false);
+  const mainDropdownRef = useRef<HTMLDivElement>(null);
+
+  // Auto-select country based on IP geolocation
+  useEffect(() => {
+    if (countries.some(c => c.code === geoCountry)) {
+      setSelectedCountry(geoCountry);
+    }
+  }, [geoCountry]);
+
+  const mainFilteredCountries = useMemo(() => {
+    if (!mainSearchQuery) return countries;
+    const q = mainSearchQuery.toLowerCase();
+    return countries.filter(c => c.name.toLowerCase().includes(q) || c.code.toLowerCase().includes(q));
+  }, [mainSearchQuery]);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (mainDropdownRef.current && !mainDropdownRef.current.contains(event.target as Node)) {
+        setIsDropdownOpen(false);
+        setMainSearchQuery("");
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   const country = countries.find(c => c.code === selectedCountry) || countries[0];
   const pricing = startsAtPricing[selectedCountry];
@@ -381,7 +743,7 @@ export function PlivoPricing() {
 
           {/* Country Selector */}
           <div className="mt-5 flex justify-center">
-            <div className="relative">
+            <div className="relative" ref={mainDropdownRef}>
               <button
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                 className="flex w-64 items-center justify-between rounded-lg border border-gray-200 bg-white px-4 py-2.5 text-sm font-medium text-black transition-colors hover:bg-gray-50"
@@ -394,22 +756,38 @@ export function PlivoPricing() {
               </button>
 
               {isDropdownOpen && (
-                <div className="absolute left-1/2 -translate-x-1/2 top-full mt-1 z-50 w-64 max-h-72 overflow-y-auto rounded-lg border border-gray-200 bg-white py-1 shadow-lg">
-                  {countries.map((c) => (
-                    <button
-                      key={c.code}
-                      onClick={() => {
-                        setSelectedCountry(c.code);
-                        setIsDropdownOpen(false);
-                      }}
-                      className={`flex w-full items-center gap-2 px-3 py-2 text-sm text-black transition-colors hover:bg-gray-50 ${
-                        c.code === selectedCountry ? 'bg-gray-50 font-medium' : ''
-                      }`}
-                    >
-                      <span className="text-base">{c.flag}</span>
-                      <span>{c.name}</span>
-                    </button>
-                  ))}
+                <div className="absolute left-1/2 -translate-x-1/2 top-full mt-1 z-50 w-64 max-h-72 overflow-hidden flex flex-col rounded-lg border border-gray-200 bg-white shadow-lg">
+                  <div className="p-2 border-b border-gray-100">
+                    <input
+                      type="text"
+                      placeholder="Search country..."
+                      value={mainSearchQuery}
+                      onChange={(e) => setMainSearchQuery(e.target.value)}
+                      className="w-full px-3 py-2 text-sm text-gray-900 bg-white border border-gray-300 rounded-md focus:outline-none focus:border-gray-500 placeholder:text-gray-400"
+                      autoFocus
+                    />
+                  </div>
+                  <div className="overflow-y-auto py-1">
+                    {mainFilteredCountries.map((c) => (
+                      <button
+                        key={c.code}
+                        onClick={() => {
+                          setSelectedCountry(c.code);
+                          setIsDropdownOpen(false);
+                          setMainSearchQuery("");
+                        }}
+                        className={`flex w-full items-center gap-2 px-3 py-2 text-sm text-black transition-colors hover:bg-gray-50 ${
+                          c.code === selectedCountry ? 'bg-gray-50 font-medium' : ''
+                        }`}
+                      >
+                        <span className="text-base">{c.flag}</span>
+                        <span>{c.name}</span>
+                      </button>
+                    ))}
+                    {mainFilteredCountries.length === 0 && (
+                      <div className="px-3 py-3 text-sm text-gray-500">No countries found</div>
+                    )}
+                  </div>
                 </div>
               )}
             </div>
@@ -540,12 +918,11 @@ export function PlivoPricing() {
             <div className="border-t border-gray-200">
               <div className="grid grid-cols-2 sm:grid-cols-4 divide-x divide-gray-200">
               {[
-                { icon: <Phone className="h-4 w-4 text-[#323dfe]" />, title: "Voice", startsAt: pricing.voice, url: "/pricing/voice" },
-                { icon: <Sparkles className="h-4 w-4 text-[#323dfe]" />, title: "AI Agents", startsAt: pricing.aiAgents, url: "/pricing/ai-agents" },
-                { icon: <MessageSquare className="h-4 w-4 text-[#323dfe]" />, title: "SMS & RCS", startsAt: pricing.sms, url: "/pricing/sms" },
-                { icon: <WhatsAppIcon className="h-4 w-4 text-[#323dfe]" />, title: "WhatsApp", startsAt: pricing.whatsappChat, url: "/pricing/whatsapp" },
+                { icon: <Phone className="h-4 w-4 text-[#323dfe]" />, title: "Voice", startsAt: pricing.voice, onOpen: () => setIsVoiceModalOpen(true) },
+                { icon: <Sparkles className="h-4 w-4 text-[#323dfe]" />, title: "AI Agents", startsAt: pricing.aiAgents, onOpen: () => setIsAIAgentsModalOpen(true) },
+                { icon: <MessageSquare className="h-4 w-4 text-[#323dfe]" />, title: "SMS & RCS", startsAt: pricing.sms, onOpen: () => setIsSMSModalOpen(true) },
+                { icon: <WhatsAppIcon className="h-4 w-4 text-[#323dfe]" />, title: "WhatsApp", startsAt: pricing.whatsappChat, onOpen: () => setIsWhatsAppModalOpen(true) },
               ].map((item, index) => {
-                // border-t on mobile for bottom row (items 2,3)
                 const isBottomRowMobile = index >= 2;
 
                 return (
@@ -560,18 +937,12 @@ export function PlivoPricing() {
                         {item.icon}
                         <span className="text-sm font-medium text-black">{item.title}</span>
                       </div>
-                      {item.title === "Voice" ? (
-                        <button
-                          onClick={() => setIsVoiceModalOpen(true)}
-                          className="text-xs text-[#323dfe] hover:underline"
-                        >
-                          View details
-                        </button>
-                      ) : (
-                        <a href={item.url} className="text-xs text-[#323dfe] hover:underline">
-                          View details
-                        </a>
-                      )}
+                      <button
+                        onClick={item.onOpen}
+                        className="text-xs text-[#323dfe] hover:underline"
+                      >
+                        View details
+                      </button>
                     </div>
                     <div>
                       <div className="text-xs text-black/50">starts at</div>
@@ -586,13 +957,46 @@ export function PlivoPricing() {
         </div>
       </section>
 
-      {/* Voice Pricing Modal */}
-      <VoicePricingModal
+      {/* Pricing Modals */}
+      <PricingModal
         isOpen={isVoiceModalOpen}
         onClose={() => setIsVoiceModalOpen(false)}
+        title="Voice pricing"
         selectedCountry={selectedCountry}
         setSelectedCountry={setSelectedCountry}
-      />
+      >
+        <VoicePricingContent selectedCountry={selectedCountry} />
+      </PricingModal>
+
+      <PricingModal
+        isOpen={isSMSModalOpen}
+        onClose={() => setIsSMSModalOpen(false)}
+        title="SMS & RCS pricing"
+        selectedCountry={selectedCountry}
+        setSelectedCountry={setSelectedCountry}
+      >
+        <SMSPricingContent selectedCountry={selectedCountry} />
+      </PricingModal>
+
+      <PricingModal
+        isOpen={isWhatsAppModalOpen}
+        onClose={() => setIsWhatsAppModalOpen(false)}
+        title="WhatsApp pricing"
+        selectedCountry={selectedCountry}
+        setSelectedCountry={setSelectedCountry}
+      >
+        <WhatsAppPricingContent selectedCountry={selectedCountry} />
+      </PricingModal>
+
+      <PricingModal
+        isOpen={isAIAgentsModalOpen}
+        onClose={() => setIsAIAgentsModalOpen(false)}
+        title="AI Agents pricing"
+        selectedCountry={selectedCountry}
+        setSelectedCountry={setSelectedCountry}
+      >
+        <AIAgentsPricingContent selectedCountry={selectedCountry} />
+      </PricingModal>
     </>
   );
 }

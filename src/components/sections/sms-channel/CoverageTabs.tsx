@@ -542,8 +542,39 @@ export default function CoverageTabs() {
   const [selectedCountry, setSelectedCountry] = useState<Country | null>(defaultCountry);
   const [activeFeatureSection, setActiveFeatureSection] = useState<FeatureSectionId>("features");
   const [featureSidebarStyle, setFeatureSidebarStyle] = useState<React.CSSProperties>({});
+  const [isDesktopCountryOpen, setIsDesktopCountryOpen] = useState(false);
+  const [isMobileCountryOpen, setIsMobileCountryOpen] = useState(false);
+  const [countrySearchQuery, setCountrySearchQuery] = useState("");
   const featureSidebarWrapperRef = useRef<HTMLDivElement>(null);
   const featureContentRef = useRef<HTMLDivElement>(null);
+  const desktopDropdownRef = useRef<HTMLDivElement>(null);
+  const mobileDropdownRef = useRef<HTMLDivElement>(null);
+
+  // Filtered countries for dropdown search
+  const searchFilteredCountries = useMemo(() => {
+    const coverageFiltered = countries
+      .filter((c) => (coverageType === "outbound" ? c.outbound : c.inbound))
+      .sort((a, b) => a.name.localeCompare(b.name));
+    if (!countrySearchQuery) return coverageFiltered;
+    const q = countrySearchQuery.toLowerCase();
+    return coverageFiltered.filter(c => c.name.toLowerCase().includes(q) || c.code.toLowerCase().includes(q));
+  }, [coverageType, countrySearchQuery]);
+
+  // Click outside handler for country dropdowns
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (desktopDropdownRef.current && !desktopDropdownRef.current.contains(event.target as Node)) {
+        setIsDesktopCountryOpen(false);
+        setCountrySearchQuery("");
+      }
+      if (mobileDropdownRef.current && !mobileDropdownRef.current.contains(event.target as Node)) {
+        setIsMobileCountryOpen(false);
+        setCountrySearchQuery("");
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   // Filter countries by coverage type and continent
   const filteredCountries = useMemo(() => {
@@ -746,29 +777,54 @@ export default function CoverageTabs() {
                 style={featureSidebarStyle}
               >
                 {/* Country Selector */}
-                <div className="relative mb-6">
+                <div className="relative mb-6" ref={desktopDropdownRef}>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Select Country</label>
-                  <select
-                    value={selectedCountry.code}
-                    onChange={(e) => {
-                      const country = countries.find((c) => c.code === e.target.value);
-                      if (country) {
-                        setSelectedCountry(country);
-                        setActiveContinent(country.continent);
-                      }
-                    }}
-                    className="w-full appearance-none bg-white border border-gray-300 rounded-lg pl-4 pr-10 py-2.5 text-sm font-medium text-black cursor-pointer hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-[#323dfe] focus:border-transparent"
+                  <button
+                    onClick={() => { setIsDesktopCountryOpen(!isDesktopCountryOpen); setCountrySearchQuery(""); }}
+                    className="w-full flex items-center gap-3 px-4 py-2.5 bg-white border border-gray-300 rounded-lg hover:border-gray-400 transition-colors"
                   >
-                    {countries
-                      .filter((c) => (coverageType === "outbound" ? c.outbound : c.inbound))
-                      .sort((a, b) => a.name.localeCompare(b.name))
-                      .map((country) => (
-                        <option key={country.code} value={country.code}>
-                          {country.flag} {country.name}
-                        </option>
-                      ))}
-                  </select>
-                  <ChevronDown className="absolute right-3 top-[42px] h-4 w-4 text-gray-500 pointer-events-none" />
+                    <span className="text-xl">{selectedCountry.flag}</span>
+                    <span className="text-sm font-medium text-gray-900 flex-1 text-left truncate">{selectedCountry.name}</span>
+                    <ChevronDown className={cn("w-4 h-4 text-gray-400 transition-transform flex-shrink-0", isDesktopCountryOpen && "rotate-180")} />
+                  </button>
+
+                  {isDesktopCountryOpen && (
+                    <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-10 max-h-72 overflow-hidden flex flex-col">
+                      <div className="p-2 border-b border-gray-100">
+                        <input
+                          type="text"
+                          placeholder="Search country..."
+                          value={countrySearchQuery}
+                          onChange={(e) => setCountrySearchQuery(e.target.value)}
+                          className="w-full px-3 py-2 text-sm text-gray-900 bg-white border border-gray-300 rounded-md focus:outline-none focus:border-gray-500 placeholder:text-gray-400"
+                          autoFocus
+                        />
+                      </div>
+                      <div className="overflow-y-auto">
+                        {searchFilteredCountries.map((c) => (
+                          <button
+                            key={c.code}
+                            onClick={() => {
+                              setSelectedCountry(c);
+                              setActiveContinent(c.continent);
+                              setIsDesktopCountryOpen(false);
+                              setCountrySearchQuery("");
+                            }}
+                            className={cn(
+                              "w-full flex items-center gap-2.5 px-4 py-2.5 hover:bg-gray-50 transition-colors text-left",
+                              selectedCountry?.code === c.code && "bg-[#323dfe]/5"
+                            )}
+                          >
+                            <span className="text-xl">{c.flag}</span>
+                            <span className="text-sm text-gray-900">{c.name}</span>
+                          </button>
+                        ))}
+                        {searchFilteredCountries.length === 0 && (
+                          <div className="px-4 py-3 text-sm text-gray-500">No countries found</div>
+                        )}
+                      </div>
+                    </div>
+                  )}
                 </div>
 
                 {/* Section Navigation */}
@@ -798,30 +854,55 @@ export default function CoverageTabs() {
             {/* Right Content */}
             <div ref={featureContentRef} className="min-w-0">
               {/* Mobile Country Selector */}
-              <div className="lg:hidden mb-4">
+              <div className="lg:hidden mb-4" ref={mobileDropdownRef}>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Select Country</label>
                 <div className="relative">
-                  <select
-                    value={selectedCountry.code}
-                    onChange={(e) => {
-                      const country = countries.find((c) => c.code === e.target.value);
-                      if (country) {
-                        setSelectedCountry(country);
-                        setActiveContinent(country.continent);
-                      }
-                    }}
-                    className="w-full appearance-none bg-white border border-gray-300 rounded-lg pl-4 pr-10 py-2.5 text-sm font-medium text-black cursor-pointer hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-[#323dfe] focus:border-transparent"
+                  <button
+                    onClick={() => { setIsMobileCountryOpen(!isMobileCountryOpen); setCountrySearchQuery(""); }}
+                    className="w-full flex items-center gap-3 px-4 py-2.5 bg-white border border-gray-300 rounded-lg hover:border-gray-400 transition-colors"
                   >
-                    {countries
-                      .filter((c) => (coverageType === "outbound" ? c.outbound : c.inbound))
-                      .sort((a, b) => a.name.localeCompare(b.name))
-                      .map((country) => (
-                        <option key={country.code} value={country.code}>
-                          {country.flag} {country.name}
-                        </option>
-                      ))}
-                  </select>
-                  <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-500 pointer-events-none" />
+                    <span className="text-xl">{selectedCountry.flag}</span>
+                    <span className="text-sm font-medium text-gray-900 flex-1 text-left truncate">{selectedCountry.name}</span>
+                    <ChevronDown className={cn("w-4 h-4 text-gray-400 transition-transform flex-shrink-0", isMobileCountryOpen && "rotate-180")} />
+                  </button>
+
+                  {isMobileCountryOpen && (
+                    <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-10 max-h-72 overflow-hidden flex flex-col">
+                      <div className="p-2 border-b border-gray-100">
+                        <input
+                          type="text"
+                          placeholder="Search country..."
+                          value={countrySearchQuery}
+                          onChange={(e) => setCountrySearchQuery(e.target.value)}
+                          className="w-full px-3 py-2 text-sm text-gray-900 bg-white border border-gray-300 rounded-md focus:outline-none focus:border-gray-500 placeholder:text-gray-400"
+                          autoFocus
+                        />
+                      </div>
+                      <div className="overflow-y-auto">
+                        {searchFilteredCountries.map((c) => (
+                          <button
+                            key={c.code}
+                            onClick={() => {
+                              setSelectedCountry(c);
+                              setActiveContinent(c.continent);
+                              setIsMobileCountryOpen(false);
+                              setCountrySearchQuery("");
+                            }}
+                            className={cn(
+                              "w-full flex items-center gap-2.5 px-4 py-2.5 hover:bg-gray-50 transition-colors text-left",
+                              selectedCountry?.code === c.code && "bg-[#323dfe]/5"
+                            )}
+                          >
+                            <span className="text-xl">{c.flag}</span>
+                            <span className="text-sm text-gray-900">{c.name}</span>
+                          </button>
+                        ))}
+                        {searchFilteredCountries.length === 0 && (
+                          <div className="px-4 py-3 text-sm text-gray-500">No countries found</div>
+                        )}
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
 

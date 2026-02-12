@@ -1,0 +1,35 @@
+---
+import BaseHead from "@/components/BaseHead.astro";
+import HeroSection from "@/components/sections/build-for-bharat/HeroSection";
+import HowItWorks from "@/components/sections/build-for-bharat/HowItWorks";
+import OfferTerms from "@/components/sections/build-for-bharat/OfferTerms";
+import FooterCTA from "@/components/sections/build-for-bharat/FooterCTA";
+import ClientLogos from "@/components/sections/build-for-bharat/ClientLogos";
+---
+
+<html lang="en">
+  <head>
+    <BaseHead
+      title="Build for Bharat - 100% Extra Credits | Plivo"
+      description="Sign up during India AI Summit week (Feb 16-20, 2026) and get 100% extra credits on every recharge. No code. No limits. Applied automatically."
+    />
+  </head>
+  <body class="min-h-screen bg-white antialiased">
+    <main class="flex flex-col">
+      <!-- Hero Section (Dark theme with Lamp effect) -->
+      <HeroSection client:load />
+
+      <!-- Client Logos Marquee -->
+      <ClientLogos client:visible />
+
+      <!-- How It Works (Light theme) -->
+      <HowItWorks client:visible />
+
+      <!-- Offer Terms (Light theme) -->
+      <OfferTerms client:visible />
+
+      <!-- Footer CTA (Light theme) -->
+      <FooterCTA client:visible />
+    </main>
+  </body>
+</html>

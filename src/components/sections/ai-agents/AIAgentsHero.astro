@@ -1,0 +1,46 @@
+---
+// AIAgentsHero.astro - Hero section with Vimeo video embed
+---
+
+<section class="bg-white pt-16 sm:pt-20 md:pt-24 pb-12 sm:pb-16">
+  <div class="container mx-auto max-w-7xl px-4">
+    {/* Text Content */}
+    <div class="text-center max-w-3xl mx-auto mb-10 md:mb-14">
+      <h1 class="font-sora text-[2rem] sm:text-[2.5rem] md:text-[3rem] font-normal leading-[1.1] tracking-[-0.02em] text-black">
+        AI agents that just work
+      </h1>
+      <p class="text-base sm:text-lg text-gray-600 mt-4 leading-relaxed">
+        No code. No guesswork. Just reliable automation for key customer moments.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-3 mt-8 justify-center">
+        <a
+          href="/contact"
+          class="inline-flex items-center justify-center px-6 py-3 text-base font-medium border border-gray-300 text-black rounded-md hover:bg-gray-50 transition-colors"
+        >
+          Contact Sales
+        </a>
+        <a
+          href="https://console.plivo.com/accounts/register/"
+          class="inline-flex items-center justify-center px-6 py-3 text-base font-medium bg-black text-white rounded-md hover:bg-gray-800 transition-colors"
+        >
+          Request Trial
+        </a>
+      </div>
+    </div>
+
+    {/* Video */}
+    <div class="max-w-4xl mx-auto">
+      <div class="relative rounded-xl overflow-hidden shadow-lg border border-gray-200" style="padding-top: 56.25%;">
+        <iframe
+          src="https://player.vimeo.com/video/1115023739?h=f64ddfcd6a&autoplay=1&muted=1&loop=1&background=1&title=0&byline=0&portrait=0"
+          class="absolute inset-0 w-full h-full"
+          frameborder="0"
+          allow="autoplay; fullscreen; picture-in-picture"
+          allowfullscreen
+          loading="lazy"
+          title="Plivo AI Agents Demo"
+        ></iframe>
+      </div>
+    </div>
+  </div>
+</section>

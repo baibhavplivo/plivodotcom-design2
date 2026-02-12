@@ -1,0 +1,15 @@
+---
+import PlivoLayout from "@/layouts/PlivoLayout.astro";
+import PhoneNumbersSubNav from "@/components/sections/phone-numbers/PhoneNumbersSubNav.astro";
+import PhoneNumbersPricingPage from "@/components/sections/phone-numbers/PhoneNumbersPricingPage";
+import PhoneNumbersPreFooterCTA from "@/components/sections/phone-numbers/PhoneNumbersPreFooterCTA";
+---
+
+<PlivoLayout
+  title="Phone Number Pricing | Plivo"
+  description="Transparent pricing for local, mobile, toll-free, and national phone numbers across 65+ countries. Pay-as-you-go with volume discounts."
+>
+  <PhoneNumbersSubNav currentPage="pricing" />
+  <PhoneNumbersPricingPage client:visible />
+  <PhoneNumbersPreFooterCTA client:visible />
+</PlivoLayout>

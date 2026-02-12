@@ -1,3 +1,5 @@
+import InPageCTA from "@/components/ui/in-page-cta";
+
 interface FeatureItem {
   title: string;
   description: string;
@@ -99,19 +101,19 @@ const Icons = {
 
 const features: FeatureItem[] = [
   {
-    title: "IP Authentication",
+    title: "IP authentication",
     description:
       "Authenticate and access your SIP trunks using IP authentication or credentials for added security.",
     icon: <Icons.IPAuth />,
   },
   {
-    title: "Encrypted Trunks",
+    title: "Encrypted trunks",
     description:
       "Secure your trunks with Transport Layer Security (TLS) and Secure Real-Time Transport Protocol (SRTP).",
     icon: <Icons.Encrypted />,
   },
   {
-    title: "Fraud Protection and Alerts",
+    title: "Fraud protection and alerts",
     description:
       "Our systems automatically detect and alert you to fraudulent activity on your account.",
     icon: <Icons.Fraud />,
@@ -123,13 +125,13 @@ const features: FeatureItem[] = [
     icon: <Icons.Interop />,
   },
   {
-    title: "Self-Service Portal",
+    title: "Self-service portal",
     description:
       "Easily access and manage your account analytics, logs, and SIP trunks.",
     icon: <Icons.Portal />,
   },
   {
-    title: "Separated Trunks",
+    title: "Separated trunks",
     description:
       "Each trunk has a unique SIP domain for easy traffic segmentation and management.",
     icon: <Icons.Separated />,
@@ -143,7 +145,7 @@ export default function SIPRobustFeatures() {
         {/* Section Header */}
         <div className="text-center mb-10 md:mb-14">
           <h2 className="font-sora text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] font-normal leading-[1.25] tracking-[-0.02em] text-black mb-4">
-            Robust Feature Set for All Your Business Needs
+            Robust feature set for all your business needs
           </h2>
         </div>
 
@@ -190,18 +192,8 @@ export default function SIPRobustFeatures() {
         </div>
 
         {/* Mid-page CTA */}
-        <div className="mt-12 sm:mt-16 text-center">
-          <div className="inline-flex flex-col items-center bg-gray-50 rounded-2xl border border-gray-200 px-8 sm:px-12 py-8 sm:py-10">
-            <h3 className="font-sora text-xl sm:text-2xl font-normal text-black mb-3">
-              Let's find the right plan for your business
-            </h3>
-            <a
-              href="/contact/sales"
-              className="inline-flex items-center justify-center rounded-md bg-black px-6 py-3 text-base font-medium text-white transition-colors hover:bg-gray-800 mt-2"
-            >
-              Get Volume Pricing
-            </a>
-          </div>
+        <div className="mt-12 sm:mt-16">
+          <InPageCTA />
         </div>
       </div>
     </section>

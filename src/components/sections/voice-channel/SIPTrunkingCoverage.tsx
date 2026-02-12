@@ -55,7 +55,7 @@ function getNumberTypes(code: string): string[] {
   return types;
 }
 
-// SIP Trunking coverage countries
+// SIP trunking coverage countries
 // Outbound: 220+ countries (voice termination) - all countries listed
 // Inbound: Countries with rates in SIP_RATES
 const sipCountries: SIPCountry[] = [
@@ -208,7 +208,7 @@ export default function SIPTrunkingCoverage() {
         {/* Hero Header */}
         <div className="text-center mb-10">
           <h1 className="font-sora text-[2rem] sm:text-[2.5rem] md:text-[3rem] font-normal leading-[1.1] tracking-[-0.02em] text-black mb-4">
-            Zentrunk Coverage
+            SIP trunking coverage
           </h1>
           <p className="text-gray-600 text-base sm:text-lg max-w-2xl mx-auto">
             Global SIP trunking coverage with outbound termination to 220+ countries and inbound origination in 55+ countries.
@@ -321,7 +321,7 @@ function CountryDetailPanel({ country, coverageType }: { country: SIPCountry; co
         <div>
           <h3 className="text-xl font-semibold text-black">{country.name}</h3>
           <p className="text-sm text-gray-500">
-            {coverageType === "outbound" ? "Outbound Voice Termination" : "Inbound Voice Origination"}
+            {coverageType === "outbound" ? "Outbound voice termination" : "Inbound voice origination"}
           </p>
         </div>
       </div>
@@ -330,7 +330,7 @@ function CountryDetailPanel({ country, coverageType }: { country: SIPCountry; co
         {/* Available Number Types */}
         {country.numberTypes.length > 0 && (
           <div>
-            <h4 className="font-inter text-base font-semibold text-black mb-3">Available Number Types</h4>
+            <h4 className="font-inter text-base font-semibold text-black mb-3">Available number types</h4>
             <div className="flex flex-wrap gap-2">
               {country.numberTypes.map((type) => (
                 <span
@@ -347,7 +347,7 @@ function CountryDetailPanel({ country, coverageType }: { country: SIPCountry; co
         {/* Inbound Rates */}
         {rates && coverageType === "inbound" && (
           <div>
-            <h4 className="font-inter text-base font-semibold text-black mb-3">Inbound Call Rates</h4>
+            <h4 className="font-inter text-base font-semibold text-black mb-3">Inbound call rates</h4>
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead>
@@ -390,7 +390,7 @@ function CountryDetailPanel({ country, coverageType }: { country: SIPCountry; co
         {/* Phone Number Rental */}
         {rental && (
           <div>
-            <h4 className="font-inter text-base font-semibold text-black mb-3">Phone Number Rental</h4>
+            <h4 className="font-inter text-base font-semibold text-black mb-3">Phone number rental</h4>
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead>
@@ -433,7 +433,7 @@ function CountryDetailPanel({ country, coverageType }: { country: SIPCountry; co
         {/* Outbound info for countries without rates */}
         {coverageType === "outbound" && !rates && (
           <div>
-            <h4 className="font-inter text-base font-semibold text-black mb-3">Outbound Termination</h4>
+            <h4 className="font-inter text-base font-semibold text-black mb-3">Outbound termination</h4>
             <p className="text-sm text-gray-600">
               Voice termination to {country.name} is available. Outbound rates are determined by destination network group. Contact sales for detailed per-route pricing.
             </p>
@@ -447,13 +447,13 @@ function CountryDetailPanel({ country, coverageType }: { country: SIPCountry; co
           href={`/voice/sip-trunking/pricing`}
           className="inline-flex items-center justify-center px-5 py-2.5 text-sm font-medium border border-gray-300 text-black rounded-md hover:bg-gray-50 transition-colors"
         >
-          View Full Pricing
+          View full pricing
         </a>
         <a
           href="https://console.plivo.com/accounts/register/"
           className="inline-flex items-center justify-center px-5 py-2.5 text-sm font-medium bg-black text-white rounded-md hover:bg-gray-800 transition-colors"
         >
-          Start Free Trial
+          Start free trial
         </a>
       </div>
     </div>

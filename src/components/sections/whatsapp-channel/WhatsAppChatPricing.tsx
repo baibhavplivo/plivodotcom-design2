@@ -1,10 +1,11 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 import { cn } from "@/lib/utils";
 import { ChevronDown } from "lucide-react";
-import { WA_CHAT_RATES } from "@/data/pricing-data";
+import { WA_CHAT_RATES, WA_CHAT_PRIORITY_COUNTRIES, buildCountryList } from "@/data/pricing-data";
 import type { CountryOption, WhatsAppChatRates } from "@/data/pricing-data";
+import { useGeoCountry } from "@/hooks/useGeoCountry";
 
 type SectionId = "messaging-rates" | "platform-fee";
 
@@ -13,29 +14,8 @@ const sections: { id: SectionId; label: string }[] = [
   { id: "platform-fee", label: "Platform Fee" },
 ];
 
-// Build country list from WA_CHAT_RATES keys
-const countries: CountryOption[] = [
-  { code: "US", name: "United States", flag: "🇺🇸" },
-  { code: "CA", name: "Canada", flag: "🇨🇦" },
-  { code: "GB", name: "United Kingdom", flag: "🇬🇧" },
-  { code: "AU", name: "Australia", flag: "🇦🇺" },
-  { code: "IN", name: "India", flag: "🇮🇳" },
-  { code: "FR", name: "France", flag: "🇫🇷" },
-  { code: "DE", name: "Germany", flag: "🇩🇪" },
-  { code: "BR", name: "Brazil", flag: "🇧🇷" },
-  { code: "MX", name: "Mexico", flag: "🇲🇽" },
-  { code: "ID", name: "Indonesia", flag: "🇮🇩" },
-  { code: "NG", name: "Nigeria", flag: "🇳🇬" },
-  { code: "ZA", name: "South Africa", flag: "🇿🇦" },
-  { code: "SA", name: "Saudi Arabia", flag: "🇸🇦" },
-  { code: "AE", name: "United Arab Emirates", flag: "🇦🇪" },
-  { code: "EG", name: "Egypt", flag: "🇪🇬" },
-  { code: "SG", name: "Singapore", flag: "🇸🇬" },
-  { code: "MY", name: "Malaysia", flag: "🇲🇾" },
-  { code: "IT", name: "Italy", flag: "🇮🇹" },
-  { code: "ES", name: "Spain", flag: "🇪🇸" },
-  { code: "IL", name: "Israel", flag: "🇮🇱" },
-];
+// Build country list dynamically from WA_CHAT_RATES keys
+const countries = buildCountryList(Object.keys(WA_CHAT_RATES), WA_CHAT_PRIORITY_COUNTRIES);
 
 function formatRate(value: number, currency: string, decimals: number = 4): string {
   if (value === 0) return `${currency}0/message`;
@@ -43,12 +23,38 @@ function formatRate(value: number, currency: string, decimals: number = 4): stri
 }
 
 export default function WhatsAppChatPricing() {
+  const geoCountry = useGeoCountry();
   const [selectedCountry, setSelectedCountry] = useState<CountryOption>(countries[0]);
   const [isCountryOpen, setIsCountryOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
   const [activeSection, setActiveSection] = useState<SectionId>("messaging-rates");
   const [sidebarStyle, setSidebarStyle] = useState<React.CSSProperties>({});
   const sidebarWrapperRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  // Auto-select country based on IP geolocation
+  useEffect(() => {
+    const match = countries.find(c => c.code === geoCountry);
+    if (match) setSelectedCountry(match);
+  }, [geoCountry]);
+
+  const filteredCountries = useMemo(() => {
+    if (!searchQuery) return countries;
+    const q = searchQuery.toLowerCase();
+    return countries.filter(c => c.name.toLowerCase().includes(q) || c.code.toLowerCase().includes(q));
+  }, [searchQuery]);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsCountryOpen(false);
+        setSearchQuery("");
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   const rates: WhatsAppChatRates = WA_CHAT_RATES[selectedCountry.code] || WA_CHAT_RATES["US"];
   const isIndia = selectedCountry.code === "IN";
@@ -133,7 +139,7 @@ export default function WhatsAppChatPricing() {
             <div ref={sidebarWrapperRef} className="mb-8 lg:mb-0">
               <aside className="bg-white z-30" style={sidebarStyle}>
                 {/* Country Selector */}
-                <div className="relative mb-6">
+                <div className="relative mb-6" ref={dropdownRef}>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Select Country
                   </label>
@@ -154,23 +160,43 @@ export default function WhatsAppChatPricing() {
                   </button>
 
                   {isCountryOpen && (
-                    <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-10 max-h-56 overflow-y-auto">
-                      {countries.map((country) => (
-                        <button
-                          key={country.code}
-                          onClick={() => {
-                            setSelectedCountry(country);
-                            setIsCountryOpen(false);
-                          }}
-                          className={cn(
-                            "w-full flex items-center gap-2.5 px-4 py-2.5 hover:bg-gray-50 transition-colors text-left",
-                            selectedCountry.code === country.code && "bg-[#323dfe]/5"
-                          )}
-                        >
-                          <span className="text-xl">{country.flag}</span>
-                          <span className="text-sm text-gray-900">{country.name}</span>
-                        </button>
-                      ))}
+                    <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-10 max-h-72 overflow-hidden flex flex-col">
+                      <div className="p-2 border-b border-gray-100">
+                        <input
+                          type="text"
+                          placeholder="Search country..."
+                          value={searchQuery}
+                          onChange={(e) => setSearchQuery(e.target.value)}
+                          className="w-full px-3 py-2 text-sm text-gray-900 bg-white border border-gray-300 rounded-md focus:outline-none focus:border-gray-500 placeholder:text-gray-400"
+                          autoFocus
+                        />
+                      </div>
+                      <div className="overflow-y-auto">
+                        {filteredCountries.map((country, idx) => (
+                          <div key={country.code}>
+                            {!country.isPriority && idx > 0 && filteredCountries[idx - 1]?.isPriority && (
+                              <div className="border-t border-gray-200 my-1" />
+                            )}
+                            <button
+                              onClick={() => {
+                                setSelectedCountry(country);
+                                setIsCountryOpen(false);
+                                setSearchQuery("");
+                              }}
+                              className={cn(
+                                "w-full flex items-center gap-2.5 px-4 py-2.5 hover:bg-gray-50 transition-colors text-left",
+                                selectedCountry.code === country.code && "bg-[#323dfe]/5"
+                              )}
+                            >
+                              <span className="text-xl">{country.flag}</span>
+                              <span className="text-sm text-gray-900">{country.name}</span>
+                            </button>
+                          </div>
+                        ))}
+                        {filteredCountries.length === 0 && (
+                          <div className="px-4 py-3 text-sm text-gray-500">No countries found</div>
+                        )}
+                      </div>
                     </div>
                   )}
                 </div>

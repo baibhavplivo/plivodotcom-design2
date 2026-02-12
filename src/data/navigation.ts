@@ -23,10 +23,14 @@ export interface NavDropdown {
   bottomItems?: NavItem[];
 }
 
-// Main navigation - Products, Solutions, Developers, Resources, Pricing
+// Main navigation - AI Agents, Platform, Documentation, Pricing
 export const mainNavigation: NavDropdown[] = [
   {
-    title: "Products",
+    title: "AI Agents",
+    href: "/platform/ai-agents/",
+  },
+  {
+    title: "Platform",
     sections: [
       {
         title: "AI Agents",
@@ -37,13 +41,6 @@ export const mainNavigation: NavDropdown[] = [
               "Modular building blocks from Audio Streaming to ASR, Turn detection, TTS to build your voice AI agents",
             href: "/platform/ai-agents/",
             icon: "sparkles",
-            subLinks: [
-              { title: "Audio Streaming", href: "/voice/audio-streaming/" },
-              {
-                title: "Bring your own LLM",
-                href: "/platform/bring-your-own-llm/",
-              },
-            ],
           },
           {
             title: "No-code AI Agent Studio",
@@ -63,7 +60,6 @@ export const mainNavigation: NavDropdown[] = [
               "Enable your AI agents with voice call connectivity in 100+ countries",
             href: "/voice/overview/",
             icon: "phone-call",
-            subLinks: [{ title: "SIP Trunking", href: "/voice/sip-trunking/" }],
           },
           {
             title: "Messaging",
@@ -71,11 +67,6 @@ export const mainNavigation: NavDropdown[] = [
               "Multi-channel messaging APIs built for global connectivity & scale",
             href: "/sms/overview/",
             icon: "message-square",
-            subLinks: [
-              { title: "SMS", href: "/sms/overview/" },
-              { title: "Chat", href: "/chat/overview/" },
-              { title: "RCS", href: "/rcs/" },
-            ],
           },
           {
             title: "WhatsApp",
@@ -89,13 +80,13 @@ export const mainNavigation: NavDropdown[] = [
     ],
     bottomItems: [
       {
-        title: "SIP Trunking",
+        title: "SIP trunking",
         href: "/voice/sip-trunking/",
-        icon: "phone-call",
+        icon: "sip",
       },
       {
         title: "Verify",
-        href: "/verify/",
+        href: "/sms/verify-api/",
         icon: "shield-check",
       },
       {
@@ -106,231 +97,8 @@ export const mainNavigation: NavDropdown[] = [
     ],
   },
   {
-    title: "Solutions",
-    sections: [
-      {
-        title: "Use Cases",
-        items: [
-          {
-            title: "Lead Qualification",
-            description:
-              "Automatically qualify, score, and route leads to your sales team",
-            href: "/solutions/lead-qualification/",
-            icon: "target",
-          },
-          {
-            title: "Customer Support",
-            description:
-              "24/7 AI-powered support across voice, SMS, and WhatsApp",
-            href: "/solutions/customer-support/",
-            icon: "headphones",
-          },
-          {
-            title: "Appointment Booking",
-            description: "Automate scheduling, reminders, and confirmations",
-            href: "/solutions/appointment-booking/",
-            icon: "calendar",
-          },
-          {
-            title: "Sales & Outreach",
-            description:
-              "Scale outbound campaigns with AI-powered calling and messaging",
-            href: "/solutions/sales-outreach/",
-            icon: "trending-up",
-          },
-          {
-            title: "Verification & OTP",
-            description:
-              "Secure user authentication with SMS, voice, and WhatsApp OTPs",
-            href: "/solutions/verification/",
-            icon: "shield-check",
-          },
-          {
-            title: "Alerts & Notifications",
-            description: "Real-time alerts and updates across all channels",
-            href: "/solutions/alerts-notifications/",
-            icon: "bell",
-          },
-          {
-            title: "AI Receptionist",
-            description:
-              "Intelligent call answering, routing, and IVR automation",
-            href: "/solutions/ai-receptionist/",
-            icon: "phone-call",
-          },
-          {
-            title: "Dispatch & Logistics",
-            description:
-              "Coordinate deliveries and field operations in real-time",
-            href: "/solutions/dispatch-logistics/",
-            icon: "truck",
-          },
-        ],
-      },
-      {
-        title: "Industries",
-        items: [
-          {
-            title: "Healthcare",
-            description:
-              "HIPAA-compliant patient engagement and care coordination",
-            href: "/industries/healthcare/",
-            icon: "heart-pulse",
-          },
-          {
-            title: "Financial Services",
-            description:
-              "Secure, compliant communications for banking and insurance",
-            href: "/industries/financial-services/",
-            icon: "landmark",
-          },
-          {
-            title: "Retail & eCommerce",
-            description:
-              "Drive sales and deliver exceptional customer experiences",
-            href: "/industries/retail-ecommerce/",
-            icon: "shopping-cart",
-          },
-          {
-            title: "Travel & Hospitality",
-            description:
-              "Seamless guest communications and reservation management",
-            href: "/industries/travel-hospitality/",
-            icon: "plane",
-          },
-          {
-            title: "Logistics & Home Services",
-            description:
-              "Streamline dispatch, scheduling, and field coordination",
-            href: "/industries/logistics-home-services/",
-            icon: "truck",
-          },
-          {
-            title: "Education",
-            description:
-              "Engage students, parents, and staff across all channels",
-            href: "/industries/education/",
-            icon: "graduation-cap",
-          },
-          {
-            title: "Real Estate",
-            description:
-              "Automate lead follow-up and property showing scheduling",
-            href: "/industries/real-estate/",
-            icon: "building",
-          },
-        ],
-      },
-    ],
-  },
-  {
-    title: "Developers",
-    sections: [
-      {
-        title: "Documentation",
-        items: [
-          {
-            title: "Getting Started",
-            description: "Quick start guides and tutorials",
-            href: "https://www.plivo.com/docs/",
-            icon: "book-open",
-          },
-          {
-            title: "API Reference",
-            description: "Complete API documentation for all endpoints",
-            href: "https://www.plivo.com/docs/voice/api/overview/",
-            icon: "code",
-          },
-          {
-            title: "SDKs & Libraries",
-            description: "Official SDKs for Python, Node.js, Ruby, and more",
-            href: "https://www.plivo.com/docs/sdks/",
-            icon: "package",
-          },
-          {
-            title: "Platform Status",
-            description: "Real-time system status and uptime",
-            href: "https://status.plivo.com/",
-            icon: "activity",
-          },
-        ],
-      },
-      {
-        title: "Support",
-        items: [
-          {
-            title: "Knowledge Base",
-            description: "FAQs, troubleshooting, and how-to articles",
-            href: "https://support.plivo.com/",
-            icon: "help-circle",
-          },
-          {
-            title: "Community",
-            description: "Connect with other developers",
-            href: "https://community.plivo.com/",
-            icon: "users",
-          },
-          {
-            title: "Contact Support",
-            description: "Get help from our technical team",
-            href: "/support/",
-            icon: "headphones",
-          },
-        ],
-      },
-    ],
-  },
-  {
-    title: "Resources",
-    sections: [
-      {
-        title: "Learn",
-        items: [
-          {
-            title: "Blog",
-            description:
-              "Product updates, engineering deep-dives, and AI insights",
-            href: "/blog/",
-            icon: "pen-line",
-          },
-          {
-            title: "Guides",
-            description: "Implementation guides and developer tutorials",
-            href: "/guide/",
-            icon: "book-open",
-          },
-          {
-            title: "Content Library",
-            description: "Ebooks, case studies, and industry reports",
-            href: "/resources/",
-            icon: "folder",
-          },
-        ],
-      },
-      {
-        title: "Company",
-        items: [
-          {
-            title: "About Us",
-            description: "Our story, mission, and leadership team",
-            href: "/about/",
-            icon: "building",
-          },
-          {
-            title: "Customers",
-            description: "Success stories from companies using Plivo",
-            href: "/customers/",
-            icon: "star",
-          },
-          {
-            title: "Jobs",
-            description: "Open positions and career opportunities",
-            href: "/jobs/",
-            icon: "briefcase",
-          },
-        ],
-      },
-    ],
+    title: "Documentation",
+    href: "https://www.plivo.com/docs/",
   },
   {
     title: "Pricing",

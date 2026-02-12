@@ -6,7 +6,7 @@ interface Reason {
 
 const reasons: Reason[] = [
   {
-    title: "Proven Quality and Scale",
+    title: "Proven quality and scale",
     description:
       "With over a billion API requests every month, our globally distributed direct to carrier network and intelligent routing ensures highest SMS delivery and lowest latency for your calls.",
     icon: (
@@ -26,7 +26,7 @@ const reasons: Reason[] = [
     ),
   },
   {
-    title: "Enterprise Grade Platform",
+    title: "Enterprise grade platform",
     description:
       "Engineered for high availability, extreme reliability and 99.95% uptime SLA. Privacy Shield and GDPR Compliance means any business can trust Plivo with data privacy and security.",
     icon: (
@@ -46,7 +46,7 @@ const reasons: Reason[] = [
     ),
   },
   {
-    title: "A Team That Truly Cares about Your Success",
+    title: "A team that truly cares about your success",
     description:
       "Our 24x7 premium support and a consultative customer success team, provide you with all the technical guidance and industry expertise you need, when you need it.",
     icon: (
@@ -66,7 +66,7 @@ const reasons: Reason[] = [
     ),
   },
   {
-    title: "Lower Cost of Ownership",
+    title: "Lower cost of ownership",
     description:
       "Receive discounted pricing from the start with simple usage based pricing where you only pay for what you use. Avail additional discounts with committed usage as you scale.",
     icon: (
@@ -89,7 +89,7 @@ const reasons: Reason[] = [
 
 export default function SIPWhyChoosePlivo() {
   return (
-    <section className="bg-gray-50 py-12 sm:py-16 md:py-20">
+    <section className="bg-white py-12 sm:py-16 md:py-20">
       <div className="container mx-auto max-w-7xl px-4">
         {/* Section Header */}
         <div className="text-center mb-10 md:mb-14">

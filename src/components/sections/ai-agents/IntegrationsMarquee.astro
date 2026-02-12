@@ -1,0 +1,117 @@
+---
+// IntegrationsMarquee.astro - Dual-row scrolling integration logos
+
+const row1 = [
+  { name: "HubSpot", icon: "hubspot" },
+  { name: "Zoho CRM", icon: "zoho" },
+  { name: "Shopify", icon: "shopify" },
+  { name: "Zapier", icon: "zapier" },
+  { name: "WooCommerce", icon: "woo" },
+];
+
+const row2 = [
+  { name: "Zendesk", icon: "zendesk" },
+  { name: "Freshdesk", icon: "freshdesk" },
+  { name: "Zoho Desk", icon: "zoho-desk" },
+  { name: "Slack", icon: "slack" },
+  { name: "Google Calendar", icon: "gcal" },
+  { name: "Calendly", icon: "calendly" },
+];
+---
+
+<section class="py-12 lg:py-16 bg-white">
+  <div class="container mx-auto max-w-7xl px-4 mb-10">
+    <h2 class="font-sora text-[2rem] sm:text-[2.5rem] font-normal leading-[1.25] tracking-[-0.02em] text-black text-center">
+      Connect the tools that your business uses
+    </h2>
+    <p class="text-base sm:text-lg text-gray-600 text-center mt-4 max-w-2xl mx-auto leading-relaxed">
+      Easily integrate MCP servers and API based tools so every agent can work with your existing stack without extra effort.
+    </p>
+  </div>
+
+  <div class="relative overflow-hidden space-y-3">
+    {/* Row 1 - Left to right */}
+    <div class="int-marquee-wrapper">
+      <div class="int-marquee-row1 flex gap-3 sm:gap-4">
+        {[...row1, ...row1, ...row1, ...row1].map((item) => (
+          <div class="flex-shrink-0 flex items-center gap-2.5 px-3.5 py-2 rounded-lg bg-white border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
+            {item.icon === "hubspot" && (
+              <svg class="w-6 h-6 text-[#ff7a59] flex-shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M18.164 7.93V5.084a2.198 2.198 0 001.267-1.984v-.066A2.198 2.198 0 0017.233.836h-.066a2.198 2.198 0 00-2.198 2.198v.066c0 .877.516 1.633 1.261 1.984V7.93a5.847 5.847 0 00-3.009 1.597L6.188 4.37a2.483 2.483 0 00.1-.687A2.483 2.483 0 003.805 1.2 2.483 2.483 0 001.32 3.683a2.483 2.483 0 002.483 2.483c.439 0 .853-.116 1.21-.317l6.96 5.056a5.847 5.847 0 00-.878 3.078 5.845 5.845 0 001.04 3.315l-2.089 2.089a1.832 1.832 0 00-.538-.083 1.847 1.847 0 100 3.694 1.847 1.847 0 000-3.694c.185 0 .363.032.534.087l2.075-2.075a5.863 5.863 0 009.047-4.91 5.853 5.853 0 00-2.999-5.477zm-1 8.553a3.15 3.15 0 110-6.3 3.15 3.15 0 010 6.3z" /></svg>
+            )}
+            {item.icon === "zoho" && (
+              <svg class="w-6 h-6 text-[#e42527] flex-shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M2.94 17.243L0 18.746l4.243-13.5L7.176 3.73zM10.5 3.743l-3.006 1.5 4.256 13.5 3-1.5zm7.744 8.25h-5.25l-1.5 3h5.25zM24 5.243l-3-1.5-4.256 13.5 3 1.5z" /></svg>
+            )}
+            {item.icon === "shopify" && (
+              <svg class="w-6 h-6 text-[#96bf48] flex-shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M15.337 23.979l7.216-1.561s-2.604-17.613-2.625-17.73c-.018-.116-.114-.192-.192-.192s-1.549-.114-1.549-.114l-.61-.589c-.84-.084-1.237-.248-1.452-.412-.7.558-.268.852-.625.852-.358 0-1.727-1.353-1.727-1.353s-.166-.053-.282.021c-.116.073-.341.073-.341.073L12.816.55c-.217-.652-.591-1.004-1.051-1.004-.027 0-.055.002-.082.004l-.159-.193C11.139.034 10.6 0 10.2 0c-2.502 0-3.706 3.128-4.08 4.72l-1.742.539c-.543.17-.56.187-.631.696-.053.382-1.476 11.358-1.476 11.358L15.337 23.979zM12.275 5.486l-2.087.646c.399-1.527 1.152-2.267 1.806-2.546.195.481.307 1.117.281 1.9zM10.978 3.13c-.626.186-1.326.859-1.71 2.378l-1.553.48C8.165 4.466 9.105 2.432 10.2 2.432c.178 0 .339.04.48.11.127.191.225.39.298.588zm.684-.524c-.04.003-.082.01-.123.02-.028-.057-.055-.118-.087-.174.371-.371.778-.673 1.22-.875-.146.355-.554 1.035-1.01 1.029z" /></svg>
+            )}
+            {item.icon === "zapier" && (
+              <svg class="w-6 h-6 text-[#ff4a00] flex-shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M15.535 8.465l-3.1 3.1a4.18 4.18 0 01-.435.435l-3.1 3.1a8.495 8.495 0 01-.435-2.9v-.4a8.495 8.495 0 01.435-2.9l3.1 3.1c.129.14.284.295.435.435l3.1-3.1a8.495 8.495 0 012.9-.435h.4a8.495 8.495 0 012.9.435l-3.1 3.1-.435.435 3.1 3.1a8.495 8.495 0 01-.435 2.9h-.4a8.495 8.495 0 01-2.9-.435l.435-.435-3.1-3.1zM12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm6.2 14.2h-2.4a6.03 6.03 0 01-1.6-1.6V10.2a6.03 6.03 0 011.6-1.6h2.4a6.03 6.03 0 011.6 1.6v2.4a6.03 6.03 0 01-1.6 1.6zm-8.4-4a6.03 6.03 0 01-1.6 1.6H5.8a6.03 6.03 0 01-1.6-1.6V7.8a6.03 6.03 0 011.6-1.6h2.4a6.03 6.03 0 011.6 1.6v2.4z" /></svg>
+            )}
+            {item.icon === "woo" && (
+              <svg class="w-6 h-6 text-[#96588a] flex-shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M2.227 4.857A3.612 3.612 0 000 8.197v7.72c0 1.932 1.258 3.576 2.998 4.153l6.722 2.078a3.59 3.59 0 002.17-.016l6.783-2.062c1.74-.577 2.998-2.22 2.998-4.153V8.197a3.612 3.612 0 00-2.227-3.34L13.423 2.25a3.604 3.604 0 00-2.846 0L4.556 4.857h-2.33z" /></svg>
+            )}
+            <span class="text-sm font-medium text-gray-700 whitespace-nowrap">{item.name}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    {/* Row 2 - Right to left */}
+    <div class="int-marquee-wrapper">
+      <div class="int-marquee-row2 flex gap-3 sm:gap-4">
+        {[...row2, ...row2, ...row2, ...row2].map((item) => (
+          <div class="flex-shrink-0 flex items-center gap-2.5 px-3.5 py-2 rounded-lg bg-white border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
+            {item.icon === "zendesk" && (
+              <svg class="w-6 h-6 text-[#03363d] flex-shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M11.1 7.5V21L0 7.5h11.1zM11.1 3a5.55 5.55 0 01-5.55 5.55A5.55 5.55 0 010 3h11.1zM12.9 21a5.55 5.55 0 015.55-5.55A5.55 5.55 0 0124 21H12.9zM12.9 16.5V3L24 16.5H12.9z" /></svg>
+            )}
+            {item.icon === "freshdesk" && (
+              <svg class="w-6 h-6 text-[#25c16f] flex-shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm-1.5 16.5a1.5 1.5 0 11-3 0v-4.5a1.5 1.5 0 113 0v4.5zm4.5 0a1.5 1.5 0 11-3 0v-4.5a1.5 1.5 0 113 0v4.5z" /></svg>
+            )}
+            {item.icon === "zoho-desk" && (
+              <svg class="w-6 h-6 text-[#e42527] flex-shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M2.94 17.243L0 18.746l4.243-13.5L7.176 3.73zM10.5 3.743l-3.006 1.5 4.256 13.5 3-1.5zm7.744 8.25h-5.25l-1.5 3h5.25zM24 5.243l-3-1.5-4.256 13.5 3 1.5z" /></svg>
+            )}
+            {item.icon === "slack" && (
+              <svg class="w-6 h-6 flex-shrink-0" viewBox="0 0 24 24"><path d="M5.042 15.165a2.528 2.528 0 01-2.52 2.523A2.528 2.528 0 010 15.165a2.527 2.527 0 012.522-2.52h2.52v2.52z" fill="#E01E5A" /><path d="M6.313 15.165a2.527 2.527 0 012.521-2.52 2.527 2.527 0 012.521 2.52v6.313A2.528 2.528 0 018.834 24a2.528 2.528 0 01-2.521-2.522v-6.313z" fill="#E01E5A" /><path d="M8.834 5.042a2.528 2.528 0 01-2.521-2.52A2.528 2.528 0 018.834 0a2.528 2.528 0 012.521 2.522v2.52H8.834z" fill="#36C5F0" /><path d="M8.834 6.313a2.528 2.528 0 012.521 2.521 2.528 2.528 0 01-2.521 2.521H2.522A2.528 2.528 0 010 8.834a2.528 2.528 0 012.522-2.521h6.312z" fill="#36C5F0" /><path d="M18.956 8.834a2.528 2.528 0 012.522-2.521A2.528 2.528 0 0124 8.834a2.528 2.528 0 01-2.522 2.521h-2.522V8.834z" fill="#2EB67D" /><path d="M17.688 8.834a2.528 2.528 0 01-2.523 2.521 2.527 2.527 0 01-2.52-2.521V2.522A2.527 2.527 0 0115.165 0a2.528 2.528 0 012.523 2.522v6.312z" fill="#2EB67D" /><path d="M15.165 18.956a2.528 2.528 0 012.523 2.522A2.528 2.528 0 0115.165 24a2.527 2.527 0 01-2.52-2.522v-2.522h2.52z" fill="#ECB22E" /><path d="M15.165 17.688a2.527 2.527 0 01-2.52-2.523 2.526 2.526 0 012.52-2.52h6.313A2.527 2.527 0 0124 15.165a2.528 2.528 0 01-2.522 2.523h-6.313z" fill="#ECB22E" /></svg>
+            )}
+            {item.icon === "gcal" && (
+              <svg class="w-6 h-6 flex-shrink-0" viewBox="0 0 24 24"><path d="M18.316 5.684H24v12.632h-5.684V5.684z" fill="#1967D2" /><path d="M5.684 18.316H0V5.684h5.684v12.632z" fill="#188038" /><path d="M18.316 24V18.316H5.684V24h12.632z" fill="#FBBC04" /><path d="M5.684 5.684V0h12.632v5.684H5.684z" fill="#EA4335" /><path d="M18.316 5.684H24V0h-5.684v5.684z" fill="#1A73E8" /><path d="M0 18.316h5.684V24H0v-5.684z" fill="#34A853" /><path d="M18.316 18.316H24V24h-5.684v-5.684z" fill="#174EA6" /><path d="M0 5.684h5.684V0H0v5.684z" fill="#C5221F" /><path fill="#fff" d="M5.684 5.684h12.632v12.632H5.684z" /><path d="M9.26 15.363l-1.224-.93c.42-.558.72-1.202.898-1.932h1.34V11.64H7.436v-.84h1.05a.42.42 0 00.42-.42V9.54H7.184v-.852h2.52a.42.42 0 00.42-.42V7.43h.856v.84a.42.42 0 00.42.42h2.52v.852H11.64v.84a.42.42 0 00.42.42h1.05v.84h-2.84c-.176.558-.426 1.066-.748 1.53l2.178 1.654-1.224.93-1.71-1.302-1.506 1.159z" fill="#1967D2" /></svg>
+            )}
+            {item.icon === "calendly" && (
+              <svg class="w-6 h-6 text-[#006bff] flex-shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M19.655 14.262c-.186 1.246-.768 2.387-1.675 3.287a5.85 5.85 0 01-3.303 1.688 5.844 5.844 0 01-3.689-.604 8.56 8.56 0 01-2.17 1.108 8.682 8.682 0 01-3.16.589H4.965l.473-.473c.753-.753 1.299-1.715 1.57-2.722A5.857 5.857 0 015.4 12.83a5.832 5.832 0 011.006-4.395 5.85 5.85 0 013.831-2.263 5.856 5.856 0 014.395.54 5.844 5.844 0 012.727 3.414 5.86 5.86 0 012.296-1.013v2.088a3.753 3.753 0 00-2.472 1.49 3.73 3.73 0 00-.556 2.828 3.743 3.743 0 001.028 2.743zm-5.024-1.24a3.74 3.74 0 00.52-2.838 3.75 3.75 0 00-1.708-2.53 3.748 3.748 0 00-5.39 1.41 3.736 3.736 0 00-.27 2.876 3.738 3.738 0 001.735 2.285 3.741 3.741 0 002.841.43 3.745 3.745 0 002.272-1.633z" /></svg>
+            )}
+            <span class="text-sm font-medium text-gray-700 whitespace-nowrap">{item.name}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    {/* Fade edges */}
+    <div class="absolute inset-y-0 left-0 w-12 sm:w-24 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
+    <div class="absolute inset-y-0 right-0 w-12 sm:w-24 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
+  </div>
+</section>
+
+<style>
+  .int-marquee-row1 {
+    animation: int-marquee-ltr 35s linear infinite;
+  }
+
+  .int-marquee-row2 {
+    animation: int-marquee-rtl 35s linear infinite;
+  }
+
+  .int-marquee-wrapper:hover .int-marquee-row1,
+  .int-marquee-wrapper:hover .int-marquee-row2 {
+    animation-play-state: paused;
+  }
+
+  @keyframes int-marquee-ltr {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  @keyframes int-marquee-rtl {
+    0% { transform: translateX(-50%); }
+    100% { transform: translateX(0); }
+  }
+</style>

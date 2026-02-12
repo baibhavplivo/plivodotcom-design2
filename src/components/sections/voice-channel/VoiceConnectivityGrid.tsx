@@ -384,7 +384,7 @@ function AudioStreamingIllustration() {
   );
 }
 
-// Illustration for SIP Trunking
+// Illustration for SIP trunking
 function SIPTrunkingIllustration() {
   return (
     <div className="relative h-48 w-full rounded-lg bg-gray-100/70 overflow-hidden">

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   Target,
   Package,
@@ -34,16 +34,45 @@ function getBaseCounter(): number {
   return 50_000_000 + daysSinceLaunch * 15_234;
 }
 
-// Smooth animated digit that slides up/down
+// Smooth animated digit with 9→0 wrap-around support
 function SmoothDigit({ digit }: { digit: number }) {
+  const prevRef = useRef(digit);
+  const [pos, setPos] = useState(digit);
+  const [animate, setAnimate] = useState(true);
+
+  useEffect(() => {
+    const prev = prevRef.current;
+    prevRef.current = digit;
+
+    if (prev === 9 && digit === 0) {
+      // Wrap-around: roll forward to extra "0" at position 10
+      setAnimate(true);
+      setPos(10);
+      const timer = setTimeout(() => {
+        // Snap back to position 0 without transition
+        setAnimate(false);
+        setPos(0);
+      }, 600);
+      return () => clearTimeout(timer);
+    } else {
+      setAnimate(true);
+      setPos(digit);
+    }
+  }, [digit]);
+
   return (
     <span className="relative inline-block h-[1em] w-[0.6em] overflow-hidden tabular-nums">
       <span
-        className="absolute inset-x-0 flex flex-col transition-transform duration-300 ease-out"
-        style={{ transform: `translateY(-${digit * 10}%)` }}
+        className="absolute inset-x-0 flex flex-col"
+        style={{
+          transition: animate
+            ? "transform 600ms cubic-bezier(0.4, 0, 0.2, 1)"
+            : "none",
+          transform: `translateY(-${pos}em)`,
+        }}
       >
-        {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((num) => (
-          <span key={num} className="flex h-[1em] items-center justify-center">
+        {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0].map((num, i) => (
+          <span key={i} className="flex h-[1em] items-center justify-center">
             {num}
           </span>
         ))}
@@ -58,13 +87,13 @@ function LiveCounter({ value }: { value: number }) {
 
   return (
     <span className="inline-flex items-baseline">
-      {formatted.split("").map((char, i) => (
+      {formatted.split("").map((char, i) =>
         char === "," ? (
           <span key={`comma-${i}`}>,</span>
         ) : (
           <SmoothDigit key={`digit-${i}`} digit={parseInt(char)} />
         )
-      ))}
+      )}
     </span>
   );
 }
@@ -72,24 +101,19 @@ function LiveCounter({ value }: { value: number }) {
 export default function ImpactStats() {
   const [counter, setCounter] = useState(() => getBaseCounter());
 
-  // Rolling counter effect - visible increments
+  // Slow counter: random 2-digit increment every 2-4 seconds
   useEffect(() => {
-    let timeoutId: NodeJS.Timeout;
+    let timer: ReturnType<typeof setTimeout>;
 
     const tick = () => {
-      // Increment by 15-45 for more visible changes
-      const increment = 15 + Math.floor(Math.random() * 30);
+      const increment = Math.floor(Math.random() * 90) + 10; // 10–99
+      const delay = 2000 + Math.random() * 2000; // 2–4 seconds
       setCounter((prev) => prev + increment);
-
-      // Random delay between 800ms-1.5s for faster updates
-      const nextDelay = 800 + Math.floor(Math.random() * 700);
-      timeoutId = setTimeout(tick, nextDelay);
+      timer = setTimeout(tick, delay);
     };
 
-    // Start with short initial delay
-    timeoutId = setTimeout(tick, 500);
-
-    return () => clearTimeout(timeoutId);
+    timer = setTimeout(tick, 2500);
+    return () => clearTimeout(timer);
   }, []);
 
   return (

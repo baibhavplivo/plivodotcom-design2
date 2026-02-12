@@ -1,13 +1,7 @@
 // Outbound Illustration - calls going out to global destinations
 function OutboundIllustration() {
   return (
-    <div
-      className="relative h-full w-full rounded-xl overflow-hidden"
-      style={{
-        background:
-          "linear-gradient(135deg, rgba(205, 62, 249, 0.08), rgba(50, 61, 254, 0.08))",
-      }}
-    >
+    <div className="relative h-full w-full rounded-xl overflow-hidden" style={{ background: "linear-gradient(135deg, #f3e8ff 0%, #ede9fe 30%, #e0e7ff 60%, #dbeafe 100%)" }}>
       <style>{`
         @keyframes outbound-pulse {
           0%, 100% { opacity: 0.3; }
@@ -22,7 +16,7 @@ function OutboundIllustration() {
         <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-4 sm:p-5">
           {/* Header */}
           <div className="flex items-center gap-2 mb-4 pb-3 border-b border-gray-100">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#cd3ef9] to-[#323dfe] flex items-center justify-center">
+            <div className="w-8 h-8 rounded-lg bg-black flex items-center justify-center">
               <svg
                 className="w-4 h-4 text-white"
                 fill="none"
@@ -46,7 +40,7 @@ function OutboundIllustration() {
           </div>
 
           {/* Connection diagram */}
-          <div className="space-y-3">
+          <div className="space-y-1.5">
             {[
               {
                 flag: "\ud83c\uddfa\ud83c\uddf8",
@@ -86,7 +80,7 @@ function OutboundIllustration() {
             ].map((dest, i) => (
               <div
                 key={i}
-                className="flex items-center gap-3 px-3 py-2 rounded-lg bg-gray-50 border border-gray-100"
+                className="flex items-center gap-3 px-3 py-1.5 rounded-lg bg-gray-50 border border-gray-100"
               >
                 <span className="text-lg flex-shrink-0">{dest.flag}</span>
                 <div className="flex-1 min-w-0">
@@ -127,18 +121,12 @@ function OutboundIllustration() {
 // Inbound Illustration - phone numbers being provisioned
 function InboundIllustration() {
   return (
-    <div
-      className="relative h-full w-full rounded-xl overflow-hidden"
-      style={{
-        background:
-          "linear-gradient(135deg, rgba(50, 61, 254, 0.08), rgba(205, 62, 249, 0.08))",
-      }}
-    >
+    <div className="relative h-full w-full rounded-xl overflow-hidden" style={{ background: "linear-gradient(135deg, #f3e8ff 0%, #ede9fe 30%, #e0e7ff 60%, #dbeafe 100%)" }}>
       <div className="relative h-full w-full p-4 sm:p-6 flex flex-col justify-center">
         <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-4 sm:p-5">
           {/* Header */}
           <div className="flex items-center gap-2 mb-4 pb-3 border-b border-gray-100">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#323dfe] to-[#cd3ef9] flex items-center justify-center">
+            <div className="w-8 h-8 rounded-lg bg-black flex items-center justify-center">
               <svg
                 className="w-4 h-4 text-white"
                 fill="none"
@@ -164,7 +152,7 @@ function InboundIllustration() {
           </div>
 
           {/* Phone numbers */}
-          <div className="space-y-3">
+          <div className="space-y-1.5">
             {[
               {
                 flag: "\ud83c\uddfa\ud83c\uddf8",
@@ -199,7 +187,7 @@ function InboundIllustration() {
             ].map((num, i) => (
               <div
                 key={i}
-                className="flex items-center gap-3 px-3 py-2 rounded-lg bg-gray-50 border border-gray-100"
+                className="flex items-center gap-3 px-3 py-1.5 rounded-lg bg-gray-50 border border-gray-100"
               >
                 <span className="text-lg flex-shrink-0">{num.flag}</span>
                 <div className="flex-1 min-w-0">
@@ -249,11 +237,11 @@ const outboundFeatures: DirectionFeature[] = [
           strokeLinecap="round"
           strokeLinejoin="round"
           strokeWidth={1.5}
-          d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064"
+          d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"
         />
       </svg>
     ),
-    title: "Make Calls to More Than 220 Countries",
+    title: "Make calls to more than 220 countries",
     description:
       "Connect to mobile or fixed phone numbers globally using your existing VoIP infrastructure.",
   },
@@ -273,7 +261,7 @@ const outboundFeatures: DirectionFeature[] = [
         />
       </svg>
     ),
-    title: "Multiple Authentication Options",
+    title: "Multiple authentication options",
     description:
       "Secure your SIP trunk using IP-based or credentials-based authentication.",
   },
@@ -293,7 +281,7 @@ const outboundFeatures: DirectionFeature[] = [
         />
       </svg>
     ),
-    title: "Unlimited Concurrent Calls",
+    title: "Unlimited concurrent calls",
     description:
       "Scale your outbound calls and experience unlimited concurrent calls at no extra cost.",
   },
@@ -316,7 +304,7 @@ const inboundFeatures: DirectionFeature[] = [
         />
       </svg>
     ),
-    title: "Receive Calls in More Than 70 Countries",
+    title: "Receive calls in more than 70 countries",
     description:
       "Purchase Local, National, Mobile or Toll-Free phone numbers across the globe.",
   },
@@ -336,9 +324,9 @@ const inboundFeatures: DirectionFeature[] = [
         />
       </svg>
     ),
-    title: "Instantly Provision Phone Numbers",
+    title: "Instantly provision phone numbers",
     description:
-      "Configure phone numbers with Zentrunk and start receiving calls in minutes.",
+      "Configure phone numbers with SIP trunking and start receiving calls in minutes.",
   },
   {
     icon: (
@@ -356,7 +344,7 @@ const inboundFeatures: DirectionFeature[] = [
         />
       </svg>
     ),
-    title: "Unlimited Concurrent Calls",
+    title: "Unlimited concurrent calls",
     description:
       "Receive unlimited concurrent calls on your phone numbers at no extra cost.",
   },
@@ -392,7 +380,7 @@ export default function SIPTrunkingDirections() {
         <div className="grid gap-8 lg:grid-cols-2 lg:gap-12 items-center mb-16 lg:mb-24">
           <div>
             <h3 className="font-sora text-[1.5rem] sm:text-[1.75rem] font-normal leading-[1.25] tracking-[-0.02em] text-black mb-8">
-              Zentrunk Outbound
+              SIP trunking outbound
             </h3>
             <FeatureList features={outboundFeatures} />
           </div>
@@ -412,7 +400,7 @@ export default function SIPTrunkingDirections() {
           </div>
           <div>
             <h3 className="font-sora text-[1.5rem] sm:text-[1.75rem] font-normal leading-[1.25] tracking-[-0.02em] text-black mb-8">
-              Zentrunk Inbound
+              SIP trunking inbound
             </h3>
             <FeatureList features={inboundFeatures} />
           </div>

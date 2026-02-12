@@ -16,6 +16,14 @@ dist/
 .vscode/
 .idea/
 
+# AI/Editor tools
+.agent/
+.agents/
+.claude/
+.cursor/
+.gemini/
+.windsurf/
+
 # Logs
 *.log
 npm-debug.log*

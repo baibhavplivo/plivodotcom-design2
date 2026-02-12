@@ -1,344 +1,144 @@
+"use client";
+
+import { FlickeringGrid } from "@/components/magicui/flickering-grid";
+
 export default function SIPTrunkingHeroIllustration() {
   return (
-    <div className="relative w-full max-w-[520px] mx-auto">
+    <div className="relative w-full max-w-[520px] mx-auto overflow-hidden rounded-2xl border border-gray-200 bg-white">
+      {/* FlickeringGrid backdrop - stops above stats section */}
+      <div className="pointer-events-none absolute inset-0 bottom-[20%] z-0">
+        <FlickeringGrid
+          className="h-full w-full"
+          squareSize={3}
+          gridGap={5}
+          color="rgb(139, 92, 246)"
+          maxOpacity={0.104}
+          flickerChance={0.05}
+        />
+      </div>
+
       <style>{`
-        @keyframes sip-travel {
-          0% { stroke-dashoffset: 20; }
+        @keyframes sip-flow {
+          0% { stroke-dashoffset: 16; }
           100% { stroke-dashoffset: 0; }
         }
-        .sip-line-animated {
-          stroke-dasharray: 4 4;
-          animation: sip-travel 1.5s linear infinite;
-        }
-        .sip-line-animated-rev {
-          stroke-dasharray: 4 4;
-          animation: sip-travel 1.5s linear infinite reverse;
+        .sip-dash {
+          stroke-dasharray: 6 4;
+          animation: sip-flow 1.2s linear infinite;
         }
       `}</style>
 
       <svg
-        viewBox="0 0 520 340"
+        viewBox="0 0 520 290"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className="w-full h-auto"
+        className="relative z-[1] w-full h-auto"
       >
-        {/* Background */}
-        <rect width="520" height="340" rx="16" fill="white" />
-        <rect
-          width="520"
-          height="340"
-          rx="16"
-          stroke="#E5E7EB"
-          strokeWidth="1"
-        />
-
-        {/* ── Left Node: Your PBX ── */}
-        <rect
-          x="32"
-          y="110"
-          width="88"
-          height="88"
-          rx="12"
-          fill="#F9FAFB"
-          stroke="#E5E7EB"
-          strokeWidth="1"
-        />
-        {/* Server icon */}
-        <rect x="56" y="134" width="40" height="14" rx="3" fill="none" stroke="#9CA3AF" strokeWidth="1.2" />
-        <circle cx="84" cy="141" r="2" fill="#9CA3AF" />
-        <rect x="56" y="152" width="40" height="14" rx="3" fill="none" stroke="#9CA3AF" strokeWidth="1.2" />
-        <circle cx="84" cy="159" r="2" fill="#9CA3AF" />
-        <text
-          x="76"
-          y="186"
-          textAnchor="middle"
-          fill="#6B7280"
-          fontSize="10"
-          fontFamily="Inter, sans-serif"
-          fontWeight="500"
-        >
+        {/* ── Left: Your PBX ── */}
+        <rect x="36" y="96" width="52" height="40" rx="8" fill="#F9FAFB" stroke="#E5E7EB" strokeWidth="1" />
+        {/* Server stack icon — black */}
+        <rect x="49" y="105" width="26" height="10" rx="2" fill="none" stroke="#111827" strokeWidth="1" />
+        <circle cx="69" cy="110" r="1.5" fill="#111827" />
+        <rect x="49" y="117" width="26" height="10" rx="2" fill="none" stroke="#111827" strokeWidth="1" />
+        <circle cx="69" cy="122" r="1.5" fill="#111827" />
+        <text x="62" y="148" textAnchor="middle" fill="#6B7280" fontSize="9" fontFamily="Inter, sans-serif" fontWeight="500">
           Your PBX
         </text>
 
-        {/* ── Center Node: Plivo Zentrunk ── */}
-        <rect
-          x="210"
-          y="98"
-          width="100"
-          height="100"
-          rx="20"
-          fill="url(#plivo-grad)"
-        />
-        <text
-          x="260"
-          y="145"
-          textAnchor="middle"
-          fill="white"
-          fontSize="16"
-          fontFamily="Inter, sans-serif"
-          fontWeight="700"
-        >
-          Plivo
-        </text>
-        <text
-          x="260"
-          y="162"
-          textAnchor="middle"
-          fill="rgba(255,255,255,0.8)"
-          fontSize="10"
-          fontFamily="Inter, sans-serif"
-          fontWeight="500"
-        >
-          Zentrunk
-        </text>
+        {/* ── PBX → Plivo connection ── */}
+        <line x1="88" y1="116" x2="196" y2="116" stroke="#323dfe" strokeWidth="1.5" className="sip-dash" />
 
-        {/* ── Right Nodes: Destinations ── */}
-        {/* Mobile */}
-        <rect
-          x="400"
-          y="88"
-          width="88"
-          height="44"
-          rx="8"
-          fill="#F9FAFB"
-          stroke="#E5E7EB"
-          strokeWidth="1"
-        />
-        <rect x="414" y="97" width="16" height="26" rx="3" fill="none" stroke="#9CA3AF" strokeWidth="1.2" />
-        <line x1="418" y1="118" x2="426" y2="118" stroke="#9CA3AF" strokeWidth="1.2" />
-        <text
-          x="443"
-          y="113"
-          fill="#374151"
-          fontSize="10"
-          fontFamily="Inter, sans-serif"
-          fontWeight="600"
-        >
-          Mobile
-        </text>
-
-        {/* Fixed/PSTN */}
-        <rect
-          x="400"
-          y="144"
-          width="88"
-          height="44"
-          rx="8"
-          fill="#F9FAFB"
-          stroke="#E5E7EB"
-          strokeWidth="1"
-        />
-        <circle cx="422" cy="166" r="8" fill="none" stroke="#9CA3AF" strokeWidth="1.2" />
-        <circle cx="422" cy="166" r="3" fill="#9CA3AF" />
-        <text
-          x="443"
-          y="170"
-          fill="#374151"
-          fontSize="10"
-          fontFamily="Inter, sans-serif"
-          fontWeight="600"
-        >
-          PSTN
-        </text>
-
-        {/* Toll-Free */}
-        <rect
-          x="400"
-          y="200"
-          width="88"
-          height="44"
-          rx="8"
-          fill="#F9FAFB"
-          stroke="#E5E7EB"
-          strokeWidth="1"
-        />
-        <path d="M414 222 L422 214 L430 222" fill="none" stroke="#9CA3AF" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
-        <line x1="422" y1="214" x2="422" y2="226" stroke="#9CA3AF" strokeWidth="1.2" strokeLinecap="round" />
-        <text
-          x="443"
-          y="225"
-          fill="#374151"
-          fontSize="10"
-          fontFamily="Inter, sans-serif"
-          fontWeight="600"
-        >
-          Toll-Free
-        </text>
-
-        {/* ── Dotted Lines: PBX → Plivo ── */}
-        <line
-          x1="120"
-          y1="148"
-          x2="210"
-          y2="148"
-          stroke="#323dfe"
-          strokeWidth="1.2"
-          className="sip-line-animated"
-        />
-
-        {/* SIP label */}
-        <rect x="148" y="130" width="28" height="16" rx="4" fill="#F0F0FF" />
-        <text
-          x="162"
-          y="141"
-          textAnchor="middle"
-          fill="#323dfe"
-          fontSize="8"
-          fontFamily="Inter, sans-serif"
-          fontWeight="600"
-        >
+        {/* SIP label — above the dotted line */}
+        <rect x="128" y="97" width="30" height="15" rx="4" fill="#EEF0FF" stroke="#323dfe" strokeWidth="0.5" />
+        <text x="143" y="108" textAnchor="middle" fill="#323dfe" fontSize="8" fontFamily="Inter, sans-serif" fontWeight="600">
           SIP
         </text>
 
-        {/* ── Dotted Lines: Plivo → Destinations ── */}
-        {/* To Mobile */}
-        <line
-          x1="310"
-          y1="135"
-          x2="400"
-          y2="110"
-          stroke="#323dfe"
-          strokeWidth="1.2"
-          className="sip-line-animated"
-        />
-        {/* To PSTN */}
-        <line
-          x1="310"
-          y1="148"
-          x2="400"
-          y2="166"
-          stroke="#cd3ef9"
-          strokeWidth="1.2"
-          className="sip-line-animated-rev"
-        />
-        {/* To Toll-Free */}
-        <line
-          x1="310"
-          y1="162"
-          x2="400"
-          y2="222"
-          stroke="#323dfe"
-          strokeWidth="1.2"
-          opacity="0.5"
-          className="sip-line-animated"
-        />
+        {/* ── Center: Plivo SIP trunking ── */}
+        <rect x="196" y="74" width="118" height="84" rx="16" fill="#F9FAFB" stroke="url(#plivo-stroke)" strokeWidth="2" />
+        <text x="255" y="111" textAnchor="middle" fill="#111827" fontSize="15" fontFamily="Inter, sans-serif" fontWeight="700">
+          Plivo
+        </text>
+        <text x="255" y="127" textAnchor="middle" fill="#6B7280" fontSize="10" fontFamily="Inter, sans-serif" fontWeight="500">
+          SIP trunking
+        </text>
 
-        {/* ── Bottom Stats ── */}
-        <line
-          x1="32"
-          y1="270"
-          x2="488"
-          y2="270"
-          stroke="#E5E7EB"
-          strokeWidth="1"
-        />
+        {/* ── Plivo → Pills: right-angle bus ── */}
+        <line x1="314" y1="116" x2="356" y2="116" stroke="#323dfe" strokeWidth="1.5" className="sip-dash" />
+        <line x1="356" y1="64" x2="356" y2="168" stroke="#323dfe" strokeWidth="1.5" className="sip-dash" />
+        <line x1="356" y1="64" x2="396" y2="64" stroke="#323dfe" strokeWidth="1.5" className="sip-dash" />
+        <line x1="356" y1="116" x2="396" y2="116" stroke="#323dfe" strokeWidth="1.5" className="sip-dash" />
+        <line x1="356" y1="168" x2="396" y2="168" stroke="#323dfe" strokeWidth="1.5" className="sip-dash" />
 
-        {/* Stat 1 */}
-        <text
-          x="110"
-          y="296"
-          textAnchor="middle"
-          fill="#111827"
-          fontSize="20"
-          fontFamily="Inter, sans-serif"
-          fontWeight="700"
-        >
+        {/* Junction dots */}
+        <circle cx="88" cy="116" r="3" fill="#323dfe" opacity="0.5" />
+        <circle cx="196" cy="116" r="3" fill="#323dfe" />
+        <circle cx="314" cy="116" r="3" fill="#323dfe" />
+        <circle cx="356" cy="64" r="2.5" fill="#323dfe" />
+        <circle cx="356" cy="116" r="2.5" fill="#323dfe" />
+        <circle cx="356" cy="168" r="2.5" fill="#323dfe" />
+
+        {/* ── Right pills ── */}
+
+        {/* Mobile pill — center y=64 */}
+        <rect x="396" y="48" width="92" height="32" rx="16" fill="white" stroke="#E5E7EB" strokeWidth="1" />
+        {/* Smartphone: body rect centered at y=64, 10×16 */}
+        <rect x="410" y="56" width="10" height="16" rx="2.5" fill="none" stroke="#323dfe" strokeWidth="1.2" />
+        <line x1="413.5" y1="69" x2="416.5" y2="69" stroke="#323dfe" strokeWidth="0.8" strokeLinecap="round" />
+        <text x="428" y="68" fill="#111827" fontSize="11" fontFamily="Inter, sans-serif" fontWeight="500">
+          Mobile
+        </text>
+
+        {/* PSTN pill — center y=116 */}
+        <rect x="396" y="100" width="92" height="32" rx="16" fill="white" stroke="#E5E7EB" strokeWidth="1" />
+        {/* Desk phone: handset arc + base, centered at y=116 */}
+        <path d="M410 116 Q410 110 415 110 Q420 110 420 116" fill="none" stroke="#323dfe" strokeWidth="1.2" strokeLinecap="round" />
+        <rect x="408" y="116" width="14" height="6" rx="2.5" fill="none" stroke="#323dfe" strokeWidth="1.2" />
+        <text x="428" y="120" fill="#111827" fontSize="11" fontFamily="Inter, sans-serif" fontWeight="500">
+          PSTN
+        </text>
+
+        {/* Toll-Free pill — center y=168 */}
+        <rect x="396" y="152" width="92" height="32" rx="16" fill="white" stroke="#E5E7EB" strokeWidth="1" />
+        {/* Headset: headband arc + ear cups, centered at y=168 */}
+        <path d="M409 170 V167 Q409 161 415 161 Q421 161 421 167 V170" fill="none" stroke="#323dfe" strokeWidth="1.2" strokeLinecap="round" />
+        <rect x="407" y="169" width="4" height="6" rx="1.5" fill="none" stroke="#323dfe" strokeWidth="1" />
+        <rect x="419" y="169" width="4" height="6" rx="1.5" fill="none" stroke="#323dfe" strokeWidth="1" />
+        <text x="428" y="172" fill="#111827" fontSize="10" fontFamily="Inter, sans-serif" fontWeight="500">
+          Toll-free
+        </text>
+
+        {/* ── Bottom stats ── */}
+        <line x1="32" y1="232" x2="488" y2="232" stroke="#E5E7EB" strokeWidth="1" />
+
+        <text x="110" y="258" textAnchor="middle" fill="#111827" fontSize="20" fontFamily="Inter, sans-serif" fontWeight="700">
           220+
         </text>
-        <text
-          x="110"
-          y="312"
-          textAnchor="middle"
-          fill="#9CA3AF"
-          fontSize="10"
-          fontFamily="Inter, sans-serif"
-        >
+        <text x="110" y="274" textAnchor="middle" fill="#9CA3AF" fontSize="10" fontFamily="Inter, sans-serif">
           Countries
         </text>
 
-        {/* Divider */}
-        <line
-          x1="195"
-          y1="278"
-          x2="195"
-          y2="322"
-          stroke="#E5E7EB"
-          strokeWidth="1"
-        />
+        <line x1="195" y1="242" x2="195" y2="280" stroke="#E5E7EB" strokeWidth="1" />
 
-        {/* Stat 2 */}
-        <text
-          x="260"
-          y="296"
-          textAnchor="middle"
-          fill="#111827"
-          fontSize="20"
-          fontFamily="Inter, sans-serif"
-          fontWeight="700"
-        >
+        <text x="260" y="258" textAnchor="middle" fill="#111827" fontSize="20" fontFamily="Inter, sans-serif" fontWeight="700">
           99.99%
         </text>
-        <text
-          x="260"
-          y="312"
-          textAnchor="middle"
-          fill="#9CA3AF"
-          fontSize="10"
-          fontFamily="Inter, sans-serif"
-        >
+        <text x="260" y="274" textAnchor="middle" fill="#9CA3AF" fontSize="10" fontFamily="Inter, sans-serif">
           Uptime SLA
         </text>
 
-        {/* Divider */}
-        <line
-          x1="325"
-          y1="278"
-          x2="325"
-          y2="322"
-          stroke="#E5E7EB"
-          strokeWidth="1"
-        />
+        <line x1="325" y1="242" x2="325" y2="280" stroke="#E5E7EB" strokeWidth="1" />
 
-        {/* Stat 3 */}
-        <text
-          x="410"
-          y="296"
-          textAnchor="middle"
-          fill="#111827"
-          fontSize="20"
-          fontFamily="Inter, sans-serif"
-          fontWeight="700"
-        >
+        <text x="410" y="258" textAnchor="middle" fill="#111827" fontSize="20" fontFamily="Inter, sans-serif" fontWeight="700">
           {"\u221E"}
         </text>
-        <text
-          x="410"
-          y="312"
-          textAnchor="middle"
-          fill="#9CA3AF"
-          fontSize="10"
-          fontFamily="Inter, sans-serif"
-        >
-          Concurrent Calls
+        <text x="410" y="274" textAnchor="middle" fill="#9CA3AF" fontSize="10" fontFamily="Inter, sans-serif">
+          Concurrent calls
         </text>
 
-        {/* ── Small dots on connection points ── */}
-        <circle cx="120" cy="148" r="3" fill="#323dfe" opacity="0.6" />
-        <circle cx="210" cy="148" r="3" fill="#323dfe" />
-        <circle cx="310" cy="135" r="3" fill="#323dfe" />
-        <circle cx="310" cy="148" r="3" fill="#cd3ef9" />
-        <circle cx="310" cy="162" r="3" fill="#323dfe" opacity="0.5" />
-
-        {/* Gradient definition */}
+        {/* Gradient definitions */}
         <defs>
-          <linearGradient
-            id="plivo-grad"
-            x1="210"
-            y1="98"
-            x2="310"
-            y2="198"
-            gradientUnits="userSpaceOnUse"
-          >
+          <linearGradient id="plivo-stroke" x1="196" y1="74" x2="314" y2="158" gradientUnits="userSpaceOnUse">
             <stop stopColor="#cd3ef9" />
             <stop offset="1" stopColor="#323dfe" />
           </linearGradient>
