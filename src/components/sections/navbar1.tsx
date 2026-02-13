@@ -33,6 +33,7 @@ import {
   Folder,
   Star,
   Briefcase,
+  MessageCircle,
 } from "lucide-react";
 
 import {
@@ -109,6 +110,7 @@ const iconMap: Record<string, React.ReactNode> = {
   "phone-call": <PhoneCall className="h-5 w-5" />,
   whatsapp: <WhatsAppIcon className="h-5 w-5" />,
   "whatsapp-call": <WhatsAppIcon className="h-5 w-5" />,
+  "message-circle": <MessageCircle className="h-5 w-5" />,
   "message-square": <MessageSquare className="h-5 w-5" />,
   "messages-square": <MessagesSquare className="h-5 w-5" />,
   slack: <Slack className="h-5 w-5" />,

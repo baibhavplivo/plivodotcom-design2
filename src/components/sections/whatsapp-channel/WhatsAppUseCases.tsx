@@ -80,28 +80,6 @@ function BuyingAssistantIllustration() {
   );
 }
 
-// Sales Conversion Illustration
-function SalesConversionIllustration() {
-  return (
-    <ChatWrapper>
-      <IncomingMsg time="2:15 PM">
-        <div className="rounded overflow-hidden mb-1.5">
-          <img src="/images/shoe-product.jpg" alt="Product" className="w-full h-16 object-cover rounded" />
-        </div>
-        <p className="text-[12px] font-medium text-gray-900">Premium Running Sneakers</p>
-        <p className="text-[12px] font-semibold text-gray-800 mb-2">$129 <span className="text-gray-400 line-through text-[10px]">$189</span></p>
-        <div className="flex gap-1.5">
-          <span className="px-2.5 py-1 rounded-full bg-gray-100 text-[10px] text-[#323dfe] font-medium">Buy Now</span>
-          <span className="px-2.5 py-1 rounded-full bg-gray-100 text-[10px] text-[#323dfe] font-medium">Add to Cart</span>
-        </div>
-      </IncomingMsg>
-      <OutgoingMsg time="2:16 PM">
-        <p className="text-[12px] text-gray-800 leading-snug">Buy Now</p>
-      </OutgoingMsg>
-    </ChatWrapper>
-  );
-}
-
 // Cart Recovery Illustration
 function CartRecoveryIllustration() {
   return (
@@ -170,32 +148,6 @@ function UpsellAgentIllustration() {
       </IncomingMsg>
       <OutgoingMsg time="11:07 AM">
         <p className="text-[12px] text-gray-800 leading-snug">Add the earbuds to my order</p>
-      </OutgoingMsg>
-    </ChatWrapper>
-  );
-}
-
-// Loyalty Marketing Illustration
-function LoyaltyMarketingIllustration() {
-  return (
-    <ChatWrapper>
-      <IncomingMsg time="9:00 AM">
-        <div className="min-w-[230px]">
-          <p className="text-[12px] text-gray-800 leading-snug mb-2">🎁 VIP Rewards Update!</p>
-          <div className="bg-gray-50 rounded-lg p-2.5">
-            <div className="flex justify-between items-center mb-1.5">
-              <span className="text-[10px] text-gray-600">Points</span>
-              <span className="text-[12px] font-bold text-gray-900">2,450</span>
-            </div>
-            <div className="w-full h-1.5 bg-gray-200 rounded-full overflow-hidden">
-              <div className="h-full bg-gradient-to-r from-[#323dfe] to-[#cd3ef9] rounded-full" style={{ width: "85%" }} />
-            </div>
-            <p className="text-[9px] text-gray-500 mt-1">150 pts to Gold tier 🏆</p>
-          </div>
-        </div>
-      </IncomingMsg>
-      <OutgoingMsg time="9:02 AM">
-        <p className="text-[12px] text-gray-800 leading-snug">How do I redeem my points?</p>
       </OutgoingMsg>
     </ChatWrapper>
   );
@@ -272,27 +224,151 @@ function OrderTrackingIllustration() {
   );
 }
 
-// Feedback Survey Illustration
-function FeedbackSurveyIllustration() {
+// --- CALL-SPECIFIC ILLUSTRATIONS (Phone widget, half-cropped) ---
+
+// Phone frame — oversized so bottom half crops outside the container
+function PhoneFrame({ children }: { children: React.ReactNode }) {
   return (
-    <ChatWrapper>
-      <IncomingMsg time="5:00 PM">
-        <p className="text-[12px] text-gray-800 leading-snug mb-1.5">How was your experience? Rate us:</p>
-        <div className="flex gap-0.5 justify-center">
-          {[1, 2, 3, 4, 5].map((star) => (
-            <svg key={star} className={cn("w-5 h-5", star <= 5 ? "text-yellow-400" : "text-gray-200")} fill="currentColor" viewBox="0 0 20 20">
-              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-            </svg>
-          ))}
+    <div className="relative h-56 w-full rounded-xl overflow-hidden bg-gray-100/70">
+      <div className="absolute inset-x-0 top-3 flex justify-center">
+        {/* Phone device — taller than container so bottom crops */}
+        <div className="relative w-[180px] h-[320px] rounded-[22px] border-[3px] border-gray-400 bg-gray-300 overflow-hidden shadow-xl">
+          {/* Side buttons */}
+          <div className="absolute -left-[4px] top-16 w-[4px] h-6 bg-gray-400 rounded-l" />
+          <div className="absolute -left-[4px] top-24 w-[4px] h-10 bg-gray-400 rounded-l" />
+          <div className="absolute -right-[4px] top-20 w-[4px] h-8 bg-gray-400 rounded-r" />
+          {/* Dynamic island */}
+          <div className="absolute top-[6px] left-1/2 -translate-x-1/2 w-16 h-[6px] bg-gray-800 rounded-full z-20" />
+          {/* Screen */}
+          <div className="absolute inset-[3px] rounded-[19px] overflow-hidden bg-[#075E54] flex flex-col">
+            {children}
+          </div>
         </div>
-      </IncomingMsg>
-      <OutgoingMsg time="5:01 PM">
-        <p className="text-[12px] text-gray-800 leading-snug">⭐⭐⭐⭐⭐</p>
-      </OutgoingMsg>
-      <IncomingMsg time="5:01 PM">
-        <p className="text-[12px] text-gray-800 leading-snug">Thank you! We're glad you loved it 💙</p>
-      </IncomingMsg>
-    </ChatWrapper>
+      </div>
+    </div>
+  );
+}
+
+// Compact call status bar
+function CallStatusBar({ name, time }: { name: string; time: string }) {
+  return (
+    <div className="bg-[#075E54] pt-5 pb-2 px-3 flex items-center gap-2">
+      <svg className="w-3 h-3 text-white/60 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+      </svg>
+      <div className="w-6 h-6 rounded-full bg-white/15 flex items-center justify-center flex-shrink-0">
+        <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0" />
+        </svg>
+      </div>
+      <div className="flex-1 min-w-0">
+        <p className="text-[9px] font-semibold text-white truncate">{name}</p>
+        <p className="text-[7px] text-[#25D366] font-medium">{time}</p>
+      </div>
+      {/* Call controls (inline) */}
+      <div className="flex items-center gap-1.5">
+        <div className="w-5 h-5 rounded-full bg-white/10 flex items-center justify-center">
+          <svg className="w-2.5 h-2.5 text-white" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M11.383 3.07C11.009 2.87 10.579 2.9 10.232 3.15L5.636 7H3a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h2.636l4.596 3.85c.347.25.777.28 1.151.08A1 1 0 0 0 12 20V4a1 1 0 0 0-.617-.93zM16.066 7.504a.75.75 0 0 1 1.06.036 6.5 6.5 0 0 1 0 8.92.75.75 0 1 1-1.096-1.024 5 5 0 0 0 0-6.872.75.75 0 0 1 .036-1.06z" />
+          </svg>
+        </div>
+        <div className="w-5 h-5 rounded-full bg-red-500 flex items-center justify-center">
+          <svg className="w-2.5 h-2.5 text-white" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
+          </svg>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// Lead Qualification Call Illustration
+function LeadQualificationCallIllustration() {
+  return (
+    <PhoneFrame>
+      <CallStatusBar name="Sarah Mitchell" time="02:34" />
+      {/* Transcript */}
+      <div className="flex-1 bg-[#ECE5DD] px-2 py-2 flex flex-col gap-1.5 overflow-hidden">
+        <div className="self-start max-w-[88%] rounded-lg rounded-tl-sm bg-white px-2 py-1.5 shadow-sm">
+          <p className="text-[8px] text-gray-800 leading-[1.4]">Great, and what's your typical monthly budget for this?</p>
+          <p className="text-[6px] text-gray-400 text-right mt-0.5">02:31</p>
+        </div>
+        <div className="self-end max-w-[88%] rounded-lg rounded-tr-sm bg-[#dcf8c6] px-2 py-1.5 shadow-sm">
+          <p className="text-[8px] text-gray-800 leading-[1.4]">We're looking at around $50k per quarter.</p>
+          <div className="flex items-center justify-end gap-0.5 mt-0.5">
+            <p className="text-[6px] text-gray-500">02:33</p>
+            <svg className="w-3 h-2 text-[#53bdeb]" viewBox="0 0 16 15" fill="currentColor"><path d="M15.01 3.316l-.478-.372a.365.365 0 0 0-.51.063L8.666 9.879a.32.32 0 0 1-.484.033l-.358-.325a.319.319 0 0 0-.484.032l-.378.483a.418.418 0 0 0 .036.541l1.32 1.266c.143.14.361.125.484-.033l6.272-8.048a.366.366 0 0 0-.064-.512zm-4.1 0l-.478-.372a.365.365 0 0 0-.51.063L4.566 9.879a.32.32 0 0 1-.484.033L1.891 7.769a.366.366 0 0 0-.515.006l-.423.433a.364.364 0 0 0 .006.514l3.258 3.185c.143.14.361.125.484-.033l6.272-8.048a.365.365 0 0 0-.063-.512z" /></svg>
+          </div>
+        </div>
+        <div className="self-start max-w-[88%] rounded-lg rounded-tl-sm bg-white px-2 py-1.5 shadow-sm">
+          <p className="text-[8px] text-gray-800 leading-[1.4]">Perfect. Let me connect you with our enterprise team right away.</p>
+          <p className="text-[6px] text-gray-400 text-right mt-0.5">02:34</p>
+        </div>
+        <div className="self-end max-w-[88%] rounded-lg rounded-tr-sm bg-[#dcf8c6] px-2 py-1.5 shadow-sm">
+          <p className="text-[8px] text-gray-800 leading-[1.4]">That would be great, thanks!</p>
+        </div>
+      </div>
+    </PhoneFrame>
+  );
+}
+
+// Booking Call Illustration
+function BookingCallIllustration() {
+  return (
+    <PhoneFrame>
+      <CallStatusBar name="Priya Sharma" time="01:18" />
+      {/* Transcript */}
+      <div className="flex-1 bg-[#ECE5DD] px-2 py-2 flex flex-col gap-1.5 overflow-hidden">
+        <div className="self-start max-w-[88%] rounded-lg rounded-tl-sm bg-white px-2 py-1.5 shadow-sm">
+          <p className="text-[8px] text-gray-800 leading-[1.4]">I have 3 slots this week: Tue 2:30 PM, Wed 10 AM, or Thu 4 PM.</p>
+          <p className="text-[6px] text-gray-400 text-right mt-0.5">01:15</p>
+        </div>
+        <div className="self-end max-w-[88%] rounded-lg rounded-tr-sm bg-[#dcf8c6] px-2 py-1.5 shadow-sm">
+          <p className="text-[8px] text-gray-800 leading-[1.4]">Tuesday 2:30 works for me!</p>
+          <div className="flex items-center justify-end gap-0.5 mt-0.5">
+            <p className="text-[6px] text-gray-500">01:16</p>
+            <svg className="w-3 h-2 text-[#53bdeb]" viewBox="0 0 16 15" fill="currentColor"><path d="M15.01 3.316l-.478-.372a.365.365 0 0 0-.51.063L8.666 9.879a.32.32 0 0 1-.484.033l-.358-.325a.319.319 0 0 0-.484.032l-.378.483a.418.418 0 0 0 .036.541l1.32 1.266c.143.14.361.125.484-.033l6.272-8.048a.366.366 0 0 0-.064-.512zm-4.1 0l-.478-.372a.365.365 0 0 0-.51.063L4.566 9.879a.32.32 0 0 1-.484.033L1.891 7.769a.366.366 0 0 0-.515.006l-.423.433a.364.364 0 0 0 .006.514l3.258 3.185c.143.14.361.125.484-.033l6.272-8.048a.365.365 0 0 0-.063-.512z" /></svg>
+          </div>
+        </div>
+        <div className="self-start max-w-[88%] rounded-lg rounded-tl-sm bg-white px-2 py-1.5 shadow-sm">
+          <p className="text-[8px] text-gray-800 leading-[1.4]">Done! Confirmed for Tue, Jan 7 at 2:30 PM. You'll get a calendar invite shortly.</p>
+          <p className="text-[6px] text-gray-400 text-right mt-0.5">01:18</p>
+        </div>
+        <div className="self-end max-w-[88%] rounded-lg rounded-tr-sm bg-[#dcf8c6] px-2 py-1.5 shadow-sm">
+          <p className="text-[8px] text-gray-800 leading-[1.4]">Perfect, thank you!</p>
+        </div>
+      </div>
+    </PhoneFrame>
+  );
+}
+
+// Payment Reminder Call Illustration
+function PaymentReminderCallIllustration() {
+  return (
+    <PhoneFrame>
+      <CallStatusBar name="Raj Patel" time="00:52" />
+      {/* Transcript */}
+      <div className="flex-1 bg-[#ECE5DD] px-2 py-2 flex flex-col gap-1.5 overflow-hidden">
+        <div className="self-start max-w-[88%] rounded-lg rounded-tl-sm bg-white px-2 py-1.5 shadow-sm">
+          <p className="text-[8px] text-gray-800 leading-[1.4]">Hi Raj, this is a reminder about Invoice #4821 for $2,450 — it's 5 days overdue.</p>
+          <p className="text-[6px] text-gray-400 text-right mt-0.5">00:48</p>
+        </div>
+        <div className="self-end max-w-[88%] rounded-lg rounded-tr-sm bg-[#dcf8c6] px-2 py-1.5 shadow-sm">
+          <p className="text-[8px] text-gray-800 leading-[1.4]">Oh right, can I set up a payment plan?</p>
+          <div className="flex items-center justify-end gap-0.5 mt-0.5">
+            <p className="text-[6px] text-gray-500">00:50</p>
+            <svg className="w-3 h-2 text-[#53bdeb]" viewBox="0 0 16 15" fill="currentColor"><path d="M15.01 3.316l-.478-.372a.365.365 0 0 0-.51.063L8.666 9.879a.32.32 0 0 1-.484.033l-.358-.325a.319.319 0 0 0-.484.032l-.378.483a.418.418 0 0 0 .036.541l1.32 1.266c.143.14.361.125.484-.033l6.272-8.048a.366.366 0 0 0-.064-.512zm-4.1 0l-.478-.372a.365.365 0 0 0-.51.063L4.566 9.879a.32.32 0 0 1-.484.033L1.891 7.769a.366.366 0 0 0-.515.006l-.423.433a.364.364 0 0 0 .006.514l3.258 3.185c.143.14.361.125.484-.033l6.272-8.048a.365.365 0 0 0-.063-.512z" /></svg>
+          </div>
+        </div>
+        <div className="self-start max-w-[88%] rounded-lg rounded-tl-sm bg-white px-2 py-1.5 shadow-sm">
+          <p className="text-[8px] text-gray-800 leading-[1.4]">Of course! I can split it into 3 monthly installments of $817. Shall I set that up?</p>
+          <p className="text-[6px] text-gray-400 text-right mt-0.5">00:52</p>
+        </div>
+        <div className="self-end max-w-[88%] rounded-lg rounded-tr-sm bg-[#dcf8c6] px-2 py-1.5 shadow-sm">
+          <p className="text-[8px] text-gray-800 leading-[1.4]">Yes please, that works.</p>
+        </div>
+      </div>
+    </PhoneFrame>
   );
 }
 
@@ -308,10 +384,10 @@ const categories: UseCaseCategory[] = [
         illustration: <BuyingAssistantIllustration />,
       },
       {
-        title: "Sales conversion agent",
-        tags: ["eCommerce", "Retail", "D2C brands"],
-        description: "Enable instant checkouts with product showcases, pricing, and seamless payment flows right in WhatsApp.",
-        illustration: <SalesConversionIllustration />,
+        title: "Lead qualification agent (Call)",
+        tags: ["Sales", "B2B", "WhatsApp Call"],
+        description: "Engage inbound callers on WhatsApp, capture intent with smart questions, score leads in real-time, and route high-value prospects to your sales team.",
+        illustration: <LeadQualificationCallIllustration />,
       },
       {
         title: "Cart recovery agent",
@@ -326,22 +402,22 @@ const categories: UseCaseCategory[] = [
     label: "Engage",
     useCases: [
       {
-        title: "AI-powered upsell agent",
-        tags: ["eCommerce", "Retail", "Food & dining"],
-        description: "Suggest complementary products and upgrades based on purchase history and browsing behavior.",
-        illustration: <UpsellAgentIllustration />,
-      },
-      {
-        title: "Loyalty marketing agent",
-        tags: ["Retail", "Hospitality", "Consumer services"],
-        description: "Send exclusive rewards, VIP perks, and personalized offers to your most valuable customers.",
-        illustration: <LoyaltyMarketingIllustration />,
-      },
-      {
         title: "Booking & reminder agent",
         tags: ["Health", "Education", "Local services"],
         description: "Automate appointment scheduling, confirmations, and reminders to reduce no-shows.",
         illustration: <BookingReminderIllustration />,
+      },
+      {
+        title: "Booking & appointment agent (Call)",
+        tags: ["Healthcare", "Services", "WhatsApp Call"],
+        description: "Confirm, reschedule, and manage customer bookings directly over WhatsApp calls with real-time availability checks.",
+        illustration: <BookingCallIllustration />,
+      },
+      {
+        title: "AI-powered upsell agent",
+        tags: ["eCommerce", "Retail", "Food & dining"],
+        description: "Suggest complementary products and upgrades based on purchase history and browsing behavior.",
+        illustration: <UpsellAgentIllustration />,
       },
     ],
   },
@@ -356,16 +432,16 @@ const categories: UseCaseCategory[] = [
         illustration: <CustomerServiceIllustration />,
       },
       {
+        title: "Payment reminder agent (Call)",
+        tags: ["Finance", "Insurance", "WhatsApp Call"],
+        description: "Automate follow-up calls for due or failed payments, offer payment plan options, and process payments - improving collection rates.",
+        illustration: <PaymentReminderCallIllustration />,
+      },
+      {
         title: "Order tracking agent",
         tags: ["eCommerce", "Logistics", "Food delivery"],
         description: "Send proactive shipping updates and delivery notifications to keep customers informed.",
         illustration: <OrderTrackingIllustration />,
-      },
-      {
-        title: "Feedback & survey agent",
-        tags: ["Travel", "Health", "Education", "eCommerce"],
-        description: "Collect post-purchase feedback and reviews at the perfect moment to improve satisfaction.",
-        illustration: <FeedbackSurveyIllustration />,
       },
     ],
   },

@@ -1,6 +1,5 @@
 ---
-// WhatsAppChannelHero.astro - Side-by-side hero with WhatsApp illustration
-import WhatsAppHeroIllustration from "./WhatsAppHeroIllustration";
+import ChatHeroIllustration from "./ChatHeroIllustration";
 ---
 
 <section class="hero bg-white pt-16 sm:pt-20 md:pt-24 pb-8">
@@ -9,17 +8,17 @@ import WhatsAppHeroIllustration from "./WhatsAppHeroIllustration";
       <!-- Left Content -->
       <div class="order-1 lg:order-1 max-w-[820px] text-center lg:text-left">
         <h1 class="font-sora text-[2rem] sm:text-[2.5rem] md:text-[3rem] font-normal leading-[1.1] tracking-[-0.02em] text-black">
-          Let WhatsApp AI agents handle your customer conversations 24/7
+          AI chat that resolves customer queries instantly, 24/7
         </h1>
         <p class="text-base sm:text-lg text-gray-600 mt-4 max-w-[540px] mx-auto lg:mx-0 leading-relaxed">
-          AI-powered chat and voice agents that answer purchase inquiries, close new sales, engage loyal customers & resolve support queries instantly.
+          Automate FAQs, process refunds, track orders, and handle complex queries - without human intervention. Scale customer service effortlessly while keeping satisfaction high.
         </p>
         <div class="flex flex-col sm:flex-row gap-3 mt-8 justify-center lg:justify-start">
           <a
             href="/contact/sales"
             class="inline-flex items-center justify-center px-6 py-3 text-base font-medium border border-gray-300 text-black rounded-md hover:bg-gray-50 transition-colors"
           >
-            Talk to Sales
+            Contact Sales
           </a>
           <a
             href="https://console.plivo.com/accounts/register/"
@@ -30,9 +29,9 @@ import WhatsAppHeroIllustration from "./WhatsAppHeroIllustration";
         </div>
       </div>
 
-      <!-- Right Content - WhatsApp Illustration -->
+      <!-- Right Content - Chat Illustration -->
       <div class="order-2 lg:order-2">
-        <WhatsAppHeroIllustration client:visible />
+        <ChatHeroIllustration client:visible />
       </div>
     </div>
   </div>

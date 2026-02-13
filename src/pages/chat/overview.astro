@@ -1,0 +1,49 @@
+---
+import PlivoLayout from "@/layouts/PlivoLayout.astro";
+import ChatSubNav from "@/components/sections/chat-channel/ChatSubNav.astro";
+import ChatChannelHero from "@/components/sections/chat-channel/ChatChannelHero.astro";
+import ClientLogos from "@/components/sections/voice-homepage/ClientLogos.astro";
+import ChatUseCases from "@/components/sections/chat-channel/ChatUseCases";
+import ChatAICapabilities from "@/components/sections/chat-channel/ChatAICapabilities";
+import ChatIntegrations from "@/components/sections/chat-channel/ChatIntegrations.astro";
+import ChatInteractiveFeatures from "@/components/sections/chat-channel/ChatInteractiveFeatures";
+import ChatMetrics from "@/components/sections/chat-channel/ChatMetrics";
+import ChatEngagementPlatform from "@/components/sections/chat-channel/ChatEngagementPlatform";
+import ChatFAQ from "@/components/sections/chat-channel/ChatFAQ";
+import ChatPreFooterCTA from "@/components/sections/chat-channel/ChatPreFooterCTA";
+---
+
+<PlivoLayout title="AI Chat Agents | Plivo" description="AI Chat that resolves customer queries instantly, 24/7. Automate FAQs, process refunds, track orders, and handle complex queries - without human intervention.">
+  <!-- Chat Sub Navigation -->
+  <ChatSubNav currentPage="overview" />
+
+  <!-- Hero Section -->
+  <ChatChannelHero />
+
+  <!-- Client Logos Marquee -->
+  <ClientLogos />
+
+  <!-- AI Agent Use Cases - Automate, Engage, Delight -->
+  <ChatUseCases client:visible />
+
+  <!-- AI Chat Capabilities - Accordion -->
+  <ChatAICapabilities client:visible />
+
+  <!-- Integrations Marquee -->
+  <ChatIntegrations />
+
+  <!-- Interactive Chat Features - 9 Card Grid -->
+  <ChatInteractiveFeatures client:visible />
+
+  <!-- Metrics / Results Section -->
+  <ChatMetrics client:visible />
+
+  <!-- Enterprise Foundation -->
+  <ChatEngagementPlatform client:visible />
+
+  <!-- FAQ Section -->
+  <ChatFAQ client:visible />
+
+  <!-- Pre-Footer CTA -->
+  <ChatPreFooterCTA client:visible />
+</PlivoLayout>

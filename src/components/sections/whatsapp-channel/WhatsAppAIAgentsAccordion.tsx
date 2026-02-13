@@ -15,6 +15,7 @@ import {
   Database,
   Clock,
   Moon,
+  AudioLines,
 } from "lucide-react";
 
 interface Feature {
@@ -46,6 +47,13 @@ const brandFeatures: Feature[] = [
     title: "High-performance AI content",
     description:
       "Generate compelling WhatsApp content at scale with AI that understands your products, promotions, and customer preferences.",
+  },
+  {
+    id: "voices-feel-real",
+    icon: <AudioLines className="h-4 w-4" />,
+    title: "Voices that feel real",
+    description:
+      "Deliver natural WhatsApp voice conversations in 10+ languages and accents while staying true to your brand's tone, style, and emotion.",
   },
 ];
 
@@ -586,6 +594,69 @@ function Availability247Illustration() {
   );
 }
 
+// Voices that Feel Real Illustration
+function VoicesFeelRealIllustration() {
+  return (
+    <div className="relative h-full w-full rounded-xl overflow-hidden bg-gray-100/70">
+      <div className="relative h-full w-full p-3 sm:p-4">
+        <div className="bg-white rounded-lg border border-gray-200 shadow-sm h-full flex flex-col">
+          {/* Header */}
+          <div className="px-4 py-3 border-b border-gray-100 flex items-center gap-3">
+            <AudioLines className="w-5 h-5 text-black" />
+            <div className="flex-1">
+              <p className="text-sm font-semibold text-gray-900">Voice Configuration</p>
+              <p className="text-[10px] text-gray-500">WhatsApp call voice settings</p>
+            </div>
+            <span className="text-[10px] px-2 py-1 rounded-md bg-green-50 text-green-700 font-medium border border-green-200">Active</span>
+          </div>
+
+          {/* Voice options */}
+          <div className="flex-1 p-4 space-y-3 overflow-hidden">
+            {/* Selected voice */}
+            <div className="rounded-lg border-2 border-[#323dfe] bg-[#323dfe]/5 p-3">
+              <div className="flex items-center justify-between mb-2">
+                <div className="flex items-center gap-2">
+                  <div className="w-8 h-8 rounded-full bg-[#323dfe] text-white flex items-center justify-center">
+                    <AudioLines className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <p className="text-[12px] font-semibold text-gray-900">Sarah</p>
+                    <p className="text-[10px] text-gray-500">English (US) - Warm & Friendly</p>
+                  </div>
+                </div>
+                <svg className="w-4 h-4 text-[#323dfe]" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                </svg>
+              </div>
+              {/* Waveform */}
+              <div className="flex items-center gap-0.5 h-6">
+                {[3, 5, 8, 12, 7, 10, 14, 6, 9, 13, 5, 8, 11, 7, 4, 6, 10, 8, 5, 3].map((h, i) => (
+                  <div key={i} className="flex-1 bg-[#323dfe]/40 rounded-full" style={{ height: `${h * 1.5}px` }} />
+                ))}
+              </div>
+            </div>
+
+            {/* Other voices */}
+            {[
+              { name: "Priya", lang: "Hindi - Professional", flag: "🇮🇳" },
+              { name: "Carlos", lang: "Spanish (MX) - Casual", flag: "🇲🇽" },
+              { name: "Yuki", lang: "Japanese - Polite", flag: "🇯🇵" },
+            ].map((voice, i) => (
+              <div key={i} className="flex items-center gap-2.5 p-2.5 rounded-lg bg-gray-50 border border-gray-200">
+                <span className="text-sm">{voice.flag}</span>
+                <div className="flex-1">
+                  <p className="text-[11px] font-medium text-gray-800">{voice.name}</p>
+                  <p className="text-[9px] text-gray-500">{voice.lang}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // Illustration switches
 function BrandIllustrationSwitch({ activeFeature }: { activeFeature: string }) {
   switch (activeFeature) {
@@ -593,6 +664,8 @@ function BrandIllustrationSwitch({ activeFeature }: { activeFeature: string }) {
       return <TwoWayConversationIllustration />;
     case "high-performance":
       return <HighPerformanceContentIllustration />;
+    case "voices-feel-real":
+      return <VoicesFeelRealIllustration />;
     case "brand-personalized":
     default:
       return <BrandPersonalityIllustration />;

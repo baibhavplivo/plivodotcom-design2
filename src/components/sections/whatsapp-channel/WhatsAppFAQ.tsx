@@ -58,6 +58,21 @@ const faqs: FAQItem[] = [
     answer:
       "Plivo consolidates all billing for both Plivo and Meta charges into a single invoice. This includes both the conversation-based charges by Meta and the platform fees by Plivo.",
   },
+  {
+    question: "What are WhatsApp Calls and how do they work with AI agents?",
+    answer:
+      "WhatsApp Calls allow AI agents to make and receive voice calls directly within WhatsApp. Customers can escalate from a chat to a voice call seamlessly within the same thread. AI agents handle calls with natural-sounding voices, understanding context from prior chat interactions for a unified experience.",
+  },
+  {
+    question: "Can I escalate a WhatsApp chat to a voice call?",
+    answer:
+      "Yes! Plivo supports seamless chat-to-call escalation within the same WhatsApp thread. When a conversation requires a more personal touch or involves complex issues, the AI agent can initiate a voice call while retaining full context from the chat history.",
+  },
+  {
+    question: "What languages are supported for WhatsApp voice AI?",
+    answer:
+      "Plivo's WhatsApp voice AI agents support 10+ languages and accents including English (US, UK, AU), Hindi, Spanish, Portuguese, Japanese, Arabic, and more. Each voice can be customized to match your brand's tone and personality.",
+  },
 ];
 
 export default function WhatsAppFAQ() {
@@ -69,7 +84,7 @@ export default function WhatsAppFAQ() {
           Frequently asked questions
         </h2>
         <p className="text-gray-600 text-center mb-10 md:mb-12">
-          Everything you need to know about WhatsApp AI Agents.
+          Everything you need to know about WhatsApp AI Agents - chat and voice.
         </p>
 
         {/* FAQ Accordion */}

@@ -322,6 +322,134 @@ function BroadcastIllustration() {
   );
 }
 
+// Illustration: WhatsApp Calling
+function WhatsAppCallingIllustration() {
+  return (
+    <div className="relative h-48 w-full rounded-lg bg-gray-100/70 overflow-hidden">
+      <div className="relative h-full w-full p-3 flex items-center justify-center">
+        <div className="w-full max-w-[220px]">
+          {/* Chat to call escalation */}
+          <svg className="absolute w-0 h-0">
+            <defs>
+              <linearGradient id="waCallGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#cd3ef9" />
+                <stop offset="100%" stopColor="#323dfe" />
+              </linearGradient>
+            </defs>
+          </svg>
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+            <div className="flex items-center gap-2 mb-2.5">
+              <div className="w-6 h-6 rounded-full bg-gray-100 flex items-center justify-center">
+                <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="url(#waCallGrad)" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
+                </svg>
+              </div>
+              <div className="flex-1">
+                <p className="text-[11px] font-medium text-gray-800">Chat to Voice</p>
+                <p className="text-[9px] text-gray-500">Same WhatsApp thread</p>
+              </div>
+            </div>
+            {/* Flow visualization */}
+            <div className="flex items-center gap-2">
+              <div className="flex-1 flex items-center justify-center gap-1.5 py-1.5 rounded-md border border-gray-200 bg-white">
+                <svg className="w-3 h-3 text-gray-500" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 20.97a5.969 5.969 0 01-.474-.065 4.48 4.48 0 00.978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z" />
+                </svg>
+                <p className="text-[9px] font-medium text-gray-600">Chat</p>
+              </div>
+              <svg className="w-4 h-4 text-gray-300 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+              </svg>
+              <div className="flex-1 flex items-center justify-center gap-1.5 py-1.5 rounded-md border border-gray-200 bg-white">
+                <svg className="w-3 h-3 text-gray-500" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
+                </svg>
+                <p className="text-[9px] font-medium text-gray-600">Voice</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* Bottom fade */}
+      <div className="absolute inset-x-0 bottom-0 h-8 bg-gradient-to-t from-white to-transparent pointer-events-none" />
+    </div>
+  );
+}
+
+// Illustration: Real-time Call Transcripts
+function CallTranscriptsIllustration() {
+  return (
+    <div className="relative h-48 w-full rounded-lg bg-gray-100/70 overflow-hidden">
+      <div className="relative h-full w-full p-3 flex items-center justify-center">
+        <div className="w-full max-w-[230px]">
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+            <div className="flex items-center justify-between mb-2.5">
+              <p className="text-[10px] font-semibold text-gray-800">Live Transcript</p>
+              <span className="flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-green-50 border border-green-200">
+                <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+                <span className="text-[8px] font-medium text-green-600">LIVE</span>
+              </span>
+            </div>
+            {/* Transcript lines */}
+            <div className="space-y-1.5">
+              {[
+                { speaker: "Agent", text: "I can see your account. Let me pull up the details." },
+                { speaker: "Customer", text: "Yes, I need to update the billing address." },
+              ].map((line, i) => (
+                <div key={i} className="rounded-md border border-gray-200 bg-gray-50 px-2 py-1.5">
+                  <p className="text-[8px] font-semibold text-gray-400 mb-0.5">{line.speaker}</p>
+                  <p className="text-[9px] text-gray-700 leading-[1.3]">{line.text}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* Bottom fade */}
+      <div className="absolute inset-x-0 bottom-0 h-8 bg-gradient-to-t from-white to-transparent pointer-events-none" />
+    </div>
+  );
+}
+
+// Illustration: Smarter Call Handling
+function SmarterCallHandlingIllustration() {
+  return (
+    <div className="relative h-48 w-full rounded-lg bg-gray-100/70 overflow-hidden">
+      <div className="relative h-full w-full p-3 flex items-center justify-center">
+        <div className="w-full max-w-[230px]">
+          {/* Call routing panel */}
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+            <p className="text-[10px] font-semibold text-gray-800 mb-2">Smart Call Routing</p>
+            {/* Routing rules */}
+            <div className="space-y-1.5">
+              {[
+                { label: "Sales inquiries", team: "Sales Team", color: "bg-blue-50 text-blue-700 border-blue-200" },
+                { label: "Support issues", team: "Support Queue", color: "bg-green-50 text-green-700 border-green-200" },
+                { label: "Billing queries", team: "Finance Team", color: "bg-amber-50 text-amber-700 border-amber-200" },
+              ].map((rule, i) => (
+                <div key={i} className="flex items-center gap-2 text-[10px]">
+                  <span className="text-gray-600 flex-1 truncate">{rule.label}</span>
+                  <svg className="w-3 h-3 text-gray-300 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                  </svg>
+                  <span className={`px-1.5 py-0.5 rounded text-[9px] font-medium border ${rule.color} flex-shrink-0`}>{rule.team}</span>
+                </div>
+              ))}
+            </div>
+            {/* Latency badge */}
+            <div className="mt-2.5 flex items-center gap-1.5 p-1.5 bg-gray-50 rounded-md">
+              <span className="w-1.5 h-1.5 rounded-full bg-green-500 flex-shrink-0" />
+              <span className="text-[9px] text-gray-600">Avg. wait time: <span className="font-semibold text-gray-900">{"<"}3s</span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* Bottom fade */}
+      <div className="absolute inset-x-0 bottom-0 h-8 bg-gradient-to-t from-white to-transparent pointer-events-none" />
+    </div>
+  );
+}
+
 const features: Feature[] = [
   {
     title: "Verified business profile",
@@ -359,6 +487,24 @@ const features: Feature[] = [
       "Send personalized updates, offers, and announcements to thousands of customers simultaneously with targeted delivery.",
     illustration: <BroadcastIllustration />,
   },
+  {
+    title: "WhatsApp calling",
+    description:
+      "Escalate from chat to voice seamlessly within the same WhatsApp thread for complex queries that need a personal touch.",
+    illustration: <WhatsAppCallingIllustration />,
+  },
+  {
+    title: "Smarter call handling",
+    description:
+      "Reduce wait times and route every caller to the right agent, team, or queue automatically based on intent and context.",
+    illustration: <SmarterCallHandlingIllustration />,
+  },
+  {
+    title: "Real-time call transcripts",
+    description:
+      "Get live transcriptions of every WhatsApp call for quality monitoring, compliance records, and seamless agent handoff context.",
+    illustration: <CallTranscriptsIllustration />,
+  },
 ];
 
 export default function WhatsAppConnectivityGrid() {
@@ -370,7 +516,7 @@ export default function WhatsAppConnectivityGrid() {
           Everything you need to engage customers on WhatsApp
         </h2>
         <p className="text-gray-600 text-center max-w-3xl mx-auto mb-12 md:mb-16">
-          From verified business profiles and rich media messaging to multilingual support and bulk broadcasts - all the tools to deliver standout customer experiences.
+          From verified business profiles and rich media messaging to WhatsApp calling and smart routing - all the tools to deliver standout customer experiences.
         </p>
 
         {/* Features Grid - 2x3 */}

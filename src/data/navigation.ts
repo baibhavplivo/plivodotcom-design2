@@ -62,7 +62,7 @@ export const mainNavigation: NavDropdown[] = [
             icon: "phone-call",
           },
           {
-            title: "Messaging",
+            title: "SMS",
             description:
               "Multi-channel messaging APIs built for global connectivity & scale",
             href: "/sms/overview/",
@@ -74,6 +74,13 @@ export const mainNavigation: NavDropdown[] = [
               "Build AI agents with messaging and calling for 2B+ WhatsApp users",
             href: "/whatsapp/overview/",
             icon: "whatsapp",
+          },
+          {
+            title: "Chat",
+            description:
+              "AI chat agents that resolve customer queries instantly, 24/7",
+            href: "/chat/overview/",
+            icon: "message-circle",
           },
         ],
       },

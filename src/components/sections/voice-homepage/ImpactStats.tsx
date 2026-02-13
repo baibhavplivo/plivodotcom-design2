@@ -157,7 +157,7 @@ export default function ImpactStats() {
                 <LiveCounter value={counter} />
               </div>
               <div className="text-base sm:text-lg font-medium text-gray-600">
-                minutes of customer issues resolved by our Agents
+                minutes of customer conversations handled by our AI Agents
               </div>
             </div>
 
