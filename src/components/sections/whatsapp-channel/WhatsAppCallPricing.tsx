@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import { ChevronDown } from "lucide-react";
 import {
   WA_CALL_RATES,
+  WA_CALL_FALLBACK,
   WA_CALL_PRIORITY_COUNTRIES,
   PHONE_RENTAL_RATES,
   buildCountryList,
@@ -63,7 +64,7 @@ export default function WhatsAppCallPricing() {
   }, []);
 
   const sections = getSections(selectedCountry.code);
-  const rates: WhatsAppCallRates = WA_CALL_RATES[selectedCountry.code] || WA_CALL_RATES["US"];
+  const rates: WhatsAppCallRates = WA_CALL_RATES[selectedCountry.code] || WA_CALL_FALLBACK;
 
   useEffect(() => {
     const handleScrollAndResize = () => {

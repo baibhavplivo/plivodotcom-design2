@@ -1,14 +1,33 @@
 "use client";
 
-// Rates table data - per-unit Plivo Verify channel rates
+// Rates table data - per-unit Plivo Verify channel rates (from verify-pricing.html reference)
 const ratesTableData = [
-  { country: "United States", sms: "$0.0070/sms", voice: "$0.0100/min", whatsapp: "$0.0048/conversation" },
-  { country: "Canada", sms: "$0.0070/sms", voice: "$0.0120/min", whatsapp: "$0.0048/conversation" },
-  { country: "United Kingdom", sms: "$0.0400/sms", voice: "$0.0150/min", whatsapp: "$0.0098/conversation" },
+  { country: "United States", sms: "$0.0070/sms", voice: "$0.0100/min", whatsapp: "$0.0143/conversation" },
+  { country: "Canada", sms: "$0.0070/sms", voice: "$0.0120/min", whatsapp: "$0.0143/conversation" },
+  { country: "United Kingdom", sms: "$0.0400/sms", voice: "$0.0150/min", whatsapp: "$0.0366/conversation" },
   { country: "India", sms: "$0.00018/sms", voice: "$0.0048/min", whatsapp: "$0.0022/conversation" },
-  { country: "Australia", sms: "$0.04513/sms", voice: "$0.0230/min", whatsapp: "$0.0165/conversation" },
-  { country: "Germany", sms: "$0.0750/sms", voice: "$0.0180/min", whatsapp: "$0.0131/conversation" },
-  { country: "Brazil", sms: "$0.0350/sms", voice: "$0.0200/min", whatsapp: "$0.0080/conversation" },
+  { country: "Australia", sms: "$0.04513/sms", voice: "$0.0230/min", whatsapp: "$0.0433/conversation" },
+  { country: "Germany", sms: "$0.0750/sms", voice: "$0.0180/min", whatsapp: "$0.0776/conversation" },
+  { country: "Brazil", sms: "$0.0350/sms", voice: "$0.0200/min", whatsapp: "$0.0323/conversation" },
+  { country: "France", sms: "$0.0650/sms", voice: "$0.0180/min", whatsapp: "$0.0699/conversation" },
+  { country: "Indonesia", sms: "$0.2959/sms", voice: "$0.0200/min", whatsapp: "$0.0308/conversation" },
+  { country: "Nigeria", sms: "$0.0453/sms", voice: "$0.0200/min", whatsapp: "$0.0295/conversation" },
+  { country: "South Africa", sms: "$0.0188/sms", voice: "$0.0200/min", whatsapp: "$0.0188/conversation" },
+  { country: "Mexico", sms: "$0.1248/sms", voice: "$0.0150/min", whatsapp: "$0.0247/conversation" },
+  { country: "Turkey", sms: "$0.0276/sms", voice: "$0.0200/min", whatsapp: "$0.0091/conversation" },
+  { country: "Italy", sms: "$0.0832/sms", voice: "$0.0180/min", whatsapp: "$0.0386/conversation" },
+  { country: "Spain", sms: "$0.0767/sms", voice: "$0.0180/min", whatsapp: "$0.0350/conversation" },
+  { country: "Argentina", sms: "$0.0375/sms", voice: "$0.0200/min", whatsapp: "$0.0375/conversation" },
+  { country: "Saudi Arabia", sms: "$0.0200/sms", voice: "$0.0200/min", whatsapp: "$0.0234/conversation" },
+  { country: "Colombia", sms: "$0.0100/sms", voice: "$0.0200/min", whatsapp: "$0.0085/conversation" },
+  { country: "Pakistan", sms: "$0.2937/sms", voice: "$0.0200/min", whatsapp: "$0.0236/conversation" },
+  { country: "Israel", sms: "$0.1463/sms", voice: "$0.0200/min", whatsapp: "$0.0177/conversation" },
+  { country: "Egypt", sms: "$0.0538/sms", voice: "$0.0200/min", whatsapp: "$0.0626/conversation" },
+  { country: "Malaysia", sms: "$0.0300/sms", voice: "$0.0150/min", whatsapp: "$0.0188/conversation" },
+  { country: "Singapore", sms: "$0.0370/sms", voice: "$0.0150/min", whatsapp: "$0.0433/conversation" },
+  { country: "Russia", sms: "$0.6148/sms", voice: "$0.0200/min", whatsapp: "$0.0437/conversation" },
+  { country: "Netherlands", sms: "$0.0750/sms", voice: "$0.0180/min", whatsapp: "$0.0728/conversation" },
+  { country: "UAE", sms: "$0.0200/sms", voice: "$0.0200/min", whatsapp: "$0.0186/conversation" },
 ];
 
 export default function VerifyRatesTable() {
