@@ -92,9 +92,9 @@ export default function AgentBuilder() {
                 </div>
               </div>
               <div className="mt-auto">
-                <button className="w-max rounded-md bg-black px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-gray-800">
-                  Try streaming agent
-                </button>
+                <a href="/contact/sales/" className="inline-block w-max rounded-md bg-black px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-gray-800">
+                  Talk to us
+                </a>
               </div>
             </div>
           </div>
@@ -125,9 +125,9 @@ export default function AgentBuilder() {
                 ))}
               </div>
               <div className="mt-auto">
-                <button className="w-max rounded-md bg-black px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-gray-800">
-                  Try no-code builder
-                </button>
+                <a href="/signup" className="inline-block w-max rounded-md bg-black px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-gray-800">
+                  Sign up free
+                </a>
               </div>
             </div>
           </div>

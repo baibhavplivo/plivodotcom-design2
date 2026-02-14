@@ -583,18 +583,18 @@ function CarrierFeesSection() {
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-gray-200">
-                <th className="py-3 pr-4 text-left font-semibold text-black" rowSpan={2}>Carrier</th>
-                <th className="py-2 px-2 text-center font-semibold text-black border-l border-gray-200" colSpan={2}>Long Codes</th>
-                <th className="py-2 px-2 text-center font-semibold text-black border-l border-gray-200" colSpan={2}>Short Codes</th>
-                <th className="py-2 px-2 text-center font-semibold text-black border-l border-gray-200" colSpan={2}>Toll-Free</th>
+                <th className="py-3 pr-4 text-left font-semibold text-black whitespace-nowrap" rowSpan={2}>Carrier</th>
+                <th className="py-2 px-2 text-center font-semibold text-black border-l border-gray-200 whitespace-nowrap" colSpan={2}>Long Codes</th>
+                <th className="py-2 px-2 text-center font-semibold text-black border-l border-gray-200 whitespace-nowrap" colSpan={2}>Short Codes</th>
+                <th className="py-2 px-2 text-center font-semibold text-black border-l border-gray-200 whitespace-nowrap" colSpan={2}>Toll-Free</th>
               </tr>
               <tr className="border-b border-gray-200">
-                <th className="py-2 px-2 text-center text-xs font-medium text-gray-600 border-l border-gray-200">To send SMS</th>
-                <th className="py-2 px-2 text-center text-xs font-medium text-gray-600">To receive SMS</th>
-                <th className="py-2 px-2 text-center text-xs font-medium text-gray-600 border-l border-gray-200">To send SMS</th>
-                <th className="py-2 px-2 text-center text-xs font-medium text-gray-600">To receive SMS</th>
-                <th className="py-2 px-2 text-center text-xs font-medium text-gray-600 border-l border-gray-200">To send SMS</th>
-                <th className="py-2 px-2 text-center text-xs font-medium text-gray-600">To receive SMS</th>
+                <th className="py-2 px-2 text-center text-xs font-medium text-gray-600 border-l border-gray-200 whitespace-nowrap">To send SMS</th>
+                <th className="py-2 px-2 text-center text-xs font-medium text-gray-600 whitespace-nowrap">To receive SMS</th>
+                <th className="py-2 px-2 text-center text-xs font-medium text-gray-600 border-l border-gray-200 whitespace-nowrap">To send SMS</th>
+                <th className="py-2 px-2 text-center text-xs font-medium text-gray-600 whitespace-nowrap">To receive SMS</th>
+                <th className="py-2 px-2 text-center text-xs font-medium text-gray-600 border-l border-gray-200 whitespace-nowrap">To send SMS</th>
+                <th className="py-2 px-2 text-center text-xs font-medium text-gray-600 whitespace-nowrap">To receive SMS</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100">
@@ -646,18 +646,18 @@ function CarrierFeesSection() {
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-gray-200">
-                <th className="py-3 pr-4 text-left font-semibold text-black" rowSpan={2}>Carrier</th>
-                <th className="py-2 px-2 text-center font-semibold text-black border-l border-gray-200" colSpan={2}>Long Codes</th>
-                <th className="py-2 px-2 text-center font-semibold text-black border-l border-gray-200" colSpan={2}>Short Codes</th>
-                <th className="py-2 px-2 text-center font-semibold text-black border-l border-gray-200" colSpan={2}>Toll-Free</th>
+                <th className="py-3 pr-4 text-left font-semibold text-black whitespace-nowrap" rowSpan={2}>Carrier</th>
+                <th className="py-2 px-2 text-center font-semibold text-black border-l border-gray-200 whitespace-nowrap" colSpan={2}>Long Codes</th>
+                <th className="py-2 px-2 text-center font-semibold text-black border-l border-gray-200 whitespace-nowrap" colSpan={2}>Short Codes</th>
+                <th className="py-2 px-2 text-center font-semibold text-black border-l border-gray-200 whitespace-nowrap" colSpan={2}>Toll-Free</th>
               </tr>
               <tr className="border-b border-gray-200">
-                <th className="py-2 px-2 text-center text-xs font-medium text-gray-600 border-l border-gray-200">To send MMS</th>
-                <th className="py-2 px-2 text-center text-xs font-medium text-gray-600">To receive MMS</th>
-                <th className="py-2 px-2 text-center text-xs font-medium text-gray-600 border-l border-gray-200">To send MMS</th>
-                <th className="py-2 px-2 text-center text-xs font-medium text-gray-600">To receive MMS</th>
-                <th className="py-2 px-2 text-center text-xs font-medium text-gray-600 border-l border-gray-200">To send MMS</th>
-                <th className="py-2 px-2 text-center text-xs font-medium text-gray-600">To receive MMS</th>
+                <th className="py-2 px-2 text-center text-xs font-medium text-gray-600 border-l border-gray-200 whitespace-nowrap">To send MMS</th>
+                <th className="py-2 px-2 text-center text-xs font-medium text-gray-600 whitespace-nowrap">To receive MMS</th>
+                <th className="py-2 px-2 text-center text-xs font-medium text-gray-600 border-l border-gray-200 whitespace-nowrap">To send MMS</th>
+                <th className="py-2 px-2 text-center text-xs font-medium text-gray-600 whitespace-nowrap">To receive MMS</th>
+                <th className="py-2 px-2 text-center text-xs font-medium text-gray-600 border-l border-gray-200 whitespace-nowrap">To send MMS</th>
+                <th className="py-2 px-2 text-center text-xs font-medium text-gray-600 whitespace-nowrap">To receive MMS</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100">

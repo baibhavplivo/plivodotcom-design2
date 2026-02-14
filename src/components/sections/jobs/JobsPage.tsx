@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { FlickeringGrid } from "@/components/magicui/flickering-grid";
 
 interface LeverJob {
   id: string;
@@ -15,7 +16,7 @@ interface LeverJob {
 
 const perks = [
   {
-    title: "Dynamic work environment",
+    title: "Dynamic Work Environment",
     desc: "Fast-paced culture emphasizing innovation and high ownership across every team.",
     icon: (
       <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
@@ -24,7 +25,7 @@ const perks = [
     ),
   },
   {
-    title: "Competitive compensation",
+    title: "Competitive Compensation",
     desc: "Market-aligned salary packages designed to attract and retain the best talent.",
     icon: (
       <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
@@ -33,8 +34,8 @@ const perks = [
     ),
   },
   {
-    title: "Tech-first culture",
-    desc: "Work with cutting-edge technology — from AI agents to global communications infrastructure.",
+    title: "Tech-First Culture",
+    desc: "Work with cutting-edge technology - from AI agents to global communications infrastructure.",
     icon: (
       <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5" />
@@ -42,7 +43,7 @@ const perks = [
     ),
   },
   {
-    title: "Healthcare & wellness",
+    title: "Healthcare & Wellness",
     desc: "Comprehensive medical coverage to keep you and your family healthy and secure.",
     icon: (
       <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
@@ -51,7 +52,7 @@ const perks = [
     ),
   },
   {
-    title: "Transparent culture",
+    title: "Transparent Culture",
     desc: "Feedback-driven environment with emphasis on trust, ownership, and open communication.",
     icon: (
       <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
@@ -103,29 +104,60 @@ export default function JobsPage() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-white pt-16 sm:pt-20 md:pt-24 pb-12">
-        <div className="container mx-auto max-w-7xl px-4 text-center">
+      <section className="bg-white pt-16 sm:pt-20 md:pt-24 pb-0">
+        <div className="container mx-auto max-w-7xl px-4 text-center mb-8 sm:mb-10">
           <h1 className="font-sora text-[2rem] sm:text-[2.5rem] md:text-[3rem] font-normal leading-[1.1] tracking-[-0.02em] text-black mb-5">
             Come build the future of
             <br className="hidden sm:block" />
-            {" "}agentic AI with us
+            {" "}Agentic AI with us
           </h1>
-          <p className="text-gray-600 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
-            Plivo is redefining customer engagement through intelligent, autonomous conversations at global scale — handling over one billion API requests monthly.
+          <p className="text-gray-600 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed mb-4">
+            Plivo is redefining customer engagement through intelligent, autonomous conversations at global scale - handling over one billion API requests monthly.
+          </p>
+          <p className="text-black text-base sm:text-lg font-medium max-w-2xl mx-auto leading-relaxed">
+            We're a 100+ person team with offices in India and the US, backed by Andreessen Horowitz, Battery Ventures, Qualcomm Ventures, and Y Combinator.
           </p>
         </div>
+        <img
+          src="/images/jobs-hero.avif"
+          alt="Plivo team"
+          className="w-full h-auto object-cover"
+        />
       </section>
 
       {/* Company Overview */}
       <section className="bg-gray-50 py-12 lg:py-16">
         <div className="container mx-auto max-w-7xl px-4">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="font-sora text-[1.5rem] sm:text-[1.75rem] font-normal leading-[1.25] tracking-[-0.02em] text-black mb-4">
-              Our journey
+          <div className="max-w-3xl mx-auto text-center mb-10">
+            <h2 className="font-sora text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] font-normal leading-[1.25] tracking-[-0.02em] text-black mb-4">
+              Our Journey
             </h2>
             <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
-              Plivo began in 2011 offering programmable voice and messaging APIs, evolving into a Communications Platform as a Service (CPaaS) leader. Now we're building the next frontier — autonomous communication agents that handle complex customer interactions at scale. Profitable since 2015, we're backed by Andreessen Horowitz, Battery Ventures, Qualcomm Ventures, and Y Combinator. We're a 100+ person team with offices in India and the US.
+              Plivo began in 2011 offering programmable voice and messaging APIs, evolving into a Communications Platform as a Service (CPaaS) leader. Now we're building the next frontier - autonomous communication agents that handle complex customer interactions at scale. Profitable since 2015, we're backed by Andreessen Horowitz, Battery Ventures, Qualcomm Ventures, and Y Combinator. We're a 100+ person team with offices in India and the US.
             </p>
+          </div>
+          <div className="rounded-lg border border-gray-200 bg-white shadow-sm overflow-hidden">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5">
+              {[
+                { value: "2011", label: "Plivo Founded" },
+                { value: "2015", label: "Profitable Since" },
+                { value: "190+", label: "Countries Served" },
+                { value: "02", label: "Countries Located" },
+                { value: "1B+", label: "API Requests / month" },
+              ].map((stat, index) => (
+                <div
+                  key={stat.label}
+                  className={`flex flex-col items-center justify-center px-4 py-8 sm:py-10 ${
+                    index < 4 ? "border-r border-gray-200" : ""
+                  } ${index >= 2 ? "border-t sm:border-t lg:border-t-0 border-gray-200" : ""} ${index >= 3 ? "border-t lg:border-t-0 border-gray-200" : ""}`}
+                >
+                  <div className="font-sora text-2xl sm:text-3xl font-semibold text-black mb-1">
+                    {stat.value}
+                  </div>
+                  <div className="text-sm text-gray-500">{stat.label}</div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -133,8 +165,8 @@ export default function JobsPage() {
       {/* Perks */}
       <section className="bg-white py-12 lg:py-16">
         <div className="container mx-auto max-w-7xl px-4">
-          <h2 className="font-sora text-[1.75rem] sm:text-[2rem] font-normal leading-[1.25] tracking-[-0.02em] text-black text-center mb-3">
-            Perks & benefits
+          <h2 className="font-sora text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] font-normal leading-[1.25] tracking-[-0.02em] text-black text-center mb-3">
+            Perks & Benefits
           </h2>
           <p className="text-gray-600 text-base max-w-xl mx-auto text-center mb-10">
             We invest in our people so they can do their best work.
@@ -145,7 +177,7 @@ export default function JobsPage() {
                 key={perk.title}
                 className="bg-gray-50 rounded-lg p-5"
               >
-                <div className="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-white text-gray-700 border border-gray-200 mb-3">
+                <div className="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-white text-[#323dfe] border border-gray-200 mb-3">
                   {perk.icon}
                 </div>
                 <h3 className="font-inter text-sm font-semibold text-black mb-1.5">
@@ -159,10 +191,10 @@ export default function JobsPage() {
       </section>
 
       {/* Open Positions */}
-      <section className="bg-gray-50 py-12 lg:py-16">
+      <section className="bg-white py-12 lg:py-16">
         <div className="container mx-auto max-w-7xl px-4">
-          <h2 className="font-sora text-[1.75rem] sm:text-[2rem] font-normal leading-[1.25] tracking-[-0.02em] text-black text-center mb-3">
-            Open positions
+          <h2 className="font-sora text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] font-normal leading-[1.25] tracking-[-0.02em] text-black text-center mb-3">
+            Open Positions
           </h2>
           <p className="text-gray-600 text-base max-w-xl mx-auto text-center mb-8">
             Find your next role and help shape the future of AI-powered communication.
@@ -241,18 +273,28 @@ export default function JobsPage() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="bg-white py-12 lg:py-16">
-        <div className="container mx-auto max-w-7xl px-4 text-center">
-          <h2 className="font-sora text-[1.5rem] sm:text-[1.75rem] font-normal leading-[1.25] tracking-[-0.02em] text-black mb-3">
+      {/* Pre-Footer CTA */}
+      <section className="relative overflow-hidden bg-white py-12 sm:py-16 md:py-20">
+        <div className="pointer-events-none absolute inset-0 z-[1]">
+          <FlickeringGrid
+            className="h-full w-full"
+            squareSize={4}
+            gridGap={6}
+            color="rgb(139, 92, 246)"
+            maxOpacity={0.225}
+            flickerChance={0.1}
+          />
+        </div>
+        <div className="container relative z-10 mx-auto flex max-w-7xl flex-col items-center px-4 text-center">
+          <h2 className="font-sora text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] font-normal leading-[1.25] tracking-[-0.02em] text-black">
             Don't see a role that fits?
           </h2>
-          <p className="text-gray-600 text-sm sm:text-base max-w-lg mx-auto mb-6">
+          <p className="mx-auto max-w-2xl text-base sm:text-lg text-gray-600 mt-3">
             We're always looking for talented individuals. Reach out and tell us how you'd contribute.
           </p>
           <a
             href="/contact/sales/"
-            className="inline-flex items-center justify-center px-5 py-2.5 text-sm font-medium rounded-md bg-black text-white hover:bg-gray-800 transition-colors"
+            className="inline-flex items-center justify-center rounded-md bg-black px-8 py-3 text-base font-medium text-white transition-colors hover:bg-gray-800 mt-6"
           >
             Get in touch
           </a>

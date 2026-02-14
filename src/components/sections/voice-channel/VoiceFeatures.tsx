@@ -230,7 +230,7 @@ function LanguageCard({
   isCenter?: boolean;
 }) {
   return (
-    <div className={`flex-shrink-0 flex items-center gap-4 rounded-2xl bg-white px-6 py-5 w-[360px] transition-all duration-500 shadow-[0_4px_20px_rgba(0,0,0,0.08)] ${isCenter ? '' : 'opacity-50'}`}>
+    <div className={`flex-shrink-0 flex items-center gap-4 rounded-2xl bg-white px-6 py-5 w-full max-w-[360px] transition-all duration-500 shadow-[0_4px_20px_rgba(0,0,0,0.08)] ${isCenter ? '' : 'opacity-50'}`}>
       {/* Play button - gradient circle */}
       <button
         onClick={onPlayToggle}

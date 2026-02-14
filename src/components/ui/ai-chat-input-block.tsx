@@ -84,8 +84,7 @@ const BasicAIChatInput = () => {
   };
 
   const handleSubmit = () => {
-    // Navigate to cx.plivo.com with the prompt
-    window.open("https://cx.plivo.com/", "_blank");
+    window.location.href = "/signup";
   };
 
   return (
