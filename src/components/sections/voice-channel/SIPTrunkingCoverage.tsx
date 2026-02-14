@@ -450,7 +450,7 @@ function CountryDetailPanel({ country, coverageType }: { country: SIPCountry; co
           View full pricing
         </a>
         <a
-          href="https://console.plivo.com/accounts/register/"
+          href="https://cx.plivo.com/"
           className="inline-flex items-center justify-center px-5 py-2.5 text-sm font-medium bg-black text-white rounded-md hover:bg-gray-800 transition-colors"
         >
           Start free trial

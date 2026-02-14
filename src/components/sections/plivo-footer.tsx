@@ -22,7 +22,6 @@ export const PlivoFooter = () => {
   const footerSections = [
     footerNavigation.platform,
     footerNavigation.communications,
-    footerNavigation.aiAgents,
     footerNavigation.apiPlatform,
     footerNavigation.resources,
     footerNavigation.company,
@@ -32,7 +31,7 @@ export const PlivoFooter = () => {
     <footer className="border-t border-gray-800 bg-[#0f1117]">
       <div className="container mx-auto max-w-7xl px-4 pb-8 pt-16">
         {/* Main Footer Grid */}
-        <div className="grid grid-cols-2 gap-8 md:grid-cols-3 lg:grid-cols-6">
+        <div className="grid grid-cols-2 gap-8 md:grid-cols-3 lg:grid-cols-5">
           {footerSections.map((section) => (
             <div key={section.title}>
               <h3 className="mb-4 text-sm font-semibold text-white">

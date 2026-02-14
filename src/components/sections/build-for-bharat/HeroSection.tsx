@@ -89,7 +89,7 @@ export default function HeroSection() {
           className="mb-8 sm:mb-14"
         >
           <a
-            href="https://console.plivo.com/accounts/register/"
+            href="https://cx.plivo.com/"
             className="inline-flex items-center justify-center px-8 sm:px-10 py-3 sm:py-4 text-base sm:text-lg font-semibold bg-white text-gray-900 rounded-lg hover:bg-gray-100 transition-all duration-200 shadow-lg hover:shadow-xl hover:-translate-y-0.5"
           >
             Sign Up Now

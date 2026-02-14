@@ -97,7 +97,7 @@ export const PlivoHero = ({ headline, subheadline }: PlivoHeroProps) => {
             {/* CTAs */}
             <div className="flex flex-wrap items-center gap-3">
               <a
-                href="https://console.plivo.com/accounts/register/"
+                href="https://cx.plivo.com/"
                 className="group inline-flex items-center justify-center gap-2 rounded-md bg-black px-6 py-3 text-[14px] font-medium text-white transition-all hover:bg-gray-800 hover:shadow-md"
               >
                 <svg

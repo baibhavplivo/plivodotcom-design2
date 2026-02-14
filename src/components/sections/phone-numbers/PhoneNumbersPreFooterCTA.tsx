@@ -31,7 +31,7 @@ export default function PhoneNumbersPreFooterCTA() {
             Get volume pricing
           </a>
           <a
-            href="https://console.plivo.com/accounts/register/"
+            href="https://cx.plivo.com/"
             className="inline-flex items-center justify-center rounded-md bg-black px-6 py-3 text-base font-medium text-white transition-colors hover:bg-gray-800"
           >
             Request trial

@@ -33,25 +33,6 @@ export const mainNavigation: NavDropdown[] = [
     title: "Platform",
     sections: [
       {
-        title: "AI Agents",
-        items: [
-          {
-            title: "Programmable AI Agents",
-            description:
-              "Modular building blocks from Audio Streaming to ASR, Turn detection, TTS to build your voice AI agents",
-            href: "/platform/ai-agents/",
-            icon: "sparkles",
-          },
-          {
-            title: "No-code AI Agent Studio",
-            description:
-              "Build, test and deploy omnichannel AI agents within minutes using our drag and drop vibe agent builder",
-            href: "/platform/ai-agents-builder/",
-            icon: "wand",
-          },
-        ],
-      },
-      {
         title: "Communications",
         items: [
           {
@@ -124,7 +105,7 @@ export const secondaryNavigation: NavItem[] = [
 // CTA button
 export const ctaNavigation: NavItem = {
   title: "Get started now",
-  href: "https://console.plivo.com/accounts/register/",
+  href: "https://cx.plivo.com/",
   external: true,
 };
 
@@ -134,13 +115,6 @@ export const footerNavigation = {
     title: "Platform",
     items: [
       { title: "AI Agents", href: "/platform/ai-agents/" },
-      { title: "No-Code Agent Studio", href: "/platform/ai-agents-builder/" },
-      {
-        title: "Personalize Your AI Agent",
-        href: "/platform/personalized-agents/",
-      },
-      { title: "Human handoff", href: "/platform/human-handoff/" },
-      { title: "MCP Tools & Actions", href: "/platform/mcp-tools/" },
       { title: "Pricing", href: "/pricing/" },
     ],
   },
@@ -149,26 +123,15 @@ export const footerNavigation = {
     items: [
       { title: "Voice", href: "/voice/overview/" },
       { title: "SMS", href: "/sms/overview/" },
-      { title: "WhatsApp Message", href: "/whatsapp/overview/" },
-      { title: "WhatsApp Call", href: "/whatsapp/call/" },
+      { title: "WhatsApp", href: "/whatsapp/overview/" },
       { title: "Chat", href: "/chat/overview/" },
-      { title: "RCS", href: "/rcs/" },
-    ],
-  },
-  aiAgents: {
-    title: "AI Agents",
-    items: [
-      { title: "Lead Qualification", href: "/use-cases/lead-qualification/" },
-      { title: "Customer Support", href: "/use-cases/customer-support/" },
-      { title: "Appointment Booking", href: "/use-cases/appointment-booking/" },
-      { title: "Sales Conversion", href: "/use-cases/sales-conversion/" },
     ],
   },
   apiPlatform: {
-    title: "API Platform",
+    title: "API platform",
     items: [
       {
-        title: "API Login",
+        title: "API login",
         href: "https://console.plivo.com/",
         external: true,
       },
@@ -178,13 +141,12 @@ export const footerNavigation = {
         external: true,
       },
       {
-        title: "Platform Status",
+        title: "Platform status",
         href: "https://status.plivo.com/",
         external: true,
       },
-      { title: "Twilio Alternative", href: "/compare/twilio-alternative/" },
       {
-        title: "API Reference",
+        title: "API reference",
         href: "https://www.plivo.com/docs/voice/api/overview/",
         external: true,
       },
@@ -194,19 +156,16 @@ export const footerNavigation = {
     title: "Resources",
     items: [
       { title: "Blog", href: "/blog/" },
-      { title: "Guides", href: "/guide/" },
       {
-        title: "Knowledge Base",
+        title: "Knowledge base",
         href: "https://support.plivo.com/",
         external: true,
       },
-      { title: "Content Library", href: "/resources/" },
       {
         title: "Get support",
         href: "https://support.plivo.com/",
         external: true,
       },
-      { title: "Support Plans", href: "/support-plans/" },
       { title: "Security", href: "/security/" },
     ],
   },
@@ -214,11 +173,10 @@ export const footerNavigation = {
     title: "Company",
     items: [
       { title: "About", href: "/about/" },
-      { title: "Customers", href: "/customers/" },
       { title: "Jobs", href: "/jobs/" },
       { title: "Talk to sales", href: "/contact/sales/" },
       { title: "Legal", href: "/legal/tos/" },
-      { title: "Design System", href: "/design-system/" },
+      { title: "Design system", href: "/design-system/" },
     ],
   },
 };

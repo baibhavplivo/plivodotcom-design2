@@ -192,7 +192,7 @@ const Navbar1 = ({ currentPage = "/" }: Navbar1Props) => {
                     <NavigationMenuContent>
                       <div className="w-[700px] p-6">
                         {navItem.sections && (
-                          <div className="grid grid-cols-2 gap-8">
+                          <div>
                             {navItem.sections.map((section) => (
                               <div key={section.title}>
                                 <h3 className="mb-4 text-[13px] font-semibold uppercase tracking-wider text-[#323DFE]">
@@ -202,7 +202,7 @@ const Navbar1 = ({ currentPage = "/" }: Navbar1Props) => {
                                   className={
                                     navItem.title === "Solutions"
                                       ? "space-y-0"
-                                      : "space-y-1"
+                                      : "grid grid-cols-2 gap-x-6 gap-y-1"
                                   }
                                 >
                                   {section.items.map((item) => (

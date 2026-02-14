@@ -827,7 +827,7 @@ export function PlivoPricing() {
 
               {/* CTA Button */}
               <a
-                href="https://console.plivo.com/accounts/register/"
+                href="https://cx.plivo.com/"
                 className="mt-6 block w-full rounded-lg bg-black py-3 text-center text-sm font-medium text-white transition-colors hover:bg-gray-800"
               >
                 Sign up now

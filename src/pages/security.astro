@@ -1,0 +1,10 @@
+---
+import PlivoLayout from '@/layouts/PlivoLayout.astro';
+import SecurityPage from '@/components/sections/security/SecurityPage';
+import PreFooterCTA from '@/components/sections/voice-homepage/PreFooterCTA';
+---
+
+<PlivoLayout title="Security" description="Enterprise-grade security architecture protecting your data across every layer of the Plivo platform. SOC 2, HIPAA, PCI DSS, GDPR, ISO 27001 certified.">
+  <SecurityPage client:load />
+  <PreFooterCTA client:visible />
+</PlivoLayout>

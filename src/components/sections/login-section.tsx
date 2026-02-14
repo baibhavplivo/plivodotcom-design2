@@ -60,7 +60,7 @@ const LoginSection = () => {
               </div>
               <div className="mx-auto mt-8 flex justify-center gap-1 text-sm text-muted-foreground">
                 <p>Don&apos;t have an account?</p>
-                <a href="/signup" className="font-medium text-primary">
+                <a href="https://cx.plivo.com/" className="font-medium text-primary">
                   Sign up
                 </a>
               </div>

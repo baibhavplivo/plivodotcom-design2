@@ -27,7 +27,7 @@ export default function CoveragePreFooterCTA() {
         </p>
         <div className="flex flex-col sm:flex-row gap-3 mt-8">
           <a
-            href="https://console.plivo.com/accounts/register/"
+            href="https://cx.plivo.com/"
             className="inline-flex items-center justify-center rounded-md bg-black px-6 py-3 text-base font-medium text-white transition-colors hover:bg-gray-800"
           >
             Get Started Free

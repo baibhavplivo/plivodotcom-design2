@@ -218,61 +218,17 @@ export const PlivoNavbar = ({ currentPage }: { currentPage: string }) => {
                         )}
                       >
                         {/* Main content */}
-                        <div className="mx-auto max-w-7xl px-4 py-8">
-                          <div className="grid grid-cols-2 gap-20">
+                        <div className="mx-auto max-w-4xl px-4 py-8">
+                          <div>
                             {item.sections.map((section) => (
                               <div key={section.title}>
-                                <h3 className="mb-6 text-[13px] font-semibold uppercase tracking-wider text-[#323dfe]">
+                                <h3 className="mb-5 text-[13px] font-semibold uppercase tracking-wider text-[#323dfe]">
                                   {section.title}
                                 </h3>
-                                <div className="space-y-1">
-                                  {section.items.map((subItem) =>
-                                    subItem.subLinks &&
-                                    subItem.subLinks.length > 0 ? (
-                                      // Items with subLinks - no hover bg on container
-                                      <div
-                                        key={subItem.title}
-                                        className="flex items-start gap-4 p-3"
-                                      >
-                                        {subItem.icon &&
-                                          iconMap[subItem.icon] && (
-                                            <span className="mt-0.5 text-[#323dfe]">
-                                              {iconMap[subItem.icon]}
-                                            </span>
-                                          )}
-                                        <div>
-                                          <a
-                                            href={subItem.href}
-                                            className="block text-[14px] font-semibold text-gray-900 transition-colors hover:text-[#323dfe]"
-                                            onClick={() =>
-                                              setOpenDropdown(null)
-                                            }
-                                          >
-                                            {subItem.title}
-                                          </a>
-                                          {subItem.description && (
-                                            <span className="mt-1 block text-[13px] leading-relaxed text-gray-500">
-                                              {subItem.description}
-                                            </span>
-                                          )}
-                                          <div className="mt-2 flex items-center gap-4">
-                                            {subItem.subLinks.map((link) => (
-                                              <a
-                                                key={link.title}
-                                                href={link.href}
-                                                className="text-[13px] text-[#323dfe] hover:underline"
-                                                onClick={() =>
-                                                  setOpenDropdown(null)
-                                                }
-                                              >
-                                                {link.title}
-                                              </a>
-                                            ))}
-                                          </div>
-                                        </div>
-                                      </div>
-                                    ) : (
-                                      // Items without subLinks - full hover bg
+                                <div className="flex gap-6">
+                                  {/* Column 1 */}
+                                  <div className="flex-1 space-y-1">
+                                    {section.items.slice(0, Math.ceil(section.items.length / 2)).map((subItem) => (
                                       <a
                                         key={subItem.title}
                                         href={subItem.href}
@@ -296,8 +252,36 @@ export const PlivoNavbar = ({ currentPage }: { currentPage: string }) => {
                                           )}
                                         </div>
                                       </a>
-                                    ),
-                                  )}
+                                    ))}
+                                  </div>
+                                  {/* Column 2 */}
+                                  <div className="flex-1 space-y-1">
+                                    {section.items.slice(Math.ceil(section.items.length / 2)).map((subItem) => (
+                                      <a
+                                        key={subItem.title}
+                                        href={subItem.href}
+                                        className="group flex items-start gap-4 rounded-lg p-3 transition-colors hover:bg-gray-50"
+                                        onClick={() => setOpenDropdown(null)}
+                                      >
+                                        {subItem.icon &&
+                                          iconMap[subItem.icon] && (
+                                            <span className="mt-0.5 text-[#323dfe]">
+                                              {iconMap[subItem.icon]}
+                                            </span>
+                                          )}
+                                        <div>
+                                          <span className="block text-[14px] font-semibold text-gray-900 transition-colors group-hover:text-[#323dfe]">
+                                            {subItem.title}
+                                          </span>
+                                          {subItem.description && (
+                                            <span className="mt-1 block text-[13px] leading-relaxed text-gray-500">
+                                              {subItem.description}
+                                            </span>
+                                          )}
+                                        </div>
+                                      </a>
+                                    ))}
+                                  </div>
                                 </div>
                               </div>
                             ))}

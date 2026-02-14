@@ -136,7 +136,7 @@ export const Navbar = ({ currentPage }: { currentPage: string }) => {
 
           {/* Auth Buttons */}
           <div className="flex items-center gap-2.5">
-            <a href="/signup" className="hidden lg:block">
+            <a href="https://cx.plivo.com/" className="hidden lg:block">
               <Button variant="ghost" className="text-muted-foreground">
                 Sign up
               </Button>
@@ -190,7 +190,7 @@ export const Navbar = ({ currentPage }: { currentPage: string }) => {
       >
         <div className="mt-8 space-y-2">
           <a
-            href="/signup"
+            href="https://cx.plivo.com/"
             className="block"
             onClick={() => setIsMenuOpen(false)}
           >
