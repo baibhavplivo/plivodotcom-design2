@@ -907,6 +907,10 @@ export function PlivoPricing() {
                   </div>
                   <div className="flex items-center gap-2">
                     <Check className="h-4 w-4 text-[#323dfe]" />
+                    <span className="text-sm text-gray-700">Custom billing intervals</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Check className="h-4 w-4 text-[#323dfe]" />
                     <span className="text-sm text-gray-700">Slack based onboarding</span>
                   </div>
                 </div>
@@ -951,6 +955,9 @@ export function PlivoPricing() {
                   </div>
                 );
               })}
+              </div>
+              <div className="border-t border-gray-200 px-4 py-3 sm:px-6">
+                <p className="text-xs text-gray-400">All Voice and AI Agent calls are billed in 60-second intervals.</p>
               </div>
             </div>
           </div>

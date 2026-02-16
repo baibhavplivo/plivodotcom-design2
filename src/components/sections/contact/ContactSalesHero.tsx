@@ -370,7 +370,7 @@ export default function ContactSalesHero() {
   return (
     <section className="bg-white py-12 sm:py-16 md:py-24">
       <div className="container mx-auto max-w-7xl px-4">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
           {/* Left Column - Content */}
           <div className="order-2 lg:order-1">
             <h1 className="font-sora text-[2rem] sm:text-[2.5rem] md:text-[3rem] font-normal leading-[1.1] tracking-[-0.02em] text-black">
