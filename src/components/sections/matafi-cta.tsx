@@ -37,7 +37,7 @@ const MetafiCta = () => {
             variant="ghost"
             className="h-12 w-full rounded-[12px] border border-primary-foreground/30 bg-transparent text-primary-foreground hover:bg-primary-foreground/10 sm:w-auto"
           >
-            <a href="/contact">Contact us</a>
+            <a href="/contact/sales/">Contact us</a>
           </Button>
         </div>
       </div>

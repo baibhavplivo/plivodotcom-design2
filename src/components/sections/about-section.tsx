@@ -101,7 +101,7 @@ export const AboutSection = () => {
               size="lg"
               className="mt-6 rounded-sm border border-foreground/20 md:mt-8 lg:mt-10"
             >
-              <a href="#" className="">
+              <a href="/jobs/" className="">
                 <span className="flex items-center gap-2 whitespace-pre-wrap text-start">
                   View open roles
                   <ArrowRight className="stroke-3 size-4" />

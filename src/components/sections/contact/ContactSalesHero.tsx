@@ -175,6 +175,9 @@ export default function ContactSalesHero() {
 
   // ALL form interaction via document.getElementById — bypasses React ref + synthetic event issues with Astro hydration
   useEffect(() => {
+    // Store handlers so we can clean them up
+    const cleanups: (() => void)[] = [];
+
     // Small delay ensures DOM is fully ready after Astro client:load hydration
     const timer = setTimeout(() => {
       const submitBtn = document.getElementById("contact-submit-btn");
@@ -183,17 +186,15 @@ export default function ContactSalesHero() {
 
       // Country select → update React state
       if (countrySelect) {
-        countrySelect.addEventListener("change", () => {
-          setCountryCode(countrySelect.value);
-        });
+        const handler = () => setCountryCode(countrySelect.value);
+        countrySelect.addEventListener("change", handler);
+        cleanups.push(() => countrySelect.removeEventListener("change", handler));
       }
 
       // Phone input → only digits allowed, enforce max digit count for selected country
       if (phoneEl) {
-        phoneEl.addEventListener("input", () => {
-          // Strip everything except digits
+        const handler = () => {
           let digitsOnly = phoneEl.value.replace(/[^\d]/g, "");
-          // Enforce max digits for the selected country
           const code = selectedCodeRef.current;
           const ctry = COUNTRY_CODES.find((c) => c.code === code) ?? COUNTRY_CODES[0];
           const maxD = ctry.digits[1];
@@ -201,13 +202,22 @@ export default function ContactSalesHero() {
             digitsOnly = digitsOnly.slice(0, maxD);
           }
           phoneEl.value = digitsOnly;
-        });
+        };
+        phoneEl.addEventListener("input", handler);
+        cleanups.push(() => phoneEl.removeEventListener("input", handler));
       }
 
       // Submit button click → validate + show thank you
       if (submitBtn) {
-        submitBtn.addEventListener("click", (e) => {
+        const handler = (e: Event) => {
           e.preventDefault();
+
+          // Prevent double-submit
+          const btn = submitBtn as HTMLButtonElement;
+          if (btn.disabled) return;
+          btn.disabled = true;
+          btn.textContent = "Submitting...";
+          btn.classList.add("opacity-70", "cursor-not-allowed");
 
           const fullName = (document.getElementById("contact-fullName") as HTMLInputElement)?.value?.trim() ?? "";
           const email = (document.getElementById("contact-email") as HTMLInputElement)?.value?.trim() ?? "";
@@ -248,29 +258,42 @@ export default function ContactSalesHero() {
           }
 
           setErrors(newErrors);
-          if (Object.keys(newErrors).length > 0) return;
+          if (Object.keys(newErrors).length > 0) {
+            // Re-enable button on validation failure
+            btn.disabled = false;
+            btn.textContent = "Submit";
+            btn.classList.remove("opacity-70", "cursor-not-allowed");
+            return;
+          }
           setSubmitted(true);
-        });
+        };
+        submitBtn.addEventListener("click", handler);
+        cleanups.push(() => submitBtn.removeEventListener("click", handler));
       }
 
-      // Clear field errors on input (event delegation isn't needed — attach to each field)
+      // Clear field errors on input
       const fields = ["fullName", "email", "phone", "requirement"];
       fields.forEach((fieldName) => {
         const el = document.getElementById(`contact-${fieldName}`);
         if (el) {
-          el.addEventListener("input", () => {
+          const handler = () => {
             setErrors((prev) => {
               if (!prev[fieldName]) return prev;
               const next = { ...prev };
               delete next[fieldName];
               return next;
             });
-          });
+          };
+          el.addEventListener("input", handler);
+          cleanups.push(() => el.removeEventListener("input", handler));
         }
       });
     }, 50);
 
-    return () => clearTimeout(timer);
+    return () => {
+      clearTimeout(timer);
+      cleanups.forEach((fn) => fn());
+    };
   }, []);
 
   // Inline flickering grid canvas

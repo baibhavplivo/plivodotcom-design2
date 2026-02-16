@@ -88,7 +88,7 @@ export default function AIAgentsHero() {
           </p>
           <div className="flex flex-col sm:flex-row gap-3 mt-8 justify-center">
             <a
-              href="/contact"
+              href="/contact/sales/"
               className="inline-flex items-center justify-center px-6 py-3 text-base font-medium border border-gray-300 text-black rounded-md hover:bg-gray-50 transition-colors"
             >
               Contact Sales

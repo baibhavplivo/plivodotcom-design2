@@ -334,7 +334,7 @@ export default function AboutPage() {
               <p className="text-sm text-gray-500 leading-relaxed mb-3">
                 For technical answers, or to create a ticket
               </p>
-              <a href="/contact/support/" className="inline-flex items-center gap-1.5 text-sm font-medium text-[#323dfe] hover:text-[#2a34d6] transition-colors">
+              <a href="https://support.plivo.com/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-sm font-medium text-[#323dfe] hover:text-[#2a34d6] transition-colors">
                 Contact Support <ArrowRight className="h-3.5 w-3.5" />
               </a>
             </div>

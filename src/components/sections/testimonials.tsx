@@ -90,8 +90,8 @@ export default function Testimonials() {
               high-quality work.
             </p>
             <Button asChild variant="outline" className="group">
-              <a href="/customer-stories">
-                Read our Customer Stories
+              <a href="/contact/sales/">
+                Talk to Sales
                 <ArrowRight className="ml-2 size-4 transition-transform group-hover:translate-x-1" />
               </a>
             </Button>

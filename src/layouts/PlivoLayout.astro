@@ -16,8 +16,11 @@ const { title, description = "Plivo enables businesses to communicate with their
     <BaseHead title={`${title} | Plivo`} description={description} />
   </head>
   <body class="min-h-screen bg-white antialiased">
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:rounded-md focus:bg-black focus:px-4 focus:py-2 focus:text-sm focus:text-white focus:outline-none">
+      Skip to main content
+    </a>
     <Navbar1 currentPage={Astro.url.pathname} client:load />
-    <main class="flex flex-col bg-white pt-[72px]">
+    <main id="main-content" class="flex flex-col bg-white pt-[72px]">
       <slot />
     </main>
     <PlivoFooter client:visible />

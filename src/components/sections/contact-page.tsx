@@ -91,22 +91,31 @@ export const ContactPage = () => {
               <h2 className="text-lg font-semibold">Follow us</h2>
               <div className="mt-3 flex gap-6">
                 <a
-                  href="#"
+                  href="https://www.facebook.com/Plivo/"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-muted-foreground hover:text-foreground"
+                  aria-label="Follow Plivo on Facebook"
                 >
-                  <Facebook className="size-6" />
+                  <Facebook className="size-6" aria-hidden="true" />
                 </a>
                 <a
-                  href="#"
+                  href="https://x.com/plaboratory"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-muted-foreground hover:text-foreground"
+                  aria-label="Follow Plivo on X"
                 >
-                  <Twitter className="size-6" />
+                  <Twitter className="size-6" aria-hidden="true" />
                 </a>
                 <a
-                  href="#"
+                  href="https://www.linkedin.com/company/plivo/"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-muted-foreground hover:text-foreground"
+                  aria-label="Follow Plivo on LinkedIn"
                 >
-                  <Linkedin className="size-6" />
+                  <Linkedin className="size-6" aria-hidden="true" />
                 </a>
               </div>
             </div>

@@ -46,7 +46,7 @@ const LoginSection = () => {
                       Remember me
                     </label>
                   </div>
-                  <a href="#" className="text-sm font-medium text-primary">
+                  <a href="https://console.plivo.com/accounts/password/reset/" className="text-sm font-medium text-primary">
                     Forgot password
                   </a>
                 </div>

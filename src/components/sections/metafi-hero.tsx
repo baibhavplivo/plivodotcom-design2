@@ -53,7 +53,7 @@ const MetafiHero = () => {
               className="w-full sm:w-auto"
               asChild
             >
-              <a href="/contact">Contact us</a>
+              <a href="/contact/sales/">Contact us</a>
             </Button>
           </div>
         </div>

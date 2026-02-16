@@ -145,7 +145,7 @@ export default function WhatsAppHeroIllustration() {
                             <div className="absolute -left-2 top-0 w-0 h-0 border-t-8 border-t-white border-l-8 border-l-transparent" />
                             <p className="text-[13px] text-gray-800 leading-snug whitespace-pre-line">{message.text}</p>
                             {message.link && (
-                              <a href="#" className="text-[13px] text-[#53bdeb] underline break-all leading-snug">{message.link}</a>
+                              <span className="text-[13px] text-[#53bdeb] underline break-all leading-snug">{message.link}</span>
                             )}
                             <p className="text-[10px] text-gray-400 text-right mt-0.5">9:41 AM</p>
                           </div>

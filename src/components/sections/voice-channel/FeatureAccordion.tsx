@@ -502,8 +502,8 @@ function ContextAwareIllustration() {
               <h4 className="text-base sm:text-lg font-medium text-gray-600 mb-1">Cloudscape T-shirt</h4>
               <p className="text-xs sm:text-sm text-gray-400 mb-2">Size: L</p>
               <div className="flex items-center gap-3">
-                <a href="#" className="text-[11px] sm:text-xs text-[#323dfe] hover:underline">Track Order</a>
-                <a href="#" className="text-[11px] sm:text-xs text-[#323dfe] hover:underline">Invoice</a>
+                <span className="text-[11px] sm:text-xs text-[#323dfe]">Track Order</span>
+                <span className="text-[11px] sm:text-xs text-[#323dfe]">Invoice</span>
               </div>
             </div>
           </div>
