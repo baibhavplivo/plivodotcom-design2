@@ -530,7 +530,7 @@ function CalculatorSection({
               href="https://cx.plivo.com/"
               className="inline-flex items-center justify-center px-6 py-3 text-sm font-medium bg-black text-white rounded-md hover:bg-gray-800 transition-colors"
             >
-              Start free trial
+              Sign up for free
             </a>
           </div>
         </div>

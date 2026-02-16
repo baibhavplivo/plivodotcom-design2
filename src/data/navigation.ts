@@ -185,18 +185,18 @@ export const footerNavigation = {
 export const socialLinks = [
   {
     name: "YouTube",
-    href: "https://www.youtube.com/@Plivo_Inc",
+    href: "https://www.youtube.com/@plivo",
     icon: "youtube",
   },
-  { name: "X", href: "https://twitter.com/plaboratories", icon: "twitter" },
+  { name: "X", href: "https://x.com/plivo", icon: "twitter" },
   {
     name: "Facebook",
-    href: "https://www.facebook.com/paboratories",
+    href: "https://www.facebook.com/Plivo/",
     icon: "facebook",
   },
   {
     name: "LinkedIn",
-    href: "https://www.linkedin.com/company/plivo",
+    href: "https://www.linkedin.com/company/plivo-inc",
     icon: "linkedin",
   },
   { name: "GitHub", href: "https://github.com/plivo", icon: "github" },

@@ -149,23 +149,41 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Trusted By */}
-      <section className="bg-white pb-12 lg:pb-16">
+      {/* Trusted By - Marquee */}
+      <section className="bg-white pb-12 lg:pb-16 relative overflow-hidden">
+        <style>{`
+          .about-marquee-content {
+            animation: about-marquee 30s linear infinite;
+          }
+          .about-marquee-container:hover .about-marquee-content {
+            animation-play-state: paused;
+          }
+          @keyframes about-marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+          }
+        `}</style>
         <div className="container mx-auto max-w-7xl px-4">
           <p className="text-xs font-medium text-gray-400 uppercase tracking-wider text-center mb-6">
             Trusted by industry leaders
           </p>
-          <div className="flex flex-wrap items-center justify-center gap-8 sm:gap-12">
-            {customerLogos.map((logo) => (
-              <img
-                key={logo.name}
-                src={logo.src}
-                alt={logo.name}
-                className="h-5 sm:h-6 w-auto opacity-40 grayscale"
-              />
+        </div>
+        <div className="about-marquee-container max-w-[1400px] mx-auto overflow-hidden">
+          <div className="about-marquee-content flex gap-8 sm:gap-16 items-center">
+            {[...customerLogos, ...customerLogos].map((logo, i) => (
+              <div key={`${logo.name}-${i}`} className="flex-shrink-0">
+                <img
+                  src={logo.src}
+                  alt={logo.name}
+                  className="h-6 w-auto grayscale transition-all duration-300 hover:grayscale-0"
+                />
+              </div>
             ))}
           </div>
         </div>
+        {/* Fade edges */}
+        <div className="absolute inset-y-0 left-0 w-12 sm:w-24 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
+        <div className="absolute inset-y-0 right-0 w-12 sm:w-24 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
       </section>
 
       {/* Enterprise Stack */}
