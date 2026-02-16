@@ -404,7 +404,7 @@ export default function VerifyCodeSection() {
               Plivo's Verify API is designed to 'Go live in one sprint'. Our developer-first APIs and sample code can slash implementation time by 90% so your business never misses a beat!
             </p>
             <a
-              href="https://www.plivo.com/docs/verify"
+              href="https://www.plivo.com/docs/programmable-api/verify/overview"
               className="inline-flex items-center gap-2 text-[#323dfe] font-medium hover:underline"
             >
               View full documentation

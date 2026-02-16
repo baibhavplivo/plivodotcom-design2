@@ -79,13 +79,13 @@ export default function AgentBuilder() {
               </p>
               <div className="mb-8 flex flex-wrap gap-4">
                 <div className="flex items-center gap-2">
-                  <Check className="h-4 w-4 text-blue-600" strokeWidth={3} />
+                  <Check className="h-4 w-4 text-[#323dfe]" strokeWidth={3} />
                   <span className="text-sm font-medium text-gray-700">
                     Pick and choose what you want
                   </span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Check className="h-4 w-4 text-blue-600" strokeWidth={3} />
+                  <Check className="h-4 w-4 text-[#323dfe]" strokeWidth={3} />
                   <span className="text-sm font-medium text-gray-700">
                     Bring your own LLM
                   </span>
@@ -119,7 +119,7 @@ export default function AgentBuilder() {
                   "Drag and drop simplicity",
                 ].map((feature) => (
                   <div key={feature} className="flex items-center gap-2">
-                    <Check className="h-4 w-4 text-blue-600" strokeWidth={3} />
+                    <Check className="h-4 w-4 text-[#323dfe]" strokeWidth={3} />
                     <span className="text-sm font-medium text-gray-700">{feature}</span>
                   </div>
                 ))}

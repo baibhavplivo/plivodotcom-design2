@@ -153,7 +153,7 @@ export default function SMSHeroIllustration() {
                       </div>
                     ) : (
                       <div className="flex justify-end">
-                        <div className="rounded-2xl rounded-br-sm px-3 py-2 max-w-[85%] bg-blue-500">
+                        <div className="rounded-2xl rounded-br-sm px-3 py-2 max-w-[85%] bg-[#323dfe]">
                           <p className="text-[13px] text-white leading-snug">{message.text}</p>
                         </div>
                       </div>

@@ -244,7 +244,7 @@ function TwoWayConversationIllustration() {
                     transitionDelay: '600ms'
                   }}
                 >
-                  <div className="rounded-2xl rounded-br-sm px-3 py-2 max-w-[85%] bg-blue-500">
+                  <div className="rounded-2xl rounded-br-sm px-3 py-2 max-w-[85%] bg-[#323dfe]">
                     <p className="text-[13px] text-white leading-snug">Yes! But I had a question about sizing</p>
                   </div>
                 </div>
@@ -272,7 +272,7 @@ function TwoWayConversationIllustration() {
                     transitionDelay: '1800ms'
                   }}
                 >
-                  <div className="rounded-2xl rounded-br-sm px-3 py-2 max-w-[85%] bg-blue-500">
+                  <div className="rounded-2xl rounded-br-sm px-3 py-2 max-w-[85%] bg-[#323dfe]">
                     <p className="text-[13px] text-white leading-snug">Yes please! 🙌</p>
                   </div>
                 </div>

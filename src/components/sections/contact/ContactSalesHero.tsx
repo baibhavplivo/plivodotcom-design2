@@ -156,7 +156,7 @@ function isValidPhone(phone: string, min: number, max: number): { valid: boolean
 
 export default function ContactSalesHero() {
   const [submitted, setSubmitted] = useState(false);
-  const geoCountry = useGeoCountry("US");
+  const { country: geoCountry } = useGeoCountry("US");
   const [countryCode, setCountryCode] = useState<string | null>(null);
   const [errors, setErrors] = useState<Record<string, string>>({});
 
@@ -509,7 +509,7 @@ export default function ContactSalesHero() {
                 </div>
               ) : (
                 <div className="space-y-3.5">
-                  <h2 className="font-inter text-xl font-semibold text-black mb-3">
+                  <h2 className="font-sora text-xl font-semibold text-black mb-3">
                     Let's create your custom plan together
                   </h2>
 

@@ -1,55 +1,67 @@
 import { useState, useEffect } from "react";
 
-const GEO_CACHE_KEY = "plivo_geo_country";
+const GEO_COUNTRY_KEY = "plivo_geo_country";
+const GEO_CONTINENT_KEY = "plivo_geo_continent";
 
-/** Read cached country code synchronously from sessionStorage */
-function getCached(): string | null {
+export interface GeoInfo {
+  country: string;
+  continent: string;
+}
+
+function getCached(): GeoInfo | null {
   if (typeof window === "undefined") return null;
   try {
-    return sessionStorage.getItem(GEO_CACHE_KEY);
+    const country = sessionStorage.getItem(GEO_COUNTRY_KEY);
+    const continent = sessionStorage.getItem(GEO_CONTINENT_KEY);
+    if (country && continent) return { country, continent };
+    if (country) return { country, continent: "" };
+    return null;
   } catch {
     return null;
   }
 }
 
 /**
- * Detects the user's country via IP geolocation.
- * Returns 2-letter ISO country code (e.g. "US", "IN").
+ * Detects the user's country and continent via IP geolocation.
+ * Returns { country, continent } with 2-letter ISO codes (e.g. "US", "NA").
  * Caches in sessionStorage so the API is only called once per session.
  *
  * @param fallback Country code to use before/if geo lookup fails (default "US")
  */
-export function useGeoCountry(fallback: string = "US"): string {
-  const [country, setCountry] = useState<string>(() => getCached() || fallback);
+export function useGeoCountry(fallback: string = "US"): GeoInfo {
+  const [geo, setGeo] = useState<GeoInfo>(
+    () => getCached() || { country: fallback, continent: "" }
+  );
 
   useEffect(() => {
-    // Already cached — nothing to fetch
-    if (getCached()) return;
+    if (getCached()?.continent) return;
 
     const controller = new AbortController();
 
-    fetch("https://ipapi.co/country/", { signal: controller.signal })
+    fetch("https://ipapi.co/json/", { signal: controller.signal })
       .then((res) => {
         if (!res.ok) throw new Error("Geo lookup failed");
-        return res.text();
+        return res.json();
       })
-      .then((code) => {
-        const trimmed = code.trim().toUpperCase();
-        if (/^[A-Z]{2}$/.test(trimmed)) {
+      .then((data: { country_code?: string; continent_code?: string }) => {
+        const country = (data.country_code || "").trim().toUpperCase();
+        const continent = (data.continent_code || "").trim().toUpperCase();
+        if (/^[A-Z]{2}$/.test(country)) {
           try {
-            sessionStorage.setItem(GEO_CACHE_KEY, trimmed);
+            sessionStorage.setItem(GEO_COUNTRY_KEY, country);
+            if (continent) sessionStorage.setItem(GEO_CONTINENT_KEY, continent);
           } catch {
-            /* quota exceeded — ignore */
+            /* quota exceeded */
           }
-          setCountry(trimmed);
+          setGeo({ country, continent });
         }
       })
       .catch(() => {
-        /* network error or abort — keep fallback */
+        /* network error or abort */
       });
 
     return () => controller.abort();
   }, []);
 
-  return country;
+  return geo;
 }

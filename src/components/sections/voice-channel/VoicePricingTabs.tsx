@@ -37,7 +37,7 @@ function getSections(countryCode: string): { id: SectionId; label: string }[] {
 const countries = buildCountryList(Object.keys(VOICE_RATES), VOICE_PRIORITY_COUNTRIES);
 
 export default function VoicePricingTabs() {
-  const geoCountry = useGeoCountry();
+  const { country: geoCountry } = useGeoCountry();
   const [selectedCountry, setSelectedCountry] = useState<CountryOption>(countries[0]);
   const [isCountryOpen, setIsCountryOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
@@ -282,7 +282,7 @@ export default function VoicePricingTabs() {
 function LocalNumbersSection({ rates }: { rates: VoiceRates }) {
   return (
     <div>
-      <h2 className="font-inter text-xl font-semibold text-black mb-2">Local Numbers</h2>
+      <h2 className="font-sora text-xl font-semibold text-black mb-2">Local Numbers</h2>
       <p className="text-sm text-gray-500 mb-6">
         Per-minute rates for inbound and outbound calls via local numbers.
       </p>
@@ -314,7 +314,7 @@ function LocalNumbersSection({ rates }: { rates: VoiceRates }) {
 function TollFreeSection({ rates }: { rates: VoiceRates }) {
   return (
     <div>
-      <h2 className="font-inter text-xl font-semibold text-black mb-2">Toll-Free Numbers</h2>
+      <h2 className="font-sora text-xl font-semibold text-black mb-2">Toll-Free Numbers</h2>
       <p className="text-sm text-gray-500 mb-6">
         Per-minute rates for inbound and outbound calls via toll-free numbers.
       </p>
@@ -350,7 +350,7 @@ function TollFreeSection({ rates }: { rates: VoiceRates }) {
 function IPCallsSection({ rates }: { rates: VoiceRates }) {
   return (
     <div>
-      <h2 className="font-inter text-xl font-semibold text-black mb-2">IP / Browser SDK Calls</h2>
+      <h2 className="font-sora text-xl font-semibold text-black mb-2">IP / Browser SDK Calls</h2>
       <p className="text-sm text-gray-500 mb-6">
         Per-minute rates for calls made or received via SIP or the Browser SDK.
       </p>
@@ -382,7 +382,7 @@ function IPCallsSection({ rates }: { rates: VoiceRates }) {
 function AudioStreamingSection({ rates }: { rates: VoiceRates }) {
   return (
     <div>
-      <h2 className="font-inter text-xl font-semibold text-black mb-2">Audio Streaming</h2>
+      <h2 className="font-sora text-xl font-semibold text-black mb-2">Audio Streaming</h2>
       <p className="text-sm text-gray-500 mb-6">
         Real-time audio streaming for voice calls.
       </p>
@@ -424,7 +424,7 @@ function PhoneRentalSection({ countryCode }: { countryCode: string }) {
 
   return (
     <div>
-      <h2 className="font-inter text-xl font-semibold text-black mb-2">Phone Number Rental</h2>
+      <h2 className="font-sora text-xl font-semibold text-black mb-2">Phone Number Rental</h2>
       <p className="text-sm text-gray-500 mb-6">
         Monthly rental rates for phone numbers.
       </p>
@@ -454,7 +454,7 @@ function PhoneRentalSection({ countryCode }: { countryCode: string }) {
 function AddOnsSection({ countryCode }: { countryCode: string }) {
   return (
     <div>
-      <h2 className="font-inter text-xl font-semibold text-black mb-6">Add-On Services</h2>
+      <h2 className="font-sora text-xl font-semibold text-black mb-6">Add-On Services</h2>
 
       <div className="overflow-x-auto">
         <table className="w-full">

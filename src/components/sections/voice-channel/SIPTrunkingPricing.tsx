@@ -34,7 +34,7 @@ function formatRate(rate: number): string {
 }
 
 export default function SIPTrunkingPricing() {
-  const geoCountry = useGeoCountry();
+  const { country: geoCountry } = useGeoCountry();
   const [selectedCountry, setSelectedCountry] = useState<CountryOption>(allCountries[0]);
   const [isCountryOpen, setIsCountryOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<SectionId>("inbound-rates");
@@ -288,7 +288,7 @@ function InboundRatesSection({ rates, countryName }: { rates: SIPRates; countryN
 
   return (
     <div>
-      <h2 className="font-inter text-xl font-semibold text-black mb-2">Inbound call rates</h2>
+      <h2 className="font-sora text-xl font-semibold text-black mb-2">Inbound call rates</h2>
       <p className="text-sm text-gray-500 mb-6">
         Per-minute inbound rates for {countryName}. Outbound rates are determined by destination — contact sales for details.
       </p>
@@ -353,7 +353,7 @@ function PhoneRentalSection({ countryCode }: { countryCode: string }) {
 
   return (
     <div>
-      <h2 className="font-inter text-xl font-semibold text-black mb-2">Phone number rental</h2>
+      <h2 className="font-sora text-xl font-semibold text-black mb-2">Phone number rental</h2>
       <p className="text-sm text-gray-500 mb-6">
         Monthly rental rates for phone numbers used with SIP trunking.
       </p>
@@ -415,7 +415,7 @@ function CalculatorSection({
   if (!showLocal && !showTollfree) {
     return (
       <div>
-        <h2 className="font-inter text-xl font-semibold text-black mb-2">Cost calculator</h2>
+        <h2 className="font-sora text-xl font-semibold text-black mb-2">Cost calculator</h2>
         <p className="text-sm text-gray-500 py-4">
           Cost calculator is not available for {countryName}. Contact sales for a custom quote.
         </p>
@@ -425,7 +425,7 @@ function CalculatorSection({
 
   return (
     <div>
-      <h2 className="font-inter text-xl font-semibold text-black mb-2">Cost calculator</h2>
+      <h2 className="font-sora text-xl font-semibold text-black mb-2">Cost calculator</h2>
       <p className="text-sm text-gray-500 mb-6">
         Estimate your monthly SIP trunking costs for {countryName}.
       </p>

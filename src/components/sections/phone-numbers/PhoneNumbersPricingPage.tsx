@@ -31,7 +31,7 @@ const countries = buildCountryList(
 );
 
 export default function PhoneNumbersPricingPage() {
-  const geoCountry = useGeoCountry();
+  const { country: geoCountry } = useGeoCountry();
   const [selectedCountry, setSelectedCountry] = useState<CountryOption>(countries[0]);
   const [isCountryOpen, setIsCountryOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
@@ -267,7 +267,7 @@ function NumberRentalSection({
 }) {
   return (
     <div>
-      <h2 className="font-inter text-xl font-semibold text-black mb-2">
+      <h2 className="font-sora text-xl font-semibold text-black mb-2">
         Number rental rates
       </h2>
       <p className="text-sm text-gray-500 mb-6">
@@ -328,7 +328,7 @@ function ShortCodesSection({
 }) {
   return (
     <div>
-      <h2 className="font-inter text-xl font-semibold text-black mb-2">
+      <h2 className="font-sora text-xl font-semibold text-black mb-2">
         Short codes
       </h2>
       <p className="text-sm text-gray-500 mb-6">

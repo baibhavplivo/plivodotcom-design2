@@ -30,7 +30,7 @@ function getSections(countryCode: string): { id: SectionId; label: string }[] {
 const countries = buildCountryList(Object.keys(WA_CALL_RATES), WA_CALL_PRIORITY_COUNTRIES);
 
 export default function WhatsAppCallPricing() {
-  const geoCountry = useGeoCountry();
+  const { country: geoCountry } = useGeoCountry();
   const [selectedCountry, setSelectedCountry] = useState<CountryOption>(countries[0]);
   const [isCountryOpen, setIsCountryOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
@@ -260,7 +260,7 @@ export default function WhatsAppCallPricing() {
 function InboundCallsSection({ rates }: { rates: WhatsAppCallRates }) {
   return (
     <div>
-      <h2 className="font-inter text-xl font-semibold text-black mb-2">Inbound Calls</h2>
+      <h2 className="font-sora text-xl font-semibold text-black mb-2">Inbound Calls</h2>
       <p className="text-sm text-gray-500 mb-6">
         Per-minute rate for receiving WhatsApp voice calls.
       </p>
@@ -288,7 +288,7 @@ function InboundCallsSection({ rates }: { rates: WhatsAppCallRates }) {
 function OutboundCallsSection({ rates }: { rates: WhatsAppCallRates }) {
   return (
     <div>
-      <h2 className="font-inter text-xl font-semibold text-black mb-2">Outbound Calls</h2>
+      <h2 className="font-sora text-xl font-semibold text-black mb-2">Outbound Calls</h2>
       <p className="text-sm text-gray-500 mb-6">
         Per-minute rate for making WhatsApp voice calls.
       </p>
@@ -330,7 +330,7 @@ function PhoneRentalSection({ countryCode }: { countryCode: string }) {
 
   return (
     <div>
-      <h2 className="font-inter text-xl font-semibold text-black mb-2">Phone Number Rental</h2>
+      <h2 className="font-sora text-xl font-semibold text-black mb-2">Phone Number Rental</h2>
       <p className="text-sm text-gray-500 mb-6">
         Monthly rental rates for WhatsApp-enabled phone numbers.
       </p>

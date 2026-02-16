@@ -107,7 +107,7 @@ function ConfigurationIllustration() {
             {/* Channel tags */}
             <div className="flex flex-wrap gap-1.5 mb-3 p-2 border border-gray-200 rounded-md bg-gray-50/50">
               {['SMS', 'VOICE', 'WHATSAPP'].map((channel) => (
-                <span key={channel} className="inline-flex items-center gap-1 px-2 py-0.5 bg-indigo-50 text-indigo-600 text-[10px] font-medium rounded">
+                <span key={channel} className="inline-flex items-center gap-1 px-2 py-0.5 bg-[#323dfe]/10 text-[#323dfe] text-[10px] font-medium rounded">
                   {channel}
                   <svg className="w-2.5 h-2.5" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />

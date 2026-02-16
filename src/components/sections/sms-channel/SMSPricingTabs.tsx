@@ -35,7 +35,7 @@ function getSections(rates: SMSCountryRates): { id: SectionId; label: string }[]
 const countries = buildCountryList(Object.keys(SMS_RATES), SMS_PRIORITY_COUNTRIES);
 
 export default function SMSPricingTabs() {
-  const geoCountry = useGeoCountry();
+  const { country: geoCountry } = useGeoCountry();
   const [selectedCountry, setSelectedCountry] = useState<CountryOption>(countries[0]);
   const [isCountryOpen, setIsCountryOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
@@ -270,7 +270,7 @@ export default function SMSPricingTabs() {
 function SMSSection({ rates, hasCarrierFees }: { rates: SMSCountryRates; hasCarrierFees: boolean }) {
   return (
     <div>
-      <h2 className="font-inter text-xl font-semibold text-black mb-2">SMS Text Messages</h2>
+      <h2 className="font-sora text-xl font-semibold text-black mb-2">SMS Text Messages</h2>
       {hasCarrierFees && (
         <p className="text-sm text-gray-500 mb-6">
           *Additional carrier surcharge fees apply to all inbound and outbound SMS usage rates.{" "}
@@ -324,7 +324,7 @@ function MMSSection({ mmsRates, hasCarrierFees }: { mmsRates: SMSCountryRates["m
 
   return (
     <div>
-      <h2 className="font-inter text-xl font-semibold text-black mb-2">MMS Multimedia Messages</h2>
+      <h2 className="font-sora text-xl font-semibold text-black mb-2">MMS Multimedia Messages</h2>
       {hasCarrierFees && (
         <p className="text-sm text-gray-500 mb-6">
           *Additional carrier surcharge fees apply to all inbound and outbound MMS usage rates.{" "}
@@ -376,7 +376,7 @@ function MMSSection({ mmsRates, hasCarrierFees }: { mmsRates: SMSCountryRates["m
 function PhoneNumbersSection({ phoneNumbers }: { phoneNumbers: NonNullable<SMSCountryRates["phoneNumbers"]> }) {
   return (
     <div>
-      <h2 className="font-inter text-xl font-semibold text-black mb-2">Phone Number Rental</h2>
+      <h2 className="font-sora text-xl font-semibold text-black mb-2">Phone Number Rental</h2>
       {phoneNumbers.note && (
         <p className="text-sm text-gray-500 mb-6">
           **{phoneNumbers.note}
@@ -433,7 +433,7 @@ function PhoneNumbersSection({ phoneNumbers }: { phoneNumbers: NonNullable<SMSCo
 }
 
 function SMSCostCalculator() {
-  const geoCountry = useGeoCountry();
+  const { country: geoCountry } = useGeoCountry();
   const [selectedCountry, setSelectedCountry] = useState<CalculatorEntry>(SMS_CALCULATOR_DATA[0]);
   const [volume, setVolume] = useState(100000);
   const [isOpen, setIsOpen] = useState(false);
@@ -463,7 +463,7 @@ function SMSCostCalculator() {
 
   return (
     <div>
-      <h2 className="font-inter text-xl font-semibold text-black mb-2">Cost calculator</h2>
+      <h2 className="font-sora text-xl font-semibold text-black mb-2">Cost calculator</h2>
       <p className="text-sm text-gray-500 mb-6">
         Compare SMS costs between Plivo and other providers.
       </p>
@@ -574,11 +574,11 @@ function SMSCostCalculator() {
 function CarrierFeesSection() {
   return (
     <div className="space-y-10">
-      <h2 className="font-inter text-xl font-semibold text-black">Additional Carrier Surcharge Fees</h2>
+      <h2 className="font-sora text-xl font-semibold text-black">Additional Carrier Surcharge Fees</h2>
 
       {/* SMS Carrier Surcharge Fee */}
       <div>
-        <h3 className="font-inter text-lg font-medium text-black mb-4">SMS Carrier Surcharge Fee</h3>
+        <h3 className="font-sora text-lg font-medium text-black mb-4">SMS Carrier Surcharge Fee</h3>
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
@@ -641,7 +641,7 @@ function CarrierFeesSection() {
 
       {/* MMS Carrier Surcharge Fee */}
       <div>
-        <h3 className="font-inter text-lg font-medium text-black mb-4">MMS Carrier Surcharge Fee</h3>
+        <h3 className="font-sora text-lg font-medium text-black mb-4">MMS Carrier Surcharge Fee</h3>
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>

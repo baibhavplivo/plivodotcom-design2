@@ -1,5 +1,8 @@
 "use client";
 
+import { useState } from "react";
+import { ChevronDown } from "lucide-react";
+
 // Rates table data - per-unit Plivo Verify channel rates (from verify-pricing.html reference)
 const ratesTableData = [
   { country: "United States", sms: "$0.0070/sms", voice: "$0.0100/min", whatsapp: "$0.0143/conversation" },
@@ -30,7 +33,13 @@ const ratesTableData = [
   { country: "UAE", sms: "$0.0200/sms", voice: "$0.0200/min", whatsapp: "$0.0186/conversation" },
 ];
 
+const INITIAL_COUNT = 5;
+
 export default function VerifyRatesTable() {
+  const [showAll, setShowAll] = useState(false);
+  const visibleData = showAll ? ratesTableData : ratesTableData.slice(0, INITIAL_COUNT);
+  const remaining = ratesTableData.length - INITIAL_COUNT;
+
   return (
     <section className="bg-white py-12 lg:py-16">
       <div className="container mx-auto max-w-7xl px-4">
@@ -43,7 +52,7 @@ export default function VerifyRatesTable() {
           </p>
         </div>
 
-        <div className="grid gap-4 lg:grid-cols-[1fr_280px] items-stretch">
+        <div className="grid gap-4 lg:grid-cols-[1fr_280px] items-start">
           {/* Left - Rates Table */}
           <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
             <div className="overflow-x-auto">
@@ -57,7 +66,7 @@ export default function VerifyRatesTable() {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-100">
-                  {ratesTableData.map((rate) => (
+                  {visibleData.map((rate) => (
                     <tr key={rate.country}>
                       <td className="px-6 py-4 text-sm font-medium text-black">{rate.country}</td>
                       <td className="px-6 py-4 text-sm text-gray-600">{rate.sms}</td>
@@ -68,6 +77,21 @@ export default function VerifyRatesTable() {
                 </tbody>
               </table>
             </div>
+
+            {/* View more / View less button */}
+            {remaining > 0 && (
+              <div className="border-t border-gray-200 px-6 py-3">
+                <button
+                  onClick={() => setShowAll(!showAll)}
+                  className="inline-flex items-center gap-1.5 text-sm font-medium text-gray-600 hover:text-black transition-colors"
+                >
+                  {showAll ? "Show less" : `View all ${ratesTableData.length} countries`}
+                  <ChevronDown
+                    className={`h-4 w-4 transition-transform ${showAll ? "rotate-180" : ""}`}
+                  />
+                </button>
+              </div>
+            )}
           </div>
 
           {/* Right - Pricing Info */}
@@ -77,10 +101,10 @@ export default function VerifyRatesTable() {
               Zero charges for both Fraud Shield and OTP verification services. Only pay SMS, Voice or WhatsApp charges.
             </p>
             <a
-              href="/sms/pricing"
+              href="https://www.plivo.com/docs/programmable-api/verify/overview"
               className="inline-flex items-center justify-center px-5 py-2.5 text-sm font-medium bg-black text-white rounded-md hover:bg-gray-800 transition-colors"
             >
-              View Detailed Pricing
+              View Full Documentation
             </a>
           </div>
         </div>

@@ -176,7 +176,6 @@ export const footerNavigation = {
       { title: "Jobs", href: "/jobs/" },
       { title: "Talk to sales", href: "/contact/sales/" },
       { title: "Legal", href: "/legal/tos/" },
-      { title: "Design system", href: "/design-system/" },
     ],
   },
 };

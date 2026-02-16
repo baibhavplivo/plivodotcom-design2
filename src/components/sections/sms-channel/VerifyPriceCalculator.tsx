@@ -8,7 +8,7 @@ import { useGeoCountry } from "@/hooks/useGeoCountry";
 const volumeOptions = [10000, 50000, 100000, 500000, 1000000];
 
 export default function VerifyPriceCalculator() {
-  const geoCountry = useGeoCountry();
+  const { country: geoCountry } = useGeoCountry();
   const [selectedCountry, setSelectedCountry] = useState<VerifyCalculatorEntry>(VERIFY_CALCULATOR_DATA[0]);
   const [volume, setVolume] = useState(100000);
   const [isCountryOpen, setIsCountryOpen] = useState(false);

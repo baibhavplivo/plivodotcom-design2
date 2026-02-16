@@ -112,33 +112,13 @@ function UpsellAgentIllustration() {
         <p className="text-[12px] text-gray-800 leading-snug">Based on your purchase, you might love these! ✨</p>
         <div className="grid grid-cols-3 gap-1 mt-1.5 max-w-[200px]">
           {[
-            { name: "Earbuds", price: 29, icon: (
-              <svg viewBox="0 0 48 48" fill="none" className="w-5 h-5">
-                <path d="M16 18c0-4.4 3.6-8 8-8s8 3.6 8 8v4c0 2.2-1.8 4-4 4h-1v6h-6v-6h-1c-2.2 0-4-1.8-4-4v-4z" fill="#374151" />
-                <circle cx="19" cy="20" r="2" fill="#9CA3AF" />
-                <circle cx="29" cy="20" r="2" fill="#9CA3AF" />
-              </svg>
-            )},
-            { name: "Case", price: 19, icon: (
-              <svg viewBox="0 0 48 48" fill="none" className="w-5 h-5">
-                <rect x="14" y="6" width="20" height="36" rx="4" fill="#374151" />
-                <rect x="16" y="10" width="16" height="24" rx="1" fill="#9CA3AF" />
-                <circle cx="24" cy="38" r="2" fill="#9CA3AF" />
-              </svg>
-            )},
-            { name: "Charger", price: 24, icon: (
-              <svg viewBox="0 0 48 48" fill="none" className="w-5 h-5">
-                <rect x="16" y="8" width="16" height="24" rx="3" fill="#374151" />
-                <rect x="20" y="32" width="8" height="4" rx="1" fill="#374151" />
-                <rect x="22" y="36" width="4" height="6" rx="1" fill="#9CA3AF" />
-                <rect x="20" y="14" width="3" height="8" rx="1" fill="#9CA3AF" />
-                <rect x="25" y="14" width="3" height="8" rx="1" fill="#9CA3AF" />
-              </svg>
-            )},
+            { name: "Earbuds", price: 29, img: "https://images.unsplash.com/photo-1590658268037-6bf12f032f55?w=120&h=120&fit=crop" },
+            { name: "Case", price: 19, img: "https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=120&h=120&fit=crop" },
+            { name: "Charger", price: 24, img: "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=120&h=120&fit=crop" },
           ].map((item, i) => (
             <div key={i} className="bg-gray-50 rounded p-1 min-w-0">
-              <div className="w-full aspect-square rounded bg-gray-100 flex items-center justify-center mb-0.5">
-                {item.icon}
+              <div className="w-full aspect-square rounded bg-gray-100 overflow-hidden mb-0.5">
+                <img src={item.img} alt={item.name} className="w-full h-full object-cover" loading="lazy" />
               </div>
               <p className="text-[8px] text-gray-600 truncate">{item.name}</p>
               <p className="text-[8px] font-semibold text-gray-800">${item.price}</p>

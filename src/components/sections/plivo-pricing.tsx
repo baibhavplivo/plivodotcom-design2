@@ -201,7 +201,7 @@ function PricingModal({
       <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={onClose} />
       <div className="relative bg-white rounded-xl max-w-4xl w-full max-h-[90vh] overflow-hidden shadow-2xl">
         <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200">
-          <h2 className="font-inter text-xl font-semibold text-black">{title}</h2>
+          <h2 className="font-sora text-xl font-semibold text-black">{title}</h2>
           <div className="flex items-center gap-3">
             <div className="relative" ref={modalDropdownRef}>
               <button
@@ -266,7 +266,7 @@ function ModalTableSection({ title, children }: { title: string; children: React
   return (
     <div className="rounded-xl border border-gray-200 bg-white overflow-hidden">
       <div className="px-6 py-4">
-        <h3 className="font-inter font-semibold text-base text-black">{title}</h3>
+        <h3 className="font-sora font-semibold text-base text-black">{title}</h3>
       </div>
       <div className="px-6 pb-4">{children}</div>
     </div>
@@ -695,7 +695,7 @@ function AIAgentsPricingContent({ selectedCountry }: { selectedCountry: string }
 }
 
 export function PlivoPricing() {
-  const geoCountry = useGeoCountry();
+  const { country: geoCountry } = useGeoCountry();
   const [selectedCountry, setSelectedCountry] = useState("US");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [mainSearchQuery, setMainSearchQuery] = useState("");
@@ -818,7 +818,7 @@ export function PlivoPricing() {
             <div className="grid md:grid-cols-2">
               {/* Pay as you go Tier */}
               <div className="p-8 md:border-r border-gray-200">
-              <h2 className="font-inter text-2xl font-semibold text-black text-center">
+              <h2 className="font-sora text-2xl font-semibold text-black text-center">
                 Pay as you go
               </h2>
               <p className="text-gray-600 text-center mt-2">
@@ -828,7 +828,7 @@ export function PlivoPricing() {
               {/* CTA Button */}
               <a
                 href="https://cx.plivo.com/"
-                className="mt-6 block w-full rounded-lg bg-black py-3 text-center text-sm font-medium text-white transition-colors hover:bg-gray-800"
+                className="mt-6 block w-full rounded-md bg-black py-3 text-center text-sm font-medium text-white transition-colors hover:bg-gray-800"
               >
                 Sign up now
               </a>
@@ -860,7 +860,7 @@ export function PlivoPricing() {
 
               {/* Enterprise Tier */}
               <div className="p-8 border-t md:border-t-0 border-gray-200">
-              <h2 className="font-inter text-2xl font-semibold text-black text-center">
+              <h2 className="font-sora text-2xl font-semibold text-black text-center">
                 Enterprise
               </h2>
               <p className="text-gray-600 text-center mt-2">
@@ -870,7 +870,7 @@ export function PlivoPricing() {
               {/* CTA Button */}
               <a
                 href="/contact/sales"
-                className="mt-6 block w-full rounded-lg border border-gray-300 bg-white py-3 text-center text-sm font-medium text-black transition-colors hover:bg-gray-50"
+                className="mt-6 block w-full rounded-md border border-gray-300 bg-white py-3 text-center text-sm font-medium text-black transition-colors hover:bg-gray-50"
               >
                 Talk to sales
               </a>

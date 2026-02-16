@@ -23,7 +23,7 @@ function formatRate(value: number, currency: string, decimals: number = 4): stri
 }
 
 export default function WhatsAppChatPricing() {
-  const geoCountry = useGeoCountry();
+  const { country: geoCountry } = useGeoCountry();
   const [selectedCountry, setSelectedCountry] = useState<CountryOption>(countries[0]);
   const [isCountryOpen, setIsCountryOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
@@ -255,7 +255,7 @@ function MessagingRatesSection({
 
   return (
     <div>
-      <h2 className="font-inter text-xl font-semibold text-black mb-2">
+      <h2 className="font-sora text-xl font-semibold text-black mb-2">
         WhatsApp Messaging Rates
       </h2>
       <p className="text-sm text-gray-500 mb-6">
@@ -317,7 +317,7 @@ function MessagingRatesSection({
 function PlatformFeeSection({ isIndia }: { isIndia: boolean }) {
   return (
     <div>
-      <h2 className="font-inter text-xl font-semibold text-black mb-2">Platform Fee</h2>
+      <h2 className="font-sora text-xl font-semibold text-black mb-2">Platform Fee</h2>
       <p className="text-sm text-gray-500 mb-6">
         Plivo charges a platform fee per conversation in addition to Meta's conversation-based fees.
       </p>

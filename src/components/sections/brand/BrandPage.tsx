@@ -258,20 +258,15 @@ export default function BrandPage() {
             Download our logo kit and brand book for use in press, partnerships,
             and co-marketing materials.
           </p>
-          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+          <div className="flex justify-center">
             <a
-              href="mailto:marketing@plivo.com?subject=Logo%20Kit%20Request"
+              href="https://drive.google.com/file/d/1S_CH5okXH1eMYSilV6mbQNDfCaGPvOC7/view"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 rounded-md bg-black px-6 py-3 text-sm font-medium text-white hover:bg-gray-800 transition-colors"
             >
               <Download className="h-4 w-4" aria-hidden="true" />
-              Request Logo Kit
-            </a>
-            <a
-              href="mailto:marketing@plivo.com?subject=Brand%20Book%20Request"
-              className="inline-flex items-center justify-center gap-2 rounded-md border border-gray-300 px-6 py-3 text-sm font-medium text-black hover:bg-gray-50 transition-colors"
-            >
-              <Download className="h-4 w-4" aria-hidden="true" />
-              Request Brand Book
+              Download Brand Kit
             </a>
           </div>
           <p className="text-sm text-gray-500 mt-6">
