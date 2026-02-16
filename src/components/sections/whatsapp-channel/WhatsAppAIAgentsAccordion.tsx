@@ -423,7 +423,7 @@ function PersonalizedRecommendationsIllustration() {
 function KnowledgeIntegrationIllustration() {
   const brands = [
     { name: "Shopify", logo: "https://cdn.simpleicons.org/shopify/96BF48" },
-    { name: "Salesforce", logo: "https://cdn.simpleicons.org/salesforce/00A1E0" },
+    { name: "Salesforce", logo: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2300A1E0'%3E%3Cpath d='M10.006 5.415a4.195 4.195 0 0 1 3.045-1.306c1.56 0 2.954.9 3.69 2.205.63-.3 1.35-.45 2.1-.45 2.85 0 5.159 2.34 5.159 5.22s-2.31 5.22-5.16 5.22c-.45 0-.884-.06-1.305-.165a3.975 3.975 0 0 1-3.525 2.145c-.57 0-1.125-.12-1.62-.36a4.795 4.795 0 0 1-4.29 2.655 4.815 4.815 0 0 1-4.56-3.27A4.05 4.05 0 0 1 0 13.124a4.05 4.05 0 0 1 2.25-3.63 4.785 4.785 0 0 1-.45-2.04A4.79 4.79 0 0 1 6.6 2.664c1.38 0 2.61.585 3.405 1.5z'/%3E%3C/svg%3E" },
     { name: "HubSpot", logo: "https://cdn.simpleicons.org/hubspot/FF7A59" },
     { name: "Zendesk", logo: "https://cdn.simpleicons.org/zendesk/03363D" },
   ];

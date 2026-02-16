@@ -112,9 +112,9 @@ function UpsellAgentIllustration() {
         <p className="text-[12px] text-gray-800 leading-snug">Based on your purchase, you might love these! ✨</p>
         <div className="grid grid-cols-3 gap-1 mt-1.5 max-w-[200px]">
           {[
-            { name: "Earbuds", price: 29, img: "https://images.unsplash.com/photo-1590658268037-6bf12f032f55?w=120&h=120&fit=crop" },
-            { name: "Case", price: 19, img: "https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=120&h=120&fit=crop" },
-            { name: "Charger", price: 24, img: "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=120&h=120&fit=crop" },
+            { name: "Earbuds", price: 29, img: "https://images.unsplash.com/photo-1572569511254-d8f925fe2cbb?w=200&h=200&fit=crop&crop=center&q=80" },
+            { name: "Case", price: 19, img: "https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?w=200&h=200&fit=crop&crop=center&q=80" },
+            { name: "Charger", price: 24, img: "https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?w=200&h=200&fit=crop&crop=center&q=80" },
           ].map((item, i) => (
             <div key={i} className="bg-gray-50 rounded p-1 min-w-0">
               <div className="w-full aspect-square rounded bg-gray-100 overflow-hidden mb-0.5">

@@ -1,0 +1,13 @@
+---
+import PlivoLayout from "@/layouts/PlivoLayout.astro";
+import SMSSubNav from "@/components/sections/sms-channel/SMSSubNav.astro";
+import RCSPage from "@/components/sections/rcs-channel/RCSPage";
+---
+
+<PlivoLayout
+  title="RCS API - The future of messaging"
+  description="Connect with customers like never before. Deliver interactive, branded RCS messages that boost engagement and drive conversions with Plivo's RCS APIs."
+>
+  <SMSSubNav currentPage="rcs" />
+  <RCSPage client:load />
+</PlivoLayout>

@@ -485,12 +485,12 @@ function KnowledgeIntegrationIllustration() {
   // Brand logos - using Simple Icons CDN (8 integrations in one row)
   const brands = [
     { name: "Shopify", logo: "https://cdn.simpleicons.org/shopify/96BF48" },
-    { name: "Salesforce", logo: "https://cdn.simpleicons.org/salesforce/00A1E0" },
+    { name: "Salesforce", logo: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2300A1E0'%3E%3Cpath d='M10.006 5.415a4.195 4.195 0 0 1 3.045-1.306c1.56 0 2.954.9 3.69 2.205.63-.3 1.35-.45 2.1-.45 2.85 0 5.159 2.34 5.159 5.22s-2.31 5.22-5.16 5.22c-.45 0-.884-.06-1.305-.165a3.975 3.975 0 0 1-3.525 2.145c-.57 0-1.125-.12-1.62-.36a4.795 4.795 0 0 1-4.29 2.655 4.815 4.815 0 0 1-4.56-3.27A4.05 4.05 0 0 1 0 13.124a4.05 4.05 0 0 1 2.25-3.63 4.785 4.785 0 0 1-.45-2.04A4.79 4.79 0 0 1 6.6 2.664c1.38 0 2.61.585 3.405 1.5z'/%3E%3C/svg%3E" },
     { name: "HubSpot", logo: "https://cdn.simpleicons.org/hubspot/FF7A59" },
     { name: "Zendesk", logo: "https://cdn.simpleicons.org/zendesk/03363D" },
     { name: "Stripe", logo: "https://cdn.simpleicons.org/stripe/635BFF" },
     { name: "Intercom", logo: "https://cdn.simpleicons.org/intercom/000000" },
-    { name: "Slack", logo: "https://cdn.simpleicons.org/slack" },
+    { name: "Slack", logo: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23E01E5A' d='M5.042 15.166a2.528 2.528 0 0 1-2.52 2.521A2.528 2.528 0 0 1 0 15.166a2.528 2.528 0 0 1 2.522-2.52h2.52v2.52zm1.271 0a2.528 2.528 0 0 1 2.521-2.52 2.528 2.528 0 0 1 2.521 2.52v6.313A2.528 2.528 0 0 1 8.834 24a2.528 2.528 0 0 1-2.521-2.521v-6.313z'/%3E%3Cpath fill='%2336C5F0' d='M8.834 5.042a2.528 2.528 0 0 1-2.521-2.52A2.528 2.528 0 0 1 8.834 0a2.528 2.528 0 0 1 2.521 2.522v2.52H8.834zm0 1.271a2.528 2.528 0 0 1 2.521 2.521 2.528 2.528 0 0 1-2.521 2.521H2.522A2.528 2.528 0 0 1 0 8.834a2.528 2.528 0 0 1 2.522-2.521h6.312z'/%3E%3Cpath fill='%232EB67D' d='M18.956 8.834a2.528 2.528 0 0 1 2.522-2.521A2.528 2.528 0 0 1 24 8.834a2.528 2.528 0 0 1-2.522 2.521h-2.522V8.834zm-1.27 0a2.528 2.528 0 0 1-2.522 2.521 2.528 2.528 0 0 1-2.52-2.521V2.522A2.528 2.528 0 0 1 15.165 0a2.528 2.528 0 0 1 2.52 2.522v6.312z'/%3E%3Cpath fill='%23ECB22E' d='M15.164 18.956a2.528 2.528 0 0 1 2.52 2.522A2.528 2.528 0 0 1 15.165 24a2.528 2.528 0 0 1-2.52-2.522v-2.522h2.52zm0-1.27a2.528 2.528 0 0 1-2.52-2.522 2.528 2.528 0 0 1 2.52-2.52h6.313A2.528 2.528 0 0 1 24 15.165a2.528 2.528 0 0 1-2.522 2.52h-6.313z'/%3E%3C/svg%3E" },
     { name: "Notion", logo: "https://cdn.simpleicons.org/notion/000000" },
   ];
 

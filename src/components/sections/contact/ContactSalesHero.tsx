@@ -310,7 +310,7 @@ export default function ContactSalesHero() {
 
     const SQUARE_SIZE = 4;
     const GRID_GAP = 6;
-    const MAX_OPACITY = 0.5;
+    const MAX_OPACITY = 0.3;
     const FLICKER_CHANCE = 0.15;
     const COLOR = "139, 92, 246"; // #8B5CF6
 
@@ -509,7 +509,7 @@ export default function ContactSalesHero() {
                 </div>
               ) : (
                 <div className="space-y-3.5">
-                  <h2 className="font-sora text-xl font-semibold text-black mb-3">
+                  <h2 className="text-xl font-semibold text-black mb-3">
                     Let's create your custom plan together
                   </h2>
 
