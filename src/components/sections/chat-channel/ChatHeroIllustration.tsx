@@ -83,7 +83,7 @@ export default function ChatHeroIllustration() {
               </p>
             </div>
             <img
-              src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=64&h=64&fit=crop&crop=face"
+              src="/images/avatars/face-1.jpg"
               alt="User"
               className="w-6 h-6 rounded-full object-cover flex-shrink-0 mt-0.5"
             />

@@ -300,7 +300,7 @@ function AbandonedCartIllustration() {
             <div className="flex items-center gap-2.5">
               <div className="w-12 h-12 rounded-lg overflow-hidden bg-gray-100">
                 <img
-                  src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=100&h=100&fit=crop"
+                  src="/images/products/designer-bag.jpg"
                   alt="Product"
                   className="w-full h-full object-cover"
                 />

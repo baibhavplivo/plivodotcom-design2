@@ -290,7 +290,7 @@ function InboundRatesSection({ rates, countryName }: { rates: SIPRates; countryN
     <div>
       <h2 className="font-sora text-xl font-semibold text-black mb-2">Inbound call rates</h2>
       <p className="text-sm text-gray-500 mb-6">
-        Per-minute inbound rates for {countryName}. Outbound rates are determined by destination — contact sales for details.
+        Per-minute inbound rates for {countryName}. Outbound rates are determined by destination - contact sales for details.
       </p>
 
       {rows.length > 0 ? (

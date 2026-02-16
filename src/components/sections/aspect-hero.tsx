@@ -23,7 +23,7 @@ const AspectHero = () => (
 
           <p className="font-inter-tight text-mid-gray text-base md:text-lg lg:text-xl">
             Aggregate every bank, subsidiary, and currency in real time. Monitor
-            balances, track cash flow, and gain actionable insights—all without
+            balances, track cash flow, and gain actionable insights-all without
             juggling multiple logins.
           </p>
 

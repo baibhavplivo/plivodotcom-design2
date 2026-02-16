@@ -26,13 +26,13 @@ const FEATURES: Feature[] = [
   {
     title: "Invoicing",
     description:
-      "Create an invoice and send it to your customers in minutes—no-code required—to easily collect payments.",
+      "Create an invoice and send it to your customers in minutes-no-code required-to easily collect payments.",
     image: "/images/homepage/features/invoicing.webp",
   },
   {
     title: "Payment Link",
     description:
-      "Sell online without a website. Create a full payment page in a few clicks and share the link with customers—no code required.",
+      "Sell online without a website. Create a full payment page in a few clicks and share the link with customers-no code required.",
     image: "/images/homepage/features/payment-link.webp",
   },
 ];

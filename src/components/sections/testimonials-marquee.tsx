@@ -113,7 +113,7 @@ const testimonials = [
     image:
       "https://images.unsplash.com/photo-1507591064344-4c6ce005b128?w=400&h=400&fit=crop&crop=face",
     testimonial:
-      "We use Lumen across all departments — from tech to support. Creating shared workflows has drastically improved internal communication.",
+      "We use Lumen across all departments - from tech to support. Creating shared workflows has drastically improved internal communication.",
   },
   {
     id: "8",

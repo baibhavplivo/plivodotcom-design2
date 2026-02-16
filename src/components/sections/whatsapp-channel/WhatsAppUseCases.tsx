@@ -87,7 +87,7 @@ function CartRecoveryIllustration() {
       <IncomingMsg time="6:30 PM">
         <p className="text-[12px] text-gray-800 leading-snug">Hey! 👋 You left something in your cart</p>
         <div className="flex items-center gap-2 mt-1.5 p-1.5 bg-gray-50 rounded">
-          <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=80&h=80&fit=crop" alt="Designer Bag" className="w-8 h-8 rounded object-cover flex-shrink-0" />
+          <img src="/images/products/designer-bag.jpg" alt="Designer Bag" className="w-8 h-8 rounded object-cover flex-shrink-0" />
           <div>
             <p className="text-[11px] font-medium text-gray-900">Designer Bag</p>
             <p className="text-[11px] text-[#323dfe] font-medium">15% off - expires in 2h</p>
@@ -112,9 +112,9 @@ function UpsellAgentIllustration() {
         <p className="text-[12px] text-gray-800 leading-snug">Based on your purchase, you might love these! ✨</p>
         <div className="grid grid-cols-3 gap-1 mt-1.5 max-w-[200px]">
           {[
-            { name: "Earbuds", price: 29, img: "https://images.unsplash.com/photo-1572569511254-d8f925fe2cbb?w=200&h=200&fit=crop&crop=center&q=80" },
-            { name: "Case", price: 19, img: "https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?w=200&h=200&fit=crop&crop=center&q=80" },
-            { name: "Charger", price: 24, img: "https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?w=200&h=200&fit=crop&crop=center&q=80" },
+            { name: "Earbuds", price: 29, img: "/images/products/earbuds.jpg" },
+            { name: "Case", price: 19, img: "/images/products/phone-case.jpg" },
+            { name: "Charger", price: 24, img: "/images/products/charger.jpg" },
           ].map((item, i) => (
             <div key={i} className="bg-gray-50 rounded p-1 min-w-0">
               <div className="w-full aspect-square rounded bg-gray-100 overflow-hidden mb-0.5">
@@ -206,12 +206,12 @@ function OrderTrackingIllustration() {
 
 // --- CALL-SPECIFIC ILLUSTRATIONS (Phone widget, half-cropped) ---
 
-// Phone frame — oversized so bottom half crops outside the container
+// Phone frame - oversized so bottom half crops outside the container
 function PhoneFrame({ children }: { children: React.ReactNode }) {
   return (
     <div className="relative h-56 w-full rounded-xl overflow-hidden bg-gray-100/70">
       <div className="absolute inset-x-0 top-3 flex justify-center">
-        {/* Phone device — taller than container so bottom crops */}
+        {/* Phone device - taller than container so bottom crops */}
         <div className="relative w-[180px] h-[320px] rounded-[22px] border-[3px] border-gray-400 bg-gray-300 overflow-hidden shadow-xl">
           {/* Side buttons */}
           <div className="absolute -left-[4px] top-16 w-[4px] h-6 bg-gray-400 rounded-l" />
@@ -330,7 +330,7 @@ function PaymentReminderCallIllustration() {
       {/* Transcript */}
       <div className="flex-1 bg-[#ECE5DD] px-2 py-2 flex flex-col gap-1.5 overflow-hidden">
         <div className="self-start max-w-[88%] rounded-lg rounded-tl-sm bg-white px-2 py-1.5 shadow-sm">
-          <p className="text-[8px] text-gray-800 leading-[1.4]">Hi Raj, this is a reminder about Invoice #4821 for $2,450 — it's 5 days overdue.</p>
+          <p className="text-[8px] text-gray-800 leading-[1.4]">Hi Raj, this is a reminder about Invoice #4821 for $2,450 - it's 5 days overdue.</p>
           <p className="text-[6px] text-gray-400 text-right mt-0.5">00:48</p>
         </div>
         <div className="self-end max-w-[88%] rounded-lg rounded-tr-sm bg-[#dcf8c6] px-2 py-1.5 shadow-sm">

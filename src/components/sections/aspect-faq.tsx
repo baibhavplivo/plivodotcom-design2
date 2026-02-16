@@ -10,12 +10,12 @@ const questions = [
   {
     question: "What is Aspect?",
     answer:
-      "Aspect is a modern financial dashboard that aggregates all your bank accounts, subsidiaries, and currencies into one unified, real‑time view—complete with analytics, alerts, and custom reporting.",
+      "Aspect is a modern financial dashboard that aggregates all your bank accounts, subsidiaries, and currencies into one unified, real‑time view-complete with analytics, alerts, and custom reporting.",
   },
   {
     question: "How is Aspect different from Linear and Jira?",
     answer:
-      "Unlike Linear and Jira, which focus on issue tracking and project management, Aspect is built specifically for financial operations—bringing real‑time banking data, cash‑flow insights, and compliance tools into a single platform.",
+      "Unlike Linear and Jira, which focus on issue tracking and project management, Aspect is built specifically for financial operations-bringing real‑time banking data, cash‑flow insights, and compliance tools into a single platform.",
   },
   {
     question: "How do I update my account?",
@@ -30,17 +30,17 @@ const questions = [
   {
     question: "Are you going to be subsumed by AI?",
     answer:
-      "We leverage AI for smart alerts and insights, but rest assured, Aspect remains a human‑driven platform—no plan to replace your finance team with a chatbot!",
+      "We leverage AI for smart alerts and insights, but rest assured, Aspect remains a human‑driven platform-no plan to replace your finance team with a chatbot!",
   },
   {
     question: "How do I connect my bank accounts and subsidiaries?",
     answer:
-      "Simply navigate to the Integrations tab, select your bank or financial institution, and authorize access with your online banking credentials. Once connected, all accounts under that legal entity—subsidiaries and branches included—will automatically appear in your dashboard.",
+      "Simply navigate to the Integrations tab, select your bank or financial institution, and authorize access with your online banking credentials. Once connected, all accounts under that legal entity-subsidiaries and branches included-will automatically appear in your dashboard.",
   },
   {
     question: "Which banks and financial institutions are supported?",
     answer:
-      "We support thousands of institutions worldwide—including major banks like JPMorgan Chase, Bank of America, HSBC, Barclays, Deutsche Bank, and hundreds more. Visit the Integrations page in‑app for the full list.",
+      "We support thousands of institutions worldwide-including major banks like JPMorgan Chase, Bank of America, HSBC, Barclays, Deutsche Bank, and hundreds more. Visit the Integrations page in‑app for the full list.",
   },
 ];
 

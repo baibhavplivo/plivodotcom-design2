@@ -201,7 +201,7 @@ function RCSHero() {
             </h1>
             <p className="text-base sm:text-lg text-gray-600 mt-4 max-w-[540px] mx-auto lg:mx-0 leading-relaxed">
               Connect with customers like never before. Deliver interactive, branded
-              messages that boost engagement and drive conversions—all with our RCS
+              messages that boost engagement and drive conversions-all with our RCS
               APIs.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 mt-8 justify-center lg:justify-start">

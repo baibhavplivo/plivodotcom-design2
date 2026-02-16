@@ -44,7 +44,7 @@ const DEFAULT_ITEMS: FeatureItem[] = [
   {
     key: "dashboard",
     label: "Dashboard",
-    body: "Embed a self-serve portal so customers can manage payment methods, invoices, and subscriptions—no support ticket needed.",
+    body: "Embed a self-serve portal so customers can manage payment methods, invoices, and subscriptions-no support ticket needed.",
     imageSrc: "/images/features/Frame.webp",
     imageAlt: "Customer portal screen",
     href: "/docs/portal",
@@ -52,7 +52,7 @@ const DEFAULT_ITEMS: FeatureItem[] = [
   {
     key: "portal",
     label: "Customer Portal",
-    body: "Embed a self-serve portal so customers can manage payment methods, invoices, and subscriptions—no support ticket needed.",
+    body: "Embed a self-serve portal so customers can manage payment methods, invoices, and subscriptions-no support ticket needed.",
     imageSrc: "/images/features/Frame.webp",
     imageAlt: "Customer portal screen",
     href: "/docs/portal",

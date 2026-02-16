@@ -307,7 +307,7 @@ function BrandAlignedIllustration() {
               <p className="text-[10px] sm:text-xs text-gray-500 font-medium">Preview</p>
             </div>
             <p className="text-[11px] sm:text-xs text-gray-600 leading-relaxed">
-              "Hey there! Thanks for reaching out to Acme. I'm here to help — what can I do for you today?"
+              "Hey there! Thanks for reaching out to Acme. I'm here to help - what can I do for you today?"
             </p>
           </div>
         </div>
@@ -546,7 +546,7 @@ function ContextAwareIllustration() {
             <div className="flex-1 min-w-0">
               <p className="text-[10px] sm:text-xs text-gray-500 mb-1">TrendFit AI Agent</p>
               <p className="text-sm sm:text-base md:text-lg font-medium text-gray-800 leading-snug">
-                Our new hoodie collection just dropped — perfect with your Cloudscape tee.
+                Our new hoodie collection just dropped - perfect with your Cloudscape tee.
               </p>
             </div>
           </div>

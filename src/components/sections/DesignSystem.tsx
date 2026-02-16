@@ -2551,7 +2551,7 @@ npm run build`}
       </div>
       {/* Right: Asset */}
       <div className="rounded-2xl bg-gradient-to-br from-indigo-50 to-fuchsia-50 p-8">
-        <img src="/images/mockup.png" alt="Product" />
+        <img src="/images/mockups/hero-mockup.png" alt="Product" />
       </div>
     </div>
   </div>

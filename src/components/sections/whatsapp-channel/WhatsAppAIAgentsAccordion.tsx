@@ -378,7 +378,7 @@ function PersonalizedRecommendationsIllustration() {
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-full overflow-hidden flex-shrink-0 bg-gray-200">
                 <img
-                  src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=faces&facepad=2"
+                  src="/images/avatars/face-4.jpg"
                   alt="Jessica"
                   className="w-full h-full object-cover"
                 />
@@ -395,9 +395,9 @@ function PersonalizedRecommendationsIllustration() {
             <p className="text-[10px] text-gray-500 font-medium uppercase tracking-wide">Recommended for Jessica</p>
 
             {[
-              { name: "Summer Dress", match: "94%", img: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=100&h=100&fit=crop" },
-              { name: "Beach Sandals", match: "89%", img: "https://images.unsplash.com/photo-1603487742131-4160ec999306?w=100&h=100&fit=crop" },
-              { name: "Sun Hat", match: "85%", img: "https://images.unsplash.com/photo-1521369909029-2afed882baee?w=100&h=100&fit=crop" },
+              { name: "Summer Dress", match: "94%", img: "/images/products/summer-dress.jpg" },
+              { name: "Beach Sandals", match: "89%", img: "/images/products/beach-sandals.jpg" },
+              { name: "Sun Hat", match: "85%", img: "/images/products/sun-hat.jpg" },
             ].map((item, i) => (
               <div key={i} className="flex items-center gap-3 p-2 rounded-lg bg-gray-50 border border-gray-100">
                 <div className="w-10 h-10 rounded-md overflow-hidden flex-shrink-0 bg-gray-100">

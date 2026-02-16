@@ -518,7 +518,7 @@ function UnifiedProfilesIllustration() {
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-full overflow-hidden bg-gray-200 flex-shrink-0">
             <img
-              src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=faces"
+              src="/images/avatars/face-1.jpg"
               alt="Customer"
               className="w-full h-full object-cover"
             />

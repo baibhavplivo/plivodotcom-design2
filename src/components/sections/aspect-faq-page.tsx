@@ -76,7 +76,7 @@ const faqItems: FAQItem[] = [
     category: "Support",
     question: "Can I request a live demo or training session?",
     answer:
-      "Absolutely—book a 30-minute Zoom session from **aspect.finance/demo**. Training is free for teams of up to ten users.",
+      "Absolutely-book a 30-minute Zoom session from **aspect.finance/demo**. Training is free for teams of up to ten users.",
   },
   {
     category: "Support",
@@ -100,7 +100,7 @@ const faqItems: FAQItem[] = [
     category: "Features",
     question: "Can I customize my dashboard?",
     answer:
-      "Yes—drag & drop widgets, create custom KPIs, and save multiple layouts for different roles.",
+      "Yes-drag & drop widgets, create custom KPIs, and save multiple layouts for different roles.",
   },
   {
     category: "Features",
@@ -124,7 +124,7 @@ const faqItems: FAQItem[] = [
     category: "Security",
     question: "Do you support multi-factor authentication (MFA)?",
     answer:
-      "Yes—TOTP, WebAuthn security keys, and Okta SSO are available on every plan, including Free.",
+      "Yes-TOTP, WebAuthn security keys, and Okta SSO are available on every plan, including Free.",
   },
   {
     category: "Security",
@@ -142,7 +142,7 @@ const faqItems: FAQItem[] = [
     category: "Other",
     question: "Do you offer an API?",
     answer:
-      "Yes—the Aspect REST & Webhook API is included in the Team plan and above. API keys can be generated in **Settings ▸ Developers**.",
+      "Yes-the Aspect REST & Webhook API is included in the Team plan and above. API keys can be generated in **Settings ▸ Developers**.",
   },
   {
     category: "Other",

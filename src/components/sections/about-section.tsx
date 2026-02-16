@@ -41,9 +41,9 @@ export const AboutSection = () => {
         {/* Text Below Image */}
         <div className="mt-28 max-w-xl lg:mt-10 lg:translate-x-24">
           <p className="text-lg leading-6">
-            Tasks have changed, are changing, and will continue to change — for
+            Tasks have changed, are changing, and will continue to change - for
             the better. Now is the time for productivity to be user-first and
-            internet-first. But in order to do this — it needs a new foundation.
+            internet-first. But in order to do this - it needs a new foundation.
           </p>
         </div>
 
@@ -78,14 +78,14 @@ export const AboutSection = () => {
           {/* Timeline Section */}
           <p className="ml-auto max-w-xl text-lg leading-6 lg:-translate-x-24">
             We started building Streamline in 2019 and launched in 2022. Every
-            single feature has been built from scratch — with no unnecessary
+            single feature has been built from scratch - with no unnecessary
             complexity or outdated tools. We are purpose-built to redefine
             productivity for the next hundred years.
           </p>
 
           {/* Team Section */}
           <h2 className="ml-auto max-w-xl text-2xl font-semibold leading-8 md:text-3xl lg:-translate-x-24">
-            We are a bit of an unusual team — not your standard tech startup.
+            We are a bit of an unusual team - not your standard tech startup.
           </h2>
           <div className="ml-auto max-w-xl text-lg leading-6 lg:-translate-x-24">
             <p>

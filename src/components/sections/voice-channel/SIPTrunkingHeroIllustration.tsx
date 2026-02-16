@@ -36,7 +36,7 @@ export default function SIPTrunkingHeroIllustration() {
       >
         {/* ── Left: Your PBX ── */}
         <rect x="36" y="96" width="52" height="40" rx="8" fill="#F9FAFB" stroke="#E5E7EB" strokeWidth="1" />
-        {/* Server stack icon — black */}
+        {/* Server stack icon - black */}
         <rect x="49" y="105" width="26" height="10" rx="2" fill="none" stroke="#111827" strokeWidth="1" />
         <circle cx="69" cy="110" r="1.5" fill="#111827" />
         <rect x="49" y="117" width="26" height="10" rx="2" fill="none" stroke="#111827" strokeWidth="1" />
@@ -48,7 +48,7 @@ export default function SIPTrunkingHeroIllustration() {
         {/* ── PBX → Plivo connection ── */}
         <line x1="88" y1="116" x2="196" y2="116" stroke="#323dfe" strokeWidth="1.5" className="sip-dash" />
 
-        {/* SIP label — above the dotted line */}
+        {/* SIP label - above the dotted line */}
         <rect x="128" y="97" width="30" height="15" rx="4" fill="#EEF0FF" stroke="#323dfe" strokeWidth="0.5" />
         <text x="143" y="108" textAnchor="middle" fill="#323dfe" fontSize="8" fontFamily="Inter, sans-serif" fontWeight="600">
           SIP
@@ -80,7 +80,7 @@ export default function SIPTrunkingHeroIllustration() {
 
         {/* ── Right pills ── */}
 
-        {/* Mobile pill — center y=64 */}
+        {/* Mobile pill - center y=64 */}
         <rect x="396" y="48" width="92" height="32" rx="16" fill="white" stroke="#E5E7EB" strokeWidth="1" />
         {/* Smartphone: body rect centered at y=64, 10×16 */}
         <rect x="410" y="56" width="10" height="16" rx="2.5" fill="none" stroke="#323dfe" strokeWidth="1.2" />
@@ -89,7 +89,7 @@ export default function SIPTrunkingHeroIllustration() {
           Mobile
         </text>
 
-        {/* PSTN pill — center y=116 */}
+        {/* PSTN pill - center y=116 */}
         <rect x="396" y="100" width="92" height="32" rx="16" fill="white" stroke="#E5E7EB" strokeWidth="1" />
         {/* Desk phone: handset arc + base, centered at y=116 */}
         <path d="M410 116 Q410 110 415 110 Q420 110 420 116" fill="none" stroke="#323dfe" strokeWidth="1.2" strokeLinecap="round" />
@@ -98,7 +98,7 @@ export default function SIPTrunkingHeroIllustration() {
           PSTN
         </text>
 
-        {/* Toll-Free pill — center y=168 */}
+        {/* Toll-Free pill - center y=168 */}
         <rect x="396" y="152" width="92" height="32" rx="16" fill="white" stroke="#E5E7EB" strokeWidth="1" />
         {/* Headset: headband arc + ear cups, centered at y=168 */}
         <path d="M409 170 V167 Q409 161 415 161 Q421 161 421 167 V170" fill="none" stroke="#323dfe" strokeWidth="1.2" strokeLinecap="round" />

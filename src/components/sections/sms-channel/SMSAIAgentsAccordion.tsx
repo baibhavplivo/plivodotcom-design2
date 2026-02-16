@@ -432,7 +432,7 @@ function PersonalizedRecommendationsIllustration() {
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-full overflow-hidden flex-shrink-0">
                 <img
-                  src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=faces&facepad=2"
+                  src="/images/avatars/face-4.jpg"
                   alt="Jessica Davis"
                   className="w-full h-full object-cover"
                 />
@@ -449,9 +449,9 @@ function PersonalizedRecommendationsIllustration() {
             <p className="text-[10px] text-gray-500 font-medium uppercase tracking-wide">Recommended for Jessica</p>
 
             {[
-              { name: "Summer Dress", match: "94%", reason: "Viewed similar", img: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=100&h=100&fit=crop" },
-              { name: "Beach Sandals", match: "89%", reason: "Complements cart", img: "https://images.unsplash.com/photo-1603487742131-4160ec999306?w=100&h=100&fit=crop" },
-              { name: "Sun Hat", match: "85%", reason: "Trending in area", img: "https://images.unsplash.com/photo-1521369909029-2afed882baee?w=100&h=100&fit=crop" },
+              { name: "Summer Dress", match: "94%", reason: "Viewed similar", img: "/images/products/summer-dress.jpg" },
+              { name: "Beach Sandals", match: "89%", reason: "Complements cart", img: "/images/products/beach-sandals.jpg" },
+              { name: "Sun Hat", match: "85%", reason: "Trending in area", img: "/images/products/sun-hat.jpg" },
             ].map((item, i) => (
               <div key={i} className="flex items-center gap-3 p-2 rounded-lg bg-gray-50 border border-gray-100">
                 <div className="w-10 h-10 rounded-md overflow-hidden flex-shrink-0 bg-gray-100">
@@ -723,7 +723,7 @@ export default function SMSAIAgentsAccordion() {
           marketing for you
         </h2>
         <p className="text-gray-600 text-center max-w-2xl mx-auto mb-12 md:mb-16">
-          Transform customer interactions with brand-aligned SMS agents that drive sales, recommend products, and handle inquiries — without human intervention.
+          Transform customer interactions with brand-aligned SMS agents that drive sales, recommend products, and handle inquiries - without human intervention.
         </p>
 
         {/* First Accordion Section - Text Left, Image Right */}

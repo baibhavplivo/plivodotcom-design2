@@ -56,7 +56,7 @@ const TESTIMONIALS: Testimonial[] = [
   },
   {
     quote:
-      "“We consolidated multiple payment tools into one platform—reporting and cash flow are finally clear.”",
+      "“We consolidated multiple payment tools into one platform-reporting and cash flow are finally clear.”",
     name: "Jenny Wilson",
     role: "CFO, Mailchimp",
     avatar: "/images/homepage/testimonials/1.webp",
@@ -90,7 +90,7 @@ const TESTIMONIALS: Testimonial[] = [
   },
   {
     quote:
-      "“From invoicing to recurring billing—everything lives in one place now.”",
+      "“From invoicing to recurring billing-everything lives in one place now.”",
     name: "Guy Hawkins",
     role: "Founder, Raycast",
     avatar: "/images/homepage/testimonials/6.webp",

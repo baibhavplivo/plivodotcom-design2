@@ -11,7 +11,7 @@ const faqItems = [
   {
     question: "How does pay-as-you-go pricing work?",
     answer:
-      "With pay-as-you-go pricing, you only pay for what you use. There are no monthly commitments or minimum fees. You're charged based on actual usage—per minute for voice calls, per message for SMS, and per conversation for WhatsApp.",
+      "With pay-as-you-go pricing, you only pay for what you use. There are no monthly commitments or minimum fees. You're charged based on actual usage-per minute for voice calls, per message for SMS, and per conversation for WhatsApp.",
   },
   {
     question: "What's included in the free trial?",

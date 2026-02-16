@@ -67,7 +67,7 @@ function LeadQualificationIllustration() {
             </div>
             <p className="text-[11px] text-gray-700">"I need a home loan for $300K"</p>
           </div>
-          <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="User" className="w-8 h-8 rounded-full object-cover flex-shrink-0" />
+          <img src="/images/avatars/man-32.jpg" alt="User" className="w-8 h-8 rounded-full object-cover flex-shrink-0" />
         </div>
 
         {/* AI Response */}
@@ -134,7 +134,7 @@ function AppointmentSchedulerIllustration() {
             </div>
             <p className="text-[11px] text-gray-700">"Tuesday at 9 AM works!"</p>
           </div>
-          <img src="https://randomuser.me/api/portraits/women/79.jpg" alt="User" className="w-8 h-8 rounded-full object-cover flex-shrink-0" />
+          <img src="/images/avatars/woman-79.jpg" alt="User" className="w-8 h-8 rounded-full object-cover flex-shrink-0" />
         </div>
 
         {/* Confirmation */}
@@ -170,7 +170,7 @@ function BookingReservationIllustration() {
             <p className="text-[11px] text-gray-700 mb-2">"Your reservation is confirmed!"</p>
             <div className="flex gap-2 items-center bg-gray-50 rounded-lg p-2">
               <img
-                src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=80&h=80&fit=crop&crop=center"
+                src="/images/products/hotel.jpg"
                 alt="Hotel"
                 className="w-10 h-10 rounded-lg object-cover flex-shrink-0"
               />
@@ -190,7 +190,7 @@ function BookingReservationIllustration() {
             </div>
             <p className="text-[11px] text-gray-700">"Perfect, thank you!"</p>
           </div>
-          <img src="https://randomuser.me/api/portraits/men/81.jpg" alt="User" className="w-8 h-8 rounded-full object-cover flex-shrink-0" />
+          <img src="/images/avatars/man-81.jpg" alt="User" className="w-8 h-8 rounded-full object-cover flex-shrink-0" />
         </div>
       </div>
     </div>
@@ -204,7 +204,7 @@ function VoiceAlertsIllustration() {
         {/* Alert card with user info */}
         <div className="bg-white rounded-xl p-3">
           <div className="flex items-center gap-2.5 mb-2.5">
-            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="User" className="w-10 h-10 rounded-full object-cover flex-shrink-0" />
+            <img src="/images/avatars/woman-44.jpg" alt="User" className="w-10 h-10 rounded-full object-cover flex-shrink-0" />
             <div className="flex-1">
               <p className="text-[12px] font-medium text-gray-900">Sarah Mitchell</p>
               <p className="text-[10px] text-gray-500">Calling about appointment...</p>
@@ -275,7 +275,7 @@ function PaymentReminderIllustration() {
             </div>
             <p className="text-[11px] text-gray-700">"I'll pay now, thanks!"</p>
           </div>
-          <img src="https://randomuser.me/api/portraits/men/86.jpg" alt="User" className="w-8 h-8 rounded-full object-cover flex-shrink-0" />
+          <img src="/images/avatars/man-86.jpg" alt="User" className="w-8 h-8 rounded-full object-cover flex-shrink-0" />
         </div>
       </div>
     </div>
@@ -294,7 +294,7 @@ function AppointmentReminderIllustration() {
             </div>
             <p className="text-[11px] text-gray-700">"Can I reschedule to next week?"</p>
           </div>
-          <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="User" className="w-8 h-8 rounded-full object-cover flex-shrink-0" />
+          <img src="/images/avatars/woman-68.jpg" alt="User" className="w-8 h-8 rounded-full object-cover flex-shrink-0" />
         </div>
 
         {/* AI response with calendar */}
@@ -340,7 +340,7 @@ function CustomerSupportIllustration() {
             </div>
             <p className="text-[11px] text-gray-700">"My internet isn't working"</p>
           </div>
-          <img src="https://randomuser.me/api/portraits/men/94.jpg" alt="User" className="w-8 h-8 rounded-full object-cover flex-shrink-0" />
+          <img src="/images/avatars/man-94.jpg" alt="User" className="w-8 h-8 rounded-full object-cover flex-shrink-0" />
         </div>
 
         {/* AI response with steps */}
@@ -391,7 +391,7 @@ function ComplaintResolutionIllustration() {
             </div>
             <p className="text-[11px] text-gray-700">"I got the wrong item in my order"</p>
           </div>
-          <img src="https://randomuser.me/api/portraits/women/90.jpg" alt="User" className="w-8 h-8 rounded-full object-cover flex-shrink-0" />
+          <img src="/images/avatars/woman-90.jpg" alt="User" className="w-8 h-8 rounded-full object-cover flex-shrink-0" />
         </div>
 
         {/* AI response with options */}
@@ -459,7 +459,7 @@ function FeedbackSurveyIllustration() {
             </div>
             <p className="text-[11px] text-gray-700">"Five stars, great service!"</p>
           </div>
-          <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="User" className="w-8 h-8 rounded-full object-cover flex-shrink-0" />
+          <img src="/images/avatars/man-22.jpg" alt="User" className="w-8 h-8 rounded-full object-cover flex-shrink-0" />
         </div>
 
         {/* Thank you */}

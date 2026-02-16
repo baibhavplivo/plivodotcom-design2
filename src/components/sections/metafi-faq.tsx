@@ -18,7 +18,7 @@ const FAQS: QA[] = [
   {
     question: "How do I mark an invoice as paid outside of Metafi?",
     answer:
-      "If you receive payment through another channel—such as a bank transfer or cash—you can mark the invoice as paid manually. Open the invoice, choose **Mark as Paid**, select “Out of band,” and record any payment reference or note for accurate reconciliation.",
+      "If you receive payment through another channel - such as a bank transfer or cash - you can mark the invoice as paid manually. Open the invoice, choose **Mark as Paid**, select “Out of band,” and record any payment reference or note for accurate reconciliation.",
   },
   {
     question: "How can I calculate my trial conversion rate in Billing?",

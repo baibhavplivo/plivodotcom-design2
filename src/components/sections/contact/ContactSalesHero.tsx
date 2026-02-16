@@ -173,7 +173,7 @@ export default function ContactSalesHero() {
     if (el) el.value = selectedCode;
   }, [selectedCode]);
 
-  // ALL form interaction via document.getElementById — bypasses React ref + synthetic event issues with Astro hydration
+  // ALL form interaction via document.getElementById - bypasses React ref + synthetic event issues with Astro hydration
   useEffect(() => {
     // Store handlers so we can clean them up
     const cleanups: (() => void)[] = [];

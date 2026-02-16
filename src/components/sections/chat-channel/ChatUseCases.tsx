@@ -57,7 +57,7 @@ function UserMsg({ children, avatar }: { children: React.ReactNode; avatar?: str
 function OrderManagementIllustration() {
   return (
     <ChatWrapper>
-      <UserMsg avatar="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d">
+      <UserMsg avatar="/images/avatars/face-1.jpg">
         <p className="text-[12px] text-gray-800 leading-snug">Where's my order #4821?</p>
       </UserMsg>
       <BotMsg>
@@ -88,7 +88,7 @@ function BookingAssistantIllustration() {
           ))}
         </div>
       </BotMsg>
-      <UserMsg avatar="https://images.unsplash.com/photo-1494790108377-be9c29b29330">
+      <UserMsg avatar="/images/avatars/face-2.jpg">
         <p className="text-[12px] text-gray-800 leading-snug">Tue 2pm please</p>
       </UserMsg>
       <BotMsg>
@@ -102,7 +102,7 @@ function BookingAssistantIllustration() {
 function ReservationManagerIllustration() {
   return (
     <ChatWrapper>
-      <UserMsg avatar="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e">
+      <UserMsg avatar="/images/avatars/face-3.jpg">
         <p className="text-[12px] text-gray-800 leading-snug">Table for 4, Saturday 7pm?</p>
       </UserMsg>
       <BotMsg>
@@ -112,7 +112,7 @@ function ReservationManagerIllustration() {
           <p className="text-[9px] text-gray-500">Sat, Jan 11 at 7:00 PM - 4 guests</p>
         </div>
       </BotMsg>
-      <UserMsg avatar="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e">
+      <UserMsg avatar="/images/avatars/face-3.jpg">
         <p className="text-[12px] text-gray-800 leading-snug">Can we get a window seat?</p>
       </UserMsg>
     </ChatWrapper>
@@ -131,7 +131,7 @@ function LeadQualificationIllustration() {
           ))}
         </div>
       </BotMsg>
-      <UserMsg avatar="https://images.unsplash.com/photo-1438761681033-6461ffad8d80">
+      <UserMsg avatar="/images/avatars/face-4.jpg">
         <p className="text-[12px] text-gray-800 leading-snug">I'm interested in the enterprise plan</p>
       </UserMsg>
       <BotMsg>
@@ -145,7 +145,7 @@ function LeadQualificationIllustration() {
 function ReturnsExchangesIllustration() {
   return (
     <ChatWrapper>
-      <UserMsg avatar="https://images.unsplash.com/photo-1500648767791-00dcc994a43e">
+      <UserMsg avatar="/images/avatars/face-5.jpg">
         <p className="text-[12px] text-gray-800 leading-snug">Need to return order #4821</p>
       </UserMsg>
       <BotMsg>
@@ -156,7 +156,7 @@ function ReturnsExchangesIllustration() {
           ))}
         </div>
       </BotMsg>
-      <UserMsg avatar="https://images.unsplash.com/photo-1500648767791-00dcc994a43e">
+      <UserMsg avatar="/images/avatars/face-5.jpg">
         <p className="text-[12px] text-gray-800 leading-snug">Wrong size</p>
       </UserMsg>
     </ChatWrapper>
@@ -167,13 +167,13 @@ function ReturnsExchangesIllustration() {
 function SupportAgentIllustration() {
   return (
     <ChatWrapper>
-      <UserMsg avatar="https://images.unsplash.com/photo-1534528741775-53994a69daeb">
+      <UserMsg avatar="/images/avatars/face-6.jpg">
         <p className="text-[12px] text-gray-800 leading-snug">I can't log into my account</p>
       </UserMsg>
       <BotMsg>
         <p className="text-[12px] text-gray-800 leading-snug">I'll help you right away! Let me verify your identity.</p>
       </BotMsg>
-      <UserMsg avatar="https://images.unsplash.com/photo-1534528741775-53994a69daeb">
+      <UserMsg avatar="/images/avatars/face-6.jpg">
         <p className="text-[12px] text-gray-800 leading-snug">Email is sarah@example.com</p>
       </UserMsg>
       <BotMsg>
@@ -187,15 +187,15 @@ function SupportAgentIllustration() {
 function ProductEnquiryIllustration() {
   return (
     <ChatWrapper>
-      <UserMsg avatar="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d">
+      <UserMsg avatar="/images/avatars/face-7.jpg">
         <p className="text-[12px] text-gray-800 leading-snug">Show me products under $100</p>
       </UserMsg>
       <BotMsg>
         <p className="text-[12px] text-gray-800 leading-snug">Here are our top picks!</p>
         <div className="grid grid-cols-2 gap-1 mt-1.5">
           {[
-            { name: "Sneakers", price: "$89", img: "https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=100&h=70&fit=crop" },
-            { name: "Backpack", price: "$49", img: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=100&h=70&fit=crop" },
+            { name: "Sneakers", price: "$89", img: "/images/products/sneakers.jpg" },
+            { name: "Backpack", price: "$49", img: "/images/products/backpack.jpg" },
           ].map((item, i) => (
             <div key={i} className="bg-gray-50 rounded p-1.5 text-center">
               <div className="w-full h-14 rounded bg-gray-100 overflow-hidden mb-1">
@@ -215,7 +215,7 @@ function ProductEnquiryIllustration() {
 function FAQAgentIllustration() {
   return (
     <ChatWrapper>
-      <UserMsg avatar="https://images.unsplash.com/photo-1544005313-94ddf0286df2">
+      <UserMsg avatar="/images/avatars/face-8.jpg">
         <p className="text-[12px] text-gray-800 leading-snug">What's your return policy?</p>
       </UserMsg>
       <BotMsg>
@@ -239,7 +239,7 @@ function FAQAgentIllustration() {
 function TechSupportIllustration() {
   return (
     <ChatWrapper>
-      <UserMsg avatar="https://images.unsplash.com/photo-1519345182560-3f2917c472ef">
+      <UserMsg avatar="/images/avatars/face-9.jpg">
         <p className="text-[12px] text-gray-800 leading-snug">My app keeps crashing on startup</p>
       </UserMsg>
       <BotMsg>
@@ -250,7 +250,7 @@ function TechSupportIllustration() {
           ))}
         </div>
       </BotMsg>
-      <UserMsg avatar="https://images.unsplash.com/photo-1519345182560-3f2917c472ef">
+      <UserMsg avatar="/images/avatars/face-9.jpg">
         <p className="text-[12px] text-gray-800 leading-snug">Step 2 fixed it! Thanks!</p>
       </UserMsg>
     </ChatWrapper>

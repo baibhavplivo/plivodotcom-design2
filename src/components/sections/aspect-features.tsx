@@ -39,7 +39,7 @@ const ITEMS: ItemType[] = [
   },
   {
     title: "Transaction Ledger",
-    description: "Drill into every debit, credit and memo—no spreadsheets.",
+    description: "Drill into every debit, credit and memo-no spreadsheets.",
     image: { src: "/images/homepage/features-tabs/4.webp", alt: "" },
     link: "/features/support",
   },

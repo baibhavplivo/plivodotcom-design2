@@ -62,7 +62,7 @@ const faqItems = [
         <ol className="list-decimal list-inside space-y-2 ml-2">
           <li>A user provides their mobile number to log in to an account or register for a service.</li>
           <li>The system then sends a request to Plivo to initiate the SMS verification process for that mobile number.</li>
-          <li>Plivo generates a one-time password (OTP) — a unique code that can be used for this one instance for verification.</li>
+          <li>Plivo generates a one-time password (OTP) - a unique code that can be used for this one instance for verification.</li>
           <li>The OTP is sent via SMS to the user's mobile number. Plivo also keeps a copy of the OTP to check it against the user's input.</li>
           <li>The user receives the OTP in an SMS message on their phone and enters the OTP into the website or application to which they're trying to log in or sign up.</li>
           <li>The user's entry is sent to Plivo. Plivo verifies whether it matches the OTP that was originally generated and sent to the user.</li>

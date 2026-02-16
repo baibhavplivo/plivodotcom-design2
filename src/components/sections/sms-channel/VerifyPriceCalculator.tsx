@@ -203,7 +203,7 @@ export default function VerifyPriceCalculator() {
           {/* Results Section */}
           <div className="p-5 sm:p-6">
             <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-6">
-              Cost comparison — {formatNumber(volume)} verifications in {selectedCountry.country}
+              Cost comparison - {formatNumber(volume)} verifications in {selectedCountry.country}
             </h3>
 
             <div className="grid gap-3 md:grid-cols-3">

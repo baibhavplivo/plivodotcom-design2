@@ -13,7 +13,7 @@ const ITEMS = [
       href: "https://mercury.com",
     },
     testimonial:
-      "“Since integrating Aspect’s unified dashboard, we’ve consolidated all our Mercury accounts into one view—no more juggling multiple logins or spreadsheets.”",
+      "“Since integrating Aspect’s unified dashboard, we’ve consolidated all our Mercury accounts into one view-no more juggling multiple logins or spreadsheets.”",
     avatar: "/images/homepage/testimonials/avatar.webp",
     nameSurname: "John Doe",
     company: "Mercury, Inc.",
@@ -27,7 +27,7 @@ const ITEMS = [
       href: "https://watershed.com",
     },
     testimonial:
-      "“Aspect has been a game‑changer for our Watershed team—real‑time balances and built‑in analytics keep us on top of cash flow like never before.”",
+      "“Aspect has been a game‑changer for our Watershed team-real‑time balances and built‑in analytics keep us on top of cash flow like never before.”",
     avatar: "/images/homepage/testimonials/avatar.webp",
     nameSurname: "Jane Smith",
     company: "Watershed Labs",
@@ -41,7 +41,7 @@ const ITEMS = [
       href: "https://retool.com",
     },
     testimonial:
-      "“Building internal tools with Retool used to feel disjointed—now with Aspect’s APIs and dashboards, everything flows seamlessly in one place.”",
+      "“Building internal tools with Retool used to feel disjointed-now with Aspect’s APIs and dashboards, everything flows seamlessly in one place.”",
     avatar: "/images/homepage/testimonials/avatar.webp",
     nameSurname: "Alex Li",
     company: "Retool",
@@ -55,7 +55,7 @@ const ITEMS = [
       href: "https://descript.com",
     },
     testimonial:
-      "“Our whole content team loves how Aspect surfaces real‑time spending data alongside our Descript workflows—insights we never had before.”",
+      "“Our whole content team loves how Aspect surfaces real‑time spending data alongside our Descript workflows-insights we never had before.”",
     avatar: "/images/homepage/testimonials/avatar.webp",
     nameSurname: "Emily Nguyen",
     company: "Descript",
@@ -70,7 +70,7 @@ export default function AspectTestimonials() {
           What Our Customers Are Saying
         </h2>
         <p className="text-mid-gray max-w-lg text-base">
-          Don’t just take our word for it—see how our platform is empowering
+          Don’t just take our word for it-see how our platform is empowering
           teams to achieve more, aspect workflows, and transform their
           day‑to‑day operations.
         </p>
