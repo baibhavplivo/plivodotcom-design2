@@ -43,7 +43,7 @@ export default function HowItWorks() {
             <div key={step.number} className="flex flex-col">
               {/* Step number */}
               <div className="flex items-center gap-3 mb-4">
-                <span className="font-sora text-[2rem] font-semibold text-gray-300">
+                <span className="text-[2rem] font-semibold text-gray-300">
                   {step.number}
                 </span>
                 {step.number !== "04" && <div className="h-px flex-1 bg-gray-200" />}

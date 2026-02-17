@@ -149,7 +149,7 @@ function BrandedChatIllustration() {
               </div>
               <p className="text-[9px] text-gray-500 mb-1.5">Font</p>
               <div className="flex items-center gap-1.5 bg-gray-50 rounded px-2.5 py-1.5">
-                <span className="text-[10px] font-sora font-medium text-gray-800">Sora</span>
+                <span className="text-[10px] font-medium text-gray-800">Sora</span>
                 <span className="text-[8px] text-gray-400">+ Inter</span>
               </div>
             </div>

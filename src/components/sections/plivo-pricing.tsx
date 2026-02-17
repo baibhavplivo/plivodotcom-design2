@@ -266,7 +266,7 @@ function ModalTableSection({ title, children }: { title: string; children: React
   return (
     <div className="rounded-xl border border-gray-200 bg-white overflow-hidden">
       <div className="px-6 py-4">
-        <h3 className="font-sora font-semibold text-base text-black">{title}</h3>
+        <h3 className="font-semibold text-base text-black">{title}</h3>
       </div>
       <div className="px-6 pb-4">{children}</div>
     </div>

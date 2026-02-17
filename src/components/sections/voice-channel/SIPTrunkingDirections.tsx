@@ -379,7 +379,7 @@ export default function SIPTrunkingDirections() {
         {/* Outbound - Features Left, Illustration Right */}
         <div className="grid gap-8 lg:grid-cols-2 lg:gap-12 items-center mb-16 lg:mb-24">
           <div>
-            <h3 className="font-sora text-[1.5rem] sm:text-[1.75rem] font-normal leading-[1.25] tracking-[-0.02em] text-black mb-8">
+            <h3 className="text-[1.5rem] sm:text-[1.75rem] font-normal leading-[1.25] tracking-[-0.02em] text-black mb-8">
               SIP trunking outbound
             </h3>
             <FeatureList features={outboundFeatures} />
@@ -399,7 +399,7 @@ export default function SIPTrunkingDirections() {
             </div>
           </div>
           <div>
-            <h3 className="font-sora text-[1.5rem] sm:text-[1.75rem] font-normal leading-[1.25] tracking-[-0.02em] text-black mb-8">
+            <h3 className="text-[1.5rem] sm:text-[1.75rem] font-normal leading-[1.25] tracking-[-0.02em] text-black mb-8">
               SIP trunking inbound
             </h3>
             <FeatureList features={inboundFeatures} />

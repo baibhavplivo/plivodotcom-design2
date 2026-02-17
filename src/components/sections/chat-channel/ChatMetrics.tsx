@@ -34,7 +34,7 @@ export default function ChatMetrics() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-gray-200">
             {metrics.map((metric, index) => (
               <div key={index} className="p-6 lg:p-8 text-center">
-                <p className="font-sora text-[2.5rem] sm:text-[3rem] font-normal leading-[1] tracking-[-0.02em] text-black mb-3">
+                <p className="text-[2.5rem] sm:text-[3rem] font-normal leading-[1] tracking-[-0.02em] text-black mb-3">
                   {metric.value}
                 </p>
                 <p className="text-sm text-gray-600 leading-relaxed">

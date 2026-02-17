@@ -578,7 +578,7 @@ function CarrierFeesSection() {
 
       {/* SMS Carrier Surcharge Fee */}
       <div>
-        <h3 className="font-sora text-lg font-medium text-black mb-4">SMS Carrier Surcharge Fee</h3>
+        <h3 className="text-lg font-medium text-black mb-4">SMS Carrier Surcharge Fee</h3>
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
@@ -641,7 +641,7 @@ function CarrierFeesSection() {
 
       {/* MMS Carrier Surcharge Fee */}
       <div>
-        <h3 className="font-sora text-lg font-medium text-black mb-4">MMS Carrier Surcharge Fee</h3>
+        <h3 className="text-lg font-medium text-black mb-4">MMS Carrier Surcharge Fee</h3>
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>

@@ -1,25 +1,376 @@
 ---
 import { type CollectionEntry, getCollection } from 'astro:content';
 import { render } from 'astro:content';
-import DefaultLayout from '@/layouts/DefaultLayout.astro';
-import { BlogPost } from '@/components/sections/blog-post';
+import PlivoLayout from '@/layouts/PlivoLayout.astro';
+import { BLOG_CATEGORIES } from '@/data/blog-categories';
+import '@/styles/blog-content.css';
 
 export async function getStaticPaths() {
-	const posts = await getCollection('blog');
-	return posts.map((post) => ({
-		params: { slug: post.id },
-		props: post,
-	}));
-}
-type Props = CollectionEntry<'blog'>;
+	const posts = await getCollection('blog', ({ data }) => !data.draft);
 
-const post = Astro.props;
-const { title, description, pubDate, updatedDate, image } = post.data;
+	return posts.map((post) => {
+		const relatedPosts = posts
+			.filter(p => p.id !== post.id &&
+				p.data.categories?.some(c => post.data.categories?.includes(c)))
+			.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+			.slice(0, 3)
+			.map(p => ({
+				id: p.id,
+				title: p.data.title,
+				image: p.data.thumbnail || p.data.image,
+				pubDate: p.data.pubDate.toISOString(),
+				categories: p.data.categories,
+			}));
+
+		return {
+			params: { slug: post.id },
+			props: { post, relatedPosts },
+		};
+	});
+}
+
+type Props = {
+	post: CollectionEntry<'blog'>;
+	relatedPosts: Array<{
+		id: string;
+		title: string;
+		image?: string;
+		pubDate: string;
+		categories: string[];
+	}>;
+};
+
+const { post, relatedPosts } = Astro.props;
+const { title, description, seoTitle, seoDescription, noindex, image, authorName = 'Team Plivo', pubDate, keyTakeaways, categories: postCategories = [] } = post.data;
 const { Content } = await render(post);
 
+const pageTitle = seoTitle || title;
+const pageDescription = seoDescription || description;
+
+// Extract H2/H3 headings from raw body for TOC
+function extractHeadings(body: string) {
+	const headings: Array<{ id: string; text: string; level: number }> = [];
+	const regex = /<h([23])[^>]*>([\s\S]*?)<\/h\1>/gi;
+	let match;
+	while ((match = regex.exec(body)) !== null) {
+		const text = match[2]
+			.replace(/<[^>]*>/g, '')
+			.replace(/&amp;/g, '&')
+			.replace(/&lt;/g, '<')
+			.replace(/&gt;/g, '>')
+			.replace(/&quot;/g, '"')
+			.replace(/&#39;/g, "'")
+			.replace(/&nbsp;/g, ' ')
+			.trim();
+		if (text && text.length > 1) {
+			const id = text.toLowerCase()
+				.replace(/[^a-z0-9\s-]/g, '')
+				.replace(/\s+/g, '-')
+				.replace(/^-+|-+$/g, '')
+				.slice(0, 80);
+			if (id) {
+				headings.push({ id, text, level: parseInt(match[1]) });
+			}
+		}
+	}
+	return headings;
+}
+
+const headings = extractHeadings(post.body || '');
+const hasTOC = headings.length >= 2;
+
+function formatDate(date: Date): string {
+	return date.toLocaleDateString('en-US', {
+		month: 'long', day: 'numeric', year: 'numeric'
+	});
+}
 ---
-<DefaultLayout>
-	<BlogPost post={post} client:only='react'>
-		<Content />
-	</BlogPost>
-</DefaultLayout>
+
+<PlivoLayout title={pageTitle} description={pageDescription}>
+	{noindex && (
+		<meta slot="head" name="robots" content="noindex, nofollow" />
+	)}
+
+	<!-- Breadcrumb -->
+	<div class="bg-white border-b border-gray-100">
+		<div class="mx-auto max-w-7xl px-4 py-3">
+			<nav class="flex items-center gap-1.5 text-sm text-gray-400">
+				<a href="/" class="hover:text-gray-600 transition-colors">Home</a>
+				<svg class="h-3.5 w-3.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+				<a href="/blog/" class="hover:text-gray-600 transition-colors">Blog</a>
+				<svg class="h-3.5 w-3.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+				<span class="text-gray-600 truncate max-w-xs">{title}</span>
+			</nav>
+		</div>
+	</div>
+
+	<!-- Hero -->
+	<header class="bg-white pt-10 pb-8 md:pt-14 md:pb-10">
+		<div class="mx-auto max-w-3xl px-4 text-center">
+			{postCategories.length > 0 && (
+				<div class="mb-4 flex flex-wrap items-center justify-center gap-2">
+					{postCategories.slice(0, 3).map((cat: string) => (
+						<a href={`/blog/?category=${cat}`} class="rounded-full border border-gray-200 px-3 py-1 text-xs font-medium text-gray-500 hover:border-gray-400 transition-colors">
+							{BLOG_CATEGORIES[cat] || cat}
+						</a>
+					))}
+				</div>
+			)}
+
+			<h1 class="font-sora text-2xl sm:text-3xl md:text-4xl font-semibold leading-tight tracking-tight text-black">
+				{title}
+			</h1>
+
+			<p class="mt-4 text-base md:text-lg text-gray-500 leading-relaxed max-w-2xl mx-auto">
+				{description}
+			</p>
+
+			<div class="mt-5 flex items-center justify-center gap-3 text-sm text-gray-400">
+				<span>{formatDate(pubDate)}</span>
+				<span>&middot;</span>
+				<span>By {authorName}</span>
+			</div>
+		</div>
+	</header>
+
+	<!-- Featured Image -->
+	{image && (
+		<div class="mx-auto max-w-4xl px-4 mb-10 md:mb-14">
+			<div class="aspect-[16/9] overflow-hidden rounded-lg border border-gray-200">
+				<img src={image} alt={title} class="h-full w-full object-cover" loading="eager" />
+			</div>
+		</div>
+	)}
+
+	<!-- Main content area with optional TOC -->
+	<div class={`mx-auto max-w-7xl px-4 pb-14 ${hasTOC ? 'lg:grid lg:grid-cols-[220px_1fr] lg:gap-10 lg:items-start' : ''}`}>
+
+		<!-- Sticky TOC Sidebar (desktop, only if headings exist) -->
+		{hasTOC && (
+			<div class="hidden lg:block" id="toc-wrapper">
+				<aside id="toc-sidebar" class="pt-1">
+					<p class="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-3">On this page</p>
+					<nav class="space-y-0.5 max-h-[calc(100vh-180px)] overflow-y-auto">
+						{headings.map(h => (
+							<a
+								href={`#${h.id}`}
+								data-toc-link={h.id}
+								class={`block text-sm leading-snug py-1.5 border-l-2 border-transparent text-gray-500 hover:text-gray-900 hover:border-gray-300 transition-colors ${h.level === 3 ? 'pl-6' : 'pl-3'}`}
+							>
+								{h.text.length > 60 ? h.text.slice(0, 57) + '...' : h.text}
+							</a>
+						))}
+					</nav>
+				</aside>
+			</div>
+		)}
+
+		<!-- Content column -->
+		<div id="blog-content-area" class={`min-w-0 ${hasTOC ? 'max-w-3xl' : 'max-w-3xl mx-auto'}`}>
+
+			<!-- Key Takeaways -->
+			{keyTakeaways && (
+				<div class="rounded-lg border border-blue-100 bg-blue-50/50 p-6 mb-10">
+					<h3 class="mb-3 text-sm font-semibold uppercase tracking-wider text-gray-700">
+						Key Takeaways
+					</h3>
+					<div class="prose prose-sm max-w-none text-gray-600 [&_ul]:list-disc [&_ul]:pl-5 [&_li]:mb-1.5" set:html={keyTakeaways} />
+				</div>
+			)}
+
+			<!-- Article Body -->
+			<article class="blog-content prose prose-lg max-w-none
+				prose-h1:hidden
+				prose-h2:font-sora prose-h2:text-2xl prose-h2:sm:text-3xl prose-h2:font-semibold prose-h2:text-black prose-h2:mt-14 prose-h2:mb-5 prose-h2:leading-tight
+				prose-h3:text-xl prose-h3:font-semibold prose-h3:text-gray-900 prose-h3:mt-10 prose-h3:mb-4
+				prose-h4:text-lg prose-h4:font-semibold prose-h4:text-gray-900 prose-h4:mt-8 prose-h4:mb-3
+				prose-p:text-base prose-p:leading-relaxed prose-p:text-gray-700 prose-p:mb-5
+				prose-a:text-[#323dfe] prose-a:no-underline hover:prose-a:underline
+				prose-img:rounded-lg prose-img:my-8
+				prose-blockquote:border-l-[#323dfe] prose-blockquote:bg-gray-50 prose-blockquote:py-1 prose-blockquote:not-italic prose-blockquote:my-8
+				prose-strong:text-black prose-li:text-gray-700 prose-li:leading-relaxed
+				prose-ul:my-5 prose-ol:my-5 prose-hr:my-10">
+				<Content />
+			</article>
+
+			<!-- Separator + Author -->
+			<div class="border-t border-gray-200 mt-10 pt-8">
+				<div class="flex items-center gap-3">
+					<div class="flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-r from-[#cd3ef9] to-[#323dfe] text-white font-semibold text-base">
+						P
+					</div>
+					<div>
+						<div class="font-semibold text-sm text-black">{authorName}</div>
+						<div class="text-xs text-gray-500">Plivo Blog</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Related Posts -->
+	{relatedPosts.length > 0 && (
+		<section class="bg-gray-50 py-12">
+			<div class="mx-auto max-w-7xl px-4">
+				<h2 class="font-sora text-2xl font-semibold text-black mb-8">
+					Related Articles
+				</h2>
+				<div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+					{relatedPosts.map(rp => (
+						<a
+							href={`/blog/${rp.id}/`}
+							class="group flex flex-col overflow-hidden rounded-lg border border-gray-200 bg-white transition-shadow hover:shadow-md"
+						>
+							<div class="aspect-video overflow-hidden bg-gray-100">
+								{rp.image && (
+									<img
+										src={rp.image}
+										alt={rp.title}
+										class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+										loading="lazy"
+									/>
+								)}
+							</div>
+							<div class="flex flex-1 flex-col p-5">
+								{rp.categories?.[0] && (
+									<span class="mb-2 inline-block w-fit rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-600">
+										{BLOG_CATEGORIES[rp.categories[0]] || rp.categories[0]}
+									</span>
+								)}
+								<h3 class="text-base font-semibold text-black leading-tight group-hover:text-gray-700 transition-colors line-clamp-2">
+									{rp.title}
+								</h3>
+								<span class="mt-auto pt-3 text-xs text-gray-400">
+									{new Date(rp.pubDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+								</span>
+							</div>
+						</a>
+					))}
+				</div>
+			</div>
+		</section>
+	)}
+
+	<!-- BlogPosting JSON-LD structured data -->
+	<script type="application/ld+json" set:html={JSON.stringify({
+		"@context": "https://schema.org",
+		"@type": "BlogPosting",
+		"headline": title,
+		"description": description,
+		"datePublished": post.data.pubDate.toISOString(),
+		"dateModified": (post.data.updatedDate || post.data.pubDate).toISOString(),
+		"author": {
+			"@type": "Organization",
+			"name": "Plivo",
+			"url": "https://plivo.com"
+		},
+		"publisher": {
+			"@type": "Organization",
+			"name": "Plivo",
+			"url": "https://plivo.com"
+		},
+		"image": post.data.image || "",
+		"mainEntityOfPage": {
+			"@type": "WebPage",
+			"@id": `https://plivo.com/blog/${post.id}/`
+		}
+	})} />
+</PlivoLayout>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+	const article = document.querySelector('.blog-content');
+	const tocWrapper = document.getElementById('toc-wrapper');
+	const tocSidebar = document.getElementById('toc-sidebar');
+	const contentArea = document.getElementById('blog-content-area');
+	if (!article) return;
+
+	// Step 1: Assign IDs to H2/H3 headings in the article
+	const headings = article.querySelectorAll('h2, h3');
+	const headingMap: { id: string; el: HTMLElement }[] = [];
+
+	headings.forEach((heading) => {
+		const text = (heading as HTMLElement).innerText.trim();
+		if (!text || text.length <= 1) return;
+		const id = text.toLowerCase()
+			.replace(/[^a-z0-9\s-]/g, '')
+			.replace(/\s+/g, '-')
+			.replace(/^-+|-+$/g, '')
+			.slice(0, 80);
+		if (id) {
+			heading.id = id;
+			headingMap.push({ id, el: heading as HTMLElement });
+		}
+	});
+
+	// Step 2: TOC scroll tracking + sticky behavior
+	if (!tocWrapper || !tocSidebar || !contentArea || headingMap.length < 2) return;
+
+	const tocLinks = tocSidebar.querySelectorAll<HTMLAnchorElement>('[data-toc-link]');
+	const NAV_HEIGHT = 80;
+
+	function updateActiveLink() {
+		let activeId = '';
+
+		for (let i = headingMap.length - 1; i >= 0; i--) {
+			const rect = headingMap[i].el.getBoundingClientRect();
+			if (rect.top <= NAV_HEIGHT + 40) {
+				activeId = headingMap[i].id;
+				break;
+			}
+		}
+
+		tocLinks.forEach(link => {
+			const linkId = link.dataset.tocLink;
+			if (linkId === activeId) {
+				link.classList.remove('border-transparent', 'text-gray-500');
+				link.classList.add('border-[#323dfe]', 'text-[#323dfe]', 'font-medium');
+			} else {
+				link.classList.add('border-transparent', 'text-gray-500');
+				link.classList.remove('border-[#323dfe]', 'text-[#323dfe]', 'font-medium');
+			}
+		});
+	}
+
+	function updateStickyPosition() {
+		if (window.innerWidth < 1024) {
+			tocSidebar.style.cssText = '';
+			return;
+		}
+
+		const wrapperRect = tocWrapper.getBoundingClientRect();
+		const contentRect = contentArea.getBoundingClientRect();
+
+		if (wrapperRect.top <= NAV_HEIGHT && contentRect.bottom > 300) {
+			tocSidebar.style.position = 'fixed';
+			tocSidebar.style.top = `${NAV_HEIGHT}px`;
+			tocSidebar.style.left = `${wrapperRect.left}px`;
+			tocSidebar.style.width = '220px';
+		} else {
+			tocSidebar.style.cssText = '';
+		}
+	}
+
+	// Smooth scroll for TOC links
+	tocLinks.forEach(link => {
+		link.addEventListener('click', (e) => {
+			e.preventDefault();
+			const targetId = link.dataset.tocLink;
+			const target = document.getElementById(targetId || '');
+			if (target) {
+				const top = target.getBoundingClientRect().top + window.scrollY - NAV_HEIGHT - 16;
+				window.scrollTo({ top, behavior: 'smooth' });
+			}
+		});
+	});
+
+	function onScrollResize() {
+		updateActiveLink();
+		updateStickyPosition();
+	}
+
+	window.addEventListener('scroll', onScrollResize, { passive: true });
+	window.addEventListener('resize', onScrollResize, { passive: true });
+	onScrollResize();
+});
+</script>

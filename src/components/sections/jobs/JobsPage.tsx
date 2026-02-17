@@ -151,7 +151,7 @@ export default function JobsPage() {
                     index < 4 ? "border-r border-gray-200" : ""
                   } ${index >= 2 ? "border-t sm:border-t lg:border-t-0 border-gray-200" : ""} ${index >= 3 ? "border-t lg:border-t-0 border-gray-200" : ""}`}
                 >
-                  <div className="font-sora text-2xl sm:text-3xl font-semibold text-black mb-1">
+                  <div className="text-2xl sm:text-3xl font-semibold text-black mb-1">
                     {stat.value}
                   </div>
                   <div className="text-sm text-gray-500">{stat.label}</div>

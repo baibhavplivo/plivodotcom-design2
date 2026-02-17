@@ -494,7 +494,7 @@ export default function ContactSalesHero() {
                       <polyline points="20 6 9 17 4 12" />
                     </svg>
                   </div>
-                  <h3 className="font-sora text-xl font-normal text-black">
+                  <h3 className="text-xl font-normal text-black">
                     Thank you for reaching out!
                   </h3>
                   <p className="text-sm text-gray-500 mt-2 max-w-xs mx-auto leading-relaxed">

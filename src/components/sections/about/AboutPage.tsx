@@ -138,7 +138,7 @@ export default function AboutPage() {
                     index < stats.length - 1 ? "border-r border-gray-200" : ""
                   } ${index >= 2 ? "border-t lg:border-t-0 border-gray-200" : ""}`}
                 >
-                  <div className="font-sora text-2xl sm:text-3xl md:text-4xl font-semibold text-black mb-1">
+                  <div className="text-2xl sm:text-3xl md:text-4xl font-semibold text-black mb-1">
                     {stat.value}
                   </div>
                   <div className="text-sm text-gray-500">{stat.label}</div>
@@ -235,7 +235,7 @@ export default function AboutPage() {
 
                 {/* Right: Description */}
                 <div>
-                  <h3 className="font-sora text-base sm:text-lg font-medium text-black mb-1">
+                  <h3 className="text-base sm:text-lg font-medium text-black mb-1">
                     {layer.title}
                   </h3>
                   <p className="text-sm text-gray-500 leading-relaxed">

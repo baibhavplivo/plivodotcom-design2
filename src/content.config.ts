@@ -8,12 +8,20 @@ const blog = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string(),
-    // Transform string to Date object
     pubDate: z.coerce.date(),
     updatedDate: z.coerce.date().optional(),
     image: z.string().optional(),
+    thumbnail: z.string().optional(),
     authorImage: z.string().optional(),
     authorName: z.string().optional(),
+    draft: z.boolean().default(false),
+    featured: z.boolean().default(false),
+    noindex: z.boolean().default(false),
+    categories: z.array(z.string()).default([]),
+    seoTitle: z.string().optional(),
+    seoDescription: z.string().optional(),
+    keyTakeaways: z.string().optional(),
+    webflowItemId: z.string().optional(),
   }),
 });
 

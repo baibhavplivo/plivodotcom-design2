@@ -1,0 +1,15 @@
+---
+title: "Plivo Repeats as Appealie Overall SaaS Award Winner for Development and DevOps"
+description: "Plivo Repeats as Appealie Overall SaaS Award Winner for Development and DevOps"
+pubDate: "2022-10-25T00:00:00.000Z"
+updatedDate: "2023-12-21T10:19:07.000Z"
+image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657d8c7874351fdd7ecd1213_appealie.jpg"
+thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657d8c7874351fdd7ecd1213_appealie.jpg"
+authorName: "Team Plivo"
+featured: true
+noindex: false
+categories: ["company"]
+seoTitle: "Plivo Wins Appealie Award in Overall SaaS Development + DevOps Category"
+webflowItemId: "657d8cdefc6fa186be253009"
+---
+<p>Last year, we were delighted when <a href="https://www.plivo.com/blog/award-appealie-saas-2021/" target="_blank">Plivo won the Appealie Overall SaaS Award in the Development and DevOps category</a>. Well, it’s happened again: New year, same award. </p><p>The Appealie is awarded annually to SaaS applications that demonstrate excellence through innovation, customer delight, and dedication to constant improvement. This year, innovation was a big component for Plivo — and as for customer delight, we’ve been <a href="https://www.g2.com/categories/communication-platform-as-a-service?order=top_shelf&amp;utf8=%E2%9C%93" target="_blank">No. 1 in customer satisfaction on G2</a> for eight consecutive quarters.</p><p>“We were honored to win last year,” says Venky B, Plivo co-founder and CEO, “but we couldn’t have repeated without a strong effort on the part of everyone in the company. Since last year we’ve launched a long list of new features for our customers.”</p><p>The list of new features includes:</p><ul><li>10DLC console registration</li><li>10DLC API</li><li>Self-service phone number port-in</li><li>Hosted messaging</li><li>Called ID Name (CNAM) registration</li></ul><p>“Looking back, we put in a lot of effort,” Venky says, “but we’re not going to rest here. If you check in with us a year from now you’re going to see the result of many more amazing initiatives that are already in the works.”</p><p>In the <a href="https://appealie.com/saas-awards-2022/" target="_blank">post announcing the winners</a>, Arabella Solaybar of Appealie says, “As the cloud continues to grow, user expectations are also growing. Our highly selective software award honors customer-obsessed SaaS platforms that deliver extraordinary experiences and results.” </p><p>According to the awards criteria, and “as an indicator of Appealie’s SaaS Award selectivity, the Overall SaaS Award winners averaged over 4.6 stars on the most popular software review platforms (G2, Capterra, and GetApp — all of which use a 5-star rating scale).” The Appealie SaaS Awards recognized 42 SaaS apps this year for their demonstrated excellence and customer outcomes.</p><p>To see for yourself what the excitement is about, <a href="https://console.plivo.com/accounts/register/" target="_blank">sign up for a free trial of Plivo today</a>.</p><p></p>

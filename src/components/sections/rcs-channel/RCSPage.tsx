@@ -744,7 +744,7 @@ function RCSEarlyAccess() {
             <div className="space-y-5">
               {RCS_STATS.map((stat, i) => (
                 <div key={i} className="flex items-start gap-3">
-                  <span className="font-sora text-xl sm:text-2xl font-semibold text-black flex-shrink-0">
+                  <span className="text-xl sm:text-2xl font-semibold text-black flex-shrink-0">
                     {stat.value}
                   </span>
                   <p className="text-gray-600 text-sm leading-relaxed pt-0.5">
@@ -764,7 +764,7 @@ function RCSEarlyAccess() {
                     <polyline points="20 6 9 17 4 12" />
                   </svg>
                 </div>
-                <h3 className="font-sora text-xl font-normal text-black">
+                <h3 className="text-xl font-normal text-black">
                   Thank you for your interest!
                 </h3>
                 <p className="text-sm text-gray-500 mt-2 max-w-xs mx-auto leading-relaxed">

@@ -1,0 +1,328 @@
+---
+import PlivoLayout from '@/layouts/PlivoLayout.astro';
+import { getCollection } from 'astro:content';
+import { BLOG_CATEGORIES } from '@/data/blog-categories';
+import type { GetStaticPaths } from 'astro';
+
+export const getStaticPaths = (async ({ paginate }) => {
+  const posts = (await getCollection('blog', ({ data }) => !data.draft))
+    .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+  return paginate(posts, { pageSize: 12 });
+}) satisfies GetStaticPaths;
+
+const { page } = Astro.props;
+
+// Get all unique categories with counts
+const allPosts = await getCollection('blog', ({ data }) => !data.draft);
+const categoryCounts = new Map<string, number>();
+allPosts.forEach(p => {
+  p.data.categories?.forEach(c => {
+    categoryCounts.set(c, (categoryCounts.get(c) || 0) + 1);
+  });
+});
+
+// Sort categories by count (most used first), take top 20
+const topCategories = [...categoryCounts.entries()]
+  .sort((a, b) => b[1] - a[1])
+  .slice(0, 20)
+  .map(([slug]) => slug);
+
+const featuredPost = page.currentPage === 1 ? page.data[0] : null;
+const gridPosts = page.currentPage === 1 ? page.data.slice(1) : page.data;
+
+function formatDate(date: Date): string {
+  return date.toLocaleDateString('en-US', {
+    month: 'short', day: 'numeric', year: 'numeric'
+  });
+}
+
+function estimateReadTime(title: string): string {
+  return '5 min read';
+}
+
+// Pre-compute pagination items to avoid complex logic in template
+type PageItem = { type: 'page'; num: number; url: string; active: boolean } | { type: 'ellipsis' };
+const pageItems: PageItem[] = [];
+
+for (let i = 1; i <= page.lastPage; i++) {
+  const showPage = i === 1 || i === page.lastPage || Math.abs(i - page.currentPage) <= 1;
+  const showEllipsis = !showPage && (i === 2 || i === page.lastPage - 1);
+
+  if (showEllipsis) {
+    pageItems.push({ type: 'ellipsis' });
+  } else if (showPage) {
+    pageItems.push({
+      type: 'page',
+      num: i,
+      url: i === 1 ? '/blog/' : `/blog/${i}/`,
+      active: i === page.currentPage,
+    });
+  }
+}
+---
+
+<PlivoLayout title="Blog" description="Explore Plivo's blog for insights on cloud communications, AI agents, SMS, voice, and customer engagement.">
+
+  <!-- Hero Section -->
+  <section class="bg-white pt-16 pb-8 lg:pt-20 lg:pb-12">
+    <div class="mx-auto max-w-7xl px-4">
+      <h1 class="font-sora text-[2rem] sm:text-[2.5rem] md:text-[3rem] font-normal leading-[1.1] tracking-[-0.02em] text-black text-center">
+        Blog
+      </h1>
+      <p class="text-[1.125rem] text-gray-500 text-center mt-4 max-w-2xl mx-auto">
+        Insights on cloud communications, AI agents, and customer engagement
+      </p>
+    </div>
+  </section>
+
+  <!-- Category Filter -->
+  <section class="bg-white pb-8">
+    <div class="mx-auto max-w-7xl px-4">
+      <div class="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-hide" id="category-filter">
+        <button
+          data-category="all"
+          class="category-btn shrink-0 rounded-full px-4 py-1.5 text-sm font-medium border transition-colors bg-black text-white border-black"
+        >
+          All
+        </button>
+        {topCategories.map(slug => (
+          <button
+            data-category={slug}
+            class="category-btn shrink-0 rounded-full px-4 py-1.5 text-sm font-medium border transition-colors bg-white text-gray-600 border-gray-200 hover:border-gray-400"
+          >
+            {BLOG_CATEGORIES[slug] || slug}
+          </button>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Post (first page only) -->
+  {featuredPost && (
+    <section class="bg-white pb-12">
+      <div class="mx-auto max-w-7xl px-4">
+        <a
+          href={`/blog/${featuredPost.id}/`}
+          class="group block overflow-hidden rounded-lg border border-gray-200 md:grid md:grid-cols-2 md:gap-0"
+          data-categories={featuredPost.data.categories?.join(',') || ''}
+        >
+          <div class="aspect-video overflow-hidden md:aspect-auto md:h-full bg-gray-100">
+            {(featuredPost.data.thumbnail || featuredPost.data.image) ? (
+              <img
+                src={featuredPost.data.thumbnail || featuredPost.data.image}
+                alt={featuredPost.data.title}
+                class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                loading="eager"
+              />
+            ) : (
+              <div class="h-full w-full flex items-center justify-center">
+                <svg class="h-12 w-12 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+              </div>
+            )}
+          </div>
+          <div class="flex flex-col justify-center p-6 md:p-10">
+            {featuredPost.data.categories?.[0] && (
+              <span class="inline-block w-fit rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-600 mb-4">
+                {BLOG_CATEGORIES[featuredPost.data.categories[0]] || featuredPost.data.categories[0]}
+              </span>
+            )}
+            <h2 class="font-sora text-xl md:text-2xl font-semibold text-black leading-tight group-hover:text-gray-700 transition-colors">
+              {featuredPost.data.title}
+            </h2>
+            <p class="mt-3 text-gray-500 text-sm md:text-base line-clamp-3">
+              {featuredPost.data.description}
+            </p>
+            <div class="mt-4 flex items-center gap-3 text-sm text-gray-400">
+              <span>{formatDate(featuredPost.data.pubDate)}</span>
+              <span>&middot;</span>
+              <span>{estimateReadTime(featuredPost.data.title)}</span>
+            </div>
+          </div>
+        </a>
+      </div>
+    </section>
+  )}
+
+  <!-- Post Grid -->
+  <section class="bg-white pb-16">
+    <div class="mx-auto max-w-7xl px-4">
+      <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3" id="post-grid">
+        {gridPosts.map(post => (
+          <a
+            href={`/blog/${post.id}/`}
+            class="group blog-card flex flex-col overflow-hidden rounded-lg border border-gray-200 transition-shadow hover:shadow-md"
+            data-categories={post.data.categories?.join(',') || ''}
+          >
+            <div class="aspect-video overflow-hidden bg-gray-100">
+              {(post.data.thumbnail || post.data.image) ? (
+                <img
+                  src={post.data.thumbnail || post.data.image}
+                  alt={post.data.title}
+                  class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  loading="lazy"
+                />
+              ) : (
+                <div class="h-full w-full flex items-center justify-center">
+                  <svg class="h-10 w-10 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                </div>
+              )}
+            </div>
+            <div class="flex flex-1 flex-col p-5">
+              {post.data.categories?.[0] && (
+                <span class="inline-block w-fit rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-600 mb-3">
+                  {BLOG_CATEGORIES[post.data.categories[0]] || post.data.categories[0]}
+                </span>
+              )}
+              <h3 class="text-lg font-semibold text-black leading-tight group-hover:text-gray-700 transition-colors line-clamp-2">
+                {post.data.title}
+              </h3>
+              <p class="mt-2 text-sm text-gray-500 line-clamp-2 flex-1">
+                {post.data.description}
+              </p>
+              <div class="mt-4 flex items-center gap-3 text-xs text-gray-400">
+                <span>{formatDate(post.data.pubDate)}</span>
+                <span>&middot;</span>
+                <span>{estimateReadTime(post.data.title)}</span>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+
+      <!-- No results message -->
+      <div id="no-results" class="hidden py-16 text-center">
+        <p class="text-gray-500 text-lg">No posts found in this category on this page.</p>
+        <a href="/blog/" class="inline-block mt-4 text-sm font-medium text-black underline">View all posts</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pagination -->
+  {page.lastPage > 1 && (
+    <section class="bg-white pb-16">
+      <div class="mx-auto max-w-7xl px-4">
+        <nav class="flex items-center justify-center gap-2" aria-label="Pagination">
+          {page.url.prev ? (
+            <a
+              href={page.url.prev}
+              class="inline-flex items-center gap-1 rounded-md border border-gray-200 px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
+            >
+              <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+              </svg>
+              <span class="hidden sm:inline">Previous</span>
+            </a>
+          ) : (
+            <span class="inline-flex items-center gap-1 rounded-md border border-gray-100 px-3 py-2 text-sm font-medium text-gray-300 cursor-not-allowed">
+              <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+              </svg>
+              <span class="hidden sm:inline">Previous</span>
+            </span>
+          )}
+
+          {pageItems.map(item => (
+            item.type === 'ellipsis' ? (
+              <span class="px-2 text-gray-400">...</span>
+            ) : item.active ? (
+              <span class="inline-flex h-10 w-10 items-center justify-center rounded-md bg-black text-sm font-medium text-white">
+                {item.num}
+              </span>
+            ) : (
+              <a
+                href={item.url}
+                class="inline-flex h-10 w-10 items-center justify-center rounded-md border border-gray-200 text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
+              >
+                {item.num}
+              </a>
+            )
+          ))}
+
+          {page.url.next ? (
+            <a
+              href={page.url.next}
+              class="inline-flex items-center gap-1 rounded-md border border-gray-200 px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
+            >
+              <span class="hidden sm:inline">Next</span>
+              <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+              </svg>
+            </a>
+          ) : (
+            <span class="inline-flex items-center gap-1 rounded-md border border-gray-100 px-3 py-2 text-sm font-medium text-gray-300 cursor-not-allowed">
+              <span class="hidden sm:inline">Next</span>
+              <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+              </svg>
+            </span>
+          )}
+        </nav>
+
+        <p class="mt-4 text-center text-sm text-gray-400">
+          Page {page.currentPage} of {page.lastPage} &middot; {page.total} articles
+        </p>
+      </div>
+    </section>
+  )}
+</PlivoLayout>
+
+<style>
+  .scrollbar-hide::-webkit-scrollbar { display: none; }
+  .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+</style>
+
+<script>
+  // Category filter - uses native DOM events (React synthetic events don't work after Astro hydration)
+  document.addEventListener('DOMContentLoaded', () => {
+    const buttons = document.querySelectorAll('.category-btn');
+    const cards = document.querySelectorAll('.blog-card');
+    const featured = document.querySelector('[data-categories]') as HTMLElement | null;
+    const noResults = document.getElementById('no-results');
+    const postGrid = document.getElementById('post-grid');
+
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const category = (btn as HTMLElement).dataset.category;
+
+        // Update button styles
+        buttons.forEach(b => {
+          b.classList.remove('bg-black', 'text-white', 'border-black');
+          b.classList.add('bg-white', 'text-gray-600', 'border-gray-200');
+        });
+        btn.classList.remove('bg-white', 'text-gray-600', 'border-gray-200');
+        btn.classList.add('bg-black', 'text-white', 'border-black');
+
+        let visibleCount = 0;
+
+        // Filter cards
+        cards.forEach(card => {
+          const el = card as HTMLElement;
+          const cats = el.dataset.categories || '';
+          if (category === 'all' || cats.split(',').includes(category!)) {
+            el.style.display = '';
+            visibleCount++;
+          } else {
+            el.style.display = 'none';
+          }
+        });
+
+        // Filter featured post
+        if (featured) {
+          const cats = featured.dataset.categories || '';
+          if (category === 'all' || cats.split(',').includes(category!)) {
+            (featured.closest('section') as HTMLElement).style.display = '';
+            visibleCount++;
+          } else {
+            (featured.closest('section') as HTMLElement).style.display = 'none';
+          }
+        }
+
+        // Show/hide no results
+        if (noResults && postGrid) {
+          noResults.classList.toggle('hidden', visibleCount > 0);
+        }
+      });
+    });
+  });
+</script>
