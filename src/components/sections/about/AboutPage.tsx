@@ -135,7 +135,9 @@ export default function AboutPage() {
                 <div
                   key={stat.label}
                   className={`flex flex-col items-center justify-center px-4 py-8 sm:py-10 md:py-12 ${
-                    index < stats.length - 1 ? "border-r border-gray-200" : ""
+                    index % 2 === 0 ? "border-r border-gray-200" : ""
+                  } ${
+                    index % 2 !== 0 && index < stats.length - 1 ? "lg:border-r lg:border-gray-200" : ""
                   } ${index >= 2 ? "border-t lg:border-t-0 border-gray-200" : ""}`}
                 >
                   <div className="text-2xl sm:text-3xl md:text-4xl font-semibold text-black mb-1">

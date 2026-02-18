@@ -430,7 +430,7 @@ export default function ContactSalesHero() {
               <p className="text-[11px] font-medium text-gray-400 uppercase tracking-wider mb-3">
                 Enterprise-grade reliability, guaranteed
               </p>
-              <div className="flex items-center gap-6 sm:gap-8">
+              <div className="flex flex-wrap items-center gap-4 sm:gap-6 md:gap-8">
                 {COMPLIANCE_BADGES.map((badge) => (
                   <div
                     key={badge.label}
@@ -454,7 +454,7 @@ export default function ContactSalesHero() {
               <p className="text-[11px] font-medium text-gray-400 uppercase tracking-wider mb-3">
                 Trusted by leading consumer brands worldwide
               </p>
-              <div className="flex flex-wrap items-center gap-5 sm:gap-6">
+              <div className="flex flex-wrap items-center gap-4 sm:gap-5 md:gap-6">
                 {customerLogos.slice(0, 6).map((logo) => (
                   <img
                     key={logo.name}

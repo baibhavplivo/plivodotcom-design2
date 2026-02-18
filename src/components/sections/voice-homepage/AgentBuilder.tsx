@@ -65,7 +65,7 @@ export default function AgentBuilder() {
           {/* Card 1: Modular Infrastructure */}
           <div className="flex flex-col overflow-hidden rounded-lg bg-gradient-to-b from-fuchsia-100 via-fuchsia-50 via-60% to-neutral-50">
             {/* Visual Top */}
-            <div className="relative flex h-[260px] sm:h-[350px] md:h-[380px] items-center justify-center overflow-hidden px-4 py-4 sm:px-8 sm:py-6 [&>*]:scale-[0.7] sm:[&>*]:scale-100">
+            <div className="relative flex h-[220px] sm:h-[350px] md:h-[380px] items-center justify-center overflow-hidden px-4 py-4 sm:px-8 sm:py-6 [&>*]:scale-[0.65] sm:[&>*]:scale-100">
               <DisplayCards cards={modularCards} />
             </div>
 

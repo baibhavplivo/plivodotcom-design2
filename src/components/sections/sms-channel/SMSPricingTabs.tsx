@@ -299,17 +299,17 @@ function SMSSection({ rates, hasCarrierFees }: { rates: SMSCountryRates; hasCarr
         <table className="w-full">
           <thead>
             <tr className="border-b border-gray-200">
-              <th className="py-3 pr-4 text-left text-sm font-semibold text-black w-[40%]">Route Type</th>
-              <th className="py-3 pr-4 text-left text-sm font-semibold text-black">To send SMS (Outbound)</th>
-              <th className="py-3 text-left text-sm font-semibold text-black">To receive SMS (Inbound)</th>
+              <th className="py-3 pr-3 sm:pr-4 text-left text-xs sm:text-sm font-semibold text-black w-[40%]">Route Type</th>
+              <th className="py-3 pr-3 sm:pr-4 text-left text-xs sm:text-sm font-semibold text-black"><span className="sm:hidden">Outbound</span><span className="hidden sm:inline">To send SMS (Outbound)</span></th>
+              <th className="py-3 text-left text-xs sm:text-sm font-semibold text-black"><span className="sm:hidden">Inbound</span><span className="hidden sm:inline">To receive SMS (Inbound)</span></th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-100">
             {rates.sms.map((row) => (
               <tr key={row.type}>
-                <td className="py-3 pr-4 text-sm text-gray-900">{row.type}</td>
-                <td className="py-3 pr-4 text-sm font-medium text-black">{row.outbound}</td>
-                <td className="py-3 text-sm font-medium text-black">{row.inbound}</td>
+                <td className="py-3 pr-3 sm:pr-4 text-xs sm:text-sm text-gray-900">{row.type}</td>
+                <td className="py-3 pr-3 sm:pr-4 text-xs sm:text-sm font-medium text-black">{row.outbound}</td>
+                <td className="py-3 text-xs sm:text-sm font-medium text-black">{row.inbound}</td>
               </tr>
             ))}
           </tbody>
@@ -353,17 +353,17 @@ function MMSSection({ mmsRates, hasCarrierFees }: { mmsRates: SMSCountryRates["m
         <table className="w-full">
           <thead>
             <tr className="border-b border-gray-200">
-              <th className="py-3 pr-4 text-left text-sm font-semibold text-black w-[40%]">Route Type</th>
-              <th className="py-3 pr-4 text-left text-sm font-semibold text-black">To send MMS (Outbound)</th>
-              <th className="py-3 text-left text-sm font-semibold text-black">To receive MMS (Inbound)</th>
+              <th className="py-3 pr-3 sm:pr-4 text-left text-xs sm:text-sm font-semibold text-black w-[40%]">Route Type</th>
+              <th className="py-3 pr-3 sm:pr-4 text-left text-xs sm:text-sm font-semibold text-black"><span className="sm:hidden">Outbound</span><span className="hidden sm:inline">To send MMS (Outbound)</span></th>
+              <th className="py-3 text-left text-xs sm:text-sm font-semibold text-black"><span className="sm:hidden">Inbound</span><span className="hidden sm:inline">To receive MMS (Inbound)</span></th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-100">
             {mmsRates.map((row) => (
               <tr key={row.type}>
-                <td className="py-3 pr-4 text-sm text-gray-900">{row.type}</td>
-                <td className="py-3 pr-4 text-sm font-medium text-black">{row.outbound}</td>
-                <td className="py-3 text-sm font-medium text-black">{row.inbound}</td>
+                <td className="py-3 pr-3 sm:pr-4 text-xs sm:text-sm text-gray-900">{row.type}</td>
+                <td className="py-3 pr-3 sm:pr-4 text-xs sm:text-sm font-medium text-black">{row.outbound}</td>
+                <td className="py-3 text-xs sm:text-sm font-medium text-black">{row.inbound}</td>
               </tr>
             ))}
           </tbody>
@@ -468,7 +468,7 @@ function SMSCostCalculator() {
         Compare SMS costs between Plivo and other providers.
       </p>
 
-      <div className="grid gap-6 sm:grid-cols-2 mb-8">
+      <div className="grid gap-4 sm:gap-6 sm:grid-cols-2 mb-8">
         {/* Country selector */}
         <div className="relative" ref={dropdownRef}>
           <label className="block text-sm font-medium text-gray-700 mb-2">Country</label>

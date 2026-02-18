@@ -232,15 +232,15 @@ for (let i = 1; i <= page.lastPage; i++) {
 
           {pageItems.map(item => (
             item.type === 'ellipsis' ? (
-              <span class="px-2 text-gray-400">...</span>
+              <span class="hidden sm:inline px-2 text-gray-400">...</span>
             ) : item.active ? (
-              <span class="inline-flex h-10 w-10 items-center justify-center rounded-md bg-black text-sm font-medium text-white">
+              <span class="inline-flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-md bg-black text-xs sm:text-sm font-medium text-white">
                 {item.num}
               </span>
             ) : (
               <a
                 href={item.url}
-                class="inline-flex h-10 w-10 items-center justify-center rounded-md border border-gray-200 text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
+                class="hidden sm:inline-flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-md border border-gray-200 text-xs sm:text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
               >
                 {item.num}
               </a>

@@ -465,8 +465,8 @@ export default function VoiceDemo() {
       </div>
 
       {/* Fade Edges */}
-      <div className="absolute inset-y-0 left-0 z-[5] w-32 bg-gradient-to-r from-white to-transparent" />
-      <div className="absolute inset-y-0 right-0 z-[5] w-32 bg-gradient-to-l from-white to-transparent" />
+      <div className="absolute inset-y-0 left-0 z-[5] w-8 sm:w-16 md:w-32 bg-gradient-to-r from-white to-transparent" />
+      <div className="absolute inset-y-0 right-0 z-[5] w-8 sm:w-16 md:w-32 bg-gradient-to-l from-white to-transparent" />
 
       {/* Content */}
       <div className="relative z-10 flex flex-col items-center justify-center gap-3 py-12">

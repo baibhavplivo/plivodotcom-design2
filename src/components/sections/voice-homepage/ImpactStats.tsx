@@ -153,7 +153,7 @@ export default function ImpactStats() {
           <div className="relative flex flex-col z-20">
             {/* Large Counter Block */}
             <div className="flex flex-col justify-center px-6 py-8 sm:px-8 lg:px-10 lg:py-10 lg:pr-[380px]">
-              <div className="mb-2 text-[3rem] font-semibold tabular-nums tracking-[-0.04em] text-black sm:text-5xl md:text-6xl lg:text-7xl">
+              <div className="mb-2 text-[2rem] font-semibold tabular-nums tracking-[-0.04em] text-black sm:text-[3rem] md:text-5xl lg:text-7xl">
                 <LiveCounter value={counter} />
               </div>
               <div className="text-base sm:text-lg font-medium text-gray-600">

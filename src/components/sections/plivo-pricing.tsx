@@ -200,20 +200,20 @@ function PricingModal({
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
       <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={onClose} />
       <div className="relative bg-white rounded-xl max-w-4xl w-full max-h-[90vh] overflow-hidden shadow-2xl">
-        <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200">
-          <h2 className="font-sora text-xl font-semibold text-black">{title}</h2>
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 px-4 sm:px-6 py-4 border-b border-gray-200">
+          <h2 className="font-sora text-lg sm:text-xl font-semibold text-black">{title}</h2>
           <div className="flex items-center gap-3">
-            <div className="relative" ref={modalDropdownRef}>
+            <div className="relative flex-1 sm:flex-none" ref={modalDropdownRef}>
               <button
                 onClick={() => setIsCountryDropdownOpen(!isCountryDropdownOpen)}
-                className="flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-black transition-colors hover:bg-gray-50"
+                className="flex w-full sm:w-auto items-center gap-2 rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-black transition-colors hover:bg-gray-50"
               >
                 <span className="text-base">{country.flag}</span>
                 <span>{country.name}</span>
-                <ChevronDown className={`h-4 w-4 text-gray-500 transition-transform ${isCountryDropdownOpen ? 'rotate-180' : ''}`} />
+                <ChevronDown className={`h-4 w-4 text-gray-500 transition-transform ml-auto sm:ml-0 ${isCountryDropdownOpen ? 'rotate-180' : ''}`} />
               </button>
               {isCountryDropdownOpen && (
-                <div className="absolute right-0 top-full mt-1 z-50 w-56 max-h-72 overflow-hidden flex flex-col rounded-lg border border-gray-200 bg-white shadow-lg">
+                <div className="absolute right-0 top-full mt-1 z-50 w-full sm:w-56 max-h-72 overflow-hidden flex flex-col rounded-lg border border-gray-200 bg-white shadow-lg">
                   <div className="p-2 border-b border-gray-100">
                     <input
                       type="text"
@@ -248,12 +248,12 @@ function PricingModal({
                 </div>
               )}
             </div>
-            <button onClick={onClose} className="p-2 rounded-lg hover:bg-gray-100 transition-colors">
+            <button onClick={onClose} className="p-2 rounded-lg hover:bg-gray-100 transition-colors flex-shrink-0">
               <X className="h-5 w-5 text-gray-500" />
             </button>
           </div>
         </div>
-        <div className="p-6 space-y-6 overflow-y-auto max-h-[calc(90vh-80px)] min-h-[320px]">
+        <div className="p-4 sm:p-6 space-y-6 overflow-y-auto max-h-[calc(90vh-120px)] sm:max-h-[calc(90vh-80px)] min-h-[320px]">
           {children}
         </div>
       </div>
@@ -746,7 +746,7 @@ export function PlivoPricing() {
             <div className="relative" ref={mainDropdownRef}>
               <button
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                className="flex w-64 items-center justify-between rounded-lg border border-gray-200 bg-white px-4 py-2.5 text-sm font-medium text-black transition-colors hover:bg-gray-50"
+                className="flex w-full max-w-[256px] items-center justify-between rounded-lg border border-gray-200 bg-white px-4 py-2.5 text-sm font-medium text-black transition-colors hover:bg-gray-50"
               >
                 <div className="flex items-center gap-2">
                   <span className="text-base">{country.flag}</span>
@@ -756,7 +756,7 @@ export function PlivoPricing() {
               </button>
 
               {isDropdownOpen && (
-                <div className="absolute left-1/2 -translate-x-1/2 top-full mt-1 z-50 w-64 max-h-72 overflow-hidden flex flex-col rounded-lg border border-gray-200 bg-white shadow-lg">
+                <div className="absolute left-0 right-0 sm:left-1/2 sm:-translate-x-1/2 sm:w-64 top-full mt-1 z-50 max-h-72 overflow-hidden flex flex-col rounded-lg border border-gray-200 bg-white shadow-lg">
                   <div className="p-2 border-b border-gray-100">
                     <input
                       type="text"
@@ -920,20 +920,19 @@ export function PlivoPricing() {
 
             {/* Channel Pricing Grid */}
             <div className="border-t border-gray-200">
-              <div className="grid grid-cols-2 sm:grid-cols-4 divide-x divide-gray-200">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 sm:divide-x divide-gray-200">
               {[
                 { icon: <Phone className="h-4 w-4 text-[#323dfe]" />, title: "Voice", startsAt: pricing.voice, onOpen: () => setIsVoiceModalOpen(true) },
                 { icon: <Sparkles className="h-4 w-4 text-[#323dfe]" />, title: "AI Agents", startsAt: pricing.aiAgents, onOpen: () => setIsAIAgentsModalOpen(true) },
                 { icon: <MessageSquare className="h-4 w-4 text-[#323dfe]" />, title: "SMS & RCS", startsAt: pricing.sms, onOpen: () => setIsSMSModalOpen(true) },
                 { icon: <WhatsAppIcon className="h-4 w-4 text-[#323dfe]" />, title: "WhatsApp", startsAt: pricing.whatsappChat, onOpen: () => setIsWhatsAppModalOpen(true) },
               ].map((item, index) => {
-                const isBottomRowMobile = index >= 2;
-
                 return (
                   <div
                     key={item.title}
-                    className={`flex flex-col justify-center px-4 py-5 sm:px-6 sm:py-6
-                      ${isBottomRowMobile ? "border-t border-gray-200 sm:border-t-0" : ""}
+                    className={`flex flex-col justify-center px-4 py-4 sm:px-6 sm:py-6
+                      ${index > 0 ? "border-t border-gray-200 sm:border-t-0" : ""}
+                      ${index >= 2 ? "sm:border-t sm:border-gray-200 md:border-t-0" : ""}
                     `}
                   >
                     <div className="flex items-center justify-between mb-2">
