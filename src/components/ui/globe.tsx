@@ -66,22 +66,15 @@ export function Globe({
   );
 
   useEffect(() => {
-    let currentWidth = 0;
     let globe: ReturnType<typeof createGlobe> | null = null;
-
-    const onResize = () => {
-      if (canvasRef.current) {
-        currentWidth = canvasRef.current.offsetWidth;
-      }
-    };
-    window.addEventListener("resize", onResize);
-    onResize();
+    const dpr = window.devicePixelRatio || 1;
+    const pixelSize = size * dpr;
 
     if (canvasRef.current) {
       globe = createGlobe(canvasRef.current, {
-        devicePixelRatio: 2,
-        width: size * 2,
-        height: size * 2,
+        devicePixelRatio: dpr,
+        width: pixelSize,
+        height: pixelSize,
         phi: 0,
         theta: 0.25,
         dark: dark ? 1 : 0,
@@ -107,13 +100,18 @@ export function Globe({
           { location: [19.4326, -99.1332], size: 0.04 }, // Mexico City
         ],
         onRender: (state) => {
-          state.width = currentWidth * 2;
-          state.height = currentWidth * 2;
+          // Keep dimensions fixed — no per-frame resize
+          state.width = pixelSize;
+          state.height = pixelSize;
 
           if (pointerInteracting.current !== null) {
             const r = pointerInteractionMovement.current;
             phiRef.current += r * 0.005;
             pointerInteractionMovement.current *= 0.9;
+            // Kill momentum below threshold to prevent micro-jitter
+            if (Math.abs(pointerInteractionMovement.current) < 0.01) {
+              pointerInteractionMovement.current = 0;
+            }
           } else {
             phiRef.current += 0.002;
           }
@@ -128,7 +126,6 @@ export function Globe({
       if (globe) {
         globe.destroy();
       }
-      window.removeEventListener("resize", onResize);
     };
   }, [size, dark, baseColor, glowColor, markerColor, opacity]);
 

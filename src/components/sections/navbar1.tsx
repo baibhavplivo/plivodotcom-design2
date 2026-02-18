@@ -343,42 +343,26 @@ const Navbar1 = ({ currentPage = "/" }: Navbar1Props) => {
                 </Button>
               </SheetTrigger>
               <SheetContent
-                side="left"
-                className="w-full max-w-xs overflow-y-auto bg-white"
+                side="right"
+                className="w-[85vw] max-w-sm overflow-y-auto bg-white p-0"
               >
-                <SheetHeader>
-                  <SheetTitle>
-                    <a href="/" className="flex items-center">
-                      <img
-                        src="/images/plivo-logo.svg"
-                        alt="Plivo"
-                        className="h-6 w-auto"
-                      />
-                    </a>
-                  </SheetTitle>
-                </SheetHeader>
-                <div className="flex flex-col py-6">
-                  {/* Mobile CTA */}
-                  <a
-                    href={ctaNavigation.href}
-                    className="mb-6 flex w-full items-center justify-center gap-2 rounded-md bg-black py-3 text-[14px] font-medium text-white"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    <svg
-                      className="h-4 w-4"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <polyline points="4 17 10 11 4 5" />
-                      <line x1="12" y1="19" x2="20" y2="19" />
-                    </svg>
-                    {ctaNavigation.title}
-                  </a>
+                {/* Header */}
+                <div className="flex items-center border-b border-gray-100 px-5 py-4">
+                  <SheetHeader className="flex-row items-center space-y-0">
+                    <SheetTitle className="text-base font-semibold">
+                      <a href="/" className="flex items-center" onClick={() => setIsOpen(false)}>
+                        <img
+                          src="/images/plivo-logo.svg"
+                          alt="Plivo"
+                          className="h-5 w-auto"
+                        />
+                      </a>
+                    </SheetTitle>
+                  </SheetHeader>
+                </div>
 
+                {/* Nav links */}
+                <div className="flex flex-col px-5 pt-3 pb-8">
                   <Accordion type="single" collapsible className="w-full">
                     {mainNavigation.map((navItem, idx) =>
                       hasDropdown(navItem) ? (
@@ -387,77 +371,56 @@ const Navbar1 = ({ currentPage = "/" }: Navbar1Props) => {
                           value={`item-${idx}`}
                           className="border-b border-gray-100"
                         >
-                          <AccordionTrigger className="py-4 text-[16px] font-medium text-gray-900 hover:no-underline">
+                          <AccordionTrigger className="py-3.5 text-[15px] font-medium text-gray-900 hover:no-underline">
                             {navItem.title}
                           </AccordionTrigger>
-                          <AccordionContent className="pb-4">
+                          <AccordionContent className="pb-3">
                             {navItem.sections?.map((section) => (
-                              <div key={section.title} className="mb-4">
-                                <h4 className="mb-2 pl-4 text-[12px] font-semibold uppercase tracking-wider text-[#323DFE]">
+                              <div key={section.title} className="mb-3 last:mb-0">
+                                <h4 className="mb-1.5 text-[11px] font-semibold uppercase tracking-wider text-[#323DFE]">
                                   {section.title}
                                 </h4>
-                                <div
-                                  className={
-                                    navItem.title === "Solutions"
-                                      ? "space-y-0"
-                                      : "space-y-1"
-                                  }
-                                >
+                                <div className="space-y-0.5">
                                   {section.items.map((item) => (
                                     <a
                                       key={item.title}
                                       href={item.href}
-                                      className={cn(
-                                        "flex gap-3 rounded-md transition-colors hover:bg-gray-50",
-                                        navItem.title === "Solutions"
-                                          ? "items-center py-1.5 pl-4"
-                                          : "items-start py-2 pl-4",
-                                      )}
+                                      className="flex items-start gap-2.5 rounded-md px-2 py-2 transition-colors hover:bg-gray-50"
                                       onClick={() => setIsOpen(false)}
                                     >
                                       {item.icon && iconMap[item.icon] && (
-                                        <span
-                                          className={
-                                            navItem.title === "Solutions"
-                                              ? "text-[#323DFE]"
-                                              : "mt-0.5 text-[#323DFE]"
-                                          }
-                                        >
+                                        <span className="mt-0.5 flex-shrink-0 text-[#323DFE]">
                                           {iconMap[item.icon]}
                                         </span>
                                       )}
-                                      <div>
+                                      <div className="min-w-0">
                                         <span className="block text-[14px] font-medium text-gray-900">
                                           {item.title}
                                         </span>
-                                        {item.description &&
-                                          navItem.title !== "Solutions" && (
-                                            <span className="mt-0.5 block text-[12px] text-gray-500">
-                                              {item.description}
-                                            </span>
-                                          )}
+                                        {item.description && (
+                                          <span className="mt-0.5 block text-[12px] leading-relaxed text-gray-500 line-clamp-2">
+                                            {item.description}
+                                          </span>
+                                        )}
                                       </div>
                                     </a>
                                   ))}
                                 </div>
                               </div>
                             ))}
-                            {navItem.bottomItems && (
-                              <div className="mt-2 border-t border-gray-100 pt-4">
-                                <h4 className="mb-2 pl-4 text-[12px] font-medium text-gray-500">
-                                  More
-                                </h4>
-                                <div className="flex flex-wrap gap-4 pl-4">
+                            {navItem.bottomItems && navItem.bottomItems.length > 0 && (
+                              <div className="mt-2 border-t border-gray-100 pt-3">
+                                <div className="flex flex-wrap gap-x-4 gap-y-2 px-2">
                                   {navItem.bottomItems.map((item) => (
                                     <a
                                       key={item.title}
                                       href={item.href}
-                                      className="flex items-center gap-2 text-[14px] font-medium text-gray-900"
+                                      className="flex items-center gap-1.5 text-[13px] font-medium text-gray-700 hover:text-[#323DFE] transition-colors"
                                       onClick={() => setIsOpen(false)}
                                     >
                                       {item.icon && iconMap[item.icon] && (
                                         <span className="text-[#323DFE]">
-                                          {iconMap[item.icon]}
+                                          {React.cloneElement(iconMap[item.icon] as React.ReactElement, { className: "h-4 w-4" })}
                                         </span>
                                       )}
                                       {item.title}
@@ -472,7 +435,7 @@ const Navbar1 = ({ currentPage = "/" }: Navbar1Props) => {
                         <a
                           key={navItem.title}
                           href={navItem.href}
-                          className="block border-b border-gray-100 py-4 text-[16px] font-medium text-gray-900"
+                          className="flex items-center border-b border-gray-100 py-3.5 text-[15px] font-medium text-gray-900 hover:text-[#323DFE] transition-colors"
                           onClick={() => setIsOpen(false)}
                         >
                           {navItem.title}
@@ -481,13 +444,24 @@ const Navbar1 = ({ currentPage = "/" }: Navbar1Props) => {
                     )}
                   </Accordion>
 
-                  {/* Secondary links */}
-                  <div className="mt-6 space-y-3">
+                  {/* CTAs at bottom */}
+                  <div className="mt-8 flex flex-col gap-3">
+                    <a
+                      href={ctaNavigation.href}
+                      className="flex w-full items-center justify-center rounded-md bg-black px-4 py-3 text-[14px] font-medium text-white transition-colors hover:bg-gray-800"
+                      onClick={() => setIsOpen(false)}
+                      {...(ctaNavigation.external && {
+                        target: "_blank",
+                        rel: "noopener noreferrer",
+                      })}
+                    >
+                      {ctaNavigation.title}
+                    </a>
                     {secondaryNavigation.map((item) => (
                       <a
                         key={item.title}
                         href={item.href}
-                        className="block text-center text-[14px] text-gray-600"
+                        className="flex w-full items-center justify-center rounded-md border border-gray-300 px-4 py-3 text-[14px] font-medium text-gray-700 transition-colors hover:border-gray-400 hover:text-black"
                         onClick={() => setIsOpen(false)}
                       >
                         {item.title}

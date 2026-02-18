@@ -138,10 +138,10 @@ export default function ImpactStats() {
           <div className="absolute -right-28 top-1/2 hidden lg:block z-30" style={{ transform: 'translateY(calc(-50% + 40px))' }}>
             <Globe
               size={504}
-              baseColor={[0.95, 0.95, 0.97]}
-              glowColor={[0.9, 0.9, 0.95]}
+              baseColor={[1, 1, 1]}
+              glowColor={[0.96, 0.96, 1]}
               markerColor={[0.2, 0.24, 1]}
-              opacity={0.4}
+              opacity={0.9}
               interactive={true}
             />
           </div>

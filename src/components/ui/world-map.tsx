@@ -1,8 +1,7 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import { motion } from "motion/react";
-import DottedMap from "dotted-map";
 import { cn } from "@/lib/utils";
 
 interface MapProps {
@@ -20,18 +19,6 @@ export default function WorldMap({
   className,
 }: MapProps) {
   const svgRef = useRef<SVGSVGElement>(null);
-  const [svgMap, setSvgMap] = useState<string>("");
-
-  useEffect(() => {
-    const map = new DottedMap({ height: 100, grid: "diagonal" });
-    const svgMapStr = map.getSVG({
-      radius: 0.22,
-      color: "#9ca3af",
-      shape: "circle",
-      backgroundColor: "transparent",
-    });
-    setSvgMap(svgMapStr);
-  }, []);
 
   const projectPoint = (lat: number, lng: number) => {
     const x = (lng + 180) * (800 / 360);
@@ -55,20 +42,13 @@ export default function WorldMap({
         className
       )}
     >
-      {/* Dotted map background */}
-      <div
-        className="h-full w-full [mask-image:linear-gradient(to_bottom,transparent,white_10%,white_90%,transparent)] pointer-events-none select-none"
-        dangerouslySetInnerHTML={{
-          __html: svgMap
-            ? svgMap
-                .replace('width="100%"', 'width="100%"')
-                .replace('height="100%"', 'height="100%"')
-            : "",
-        }}
-        style={{
-          width: "100%",
-          height: "100%",
-        }}
+      {/* Dotted map background - static SVG file (no JS dependency) */}
+      <img
+        src="/images/world-map-dots.svg"
+        alt=""
+        aria-hidden="true"
+        className="h-full w-full object-cover pointer-events-none select-none [mask-image:linear-gradient(to_bottom,transparent,white_10%,white_90%,transparent)]"
+        loading="eager"
       />
 
       {/* Animated arcs overlay */}

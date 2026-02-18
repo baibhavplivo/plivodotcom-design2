@@ -20,6 +20,8 @@ interface AnimatedBeamProps {
   startYOffset?: number;
   endXOffset?: number;
   endYOffset?: number;
+  dashed?: boolean;
+  rightAngle?: boolean;
 }
 
 export const AnimatedBeam: React.FC<AnimatedBeamProps> = ({
@@ -39,6 +41,8 @@ export const AnimatedBeam: React.FC<AnimatedBeamProps> = ({
   startYOffset = 0,
   endXOffset = 0,
   endYOffset = 0,
+  dashed = false,
+  rightAngle = false,
 }) => {
   const id = useId();
   const [pathD, setPathD] = useState("");
@@ -67,11 +71,17 @@ export const AnimatedBeam: React.FC<AnimatedBeamProps> = ({
       const endY =
         rectB.top - containerRect.top + rectB.height / 2 + endYOffset;
 
-      // Calculate control point for quadratic bezier
-      const midX = (startX + endX) / 2;
-      const midY = (startY + endY) / 2 - curvature;
-
-      const d = `M ${startX},${startY} Q ${midX},${midY} ${endX},${endY}`;
+      let d: string;
+      if (rightAngle) {
+        // Right-angle path: horizontal from start, vertical turn, horizontal to end
+        const midX = (startX + endX) / 2;
+        d = `M ${startX},${startY} H ${midX} V ${endY} H ${endX}`;
+      } else {
+        // Quadratic bezier curve
+        const midX = (startX + endX) / 2;
+        const midY = (startY + endY) / 2 - curvature;
+        d = `M ${startX},${startY} Q ${midX},${midY} ${endX},${endY}`;
+      }
       setPathD(d);
     };
 
@@ -134,6 +144,7 @@ export const AnimatedBeam: React.FC<AnimatedBeamProps> = ({
             strokeWidth={pathWidth}
             fill="none"
             strokeLinecap="round"
+            {...(dashed && { strokeDasharray: "6 4" })}
           />
         </mask>
       </defs>
@@ -145,6 +156,7 @@ export const AnimatedBeam: React.FC<AnimatedBeamProps> = ({
         strokeOpacity={pathOpacity}
         strokeLinecap="round"
         fill="none"
+        {...(dashed && { strokeDasharray: "6 4" })}
       />
       {/* Animated gradient path */}
       <g mask={`url(#mask-${id})`}>

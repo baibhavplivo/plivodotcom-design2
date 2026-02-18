@@ -401,57 +401,59 @@ function SelfImprovingCard() {
           </div>
         </div>
 
-        {/* Animated beams - left side to center */}
+        {/* Animated beams - left side to center (right-angle paths) */}
         <AnimatedBeam
           containerRef={containerRef}
           fromRef={div1Ref}
           toRef={centerRef}
-          curvature={-50}
-          endYOffset={-8}
           pathWidth={1}
+          dashed
+          rightAngle
         />
         <AnimatedBeam
           containerRef={containerRef}
           fromRef={div2Ref}
           toRef={centerRef}
-          curvature={0}
           pathWidth={1}
+          dashed
+          rightAngle
         />
         <AnimatedBeam
           containerRef={containerRef}
           fromRef={div3Ref}
           toRef={centerRef}
-          curvature={50}
-          endYOffset={8}
           pathWidth={1}
+          dashed
+          rightAngle
         />
 
-        {/* Animated beams - center to right side (reverse) */}
+        {/* Animated beams - center to right side (right-angle paths) */}
         <AnimatedBeam
           containerRef={containerRef}
           fromRef={div5Ref}
           toRef={centerRef}
-          curvature={50}
-          endYOffset={-8}
           reverse
           pathWidth={1}
+          dashed
+          rightAngle
         />
         <AnimatedBeam
           containerRef={containerRef}
           fromRef={div6Ref}
           toRef={centerRef}
-          curvature={0}
           reverse
           pathWidth={1}
+          dashed
+          rightAngle
         />
         <AnimatedBeam
           containerRef={containerRef}
           fromRef={div7Ref}
           toRef={centerRef}
-          curvature={-50}
-          endYOffset={8}
           reverse
           pathWidth={1}
+          dashed
+          rightAngle
         />
       </div>
 

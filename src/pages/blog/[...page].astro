@@ -13,20 +13,28 @@ export const getStaticPaths = (async ({ paginate }) => {
 
 const { page } = Astro.props;
 
-// Get all unique categories with counts
-const allPosts = await getCollection('blog', ({ data }) => !data.draft);
-const categoryCounts = new Map<string, number>();
-allPosts.forEach(p => {
+// Priority categories — most important/relevant first
+const PRIORITY_CATEGORIES = [
+  'ai-agents', 'ai', 'voice', 'voice-api', 'sms', 'sms-api',
+  'whatsapp-business-api', 'customer-service', 'customer-experience',
+  'contact-center', 'industry-insights', 'compare', 'use-cases',
+  'sip-trunking', 'compliance', 'how-to',
+];
+
+// Only show categories that have posts on THIS page (no empty filters)
+const currentPageCats = new Map<string, number>();
+page.data.forEach(p => {
   p.data.categories?.forEach(c => {
-    categoryCounts.set(c, (categoryCounts.get(c) || 0) + 1);
+    currentPageCats.set(c, (currentPageCats.get(c) || 0) + 1);
   });
 });
 
-// Sort categories by count (most used first), take top 20
-const topCategories = [...categoryCounts.entries()]
-  .sort((a, b) => b[1] - a[1])
-  .slice(0, 20)
-  .map(([slug]) => slug);
+// Priority categories first (if they exist on this page), then remaining by count
+const priorityOnPage = PRIORITY_CATEGORIES.filter(c => currentPageCats.has(c));
+const remainingOnPage = [...currentPageCats.keys()]
+  .filter(c => !PRIORITY_CATEGORIES.includes(c))
+  .sort((a, b) => (currentPageCats.get(b) || 0) - (currentPageCats.get(a) || 0));
+const topCategories = [...priorityOnPage, ...remainingOnPage];
 
 const featuredPost = page.currentPage === 1 ? page.data[0] : null;
 const gridPosts = page.currentPage === 1 ? page.data.slice(1) : page.data;
