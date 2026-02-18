@@ -27,7 +27,10 @@ export default {
         const body = await request.text();
         const upstream = await fetch(VOICE_AGENT_UPSTREAM, {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          headers: {
+            "Content-Type": "application/json",
+            Origin: "https://plivo.com",
+          },
           body,
         });
 
