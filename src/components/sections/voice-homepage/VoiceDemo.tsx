@@ -7,7 +7,7 @@ import { useGeoCountry } from "@/hooks/useGeoCountry";
 // ── Plivo AI Agent constants ────────────────────────────────────────────────
 const API_URL = "https://plivo-static-forms.netlify.app/.netlify/functions/voice-agent";
 const ENGLISH_APP_ID = "17457073576163534"; // placeholder – user will provide final
-const HINDI_APP_ID = "18059965556351397"; // placeholder – user will provide final
+const HINDI_APP_ID = "17457073576163534";
 const AUTH_ISSUER = "MAOTC4NDM0MDATMMU0MC";
 
 const PLIVO_GRADIENT = "linear-gradient(135deg, #cd3ef9 0%, #323dfe 100%)";
