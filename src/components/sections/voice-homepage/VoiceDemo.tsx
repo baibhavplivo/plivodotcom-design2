@@ -5,7 +5,7 @@ import { FlickeringGrid } from "@/components/magicui/flickering-grid";
 import { useGeoCountry } from "@/hooks/useGeoCountry";
 
 // ── Plivo AI Agent constants ────────────────────────────────────────────────
-const API_URL = "/api/voice-agent";
+const API_URL = "https://plivo-static-forms.netlify.app/.netlify/functions/voice-agent";
 const ENGLISH_APP_ID = "17457073576163534"; // placeholder – user will provide final
 const HINDI_APP_ID = "18059965556351397"; // placeholder – user will provide final
 const AUTH_ISSUER = "MAOTC4NDM0MDATMMU0MC";
