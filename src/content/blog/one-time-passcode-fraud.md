@@ -3,8 +3,8 @@ title: "Understanding One-Time Passcode Fraud"
 description: "Learn what OTP fraud is and how to protect yourself from online scams using one-time passwords. Stay safe with simple tips and prevention methods."
 pubDate: "2024-11-26T00:00:00.000Z"
 updatedDate: "2025-05-29T13:47:28.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/6704ef27ce2a207e62582c2f_Top%20Telecom%20Fraud%20Trends%20for%202024%20%26%20How%20to%20Prevent%20Them.png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/6704ef27ce2a207e62582c2f_Top%20Telecom%20Fraud%20Trends%20for%202024%20%26%20How%20to%20Prevent%20Them.png"
+image: "/images/blog/6704ef27ce2a207e62582c2f_Top-Telecom-Fraud-Trends-for-2024-How-to-Prevent-Them.png"
+thumbnail: "/images/blog/6704ef27ce2a207e62582c2f_Top-Telecom-Fraud-Trends-for-2024-How-to-Prevent-Them.png"
 authorName: "Team Plivo"
 featured: false
 noindex: false

@@ -3,8 +3,8 @@ title: "How To Increase Revenue By Improving Agent Satisfaction"
 description: "Agent satisfaction is often overlooked by modern businesses when it comes to increasing their revenue. Learn how agent satisfaction can impact a business."
 pubDate: "2022-06-17T00:00:00.000Z"
 updatedDate: "2025-04-23T05:34:35.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67fe0a559975b8c10766aa86_6595533b044a32345e0fbed6_Screenshot%25202024-01-03%2520at%25205.58.30%2520PM.png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67fe0a559975b8c10766aa92_6595533b044a32345e0fbed6_Screenshot%25202024-01-03%2520at%25205.58.30%2520PM.png"
+image: "/images/blog/67fe0a559975b8c10766aa86_6595533b044a32345e0fbed6_Screenshot-202024-01-03-20at-205.58.30-20PM.png"
+thumbnail: "/images/blog/67fe0a559975b8c10766aa92_6595533b044a32345e0fbed6_Screenshot-202024-01-03-20at-205.58.30-20PM.png"
 authorName: "Team Plivo"
 featured: false
 noindex: false

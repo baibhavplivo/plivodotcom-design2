@@ -3,8 +3,8 @@ title: "How To Write a Thank You Message for Attending an Event (With 7 Examples
 description: "Craft an impactful thank you message for attending an event. Show sincere gratitude, acknowledge attendees, and invite future engagement. Click to see examples!"
 pubDate: "2025-02-04T00:00:00.000Z"
 updatedDate: "2025-03-23T05:46:30.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67ac68d468997bb91b3668c4_How%20To%20Write%20a%20Thank%20You%20Message%20for%20Attending%20an%20Event%20(With%207%20Examples)%20.png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67ac68d468997bb91b3668c4_How%20To%20Write%20a%20Thank%20You%20Message%20for%20Attending%20an%20Event%20(With%207%20Examples)%20.png"
+image: "/images/blog/67ac68d468997bb91b3668c4_How-To-Write-a-Thank-You-Message-for-Attending-an-Event-With-7-Examples-.png"
+thumbnail: "/images/blog/67ac68d468997bb91b3668c4_How-To-Write-a-Thank-You-Message-for-Attending-an-Event-With-7-Examples-.png"
 authorName: "Team Plivo"
 featured: false
 noindex: false

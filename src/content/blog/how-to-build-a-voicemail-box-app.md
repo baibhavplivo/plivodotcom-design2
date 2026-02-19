@@ -3,8 +3,8 @@ title: "How to Build a Voicemail Application the No-Code Way Using PHLO"
 description: "Plivo's SMS API and Voice API enables businesses to communicate with their customers at global scale. Sign up for free now."
 pubDate: "2022-02-16T00:00:00.000Z"
 updatedDate: "2025-11-23T04:39:46.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/65800678253640336a764df5_voicemail.png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/65800678253640336a764df5_voicemail.png"
+image: "/images/blog/65800678253640336a764df5_voicemail.png"
+thumbnail: "/images/blog/65800678253640336a764df5_voicemail.png"
 authorName: "Team Plivo"
 featured: true
 noindex: false

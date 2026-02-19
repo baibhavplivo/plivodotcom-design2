@@ -3,8 +3,8 @@ title: "What is Call Quality? How to Monitor it in Your Contact Center"
 description: "Call quality helps businesses measure the effectiveness of support conversations between customer service agents and customers. Learn about call quality and how to monitor it in this blog."
 pubDate: "2023-04-28T00:00:00.000Z"
 updatedDate: "2025-04-23T05:34:35.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67fe0a8775b38f8f8f627993_659548c9eda0e48ded69c44d_Screenshot%25202024-01-03%2520at%25205.14.19%2520PM.png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67fe0a8775b38f8f8f627993_659548c9eda0e48ded69c44d_Screenshot%25202024-01-03%2520at%25205.14.19%2520PM.png"
+image: "/images/blog/67fe0a8775b38f8f8f627993_659548c9eda0e48ded69c44d_Screenshot-202024-01-03-20at-205.14.19-20PM.png"
+thumbnail: "/images/blog/67fe0a8775b38f8f8f627993_659548c9eda0e48ded69c44d_Screenshot-202024-01-03-20at-205.14.19-20PM.png"
 authorName: "Team Plivo"
 featured: false
 noindex: false

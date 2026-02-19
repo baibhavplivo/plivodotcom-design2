@@ -3,8 +3,8 @@ title: "How I Built a Business-Ready Virtual Receptionist using PHLO"
 description: "Plivo's SMS API and Voice API enables businesses to communicate with their customers at global scale. Sign up for free now."
 pubDate: "2018-09-19T00:00:00.000Z"
 updatedDate: "2025-11-23T04:42:11.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/6582f3b857283815b0835441_head.png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/6582f3b857283815b0835441_head.png"
+image: "/images/blog/6582f3b857283815b0835441_head.png"
+thumbnail: "/images/blog/6582f3b857283815b0835441_head.png"
 authorName: "Team Plivo"
 featured: true
 noindex: true

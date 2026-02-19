@@ -3,8 +3,8 @@ title: "Best AI Voice Agents for E-commerce (2026):  Top Platforms Compared"
 description: "Compare the best AI voice agents for e-commerce in 2026. See which platforms handle real calls, integrate with your stack and scale reliably."
 pubDate: "2026-02-16T00:00:00.000Z"
 updatedDate: "2026-02-16T15:12:40.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/699332e9be7e15a53d3ff96d_plivo-best-ai-voice-agents-for-e-com.png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/699333df1101470b53f3929e_plivo-best-ai-voice-agents-for-e-com.jpg"
+image: "/images/blog/699332e9be7e15a53d3ff96d_plivo-best-ai-voice-agents-for-e-com.png"
+thumbnail: "/images/blog/699333df1101470b53f3929e_plivo-best-ai-voice-agents-for-e-com.jpg"
 authorName: "Team Plivo"
 featured: false
 noindex: false

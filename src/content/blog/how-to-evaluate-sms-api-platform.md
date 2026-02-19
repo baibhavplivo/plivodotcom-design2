@@ -3,8 +3,8 @@ title: "How to Evaluate an SMS API Provider"
 description: "Consider these criteria when you evaluate which cloud communications platform should be your SMS API provider."
 pubDate: "2021-03-17T00:00:00.000Z"
 updatedDate: "2025-04-01T09:02:56.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/6581a03b4dda7c2bf5e6d8a0_sms-api-provider-1.svg"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/6581a03b4dda7c2bf5e6d8a0_sms-api-provider-1.svg"
+image: "/images/blog/6581a03b4dda7c2bf5e6d8a0_sms-api-provider-1.svg"
+thumbnail: "/images/blog/6581a03b4dda7c2bf5e6d8a0_sms-api-provider-1.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

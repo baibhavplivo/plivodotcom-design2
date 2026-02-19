@@ -3,8 +3,8 @@ title: "Improved SMS Docs"
 description: "Plivo's SMS API and Voice API enables businesses to communicate with their customers at global scale. Sign up for free now."
 pubDate: "2015-02-24T00:00:00.000Z"
 updatedDate: "2025-05-19T11:38:20.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/658506374aa1e2dcf03f788f_banner-sms-docs.png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/658506374aa1e2dcf03f788f_banner-sms-docs.png"
+image: "/images/blog/658506374aa1e2dcf03f788f_banner-sms-docs.png"
+thumbnail: "/images/blog/658506374aa1e2dcf03f788f_banner-sms-docs.png"
 authorName: "Team Plivo"
 featured: true
 noindex: true

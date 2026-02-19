@@ -3,8 +3,8 @@ title: "WhatsApp Auto Reply: How To Set Auto Reply In WhatsApp Business"
 description: "Boost customer satisfaction and productivity with WhatsApp auto-reply. Learn how to enable automated responses to ensure 24/7 communication and ease team workloads."
 pubDate: "2024-09-27T00:00:00.000Z"
 updatedDate: "2024-09-27T09:47:35.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/66f67f2570fbd7cdf6963833_whatsapp%20auto%20reply-how%20to%20set%20auto%20reply%20in%20whatsapp%20business.png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/66f67f2570fbd7cdf6963833_whatsapp%20auto%20reply-how%20to%20set%20auto%20reply%20in%20whatsapp%20business.png"
+image: "/images/blog/66f67f2570fbd7cdf6963833_whatsapp-auto-reply-how-to-set-auto-reply-in-whatsapp-business.png"
+thumbnail: "/images/blog/66f67f2570fbd7cdf6963833_whatsapp-auto-reply-how-to-set-auto-reply-in-whatsapp-business.png"
 authorName: "Team Plivo"
 featured: false
 noindex: false

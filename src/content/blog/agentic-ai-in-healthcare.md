@@ -3,8 +3,8 @@ title: "7 Ways Agentic Healthcare is Transforming the Patient Experience"
 description: "Learn how agentic AI enhances patient care by improving engagement, speeding up diagnoses, and delivering personalized treatment. See the future of healthcare."
 pubDate: "2025-04-03T00:00:00.000Z"
 updatedDate: "2025-04-15T09:08:06.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67fe0a38ea6f3e9c6461befc_67ee3128ef95e95005c7973a_X%2520Ways%2520Agentic%2520Healthcare%2520is%2520Transforming%2520the%2520Patient%2520Experience.jpeg"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67fe0a38ea6f3e9c6461bef9_67ee3128ef95e95005c7973a_X%2520Ways%2520Agentic%2520Healthcare%2520is%2520Transforming%2520the%2520Patient%2520Experience.jpeg"
+image: "/images/blog/67fe0a38ea6f3e9c6461befc_67ee3128ef95e95005c7973a_X-20Ways-20Agentic-20Healthcar-a5b13abb.jpeg"
+thumbnail: "/images/blog/67fe0a38ea6f3e9c6461bef9_67ee3128ef95e95005c7973a_X-20Ways-20Agentic-20Healthcar-8f8580a0.jpeg"
 authorName: "Team Plivo"
 featured: false
 noindex: false

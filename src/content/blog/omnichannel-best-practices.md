@@ -3,8 +3,8 @@ title: "Omnichannel Best Practices: How to Deliver a Unified Customer Experience
 description: "Master omnichannel strategy with our top best practices for seamless customer interactions across all channels. Boost engagement and streamline your support."
 pubDate: "2024-09-09T00:00:00.000Z"
 updatedDate: "2025-04-23T05:34:35.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67fe0a64a3c825fe7d0d39d6_66decf9598cae8134ac38ad3_Omnichannel%2520best%2520practices.jpeg"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67fe0a64a3c825fe7d0d39d3_66decf9598cae8134ac38ad3_Omnichannel%2520best%2520practices.jpeg"
+image: "/images/blog/67fe0a64a3c825fe7d0d39d6_66decf9598cae8134ac38ad3_Omnichannel-20best-20practices.jpeg"
+thumbnail: "/images/blog/67fe0a64a3c825fe7d0d39d3_66decf9598cae8134ac38ad3_Omnichannel-20best-20practices.jpeg"
 authorName: "Team Plivo"
 featured: false
 noindex: false

@@ -3,8 +3,8 @@ title: "Comparing Midjourney Omni-Reference and GPT-4o: A Deep Dive into AI Imag
 description: "Explore Midjourney V7 and GPT-4o's unique AI image capabilities. Discover which tool suits your creative needs best"
 pubDate: "2025-05-19T00:00:00.000Z"
 updatedDate: "2025-05-19T11:21:20.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/682b1422bff941b0a943c17c_image%20(7).png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/682b1422bff941b0a943c17c_image%20(7).png"
+image: "/images/blog/682b1422bff941b0a943c17c_image-7-.png"
+thumbnail: "/images/blog/682b1422bff941b0a943c17c_image-7-.png"
 authorName: "Team Plivo"
 featured: false
 noindex: false

@@ -3,8 +3,8 @@ title: "What is SMS Verification & How Does It Work?"
 description: "Learn the basics of SMS verification and how Plivo’s verification API authenticates users to keep your business and customer data safe."
 pubDate: "2024-05-20T00:00:00.000Z"
 updatedDate: "2024-12-05T07:28:13.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/664b83d8e66c9ecb38090939_657d550eb8e1715fecae717f_Blog_toll_free_verification_101.webp"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/664b83d8e66c9ecb38090939_657d550eb8e1715fecae717f_Blog_toll_free_verification_101.webp"
+image: "/images/blog/664b83d8e66c9ecb38090939_657d550eb8e1715fecae717f_Blog_toll_free_verification_101.webp"
+thumbnail: "/images/blog/664b83d8e66c9ecb38090939_657d550eb8e1715fecae717f_Blog_toll_free_verification_101.webp"
 authorName: "Team Plivo"
 featured: false
 noindex: false

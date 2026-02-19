@@ -3,8 +3,8 @@ title: "How to Migrate Your .NET Voice Application from Twilio to Plivo"
 description: "Plivo's SMS API and Voice API enables businesses to communicate with their customers at global scale. Sign up for free now."
 pubDate: "2021-12-21T00:00:00.000Z"
 updatedDate: "2025-11-23T03:55:16.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/65802ff9ec0f970712cc3d68_migrate-dotnet-voice.png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/65802ff9ec0f970712cc3d68_migrate-dotnet-voice.png"
+image: "/images/blog/65802ff9ec0f970712cc3d68_migrate-dotnet-voice.png"
+thumbnail: "/images/blog/65802ff9ec0f970712cc3d68_migrate-dotnet-voice.png"
 authorName: "Team Plivo"
 featured: true
 noindex: false

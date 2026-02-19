@@ -3,8 +3,8 @@ title: "Why Most Voice AI Fails in Production (2026): The Infrastructure Problem
 description: "Voice AI demos are easy. Production is not. Lessons from 10 years of global CPaaS on latency, carriers, and building voice agents that actually scale."
 pubDate: "2026-02-03T00:00:00.000Z"
 updatedDate: "2026-02-03T09:49:27.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/69819aa2e6aabf5cd3766a44_Blog%20Image%20-%20Main%20reduced.png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/69819aa2e6aabf5cd3766a44_Blog%20Image%20-%20Main%20reduced.png"
+image: "/images/blog/69819aa2e6aabf5cd3766a44_Blog-Image-Main-reduced.png"
+thumbnail: "/images/blog/69819aa2e6aabf5cd3766a44_Blog-Image-Main-reduced.png"
 authorName: "Team Plivo"
 featured: false
 noindex: false

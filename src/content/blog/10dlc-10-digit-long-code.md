@@ -3,8 +3,8 @@ title: "What is 10DLC? Everything You Need To Know"
 description: "A 10-digit long code, or 10DLC, is a type of phone number used in business text messaging to send large volumes of SMS/MMS messages directly to customers."
 pubDate: "2024-05-20T00:00:00.000Z"
 updatedDate: "2025-03-29T05:00:01.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/664b80237dd9d904ccfc8080_10%20DLC.webp"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/664b80237dd9d904ccfc8080_10%20DLC.webp"
+image: "/images/blog/664b80237dd9d904ccfc8080_10-DLC.webp"
+thumbnail: "/images/blog/664b80237dd9d904ccfc8080_10-DLC.webp"
 authorName: "Team Plivo"
 featured: false
 noindex: false

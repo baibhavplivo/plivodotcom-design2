@@ -3,8 +3,8 @@ title: "Google Stitch: Revolutionizing UI Design with AI"
 description: "Discover how Google Stitch transforms UI design with AI, enabling rapid iteration and seamless integration with design tools"
 pubDate: "2025-05-27T00:00:00.000Z"
 updatedDate: "2025-05-27T11:29:54.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/6835a16cd25f493b865373fa_image%20(11).png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/6835a1fc31a8ea270df6407e_image%20(11)%20(1).png"
+image: "/images/blog/6835a16cd25f493b865373fa_image-11-.png"
+thumbnail: "/images/blog/6835a1fc31a8ea270df6407e_image-11-1-.png"
 authorName: "Team Plivo"
 featured: false
 noindex: false

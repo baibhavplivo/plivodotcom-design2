@@ -3,8 +3,8 @@ title: "How to Build a Call Forwarding App the No-Code Way Using PHLO"
 description: "PHLO | Plivo | You can get started to Build a Call Forwarding App the No-Code Way Using PHLO."
 pubDate: "2021-04-30T00:00:00.000Z"
 updatedDate: "2025-11-23T04:36:35.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/65819642f2dd4e305452e49e_build-call-forwarding-app.png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/65819642f2dd4e305452e49e_build-call-forwarding-app.png"
+image: "/images/blog/65819642f2dd4e305452e49e_build-call-forwarding-app.png"
+thumbnail: "/images/blog/65819642f2dd4e305452e49e_build-call-forwarding-app.png"
 authorName: "Team Plivo"
 featured: true
 noindex: false

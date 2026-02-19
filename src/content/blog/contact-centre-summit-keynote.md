@@ -3,8 +3,8 @@ title: "Contact Centre Summit Recap: Keynote by Venky, Founder & CEO, Plivo"
 description: "Our CEO, Venky, presented on Wednesday at the Contact Centre Summit Europe about CX transformation and key methods for catching up to the rigid demands of the modern intelligent consumer."
 pubDate: "2022-02-24T00:00:00.000Z"
 updatedDate: "2025-05-19T11:44:03.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67fe0a4c71c6df92a0a99b37_6595557441cb22046452bb7b_Screenshot%25202024-01-03%2520at%25206.08.57%2520PM.png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67fe0a4c71c6df92a0a99b25_6595557441cb22046452bb7b_Screenshot%25202024-01-03%2520at%25206.08.57%2520PM.png"
+image: "/images/blog/67fe0a4c71c6df92a0a99b37_6595557441cb22046452bb7b_Screenshot-202024-01-03-20at-206.08.57-20PM.png"
+thumbnail: "/images/blog/67fe0a4c71c6df92a0a99b25_6595557441cb22046452bb7b_Screenshot-202024-01-03-20at-206.08.57-20PM.png"
 authorName: "Team Plivo"
 featured: false
 noindex: true

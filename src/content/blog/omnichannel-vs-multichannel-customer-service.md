@@ -3,8 +3,8 @@ title: "Omnichannel vs Multichannel Customer Service"
 description: "Learn how omnichannel and multichannel customer support differs, and find out which method offers the most seamless experience for your customers."
 pubDate: "2024-07-10T00:00:00.000Z"
 updatedDate: "2025-04-23T05:34:35.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67fe0a66d212447a84208010_668e660ba6d1bbcf2773f8c3_Omnichannel%2520vs%2520Multichannel%2520customer%2520service.jpeg"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67fe0a66d212447a8420801c_668e660ba6d1bbcf2773f8c3_Omnichannel%2520vs%2520Multichannel%2520customer%2520service.jpeg"
+image: "/images/blog/67fe0a66d212447a84208010_668e660ba6d1bbcf2773f8c3_Omnichannel-20vs-20Multichannel-20customer-20service.jpeg"
+thumbnail: "/images/blog/67fe0a66d212447a8420801c_668e660ba6d1bbcf2773f8c3_Omnichannel-20vs-20Multichannel-20customer-20service.jpeg"
 authorName: "Team Plivo"
 featured: false
 noindex: false

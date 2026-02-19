@@ -3,8 +3,8 @@ title: "Authentication vs. Authorization: What's the Difference?"
 description: "Understand authentication vs authorization. Learn verification vs permission, key methods, and implementing both for complete security. Click now!"
 pubDate: "2025-03-24T00:00:00.000Z"
 updatedDate: "2025-03-23T04:46:15.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67ab160e996e15169e4e54d0_Authentication%20vs.%20Authorization-%20What%27s%20the%20Difference%3F%20.png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67ab160e996e15169e4e54d0_Authentication%20vs.%20Authorization-%20What%27s%20the%20Difference%3F%20.png"
+image: "/images/blog/67ab160e996e15169e4e54d0_Authentication-vs.-Authorization-What-s-the-Difference-.png"
+thumbnail: "/images/blog/67ab160e996e15169e4e54d0_Authentication-vs.-Authorization-What-s-the-Difference-.png"
 authorName: "Team Plivo"
 featured: false
 noindex: false

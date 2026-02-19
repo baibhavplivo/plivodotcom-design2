@@ -3,8 +3,8 @@ title: "Plivo’s Quick Guide to SMS Opt-In and Opt-Out"
 description: "Learn the importance of SMS opt-in/opt-out, key regulations, and best practices to ensure compliance and build customer trust with Plivo’s comprehensive guide."
 pubDate: "2024-09-19T00:00:00.000Z"
 updatedDate: "2024-09-20T11:26:48.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/66ec0226bc6281f439ff0de0_What%20Do%20Opt%20In%20and%20Opt%20Out%20Mean_.png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/66ec0226bc6281f439ff0de0_What%20Do%20Opt%20In%20and%20Opt%20Out%20Mean_.png"
+image: "/images/blog/66ec0226bc6281f439ff0de0_What-Do-Opt-In-and-Opt-Out-Mean_.png"
+thumbnail: "/images/blog/66ec0226bc6281f439ff0de0_What-Do-Opt-In-and-Opt-Out-Mean_.png"
 authorName: "Team Plivo"
 featured: false
 noindex: false

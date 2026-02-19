@@ -3,8 +3,8 @@ title: "7 IVR Script Examples to Help You Build Your Own"
 description: "Bridge the gap in customer service with effective IVR scripts that streamline self-service, reduce wait times, and improve satisfaction. Explore seven examples."
 pubDate: "2024-11-11T00:00:00.000Z"
 updatedDate: "2024-12-18T07:09:31.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67320a3b691c6ea6682a820a_Frame%201171277097%20(1).png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67320a3b691c6ea6682a820a_Frame%201171277097%20(1).png"
+image: "/images/blog/67320a3b691c6ea6682a820a_Frame-1171277097-1-.png"
+thumbnail: "/images/blog/67320a3b691c6ea6682a820a_Frame-1171277097-1-.png"
 authorName: "Team Plivo"
 featured: false
 noindex: false

@@ -3,8 +3,8 @@ title: "The Beat of B2B Customer Retention Strategies: Data, Personalization, Va
 description: "Master the art of B2B customer retention with our expert insights. Explore the power of data-driven strategies, personalized engagement, and delivering ongoing value."
 pubDate: "2024-07-17T00:00:00.000Z"
 updatedDate: "2025-04-23T05:34:37.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67fe0a75413b5ccdd21b84e7_6697a689125afc720ca5bf6c_Top%2520X%2520B2B%2520Customer%2520Retention%2520Strategies%2520(2).jpeg"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67fe0a75413b5ccdd21b84e7_6697a689125afc720ca5bf6c_Top%2520X%2520B2B%2520Customer%2520Retention%2520Strategies%2520(2).jpeg"
+image: "/images/blog/67fe0a75413b5ccdd21b84e7_6697a689125afc720ca5bf6c_Top-20X-20B2B-20Customer-20Retention-20Strategies-20-2-.jpeg"
+thumbnail: "/images/blog/67fe0a75413b5ccdd21b84e7_6697a689125afc720ca5bf6c_Top-20X-20B2B-20Customer-20Retention-20Strategies-20-2-.jpeg"
 authorName: "Team Plivo"
 featured: false
 noindex: false

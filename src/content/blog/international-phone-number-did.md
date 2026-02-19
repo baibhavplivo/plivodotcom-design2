@@ -3,8 +3,8 @@ title: "Plivo Announces International Phone Numbers in 50 Countries Across Europ
 description: "Plivo's SMS API and Voice API enables businesses to communicate with their customers at global scale. Sign up for free now."
 pubDate: "2012-08-13T00:00:00.000Z"
 updatedDate: "2025-05-19T11:44:49.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/658509bff4acae46f5faa2cc_blog-pattern-design-6-thumbnail.svg"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/658509bff4acae46f5faa2cc_blog-pattern-design-6-thumbnail.svg"
+image: "/images/blog/658509bff4acae46f5faa2cc_blog-pattern-design-6-thumbnail.svg"
+thumbnail: "/images/blog/658509bff4acae46f5faa2cc_blog-pattern-design-6-thumbnail.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: true

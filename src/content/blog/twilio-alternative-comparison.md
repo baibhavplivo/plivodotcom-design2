@@ -3,8 +3,8 @@ title: "SMS Pricing Comparison: Plivo vs. Twilio"
 description: "An in-depth analysis of Twilio’s SMS API pricing vs. that of Plivo, the leading Twilio alternative."
 pubDate: "2020-05-15T00:00:00.000Z"
 updatedDate: "2025-11-23T03:50:33.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/65828572e3c2419a245bcc9a_twilio-pricing-blog_hero2.svg"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/65828572e3c2419a245bcc9a_twilio-pricing-blog_hero2.svg"
+image: "/images/blog/65828572e3c2419a245bcc9a_twilio-pricing-blog_hero2.svg"
+thumbnail: "/images/blog/65828572e3c2419a245bcc9a_twilio-pricing-blog_hero2.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

@@ -3,8 +3,8 @@ title: "Plivo Is the Momentum Leader in G2 Cloud Communication Platforms Grid"
 description: "Plivo is the Momentum Leader in G2 Cloud Communication Platforms Grid"
 pubDate: "2021-02-18T00:00:00.000Z"
 updatedDate: "2025-05-19T11:49:43.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/6582526a32f64503240e3038_plivo-pr-banner-1.jpg"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/6582526a32f64503240e3038_plivo-pr-banner-1.jpg"
+image: "/images/blog/6582526a32f64503240e3038_plivo-pr-banner-1.jpg"
+thumbnail: "/images/blog/6582526a32f64503240e3038_plivo-pr-banner-1.jpg"
 authorName: "Team Plivo"
 featured: true
 noindex: true

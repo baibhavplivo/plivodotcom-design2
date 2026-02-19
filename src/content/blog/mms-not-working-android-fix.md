@@ -3,8 +3,8 @@ title: "Why Is MMS Not Working on Android? 6 Ways to Fix the Problem"
 description: "Fix \"mms messages not sending\" by enabling mobile data, resetting network settings, and clearing app data. Click for simple solutions now!"
 pubDate: "2025-02-02T00:00:00.000Z"
 updatedDate: "2025-03-23T05:43:30.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67ac6406b2e0158f6130c6f2_Why%20Is%20MMS%20Not%20Working%20on%20Android%3F%206%20Ways%20to%20Fix%20the%20Problem%20.png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67ac6406b2e0158f6130c6f2_Why%20Is%20MMS%20Not%20Working%20on%20Android%3F%206%20Ways%20to%20Fix%20the%20Problem%20.png"
+image: "/images/blog/67ac6406b2e0158f6130c6f2_Why-Is-MMS-Not-Working-on-Android-6-Ways-to-Fix-the-Problem-.png"
+thumbnail: "/images/blog/67ac6406b2e0158f6130c6f2_Why-Is-MMS-Not-Working-on-Android-6-Ways-to-Fix-the-Problem-.png"
 authorName: "Team Plivo"
 featured: false
 noindex: false

@@ -3,8 +3,8 @@ title: "Use Adaptive Elements in Plivo’s Powerpack"
 description: "Powerpack lets Plivo scale sending SMS messages and provides adaptive elements like Sticky Sender, Local Connect, Smart Encoding, and Automatic Fallback."
 pubDate: "2021-03-23T00:00:00.000Z"
 updatedDate: "2025-05-19T09:17:17.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/65819ecedf39933d0199a36a_adaptive-elemets-powerpacks.svg"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/65819ecedf39933d0199a36a_adaptive-elemets-powerpacks.svg"
+image: "/images/blog/65819ecedf39933d0199a36a_adaptive-elemets-powerpacks.svg"
+thumbnail: "/images/blog/65819ecedf39933d0199a36a_adaptive-elemets-powerpacks.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: true

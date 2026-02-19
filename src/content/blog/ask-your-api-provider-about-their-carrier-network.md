@@ -3,8 +3,8 @@ title: "Ask Your API Provider About Their Carrier Network"
 description: "Voice quality and delivery rates for SMS API and voice API providers hinge on the quality of their underlying carrier networks. Find out what you need to know."
 pubDate: "2020-07-06T00:00:00.000Z"
 updatedDate: "2024-08-31T10:30:57.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/658273e02f1b63cd72490fc2_CPaas_5_questions_blog_hero_upd.svg"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/658273e02f1b63cd72490fc2_CPaas_5_questions_blog_hero_upd.svg"
+image: "/images/blog/658273e02f1b63cd72490fc2_CPaas_5_questions_blog_hero_upd.svg"
+thumbnail: "/images/blog/658273e02f1b63cd72490fc2_CPaas_5_questions_blog_hero_upd.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

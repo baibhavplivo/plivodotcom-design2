@@ -3,8 +3,8 @@ title: "What is SIM Swapping Fraud and How to Prevent It"
 description: "Discover how to prevent SIM swapping fraud at your company with a robust fraud control API like Plivo’s"
 pubDate: "2024-11-11T00:00:00.000Z"
 updatedDate: "2024-12-13T04:53:12.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/6732093e5152e4595307b285_Frame%2048.png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/6732093e5152e4595307b285_Frame%2048.png"
+image: "/images/blog/6732093e5152e4595307b285_Frame-48.png"
+thumbnail: "/images/blog/6732093e5152e4595307b285_Frame-48.png"
 authorName: "Team Plivo"
 featured: false
 noindex: false

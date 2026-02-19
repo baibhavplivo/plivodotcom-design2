@@ -3,8 +3,8 @@ title: "What is Interactive Voice Response (IVR)?"
 description: "Explore IVR meaning, how it boosts customer service, reduces costs, and streamlines call routing with 24/7 self-service options."
 pubDate: "2024-12-19T00:00:00.000Z"
 updatedDate: "2025-01-07T14:58:30.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/677d4109961c30866348c42b_what-is-ivr.png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/677d4109961c30866348c42b_what-is-ivr.png"
+image: "/images/blog/677d4109961c30866348c42b_what-is-ivr.png"
+thumbnail: "/images/blog/677d4109961c30866348c42b_what-is-ivr.png"
 authorName: "Team Plivo"
 featured: false
 noindex: false

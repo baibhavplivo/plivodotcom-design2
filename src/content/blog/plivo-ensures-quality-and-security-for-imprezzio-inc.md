@@ -3,8 +3,8 @@ title: "Plivo Ensures Quality and Security for Imprezzio, Inc."
 description: "Plivo's SMS API and Voice API enables businesses to communicate with their customers at global scale. Sign up for free now."
 pubDate: "2012-12-11T00:00:00.000Z"
 updatedDate: "2025-05-19T09:10:53.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/6585214af6019c3104bc74c6_blog-pattern-design-10-thumbnail.svg"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/6585214af6019c3104bc74c6_blog-pattern-design-10-thumbnail.svg"
+image: "/images/blog/6585214af6019c3104bc74c6_blog-pattern-design-10-thumbnail.svg"
+thumbnail: "/images/blog/6585214af6019c3104bc74c6_blog-pattern-design-10-thumbnail.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: true

@@ -3,8 +3,8 @@ title: "How to Turn Liquid into Communications Gold"
 description: "How to use Liquid template elements to pass dynamic payloads to PHLO"
 pubDate: "2022-04-08T00:00:00.000Z"
 updatedDate: "2025-11-23T04:41:49.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/657ff38add25c3dcb0bacc10_using-phlo-with-liquid-templating-hero.svg"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/657ff38add25c3dcb0bacc10_using-phlo-with-liquid-templating-hero.svg"
+image: "/images/blog/657ff38add25c3dcb0bacc10_using-phlo-with-liquid-templating-hero.svg"
+thumbnail: "/images/blog/657ff38add25c3dcb0bacc10_using-phlo-with-liquid-templating-hero.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: true

@@ -3,8 +3,8 @@ title: "How to Automate Customer Engagement to Increase Operational Efficiency a
 description: "Discover how automating customer engagement can boost your operational efficiency and drive revenue growth. Learn effective strategies and tools to streamline interactions and enhance customer satisfaction."
 pubDate: "2024-08-07T00:00:00.000Z"
 updatedDate: "2025-04-23T05:34:35.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67fe0a57d212447a842073da_66b38d85c6e2550d3e6fed96_What%2520is%2520customer%2520engagement%2520automation_.jpeg"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67fe0a57d212447a842073d4_66b38d85c6e2550d3e6fed96_What%2520is%2520customer%2520engagement%2520automation_.jpeg"
+image: "/images/blog/67fe0a57d212447a842073da_66b38d85c6e2550d3e6fed96_What-20is-20customer-20engagement-20automation_.jpeg"
+thumbnail: "/images/blog/67fe0a57d212447a842073d4_66b38d85c6e2550d3e6fed96_What-20is-20customer-20engagement-20automation_.jpeg"
 authorName: "Team Plivo"
 featured: false
 noindex: false

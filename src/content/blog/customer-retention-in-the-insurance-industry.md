@@ -3,8 +3,8 @@ title: "Customer Retention in the Insurance Industry"
 description: "Discover smart customer retention strategies in the insurance industry. Learn how to boost customer satisfaction and support"
 pubDate: "2024-07-30T00:00:00.000Z"
 updatedDate: "2025-04-15T09:08:55.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67fe0a4cd6ad4600bef6d105_66aa3e09bd2f1a6d3967e4f6_Customer%2520Retention%2520Strategies%2520In%2520the%2520Insurance%2520Industry.jpeg"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67fe0a4cd6ad4600bef6d105_66aa3e09bd2f1a6d3967e4f6_Customer%2520Retention%2520Strategies%2520In%2520the%2520Insurance%2520Industry.jpeg"
+image: "/images/blog/67fe0a4cd6ad4600bef6d105_66aa3e09bd2f1a6d3967e4f6_Customer-20Retention-20Strateg-10e3df80.jpeg"
+thumbnail: "/images/blog/67fe0a4cd6ad4600bef6d105_66aa3e09bd2f1a6d3967e4f6_Customer-20Retention-20Strateg-10e3df80.jpeg"
 authorName: "Team Plivo"
 featured: false
 noindex: false

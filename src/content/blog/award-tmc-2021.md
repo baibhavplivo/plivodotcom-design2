@@ -3,8 +3,8 @@ title: "Plivo Wins TMC 2021 Communications Solutions Products of the Year Award"
 description: "TMC names Plivo a 2021 Communications Solutions Product of the Year."
 pubDate: "2021-07-20T00:00:00.000Z"
 updatedDate: "2025-05-19T11:46:15.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/65812173a70717a189b8fe28_tmc-award-blog-graphic.png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/65812173a70717a189b8fe28_tmc-award-blog-graphic.png"
+image: "/images/blog/65812173a70717a189b8fe28_tmc-award-blog-graphic.png"
+thumbnail: "/images/blog/65812173a70717a189b8fe28_tmc-award-blog-graphic.png"
 authorName: "Team Plivo"
 featured: true
 noindex: true

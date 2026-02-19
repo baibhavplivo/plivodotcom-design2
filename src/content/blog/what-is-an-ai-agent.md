@@ -3,8 +3,8 @@ title: "AI Agents in Action: Transforming Customer Service with Smart Solutions"
 description: "Explore the future of AI-driven customer experiences and how businesses are leveraging these tools to enhance support and engagement."
 pubDate: "2024-10-09T00:00:00.000Z"
 updatedDate: "2025-04-15T09:08:38.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67fe0a401d7364f5d43e49e8_6707dad27d7f6e03539a6291_What%2520Are%2520AI%2520Agents_%2520Customer%2520Service%2520usecases.jpeg"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67fe0a401d7364f5d43e49e3_6707dad27d7f6e03539a6291_What%2520Are%2520AI%2520Agents_%2520Customer%2520Service%2520usecases.jpeg"
+image: "/images/blog/67fe0a401d7364f5d43e49e8_6707dad27d7f6e03539a6291_What-20Are-20AI-20Agents_-20Customer-20Service-20usecases.jpeg"
+thumbnail: "/images/blog/67fe0a401d7364f5d43e49e3_6707dad27d7f6e03539a6291_What-20Are-20AI-20Agents_-20Customer-20Service-20usecases.jpeg"
 authorName: "Team Plivo"
 featured: false
 noindex: false

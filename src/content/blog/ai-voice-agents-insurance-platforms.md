@@ -3,8 +3,8 @@ title: "10 Platforms to Build AI Voice Agents for Insurance in 2026: Compared fo
 description: "Compare 10 AI voice agent platforms for insurance. Evaluated for speed, reliability, scale, compliance and real-call readiness to help you choose the right one."
 pubDate: "2026-01-27T00:00:00.000Z"
 updatedDate: "2026-01-28T05:28:05.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/69799d01c171c6bc4401fd1c_69799cdf816152dd7b312ab5_ai-voice-agents-insurance-banner.png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/69799d01c171c6bc4401fd19_69799cdf816152dd7b312ab5_ai-voice-agents-insurance-banner.png"
+image: "/images/blog/69799d01c171c6bc4401fd1c_69799cdf816152dd7b312ab5_ai-voice-agents-insurance-banner.png"
+thumbnail: "/images/blog/69799d01c171c6bc4401fd19_69799cdf816152dd7b312ab5_ai-voice-agents-insurance-banner.png"
 authorName: "Team Plivo"
 featured: false
 noindex: false

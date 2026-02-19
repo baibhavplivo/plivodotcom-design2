@@ -3,8 +3,8 @@ title: "Mailchimp Pricing: Is It the Best Option for Your Marketing Budget?"
 description: "Explore Mailchimp pricing plans to see if it fits your marketing needs and budget"
 pubDate: "2024-10-27T00:00:00.000Z"
 updatedDate: "2025-04-23T05:34:35.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67fe0a625870aa971b7c09f2_671e05226ed8d27b6f81f535_Mailchimp%2520SMS%2520Pricing_%2520Is%2520It%2520the%2520Best%2520Option%2520for%2520Your%2520Marketing%2520Budget_.jpeg"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67fe0a625870aa971b7c09f2_671e05226ed8d27b6f81f535_Mailchimp%2520SMS%2520Pricing_%2520Is%2520It%2520the%2520Best%2520Option%2520for%2520Your%2520Marketing%2520Budget_.jpeg"
+image: "/images/blog/67fe0a625870aa971b7c09f2_671e05226ed8d27b6f81f535_Mailchimp-20SMS-20Pricing_-20I-500f1c8a.jpeg"
+thumbnail: "/images/blog/67fe0a625870aa971b7c09f2_671e05226ed8d27b6f81f535_Mailchimp-20SMS-20Pricing_-20I-500f1c8a.jpeg"
 authorName: "Team Plivo"
 featured: false
 noindex: false

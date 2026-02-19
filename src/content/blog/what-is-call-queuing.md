@@ -3,8 +3,8 @@ title: "Call Queuing: Benefits, Best Practices, And How it Works"
 description: "Call queuing is a method of managing inbound calls at a contact center. This blog covers how you can use call queuing to manage call volumes and reduce overall agent workload."
 pubDate: "2022-09-20T00:00:00.000Z"
 updatedDate: "2025-04-15T09:08:53.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67fe0a49aa9e207249822b04_659549526490fd0d2885a7bf_Screenshot%25202024-01-03%2520at%25205.17.11%2520PM.png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67fe0a49aa9e207249822aff_659549526490fd0d2885a7bf_Screenshot%25202024-01-03%2520at%25205.17.11%2520PM.png"
+image: "/images/blog/67fe0a49aa9e207249822b04_659549526490fd0d2885a7bf_Screenshot-202024-01-03-20at-205.17.11-20PM.png"
+thumbnail: "/images/blog/67fe0a49aa9e207249822aff_659549526490fd0d2885a7bf_Screenshot-202024-01-03-20at-205.17.11-20PM.png"
 authorName: "Team Plivo"
 featured: false
 noindex: false

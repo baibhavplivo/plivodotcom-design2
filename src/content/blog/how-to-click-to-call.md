@@ -3,8 +3,8 @@ title: "Build Click-to-Call Using PHLO"
 description: "How To Build Click to Call Using PHLO | Implement click-to-Call on your website to enable users to engage with your team using ​JavaScript code via Node.js"
 pubDate: "2022-01-03T00:00:00.000Z"
 updatedDate: "2025-11-23T04:35:51.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/65802d7840896ac0d9a8e8ab_click-to-call.png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/65802d7840896ac0d9a8e8ab_click-to-call.png"
+image: "/images/blog/65802d7840896ac0d9a8e8ab_click-to-call.png"
+thumbnail: "/images/blog/65802d7840896ac0d9a8e8ab_click-to-call.png"
 authorName: "Team Plivo"
 featured: true
 noindex: false

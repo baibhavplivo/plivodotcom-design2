@@ -3,8 +3,8 @@ title: "What Is an SMS Gateway and How Does It Work?"
 description: "In this guide, explore what an SMS gateway is, how it works, and why businesses rely on it for bulk messaging, marketing, and customer engagement."
 pubDate: "2024-12-18T00:00:00.000Z"
 updatedDate: "2025-01-07T15:00:39.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/677d418c4d211a86a5d92d01_what-is-an-sms-gateway.png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/677d418c4d211a86a5d92d01_what-is-an-sms-gateway.png"
+image: "/images/blog/677d418c4d211a86a5d92d01_what-is-an-sms-gateway.png"
+thumbnail: "/images/blog/677d418c4d211a86a5d92d01_what-is-an-sms-gateway.png"
 authorName: "Team Plivo"
 featured: false
 noindex: false

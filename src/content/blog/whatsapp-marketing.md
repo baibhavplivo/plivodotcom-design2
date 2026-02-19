@@ -3,8 +3,8 @@ title: "WhatsApp Marketing: The Quick Guide for Business Success in 2025"
 description: "Discover the power of WhatsApp marketing for businesses in 2025. Learn strategies, benefits, and best practices to boost customer engagement and drive sales using WhatsApp Business tools."
 pubDate: "2024-09-10T00:00:00.000Z"
 updatedDate: "2025-02-12T05:12:40.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/66dfd6e1d6a69183b030073f_Whatsapp%20Marketing.png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/66dfd6e1d6a69183b030073f_Whatsapp%20Marketing.png"
+image: "/images/blog/66dfd6e1d6a69183b030073f_Whatsapp-Marketing.png"
+thumbnail: "/images/blog/66dfd6e1d6a69183b030073f_Whatsapp-Marketing.png"
 authorName: "Team Plivo"
 featured: false
 noindex: false

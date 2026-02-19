@@ -3,8 +3,8 @@ title: "Why are my Texts not Sending? Common Causes and Tips"
 description: "Struggling with \"why are my messages not sending\"? Check settings, verify carrier network, ensure correct messaging type, and restart your device. Click for solutions!"
 pubDate: "2025-02-01T00:00:00.000Z"
 updatedDate: "2025-03-23T05:40:50.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67ac640f65ec477c920bede0_Why%20are%20my%20Texts%20not%20Sending%3F%20Common%20Causes%20and%20Tips%20.png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67ac6413d65014e6886e71e0_hey.png"
+image: "/images/blog/67ac640f65ec477c920bede0_Why-are-my-Texts-not-Sending-Common-Causes-and-Tips-.png"
+thumbnail: "/images/blog/67ac6413d65014e6886e71e0_hey.png"
 authorName: "Team Plivo"
 featured: false
 noindex: false

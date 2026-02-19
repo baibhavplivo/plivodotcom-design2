@@ -3,8 +3,8 @@ title: "How Customer-First Communications Helps Financial Services Businesses"
 description: "Adopting a customer-first communication strategy is essential especially for financial services businesses."
 pubDate: "2022-12-16T00:00:00.000Z"
 updatedDate: "2024-10-01T09:15:08.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/657d8767d61bd50a76fd127e_how-customer-first-communications-helps-financial-services-businesses_blog_graphic_1.svg"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/657d8767d61bd50a76fd127e_how-customer-first-communications-helps-financial-services-businesses_blog_graphic_1.svg"
+image: "/images/blog/657d8767d61bd50a76fd127e_how-customer-first-communications-helps-financial-services-businesses_blog_graphic_1.svg"
+thumbnail: "/images/blog/657d8767d61bd50a76fd127e_how-customer-first-communications-helps-financial-services-businesses_blog_graphic_1.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

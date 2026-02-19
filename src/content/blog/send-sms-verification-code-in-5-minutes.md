@@ -3,8 +3,8 @@ title: "How to Send an SMS Verification Code in 5 Minutes"
 description: "Start sending OTPs in one second with Plivo’s Verify API. Learn how to easily enhance user security with SMS verification codes in five minutes."
 pubDate: "2024-07-08T00:00:00.000Z"
 updatedDate: "2024-08-31T10:46:25.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/66a09125ea99059066bf1f20_How%20to%20Send%20an%20SMS%20Verification%20Code%20Using%20Plivo%E2%80%99s%20Verify%20API.svg"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/66a09125ea99059066bf1f20_How%20to%20Send%20an%20SMS%20Verification%20Code%20Using%20Plivo%E2%80%99s%20Verify%20API.svg"
+image: "/images/blog/66a09125ea99059066bf1f20_How-to-Send-an-SMS-Verification-Code-Using-Plivo-s-Verify-API.svg"
+thumbnail: "/images/blog/66a09125ea99059066bf1f20_How-to-Send-an-SMS-Verification-Code-Using-Plivo-s-Verify-API.svg"
 authorName: "Team Plivo"
 featured: false
 noindex: false

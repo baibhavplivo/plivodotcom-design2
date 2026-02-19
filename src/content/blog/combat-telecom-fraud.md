@@ -3,8 +3,8 @@ title: "All about Telecom Fraud and How to Combat It"
 description: "Telecommunication fraud: Learn about the types of telecom fraud and effective strategies to combat it. Protect your business and user information, partner with a reliable service provider like Plivo today!"
 pubDate: "2023-09-14T00:00:00.000Z"
 updatedDate: "2024-09-26T08:26:12.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/657c3b36774e27c25d1528dc_blog_telecom_fraud.svg"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/657c3b36774e27c25d1528dc_blog_telecom_fraud.svg"
+image: "/images/blog/657c3b36774e27c25d1528dc_blog_telecom_fraud.svg"
+thumbnail: "/images/blog/657c3b36774e27c25d1528dc_blog_telecom_fraud.svg"
 authorName: "Team Plivo"
 featured: false
 noindex: false

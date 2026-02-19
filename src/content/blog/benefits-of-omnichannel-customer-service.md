@@ -3,8 +3,8 @@ title: "Top Benefits of Omnichannel Customer Experience"
 description: "Discover the benefits of omnichannel customer experience and how to achieve them. Read on to learn more."
 pubDate: "2024-09-27T00:00:00.000Z"
 updatedDate: "2025-11-23T04:11:02.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67fe0a83072296fc1230d486_66f6859b33690f955db401df_Benefits%2520of%2520Omnichannel%2520Customer%2520Service%2520(1).jpeg"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67fe0a83072296fc1230d483_66f6859b33690f955db401df_Benefits%2520of%2520Omnichannel%2520Customer%2520Service%2520(1).jpeg"
+image: "/images/blog/67fe0a83072296fc1230d486_66f6859b33690f955db401df_Benefits-20of-20Omnichannel-20Customer-20Service-20-1-.jpeg"
+thumbnail: "/images/blog/67fe0a83072296fc1230d483_66f6859b33690f955db401df_Benefits-20of-20Omnichannel-20Customer-20Service-20-1-.jpeg"
 authorName: "Team Plivo"
 featured: false
 noindex: false

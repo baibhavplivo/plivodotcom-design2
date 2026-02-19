@@ -3,8 +3,8 @@ title: "What are WhatsApp Channels and how to use them for your business"
 description: "Boost your business with WhatsApp Channel features like bulk messaging, enhanced visibility, and shareable content. Set up your channel now!"
 pubDate: "2025-02-05T00:00:00.000Z"
 updatedDate: "2025-04-05T19:49:53.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67ad618e7bdcfbd90c6ef610_What%20are%20WhatsApp%20Channels%20and%20how%20to%20use%20them%20for%20your%20business%20.png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67ad618e7bdcfbd90c6ef610_What%20are%20WhatsApp%20Channels%20and%20how%20to%20use%20them%20for%20your%20business%20.png"
+image: "/images/blog/67ad618e7bdcfbd90c6ef610_What-are-WhatsApp-Channels-and-how-to-use-them-for-your-business-.png"
+thumbnail: "/images/blog/67ad618e7bdcfbd90c6ef610_What-are-WhatsApp-Channels-and-how-to-use-them-for-your-business-.png"
 authorName: "Team Plivo"
 featured: false
 noindex: false

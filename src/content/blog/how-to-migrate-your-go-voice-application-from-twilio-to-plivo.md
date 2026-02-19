@@ -3,8 +3,8 @@ title: "How to Migrate Your Go Voice Application from Twilio to Plivo"
 description: "Plivo's SMS API and Voice API enables businesses to communicate with their customers at global scale. Sign up for free now."
 pubDate: "2022-01-25T00:00:00.000Z"
 updatedDate: "2025-11-23T03:55:55.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/6580158864d7cac78910c665_migrate-go-voice.png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/6580158864d7cac78910c665_migrate-go-voice.png"
+image: "/images/blog/6580158864d7cac78910c665_migrate-go-voice.png"
+thumbnail: "/images/blog/6580158864d7cac78910c665_migrate-go-voice.png"
 authorName: "Team Plivo"
 featured: true
 noindex: false

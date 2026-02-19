@@ -1,10 +1,8 @@
 ---
-import DefaultLayout from '@/layouts/DefaultLayout.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
-
+import PlivoLayout from '@/layouts/PlivoLayout.astro';
 import { FAQPage } from '@/components/sections/faq-page';
 ---
 
-<DefaultLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
+<PlivoLayout title="FAQ" description="Frequently asked questions about Plivo">
     <FAQPage client:only='react' />
-</DefaultLayout>
+</PlivoLayout>

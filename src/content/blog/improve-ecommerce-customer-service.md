@@ -3,8 +3,8 @@ title: "Simple Ways to Improve the Ecommerce Customer Experience"
 description: "Having a reliable customer support system for an ecommerce business is crucial and can have a high impact on the bottom line. This blog covers simple ways to improve your ecommerce customer service."
 pubDate: "2022-08-22T00:00:00.000Z"
 updatedDate: "2025-04-23T05:34:35.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67fe0a704a958d2f7b8b1357_65954e0cb6a6a9fc03afe421_Screenshot%25202024-01-03%2520at%25205.37.24%2520PM.png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67fe0a704a958d2f7b8b135f_65954e0cb6a6a9fc03afe421_Screenshot%25202024-01-03%2520at%25205.37.24%2520PM.png"
+image: "/images/blog/67fe0a704a958d2f7b8b1357_65954e0cb6a6a9fc03afe421_Screenshot-202024-01-03-20at-205.37.24-20PM.png"
+thumbnail: "/images/blog/67fe0a704a958d2f7b8b135f_65954e0cb6a6a9fc03afe421_Screenshot-202024-01-03-20at-205.37.24-20PM.png"
 authorName: "Team Plivo"
 featured: false
 noindex: false

@@ -3,8 +3,8 @@ title: "Maintaining Our Commitment to Security: Plivo Renews SOC 2 Type 2 Compli
 description: "SOC 2 Type 2 Compliance Renewal in Ensuring Data Security & Trust: Plivo complies with stringent standards to safeguard your information. Read to know more."
 pubDate: "2023-08-03T00:00:00.000Z"
 updatedDate: "2025-11-23T04:22:22.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/657d370767546782a30c3ad4_soc2-renewal.svg"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/657d370767546782a30c3ad4_soc2-renewal.svg"
+image: "/images/blog/657d370767546782a30c3ad4_soc2-renewal.svg"
+thumbnail: "/images/blog/657d370767546782a30c3ad4_soc2-renewal.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

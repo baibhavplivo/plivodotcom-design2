@@ -3,8 +3,8 @@ title: "AI in Ecommerce | How AI Can Transform Customer Journey and Boost Sales"
 description: "Discover the top AI in eCommerce use cases that can advance your business and boost revenue. Bonus: Also, get a list of tools to implement these use cases."
 pubDate: "2024-07-30T00:00:00.000Z"
 updatedDate: "2026-01-15T01:28:17.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67fe0a41224b352e32ba59ce_66a8b8b441bf31abcd819b18_How%2520AI%2520is%2520transforming%2520e-commerce%2520marketing.jpeg"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67fe0a41224b352e32ba59d1_66a8b8b441bf31abcd819b18_How%2520AI%2520is%2520transforming%2520e-commerce%2520marketing.jpeg"
+image: "/images/blog/67fe0a41224b352e32ba59ce_66a8b8b441bf31abcd819b18_How-20AI-20is-20transforming-20e-commerce-20marketing.jpeg"
+thumbnail: "/images/blog/67fe0a41224b352e32ba59d1_66a8b8b441bf31abcd819b18_How-20AI-20is-20transforming-20e-commerce-20marketing.jpeg"
 authorName: "Team Plivo"
 featured: false
 noindex: false

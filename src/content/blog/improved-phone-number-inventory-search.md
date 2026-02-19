@@ -3,8 +3,8 @@ title: "Improved Phone Number Inventory Search with New APIs"
 description: "Plivo's SMS API and Voice API enables businesses to communicate with their customers at global scale. Sign up for free now."
 pubDate: "2015-01-14T00:00:00.000Z"
 updatedDate: "2025-05-19T11:39:53.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/658507b7f518003b2a1fbdb7_banner-number-search2.png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/658507b7f518003b2a1fbdb7_banner-number-search2.png"
+image: "/images/blog/658507b7f518003b2a1fbdb7_banner-number-search2.png"
+thumbnail: "/images/blog/658507b7f518003b2a1fbdb7_banner-number-search2.png"
 authorName: "Team Plivo"
 featured: true
 noindex: true

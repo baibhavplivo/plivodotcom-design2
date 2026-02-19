@@ -3,8 +3,8 @@ title: "How to Build a Virtual Assistant App the No-Code Way Using PHLO"
 description: "Create an IVR phone tree that can act as a virtual assistant to manage multiple menus with prerecorded messages and manage call routing."
 pubDate: "2022-01-07T00:00:00.000Z"
 updatedDate: "2025-11-23T04:38:47.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/65801943237f3fa05a2a4fc3_virtual-assistant-phlo.png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/65801943237f3fa05a2a4fc3_virtual-assistant-phlo.png"
+image: "/images/blog/65801943237f3fa05a2a4fc3_virtual-assistant-phlo.png"
+thumbnail: "/images/blog/65801943237f3fa05a2a4fc3_virtual-assistant-phlo.png"
 authorName: "Team Plivo"
 featured: true
 noindex: true

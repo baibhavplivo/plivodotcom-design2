@@ -3,8 +3,8 @@ title: "Understanding What Multi-Level IVR is and How it Works"
 description: "Boost efficiency and satisfaction with a multi-level IVR system. Enjoy better call routing, 24/7 service, and lower costs. Contact us today!"
 pubDate: "2024-12-31T00:00:00.000Z"
 updatedDate: "2025-01-07T14:54:44.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/677d4026b9247fec4206e0b2_multi-level-ivr.png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/677d4026b9247fec4206e0b2_multi-level-ivr.png"
+image: "/images/blog/677d4026b9247fec4206e0b2_multi-level-ivr.png"
+thumbnail: "/images/blog/677d4026b9247fec4206e0b2_multi-level-ivr.png"
 authorName: "Team Plivo"
 featured: false
 noindex: false

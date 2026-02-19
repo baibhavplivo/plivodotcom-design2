@@ -3,8 +3,8 @@ title: "8 Best AI Voice Automation Platforms in 2026"
 description: "e Automation Software for Sales & Support (2026) Meta Description: Explore the 8 best AI voice automation platforms in 2026. Compare enterprise-ready tools for sales, support, scheduling, and intelligent call handling."
 pubDate: "2026-02-16T00:00:00.000Z"
 updatedDate: "2026-02-17T05:58:37.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/699337c18e75c72bf8440fc3_plivo-8-best-ai-voice-automation-pla.png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/699337c5b04a87c85f404820_plivo-8-best-ai-voice-automation-pla.jpg"
+image: "/images/blog/699337c18e75c72bf8440fc3_plivo-8-best-ai-voice-automation-pla.png"
+thumbnail: "/images/blog/699337c5b04a87c85f404820_plivo-8-best-ai-voice-automation-pla.jpg"
 authorName: "Team Plivo"
 featured: false
 noindex: false

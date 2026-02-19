@@ -3,8 +3,8 @@ title: "Focusing on Transactional SMS"
 description: "Transactional SMS Service: Learn how transactional SMS can enhance customer engagement and drive business growth. Looking for a bulk transactional sms service provider?"
 pubDate: "2023-07-27T00:00:00.000Z"
 updatedDate: "2024-08-31T10:43:01.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/657d3903d61bd50a76d0511e_Blog_transactional_sms.svg"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/657d3903d61bd50a76d0511e_Blog_transactional_sms.svg"
+image: "/images/blog/657d3903d61bd50a76d0511e_Blog_transactional_sms.svg"
+thumbnail: "/images/blog/657d3903d61bd50a76d0511e_Blog_transactional_sms.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

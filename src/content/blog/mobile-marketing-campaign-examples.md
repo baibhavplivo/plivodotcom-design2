@@ -3,8 +3,8 @@ title: "10 examples of mobile marketing campaigns to inspire you"
 description: "Get inspired by top mobile app marketing campaigns! Boost engagement with social media, push notifications, and SMS. Try these tactics now!"
 pubDate: "2025-02-04T00:00:00.000Z"
 updatedDate: "2025-04-05T19:50:35.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67ad63d155566d7ace6a6d70_10%20examples%20of%20mobile%20marketing%20campaigns%20to%20inspire%20you%20.png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67ad63d155566d7ace6a6d70_10%20examples%20of%20mobile%20marketing%20campaigns%20to%20inspire%20you%20.png"
+image: "/images/blog/67ad63d155566d7ace6a6d70_10-examples-of-mobile-marketing-campaigns-to-inspire-you-.png"
+thumbnail: "/images/blog/67ad63d155566d7ace6a6d70_10-examples-of-mobile-marketing-campaigns-to-inspire-you-.png"
 authorName: "Team Plivo"
 featured: false
 noindex: false

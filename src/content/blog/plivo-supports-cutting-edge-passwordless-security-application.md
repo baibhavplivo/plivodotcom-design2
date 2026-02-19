@@ -3,8 +3,8 @@ title: "Plivo Supports Cutting Edge Passwordless Security Application"
 description: "Plivo's SMS API and Voice API enables businesses to communicate with their customers at global scale. Sign up for free now."
 pubDate: "2017-09-25T00:00:00.000Z"
 updatedDate: "2025-05-19T09:08:52.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/6583dc5e6b59a9763102c733_plivo-supports-leading-passwordless-security-application.png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/6583dc5e6b59a9763102c733_plivo-supports-leading-passwordless-security-application.png"
+image: "/images/blog/6583dc5e6b59a9763102c733_plivo-supports-leading-passwordless-security-application.png"
+thumbnail: "/images/blog/6583dc5e6b59a9763102c733_plivo-supports-leading-passwordless-security-application.png"
 authorName: "Team Plivo"
 featured: true
 noindex: true

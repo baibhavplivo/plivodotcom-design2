@@ -3,8 +3,8 @@ title: "How Much Does SMS Marketing Cost? [+ROI calculation guide]"
 description: "Get a detailed breakdown of SMS marketing rates | Discover pricing models, potential hidden costs, and factors that will drive your SMS marketing budget."
 pubDate: "2024-03-29T00:00:00.000Z"
 updatedDate: "2025-04-15T09:08:10.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67fe0a54b822279df9adf102_661faad2c456f832cb3357e8_How%2520Much%2520Does%2520SMS%2520Marketing%2520Cost_.jpeg"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67fe0a54b822279df9adf102_661faad2c456f832cb3357e8_How%2520Much%2520Does%2520SMS%2520Marketing%2520Cost_.jpeg"
+image: "/images/blog/67fe0a54b822279df9adf102_661faad2c456f832cb3357e8_How-20Much-20Does-20SMS-20Marketing-20Cost_.jpeg"
+thumbnail: "/images/blog/67fe0a54b822279df9adf102_661faad2c456f832cb3357e8_How-20Much-20Does-20SMS-20Marketing-20Cost_.jpeg"
 authorName: "Team Plivo"
 featured: false
 noindex: false

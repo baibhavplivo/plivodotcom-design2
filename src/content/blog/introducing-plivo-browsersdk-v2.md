@@ -3,8 +3,8 @@ title: "Introducing Browser SDK 2.0"
 description: "Plivo's SMS API and Voice API enables businesses to communicate with their customers at global scale. Sign up for free now."
 pubDate: "2017-08-09T00:00:00.000Z"
 updatedDate: "2025-05-19T09:11:34.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/6583e5eb873c3399012f234d_plivo-websdk-v2.png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/6583e5eb873c3399012f234d_plivo-websdk-v2.png"
+image: "/images/blog/6583e5eb873c3399012f234d_plivo-websdk-v2.png"
+thumbnail: "/images/blog/6583e5eb873c3399012f234d_plivo-websdk-v2.png"
 authorName: "Team Plivo"
 featured: true
 noindex: true

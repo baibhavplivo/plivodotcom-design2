@@ -3,8 +3,8 @@ title: "Call Center IVR Guide: Everything You Need to Know in 2024"
 description: "Read about call center IVR systems to discover their key benefits, practical use cases, and the best features to help streamline your operations in 2024."
 pubDate: "2024-09-25T00:00:00.000Z"
 updatedDate: "2024-09-27T11:32:31.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/66f66c531e9326598a42cc38_call%20center%20ivr%20solutions.png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/66f66c531e9326598a42cc38_call%20center%20ivr%20solutions.png"
+image: "/images/blog/66f66c531e9326598a42cc38_call-center-ivr-solutions.png"
+thumbnail: "/images/blog/66f66c531e9326598a42cc38_call-center-ivr-solutions.png"
 authorName: "Team Plivo"
 featured: false
 noindex: false

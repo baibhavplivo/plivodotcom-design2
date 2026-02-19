@@ -3,8 +3,8 @@ title: "What is VoIP?"
 description: "Discover how VoIP technology transforms business communication with cost savings, global reach, advanced features, and scalability. Learn key benefits and setup essentials."
 pubDate: "2024-09-06T00:00:00.000Z"
 updatedDate: "2024-09-08T20:14:10.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/66db1229542ad755de272b0e_What%20is%20Voip.png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/66db1229542ad755de272b0e_What%20is%20Voip.png"
+image: "/images/blog/66db1229542ad755de272b0e_What-is-Voip.png"
+thumbnail: "/images/blog/66db1229542ad755de272b0e_What-is-Voip.png"
 authorName: "Team Plivo"
 featured: false
 noindex: false

@@ -3,8 +3,8 @@ title: "Announcing PHLO, a Visual Workflow Design Tool for Communications Applic
 description: "Plivo's SMS API and Voice API enables businesses to communicate with their customers at global scale. Sign up for free now."
 pubDate: "2018-08-10T00:00:00.000Z"
 updatedDate: "2025-11-23T03:44:06.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/6582f535c8db81a5983fdf41_banner.gif"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/6582f535c8db81a5983fdf41_banner.gif"
+image: "/images/blog/6582f535c8db81a5983fdf41_banner.gif"
+thumbnail: "/images/blog/6582f535c8db81a5983fdf41_banner.gif"
 authorName: "Team Plivo"
 featured: true
 noindex: false

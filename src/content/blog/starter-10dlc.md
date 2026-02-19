@@ -3,8 +3,8 @@ title: "New Starter Registration Makes 10DLC Messaging More Affordable"
 description: "New Starter brands and campaigns let individuals and small businesses enjoy the benefits of 10DLC text messaging at a low cost."
 pubDate: "2022-02-08T00:00:00.000Z"
 updatedDate: "2024-08-31T10:29:41.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/65800edc1421eaa74fc11ee6_new-registration-blog-graphics-1-new-starter-registration-blog-graphics.svg"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/65800edc1421eaa74fc11ee6_new-registration-blog-graphics-1-new-starter-registration-blog-graphics.svg"
+image: "/images/blog/65800edc1421eaa74fc11ee6_new-registration-blog-graphics-1-new-starter-registration-blog-graphics.svg"
+thumbnail: "/images/blog/65800edc1421eaa74fc11ee6_new-registration-blog-graphics-1-new-starter-registration-blog-graphics.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

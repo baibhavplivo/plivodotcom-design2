@@ -3,8 +3,8 @@ title: "What is an Omnichannel Customer Experience?"
 description: "Learn all about omnichannel customer experience. What are the benefits of omnichannel support, and how can an omnichannel strategy be built? Read on to dig deeper."
 pubDate: "2024-09-24T00:00:00.000Z"
 updatedDate: "2025-04-23T05:34:35.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67fe0a8a382fefa84fb20d50_66f28e80648771f719900f30_What%2520is%2520Omnichannel%2520Customer%2520Experience.jpeg"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67fe0a8a382fefa84fb20d53_66f28e80648771f719900f30_What%2520is%2520Omnichannel%2520Customer%2520Experience.jpeg"
+image: "/images/blog/67fe0a8a382fefa84fb20d50_66f28e80648771f719900f30_What-20is-20Omnichannel-20Customer-20Experience.jpeg"
+thumbnail: "/images/blog/67fe0a8a382fefa84fb20d53_66f28e80648771f719900f30_What-20is-20Omnichannel-20Customer-20Experience.jpeg"
 authorName: "Team Plivo"
 featured: false
 noindex: false

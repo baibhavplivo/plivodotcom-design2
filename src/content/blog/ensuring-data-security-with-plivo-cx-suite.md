@@ -3,8 +3,8 @@ title: "Ensuring Data Security with Plivo CX Suite"
 description: "At Plivo CX Suite, security is fundamental to our operations. We are pleased to announce that we have successfully upgraded our Payment Card Industry Data Security Standard (PCI DSS) certification to version 4.0."
 pubDate: "2024-09-03T00:00:00.000Z"
 updatedDate: "2025-04-15T09:08:13.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67fe0a504d0b1a63c8253f06_66d6f7940b182b124848d3e3_4.0%2520Plivo%2520CX%2520PCI%2520image.svg"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67fe0a504d0b1a63c8253f09_66d6f7940b182b124848d3e3_4.0%2520Plivo%2520CX%2520PCI%2520image.svg"
+image: "/images/blog/67fe0a504d0b1a63c8253f06_66d6f7940b182b124848d3e3_4.0-20Plivo-20CX-20PCI-20image.svg"
+thumbnail: "/images/blog/67fe0a504d0b1a63c8253f09_66d6f7940b182b124848d3e3_4.0-20Plivo-20CX-20PCI-20image.svg"
 authorName: "Team Plivo"
 featured: false
 noindex: false

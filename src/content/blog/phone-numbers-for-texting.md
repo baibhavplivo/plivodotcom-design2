@@ -3,8 +3,8 @@ title: "Choosing the Best Phone Number Type for Texting"
 description: "Phone numbers for texting: Know about the different types of phone numbers for sending business texts. Choose the best phone number for your business with Plivo."
 pubDate: "2022-08-18T00:00:00.000Z"
 updatedDate: "2025-04-01T09:12:43.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/657d9c9a15438ef7857dff40_phone-numbers-for-texting.svg"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/657d9c9a15438ef7857dff40_phone-numbers-for-texting.svg"
+image: "/images/blog/657d9c9a15438ef7857dff40_phone-numbers-for-texting.svg"
+thumbnail: "/images/blog/657d9c9a15438ef7857dff40_phone-numbers-for-texting.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

@@ -3,8 +3,8 @@ title: "Announcing New Partnership with RCDevs Security Solutions"
 description: "Plivo's SMS API and Voice API enables businesses to communicate with their customers at global scale. Sign up for free now."
 pubDate: "2015-04-01T00:00:00.000Z"
 updatedDate: "2025-11-23T04:25:37.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/65850409f6019c3104aaee6e_rcdev-banner.png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/65850409f6019c3104aaee6e_rcdev-banner.png"
+image: "/images/blog/65850409f6019c3104aaee6e_rcdev-banner.png"
+thumbnail: "/images/blog/65850409f6019c3104aaee6e_rcdev-banner.png"
 authorName: "Team Plivo"
 featured: true
 noindex: true

@@ -3,8 +3,8 @@ title: "Plivo Launches Contacto to Deliver Omnichannel Customer Service with a H
 description: "Plivo CX, a new contact center as a service, delivers a human experience at scale with omnichannel, mobile-first customer interactions."
 pubDate: "2021-10-06T00:00:00.000Z"
 updatedDate: "2025-05-19T11:43:39.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67fe0a68fa7163732d718734_6595568819a8ecbc251d7d62_Screenshot%25202024-01-03%2520at%25206.13.32%2520PM.png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67fe0a68fa7163732d718737_6595568819a8ecbc251d7d62_Screenshot%25202024-01-03%2520at%25206.13.32%2520PM.png"
+image: "/images/blog/67fe0a68fa7163732d718734_6595568819a8ecbc251d7d62_Screenshot-202024-01-03-20at-206.13.32-20PM.png"
+thumbnail: "/images/blog/67fe0a68fa7163732d718737_6595568819a8ecbc251d7d62_Screenshot-202024-01-03-20at-206.13.32-20PM.png"
 authorName: "Team Plivo"
 featured: false
 noindex: true

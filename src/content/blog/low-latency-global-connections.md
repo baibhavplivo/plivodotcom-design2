@@ -3,8 +3,8 @@ title: "How Plivo Maintains Low Latency for Global Connections"
 description: "Plivo lowers network latency for faster message delivery and clearer calls by using PoPs colocated at IXP data centers across five continents"
 pubDate: "2022-02-17T00:00:00.000Z"
 updatedDate: "2025-11-23T04:22:04.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/658005c16f74b290df47780e_blog-maintain-low-latency-for-global-connections.png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/658005c16f74b290df47780e_blog-maintain-low-latency-for-global-connections.png"
+image: "/images/blog/658005c16f74b290df47780e_blog-maintain-low-latency-for-global-connections.png"
+thumbnail: "/images/blog/658005c16f74b290df47780e_blog-maintain-low-latency-for-global-connections.png"
 authorName: "Team Plivo"
 featured: true
 noindex: false

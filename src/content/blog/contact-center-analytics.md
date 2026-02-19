@@ -3,8 +3,8 @@ title: "6 Ways to Use Contact Center Analytics to Improve Operations"
 description: "Contact Center analytics uses technology to generate actionable insights from raw data. Here are 6 ways to use contact center analytics & reporting to improve operations."
 pubDate: "2022-07-15T00:00:00.000Z"
 updatedDate: "2025-04-15T09:08:31.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67fe0a33888acbbcd1a4acca_659550f6c60d91c27d415239_Screenshot%25202024-01-03%2520at%25205.49.46%2520PM.png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67fe0a33888acbbcd1a4acca_659550f6c60d91c27d415239_Screenshot%25202024-01-03%2520at%25205.49.46%2520PM.png"
+image: "/images/blog/67fe0a33888acbbcd1a4acca_659550f6c60d91c27d415239_Screenshot-202024-01-03-20at-205.49.46-20PM.png"
+thumbnail: "/images/blog/67fe0a33888acbbcd1a4acca_659550f6c60d91c27d415239_Screenshot-202024-01-03-20at-205.49.46-20PM.png"
 authorName: "Team Plivo"
 featured: false
 noindex: false

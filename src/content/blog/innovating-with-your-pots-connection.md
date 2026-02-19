@@ -3,8 +3,8 @@ title: "Innovating with Your POTS Connection"
 description: "Plivo's SMS API and Voice API enables businesses to communicate with their customers at global scale. Sign up for free now."
 pubDate: "2014-01-30T00:00:00.000Z"
 updatedDate: "2025-05-19T11:40:39.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/65850bc691de75a688310e27_blog-pattern-design-9-thumbnail.svg"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/65850bc691de75a688310e27_blog-pattern-design-9-thumbnail.svg"
+image: "/images/blog/65850bc691de75a688310e27_blog-pattern-design-9-thumbnail.svg"
+thumbnail: "/images/blog/65850bc691de75a688310e27_blog-pattern-design-9-thumbnail.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: true

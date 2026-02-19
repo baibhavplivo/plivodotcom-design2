@@ -3,8 +3,8 @@ title: "Introducing Toll-Free SMS for the US"
 description: "Plivo's SMS API and Voice API enables businesses to communicate with their customers at global scale. Sign up for free now."
 pubDate: "2016-10-28T00:00:00.000Z"
 updatedDate: "2024-08-31T10:36:12.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/65850083f6c940bca79b9508_banner-toll-free-sms.png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/65850083f6c940bca79b9508_banner-toll-free-sms.png"
+image: "/images/blog/65850083f6c940bca79b9508_banner-toll-free-sms.png"
+thumbnail: "/images/blog/65850083f6c940bca79b9508_banner-toll-free-sms.png"
 authorName: "Team Plivo"
 featured: true
 noindex: false

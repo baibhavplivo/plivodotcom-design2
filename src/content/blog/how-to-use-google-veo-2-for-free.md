@@ -3,8 +3,8 @@ title: "How to Use Google Veo 2 for Free"
 description: "Discover how to create realistic videos for free with Google Veo 2 using AI technology. Start your video-making journey today!"
 pubDate: "2025-05-21T00:00:00.000Z"
 updatedDate: "2025-05-21T09:41:12.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/682d9f09bef8fb9624a71a8a_image.png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/682d9f09bef8fb9624a71a83_image.png"
+image: "/images/blog/682d9f09bef8fb9624a71a8a_image.png"
+thumbnail: "/images/blog/682d9f09bef8fb9624a71a83_image.png"
 authorName: "Team Plivo"
 featured: false
 noindex: false

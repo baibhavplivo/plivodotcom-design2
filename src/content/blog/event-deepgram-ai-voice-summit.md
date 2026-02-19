@@ -3,8 +3,8 @@ title: "Deepgram AI Summit — Voice is an Essential Asset for All Companies"
 description: "Plivo CEO Venky B joined the Deepgram AI Summit to discuss the importance of voice as an essential asset for companies."
 pubDate: "2021-11-29T00:00:00.000Z"
 updatedDate: "2025-05-19T11:48:41.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/658035bed33075f561e91d2e_blog-graphic-deepgram-5.svg"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/658035bed33075f561e91d2e_blog-graphic-deepgram-5.svg"
+image: "/images/blog/658035bed33075f561e91d2e_blog-graphic-deepgram-5.svg"
+thumbnail: "/images/blog/658035bed33075f561e91d2e_blog-graphic-deepgram-5.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: true

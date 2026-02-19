@@ -3,8 +3,8 @@ title: "Silent Authentication: A More Secure and Frictionless Verify Experience"
 description: "Enhance security with Silent Network Authentication's frictionless verification. Improve user satisfaction and secure accounts today. Start now!"
 pubDate: "2025-02-06T00:00:00.000Z"
 updatedDate: "2025-04-05T19:46:17.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67ad60b7f158202dd2d3fc69_Silent%20Authentication-%20A%20More%20Secure%20and%20Frictionless%20Verify%20Experience%20.png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67ad60b7f158202dd2d3fc69_Silent%20Authentication-%20A%20More%20Secure%20and%20Frictionless%20Verify%20Experience%20.png"
+image: "/images/blog/67ad60b7f158202dd2d3fc69_Silent-Authentication-A-More-Secure-and-Frictionless-Verify-Experience-.png"
+thumbnail: "/images/blog/67ad60b7f158202dd2d3fc69_Silent-Authentication-A-More-Secure-and-Frictionless-Verify-Experience-.png"
 authorName: "Team Plivo"
 featured: false
 noindex: false

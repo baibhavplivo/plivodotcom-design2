@@ -3,8 +3,8 @@ title: "Everything to Know About Phone Number Spoofing"
 description: "Phone number spoofing is used by scammers and telemarketers to display a false caller ID. Learn how to recognize and avoid falling victim to these tactics."
 pubDate: "2024-07-18T00:00:00.000Z"
 updatedDate: "2024-12-26T23:18:03.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/66a090a6ffa662511ab06996_Everything%20to%20Know%20About%20Phone%20Number%20Spoofing.svg"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/66a090a6ffa662511ab06996_Everything%20to%20Know%20About%20Phone%20Number%20Spoofing.svg"
+image: "/images/blog/66a090a6ffa662511ab06996_Everything-to-Know-About-Phone-Number-Spoofing.svg"
+thumbnail: "/images/blog/66a090a6ffa662511ab06996_Everything-to-Know-About-Phone-Number-Spoofing.svg"
 authorName: "Team Plivo"
 featured: false
 noindex: false

@@ -3,7 +3,7 @@ title: "Pros and Cons of Customer Service Automation"
 description: "Discover the pros and cons of customer service automation and how it shapes your business. Read on to learn more."
 pubDate: "2024-07-17T00:00:00.000Z"
 updatedDate: "2025-04-23T05:34:35.000Z"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67fe0a68fbe82e0c6263f579_6697a95896f4ae1fb46966c9_Pros%2520and%2520Cons%2520of%2520Automated%2520Customer%2520Service.jpeg"
+thumbnail: "/images/blog/67fe0a68fbe82e0c6263f579_6697a95896f4ae1fb46966c9_Pros-20and-20Cons-20of-20Automated-20Customer-20Service.jpeg"
 authorName: "Team Plivo"
 featured: false
 noindex: false

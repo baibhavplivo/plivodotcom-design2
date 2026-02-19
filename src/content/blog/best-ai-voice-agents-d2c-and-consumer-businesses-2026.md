@@ -3,8 +3,8 @@ title: "Choosing an AI Voice Agent in 2026: A Practical Comparison for Local D2C
 description: "Compare the best AI voice agents for D2C/Consumer-services businesses in 2026. See which platforms handle real calls, integrate with your stack and scale reliably."
 pubDate: "2026-02-10T00:00:00.000Z"
 updatedDate: "2026-02-16T15:14:24.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/69933433b9b7042e469296cb_plivo-top-ai-voice-agents-for-d2c_co.png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/6993344a928bd0edd54cfe70_plivo-top-ai-voice-agents-for-d2c_co.jpg"
+image: "/images/blog/69933433b9b7042e469296cb_plivo-top-ai-voice-agents-for-d2c_co.png"
+thumbnail: "/images/blog/6993344a928bd0edd54cfe70_plivo-top-ai-voice-agents-for-d2c_co.jpg"
 authorName: "Team Plivo"
 featured: false
 noindex: false

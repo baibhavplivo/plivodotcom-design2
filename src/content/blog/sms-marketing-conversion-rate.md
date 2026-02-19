@@ -3,8 +3,8 @@ title: "What’s an Average SMS Marketing Conversion Rate and How to Maximize It
 description: "Are your SMS marketing campaigns not bringing in the expected results? Discover seven ways to maximize SMS marketing conversion rate."
 pubDate: "2024-11-13T00:00:00.000Z"
 updatedDate: "2025-04-23T05:34:35.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67fe0a8b9975b8c10766dbb9_6734b1c3251109d62e7b1852_What%2527s%2520the%2520Average%2520SMS%2520Marketing%2520Conversion%2520Rate.jpeg"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67fe0a8b9975b8c10766dbbe_6734b1c3251109d62e7b1852_What%2527s%2520the%2520Average%2520SMS%2520Marketing%2520Conversion%2520Rate.jpeg"
+image: "/images/blog/67fe0a8b9975b8c10766dbb9_6734b1c3251109d62e7b1852_What-27s-20the-20Average-20SMS-20Marketing-20Conversion-20Rate.jpeg"
+thumbnail: "/images/blog/67fe0a8b9975b8c10766dbbe_6734b1c3251109d62e7b1852_What-27s-20the-20Average-20SMS-20Marketing-20Conversion-20Rate.jpeg"
 authorName: "Team Plivo"
 featured: false
 noindex: false

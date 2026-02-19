@@ -3,8 +3,8 @@ title: "Best practices for multi-factor authentication account recovery"
 description: "Strengthen account safety with our comprehensive MFA recovery process guide. Explore alternative methods, backup codes, and social proof strategies. Click to secure your account today."
 pubDate: "2025-03-21T00:00:00.000Z"
 updatedDate: "2025-03-21T13:08:35.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67ab0e4f108407933ed472fc_mfa-account-recovery-best-practices.png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67ab0e4f108407933ed472fc_mfa-account-recovery-best-practices.png"
+image: "/images/blog/67ab0e4f108407933ed472fc_mfa-account-recovery-best-practices.png"
+thumbnail: "/images/blog/67ab0e4f108407933ed472fc_mfa-account-recovery-best-practices.png"
 authorName: "Team Plivo"
 featured: false
 noindex: false

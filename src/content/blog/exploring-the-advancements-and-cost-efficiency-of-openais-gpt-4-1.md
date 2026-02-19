@@ -3,8 +3,8 @@ title: "Exploring the Advancements and Cost Efficiency of OpenAI's GPT-4.1"
 description: "Discover GPT-4.1's performance leaps, cost-effective models, and AI advancements. Explore its impact on tech and business."
 pubDate: "2025-05-14T00:00:00.000Z"
 updatedDate: "2025-05-14T13:33:33.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/68249b8c1be6320ae59f14d7_4.1.png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/68249b8c1be6320ae59f14d7_4.1.png"
+image: "/images/blog/68249b8c1be6320ae59f14d7_4.1.png"
+thumbnail: "/images/blog/68249b8c1be6320ae59f14d7_4.1.png"
 authorName: "Team Plivo"
 featured: false
 noindex: false

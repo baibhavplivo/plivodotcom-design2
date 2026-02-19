@@ -8,6 +8,7 @@ dist/
 # Environment
 .env
 .env.*
+.dev.vars
 
 # OS
 .DS_Store

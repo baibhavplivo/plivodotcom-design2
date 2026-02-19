@@ -3,8 +3,8 @@ title: "How to Build a Voice Survey Application the Low-Code Way Using PHLO"
 description: "Plivo's SMS API and Voice API enables businesses to communicate with their customers at global scale. Sign up for free now."
 pubDate: "2022-02-28T00:00:00.000Z"
 updatedDate: "2025-11-23T04:40:43.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/6580009a9b0c3dd157497554_voicesurvey.png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/6580009a9b0c3dd157497554_voicesurvey.png"
+image: "/images/blog/6580009a9b0c3dd157497554_voicesurvey.png"
+thumbnail: "/images/blog/6580009a9b0c3dd157497554_voicesurvey.png"
 authorName: "Team Plivo"
 featured: true
 noindex: false

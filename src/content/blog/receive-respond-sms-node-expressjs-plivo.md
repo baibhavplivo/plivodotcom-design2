@@ -3,8 +3,8 @@ title: "How to Receive and Respond to Incoming SMS Messages in Node.js with Expr
 description: "SMS API | Plivo | You can get started to Receive and Respond to Incoming SMS Messages in Node.js with Express.js and Plivo."
 pubDate: "2021-06-04T00:00:00.000Z"
 updatedDate: "2025-05-19T11:42:31.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/65813d97a1edb8c6b940cd51_receive-sms-node.png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/65813d97a1edb8c6b940cd51_receive-sms-node.png"
+image: "/images/blog/65813d97a1edb8c6b940cd51_receive-sms-node.png"
+thumbnail: "/images/blog/65813d97a1edb8c6b940cd51_receive-sms-node.png"
 authorName: "Team Plivo"
 featured: true
 noindex: true

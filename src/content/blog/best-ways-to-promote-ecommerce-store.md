@@ -3,7 +3,7 @@ title: "6 Best Ways to Promote Ecommerce Site"
 description: "Is your eCommerce site getting lost in the crowd? Discover six ways to keep an eCommerce store on top of consumers' minds always."
 pubDate: "2024-08-06T00:00:00.000Z"
 updatedDate: "2025-04-15T09:08:53.000Z"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67fe0a3243455d036df88318_66b3841308c2d761a92e9c4a_X%2520Ways%2520To%2520Promote%2520Your%2520Ecommerce%2520Online%2520Store.jpeg"
+thumbnail: "/images/blog/67fe0a3243455d036df88318_66b3841308c2d761a92e9c4a_X-20Ways-20To-20Promote-20Your-20Ecommerce-20Online-20Store.jpeg"
 authorName: "Team Plivo"
 featured: false
 noindex: false

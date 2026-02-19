@@ -3,8 +3,8 @@ title: "Why SMS / Voice Verification is Here to Stay"
 description: "Prepare for Okta's SMS verification sunset on September 15 by integrating Plivo in minutes. As all Okta users need to bring their own provider (BYOP), Plivo offers cost-effective, pay-as-you-go pricing, 24/7 support, and no authentication fees. Enjoy reliable voice, WhatsApp, and SMS verifications with 99.99% uptime, plus free Fraud Shield. Discover Plivo and Okta integration in minutes."
 pubDate: "2024-09-06T00:00:00.000Z"
 updatedDate: "2024-09-27T07:42:35.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/66da8e0822aa9880e20ec002_why-sms.png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/66da8e0822aa9880e20ec002_why-sms.png"
+image: "/images/blog/66da8e0822aa9880e20ec002_why-sms.png"
+thumbnail: "/images/blog/66da8e0822aa9880e20ec002_why-sms.png"
 authorName: "Team Plivo"
 featured: false
 noindex: false

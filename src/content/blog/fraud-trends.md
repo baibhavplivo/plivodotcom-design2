@@ -3,8 +3,8 @@ title: "Top Telecom Fraud Trends for 2024 & How to Prevent Them"
 description: "Learn about the latest fraud trends to stay ahead of threats in 2024. Use Plivo’s advanced solutions to protect your business from emerging attacks."
 pubDate: "2024-10-08T00:00:00.000Z"
 updatedDate: "2025-11-23T04:12:45.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/6704ef27ce2a207e62582c2f_Top%20Telecom%20Fraud%20Trends%20for%202024%20%26%20How%20to%20Prevent%20Them.png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/6704ef27ce2a207e62582c2f_Top%20Telecom%20Fraud%20Trends%20for%202024%20%26%20How%20to%20Prevent%20Them.png"
+image: "/images/blog/6704ef27ce2a207e62582c2f_Top-Telecom-Fraud-Trends-for-2024-How-to-Prevent-Them.png"
+thumbnail: "/images/blog/6704ef27ce2a207e62582c2f_Top-Telecom-Fraud-Trends-for-2024-How-to-Prevent-Them.png"
 authorName: "Team Plivo"
 featured: false
 noindex: false

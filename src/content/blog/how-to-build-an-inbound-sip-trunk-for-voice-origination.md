@@ -3,8 +3,8 @@ title: "How to Build an Inbound SIP Trunk for Voice Origination Using PHLO"
 description: "Learn how to build an inbound SIP trunk for voice origination to enhance your business communications efficiently."
 pubDate: "2022-02-14T00:00:00.000Z"
 updatedDate: "2025-11-23T04:39:27.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/6580083b253640336a773e6a_sip-trunk.png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/6580083b253640336a773e6a_sip-trunk.png"
+image: "/images/blog/6580083b253640336a773e6a_sip-trunk.png"
+thumbnail: "/images/blog/6580083b253640336a773e6a_sip-trunk.png"
 authorName: "Team Plivo"
 featured: true
 noindex: false

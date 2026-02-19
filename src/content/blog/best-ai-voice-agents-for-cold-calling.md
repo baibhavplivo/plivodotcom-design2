@@ -3,8 +3,8 @@ title: "Best AI Voice Agents for Cold Calling in 2026: What Actually Works (and 
 description: "Compare the top 11 AI voice agent platforms for cold calling in 2026. Learn which tools deliver low-latency audio, natural conversations, and real results."
 pubDate: "2026-01-27T00:00:00.000Z"
 updatedDate: "2026-01-28T06:13:47.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/6979a8e6c06c470d9a83413a_6979a888669cd38e02c8040e_best-ai-voice-agents-cold-calling-banner.png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/6979a8e6c06c470d9a83413a_6979a888669cd38e02c8040e_best-ai-voice-agents-cold-calling-banner.png"
+image: "/images/blog/6979a8e6c06c470d9a83413a_6979a888669cd38e02c8040e_best-ai-voice-agents-cold-calling-banner.png"
+thumbnail: "/images/blog/6979a8e6c06c470d9a83413a_6979a888669cd38e02c8040e_best-ai-voice-agents-cold-calling-banner.png"
 authorName: "Team Plivo"
 featured: false
 noindex: false

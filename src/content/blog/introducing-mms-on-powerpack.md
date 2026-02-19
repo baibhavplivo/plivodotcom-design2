@@ -3,8 +3,8 @@ title: "Introducing MMS on Powerpack"
 description: "Send and receive pictures, audio, video, and emojis from your applications across US and Canada. Get started for free now."
 pubDate: "2020-09-14T00:00:00.000Z"
 updatedDate: "2025-05-19T09:16:49.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/65826e360630615c9205c6e9_mms-powerpacks-head.svg"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/65826e360630615c9205c6e9_mms-powerpacks-head.svg"
+image: "/images/blog/65826e360630615c9205c6e9_mms-powerpacks-head.svg"
+thumbnail: "/images/blog/65826e360630615c9205c6e9_mms-powerpacks-head.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: true

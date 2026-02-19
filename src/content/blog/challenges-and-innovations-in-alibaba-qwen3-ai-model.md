@@ -3,8 +3,8 @@ title: "Challenges and Innovations in Alibaba's Qwen3 AI Model"
 description: "Explore Alibaba's Qwen3 AI model, its innovations, challenges, and how it outperforms competitors in AI technology"
 pubDate: "2025-05-21T00:00:00.000Z"
 updatedDate: "2025-05-21T09:24:17.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/682d9a640616c4d4c9bc55e0_image%20(8).png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/682d9a640616c4d4c9bc55e0_image%20(8).png"
+image: "/images/blog/682d9a640616c4d4c9bc55e0_image-8-.png"
+thumbnail: "/images/blog/682d9a640616c4d4c9bc55e0_image-8-.png"
 authorName: "Team Plivo"
 featured: false
 noindex: false

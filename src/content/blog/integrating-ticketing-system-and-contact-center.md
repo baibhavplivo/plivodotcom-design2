@@ -3,8 +3,8 @@ title: "Benefits of Integrating Your Ticketing System and Contact Center"
 description: "Integrating your ticketing system and contact center is essential to process tickets faster and solve customer issues. Read through this article to know the top benefits of integrating your CRM and contact center."
 pubDate: "2022-09-10T00:00:00.000Z"
 updatedDate: "2025-04-15T09:08:53.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67fe0a43fbe82e0c62639193_65954a2bfffaffa60c304c40_Screenshot%25202024-01-03%2520at%25205.20.48%2520PM.png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67fe0a43fbe82e0c626391b5_65954a2bfffaffa60c304c40_Screenshot%25202024-01-03%2520at%25205.20.48%2520PM.png"
+image: "/images/blog/67fe0a43fbe82e0c62639193_65954a2bfffaffa60c304c40_Screenshot-202024-01-03-20at-205.20.48-20PM.png"
+thumbnail: "/images/blog/67fe0a43fbe82e0c626391b5_65954a2bfffaffa60c304c40_Screenshot-202024-01-03-20at-205.20.48-20PM.png"
 authorName: "Team Plivo"
 featured: false
 noindex: false

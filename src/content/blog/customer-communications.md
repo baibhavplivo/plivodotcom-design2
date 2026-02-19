@@ -3,8 +3,8 @@ title: "10 Best Practices for Customer Communications"
 description: "The foundation of customer communications is “right time, right place, right message.” Learn how to nail it every time with great customer service."
 pubDate: "2021-11-18T00:00:00.000Z"
 updatedDate: "2025-04-15T09:08:40.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67fe0a2271c6df92a0a97812_659555e59c434147a0cd5f02_Screenshot%25202024-01-03%2520at%25206.10.45%2520PM.png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67fe0a2271c6df92a0a97809_659555e59c434147a0cd5f02_Screenshot%25202024-01-03%2520at%25206.10.45%2520PM.png"
+image: "/images/blog/67fe0a2271c6df92a0a97812_659555e59c434147a0cd5f02_Screenshot-202024-01-03-20at-206.10.45-20PM.png"
+thumbnail: "/images/blog/67fe0a2271c6df92a0a97809_659555e59c434147a0cd5f02_Screenshot-202024-01-03-20at-206.10.45-20PM.png"
 authorName: "Team Plivo"
 featured: false
 noindex: false

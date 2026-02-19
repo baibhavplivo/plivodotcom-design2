@@ -3,8 +3,8 @@ title: "How AI Personalization Is Transforming the Customer Experience"
 description: "Discover how AI-driven personalization enhances customer satisfaction by delivering customer-centered experiences based on individual preferences and behaviors."
 pubDate: "2024-10-09T00:00:00.000Z"
 updatedDate: "2025-04-15T09:08:40.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67fe0a526f31042e324fce0e_6707da173d7eefd05803b85b_How%2520AI%2520Improves%2520Customer%2520Experience%2520Personalization.jpeg"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67fe0a526f31042e324fce0a_6707da173d7eefd05803b85b_How%2520AI%2520Improves%2520Customer%2520Experience%2520Personalization.jpeg"
+image: "/images/blog/67fe0a526f31042e324fce0e_6707da173d7eefd05803b85b_How-20AI-20Improves-20Customer-20Experience-20Personalization.jpeg"
+thumbnail: "/images/blog/67fe0a526f31042e324fce0a_6707da173d7eefd05803b85b_How-20AI-20Improves-20Customer-20Experience-20Personalization.jpeg"
 authorName: "Team Plivo"
 featured: false
 noindex: false

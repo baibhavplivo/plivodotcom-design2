@@ -3,8 +3,8 @@ title: "Introducing Zentrunk Number To Trunk Mapping via API"
 description: "Plivo’s Zentrunk now offers number to trunk mapping via API. Read to know more about Zentrunk’s enhanced call routing efficiency, and flexibility for a seamless communication."
 pubDate: "2023-09-06T00:00:00.000Z"
 updatedDate: "2024-08-31T10:38:45.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/657c4a866177ba463e390055_blog_zentrunk_mapping_via_api.svg"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/657c4a866177ba463e390055_blog_zentrunk_mapping_via_api.svg"
+image: "/images/blog/657c4a866177ba463e390055_blog_zentrunk_mapping_via_api.svg"
+thumbnail: "/images/blog/657c4a866177ba463e390055_blog_zentrunk_mapping_via_api.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

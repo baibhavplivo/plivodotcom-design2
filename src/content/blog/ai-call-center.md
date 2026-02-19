@@ -3,8 +3,8 @@ title: "Everything You Need to Know: AI-Powered Contact Centers"
 description: "Unlock the potential of AI in contact centers with Plivo CX’s comprehensive guide. Explore strategies and tools for enhanced customer service and operational efficiency."
 pubDate: "2024-08-29T00:00:00.000Z"
 updatedDate: "2025-04-15T09:09:00.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67fe0a51fbe82e0c6263e73c_66d0488b77f29d5f36eb2dbd_AI%2520call%2520center_%2520A%2520complete%2520guide.jpeg"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67fe0a51fbe82e0c6263e73c_66d0488b77f29d5f36eb2dbd_AI%2520call%2520center_%2520A%2520complete%2520guide.jpeg"
+image: "/images/blog/67fe0a51fbe82e0c6263e73c_66d0488b77f29d5f36eb2dbd_AI-20call-20center_-20A-20complete-20guide.jpeg"
+thumbnail: "/images/blog/67fe0a51fbe82e0c6263e73c_66d0488b77f29d5f36eb2dbd_AI-20call-20center_-20A-20complete-20guide.jpeg"
 authorName: "Team Plivo"
 featured: false
 noindex: false

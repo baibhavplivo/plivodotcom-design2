@@ -3,8 +3,8 @@ title: "Cloud vs. Traditional Contact Centers"
 description: "Chatbots help businesses automate their customer service motion and reduce time to ticket resolution. Learn about chatbots and how to implement them in this blog."
 pubDate: "2023-08-24T00:00:00.000Z"
 updatedDate: "2025-11-23T03:56:56.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67fe0a4a153bf44e33e3f113_65954760e75efc9885959017_Screenshot%25202024-01-03%2520at%25205.08.44%2520PM.png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67fe0a4a153bf44e33e3f113_65954760e75efc9885959017_Screenshot%25202024-01-03%2520at%25205.08.44%2520PM.png"
+image: "/images/blog/67fe0a4a153bf44e33e3f113_65954760e75efc9885959017_Screenshot-202024-01-03-20at-205.08.44-20PM.png"
+thumbnail: "/images/blog/67fe0a4a153bf44e33e3f113_65954760e75efc9885959017_Screenshot-202024-01-03-20at-205.08.44-20PM.png"
 authorName: "Team Plivo"
 featured: false
 noindex: false

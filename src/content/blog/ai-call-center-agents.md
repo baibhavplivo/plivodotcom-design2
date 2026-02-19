@@ -3,8 +3,8 @@ title: "10 Ways to Transform Operations With AI Call Center Agents"
 description: "Find out how AI call center agents help businesses boost productivity, cut operational costs, and deliver personalized customer experiences around the clock."
 pubDate: "2024-12-02T00:00:00.000Z"
 updatedDate: "2025-04-15T09:08:53.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67fe0a2675b38f8f8f6233fb_674e094c1bde07f8007e1e0b_Everything%2520You%2520Need%2520To%2520Know%2520About%2520Customer%2520Experience%2520Automation.jpeg"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67fe0a2675b38f8f8f6233fe_674e094c1bde07f8007e1e0b_Everything%2520You%2520Need%2520To%2520Know%2520About%2520Customer%2520Experience%2520Automation.jpeg"
+image: "/images/blog/67fe0a2675b38f8f8f6233fb_674e094c1bde07f8007e1e0b_Everything-20You-20Need-20To-2-a59937b3.jpeg"
+thumbnail: "/images/blog/67fe0a2675b38f8f8f6233fe_674e094c1bde07f8007e1e0b_Everything-20You-20Need-20To-2-187dff24.jpeg"
 authorName: "Team Plivo"
 featured: false
 noindex: false

@@ -3,8 +3,8 @@ title: "Best AI Voice Agents for Customer Support and Service (2026): What to De
 description: "Compare 10 AI voice agent platforms for customer support. Get a practical 30-day pilot framework, implementation workflow, and outcome-driven selection guide."
 pubDate: "2026-01-20T00:00:00.000Z"
 updatedDate: "2026-01-28T22:46:31.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/697a91be7f5ecef3905cfc94_697a9189b7fbeb1e3a9402bc_ai-voice-agents-omnichannel-banner.png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/697a91be7f5ecef3905cfc94_697a9189b7fbeb1e3a9402bc_ai-voice-agents-omnichannel-banner.png"
+image: "/images/blog/697a91be7f5ecef3905cfc94_697a9189b7fbeb1e3a9402bc_ai-voice-agents-omnichannel-banner.png"
+thumbnail: "/images/blog/697a91be7f5ecef3905cfc94_697a9189b7fbeb1e3a9402bc_ai-voice-agents-omnichannel-banner.png"
 authorName: "Team Plivo"
 featured: false
 noindex: false

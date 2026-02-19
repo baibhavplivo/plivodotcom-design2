@@ -3,8 +3,8 @@ title: "Best Practices for Sending Appointment Reminder Messages"
 description: "Texting an Appointment Reminder to your Patient — Here are 7 best practices for sending medical appointment reminder text messages."
 pubDate: "2022-11-11T00:00:00.000Z"
 updatedDate: "2025-02-14T15:19:34.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/657d8ba56276ea8bd135b724_appointment_reminders.svg"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/657d8ba56276ea8bd135b724_appointment_reminders.svg"
+image: "/images/blog/657d8ba56276ea8bd135b724_appointment_reminders.svg"
+thumbnail: "/images/blog/657d8ba56276ea8bd135b724_appointment_reminders.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

@@ -3,8 +3,8 @@ title: "Decoding SMS Marketing ROI: 4 Excellent Strategies for Maximizing SMS Ma
 description: "In this guide, explore why SMS marketing ROI matters, how you can calculate it, and how you can increase the ROI of your SMS marketing campaigns. Book a demo."
 pubDate: "2024-11-08T00:00:00.000Z"
 updatedDate: "2025-04-15T09:08:53.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67fe0a4ecee23401f94239c3_672e1268a8dcecf62c267956_SMS%2520Marketing%2520ROI%2520Insights%2520for%2520every%2520business%2520owner.jpeg"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67fe0a4ecee23401f94239c3_672e1268a8dcecf62c267956_SMS%2520Marketing%2520ROI%2520Insights%2520for%2520every%2520business%2520owner.jpeg"
+image: "/images/blog/67fe0a4ecee23401f94239c3_672e1268a8dcecf62c267956_SMS-20Marketing-20ROI-20Insights-20for-20every-20business-20owner.jpeg"
+thumbnail: "/images/blog/67fe0a4ecee23401f94239c3_672e1268a8dcecf62c267956_SMS-20Marketing-20ROI-20Insights-20for-20every-20business-20owner.jpeg"
 authorName: "Team Plivo"
 featured: false
 noindex: false

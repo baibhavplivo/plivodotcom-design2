@@ -3,8 +3,8 @@ title: "Announcing Integromat Integration"
 description: "Plivo's SMS API and Voice API enables businesses to communicate with their customers at global scale. Sign up for free now."
 pubDate: "2017-11-22T00:00:00.000Z"
 updatedDate: "2025-05-19T09:10:32.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/6583d5f7ec26b4604a8e6a8f_Integromat_Plivo.png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/6583d5f7ec26b4604a8e6a8f_Integromat_Plivo.png"
+image: "/images/blog/6583d5f7ec26b4604a8e6a8f_Integromat_Plivo.png"
+thumbnail: "/images/blog/6583d5f7ec26b4604a8e6a8f_Integromat_Plivo.png"
 authorName: "Team Plivo"
 featured: true
 noindex: true

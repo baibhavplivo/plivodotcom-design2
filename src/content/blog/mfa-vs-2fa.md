@@ -3,8 +3,8 @@ title: "MFA vs. 2FA: Which Authentication Method Is Safer?"
 description: "MFA vs. 2FA — what’s the difference? Learn how these authentication methods enhance security and which one is right for you."
 pubDate: "2025-05-05T00:00:00.000Z"
 updatedDate: "2025-05-05T07:50:17.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/68186d94208548380982b4fe_2FA%20VS%20MFA%20IN%202025.jpg"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/68186d94208548380982b4fe_2FA%20VS%20MFA%20IN%202025.jpg"
+image: "/images/blog/68186d94208548380982b4fe_2FA-VS-MFA-IN-2025.jpg"
+thumbnail: "/images/blog/68186d94208548380982b4fe_2FA-VS-MFA-IN-2025.jpg"
 authorName: "Team Plivo"
 featured: false
 noindex: false

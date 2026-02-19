@@ -3,8 +3,8 @@ title: "Introducing Contacto: Omnichannel Customer Service with a Human Touch"
 description: "Introducing Contacto, a mobile-first omnichannel contact center for consumer-facing businesses. Uplevel your B2C customer service - Learn more today."
 pubDate: "2021-10-06T00:00:00.000Z"
 updatedDate: "2025-05-19T11:39:33.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67fe0a5eceb4fd77758fbde5_659556d8a0d06de9330b0a8b_Screenshot%25202024-01-03%2520at%25206.14.52%2520PM.png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67fe0a5eceb4fd77758fbdf2_659556d8a0d06de9330b0a8b_Screenshot%25202024-01-03%2520at%25206.14.52%2520PM.png"
+image: "/images/blog/67fe0a5eceb4fd77758fbde5_659556d8a0d06de9330b0a8b_Screenshot-202024-01-03-20at-206.14.52-20PM.png"
+thumbnail: "/images/blog/67fe0a5eceb4fd77758fbdf2_659556d8a0d06de9330b0a8b_Screenshot-202024-01-03-20at-206.14.52-20PM.png"
 authorName: "Team Plivo"
 featured: false
 noindex: true

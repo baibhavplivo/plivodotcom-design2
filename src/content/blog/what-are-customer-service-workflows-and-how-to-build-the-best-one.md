@@ -3,8 +3,8 @@ title: "What Are Customer Service Workflows And How to Build The Best One?"
 description: "Want to build customer support workflows that drive higher levels of customer satisfaction? Read on to learn more."
 pubDate: "2024-07-10T00:00:00.000Z"
 updatedDate: "2025-04-23T05:34:35.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67fe0a86209240d0453f1abc_668e64d116210bb727a78912_What%2520Are%2520Customer%2520Service%2520Workflows%2520and%2520How%2520to%2520build%2520the%2520best%2520one.jpeg"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67fe0a86209240d0453f1abf_668e64d116210bb727a78912_What%2520Are%2520Customer%2520Service%2520Workflows%2520and%2520How%2520to%2520build%2520the%2520best%2520one.jpeg"
+image: "/images/blog/67fe0a86209240d0453f1abc_668e64d116210bb727a78912_What-20Are-20Customer-20Servic-53992703.jpeg"
+thumbnail: "/images/blog/67fe0a86209240d0453f1abf_668e64d116210bb727a78912_What-20Are-20Customer-20Servic-328bbca0.jpeg"
 authorName: "Team Plivo"
 featured: false
 noindex: false

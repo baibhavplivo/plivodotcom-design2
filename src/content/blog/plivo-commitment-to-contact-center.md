@@ -3,8 +3,8 @@ title: "One place to manage every interaction—Plivo’s commitment to the unif
 description: "Implementing a Contact Center that unifies the agent workflow and simplifies operations is essential to exceeding the needs of the intelligent consumer."
 pubDate: "2022-03-15T00:00:00.000Z"
 updatedDate: "2025-05-19T09:16:02.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67fe0a65a3c825fe7d0d3b95_6595546061bacf1693881c50_Screenshot%25202024-01-03%2520at%25206.04.19%2520PM.png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67fe0a65a3c825fe7d0d3b95_6595546061bacf1693881c50_Screenshot%25202024-01-03%2520at%25206.04.19%2520PM.png"
+image: "/images/blog/67fe0a65a3c825fe7d0d3b95_6595546061bacf1693881c50_Screenshot-202024-01-03-20at-206.04.19-20PM.png"
+thumbnail: "/images/blog/67fe0a65a3c825fe7d0d3b95_6595546061bacf1693881c50_Screenshot-202024-01-03-20at-206.04.19-20PM.png"
 authorName: "Team Plivo"
 featured: false
 noindex: true

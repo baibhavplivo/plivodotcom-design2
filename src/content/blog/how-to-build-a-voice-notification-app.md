@@ -3,8 +3,8 @@ title: "How to Build a Voice Notifications Application the Low-Code Way Using PH
 description: "Plivo's SMS API and Voice API enables businesses to communicate with their customers at global scale. Sign up for free now."
 pubDate: "2022-02-22T00:00:00.000Z"
 updatedDate: "2025-11-23T04:40:11.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/6580047e39f61b597aa67687_voicenotification.png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/6580047e39f61b597aa67687_voicenotification.png"
+image: "/images/blog/6580047e39f61b597aa67687_voicenotification.png"
+thumbnail: "/images/blog/6580047e39f61b597aa67687_voicenotification.png"
 authorName: "Team Plivo"
 featured: true
 noindex: false

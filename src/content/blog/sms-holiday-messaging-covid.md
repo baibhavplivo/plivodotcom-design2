@@ -3,8 +3,8 @@ title: "Holiday Messaging: Don’t Let Covid Upend Your Success"
 description: "How to ace Holiday Messaging in the midst of a Pandemic?"
 pubDate: "2020-11-18T00:00:00.000Z"
 updatedDate: "2025-05-19T11:46:32.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/65826011f0d0281fc936615d_hol-holiday.svg"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/65826011f0d0281fc936615d_hol-holiday.svg"
+image: "/images/blog/65826011f0d0281fc936615d_hol-holiday.svg"
+thumbnail: "/images/blog/65826011f0d0281fc936615d_hol-holiday.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: true

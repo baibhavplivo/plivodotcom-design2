@@ -3,8 +3,8 @@ title: "10 Effective Strategies to Improve Agent Productivity in Customer Suppor
 description: "Discover actionable methods to improve agent productivity in customer support, including AI integration, unified workspaces, and self-service tools."
 pubDate: "2025-04-03T00:00:00.000Z"
 updatedDate: "2025-04-15T09:08:53.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67fe0a22f3af89b72dbc3953_67ee3da8e1e318721ed6bc1b_10%2520Strategies%2520to%2520improve%2520agent%2520productivity%2520in%2520customer%2520support.jpeg"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67fe0a22f3af89b72dbc3953_67ee3da8e1e318721ed6bc1b_10%2520Strategies%2520to%2520improve%2520agent%2520productivity%2520in%2520customer%2520support.jpeg"
+image: "/images/blog/67fe0a22f3af89b72dbc3953_67ee3da8e1e318721ed6bc1b_10-20Strategies-20to-20improve-f9dd80f3.jpeg"
+thumbnail: "/images/blog/67fe0a22f3af89b72dbc3953_67ee3da8e1e318721ed6bc1b_10-20Strategies-20to-20improve-f9dd80f3.jpeg"
 authorName: "Team Plivo"
 featured: false
 noindex: false

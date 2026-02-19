@@ -3,8 +3,8 @@ title: "A Tour of the Plivo Console: SMS"
 description: "A menu-by-menu look at SMS API management capabilities exposed via the Plivo console. It’s easy to get started — sign up today."
 pubDate: "2023-02-28T00:00:00.000Z"
 updatedDate: "2025-04-01T09:00:34.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/657d68f0bcb648163fa153eb_SMS_console_tour.svg"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/657d68f0bcb648163fa153eb_SMS_console_tour.svg"
+image: "/images/blog/657d68f0bcb648163fa153eb_SMS_console_tour.svg"
+thumbnail: "/images/blog/657d68f0bcb648163fa153eb_SMS_console_tour.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

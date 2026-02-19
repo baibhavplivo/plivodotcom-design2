@@ -3,8 +3,8 @@ title: "An Easy Way to Send Voice and SMS Campaigns"
 description: "Plivo's SMS API and Voice API enables businesses to communicate with their customers at global scale. Sign up for free now."
 pubDate: "2018-07-18T00:00:00.000Z"
 updatedDate: "2025-05-19T09:10:03.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/6583e68a60b15ef729e0f09a_newfies-integration-banner.png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/6583e68a60b15ef729e0f09a_newfies-integration-banner.png"
+image: "/images/blog/6583e68a60b15ef729e0f09a_newfies-integration-banner.png"
+thumbnail: "/images/blog/6583e68a60b15ef729e0f09a_newfies-integration-banner.png"
 authorName: "Team Plivo"
 featured: true
 noindex: true

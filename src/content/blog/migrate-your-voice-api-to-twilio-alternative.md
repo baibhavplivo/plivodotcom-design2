@@ -3,8 +3,8 @@ title: "5 Reasons to Migrate Your Voice API to a Twilio Alternative"
 description: "Tips for assessing the best Twilio alternative for your voice API platform."
 pubDate: "2020-06-07T00:00:00.000Z"
 updatedDate: "2025-11-23T03:53:28.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/658282d41b03ab93fc08ee4d_twlio-alt-voice_hero.jpg"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/658282d41b03ab93fc08ee4d_twlio-alt-voice_hero.jpg"
+image: "/images/blog/658282d41b03ab93fc08ee4d_twlio-alt-voice_hero.jpg"
+thumbnail: "/images/blog/658282d41b03ab93fc08ee4d_twlio-alt-voice_hero.jpg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

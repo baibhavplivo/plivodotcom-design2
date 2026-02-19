@@ -3,8 +3,8 @@ title: "Top 6 Customer Service Channels (Hint:Voice is still king, for now)"
 description: "Handling customer inquiries is the most important role in providing great CX. Find out why voice is still the king for now among the best customer service channels."
 pubDate: "2022-07-26T00:00:00.000Z"
 updatedDate: "2025-11-23T04:11:18.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67fe0a806dc41bb5eb25fd9a_6595506c2c025a5b782d3e13_Screenshot%25202024-01-03%2520at%25205.47.17%2520PM.png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67fe0a806dc41bb5eb25fda3_65954ff63b5c40c9daa77318_Screenshot%25202024-01-03%2520at%25205.45.32%2520PM.png"
+image: "/images/blog/67fe0a806dc41bb5eb25fd9a_6595506c2c025a5b782d3e13_Screenshot-202024-01-03-20at-205.47.17-20PM.png"
+thumbnail: "/images/blog/67fe0a806dc41bb5eb25fda3_65954ff63b5c40c9daa77318_Screenshot-202024-01-03-20at-205.45.32-20PM.png"
 authorName: "Team Plivo"
 featured: false
 noindex: false

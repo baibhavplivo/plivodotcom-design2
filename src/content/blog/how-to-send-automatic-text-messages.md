@@ -3,8 +3,8 @@ title: "How to Send Automatic Text Messages"
 description: "Boost business communication with automated text messages. Learn setup tips and create SMS drip campaigns. Start optimizing today!"
 pubDate: "2025-02-04T00:00:00.000Z"
 updatedDate: "2025-03-23T05:50:14.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67ad5f1d8037a76ce6c99c55_How%20to%20send%20automatic%20text%20messages%20.png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67ad5f1d8037a76ce6c99c55_How%20to%20send%20automatic%20text%20messages%20.png"
+image: "/images/blog/67ad5f1d8037a76ce6c99c55_How-to-send-automatic-text-messages-.png"
+thumbnail: "/images/blog/67ad5f1d8037a76ce6c99c55_How-to-send-automatic-text-messages-.png"
 authorName: "Team Plivo"
 featured: false
 noindex: false

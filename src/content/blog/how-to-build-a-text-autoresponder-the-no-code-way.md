@@ -3,8 +3,8 @@ title: "How to Build a Text Autoresponder the No-Code Way Using PHLO"
 description: "How to create a text autoresponder without writing a single line of code to respond to incoming messages on your business numbers."
 pubDate: "2022-01-24T00:00:00.000Z"
 updatedDate: "2025-11-23T04:38:04.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/658016541efcac0bf1efd431_sms_autoresponder.png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/658016541efcac0bf1efd431_sms_autoresponder.png"
+image: "/images/blog/658016541efcac0bf1efd431_sms_autoresponder.png"
+thumbnail: "/images/blog/658016541efcac0bf1efd431_sms_autoresponder.png"
 authorName: "Team Plivo"
 featured: true
 noindex: false

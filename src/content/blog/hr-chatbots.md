@@ -3,8 +3,8 @@ title: "Benefits and Use Cases of HR Chatbots in 2025"
 description: "Explore how chatbots in HR streamline tasks, boost engagement, and cut costs in 2025. Learn integration tips and tap into future trends. Click now!"
 pubDate: "2025-02-05T00:00:00.000Z"
 updatedDate: "2025-03-23T05:53:49.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67ad6481abcfaacf16fd14db_Benefits%20and%20Use%20Cases%20of%20HR%20Chatbots%20in%202025.png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67ad6481abcfaacf16fd14db_Benefits%20and%20Use%20Cases%20of%20HR%20Chatbots%20in%202025.png"
+image: "/images/blog/67ad6481abcfaacf16fd14db_Benefits-and-Use-Cases-of-HR-Chatbots-in-2025.png"
+thumbnail: "/images/blog/67ad6481abcfaacf16fd14db_Benefits-and-Use-Cases-of-HR-Chatbots-in-2025.png"
 authorName: "Team Plivo"
 featured: false
 noindex: false

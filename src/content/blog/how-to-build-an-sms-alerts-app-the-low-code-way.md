@@ -3,8 +3,8 @@ title: "How to Build an SMS Alerts Application the Low-Code Way Using PHLO"
 description: "Plivo's SMS API and Voice API enables businesses to communicate with their customers at global scale. Sign up for free now."
 pubDate: "2022-02-01T00:00:00.000Z"
 updatedDate: "2025-11-23T04:38:31.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/6580112d506e4e17265e954d_sms-alert.png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/6580112d506e4e17265e954d_sms-alert.png"
+image: "/images/blog/6580112d506e4e17265e954d_sms-alert.png"
+thumbnail: "/images/blog/6580112d506e4e17265e954d_sms-alert.png"
 authorName: "Team Plivo"
 featured: true
 noindex: false

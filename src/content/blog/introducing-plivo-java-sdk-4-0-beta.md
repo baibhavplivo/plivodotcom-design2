@@ -3,8 +3,8 @@ title: "Introducing Plivo Java SDK 4.0 Beta"
 description: "Plivo's SMS API and Voice API enables businesses to communicate with their customers at global scale. Sign up for free now."
 pubDate: "2017-10-30T00:00:00.000Z"
 updatedDate: "2025-05-19T09:13:46.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/6583d888386619e51b7de1d9_introducing-plivo-java-sdk-4-0-beta.png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/6583d888386619e51b7de1d9_introducing-plivo-java-sdk-4-0-beta.png"
+image: "/images/blog/6583d888386619e51b7de1d9_introducing-plivo-java-sdk-4-0-beta.png"
+thumbnail: "/images/blog/6583d888386619e51b7de1d9_introducing-plivo-java-sdk-4-0-beta.png"
 authorName: "Team Plivo"
 featured: true
 noindex: true

@@ -3,8 +3,8 @@ title: "Why You Should Migrate Your SMS Services to a Twilio Alternative"
 description: "Explore an SMS API alternative to Twilio that offers global reach, reliability, easy migration, great customer engagement, and lower TCO."
 pubDate: "2020-06-23T00:00:00.000Z"
 updatedDate: "2025-11-23T03:53:40.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/6582753623658a27388a08d6_twlio-alt-sms-hero.svg"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/6582753623658a27388a08d6_twlio-alt-sms-hero.svg"
+image: "/images/blog/6582753623658a27388a08d6_twlio-alt-sms-hero.svg"
+thumbnail: "/images/blog/6582753623658a27388a08d6_twlio-alt-sms-hero.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

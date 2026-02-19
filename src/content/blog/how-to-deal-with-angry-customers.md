@@ -3,8 +3,8 @@ title: "How to Deal with Angry Customers: 12+ Tips that Always Work"
 description: "Master the art of dealing with angry customers in Cloud Contact Centers. Explore 12+ actionable tips to reduce customer friction, foster loyalty, and transform challenges into opportunities for lasting positive impressions."
 pubDate: "2023-09-15T00:00:00.000Z"
 updatedDate: "2025-04-23T05:34:36.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67fe0a5871c6df92a0a9ad29_659545eec77ef621ac571a2c_Screenshot%25202024-01-03%2520at%25205.02.11%2520PM.png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67fe0a5871c6df92a0a9ad29_659545eec77ef621ac571a2c_Screenshot%25202024-01-03%2520at%25205.02.11%2520PM.png"
+image: "/images/blog/67fe0a5871c6df92a0a9ad29_659545eec77ef621ac571a2c_Screenshot-202024-01-03-20at-205.02.11-20PM.png"
+thumbnail: "/images/blog/67fe0a5871c6df92a0a9ad29_659545eec77ef621ac571a2c_Screenshot-202024-01-03-20at-205.02.11-20PM.png"
 authorName: "Team Plivo"
 featured: false
 noindex: false

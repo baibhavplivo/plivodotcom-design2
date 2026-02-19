@@ -3,8 +3,8 @@ title: "Building a Shopify App Clone with AI"
 description: "Discover how AI tools like Cursor enable quick Shopify app cloning without coding. Innovate effortlessly today!"
 pubDate: "2025-05-21T00:00:00.000Z"
 updatedDate: "2025-05-21T13:27:18.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/682dd4454ad28419426b1b98_image%20(9).png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/682dd4454ad28419426b1b98_image%20(9).png"
+image: "/images/blog/682dd4454ad28419426b1b98_image-9-.png"
+thumbnail: "/images/blog/682dd4454ad28419426b1b98_image-9-.png"
 authorName: "Team Plivo"
 featured: false
 noindex: false

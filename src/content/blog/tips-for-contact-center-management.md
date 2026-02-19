@@ -3,8 +3,8 @@ title: "10 Tips for Better Contact Center Management"
 description: "Dive deep into the complete guide to contact center management. Explore pivotal roles, responsibilities, and 10 management tips that champion agent satisfaction and cultivate unparalleled customer loyalty."
 pubDate: "2023-10-06T00:00:00.000Z"
 updatedDate: "2025-11-23T05:18:14.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67fe0a253b9b738d996786f8_65951798157813c68fa0e9a9_Screenshot%25202024-01-03%2520at%25201.44.48%2520PM.png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67fe0a253b9b738d996786f8_65951798157813c68fa0e9a9_Screenshot%25202024-01-03%2520at%25201.44.48%2520PM.png"
+image: "/images/blog/67fe0a253b9b738d996786f8_65951798157813c68fa0e9a9_Screenshot-202024-01-03-20at-201.44.48-20PM.png"
+thumbnail: "/images/blog/67fe0a253b9b738d996786f8_65951798157813c68fa0e9a9_Screenshot-202024-01-03-20at-201.44.48-20PM.png"
 authorName: "Team Plivo"
 featured: false
 noindex: false

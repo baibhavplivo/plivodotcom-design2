@@ -3,8 +3,8 @@ title: "Plivo Streamlines 10DLC for Political Campaigns"
 description: "A guide to how Plivo can help streamline 10DLC SMS registration for your political campaigns. Read along and find out how to get started today."
 pubDate: "2023-09-18T00:00:00.000Z"
 updatedDate: "2024-08-31T10:43:46.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/657c3a748cb7a18b30fe4334_Blog_10dlc_political_campaigns.svg"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/657c3a748cb7a18b30fe4334_Blog_10dlc_political_campaigns.svg"
+image: "/images/blog/657c3a748cb7a18b30fe4334_Blog_10dlc_political_campaigns.svg"
+thumbnail: "/images/blog/657c3a748cb7a18b30fe4334_Blog_10dlc_political_campaigns.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

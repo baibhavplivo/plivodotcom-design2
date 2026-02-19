@@ -3,8 +3,8 @@ title: "How to Write a Cloud Function to Send SMS in Node.js and Plivo’s SMS A
 description: "SMS API | Plivo | You can get started to Write a Cloud Function to Send SMS in Node.js and Plivo’s SMS API."
 pubDate: "2021-04-28T00:00:00.000Z"
 updatedDate: "2025-05-19T11:49:27.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/658197ecc4145944225ebdf6_send-sms-node-cloud-function.png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/658197ecc4145944225ebdf6_send-sms-node-cloud-function.png"
+image: "/images/blog/658197ecc4145944225ebdf6_send-sms-node-cloud-function.png"
+thumbnail: "/images/blog/658197ecc4145944225ebdf6_send-sms-node-cloud-function.png"
 authorName: "Team Plivo"
 featured: true
 noindex: true

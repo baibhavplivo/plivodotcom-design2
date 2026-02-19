@@ -3,8 +3,8 @@ title: "SMS: The Best Channel for Marketing"
 description: "For marketing communications, SMS text messaging provides the best combination of low cost, high immediacy, and almost universal reach."
 pubDate: "2021-06-08T00:00:00.000Z"
 updatedDate: "2025-05-20T14:14:35.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/65813c5fa05b9703585e4f92_blog-graphic-sms-best-marketing-channel-13.png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/65813c5fa05b9703585e4f92_blog-graphic-sms-best-marketing-channel-13.png"
+image: "/images/blog/65813c5fa05b9703585e4f92_blog-graphic-sms-best-marketing-channel-13.png"
+thumbnail: "/images/blog/65813c5fa05b9703585e4f92_blog-graphic-sms-best-marketing-channel-13.png"
 authorName: "Team Plivo"
 featured: true
 noindex: true

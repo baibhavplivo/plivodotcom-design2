@@ -3,8 +3,8 @@ title: "Leveraging A2P SMS Text Messaging for Your Business"
 description: "Plivo's SMS API and Voice API enables businesses to communicate with their customers at global scale. Sign up for free now."
 pubDate: "2016-10-26T00:00:00.000Z"
 updatedDate: "2025-04-01T09:11:21.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/658502703a0e8566e24c2e6c_leveraging-a2p-sms-text-messaging-for-your-business.png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/658502703a0e8566e24c2e6c_leveraging-a2p-sms-text-messaging-for-your-business.png"
+image: "/images/blog/658502703a0e8566e24c2e6c_leveraging-a2p-sms-text-messaging-for-your-business.png"
+thumbnail: "/images/blog/658502703a0e8566e24c2e6c_leveraging-a2p-sms-text-messaging-for-your-business.png"
 authorName: "Team Plivo"
 featured: true
 noindex: false

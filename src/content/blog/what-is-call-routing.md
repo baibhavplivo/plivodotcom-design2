@@ -3,8 +3,8 @@ title: "What is Call Routing? Types, Benefits & How it Works"
 description: "Call routing automatically directs incoming calls to the right department based on an established set of rules. Find how phone routing works, its types & benefits in this blog."
 pubDate: "2022-08-16T00:00:00.000Z"
 updatedDate: "2025-04-23T05:34:35.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67fe0a89f3af89b72dbc8ff1_65954fa7472b19e85d52a446_Screenshot%25202024-01-03%2520at%25205.44.14%2520PM.png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67fe0a89f3af89b72dbc8ff7_65954fa7472b19e85d52a446_Screenshot%25202024-01-03%2520at%25205.44.14%2520PM.png"
+image: "/images/blog/67fe0a89f3af89b72dbc8ff1_65954fa7472b19e85d52a446_Screenshot-202024-01-03-20at-205.44.14-20PM.png"
+thumbnail: "/images/blog/67fe0a89f3af89b72dbc8ff7_65954fa7472b19e85d52a446_Screenshot-202024-01-03-20at-205.44.14-20PM.png"
 authorName: "Team Plivo"
 featured: false
 noindex: false

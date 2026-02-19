@@ -3,8 +3,8 @@ title: "How to Use Voice Transcriptions for Customer Analytics"
 description: "Discover how voice transcriptions can revolutionize customer analytics by converting spoken feedback into actionable insights."
 pubDate: "2024-11-14T00:00:00.000Z"
 updatedDate: "2024-12-13T06:05:48.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/6735a4cae4922c58f5031b44_How%20to%20use%20voice%20transcriptions%20for%20customer%20analytics.png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/6735a4cae4922c58f5031b44_How%20to%20use%20voice%20transcriptions%20for%20customer%20analytics.png"
+image: "/images/blog/6735a4cae4922c58f5031b44_How-to-use-voice-transcriptions-for-customer-analytics.png"
+thumbnail: "/images/blog/6735a4cae4922c58f5031b44_How-to-use-voice-transcriptions-for-customer-analytics.png"
 authorName: "Team Plivo"
 featured: false
 noindex: false

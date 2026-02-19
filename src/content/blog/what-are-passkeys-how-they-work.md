@@ -3,8 +3,8 @@ title: "Passkeys 101: what they are and how they work"
 description: "Discover what a passkey is and how it works to replace passwords using biometric data. Enjoy enhanced security against phishing! Get started now."
 pubDate: "2024-12-26T00:00:00.000Z"
 updatedDate: "2025-01-07T14:57:59.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/677d40ecfe92f5d148db99ed_passkeys-101.png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/677d40ecfe92f5d148db99ed_passkeys-101.png"
+image: "/images/blog/677d40ecfe92f5d148db99ed_passkeys-101.png"
+thumbnail: "/images/blog/677d40ecfe92f5d148db99ed_passkeys-101.png"
 authorName: "Team Plivo"
 featured: false
 noindex: false

@@ -3,8 +3,8 @@ title: "Keeping Your Data Safe: Our Ongoing Commitment to Security"
 description: "PCI certification: Plivo renews PCI DSS compliance certification, which means your payments to Plivo are secured and protected."
 pubDate: "2024-08-26T00:00:00.000Z"
 updatedDate: "2024-09-03T15:07:34.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/66d726201f8ed960c28be0b6_4.0%20Plivo%20PCI%20image.svg"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/66d726201f8ed960c28be0b6_4.0%20Plivo%20PCI%20image.svg"
+image: "/images/blog/66d726201f8ed960c28be0b6_4.0-Plivo-PCI-image.svg"
+thumbnail: "/images/blog/66d726201f8ed960c28be0b6_4.0-Plivo-PCI-image.svg"
 authorName: "Team Plivo"
 featured: false
 noindex: false

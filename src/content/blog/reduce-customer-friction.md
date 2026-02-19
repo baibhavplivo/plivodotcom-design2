@@ -3,8 +3,8 @@ title: "How to Reduce Customer Friction and Remove Common Hurdles"
 description: "Customer friction is the biggest challenge for modern B2C teams. Read through this blog from Contacto to understand what exactly is customer friction and how you can eliminate your most critical friction points."
 pubDate: "2022-06-03T00:00:00.000Z"
 updatedDate: "2025-04-23T05:34:35.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67fe0a5b0d0903b437b7184e_65955385465ea96effcfede9_Screenshot%25202024-01-03%2520at%25206.00.46%2520PM.png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67fe0a5b0d0903b437b7184e_65955385465ea96effcfede9_Screenshot%25202024-01-03%2520at%25206.00.46%2520PM.png"
+image: "/images/blog/67fe0a5b0d0903b437b7184e_65955385465ea96effcfede9_Screenshot-202024-01-03-20at-206.00.46-20PM.png"
+thumbnail: "/images/blog/67fe0a5b0d0903b437b7184e_65955385465ea96effcfede9_Screenshot-202024-01-03-20at-206.00.46-20PM.png"
 authorName: "Team Plivo"
 featured: false
 noindex: false

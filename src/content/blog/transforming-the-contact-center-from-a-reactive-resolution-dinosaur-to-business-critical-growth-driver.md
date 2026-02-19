@@ -3,8 +3,8 @@ title: "Transforming the Contact Center from a reactive resolution dinosaur to b
 description: "Transform your Contact Center from a reactive resolution dinosaur to a healthy, business-critical growth driver with these four steps."
 pubDate: "2022-03-09T00:00:00.000Z"
 updatedDate: "2025-04-23T05:34:36.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67fe0a844d0b1a63c8255d4a_659554f7f007f3310f33587a_Screenshot%25202024-01-03%2520at%25206.06.53%2520PM.png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67fe0a844d0b1a63c8255d50_659554f7f007f3310f33587a_Screenshot%25202024-01-03%2520at%25206.06.53%2520PM.png"
+image: "/images/blog/67fe0a844d0b1a63c8255d4a_659554f7f007f3310f33587a_Screenshot-202024-01-03-20at-206.06.53-20PM.png"
+thumbnail: "/images/blog/67fe0a844d0b1a63c8255d50_659554f7f007f3310f33587a_Screenshot-202024-01-03-20at-206.06.53-20PM.png"
 authorName: "Team Plivo"
 featured: false
 noindex: false

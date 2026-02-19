@@ -3,8 +3,8 @@ title: "Omnichannel Routing Explained: Key Benefits and How to Implement It"
 description: "Enhance customer experiences with efficient omnichannel routing. Learn how to manage interactions across all channels seamlessly."
 pubDate: "2024-09-27T00:00:00.000Z"
 updatedDate: "2025-04-23T05:34:36.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67fe0a64888acbbcd1a4dc3d_66f68391b4a0a704c162fdaf_Omnichannel%2520routing_%2520What%2520it%2520is%252C%2520how%2520it%2520works%252C%2520%252B%2520benefits%2520(1).jpeg"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67fe0a64888acbbcd1a4dc3d_66f68391b4a0a704c162fdaf_Omnichannel%2520routing_%2520What%2520it%2520is%252C%2520how%2520it%2520works%252C%2520%252B%2520benefits%2520(1).jpeg"
+image: "/images/blog/67fe0a64888acbbcd1a4dc3d_66f68391b4a0a704c162fdaf_Omnichannel-20routing_-20What--91ba2fcf.jpeg"
+thumbnail: "/images/blog/67fe0a64888acbbcd1a4dc3d_66f68391b4a0a704c162fdaf_Omnichannel-20routing_-20What--91ba2fcf.jpeg"
 authorName: "Team Plivo"
 featured: false
 noindex: false

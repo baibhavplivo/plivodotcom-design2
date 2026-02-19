@@ -3,8 +3,8 @@ title: "How retail and e-commerce brands can take a cue from healthcare customer
 description: "Contact Centers in the healthcare industry offer ample learning opportunities to B2C brands looking to optimize their operation."
 pubDate: "2022-03-15T00:00:00.000Z"
 updatedDate: "2025-04-23T05:34:35.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67fe0a570d981a7b05a75b84_659553e80d7ffdd897cf742c_Screenshot%25202024-01-03%2520at%25206.02.20%2520PM.png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67fe0a570d981a7b05a75b88_659553e80d7ffdd897cf742c_Screenshot%25202024-01-03%2520at%25206.02.20%2520PM.png"
+image: "/images/blog/67fe0a570d981a7b05a75b84_659553e80d7ffdd897cf742c_Screenshot-202024-01-03-20at-206.02.20-20PM.png"
+thumbnail: "/images/blog/67fe0a570d981a7b05a75b88_659553e80d7ffdd897cf742c_Screenshot-202024-01-03-20at-206.02.20-20PM.png"
 authorName: "Team Plivo"
 featured: false
 noindex: false

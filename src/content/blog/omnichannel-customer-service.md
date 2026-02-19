@@ -3,8 +3,8 @@ title: "Omnichannel Customer Service: Beyond the Buzzwords"
 description: "Omnichannel customer service is a strategy that helps businesses to reach a more human level of interaction with customers across multiple channels."
 pubDate: "2021-10-28T00:00:00.000Z"
 updatedDate: "2025-04-23T05:34:35.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67fe0a64dbb9514e75b7db3b_65955630464ac223fa8804bf_Screenshot%25202024-01-03%2520at%25206.12.06%2520PM.png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67fe0a64dbb9514e75b7db34_65955630464ac223fa8804bf_Screenshot%25202024-01-03%2520at%25206.12.06%2520PM.png"
+image: "/images/blog/67fe0a64dbb9514e75b7db3b_65955630464ac223fa8804bf_Screenshot-202024-01-03-20at-206.12.06-20PM.png"
+thumbnail: "/images/blog/67fe0a64dbb9514e75b7db34_65955630464ac223fa8804bf_Screenshot-202024-01-03-20at-206.12.06-20PM.png"
 authorName: "Team Plivo"
 featured: false
 noindex: false

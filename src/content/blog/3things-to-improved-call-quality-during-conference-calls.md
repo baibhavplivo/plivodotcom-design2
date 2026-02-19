@@ -3,8 +3,8 @@ title: "3 Ways to Improve Call Quality During Conference Calls"
 description: "Plivo's SMS API and Voice API enables businesses to communicate with their customers at global scale. Sign up for free now."
 pubDate: "2019-05-31T00:00:00.000Z"
 updatedDate: "2025-05-19T11:41:46.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/658290300a25b014d5815b74_things-to-improved-call-quality-during-conference-calls.png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/658290300a25b014d5815b74_things-to-improved-call-quality-during-conference-calls.png"
+image: "/images/blog/658290300a25b014d5815b74_things-to-improved-call-quality-during-conference-calls.png"
+thumbnail: "/images/blog/658290300a25b014d5815b74_things-to-improved-call-quality-during-conference-calls.png"
 authorName: "Team Plivo"
 featured: true
 noindex: true

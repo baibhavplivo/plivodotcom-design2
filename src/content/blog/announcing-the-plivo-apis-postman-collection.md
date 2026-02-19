@@ -3,8 +3,8 @@ title: "Announcing the Plivo APIs Postman Collection"
 description: "Voice API | Plivo | You can get started with the Plivo APIs Postman Collection"
 pubDate: "2021-07-08T00:00:00.000Z"
 updatedDate: "2025-05-19T11:42:11.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/6581251f5ba8ad347e983a09_postman-collection.svg"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/6581251f5ba8ad347e983a09_postman-collection.svg"
+image: "/images/blog/6581251f5ba8ad347e983a09_postman-collection.svg"
+thumbnail: "/images/blog/6581251f5ba8ad347e983a09_postman-collection.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: true

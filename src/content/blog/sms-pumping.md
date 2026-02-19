@@ -3,8 +3,8 @@ title: "What is SMS Pumping: Plivo’s Quick Guide"
 description: "Learn about SMS pumping, the risks it poses to businesses, how fraudsters generate fake traffic to exploit them, and how to prevent it."
 pubDate: "2024-01-08T00:00:00.000Z"
 updatedDate: "2025-05-30T07:53:37.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/657d8a29ac1b24462974fbdb_blog-graphic-final-sms-pumping.svg"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/657d8a29ac1b24462974fbdb_blog-graphic-final-sms-pumping.svg"
+image: "/images/blog/657d8a29ac1b24462974fbdb_blog-graphic-final-sms-pumping.svg"
+thumbnail: "/images/blog/657d8a29ac1b24462974fbdb_blog-graphic-final-sms-pumping.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

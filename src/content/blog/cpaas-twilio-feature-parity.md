@@ -3,8 +3,8 @@ title: "Lessons in CPaaS Leadership: Feature Parity Empowers Twilio Migration"
 description: "Plivo offers feature parity with Twilio APIs for 2FA, IVR, reminders, alerts, notifications, click to call, call forwarding, call tracking, and call routing."
 pubDate: "2021-08-02T00:00:00.000Z"
 updatedDate: "2025-11-23T03:54:18.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/65811d042799786542cf976c_blog-graphic-feature-parity-twilio.png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/65811d042799786542cf976c_blog-graphic-feature-parity-twilio.png"
+image: "/images/blog/65811d042799786542cf976c_blog-graphic-feature-parity-twilio.png"
+thumbnail: "/images/blog/65811d042799786542cf976c_blog-graphic-feature-parity-twilio.png"
 authorName: "Team Plivo"
 featured: true
 noindex: false

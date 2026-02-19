@@ -3,8 +3,8 @@ title: "What is a Voice API?"
 description: "Learn what a voice API is and how it streamlines business communication with call routing, IVR, and more. Use Plivo’s features to boost customer experiences."
 pubDate: "2024-11-22T00:00:00.000Z"
 updatedDate: "2024-12-13T06:02:20.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67481dc7c81917747dfc16fa_What%20Is%20a%20Voice%20API_.png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67481dc7c81917747dfc16fa_What%20Is%20a%20Voice%20API_.png"
+image: "/images/blog/67481dc7c81917747dfc16fa_What-Is-a-Voice-API_.png"
+thumbnail: "/images/blog/67481dc7c81917747dfc16fa_What-Is-a-Voice-API_.png"
 authorName: "Team Plivo"
 featured: false
 noindex: false

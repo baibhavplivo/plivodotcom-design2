@@ -3,8 +3,8 @@ title: "How to Schedule a Text Message"
 description: "Learn how SMS scheduling tools help businesses deliver messages at the right time, maximize impact, and boost conversions. Discover Plivo’s simple scheduling solutions."
 pubDate: "2024-10-03T00:00:00.000Z"
 updatedDate: "2025-04-16T08:57:01.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/66fe5d1765e5e7ef7337b4e1_Frame%201171277099.png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/66fe5d1765e5e7ef7337b4e1_Frame%201171277099.png"
+image: "/images/blog/66fe5d1765e5e7ef7337b4e1_Frame-1171277099.png"
+thumbnail: "/images/blog/66fe5d1765e5e7ef7337b4e1_Frame-1171277099.png"
 authorName: "Team Plivo"
 featured: false
 noindex: false

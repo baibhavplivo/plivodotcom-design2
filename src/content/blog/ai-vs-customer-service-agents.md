@@ -3,8 +3,8 @@ title: "AI vs. Customer Service Agents: Striking the Right Balance in Customer S
 description: "AI vs. customer service agents—which one delivers better support? Learn how to strike the perfect balance between AI and human expertise to enhance efficiency."
 pubDate: "2025-03-18T00:00:00.000Z"
 updatedDate: "2025-04-15T09:08:13.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67fe0a4239797061e2f5ce27_67d9aa8314d70306459ca249_AI%2520Agent%2520vs%2520Human%2520Agent.jpeg"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67fe0a4239797061e2f5ce23_67d9aa8314d70306459ca249_AI%2520Agent%2520vs%2520Human%2520Agent.jpeg"
+image: "/images/blog/67fe0a4239797061e2f5ce27_67d9aa8314d70306459ca249_AI-20Agent-20vs-20Human-20Agent.jpeg"
+thumbnail: "/images/blog/67fe0a4239797061e2f5ce23_67d9aa8314d70306459ca249_AI-20Agent-20vs-20Human-20Agent.jpeg"
 authorName: "Team Plivo"
 featured: false
 noindex: false

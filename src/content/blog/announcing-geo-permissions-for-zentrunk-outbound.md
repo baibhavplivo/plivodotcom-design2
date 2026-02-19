@@ -3,8 +3,8 @@ title: "Announcing Geo Permissions for Zentrunk Outbound"
 description: "Zentrunk users can now restrict the countries to which they can place calls globally. Configure country-specific rules for outbound trunks and set an account-level default from the Plivo console, and block calls to high-risk destinations."
 pubDate: "2020-07-01T00:00:00.000Z"
 updatedDate: "2025-05-16T05:12:16.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/6582749f30842ef9a59b88ce_Zentrunck-Geo-permissions.svg"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/6582749f30842ef9a59b88ce_Zentrunck-Geo-permissions.svg"
+image: "/images/blog/6582749f30842ef9a59b88ce_Zentrunck-Geo-permissions.svg"
+thumbnail: "/images/blog/6582749f30842ef9a59b88ce_Zentrunck-Geo-permissions.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: true

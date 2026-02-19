@@ -3,8 +3,8 @@ title: "What is a landline number?"
 description: "Understand what a landline number is, its role, types, and reliable benefits. Learn about modern VoIP alternatives and their advantages. Click to know more!"
 pubDate: "2025-03-24T00:00:00.000Z"
 updatedDate: "2025-03-23T04:57:14.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67ab18263cbea01be19de26f_What%20is%20a%20landline%20number%3F%20.png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67ab18263cbea01be19de26f_What%20is%20a%20landline%20number%3F%20.png"
+image: "/images/blog/67ab18263cbea01be19de26f_What-is-a-landline-number-.png"
+thumbnail: "/images/blog/67ab18263cbea01be19de26f_What-is-a-landline-number-.png"
 authorName: "Team Plivo"
 featured: false
 noindex: false

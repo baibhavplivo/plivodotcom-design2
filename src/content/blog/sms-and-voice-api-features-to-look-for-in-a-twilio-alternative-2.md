@@ -3,8 +3,8 @@ title: "SMS and Voice API Features to Look for in a Twilio Alternative"
 description: "Twilio may be the best-known name for SMS and voice APIs, but strong Twilio alternatives offer better quality, reach, pricing, and support."
 pubDate: "2020-07-19T00:00:00.000Z"
 updatedDate: "2025-11-23T03:53:50.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/65813953926de9e066b6b4fe_twilio-alternative-blog-1.svg"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/65813953926de9e066b6b4fe_twilio-alternative-blog-1.svg"
+image: "/images/blog/65813953926de9e066b6b4fe_twilio-alternative-blog-1.svg"
+thumbnail: "/images/blog/65813953926de9e066b6b4fe_twilio-alternative-blog-1.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

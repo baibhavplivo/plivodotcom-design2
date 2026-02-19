@@ -3,8 +3,8 @@ title: "Exploring Kling AI 2.0: Innovations and Challenges in Video and Image Mo
 description: "Discover Kling AI 2.0's innovations in video and image modeling, enhancing creativity and efficiency with new features and challenges."
 pubDate: "2025-05-09T00:00:00.000Z"
 updatedDate: "2025-05-23T05:18:52.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/68186f5f098bb816a60d8657_the%20future%20of%20ai%20agents.jpg"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/68186f5f098bb816a60d8657_the%20future%20of%20ai%20agents.jpg"
+image: "/images/blog/68186f5f098bb816a60d8657_the-future-of-ai-agents.jpg"
+thumbnail: "/images/blog/68186f5f098bb816a60d8657_the-future-of-ai-agents.jpg"
 authorName: "Team Plivo"
 featured: false
 noindex: false

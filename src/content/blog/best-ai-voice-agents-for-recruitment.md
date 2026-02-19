@@ -3,8 +3,8 @@ title: "8 Best AI Voice Agents for Recruitment in 2026"
 description: "Discover the 8 best AI voice agents for recruitment in 2026. Compare features, use cases, and pricing to automate candidate screening and hiring."
 pubDate: "2026-02-16T00:00:00.000Z"
 updatedDate: "2026-02-16T15:23:19.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/69933613ce4d056fbcc481c9_plivo-8-best-ai-voice-agents-for-rec.png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/6993362dec2390404d6f1afb_plivo-8-best-ai-voice-agents-for-rec.jpg"
+image: "/images/blog/69933613ce4d056fbcc481c9_plivo-8-best-ai-voice-agents-for-rec.png"
+thumbnail: "/images/blog/6993362dec2390404d6f1afb_plivo-8-best-ai-voice-agents-for-rec.jpg"
 authorName: "Team Plivo"
 featured: false
 noindex: false

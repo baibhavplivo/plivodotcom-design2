@@ -3,8 +3,8 @@ title: "Launch of Plivo — An Open Source Alternative to Twilio"
 description: "Plivo's SMS API and Voice API enables businesses to communicate with their customers at global scale. Sign up for free now."
 pubDate: "2011-05-25T00:00:00.000Z"
 updatedDate: "2025-11-23T03:50:18.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/65850f0ff25d40e82b5b90d6_blog-pattern-design-12-thumbnail.svg"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/65850f0ff25d40e82b5b90d6_blog-pattern-design-12-thumbnail.svg"
+image: "/images/blog/65850f0ff25d40e82b5b90d6_blog-pattern-design-12-thumbnail.svg"
+thumbnail: "/images/blog/65850f0ff25d40e82b5b90d6_blog-pattern-design-12-thumbnail.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

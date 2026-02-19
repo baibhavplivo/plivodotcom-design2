@@ -3,8 +3,8 @@ title: "Grok 3 vs. Gemini 2.0: A Comparative Analysis of AI Image Editing Capabi
 description: "Explore Grok 3 and Gemini 2.0's AI image editing strengths and weaknesses in this detailed comparative analysis."
 pubDate: "2025-03-21T00:00:00.000Z"
 updatedDate: "2025-11-23T03:56:34.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/68106330e8ed44468eea7c91_3.jpg"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/68106330e8ed44468eea7c91_3.jpg"
+image: "/images/blog/68106330e8ed44468eea7c91_3.jpg"
+thumbnail: "/images/blog/68106330e8ed44468eea7c91_3.jpg"
 authorName: "Team Plivo"
 featured: false
 noindex: false

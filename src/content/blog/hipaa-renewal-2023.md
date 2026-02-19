@@ -3,8 +3,8 @@ title: "Plivo Renews HIPAA Compliance to Support Healthcare Customers"
 description: "Plivo can sign a HIPAA business associate agreement (BAA) for customers who sign up for an enterprise package."
 pubDate: "2023-08-23T00:00:00.000Z"
 updatedDate: "2025-11-23T04:27:15.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/657c5320fc286d7946215229_HIPAA_blog.svg"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/657c5320fc286d7946215229_HIPAA_blog.svg"
+image: "/images/blog/657c5320fc286d7946215229_HIPAA_blog.svg"
+thumbnail: "/images/blog/657c5320fc286d7946215229_HIPAA_blog.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

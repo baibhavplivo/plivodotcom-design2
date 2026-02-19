@@ -3,8 +3,8 @@ title: "Buy or Build? How to Get Started with New User Verification"
 description: "Deciding whether to build or buy a new user verification system? Explore the pros, cons, and key factors to secure your business effectively"
 pubDate: "2024-08-26T00:00:00.000Z"
 updatedDate: "2024-09-27T07:47:27.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/66d1928da1cb5fdf0c459578_Buy%20vs.%20Build.png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/66d1928da1cb5fdf0c459578_Buy%20vs.%20Build.png"
+image: "/images/blog/66d1928da1cb5fdf0c459578_Buy-vs.-Build.png"
+thumbnail: "/images/blog/66d1928da1cb5fdf0c459578_Buy-vs.-Build.png"
 authorName: "Team Plivo"
 featured: false
 noindex: false

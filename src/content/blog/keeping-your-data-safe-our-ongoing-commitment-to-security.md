@@ -3,8 +3,8 @@ title: "Keeping Your Data Safe: Our Ongoing Commitment to Security"
 description: "Renewed SOC 2 Type 2 & PCI DSS compliance: Your data's safety is our unwavering commitment. Discover Plivo CX ongoing dedication to security."
 pubDate: "2024-08-20T00:00:00.000Z"
 updatedDate: "2025-11-23T04:23:28.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67fe0a60773a4222879ab8ab_66c49580f9a48a36314a2f01_pbs-min.png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67fe0a60773a4222879ab8ab_66c49580f9a48a36314a2f01_pbs-min.png"
+image: "/images/blog/67fe0a60773a4222879ab8ab_66c49580f9a48a36314a2f01_pbs-min.png"
+thumbnail: "/images/blog/67fe0a60773a4222879ab8ab_66c49580f9a48a36314a2f01_pbs-min.png"
 authorName: "Team Plivo"
 featured: false
 noindex: false

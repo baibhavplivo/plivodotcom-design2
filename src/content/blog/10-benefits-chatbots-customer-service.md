@@ -3,8 +3,8 @@ title: "What is a Chatbot? 10 Benefits of Chatbots for Enhanced Customer Service
 description: "Chatbots help businesses automate their customer service motion and reduce time to ticket resolution. Learn about chatbots and how to implement them in this blog."
 pubDate: "2023-08-03T00:00:00.000Z"
 updatedDate: "2025-04-23T05:34:35.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67fe0a8af9769ecc0f58e306_659547dedfed07c2c216c358_Screenshot%25202024-01-03%2520at%25205.10.59%2520PM.png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/67fe0a8af9769ecc0f58e30f_659547dedfed07c2c216c358_Screenshot%25202024-01-03%2520at%25205.10.59%2520PM.png"
+image: "/images/blog/67fe0a8af9769ecc0f58e306_659547dedfed07c2c216c358_Screenshot-202024-01-03-20at-205.10.59-20PM.png"
+thumbnail: "/images/blog/67fe0a8af9769ecc0f58e30f_659547dedfed07c2c216c358_Screenshot-202024-01-03-20at-205.10.59-20PM.png"
 authorName: "Team Plivo"
 featured: false
 noindex: false

@@ -3,8 +3,8 @@ title: "Keeping Up with Changes in International Messaging"
 description: "2022 was a year of massive regulatory change in the telecom industry around the world. Here are some specifics."
 pubDate: "2023-02-08T00:00:00.000Z"
 updatedDate: "2025-11-23T04:20:14.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/657d6cbd96389eee4e534dd2_changes_international_messaging.svg"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/657d6cbd96389eee4e534dd2_changes_international_messaging.svg"
+image: "/images/blog/657d6cbd96389eee4e534dd2_changes_international_messaging.svg"
+thumbnail: "/images/blog/657d6cbd96389eee4e534dd2_changes_international_messaging.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

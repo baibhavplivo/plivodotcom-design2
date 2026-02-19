@@ -3,8 +3,8 @@ title: "Two-way SMS Launching Out of Beta, Arrives in 19 Countries"
 description: "Plivo's SMS API and Voice API enables businesses to communicate with their customers at global scale. Sign up for free now."
 pubDate: "2015-02-18T00:00:00.000Z"
 updatedDate: "2025-05-19T11:38:52.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/65850708e542d333c43e997d_banner-two-way-sms-final.png"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/65850708e542d333c43e997d_banner-two-way-sms-final.png"
+image: "/images/blog/65850708e542d333c43e997d_banner-two-way-sms-final.png"
+thumbnail: "/images/blog/65850708e542d333c43e997d_banner-two-way-sms-final.png"
 authorName: "Team Plivo"
 featured: true
 noindex: true

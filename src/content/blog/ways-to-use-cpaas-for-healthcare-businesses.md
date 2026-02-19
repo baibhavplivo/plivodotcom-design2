@@ -3,8 +3,8 @@ title: "Top 3 Ways a Cloud Communications Tool Can Help Healthcare Businesses"
 description: "Top 3 ways a healthcare business can use a cloud communications platform to enhance revenue."
 pubDate: "2022-10-11T00:00:00.000Z"
 updatedDate: "2025-11-23T04:13:41.000Z"
-image: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/657d8f6284117f80c203f326_banner-1024x512-14.jpg"
-thumbnail: "https://cdn.prod.website-files.com/656ac26f3a3f6e1cc08ba7a5/657d8f6284117f80c203f326_banner-1024x512-14.jpg"
+image: "/images/blog/657d8f6284117f80c203f326_banner-1024x512-14.jpg"
+thumbnail: "/images/blog/657d8f6284117f80c203f326_banner-1024x512-14.jpg"
 authorName: "Team Plivo"
 featured: true
 noindex: false
