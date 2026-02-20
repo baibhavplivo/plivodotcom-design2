@@ -4,7 +4,7 @@ import ContactSalesHero from "@/components/sections/contact/ContactSalesHero";
 ---
 
 <PlivoLayout title="Contact Sales" description="Talk to our sales team for volume pricing, custom AI agent setup, and enterprise solutions.">
-  <ContactSalesHero client:load />
+  <ContactSalesHero client:only="react" />
 </PlivoLayout>
 
 <!-- intl-tel-input CSS -->
@@ -151,5 +151,16 @@ import ContactSalesHero from "@/components/sections/contact/ContactSalesHero";
 })();
 </script>
 
-<!-- Plivo form handler — finds #contact-form on DOMReady -->
-<script is:inline src="https://plivo-static-forms.netlify.app/plivo/form-submission.js"></script>
+<!-- Plivo form handler — wait for React to render #phone, then load -->
+<script is:inline>
+(function() {
+  var interval = setInterval(function() {
+    if (document.getElementById('phone')) {
+      clearInterval(interval);
+      var s = document.createElement('script');
+      s.src = 'https://plivo-static-forms.netlify.app/plivo/form-submission.js';
+      document.body.appendChild(s);
+    }
+  }, 100);
+})();
+</script>
