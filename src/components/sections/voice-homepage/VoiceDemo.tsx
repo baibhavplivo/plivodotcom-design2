@@ -5,10 +5,10 @@ import { FlickeringGrid } from "@/components/magicui/flickering-grid";
 import { useGeoCountry } from "@/hooks/useGeoCountry";
 
 // ── Plivo AI Agent constants ────────────────────────────────────────────────
-const API_URL = "https://plivo-static-forms.netlify.app/.netlify/functions/voice-agent";
-const ENGLISH_APP_ID = "17457073576163534"; // placeholder – user will provide final
+const ENGLISH_APP_ID = "17457073576163534";
 const HINDI_APP_ID = "17457073576163534";
-const AUTH_ISSUER = "MAOTC4NDM0MDATMMU0MC";
+const SIP_USERNAME = "dhgifemazn292730447952642444";
+const SIP_PASSWORD = "7Q%76D7D";
 
 const PLIVO_GRADIENT = "linear-gradient(135deg, #cd3ef9 0%, #323dfe 100%)";
 const ACTIVE_GRADIENT = "linear-gradient(135deg, #ef4444 0%, #dc2626 100%)";
@@ -76,42 +76,9 @@ export default function VoiceDemo() {
   const callingMinTimeRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const maxRetries = 3;
 
-  // ── Fetch access token ──────────────────────────────────────────────────
-  const fetchToken = useCallback(async (appId: string): Promise<string | null> => {
-    try {
-      console.log("[VoiceDemo] Fetching token for app:", appId);
-      const res = await fetch(API_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          app: appId,
-          iss: AUTH_ISSUER,
-          per: { voice: { incoming_allow: true, outgoing_allow: true } },
-          sub: "testsub",
-        }),
-      });
-      console.log("[VoiceDemo] Token API response status:", res.status);
-      if (!res.ok) {
-        const text = await res.text().catch(() => "");
-        console.error("[VoiceDemo] Token API error:", res.status, res.statusText, text);
-        return null;
-      }
-      const data = await res.json();
-      if (!data?.token) {
-        console.error("[VoiceDemo] Token missing from response:", data);
-        return null;
-      }
-      console.log("[VoiceDemo] Token fetched successfully");
-      return data.token as string;
-    } catch (err) {
-      console.error("[VoiceDemo] Token fetch failed:", err);
-      return null;
-    }
-  }, []);
-
   // ── Initialize Plivo SDK ────────────────────────────────────────────────
   const initSdk = useCallback(
-    async (lang: Language) => {
+    (lang: Language) => {
       // Guard: prevent concurrent initializations
       if (initializingRef.current) {
         console.log("[VoiceDemo] Init already in progress, skipping");
@@ -128,31 +95,8 @@ export default function VoiceDemo() {
       initializingRef.current = true;
       const instanceId = ++sdkInstanceIdRef.current;
       console.log("[VoiceDemo] Initializing SDK #" + instanceId + " for language:", lang);
-      const appId = getAppId(lang);
       const clientRegion = mapToClientRegion(continent, country);
-      console.log("[VoiceDemo] App ID:", appId, "Region:", clientRegion);
-
-      const token = await fetchToken(appId);
-
-      // Check if a newer init was started while we were fetching
-      if (instanceId !== sdkInstanceIdRef.current) {
-        console.log("[VoiceDemo] SDK #" + instanceId + " superseded, aborting");
-        initializingRef.current = false;
-        return;
-      }
-
-      if (!token) {
-        console.error("[VoiceDemo] No token - cannot initialize");
-        initializingRef.current = false;
-        if (retryCountRef.current < maxRetries) {
-          retryCountRef.current++;
-          console.log(`[VoiceDemo] Retrying (${retryCountRef.current}/${maxRetries})...`);
-          setTimeout(() => initSdk(lang), 2000);
-          return;
-        }
-        setDemoState("error");
-        return;
-      }
+      console.log("[VoiceDemo] Region:", clientRegion);
 
       retryCountRef.current = 0;
 
@@ -320,15 +264,15 @@ export default function VoiceDemo() {
           client.setConnectTone(false);
         }
 
-        console.log("[VoiceDemo] Logging in with access token...");
-        client.loginWithAccessToken(token);
+        console.log("[VoiceDemo] Logging in with SIP credentials...");
+        client.login(SIP_USERNAME, SIP_PASSWORD);
       } catch (err) {
         console.error("[VoiceDemo] SDK initialization error:", err);
         initializingRef.current = false;
         setDemoState("error");
       }
     },
-    [continent, country, fetchToken]
+    [continent, country]
   );
 
   // ── Bootstrap SDK on mount ──────────────────────────────────────────────
@@ -417,7 +361,7 @@ export default function VoiceDemo() {
         "X-PH-header4": "web",
         "X-PH-header6": "",
         "X-PH-header7": "call",
-        "X-PH-header8": "09b0dcc8-f3ed-4d20-8c6a-460595e990a0",
+        "X-PH-header8": "e2562699-5f26-4d41-a57e-e0d4618827dd",
       };
       const sipUri = `sip:${appId}@app.plivo.com`;
       console.log("[VoiceDemo] Making call to:", sipUri);
