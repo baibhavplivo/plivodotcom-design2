@@ -16,7 +16,6 @@ type SectionId =
   | "local-numbers"
   | "tollfree-numbers"
   | "ip-calls"
-  | "audio-streaming"
   | "phone-numbers"
   | "add-ons";
 
@@ -25,7 +24,6 @@ function getSections(countryCode: string): { id: SectionId; label: string }[] {
     { id: "local-numbers", label: "Local Numbers" },
     { id: "tollfree-numbers", label: "Toll-Free Numbers" },
     { id: "ip-calls", label: "IP Calls" },
-    { id: "audio-streaming", label: "Audio Streaming" },
   ];
   if (PHONE_RENTAL_RATES[countryCode]) {
     base.push({ id: "phone-numbers", label: "Phone Number Rental" });
@@ -255,11 +253,6 @@ export default function VoicePricingTabs() {
                 <IPCallsSection rates={rates} />
               </div>
 
-              {/* Audio Streaming */}
-              <div id="audio-streaming" className="bg-white rounded-xl border border-gray-200 p-6 mb-6">
-                <AudioStreamingSection rates={rates} />
-              </div>
-
               {/* Phone Number Rental */}
               {PHONE_RENTAL_RATES[selectedCountry.code] && (
                 <div id="phone-numbers" className="bg-white rounded-xl border border-gray-200 p-6 mb-6">
@@ -379,34 +372,6 @@ function IPCallsSection({ rates }: { rates: VoiceRates }) {
   );
 }
 
-function AudioStreamingSection({ rates }: { rates: VoiceRates }) {
-  return (
-    <div>
-      <h2 className="font-sora text-xl font-semibold text-black mb-2">Audio Streaming</h2>
-      <p className="text-sm text-gray-500 mb-6">
-        Real-time audio streaming for voice calls.
-      </p>
-
-      <div className="overflow-x-auto">
-        <table className="w-full">
-          <thead>
-            <tr className="border-b border-gray-200">
-              <th className="py-3 pr-4 text-left text-sm font-semibold text-black w-[65%]">Service</th>
-              <th className="py-3 text-left text-sm font-semibold text-black">Rate</th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-gray-100">
-            <tr>
-              <td className="py-3 pr-4 text-sm text-gray-900">Audio Streaming</td>
-              <td className="py-3 text-sm font-medium text-black">{rates.audioStreaming}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  );
-}
-
 function PhoneRentalSection({ countryCode }: { countryCode: string }) {
   const rental = PHONE_RENTAL_RATES[countryCode];
   if (!rental) return null;
@@ -465,6 +430,14 @@ function AddOnsSection({ countryCode }: { countryCode: string }) {
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-100">
+            <tr>
+              <td className="py-3 pr-4 text-sm text-gray-900">Audio Streaming</td>
+              <td className="py-3 text-sm font-medium text-black">Included</td>
+            </tr>
+            <tr>
+              <td className="py-3 pr-4 text-sm text-gray-900">Noise Cancellation</td>
+              <td className="py-3 text-sm font-medium text-black">Included</td>
+            </tr>
             <tr>
               <td className="py-3 pr-4 text-sm text-gray-900">Call Recording</td>
               <td className="py-3 text-sm font-medium text-black">Included</td>

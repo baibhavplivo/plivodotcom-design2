@@ -315,10 +315,6 @@ function VoicePricingContent({ selectedCountry }: { selectedCountry: string }) {
               <td className="py-4 text-gray-600">{rates.ipOutbound}</td>
               <td className="py-4 text-gray-600">{rates.ipInbound}</td>
             </tr>
-            <tr className="border-t border-dashed border-gray-200">
-              <td className="py-4 font-medium text-black">Audio streaming</td>
-              <td className="py-4 text-gray-600" colSpan={2}>{rates.audioStreaming}</td>
-            </tr>
           </tbody>
         </table>
       </ModalTableSection>
@@ -366,6 +362,8 @@ function VoicePricingContent({ selectedCountry }: { selectedCountry: string }) {
           </thead>
           <tbody className="text-sm">
             {[
+              ["Audio streaming", "Included free"],
+              ["Noise cancellation", "Included free"],
               ["Multilingual text to speech", "Included free"],
               ["Call recording", "Included free"],
               ["Recording storage", "$0.0004/min/month (free for 90 days)"],

@@ -24,7 +24,6 @@ export interface VoiceRates {
   tollfreeOutbound: string;
   ipInbound: string;
   ipOutbound: string;
-  audioStreaming: string;
 }
 
 export interface WhatsAppChatRates {
@@ -87,7 +86,6 @@ export const VOICE_RATES: Record<string, VoiceRates> = {
     tollfreeOutbound: "$0.0060/min",
     ipInbound: "$0.0030/min",
     ipOutbound: "$0.0030/min",
-    audioStreaming: "$0.0020/min",
   },
   CA: {
     localInbound: "$0.0040/min",
@@ -96,7 +94,6 @@ export const VOICE_RATES: Record<string, VoiceRates> = {
     tollfreeOutbound: "$0.0060/min",
     ipInbound: "$0.0030/min",
     ipOutbound: "$0.0030/min",
-    audioStreaming: "$0.0020/min",
   },
   GB: {
     localInbound: "$0.0050/min",
@@ -105,7 +102,6 @@ export const VOICE_RATES: Record<string, VoiceRates> = {
     tollfreeOutbound: "$0.0080/min",
     ipInbound: "$0.0030/min",
     ipOutbound: "$0.0030/min",
-    audioStreaming: "$0.0020/min",
   },
   AU: {
     localInbound: "$0.0070/min",
@@ -114,7 +110,6 @@ export const VOICE_RATES: Record<string, VoiceRates> = {
     tollfreeOutbound: "$0.0120/min",
     ipInbound: "$0.0030/min",
     ipOutbound: "$0.0030/min",
-    audioStreaming: "$0.0020/min",
   },
   IN: {
     localInbound: "₹0.74/min",
@@ -123,7 +118,6 @@ export const VOICE_RATES: Record<string, VoiceRates> = {
     tollfreeOutbound: "Not Supported",
     ipInbound: "₹0.50/min",
     ipOutbound: "₹0.50/min",
-    audioStreaming: "₹0.30/min",
   },
   FR: {
     localInbound: "$0.0050/min",
@@ -132,7 +126,6 @@ export const VOICE_RATES: Record<string, VoiceRates> = {
     tollfreeOutbound: "$0.0100/min",
     ipInbound: "$0.0030/min",
     ipOutbound: "$0.0030/min",
-    audioStreaming: "$0.0020/min",
   },
   DE: {
     localInbound: "$0.0050/min",
@@ -141,7 +134,6 @@ export const VOICE_RATES: Record<string, VoiceRates> = {
     tollfreeOutbound: "$0.0100/min",
     ipInbound: "$0.0030/min",
     ipOutbound: "$0.0030/min",
-    audioStreaming: "$0.0020/min",
   },
 };
 
