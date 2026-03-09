@@ -9,7 +9,6 @@ export default function VoiceDemoCompact() {
   );
 
   const handleTalk = () => {
-    console.log(`Starting conversation in ${selectedLanguage}`);
     alert(
       `Voice AI Demo\n\nLanguage: ${selectedLanguage.charAt(0).toUpperCase() + selectedLanguage.slice(1)}\n\nThis would trigger the AI voice conversation.`
     );

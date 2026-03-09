@@ -30,9 +30,9 @@ const countryRates = [
   },
   {
     country: "India",
-    sms: "$0.00018/sms",
-    voice: "$0.0048/min",
-    whatsapp: "$0.0022/conv",
+    sms: "₹0.00018/sms",
+    voice: "₹0.0048/min",
+    whatsapp: "₹0.0022/conv",
   },
   {
     country: "Australia",

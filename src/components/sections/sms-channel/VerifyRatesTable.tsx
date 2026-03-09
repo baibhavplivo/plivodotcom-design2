@@ -8,7 +8,7 @@ const ratesTableData = [
   { country: "United States", sms: "$0.0070/sms", voice: "$0.0100/min", whatsapp: "$0.0143/conversation" },
   { country: "Canada", sms: "$0.0070/sms", voice: "$0.0120/min", whatsapp: "$0.0143/conversation" },
   { country: "United Kingdom", sms: "$0.0400/sms", voice: "$0.0150/min", whatsapp: "$0.0366/conversation" },
-  { country: "India", sms: "$0.00018/sms", voice: "$0.0048/min", whatsapp: "$0.0022/conversation" },
+  { country: "India", sms: "₹0.00018/sms", voice: "₹0.0048/min", whatsapp: "₹0.0022/conversation" },
   { country: "Australia", sms: "$0.04513/sms", voice: "$0.0230/min", whatsapp: "$0.0433/conversation" },
   { country: "Germany", sms: "$0.0750/sms", voice: "$0.0180/min", whatsapp: "$0.0776/conversation" },
   { country: "Brazil", sms: "$0.0350/sms", voice: "$0.0200/min", whatsapp: "$0.0323/conversation" },

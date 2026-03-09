@@ -5,46 +5,59 @@ import { cn } from "@/lib/utils";
 import { ChevronDown } from "lucide-react";
 import {
   SMS_RATES,
-  SMS_PRIORITY_COUNTRIES,
   SMS_CALCULATOR_DATA,
   TOP_COUNTRY_CODES,
-  buildCountryList,
 } from "@/data/pricing-data";
-import type { CountryOption, SMSCountryRates, CalculatorEntry } from "@/data/pricing-data";
+import type { CountryListItem, SMSCountryRates, CalculatorEntry } from "@/data/pricing-data";
 import { useGeoCountry } from "@/hooks/useGeoCountry";
+import { useCountryISOs } from "@/hooks/useCountryISOs";
+import { useCountryPricing } from "@/hooks/useCountryPricing";
+import type { SMSRateRow, PhoneNumberInfo } from "@/hooks/useCountryPricing";
 
-type SectionId = "sms" | "mms" | "phone-numbers" | "carrier-fees" | "cost-calculator";
+type SectionId = "sms" | "rcs" | "mms" | "phone-numbers" | "carrier-fees" | "cost-calculator";
 
-function getSections(rates: SMSCountryRates): { id: SectionId; label: string }[] {
+function getSections(opts: {
+  hasRCS: boolean;
+  hasMMS: boolean;
+  hasPhoneNumbers: boolean;
+  hasCarrierFees: boolean;
+}): { id: SectionId; label: string }[] {
   const result: { id: SectionId; label: string }[] = [
     { id: "sms", label: "SMS" },
   ];
-  if (rates.mms) {
-    result.push({ id: "mms", label: "MMS" });
-  }
-  if (rates.phoneNumbers) {
-    result.push({ id: "phone-numbers", label: "Phone Number Rental" });
-  }
-  if (rates.hasCarrierFees) {
-    result.push({ id: "carrier-fees", label: "Carrier Surcharge Fees" });
-  }
+  if (opts.hasRCS) result.push({ id: "rcs", label: "RCS" });
+  if (opts.hasMMS) result.push({ id: "mms", label: "MMS" });
+  if (opts.hasPhoneNumbers) result.push({ id: "phone-numbers", label: "Phone Number Rental" });
+  if (opts.hasCarrierFees) result.push({ id: "carrier-fees", label: "Carrier Surcharge Fees" });
   result.push({ id: "cost-calculator", label: "Cost Calculator" });
   return result;
 }
 
-const countries = buildCountryList(Object.keys(SMS_RATES), SMS_PRIORITY_COUNTRIES);
+const Shimmer = () => (
+  <span className="inline-block h-4 w-20 bg-gray-100 rounded animate-pulse" />
+);
 
 export default function SMSPricingTabs() {
   const { country: geoCountry } = useGeoCountry();
-  const [selectedCountry, setSelectedCountry] = useState<CountryOption>(countries[0]);
+  const { countries } = useCountryISOs();
+  const [selectedCountry, setSelectedCountry] = useState<CountryListItem>(countries[0]);
   const [isCountryOpen, setIsCountryOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+
+  const { data: pricingData, loading } = useCountryPricing(selectedCountry.code);
+  const liveSmsRates = pricingData?.smsRates || [];
+  const phoneNumbers = (pricingData?.phoneNumbers || []).filter(
+    (pn) => pn.rentalRate != null && pn.rentalRate > 0
+  );
+
+  // Hardcoded enrichment (MMS, carrier fees) from SMS_RATES
+  const hardcodedRates: SMSCountryRates | null = SMS_RATES[selectedCountry.code] || null;
 
   // Auto-select country based on IP geolocation
   useEffect(() => {
     const match = countries.find(c => c.code === geoCountry);
     if (match) setSelectedCountry(match);
-  }, [geoCountry]);
+  }, [geoCountry, countries]);
   const [activeSection, setActiveSection] = useState<SectionId>("sms");
   const [sidebarStyle, setSidebarStyle] = useState<React.CSSProperties>({});
   const sidebarWrapperRef = useRef<HTMLDivElement>(null);
@@ -55,7 +68,7 @@ export default function SMSPricingTabs() {
     if (!searchQuery) return countries;
     const q = searchQuery.toLowerCase();
     return countries.filter(c => c.name.toLowerCase().includes(q) || c.code.toLowerCase().includes(q));
-  }, [searchQuery]);
+  }, [searchQuery, countries]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -68,8 +81,13 @@ export default function SMSPricingTabs() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const rates: SMSCountryRates = SMS_RATES[selectedCountry.code] || SMS_RATES["US"];
-  const sections = getSections(rates);
+  const isUS = selectedCountry.code === "US";
+  const sections = getSections({
+    hasRCS: isUS,
+    hasMMS: !!hardcodedRates?.mms,
+    hasPhoneNumbers: phoneNumbers.length > 0 || !!hardcodedRates?.phoneNumbers,
+    hasCarrierFees: !!hardcodedRates?.hasCarrierFees,
+  });
 
   useEffect(() => {
     const handleScrollAndResize = () => {
@@ -133,10 +151,10 @@ export default function SMSPricingTabs() {
         <div className="container mx-auto max-w-7xl px-4">
           <div className="text-center">
             <h1 className="font-sora text-[2rem] sm:text-[2.5rem] md:text-[3rem] font-normal leading-[1.1] tracking-[-0.02em] text-black mb-4">
-              SMS Pricing
+              SMS/RCS Pricing
             </h1>
             <p className="text-gray-600 text-base sm:text-lg max-w-2xl mx-auto">
-              Competitive pay-as-you-go SMS pricing. Volume discounts as you scale.
+              Competitive pay-as-you-go SMS and RCS pricing. Volume discounts as you scale.
             </p>
           </div>
         </div>
@@ -231,25 +249,36 @@ export default function SMSPricingTabs() {
             <div ref={contentRef} className="min-w-0">
               {/* SMS Section */}
               <div id="sms" className="bg-white rounded-xl border border-gray-200 p-6 mb-6">
-                <SMSSection rates={rates} hasCarrierFees={!!rates.hasCarrierFees} />
+                <SMSSection smsRates={liveSmsRates} hasCarrierFees={!!hardcodedRates?.hasCarrierFees} loading={loading} />
               </div>
 
-              {/* MMS Section - conditional */}
-              {rates.mms && (
-                <div id="mms" className="bg-white rounded-xl border border-gray-200 p-6 mb-6">
-                  <MMSSection mmsRates={rates.mms} hasCarrierFees={!!rates.hasCarrierFees} />
+              {/* RCS Section - US only */}
+              {isUS && (
+                <div id="rcs" className="bg-white rounded-xl border border-gray-200 p-6 mb-6">
+                  <RCSSection hasCarrierFees={!!hardcodedRates?.hasCarrierFees} />
                 </div>
               )}
 
-              {/* Phone Numbers Section - conditional */}
-              {rates.phoneNumbers && (
+              {/* MMS Section - conditional (hardcoded, US/CA only) */}
+              {hardcodedRates?.mms && (
+                <div id="mms" className="bg-white rounded-xl border border-gray-200 p-6 mb-6">
+                  <MMSSection mmsRates={hardcodedRates.mms} hasCarrierFees={!!hardcodedRates.hasCarrierFees} />
+                </div>
+              )}
+
+              {/* Phone Numbers Section */}
+              {(phoneNumbers.length > 0 || hardcodedRates?.phoneNumbers) && (
                 <div id="phone-numbers" className="bg-white rounded-xl border border-gray-200 p-6 mb-6">
-                  <PhoneNumbersSection phoneNumbers={rates.phoneNumbers} />
+                  {phoneNumbers.length > 0 ? (
+                    <LivePhoneNumbersSection phoneNumbers={phoneNumbers} loading={loading} countryCode={selectedCountry.code} />
+                  ) : hardcodedRates?.phoneNumbers ? (
+                    <PhoneNumbersSection phoneNumbers={hardcodedRates.phoneNumbers} />
+                  ) : null}
                 </div>
               )}
 
               {/* Carrier Fees Section - US only */}
-              {rates.hasCarrierFees && (
+              {hardcodedRates?.hasCarrierFees && (
                 <div id="carrier-fees" className="bg-white rounded-xl border border-gray-200 p-6 mb-6">
                   <CarrierFeesSection />
                 </div>
@@ -267,7 +296,7 @@ export default function SMSPricingTabs() {
   );
 }
 
-function SMSSection({ rates, hasCarrierFees }: { rates: SMSCountryRates; hasCarrierFees: boolean }) {
+function SMSSection({ smsRates, hasCarrierFees, loading }: { smsRates: SMSRateRow[]; hasCarrierFees: boolean; loading: boolean }) {
   return (
     <div>
       <h2 className="font-sora text-xl font-semibold text-black mb-2">SMS Text Messages</h2>
@@ -305,13 +334,29 @@ function SMSSection({ rates, hasCarrierFees }: { rates: SMSCountryRates; hasCarr
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-100">
-            {rates.sms.map((row) => (
-              <tr key={row.type}>
-                <td className="py-3 pr-3 sm:pr-4 text-xs sm:text-sm text-gray-900">{row.type}</td>
-                <td className="py-3 pr-3 sm:pr-4 text-xs sm:text-sm font-medium text-black">{row.outbound}</td>
-                <td className="py-3 text-xs sm:text-sm font-medium text-black">{row.inbound}</td>
+            {loading ? (
+              ["Longcode", "Shortcode", "Toll-Free"].map((type) => (
+                <tr key={type}>
+                  <td className="py-3 pr-3 sm:pr-4 text-xs sm:text-sm text-gray-900">{type}</td>
+                  <td className="py-3 pr-3 sm:pr-4 text-xs sm:text-sm font-medium text-black"><Shimmer /></td>
+                  <td className="py-3 text-xs sm:text-sm font-medium text-black"><Shimmer /></td>
+                </tr>
+              ))
+            ) : smsRates.length > 0 ? (
+              smsRates.map((row) => (
+                <tr key={row.type}>
+                  <td className="py-3 pr-3 sm:pr-4 text-xs sm:text-sm text-gray-900">{row.type}</td>
+                  <td className="py-3 pr-3 sm:pr-4 text-xs sm:text-sm font-medium text-black">{row.outbound}</td>
+                  <td className="py-3 text-xs sm:text-sm font-medium text-black">{row.inbound}</td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan={3} className="py-4 text-sm text-gray-500 text-center">
+                  SMS rates not available for this country. Contact sales for details.
+                </td>
               </tr>
-            ))}
+            )}
           </tbody>
         </table>
       </div>
@@ -364,6 +409,96 @@ function MMSSection({ mmsRates, hasCarrierFees }: { mmsRates: SMSCountryRates["m
                 <td className="py-3 pr-3 sm:pr-4 text-xs sm:text-sm text-gray-900">{row.type}</td>
                 <td className="py-3 pr-3 sm:pr-4 text-xs sm:text-sm font-medium text-black">{row.outbound}</td>
                 <td className="py-3 text-xs sm:text-sm font-medium text-black">{row.inbound}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+}
+
+function RCSSection({ hasCarrierFees }: { hasCarrierFees: boolean }) {
+  return (
+    <div>
+      <h2 className="font-sora text-xl font-semibold text-black mb-2">RCS Messages</h2>
+      {hasCarrierFees && (
+        <p className="text-sm text-gray-500 mb-6">
+          RCS Rich text messages are charged per segment and RCS Rich Media is charged per message. *Additional carrier surcharge fees apply.{" "}
+          <button
+            onClick={() => {
+              const element = document.getElementById("carrier-fees");
+              if (element) {
+                const offset = 120;
+                const top = element.getBoundingClientRect().top + window.scrollY - offset;
+                window.scrollTo({ top, behavior: "smooth" });
+              }
+            }}
+            className="text-[#323dfe] hover:underline"
+          >
+            View carrier surcharge fee
+          </button>.
+        </p>
+      )}
+      {!hasCarrierFees && (
+        <p className="text-sm text-gray-500 mb-6">
+          RCS Rich text messages are charged per segment and RCS Rich Media is charged per message.
+        </p>
+      )}
+
+      <div className="overflow-x-auto">
+        <table className="w-full">
+          <thead>
+            <tr className="border-b border-gray-200">
+              <th className="py-3 pr-3 sm:pr-4 text-left text-xs sm:text-sm font-semibold text-black" rowSpan={2}>Sender type</th>
+              <th className="py-2 px-2 text-center text-xs sm:text-sm font-semibold text-black border-l border-gray-200" colSpan={2}>RCS Rich</th>
+              <th className="py-2 px-2 text-center text-xs sm:text-sm font-semibold text-black border-l border-gray-200" colSpan={2}>RCS Rich Media</th>
+            </tr>
+            <tr className="border-b border-gray-200">
+              <th className="py-2 px-2 text-center text-xs font-medium text-gray-600 border-l border-gray-200">Outbound</th>
+              <th className="py-2 px-2 text-center text-xs font-medium text-gray-600">Inbound</th>
+              <th className="py-2 px-2 text-center text-xs font-medium text-gray-600 border-l border-gray-200">Outbound</th>
+              <th className="py-2 px-2 text-center text-xs font-medium text-gray-600">Inbound</th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-gray-100">
+            <tr>
+              <td className="py-3 pr-3 sm:pr-4 text-xs sm:text-sm text-gray-900">All sender types</td>
+              <td className="py-3 px-2 text-center text-xs sm:text-sm font-medium text-black border-l border-gray-100">$0.00750</td>
+              <td className="py-3 px-2 text-center text-xs sm:text-sm font-medium text-black">$0.00750</td>
+              <td className="py-3 px-2 text-center text-xs sm:text-sm font-medium text-black border-l border-gray-100">$0.01600</td>
+              <td className="py-3 px-2 text-center text-xs sm:text-sm font-medium text-black">$0.01440</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+}
+
+function LivePhoneNumbersSection({ phoneNumbers, loading, countryCode }: { phoneNumbers: PhoneNumberInfo[]; loading: boolean; countryCode: string }) {
+  const currency = countryCode === "IN" ? "₹" : "$";
+  return (
+    <div>
+      <h2 className="font-sora text-xl font-semibold text-black mb-2">Phone Number Rental</h2>
+      <p className="text-sm text-gray-500 mb-6">
+        Monthly rental rates for SMS-enabled phone numbers.
+      </p>
+      <div className="overflow-x-auto">
+        <table className="w-full">
+          <thead>
+            <tr className="border-b border-gray-200">
+              <th className="py-3 pr-4 text-left text-sm font-semibold text-black w-[65%]">Number Type</th>
+              <th className="py-3 text-left text-sm font-semibold text-black">Price</th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-gray-100">
+            {phoneNumbers.map((pn) => (
+              <tr key={pn.type}>
+                <td className="py-3 pr-4 text-sm text-gray-900">{pn.type}</td>
+                <td className="py-3 text-sm font-medium text-black">
+                  {loading ? <Shimmer /> : `${currency}${(pn.rentalRate ?? 0).toFixed(2)}/month`}
+                </td>
               </tr>
             ))}
           </tbody>
@@ -455,6 +590,7 @@ function SMSCostCalculator() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  const currency = selectedCountry.code === "IN" ? "₹" : "$";
   const plivoCost = (selectedCountry.plivo * volume) / 100000;
   const othersCost = (selectedCountry.others * volume) / 100000;
   const savings = othersCost - plivoCost;
@@ -529,7 +665,7 @@ function SMSCostCalculator() {
         <div>
           <div className="flex items-center justify-between mb-1.5">
             <span className="text-sm font-medium text-black">Plivo</span>
-            <span className="text-sm font-semibold text-black">${plivoCost.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</span>
+            <span className="text-sm font-semibold text-black">{currency}{plivoCost.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</span>
           </div>
           <div className="h-8 bg-gray-100 rounded-md overflow-hidden">
             <div
@@ -541,7 +677,7 @@ function SMSCostCalculator() {
         <div>
           <div className="flex items-center justify-between mb-1.5">
             <span className="text-sm font-medium text-gray-600">Others</span>
-            <span className="text-sm font-semibold text-gray-600">${othersCost.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</span>
+            <span className="text-sm font-semibold text-gray-600">{currency}{othersCost.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</span>
           </div>
           <div className="h-8 bg-gray-100 rounded-md overflow-hidden">
             <div
@@ -556,7 +692,7 @@ function SMSCostCalculator() {
       {savings > 0 && (
         <div className="mt-6 p-4 bg-green-50 border border-green-200 rounded-lg">
           <p className="text-sm text-green-800">
-            Save <span className="font-semibold">${savings.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</span> per month ({savingsPercent}% less) with Plivo
+            Save <span className="font-semibold">{currency}{savings.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</span> per month ({savingsPercent}% less) with Plivo
           </p>
         </div>
       )}
@@ -640,7 +776,7 @@ function CarrierFeesSection() {
       </div>
 
       {/* MMS Carrier Surcharge Fee */}
-      <div>
+      <div className="pt-2">
         <h3 className="text-lg font-medium text-black mb-4">MMS Carrier Surcharge Fee</h3>
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
@@ -696,6 +832,65 @@ function CarrierFeesSection() {
                 <td className="py-3 px-2 text-center">$0.0100/mms</td>
                 <td className="py-3 px-2 text-center border-l border-gray-100">$0.0100/mms</td>
                 <td className="py-3 px-2 text-center">$0.0100/mms</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      {/* RCS Carrier Surcharge Fee */}
+      <div className="pt-2">
+        <h3 className="text-lg font-medium text-black mb-4">RCS Carrier Surcharge Fee</h3>
+        <div className="overflow-x-auto">
+          <table className="w-full text-sm">
+            <thead>
+              <tr className="border-b border-gray-200">
+                <th className="py-3 pr-4 text-left font-semibold text-black whitespace-nowrap" rowSpan={2}>Carrier</th>
+                <th className="py-2 px-2 text-center font-semibold text-black border-l border-gray-200 whitespace-nowrap" colSpan={2}>RCS Rich</th>
+                <th className="py-2 px-2 text-center font-semibold text-black border-l border-gray-200 whitespace-nowrap" colSpan={2}>RCS Rich Media</th>
+              </tr>
+              <tr className="border-b border-gray-200">
+                <th className="py-2 px-2 text-center text-xs font-medium text-gray-600 border-l border-gray-200 whitespace-nowrap">Outbound*</th>
+                <th className="py-2 px-2 text-center text-xs font-medium text-gray-600 whitespace-nowrap">Inbound*</th>
+                <th className="py-2 px-2 text-center text-xs font-medium text-gray-600 border-l border-gray-200 whitespace-nowrap">Outbound*</th>
+                <th className="py-2 px-2 text-center text-xs font-medium text-gray-600 whitespace-nowrap">Inbound*</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-100">
+              <tr>
+                <td className="py-3 pr-4 text-gray-900">AT&T</td>
+                <td className="py-3 px-2 text-center border-l border-gray-100">$0.0045</td>
+                <td className="py-3 px-2 text-center">$0.0045</td>
+                <td className="py-3 px-2 text-center border-l border-gray-100">$0.01</td>
+                <td className="py-3 px-2 text-center">$0.01</td>
+              </tr>
+              <tr>
+                <td className="py-3 pr-4 text-gray-900">T-Mobile</td>
+                <td className="py-3 px-2 text-center border-l border-gray-100">$0.0062</td>
+                <td className="py-3 px-2 text-center">$0.0025</td>
+                <td className="py-3 px-2 text-center border-l border-gray-100">$0.0125</td>
+                <td className="py-3 px-2 text-center">$0.0125</td>
+              </tr>
+              <tr>
+                <td className="py-3 pr-4 text-gray-900">Verizon</td>
+                <td className="py-3 px-2 text-center border-l border-gray-100">$0.004</td>
+                <td className="py-3 px-2 text-center text-gray-400">$0</td>
+                <td className="py-3 px-2 text-center border-l border-gray-100">$0.006</td>
+                <td className="py-3 px-2 text-center text-gray-400">$0</td>
+              </tr>
+              <tr>
+                <td className="py-3 pr-4 text-gray-900">US Cellular</td>
+                <td className="py-3 px-2 text-center border-l border-gray-100">$0.0062</td>
+                <td className="py-3 px-2 text-center">$0.0025</td>
+                <td className="py-3 px-2 text-center border-l border-gray-100">$0.0135</td>
+                <td className="py-3 px-2 text-center">$0.0135</td>
+              </tr>
+              <tr>
+                <td className="py-3 pr-4 text-gray-900">All other carriers</td>
+                <td className="py-3 px-2 text-center border-l border-gray-100">$0.0045</td>
+                <td className="py-3 px-2 text-center">$0.0045</td>
+                <td className="py-3 px-2 text-center border-l border-gray-100">$0.01</td>
+                <td className="py-3 px-2 text-center">$0.01</td>
               </tr>
             </tbody>
           </table>

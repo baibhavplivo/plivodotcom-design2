@@ -4,14 +4,11 @@ import { useState, useMemo, useEffect, useRef } from "react";
 import { Phone, MessageSquare, Sparkles, Check, ChevronDown, X } from "lucide-react";
 import { useGeoCountry } from "@/hooks/useGeoCountry";
 import { FlickeringGrid } from "@/components/magicui/flickering-grid";
-import {
-  VOICE_RATES,
-  PHONE_RENTAL_RATES,
-  SMS_RATES,
-  WA_CHAT_RATES,
-  WA_CALL_RATES,
-  COUNTRY_NAMES,
-} from "@/data/pricing-data";
+import { COUNTRY_NAMES, SMS_RATES } from "@/data/pricing-data";
+import { useCountryPricing } from "@/hooks/useCountryPricing";
+import type { PhoneNumberInfo } from "@/hooks/useCountryPricing";
+import { useWhatsAppChatRates } from "@/hooks/useWhatsAppChatRates";
+import { useWhatsAppCallRates } from "@/hooks/useWhatsAppCallRates";
 
 // Country data with flags
 const countries = [
@@ -156,6 +153,10 @@ function WhatsAppIcon({ className }: { className?: string }) {
   );
 }
 
+const Shimmer = () => (
+  <span className="inline-block h-4 w-20 bg-gray-100 rounded animate-pulse" />
+);
+
 // Reusable Pricing Modal Shell
 function PricingModal({
   isOpen,
@@ -275,11 +276,20 @@ function ModalTableSection({ title, children }: { title: string; children: React
 
 // Voice Pricing Modal Content
 function VoicePricingContent({ selectedCountry }: { selectedCountry: string }) {
-  const rates = VOICE_RATES[selectedCountry];
-  const rental = PHONE_RENTAL_RATES[selectedCountry];
+  const { data: pricingData, loading } = useCountryPricing(selectedCountry);
+  const rates = pricingData?.voiceRates;
+  const phoneNumbers = pricingData?.phoneNumbers?.filter(
+    (pn: PhoneNumberInfo) => pn.rentalRate != null && pn.rentalRate > 0
+  ) || [];
   const countryName = COUNTRY_NAMES[selectedCountry] || selectedCountry;
+  const currency = selectedCountry === "IN" ? "₹" : "$";
 
-  if (!rates) {
+  const rateCell = (value: string | undefined) => {
+    if (loading) return <Shimmer />;
+    return value || "Not Supported";
+  };
+
+  if (!loading && !rates) {
     return (
       <div className="text-center py-8">
         <p className="text-sm text-gray-500">Detailed voice pricing for {countryName} is available on request.</p>
@@ -302,24 +312,24 @@ function VoicePricingContent({ selectedCountry }: { selectedCountry: string }) {
           <tbody className="text-sm">
             <tr className="border-t border-dashed border-gray-200">
               <td className="py-4 font-medium text-black">Local numbers</td>
-              <td className="py-4 text-gray-600">{rates.localOutbound}</td>
-              <td className="py-4 text-gray-600">{rates.localInbound}</td>
+              <td className="py-4 text-gray-600">{rateCell(rates?.localOutbound)}</td>
+              <td className="py-4 text-gray-600">{rateCell(rates?.localInbound)}</td>
             </tr>
             <tr className="border-t border-dashed border-gray-200">
               <td className="py-4 font-medium text-black">Toll-free</td>
-              <td className="py-4 text-gray-600">{rates.tollfreeOutbound}</td>
-              <td className="py-4 text-gray-600">{rates.tollfreeInbound}</td>
+              <td className="py-4 text-gray-600">{rateCell(rates?.tollfreeOutbound)}</td>
+              <td className="py-4 text-gray-600">{rateCell(rates?.tollfreeInbound)}</td>
             </tr>
             <tr className="border-t border-dashed border-gray-200">
               <td className="py-4 font-medium text-black">SIP / browser / app</td>
-              <td className="py-4 text-gray-600">{rates.ipOutbound}</td>
-              <td className="py-4 text-gray-600">{rates.ipInbound}</td>
+              <td className="py-4 text-gray-600">{rateCell(rates?.ipOutbound)}</td>
+              <td className="py-4 text-gray-600">{rateCell(rates?.ipInbound)}</td>
             </tr>
           </tbody>
         </table>
       </ModalTableSection>
 
-      {rental && (
+      {(loading || phoneNumbers.length > 0) && (
         <ModalTableSection title="Phone number rental">
           <table className="w-full">
             <thead>
@@ -329,23 +339,24 @@ function VoicePricingContent({ selectedCountry }: { selectedCountry: string }) {
               </tr>
             </thead>
             <tbody className="text-sm">
-              {rental.local && (
-                <tr className="border-t border-dashed border-gray-200">
-                  <td className="py-4 font-medium text-black">Local numbers</td>
-                  <td className="py-4 text-gray-600">{rental.local.currency}{rental.local.rate.toFixed(2)}/month</td>
-                </tr>
-              )}
-              {rental.tollfree && (
-                <tr className="border-t border-dashed border-gray-200">
-                  <td className="py-4 font-medium text-black">Toll-free numbers</td>
-                  <td className="py-4 text-gray-600">{rental.tollfree.currency}{rental.tollfree.rate.toFixed(2)}/month</td>
-                </tr>
-              )}
-              {rental.mobile && (
-                <tr className="border-t border-dashed border-gray-200">
-                  <td className="py-4 font-medium text-black">Mobile numbers</td>
-                  <td className="py-4 text-gray-600">{rental.mobile.currency}{rental.mobile.rate.toFixed(2)}/month</td>
-                </tr>
+              {loading ? (
+                <>
+                  <tr className="border-t border-dashed border-gray-200">
+                    <td className="py-4 font-medium text-black"><Shimmer /></td>
+                    <td className="py-4 text-gray-600"><Shimmer /></td>
+                  </tr>
+                  <tr className="border-t border-dashed border-gray-200">
+                    <td className="py-4 font-medium text-black"><Shimmer /></td>
+                    <td className="py-4 text-gray-600"><Shimmer /></td>
+                  </tr>
+                </>
+              ) : (
+                phoneNumbers.map((pn: PhoneNumberInfo) => (
+                  <tr key={pn.type} className="border-t border-dashed border-gray-200">
+                    <td className="py-4 font-medium text-black">{pn.type}</td>
+                    <td className="py-4 text-gray-600">{currency}{pn.rentalRate!.toFixed(2)}/month</td>
+                  </tr>
+                ))
               )}
             </tbody>
           </table>
@@ -366,11 +377,11 @@ function VoicePricingContent({ selectedCountry }: { selectedCountry: string }) {
               ["Noise cancellation", "Included free"],
               ["Multilingual text to speech", "Included free"],
               ["Call recording", "Included free"],
-              ["Recording storage", "$0.0004/min/month (free for 90 days)"],
+              ["Recording storage", `${currency}0.0004/min/month (free for 90 days)`],
               ["Automatic machine detection", "Included free"],
               ["Dynamic caller ID", "Included free"],
               ["Concurrent calls", "Included free"],
-              ["Transcription", "Auto $0.0095/minute"],
+              ["Transcription", `Auto ${currency}0.0095/minute`],
             ].map(([service, price]) => (
               <tr key={service} className="border-t border-dashed border-gray-200">
                 <td className="py-4 font-medium text-black">{service}</td>
@@ -386,10 +397,18 @@ function VoicePricingContent({ selectedCountry }: { selectedCountry: string }) {
 
 // SMS Pricing Modal Content
 function SMSPricingContent({ selectedCountry }: { selectedCountry: string }) {
-  const rates = SMS_RATES[selectedCountry];
+  const { data: pricingData, loading } = useCountryPricing(selectedCountry);
+  const smsRates = pricingData?.smsRates || [];
+  const phoneNumbers = pricingData?.phoneNumbers?.filter(
+    (pn: PhoneNumberInfo) => pn.rentalRate != null && pn.rentalRate > 0
+  ) || [];
   const countryName = COUNTRY_NAMES[selectedCountry] || selectedCountry;
+  const currency = selectedCountry === "IN" ? "₹" : "$";
 
-  if (!rates) {
+  // Keep hardcoded MMS and carrier fee data from SMS_RATES
+  const staticRates = SMS_RATES[selectedCountry];
+
+  if (!loading && smsRates.length === 0 && !staticRates) {
     return (
       <div className="text-center py-8">
         <p className="text-sm text-gray-500">Detailed SMS pricing for {countryName} is available on request.</p>
@@ -410,18 +429,38 @@ function SMSPricingContent({ selectedCountry }: { selectedCountry: string }) {
             </tr>
           </thead>
           <tbody className="text-sm">
-            {rates.sms.map((row) => (
-              <tr key={row.type} className="border-t border-dashed border-gray-200">
-                <td className="py-4 font-medium text-black">{row.type}</td>
-                <td className="py-4 text-gray-600">{row.outbound}</td>
-                <td className="py-4 text-gray-600">{row.inbound}</td>
-              </tr>
-            ))}
+            {loading ? (
+              <>
+                {[1, 2].map((i) => (
+                  <tr key={i} className="border-t border-dashed border-gray-200">
+                    <td className="py-4"><Shimmer /></td>
+                    <td className="py-4"><Shimmer /></td>
+                    <td className="py-4"><Shimmer /></td>
+                  </tr>
+                ))}
+              </>
+            ) : smsRates.length > 0 ? (
+              smsRates.map((row) => (
+                <tr key={row.type} className="border-t border-dashed border-gray-200">
+                  <td className="py-4 font-medium text-black">{row.type}</td>
+                  <td className="py-4 text-gray-600">{row.outbound}</td>
+                  <td className="py-4 text-gray-600">{row.inbound}</td>
+                </tr>
+              ))
+            ) : staticRates ? (
+              staticRates.sms.map((row) => (
+                <tr key={row.type} className="border-t border-dashed border-gray-200">
+                  <td className="py-4 font-medium text-black">{row.type}</td>
+                  <td className="py-4 text-gray-600">{row.outbound}</td>
+                  <td className="py-4 text-gray-600">{row.inbound}</td>
+                </tr>
+              ))
+            ) : null}
           </tbody>
         </table>
       </ModalTableSection>
 
-      {rates.mms && rates.mms.length > 0 && (
+      {staticRates?.mms && staticRates.mms.length > 0 && (
         <ModalTableSection title="MMS messaging">
           <table className="w-full">
             <thead>
@@ -432,7 +471,7 @@ function SMSPricingContent({ selectedCountry }: { selectedCountry: string }) {
               </tr>
             </thead>
             <tbody className="text-sm">
-              {rates.mms.map((row) => (
+              {staticRates.mms.map((row) => (
                 <tr key={row.type} className="border-t border-dashed border-gray-200">
                   <td className="py-4 font-medium text-black">{row.type}</td>
                   <td className="py-4 text-gray-600">{row.outbound}</td>
@@ -444,40 +483,37 @@ function SMSPricingContent({ selectedCountry }: { selectedCountry: string }) {
         </ModalTableSection>
       )}
 
-      {rates.phoneNumbers && (
+      {(loading || phoneNumbers.length > 0) && (
         <ModalTableSection title="Phone numbers">
           <table className="w-full">
             <thead>
               <tr className="text-left text-sm text-gray-500">
                 <th className="pb-3 font-normal w-1/2">Number type</th>
-                <th className="pb-3 font-normal w-1/2">Price</th>
+                <th className="pb-3 font-normal w-1/2">Monthly rental</th>
               </tr>
             </thead>
             <tbody className="text-sm">
-              {rates.phoneNumbers.types.map((t) =>
-                t.children ? (
-                  t.children.map((child) => (
-                    <tr key={child.type} className="border-t border-dashed border-gray-200">
-                      <td className="py-4 font-medium text-black">{t.type} ({child.type})</td>
-                      <td className="py-4 text-gray-600">{child.price}</td>
-                    </tr>
-                  ))
-                ) : (
-                  <tr key={t.type} className="border-t border-dashed border-gray-200">
-                    <td className="py-4 font-medium text-black">{t.type}</td>
-                    <td className="py-4 text-gray-600">{t.price}</td>
+              {loading ? (
+                <>
+                  <tr className="border-t border-dashed border-gray-200">
+                    <td className="py-4"><Shimmer /></td>
+                    <td className="py-4"><Shimmer /></td>
                   </tr>
-                )
+                </>
+              ) : (
+                phoneNumbers.map((pn: PhoneNumberInfo) => (
+                  <tr key={pn.type} className="border-t border-dashed border-gray-200">
+                    <td className="py-4 font-medium text-black">{pn.type}</td>
+                    <td className="py-4 text-gray-600">{currency}{pn.rentalRate!.toFixed(2)}/month</td>
+                  </tr>
+                ))
               )}
             </tbody>
           </table>
-          {rates.phoneNumbers.note && (
-            <p className="text-xs text-gray-500 mt-3">{rates.phoneNumbers.note}</p>
-          )}
         </ModalTableSection>
       )}
 
-      {rates.hasCarrierFees && (
+      {staticRates?.hasCarrierFees && (
         <ModalTableSection title="Carrier fees">
           <table className="w-full">
             <thead>
@@ -505,17 +541,23 @@ function SMSPricingContent({ selectedCountry }: { selectedCountry: string }) {
 
 // WhatsApp Pricing Modal Content
 function WhatsAppPricingContent({ selectedCountry }: { selectedCountry: string }) {
-  const chatRates = WA_CHAT_RATES[selectedCountry];
-  const callRates = WA_CALL_RATES[selectedCountry];
-  const rental = PHONE_RENTAL_RATES[selectedCountry];
+  const { rates: chatRates, loading: chatLoading } = useWhatsAppChatRates(selectedCountry);
+  const { rates: callRates, loading: callLoading } = useWhatsAppCallRates(selectedCountry);
+  const { data: pricingData, loading: pricingLoading } = useCountryPricing(selectedCountry);
+  const phoneNumbers = pricingData?.phoneNumbers?.filter(
+    (pn: PhoneNumberInfo) => pn.rentalRate != null && pn.rentalRate > 0
+  ) || [];
   const countryName = COUNTRY_NAMES[selectedCountry] || selectedCountry;
+  const currency = selectedCountry === "IN" ? "₹" : "$";
 
-  const formatRate = (rate: number, currency: string) => {
+  const formatChatRate = (rate: number | undefined, cur: string) => {
+    if (chatLoading) return <Shimmer />;
+    if (rate === undefined) return "—";
     if (rate === 0) return "Free";
-    return `${currency}${rate.toFixed(4)}/conversation`;
+    return `${cur}${rate.toFixed(4)}/conversation`;
   };
 
-  if (!chatRates) {
+  if (!chatLoading && !chatRates) {
     return (
       <div className="text-center py-8">
         <p className="text-sm text-gray-500">Detailed WhatsApp pricing for {countryName} is available on request.</p>
@@ -523,6 +565,9 @@ function WhatsAppPricingContent({ selectedCountry }: { selectedCountry: string }
       </div>
     );
   }
+
+  const chatCurrency = chatRates?.currency || "$";
+  const showAuthIntl = chatRates ? chatRates.authenticationIntl > 0 : false;
 
   return (
     <>
@@ -535,42 +580,52 @@ function WhatsAppPricingContent({ selectedCountry }: { selectedCountry: string }
             </tr>
           </thead>
           <tbody className="text-sm">
-            {[
-              { type: "Marketing", rate: chatRates.marketing },
-              { type: "Utility", rate: chatRates.utility },
-              { type: "Authentication", rate: chatRates.authentication },
-              { type: "Authentication (international)", rate: chatRates.authenticationIntl },
-              { type: "Service", rate: chatRates.service },
-            ].map((row) => (
-              <tr key={row.type} className="border-t border-dashed border-gray-200">
-                <td className="py-4 font-medium text-black">{row.type}</td>
-                <td className="py-4 text-gray-600">{formatRate(row.rate, chatRates.currency)}</td>
+            <tr className="border-t border-dashed border-gray-200">
+              <td className="py-4 font-medium text-black">Marketing</td>
+              <td className="py-4 text-gray-600">{formatChatRate(chatRates?.marketing, chatCurrency)}</td>
+            </tr>
+            <tr className="border-t border-dashed border-gray-200">
+              <td className="py-4 font-medium text-black">Utility</td>
+              <td className="py-4 text-gray-600">{formatChatRate(chatRates?.utility, chatCurrency)}</td>
+            </tr>
+            <tr className="border-t border-dashed border-gray-200">
+              <td className="py-4 font-medium text-black">Authentication</td>
+              <td className="py-4 text-gray-600">{formatChatRate(chatRates?.authentication, chatCurrency)}</td>
+            </tr>
+            {(showAuthIntl || chatLoading) && (
+              <tr className="border-t border-dashed border-gray-200">
+                <td className="py-4 font-medium text-black">Authentication (international)</td>
+                <td className="py-4 text-gray-600">{formatChatRate(chatRates?.authenticationIntl, chatCurrency)}</td>
               </tr>
-            ))}
+            )}
+            <tr className="border-t border-dashed border-gray-200">
+              <td className="py-4 font-medium text-black">Service</td>
+              <td className="py-4 text-gray-600">
+                {chatLoading ? <Shimmer /> : (chatRates?.service === 0 ? "Free" : formatChatRate(chatRates?.service, chatCurrency))}
+              </td>
+            </tr>
           </tbody>
         </table>
       </ModalTableSection>
 
-      {callRates && (
-        <ModalTableSection title="WhatsApp voice calls">
-          <table className="w-full">
-            <thead>
-              <tr className="text-left text-sm text-gray-500">
-                <th className="pb-3 font-normal w-1/3">Direction</th>
-                <th className="pb-3 font-normal w-1/3">Inbound</th>
-                <th className="pb-3 font-normal w-1/3">Outbound</th>
-              </tr>
-            </thead>
-            <tbody className="text-sm">
-              <tr className="border-t border-dashed border-gray-200">
-                <td className="py-4 font-medium text-black">Voice calls</td>
-                <td className="py-4 text-gray-600">{callRates.inbound}</td>
-                <td className="py-4 text-gray-600">{callRates.outbound}</td>
-              </tr>
-            </tbody>
-          </table>
-        </ModalTableSection>
-      )}
+      <ModalTableSection title="WhatsApp voice calls">
+        <table className="w-full">
+          <thead>
+            <tr className="text-left text-sm text-gray-500">
+              <th className="pb-3 font-normal w-1/3">Direction</th>
+              <th className="pb-3 font-normal w-1/3">Inbound</th>
+              <th className="pb-3 font-normal w-1/3">Outbound</th>
+            </tr>
+          </thead>
+          <tbody className="text-sm">
+            <tr className="border-t border-dashed border-gray-200">
+              <td className="py-4 font-medium text-black">Voice calls</td>
+              <td className="py-4 text-gray-600">{callLoading ? <Shimmer /> : (callRates?.inbound || "—")}</td>
+              <td className="py-4 text-gray-600">{callLoading ? <Shimmer /> : (callRates?.outbound || "—")}</td>
+            </tr>
+          </tbody>
+        </table>
+      </ModalTableSection>
 
       <ModalTableSection title="Platform features">
         <table className="w-full">
@@ -587,13 +642,22 @@ function WhatsAppPricingContent({ selectedCountry }: { selectedCountry: string }
               ["Rich media support", "Included free"],
               ["Interactive buttons & lists", "Included free"],
               ["Webhook delivery", "Included free"],
-              ["Phone number rental", rental?.local ? `From ${rental.local.currency}${rental.local.rate.toFixed(2)}/month` : "From $0.50/month"],
             ].map(([feature, price]) => (
               <tr key={feature} className="border-t border-dashed border-gray-200">
                 <td className="py-4 font-medium text-black">{feature}</td>
                 <td className="py-4 text-gray-600">{price}</td>
               </tr>
             ))}
+            <tr className="border-t border-dashed border-gray-200">
+              <td className="py-4 font-medium text-black">Phone number rental</td>
+              <td className="py-4 text-gray-600">
+                {pricingLoading ? <Shimmer /> : (
+                  phoneNumbers.length > 0
+                    ? `From ${currency}${Math.min(...phoneNumbers.map((pn: PhoneNumberInfo) => pn.rentalRate!)).toFixed(2)}/month`
+                    : `From ${currency}0.50/month`
+                )}
+              </td>
+            </tr>
           </tbody>
         </table>
       </ModalTableSection>
@@ -603,9 +667,13 @@ function WhatsAppPricingContent({ selectedCountry }: { selectedCountry: string }
 
 // AI Agents Pricing Modal Content
 function AIAgentsPricingContent({ selectedCountry }: { selectedCountry: string }) {
-  const voiceRates = VOICE_RATES[selectedCountry];
-  const rental = PHONE_RENTAL_RATES[selectedCountry];
+  const { data: pricingData, loading } = useCountryPricing(selectedCountry);
+  const voiceRates = pricingData?.voiceRates;
+  const phoneNumbers = pricingData?.phoneNumbers?.filter(
+    (pn: PhoneNumberInfo) => pn.rentalRate != null && pn.rentalRate > 0
+  ) || [];
   const pricing = startsAtPricing[selectedCountry];
+  const currency = selectedCountry === "IN" ? "₹" : "$";
 
   return (
     <>
@@ -620,7 +688,7 @@ function AIAgentsPricingContent({ selectedCountry }: { selectedCountry: string }
           <tbody className="text-sm">
             <tr className="border-t border-dashed border-gray-200">
               <td className="py-4 font-medium text-black">AI agent runtime</td>
-              <td className="py-4 text-gray-600">{pricing?.aiAgents || "$0.004/min"}</td>
+              <td className="py-4 text-gray-600">{pricing?.aiAgents || `${currency}0.004/min`}</td>
             </tr>
             <tr className="border-t border-dashed border-gray-200">
               <td className="py-4 font-medium text-black">Speech-to-text</td>
@@ -632,6 +700,9 @@ function AIAgentsPricingContent({ selectedCountry }: { selectedCountry: string }
             </tr>
           </tbody>
         </table>
+        <p className="text-xs text-gray-500 mt-3">
+          AI agent runtime pricing is for both voice and text conversations. Channel pricing (voice calls, SMS, WhatsApp) is charged separately.
+        </p>
       </ModalTableSection>
 
       <ModalTableSection title="Telephony (charged separately)">
@@ -645,18 +716,24 @@ function AIAgentsPricingContent({ selectedCountry }: { selectedCountry: string }
           <tbody className="text-sm">
             <tr className="border-t border-dashed border-gray-200">
               <td className="py-4 font-medium text-black">Inbound calls (local numbers)</td>
-              <td className="py-4 text-gray-600">{voiceRates?.localInbound || pricing?.voice || "Contact sales"}</td>
+              <td className="py-4 text-gray-600">
+                {loading ? <Shimmer /> : (voiceRates?.localInbound || pricing?.voice || "Contact sales")}
+              </td>
             </tr>
             <tr className="border-t border-dashed border-gray-200">
               <td className="py-4 font-medium text-black">Outbound calls (local numbers)</td>
-              <td className="py-4 text-gray-600">{voiceRates?.localOutbound || pricing?.voice || "Contact sales"}</td>
+              <td className="py-4 text-gray-600">
+                {loading ? <Shimmer /> : (voiceRates?.localOutbound || pricing?.voice || "Contact sales")}
+              </td>
             </tr>
             <tr className="border-t border-dashed border-gray-200">
               <td className="py-4 font-medium text-black">Phone number rental</td>
               <td className="py-4 text-gray-600">
-                {rental?.local
-                  ? `From ${rental.local.currency}${rental.local.rate.toFixed(2)}/month`
-                  : pricing?.phoneNumbers || "From $0.50/month"}
+                {loading ? <Shimmer /> : (
+                  phoneNumbers.length > 0
+                    ? `From ${currency}${Math.min(...phoneNumbers.map((pn: PhoneNumberInfo) => pn.rentalRate!)).toFixed(2)}/month`
+                    : pricing?.phoneNumbers || `From ${currency}0.50/month`
+                )}
               </td>
             </tr>
           </tbody>

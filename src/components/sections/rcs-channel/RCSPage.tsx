@@ -6,7 +6,6 @@ import {
   Image,
   MousePointerClick,
   ShieldCheck,
-  CalendarCheck,
   PackageCheck,
   CreditCard,
   BarChart3,

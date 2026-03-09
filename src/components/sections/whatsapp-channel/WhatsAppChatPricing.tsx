@@ -3,9 +3,10 @@
 import { useState, useEffect, useRef, useMemo } from "react";
 import { cn } from "@/lib/utils";
 import { ChevronDown } from "lucide-react";
-import { WA_CHAT_RATES, WA_CHAT_PRIORITY_COUNTRIES, buildCountryList } from "@/data/pricing-data";
-import type { CountryOption, WhatsAppChatRates } from "@/data/pricing-data";
+import type { CountryListItem, WhatsAppChatRates } from "@/data/pricing-data";
 import { useGeoCountry } from "@/hooks/useGeoCountry";
+import { useCountryISOs } from "@/hooks/useCountryISOs";
+import { useWhatsAppChatRates } from "@/hooks/useWhatsAppChatRates";
 
 type SectionId = "messaging-rates" | "platform-fee";
 
@@ -14,8 +15,9 @@ const sections: { id: SectionId; label: string }[] = [
   { id: "platform-fee", label: "Platform Fee" },
 ];
 
-// Build country list dynamically from WA_CHAT_RATES keys
-const countries = buildCountryList(Object.keys(WA_CHAT_RATES), WA_CHAT_PRIORITY_COUNTRIES);
+const Shimmer = () => (
+  <span className="inline-block h-4 w-20 bg-gray-100 rounded animate-pulse" />
+);
 
 function formatRate(value: number, currency: string, decimals: number = 4): string {
   if (value === 0) return `${currency}0/message`;
@@ -24,7 +26,8 @@ function formatRate(value: number, currency: string, decimals: number = 4): stri
 
 export default function WhatsAppChatPricing() {
   const { country: geoCountry } = useGeoCountry();
-  const [selectedCountry, setSelectedCountry] = useState<CountryOption>(countries[0]);
+  const { countries } = useCountryISOs();
+  const [selectedCountry, setSelectedCountry] = useState<CountryListItem>(countries[0]);
   const [isCountryOpen, setIsCountryOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [activeSection, setActiveSection] = useState<SectionId>("messaging-rates");
@@ -33,17 +36,19 @@ export default function WhatsAppChatPricing() {
   const contentRef = useRef<HTMLDivElement>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
+  const { rates, loading } = useWhatsAppChatRates(selectedCountry.code);
+
   // Auto-select country based on IP geolocation
   useEffect(() => {
     const match = countries.find(c => c.code === geoCountry);
     if (match) setSelectedCountry(match);
-  }, [geoCountry]);
+  }, [geoCountry, countries]);
 
   const filteredCountries = useMemo(() => {
     if (!searchQuery) return countries;
     const q = searchQuery.toLowerCase();
     return countries.filter(c => c.name.toLowerCase().includes(q) || c.code.toLowerCase().includes(q));
-  }, [searchQuery]);
+  }, [searchQuery, countries]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -56,9 +61,8 @@ export default function WhatsAppChatPricing() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const rates: WhatsAppChatRates = WA_CHAT_RATES[selectedCountry.code] || WA_CHAT_RATES["US"];
   const isIndia = selectedCountry.code === "IN";
-  const decimals = isIndia ? 4 : 4;
+  const decimals = 4;
 
   useEffect(() => {
     const handleScrollAndResize = () => {
@@ -229,7 +233,7 @@ export default function WhatsAppChatPricing() {
             <div ref={contentRef} className="min-w-0">
               {/* Messaging Rates */}
               <div id="messaging-rates" className="bg-white rounded-xl border border-gray-200 p-6 mb-6">
-                <MessagingRatesSection rates={rates} decimals={decimals} />
+                <MessagingRatesSection rates={rates} decimals={decimals} loading={loading} />
               </div>
 
               {/* Platform Fee */}
@@ -247,11 +251,21 @@ export default function WhatsAppChatPricing() {
 function MessagingRatesSection({
   rates,
   decimals,
+  loading,
 }: {
-  rates: WhatsAppChatRates;
+  rates: WhatsAppChatRates | null;
   decimals: number;
+  loading: boolean;
 }) {
-  const showAuthIntl = rates.authenticationIntl > 0;
+  const showAuthIntl = rates ? rates.authenticationIntl > 0 : false;
+
+  const rateCell = (value: number | undefined, currency: string) => {
+    if (loading) return <Shimmer />;
+    if (value === undefined) return "—";
+    return formatRate(value, currency, decimals);
+  };
+
+  const currency = rates?.currency || "$";
 
   return (
     <div>
@@ -278,33 +292,33 @@ function MessagingRatesSection({
             <tr>
               <td className="py-3 pr-4 text-sm text-gray-900">Marketing</td>
               <td className="py-3 text-sm font-medium text-black">
-                {formatRate(rates.marketing, rates.currency, decimals)}
+                {rateCell(rates?.marketing, currency)}
               </td>
             </tr>
             <tr>
               <td className="py-3 pr-4 text-sm text-gray-900">Utility</td>
               <td className="py-3 text-sm font-medium text-black">
-                {formatRate(rates.utility, rates.currency, decimals)}
+                {rateCell(rates?.utility, currency)}
               </td>
             </tr>
             <tr>
               <td className="py-3 pr-4 text-sm text-gray-900">Authentication</td>
               <td className="py-3 text-sm font-medium text-black">
-                {formatRate(rates.authentication, rates.currency, decimals)}
+                {rateCell(rates?.authentication, currency)}
               </td>
             </tr>
-            {showAuthIntl && (
+            {(showAuthIntl || loading) && (
               <tr>
                 <td className="py-3 pr-4 text-sm text-gray-900">Authentication - International</td>
                 <td className="py-3 text-sm font-medium text-black">
-                  {formatRate(rates.authenticationIntl, rates.currency, decimals)}
+                  {rateCell(rates?.authenticationIntl, currency)}
                 </td>
               </tr>
             )}
             <tr>
               <td className="py-3 pr-4 text-sm text-gray-900">Service</td>
               <td className="py-3 text-sm font-medium text-black">
-                {rates.service === 0 ? "Free" : formatRate(rates.service, rates.currency, decimals)}
+                {loading ? <Shimmer /> : (rates?.service === 0 ? "Free" : rateCell(rates?.service, currency))}
               </td>
             </tr>
           </tbody>

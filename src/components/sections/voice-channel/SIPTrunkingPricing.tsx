@@ -3,39 +3,40 @@
 import { useState, useEffect, useRef, useMemo } from "react";
 import { cn } from "@/lib/utils";
 import { ChevronDown } from "lucide-react";
-import {
-  SIP_PRIORITY_COUNTRIES,
-  SIP_RATES,
-  PHONE_RENTAL_RATES,
-  buildCountryList,
-} from "@/data/pricing-data";
-import type { CountryOption, SIPRates } from "@/data/pricing-data";
+import type { CountryListItem } from "@/data/pricing-data";
 import { useGeoCountry } from "@/hooks/useGeoCountry";
+import { useCountryISOs } from "@/hooks/useCountryISOs";
+import { useZentrunkPricing } from "@/hooks/useZentrunkPricing";
+import type { ZentrunkRates } from "@/hooks/useZentrunkPricing";
+import { useCountryPricing } from "@/hooks/useCountryPricing";
+import type { PhoneNumberInfo } from "@/hooks/useCountryPricing";
 
 type SectionId = "inbound-rates" | "phone-numbers" | "calculator";
 
-function getSections(countryCode: string): { id: SectionId; label: string }[] {
+function getSections(hasPhoneNumbers: boolean): { id: SectionId; label: string }[] {
   const base: { id: SectionId; label: string }[] = [
-    { id: "inbound-rates", label: "Inbound call rates" },
+    { id: "inbound-rates", label: "Call rates" },
   ];
-  if (PHONE_RENTAL_RATES[countryCode]) {
+  if (hasPhoneNumbers) {
     base.push({ id: "phone-numbers", label: "Phone number rental" });
   }
   base.push({ id: "calculator", label: "Cost calculator" });
   return base;
 }
 
-// Build the full country list from SIP_RATES keys
-const allCountries = buildCountryList(Object.keys(SIP_RATES), SIP_PRIORITY_COUNTRIES);
+const Shimmer = () => (
+  <span className="inline-block h-4 w-20 bg-gray-100 rounded animate-pulse" />
+);
 
-function formatRate(rate: number): string {
+function formatRate(rate: number, currency = "$"): string {
   if (rate === 0) return "Not available";
-  return `$${rate.toFixed(4)}/min`;
+  return `${currency}${rate.toFixed(4)}/min`;
 }
 
 export default function SIPTrunkingPricing() {
   const { country: geoCountry } = useGeoCountry();
-  const [selectedCountry, setSelectedCountry] = useState<CountryOption>(allCountries[0]);
+  const { countries } = useCountryISOs();
+  const [selectedCountry, setSelectedCountry] = useState<CountryListItem>(countries[0]);
   const [isCountryOpen, setIsCountryOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<SectionId>("inbound-rates");
   const [sidebarStyle, setSidebarStyle] = useState<React.CSSProperties>({});
@@ -44,18 +45,23 @@ export default function SIPTrunkingPricing() {
   const dropdownRef = useRef<HTMLDivElement>(null);
   const [searchQuery, setSearchQuery] = useState("");
 
+  const { rates: ztRates, loading } = useZentrunkPricing(selectedCountry.code);
+  const { data: pricingData } = useCountryPricing(selectedCountry.code);
+  const phoneNumbers = (pricingData?.phoneNumbers || []).filter(
+    (pn) => pn.rentalRate != null && pn.rentalRate > 0
+  );
+
   // Auto-select country based on IP geolocation
   useEffect(() => {
-    const match = allCountries.find(c => c.code === geoCountry);
+    const match = countries.find(c => c.code === geoCountry);
     if (match) setSelectedCountry(match);
-  }, [geoCountry]);
+  }, [geoCountry, countries]);
 
   // Calculator state
   const [localMinutes, setLocalMinutes] = useState(100000);
   const [tollfreeMinutes, setTollfreeMinutes] = useState(100000);
 
-  const sections = getSections(selectedCountry.code);
-  const rates = SIP_RATES[selectedCountry.code] || SIP_RATES["US"];
+  const sections = getSections(phoneNumbers.length > 0);
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -126,12 +132,12 @@ export default function SIPTrunkingPricing() {
   };
 
   const filteredCountries = useMemo(() => {
-    if (!searchQuery) return allCountries;
+    if (!searchQuery) return countries;
     const q = searchQuery.toLowerCase();
-    return allCountries.filter(
+    return countries.filter(
       (c) => c.name.toLowerCase().includes(q) || c.code.toLowerCase().includes(q)
     );
-  }, [searchQuery]);
+  }, [searchQuery, countries]);
 
   return (
     <>
@@ -248,27 +254,29 @@ export default function SIPTrunkingPricing() {
 
             {/* Right Content */}
             <div ref={contentRef} className="min-w-0">
-              {/* Inbound call rates */}
+              {/* Call rates (inbound + outbound) */}
               <div id="inbound-rates" className="bg-white rounded-xl border border-gray-200 p-6 mb-6">
-                <InboundRatesSection rates={rates} countryName={selectedCountry.name} />
+                <CallRatesSection rates={ztRates} countryName={selectedCountry.name} countryCode={selectedCountry.code} loading={loading} />
               </div>
 
               {/* Phone number rental */}
-              {PHONE_RENTAL_RATES[selectedCountry.code] && (
+              {phoneNumbers.length > 0 && (
                 <div id="phone-numbers" className="bg-white rounded-xl border border-gray-200 p-6 mb-6">
-                  <PhoneRentalSection countryCode={selectedCountry.code} />
+                  <PhoneRentalSection phoneNumbers={phoneNumbers} loading={loading} countryCode={selectedCountry.code} />
                 </div>
               )}
 
               {/* Cost calculator */}
               <div id="calculator" className="bg-white rounded-xl border border-gray-200 p-6">
                 <CalculatorSection
-                  rates={rates}
+                  rates={ztRates}
                   countryName={selectedCountry.name}
+                  countryCode={selectedCountry.code}
                   localMinutes={localMinutes}
                   setLocalMinutes={setLocalMinutes}
                   tollfreeMinutes={tollfreeMinutes}
                   setTollfreeMinutes={setTollfreeMinutes}
+                  loading={loading}
                 />
               </div>
             </div>
@@ -279,44 +287,71 @@ export default function SIPTrunkingPricing() {
   );
 }
 
-function InboundRatesSection({ rates, countryName }: { rates: SIPRates; countryName: string }) {
-  const rows: { type: string; rate: string }[] = [];
-  if (rates.local > 0) rows.push({ type: "Local", rate: formatRate(rates.local) });
-  if (rates.mobile > 0) rows.push({ type: "Mobile", rate: formatRate(rates.mobile) });
-  if (rates.national > 0) rows.push({ type: "National", rate: formatRate(rates.national) });
-  if (rates.tollfree > 0) rows.push({ type: "Toll-Free", rate: formatRate(rates.tollfree) });
+function CallRatesSection({ rates, countryName, countryCode, loading }: { rates: ZentrunkRates | null; countryName: string; countryCode: string; loading: boolean }) {
+  const currency = countryCode === "IN" ? "₹" : "$";
+  const types = [
+    { label: "Local", key: "local" as const },
+    { label: "Mobile", key: "mobile" as const },
+    { label: "National", key: "national" as const },
+    { label: "Toll-Free", key: "tollfree" as const },
+  ];
+
+  const rows = types.filter((t) => {
+    if (!rates) return true;
+    const r = rates[t.key];
+    return r.inbound > 0 || r.outbound > 0;
+  });
 
   return (
     <div>
-      <h2 className="font-sora text-xl font-semibold text-black mb-2">Inbound call rates</h2>
+      <h2 className="font-sora text-xl font-semibold text-black mb-2">Call rates</h2>
       <p className="text-sm text-gray-500 mb-6">
-        Per-minute inbound rates for {countryName}. Outbound rates are determined by destination - contact sales for details.
+        Per-minute inbound and outbound rates for {countryName}.
       </p>
 
-      {rows.length > 0 ? (
+      {loading || rows.length > 0 ? (
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead>
               <tr className="border-b border-gray-200">
-                <th className="py-3 pr-4 text-left text-sm font-semibold text-black w-[65%]">
+                <th className="py-3 pr-4 text-left text-sm font-semibold text-black w-[40%]">
                   Number type
                 </th>
-                <th className="py-3 text-left text-sm font-semibold text-black">Inbound rate</th>
+                <th className="py-3 pr-4 text-left text-sm font-semibold text-black">Inbound</th>
+                <th className="py-3 text-left text-sm font-semibold text-black">Outbound</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100">
-              {rows.map((row) => (
-                <tr key={row.type}>
-                  <td className="py-3 pr-4 text-sm text-gray-900">{row.type}</td>
-                  <td className="py-3 text-sm font-medium text-black">{row.rate}</td>
-                </tr>
-              ))}
+              {loading ? (
+                types.map((t) => (
+                  <tr key={t.key}>
+                    <td className="py-3 pr-4 text-sm text-gray-900">{t.label}</td>
+                    <td className="py-3 pr-4 text-sm font-medium text-black"><Shimmer /></td>
+                    <td className="py-3 text-sm font-medium text-black"><Shimmer /></td>
+                  </tr>
+                ))
+              ) : (
+                rows.map((t) => {
+                  const r = rates![t.key];
+                  return (
+                    <tr key={t.key}>
+                      <td className="py-3 pr-4 text-sm text-gray-900">{t.label}</td>
+                      <td className={cn("py-3 pr-4 text-sm font-medium", r.inbound > 0 ? "text-black" : "text-gray-400")}>
+                        {r.inbound > 0 ? formatRate(r.inbound, currency) : "Not available"}
+                      </td>
+                      <td className={cn("py-3 text-sm font-medium", r.outbound > 0 ? "text-black" : "text-gray-400")}>
+                        {r.outbound > 0 ? formatRate(r.outbound, currency) : "Not available"}
+                      </td>
+                    </tr>
+                  );
+                })
+              )}
             </tbody>
           </table>
         </div>
       ) : (
         <div className="text-sm text-gray-500 py-4">
-          No inbound rates available for {countryName}. Contact sales for outbound-only pricing.
+          No rates available for {countryName}. Contact sales for a custom quote.
         </div>
       )}
 
@@ -327,29 +362,9 @@ function InboundRatesSection({ rates, countryName }: { rates: SIPRates; countryN
   );
 }
 
-function PhoneRentalSection({ countryCode }: { countryCode: string }) {
-  const rental = PHONE_RENTAL_RATES[countryCode];
-  if (!rental) return null;
-
-  const rows: { type: string; price: string }[] = [];
-  if (rental.local) {
-    rows.push({
-      type: "Local numbers",
-      price: `${rental.local.currency}${rental.local.rate.toFixed(2)}/month`,
-    });
-  }
-  if (rental.tollfree) {
-    rows.push({
-      type: "Toll-free numbers",
-      price: `${rental.tollfree.currency}${rental.tollfree.rate.toFixed(2)}/month`,
-    });
-  }
-  if (rental.mobile) {
-    rows.push({
-      type: "Mobile numbers",
-      price: `${rental.mobile.currency}${rental.mobile.rate.toFixed(2)}/month`,
-    });
-  }
+function PhoneRentalSection({ phoneNumbers, loading, countryCode }: { phoneNumbers: PhoneNumberInfo[]; loading: boolean; countryCode: string }) {
+  if (phoneNumbers.length === 0) return null;
+  const currency = countryCode === "IN" ? "₹" : "$";
 
   return (
     <div>
@@ -369,10 +384,12 @@ function PhoneRentalSection({ countryCode }: { countryCode: string }) {
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-100">
-            {rows.map((row) => (
-              <tr key={row.type}>
-                <td className="py-3 pr-4 text-sm text-gray-900">{row.type}</td>
-                <td className="py-3 text-sm font-medium text-black">{row.price}</td>
+            {phoneNumbers.map((pn) => (
+              <tr key={pn.type}>
+                <td className="py-3 pr-4 text-sm text-gray-900">{pn.type}</td>
+                <td className="py-3 text-sm font-medium text-black">
+                  {loading ? <Shimmer /> : `${currency}${(pn.rentalRate ?? 0).toFixed(2)}/month`}
+                </td>
               </tr>
             ))}
           </tbody>
@@ -391,20 +408,25 @@ const minuteSteps = [100000, 200000, 300000, 400000, 500000, 600000];
 function CalculatorSection({
   rates,
   countryName,
+  countryCode,
   localMinutes,
   setLocalMinutes,
   tollfreeMinutes,
   setTollfreeMinutes,
+  loading,
 }: {
-  rates: SIPRates;
+  rates: ZentrunkRates | null;
   countryName: string;
+  countryCode: string;
   localMinutes: number;
   setLocalMinutes: (v: number) => void;
   tollfreeMinutes: number;
   setTollfreeMinutes: (v: number) => void;
+  loading: boolean;
 }) {
-  const localRate = rates.local || 0;
-  const tollfreeRate = rates.tollfree || 0;
+  const currency = countryCode === "IN" ? "₹" : "$";
+  const localRate = rates?.local?.inbound || 0;
+  const tollfreeRate = rates?.tollfree?.inbound || 0;
   const localSubtotal = localMinutes * localRate;
   const tollfreeSubtotal = tollfreeMinutes * tollfreeRate;
   const grandTotal = localSubtotal + tollfreeSubtotal;
@@ -412,7 +434,7 @@ function CalculatorSection({
   const showLocal = localRate > 0;
   const showTollfree = tollfreeRate > 0;
 
-  if (!showLocal && !showTollfree) {
+  if (!loading && !showLocal && !showTollfree) {
     return (
       <div>
         <h2 className="font-sora text-xl font-semibold text-black mb-2">Cost calculator</h2>
@@ -458,10 +480,10 @@ function CalculatorSection({
             </div>
             <div className="flex justify-between mt-3 text-sm">
               <span className="text-gray-500">
-                Rate: ${localRate.toFixed(4)}/min
+                Rate: {currency}{localRate.toFixed(4)}/min
               </span>
               <span className="font-medium text-black">
-                ${formatLargeNumber(Math.round(localSubtotal))}
+                {currency}{formatLargeNumber(Math.round(localSubtotal))}
               </span>
             </div>
           </div>
@@ -494,10 +516,10 @@ function CalculatorSection({
             </div>
             <div className="flex justify-between mt-3 text-sm">
               <span className="text-gray-500">
-                Rate: ${tollfreeRate.toFixed(4)}/min
+                Rate: {currency}{tollfreeRate.toFixed(4)}/min
               </span>
               <span className="font-medium text-black">
-                ${formatLargeNumber(Math.round(tollfreeSubtotal))}
+                {currency}{formatLargeNumber(Math.round(tollfreeSubtotal))}
               </span>
             </div>
           </div>
@@ -515,7 +537,7 @@ function CalculatorSection({
               </p>
             </div>
             <p className="text-2xl font-bold text-black">
-              ${formatLargeNumber(Math.round(grandTotal))}
+              {currency}{formatLargeNumber(Math.round(grandTotal))}
             </p>
           </div>
 

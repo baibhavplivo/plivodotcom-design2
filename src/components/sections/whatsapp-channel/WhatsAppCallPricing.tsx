@@ -3,35 +3,34 @@
 import { useState, useEffect, useRef, useMemo } from "react";
 import { cn } from "@/lib/utils";
 import { ChevronDown } from "lucide-react";
-import {
-  WA_CALL_RATES,
-  WA_CALL_FALLBACK,
-  WA_CALL_PRIORITY_COUNTRIES,
-  PHONE_RENTAL_RATES,
-  buildCountryList,
-} from "@/data/pricing-data";
-import type { CountryOption, WhatsAppCallRates } from "@/data/pricing-data";
+import type { CountryListItem, WhatsAppCallRates } from "@/data/pricing-data";
 import { useGeoCountry } from "@/hooks/useGeoCountry";
+import { useCountryISOs } from "@/hooks/useCountryISOs";
+import { useWhatsAppCallRates } from "@/hooks/useWhatsAppCallRates";
+import { useCountryPricing } from "@/hooks/useCountryPricing";
+import type { PhoneNumberInfo } from "@/hooks/useCountryPricing";
 
 type SectionId = "inbound-calls" | "outbound-calls" | "phone-numbers";
 
-function getSections(countryCode: string): { id: SectionId; label: string }[] {
+function getSections(hasPhoneNumbers: boolean): { id: SectionId; label: string }[] {
   const base: { id: SectionId; label: string }[] = [
     { id: "inbound-calls", label: "Inbound Calls" },
     { id: "outbound-calls", label: "Outbound Calls" },
   ];
-  if (PHONE_RENTAL_RATES[countryCode]) {
+  if (hasPhoneNumbers) {
     base.push({ id: "phone-numbers", label: "Phone Number Rental" });
   }
   return base;
 }
 
-// Build country list dynamically from WA_CALL_RATES keys
-const countries = buildCountryList(Object.keys(WA_CALL_RATES), WA_CALL_PRIORITY_COUNTRIES);
+const Shimmer = () => (
+  <span className="inline-block h-4 w-20 bg-gray-100 rounded animate-pulse" />
+);
 
 export default function WhatsAppCallPricing() {
   const { country: geoCountry } = useGeoCountry();
-  const [selectedCountry, setSelectedCountry] = useState<CountryOption>(countries[0]);
+  const { countries } = useCountryISOs();
+  const [selectedCountry, setSelectedCountry] = useState<CountryListItem>(countries[0]);
   const [isCountryOpen, setIsCountryOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [activeSection, setActiveSection] = useState<SectionId>("inbound-calls");
@@ -40,17 +39,23 @@ export default function WhatsAppCallPricing() {
   const contentRef = useRef<HTMLDivElement>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
+  const { rates, loading: callLoading } = useWhatsAppCallRates(selectedCountry.code);
+  const { data: pricingData } = useCountryPricing(selectedCountry.code);
+  const phoneNumbers = (pricingData?.phoneNumbers || []).filter(
+    (pn) => pn.rentalRate != null && pn.rentalRate > 0
+  );
+
   // Auto-select country based on IP geolocation
   useEffect(() => {
     const match = countries.find(c => c.code === geoCountry);
     if (match) setSelectedCountry(match);
-  }, [geoCountry]);
+  }, [geoCountry, countries]);
 
   const filteredCountries = useMemo(() => {
     if (!searchQuery) return countries;
     const q = searchQuery.toLowerCase();
     return countries.filter(c => c.name.toLowerCase().includes(q) || c.code.toLowerCase().includes(q));
-  }, [searchQuery]);
+  }, [searchQuery, countries]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -63,8 +68,7 @@ export default function WhatsAppCallPricing() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const sections = getSections(selectedCountry.code);
-  const rates: WhatsAppCallRates = WA_CALL_RATES[selectedCountry.code] || WA_CALL_FALLBACK;
+  const sections = getSections(phoneNumbers.length > 0);
 
   useEffect(() => {
     const handleScrollAndResize = () => {
@@ -235,18 +239,18 @@ export default function WhatsAppCallPricing() {
             <div ref={contentRef} className="min-w-0">
               {/* Inbound Calls */}
               <div id="inbound-calls" className="bg-white rounded-xl border border-gray-200 p-6 mb-6">
-                <InboundCallsSection rates={rates} />
+                <InboundCallsSection rates={rates} loading={callLoading} />
               </div>
 
               {/* Outbound Calls */}
               <div id="outbound-calls" className="bg-white rounded-xl border border-gray-200 p-6 mb-6">
-                <OutboundCallsSection rates={rates} />
+                <OutboundCallsSection rates={rates} loading={callLoading} />
               </div>
 
               {/* Phone Number Rental */}
-              {PHONE_RENTAL_RATES[selectedCountry.code] && (
+              {phoneNumbers.length > 0 && (
                 <div id="phone-numbers" className="bg-white rounded-xl border border-gray-200 p-6">
-                  <PhoneRentalSection countryCode={selectedCountry.code} />
+                  <PhoneRentalSection phoneNumbers={phoneNumbers} loading={callLoading} countryCode={selectedCountry.code} />
                 </div>
               )}
             </div>
@@ -257,7 +261,7 @@ export default function WhatsAppCallPricing() {
   );
 }
 
-function InboundCallsSection({ rates }: { rates: WhatsAppCallRates }) {
+function InboundCallsSection({ rates, loading }: { rates: WhatsAppCallRates | null; loading: boolean }) {
   return (
     <div>
       <h2 className="font-sora text-xl font-semibold text-black mb-2">Inbound Calls</h2>
@@ -276,7 +280,9 @@ function InboundCallsSection({ rates }: { rates: WhatsAppCallRates }) {
           <tbody className="divide-y divide-gray-100">
             <tr>
               <td className="py-3 pr-4 text-sm text-gray-900">WhatsApp Inbound Calls</td>
-              <td className="py-3 text-sm font-medium text-black">{rates.inbound}</td>
+              <td className="py-3 text-sm font-medium text-black">
+                {loading ? <Shimmer /> : (rates?.inbound || "—")}
+              </td>
             </tr>
           </tbody>
         </table>
@@ -285,7 +291,7 @@ function InboundCallsSection({ rates }: { rates: WhatsAppCallRates }) {
   );
 }
 
-function OutboundCallsSection({ rates }: { rates: WhatsAppCallRates }) {
+function OutboundCallsSection({ rates, loading }: { rates: WhatsAppCallRates | null; loading: boolean }) {
   return (
     <div>
       <h2 className="font-sora text-xl font-semibold text-black mb-2">Outbound Calls</h2>
@@ -304,7 +310,9 @@ function OutboundCallsSection({ rates }: { rates: WhatsAppCallRates }) {
           <tbody className="divide-y divide-gray-100">
             <tr>
               <td className="py-3 pr-4 text-sm text-gray-900">WhatsApp Outbound Calls</td>
-              <td className="py-3 text-sm font-medium text-black">{rates.outbound}</td>
+              <td className="py-3 text-sm font-medium text-black">
+                {loading ? <Shimmer /> : (rates?.outbound || "—")}
+              </td>
             </tr>
           </tbody>
         </table>
@@ -313,20 +321,9 @@ function OutboundCallsSection({ rates }: { rates: WhatsAppCallRates }) {
   );
 }
 
-function PhoneRentalSection({ countryCode }: { countryCode: string }) {
-  const rental = PHONE_RENTAL_RATES[countryCode];
-  if (!rental) return null;
-
-  const rows: { type: string; price: string }[] = [];
-  if (rental.local) {
-    rows.push({ type: "Local Numbers", price: `${rental.local.currency}${rental.local.rate.toFixed(2)}/month` });
-  }
-  if (rental.tollfree) {
-    rows.push({ type: "Toll-Free Numbers", price: `${rental.tollfree.currency}${rental.tollfree.rate.toFixed(2)}/month` });
-  }
-  if (rental.mobile) {
-    rows.push({ type: "Mobile Numbers", price: `${rental.mobile.currency}${rental.mobile.rate.toFixed(2)}/month` });
-  }
+function PhoneRentalSection({ phoneNumbers, loading, countryCode }: { phoneNumbers: PhoneNumberInfo[]; loading: boolean; countryCode: string }) {
+  if (phoneNumbers.length === 0) return null;
+  const currency = countryCode === "IN" ? "₹" : "$";
 
   return (
     <div>
@@ -344,10 +341,12 @@ function PhoneRentalSection({ countryCode }: { countryCode: string }) {
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-100">
-            {rows.map((row) => (
-              <tr key={row.type}>
-                <td className="py-3 pr-4 text-sm text-gray-900">{row.type}</td>
-                <td className="py-3 text-sm font-medium text-black">{row.price}</td>
+            {phoneNumbers.map((pn) => (
+              <tr key={pn.type}>
+                <td className="py-3 pr-4 text-sm text-gray-900">{pn.type}</td>
+                <td className="py-3 text-sm font-medium text-black">
+                  {loading ? <Shimmer /> : `${currency}${(pn.rentalRate ?? 0).toFixed(2)}/month`}
+                </td>
               </tr>
             ))}
           </tbody>

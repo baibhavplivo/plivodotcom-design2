@@ -81,22 +81,18 @@ export default function VoiceDemo() {
     (lang: Language) => {
       // Guard: prevent concurrent initializations
       if (initializingRef.current) {
-        console.log("[VoiceDemo] Init already in progress, skipping");
         return;
       }
 
       // Guard: Plivo SDK not loaded yet
       if (typeof window === "undefined" || !window.Plivo) {
-        console.error("[VoiceDemo] window.Plivo not available");
         setDemoState("error");
         return;
       }
 
       initializingRef.current = true;
       const instanceId = ++sdkInstanceIdRef.current;
-      console.log("[VoiceDemo] Initializing SDK #" + instanceId + " for language:", lang);
       const clientRegion = mapToClientRegion(continent, country);
-      console.log("[VoiceDemo] Region:", clientRegion);
 
       retryCountRef.current = 0;
 
@@ -128,7 +124,6 @@ export default function VoiceDemo() {
       try {
         const sdk = new window.Plivo(sdkOptions);
         sdkRef.current = sdk;
-        console.log("[VoiceDemo] Plivo SDK instance #" + instanceId + " created");
 
         const client = sdk.client;
 
@@ -137,19 +132,16 @@ export default function VoiceDemo() {
 
         client.on("onWebrtcNotSupported", () => {
           if (!isCurrent()) return;
-          console.error("[VoiceDemo] WebRTC not supported");
           setDemoState("error");
         });
 
         client.on("onWebSocketConnected", () => {
           if (!isCurrent()) return;
-          console.log("[VoiceDemo] WebSocket connected");
           wsConnectedRef.current = true;
         });
 
         client.on("onLogin", () => {
           if (!isCurrent()) return;
-          console.log("[VoiceDemo] Login successful - SDK ready");
           registeredRef.current = true;
           wsConnectedRef.current = true;
           initializingRef.current = false;
@@ -158,12 +150,10 @@ export default function VoiceDemo() {
 
         client.on("onLoginFailed", (error: any) => {
           if (!isCurrent()) return;
-          console.error("[VoiceDemo] Login failed:", error);
           registeredRef.current = false;
           initializingRef.current = false;
           if (retryCountRef.current < maxRetries) {
             retryCountRef.current++;
-            console.log(`[VoiceDemo] Retrying login (${retryCountRef.current}/${maxRetries})...`);
             setTimeout(() => initSdk(lang), 2000);
           } else {
             setDemoState("error");
@@ -177,27 +167,22 @@ export default function VoiceDemo() {
 
         client.on("onCalling", () => {
           if (!isCurrent()) return;
-          console.log("[VoiceDemo] Calling...");
         });
 
         client.on("onCallRemoteRinging", () => {
           if (!isCurrent()) return;
-          console.log("[VoiceDemo] Remote ringing");
         });
 
         client.on("onCallConnected", () => {
           if (!isCurrent()) return;
-          console.log("[VoiceDemo] Call connected");
         });
 
         client.on("onCallAnswered", () => {
           if (!isCurrent()) return;
-          console.log("[VoiceDemo] Call answered");
         });
 
         client.on("onMediaConnected", () => {
           if (!isCurrent()) return;
-          console.log("[VoiceDemo] Media connected - call active");
           if (endCallTimeoutRef.current) clearTimeout(endCallTimeoutRef.current);
           endCallTimeoutRef.current = setTimeout(() => {
             setDemoState("active");
@@ -207,7 +192,6 @@ export default function VoiceDemo() {
 
         client.on("onCallTerminated", () => {
           if (!isCurrent()) return;
-          console.log("[VoiceDemo] Call terminated");
           if (endCallTimeoutRef.current) {
             clearTimeout(endCallTimeoutRef.current);
             endCallTimeoutRef.current = null;
@@ -221,9 +205,6 @@ export default function VoiceDemo() {
 
         client.on("onCallFailed", (error: any) => {
           if (!isCurrent()) return;
-          console.error("[VoiceDemo] Call failed:", error);
-          if (error?.reason) console.error("[VoiceDemo] Reason:", error.reason);
-          if (error?.code) console.error("[VoiceDemo] Code:", error.code);
           if (endCallTimeoutRef.current) {
             clearTimeout(endCallTimeoutRef.current);
             endCallTimeoutRef.current = null;
@@ -237,21 +218,17 @@ export default function VoiceDemo() {
 
         client.on("onMediaPermission", (data: { permission: boolean }) => {
           if (!isCurrent()) return;
-          console.log("[VoiceDemo] Media permission:", data.permission);
           if (!data.permission) {
-            console.error("[VoiceDemo] Microphone permission denied");
             setDemoState("ready");
           }
         });
 
         client.on("onPermissionDenied", (data: any) => {
           if (!isCurrent()) return;
-          console.error("[VoiceDemo] Permission denied:", data);
         });
 
         client.on("onConnectionChange", (data: any) => {
           if (!isCurrent()) return;
-          console.log("[VoiceDemo] Connection change:", data);
           if (data?.state === "connected") {
             wsConnectedRef.current = true;
           }
@@ -264,10 +241,8 @@ export default function VoiceDemo() {
           client.setConnectTone(false);
         }
 
-        console.log("[VoiceDemo] Logging in with SIP credentials...");
         client.login(SIP_USERNAME, SIP_PASSWORD);
       } catch (err) {
-        console.error("[VoiceDemo] SDK initialization error:", err);
         initializingRef.current = false;
         setDemoState("error");
       }
@@ -286,10 +261,8 @@ export default function VoiceDemo() {
     const waitForSdk = () => {
       pollCount++;
       if (typeof window !== "undefined" && window.Plivo) {
-        console.log("[VoiceDemo] Plivo SDK detected, initializing...");
         initSdk(selectedLanguage);
       } else if (pollCount >= maxPolls) {
-        console.error("[VoiceDemo] Plivo SDK failed to load after 10s");
         setDemoState("error");
       } else {
         setTimeout(waitForSdk, 200);
@@ -330,8 +303,6 @@ export default function VoiceDemo() {
 
   // ── Handle talk button click ────────────────────────────────────────────
   const handleTalk = useCallback(() => {
-    console.log("[VoiceDemo] Button clicked, state:", demoState, "registered:", registeredRef.current);
-
     // On error state, allow retry
     if (demoState === "error") {
       setDemoState("loading");
@@ -344,11 +315,9 @@ export default function VoiceDemo() {
 
     if (demoState === "ready") {
       if (!sdkRef.current?.client) {
-        console.error("[VoiceDemo] SDK client not available");
         return;
       }
       if (!wsConnectedRef.current || !registeredRef.current) {
-        console.error("[VoiceDemo] Not ready - WS:", wsConnectedRef.current, "Registered:", registeredRef.current);
         setDemoState("loading");
         initSdk(selectedLanguage);
         return;
@@ -364,14 +333,10 @@ export default function VoiceDemo() {
         "X-PH-header8": "e2562699-5f26-4d41-a57e-e0d4618827dd",
       };
       const sipUri = `sip:${appId}@app.plivo.com`;
-      console.log("[VoiceDemo] Making call to:", sipUri);
-      console.log("[VoiceDemo] Extra headers:", extraHeaders);
 
       try {
-        const result = sdkRef.current.client.call(sipUri, extraHeaders);
-        console.log("[VoiceDemo] Call initiated:", result);
+        sdkRef.current.client.call(sipUri, extraHeaders);
       } catch (err) {
-        console.error("[VoiceDemo] Call initiation failed:", err);
         // Keep "Connecting..." visible for at least 2s so user sees something
         callingMinTimeRef.current = setTimeout(() => {
           setDemoState("ready");
@@ -382,7 +347,7 @@ export default function VoiceDemo() {
       try {
         sdkRef.current?.client.hangup();
       } catch (err) {
-        console.error("[VoiceDemo] Hangup failed:", err);
+        // hangup failed silently
       }
     }
   }, [demoState, selectedLanguage, initSdk]);

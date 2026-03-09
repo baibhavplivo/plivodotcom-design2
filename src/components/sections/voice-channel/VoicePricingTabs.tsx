@@ -3,14 +3,11 @@
 import { useState, useEffect, useRef, useMemo } from "react";
 import { cn } from "@/lib/utils";
 import { ChevronDown } from "lucide-react";
-import {
-  VOICE_PRIORITY_COUNTRIES,
-  VOICE_RATES,
-  PHONE_RENTAL_RATES,
-  buildCountryList,
-} from "@/data/pricing-data";
-import type { CountryOption, VoiceRates } from "@/data/pricing-data";
+import type { VoiceRates, CountryListItem } from "@/data/pricing-data";
 import { useGeoCountry } from "@/hooks/useGeoCountry";
+import { useCountryISOs } from "@/hooks/useCountryISOs";
+import { useCountryPricing } from "@/hooks/useCountryPricing";
+import type { PhoneNumberInfo } from "@/hooks/useCountryPricing";
 
 type SectionId =
   | "local-numbers"
@@ -19,24 +16,27 @@ type SectionId =
   | "phone-numbers"
   | "add-ons";
 
-function getSections(countryCode: string): { id: SectionId; label: string }[] {
+function getSections(hasPhoneNumbers: boolean): { id: SectionId; label: string }[] {
   const base: { id: SectionId; label: string }[] = [
     { id: "local-numbers", label: "Local Numbers" },
     { id: "tollfree-numbers", label: "Toll-Free Numbers" },
     { id: "ip-calls", label: "IP Calls" },
   ];
-  if (PHONE_RENTAL_RATES[countryCode]) {
+  if (hasPhoneNumbers) {
     base.push({ id: "phone-numbers", label: "Phone Number Rental" });
   }
   base.push({ id: "add-ons", label: "Add-On Services" });
   return base;
 }
 
-const countries = buildCountryList(Object.keys(VOICE_RATES), VOICE_PRIORITY_COUNTRIES);
+const Shimmer = () => (
+  <span className="inline-block h-4 w-20 bg-gray-100 rounded animate-pulse" />
+);
 
 export default function VoicePricingTabs() {
   const { country: geoCountry } = useGeoCountry();
-  const [selectedCountry, setSelectedCountry] = useState<CountryOption>(countries[0]);
+  const { countries } = useCountryISOs();
+  const [selectedCountry, setSelectedCountry] = useState<CountryListItem>(countries[0]);
   const [isCountryOpen, setIsCountryOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [activeSection, setActiveSection] = useState<SectionId>("local-numbers");
@@ -45,17 +45,23 @@ export default function VoicePricingTabs() {
   const contentRef = useRef<HTMLDivElement>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
+  const { data: pricingData, loading } = useCountryPricing(selectedCountry.code);
+  const rates = pricingData?.voiceRates || null;
+  const phoneNumbers = (pricingData?.phoneNumbers || []).filter(
+    (pn) => pn.rentalRate != null && pn.rentalRate > 0
+  );
+
   // Auto-select country based on IP geolocation
   useEffect(() => {
     const match = countries.find(c => c.code === geoCountry);
     if (match) setSelectedCountry(match);
-  }, [geoCountry]);
+  }, [geoCountry, countries]);
 
   const filteredCountries = useMemo(() => {
     if (!searchQuery) return countries;
     const q = searchQuery.toLowerCase();
     return countries.filter(c => c.name.toLowerCase().includes(q) || c.code.toLowerCase().includes(q));
-  }, [searchQuery]);
+  }, [searchQuery, countries]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -68,8 +74,7 @@ export default function VoicePricingTabs() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const sections = getSections(selectedCountry.code);
-  const rates = VOICE_RATES[selectedCountry.code] || VOICE_RATES["US"];
+  const sections = getSections(phoneNumbers.length > 0);
 
   useEffect(() => {
     const handleScrollAndResize = () => {
@@ -240,23 +245,23 @@ export default function VoicePricingTabs() {
             <div ref={contentRef} className="min-w-0">
               {/* Local Numbers */}
               <div id="local-numbers" className="bg-white rounded-xl border border-gray-200 p-6 mb-6">
-                <LocalNumbersSection rates={rates} />
+                <LocalNumbersSection rates={rates} loading={loading} />
               </div>
 
               {/* Toll-Free Numbers */}
               <div id="tollfree-numbers" className="bg-white rounded-xl border border-gray-200 p-6 mb-6">
-                <TollFreeSection rates={rates} />
+                <TollFreeSection rates={rates} loading={loading} />
               </div>
 
               {/* IP Calls */}
               <div id="ip-calls" className="bg-white rounded-xl border border-gray-200 p-6 mb-6">
-                <IPCallsSection rates={rates} />
+                <IPCallsSection rates={rates} loading={loading} />
               </div>
 
               {/* Phone Number Rental */}
-              {PHONE_RENTAL_RATES[selectedCountry.code] && (
+              {phoneNumbers.length > 0 && (
                 <div id="phone-numbers" className="bg-white rounded-xl border border-gray-200 p-6 mb-6">
-                  <PhoneRentalSection countryCode={selectedCountry.code} />
+                  <PhoneRentalSection phoneNumbers={phoneNumbers} loading={loading} countryCode={selectedCountry.code} />
                 </div>
               )}
 
@@ -272,7 +277,7 @@ export default function VoicePricingTabs() {
   );
 }
 
-function LocalNumbersSection({ rates }: { rates: VoiceRates }) {
+function LocalNumbersSection({ rates, loading }: { rates: VoiceRates | null; loading: boolean }) {
   return (
     <div>
       <h2 className="font-sora text-xl font-semibold text-black mb-2">Local Numbers</h2>
@@ -291,11 +296,15 @@ function LocalNumbersSection({ rates }: { rates: VoiceRates }) {
           <tbody className="divide-y divide-gray-100">
             <tr>
               <td className="py-3 pr-4 text-sm text-gray-900">Outbound (To make calls)</td>
-              <td className="py-3 text-sm font-medium text-black">{rates.localOutbound}</td>
+              <td className="py-3 text-sm font-medium text-black">
+                {loading ? <Shimmer /> : (rates?.localOutbound || "—")}
+              </td>
             </tr>
             <tr>
               <td className="py-3 pr-4 text-sm text-gray-900">Inbound (To receive calls)</td>
-              <td className="py-3 text-sm font-medium text-black">{rates.localInbound}</td>
+              <td className="py-3 text-sm font-medium text-black">
+                {loading ? <Shimmer /> : (rates?.localInbound || "—")}
+              </td>
             </tr>
           </tbody>
         </table>
@@ -304,7 +313,9 @@ function LocalNumbersSection({ rates }: { rates: VoiceRates }) {
   );
 }
 
-function TollFreeSection({ rates }: { rates: VoiceRates }) {
+function TollFreeSection({ rates, loading }: { rates: VoiceRates | null; loading: boolean }) {
+  const outbound = rates?.tollfreeOutbound || "—";
+  const inbound = rates?.tollfreeInbound || "—";
   return (
     <div>
       <h2 className="font-sora text-xl font-semibold text-black mb-2">Toll-Free Numbers</h2>
@@ -323,14 +334,14 @@ function TollFreeSection({ rates }: { rates: VoiceRates }) {
           <tbody className="divide-y divide-gray-100">
             <tr>
               <td className="py-3 pr-4 text-sm text-gray-900">Outbound (To make calls)</td>
-              <td className={cn("py-3 text-sm font-medium", rates.tollfreeOutbound === "Not Supported" ? "text-gray-400" : "text-black")}>
-                {rates.tollfreeOutbound}
+              <td className={cn("py-3 text-sm font-medium", outbound === "Not Supported" ? "text-gray-400" : "text-black")}>
+                {loading ? <Shimmer /> : outbound}
               </td>
             </tr>
             <tr>
               <td className="py-3 pr-4 text-sm text-gray-900">Inbound (To receive calls)</td>
-              <td className={cn("py-3 text-sm font-medium", rates.tollfreeInbound === "Not Supported" ? "text-gray-400" : "text-black")}>
-                {rates.tollfreeInbound}
+              <td className={cn("py-3 text-sm font-medium", inbound === "Not Supported" ? "text-gray-400" : "text-black")}>
+                {loading ? <Shimmer /> : inbound}
               </td>
             </tr>
           </tbody>
@@ -340,7 +351,7 @@ function TollFreeSection({ rates }: { rates: VoiceRates }) {
   );
 }
 
-function IPCallsSection({ rates }: { rates: VoiceRates }) {
+function IPCallsSection({ rates, loading }: { rates: VoiceRates | null; loading: boolean }) {
   return (
     <div>
       <h2 className="font-sora text-xl font-semibold text-black mb-2">IP / Browser SDK Calls</h2>
@@ -359,11 +370,15 @@ function IPCallsSection({ rates }: { rates: VoiceRates }) {
           <tbody className="divide-y divide-gray-100">
             <tr>
               <td className="py-3 pr-4 text-sm text-gray-900">Outbound</td>
-              <td className="py-3 text-sm font-medium text-black">{rates.ipOutbound}</td>
+              <td className="py-3 text-sm font-medium text-black">
+                {loading ? <Shimmer /> : (rates?.ipOutbound || "—")}
+              </td>
             </tr>
             <tr>
               <td className="py-3 pr-4 text-sm text-gray-900">Inbound</td>
-              <td className="py-3 text-sm font-medium text-black">{rates.ipInbound}</td>
+              <td className="py-3 text-sm font-medium text-black">
+                {loading ? <Shimmer /> : (rates?.ipInbound || "—")}
+              </td>
             </tr>
           </tbody>
         </table>
@@ -372,20 +387,9 @@ function IPCallsSection({ rates }: { rates: VoiceRates }) {
   );
 }
 
-function PhoneRentalSection({ countryCode }: { countryCode: string }) {
-  const rental = PHONE_RENTAL_RATES[countryCode];
-  if (!rental) return null;
-
-  const rows: { type: string; price: string }[] = [];
-  if (rental.local) {
-    rows.push({ type: "Local Numbers", price: `${rental.local.currency}${rental.local.rate.toFixed(2)}/month` });
-  }
-  if (rental.tollfree) {
-    rows.push({ type: "Toll-Free Numbers", price: `${rental.tollfree.currency}${rental.tollfree.rate.toFixed(2)}/month` });
-  }
-  if (rental.mobile) {
-    rows.push({ type: "Mobile Numbers", price: `${rental.mobile.currency}${rental.mobile.rate.toFixed(2)}/month` });
-  }
+function PhoneRentalSection({ phoneNumbers, loading, countryCode }: { phoneNumbers: PhoneNumberInfo[]; loading: boolean; countryCode: string }) {
+  if (phoneNumbers.length === 0) return null;
+  const currency = countryCode === "IN" ? "₹" : "$";
 
   return (
     <div>
@@ -403,10 +407,12 @@ function PhoneRentalSection({ countryCode }: { countryCode: string }) {
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-100">
-            {rows.map((row) => (
-              <tr key={row.type}>
-                <td className="py-3 pr-4 text-sm text-gray-900">{row.type}</td>
-                <td className="py-3 text-sm font-medium text-black">{row.price}</td>
+            {phoneNumbers.map((pn) => (
+              <tr key={pn.type}>
+                <td className="py-3 pr-4 text-sm text-gray-900">{pn.type}</td>
+                <td className="py-3 text-sm font-medium text-black">
+                  {loading ? <Shimmer /> : `${currency}${(pn.rentalRate ?? 0).toFixed(2)}/month`}
+                </td>
               </tr>
             ))}
           </tbody>
