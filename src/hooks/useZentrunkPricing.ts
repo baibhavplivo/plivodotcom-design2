@@ -78,14 +78,14 @@ export function useZentrunkPricing(countryCode: string): {
         setRates(result);
       })
       .catch(() => {
-        // Fall back to hardcoded SIP_RATES (inbound only)
+        // Fall back to hardcoded SIP_RATES
         const fallback = SIP_RATES[code];
         if (fallback) {
           setRates({
-            local: { inbound: fallback.local, outbound: 0 },
-            mobile: { inbound: fallback.mobile, outbound: 0 },
-            national: { inbound: fallback.national, outbound: 0 },
-            tollfree: { inbound: fallback.tollfree, outbound: 0 },
+            local: { inbound: fallback.localIn, outbound: fallback.localOut },
+            mobile: { inbound: fallback.mobileIn, outbound: fallback.mobileOut },
+            national: { inbound: fallback.nationalIn, outbound: fallback.nationalOut },
+            tollfree: { inbound: fallback.tollfreeIn, outbound: fallback.tollfreeOut },
           });
         } else {
           setRates(null);

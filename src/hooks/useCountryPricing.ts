@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from "react";
-import { VOICE_RATES, PHONE_RENTAL_RATES } from "@/data/pricing-data";
+import { VOICE_RATES, PHONE_RENTAL_RATES, SMS_RATES } from "@/data/pricing-data";
 import type { VoiceRates } from "@/data/pricing-data";
 
 const API_URL = "https://api.plivo.com/v1/Internal/CountryPricing/?country=";
@@ -191,12 +191,13 @@ export function useCountryPricing(countryCode: string): {
         .catch(() => {
           // Fall back to hardcoded data
           const fallback = VOICE_RATES[code];
-          if (fallback) {
+          const smsFallback = SMS_RATES[code];
+          if (fallback || smsFallback) {
             const result: CountryPricingData = {
-              voiceRates: fallback,
-              smsOutbound: "Contact sales",
-              smsInbound: "Contact sales",
-              smsRates: [],
+              voiceRates: fallback || { localInbound: "Not Supported", localOutbound: "Not Supported", tollfreeInbound: "Not Supported", tollfreeOutbound: "Not Supported", ipInbound: "$0.0030/min", ipOutbound: "$0.0030/min" },
+              smsOutbound: smsFallback?.sms?.[0]?.outbound || "Contact sales",
+              smsInbound: smsFallback?.sms?.[0]?.inbound || "Contact sales",
+              smsRates: (smsFallback?.sms || []) as SMSRateRow[],
               phoneNumbers: [],
               raw: null,
             };

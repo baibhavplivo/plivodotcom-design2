@@ -249,7 +249,7 @@ export default function SMSPricingTabs() {
             <div ref={contentRef} className="min-w-0">
               {/* SMS Section */}
               <div id="sms" className="bg-white rounded-xl border border-gray-200 p-6 mb-6">
-                <SMSSection smsRates={liveSmsRates} hasCarrierFees={!!hardcodedRates?.hasCarrierFees} loading={loading} />
+                <SMSSection smsRates={liveSmsRates.length > 0 ? liveSmsRates : (hardcodedRates?.sms || [])} hasCarrierFees={!!hardcodedRates?.hasCarrierFees} loading={loading} />
               </div>
 
               {/* RCS Section - US only */}

@@ -435,69 +435,73 @@ export const WA_CALL_FALLBACK: WhatsAppCallRates = {
 // SIP trunking pricing data
 
 export interface SIPRates {
-  local: number;
-  mobile: number;
-  national: number;
-  tollfree: number;
+  localIn: number;
+  localOut: number;
+  mobileIn: number;
+  mobileOut: number;
+  nationalIn: number;
+  nationalOut: number;
+  tollfreeIn: number;
+  tollfreeOut: number;
 }
 
 export const SIP_PRIORITY_COUNTRIES = TOP_COUNTRIES;
 
-// SIP inbound per-minute rates by country (0 means not available)
+// SIP per-minute rates by country (0 means not available)
 export const SIP_RATES: Record<string, SIPRates> = {
-  US: { local: 0.0075, mobile: 0, national: 0, tollfree: 0.027 },
-  CA: { local: 0.0045, mobile: 0, national: 0, tollfree: 0.03 },
-  GB: { local: 0.006, mobile: 0.003, national: 0, tollfree: 0.047 },
-  AU: { local: 0.0025, mobile: 0.005, national: 0, tollfree: 0.045 },
-  IN: { local: 0.74, mobile: 0, national: 0, tollfree: 0 },
-  FR: { local: 0.003, mobile: 0.003, national: 0, tollfree: 0.247 },
-  ES: { local: 0.003, mobile: 0, national: 0, tollfree: 0.2642 },
-  AE: { local: 0, mobile: 0, national: 0, tollfree: 0.225 },
-  AR: { local: 0.0063, mobile: 0, national: 0, tollfree: 0 },
-  AT: { local: 0, mobile: 0.003, national: 0, tollfree: 0.1946 },
-  BH: { local: 0, mobile: 0, national: 0, tollfree: 0.2 },
-  BE: { local: 0.003, mobile: 0, national: 0, tollfree: 0.2591 },
-  BR: { local: 0.006, mobile: 0.006, national: 0, tollfree: 0.18 },
-  BG: { local: 0.0063, mobile: 0, national: 0, tollfree: 0 },
-  CL: { local: 0.0063, mobile: 0, national: 0, tollfree: 0 },
-  CN: { local: 0.055, mobile: 0, national: 0, tollfree: 0.8 },
-  CO: { local: 0.0063, mobile: 0, national: 0, tollfree: 0.1421 },
-  HR: { local: 0.0063, mobile: 0, national: 0, tollfree: 0.4267 },
-  CY: { local: 0.0063, mobile: 0, national: 0, tollfree: 0.1138 },
-  CZ: { local: 0.0063, mobile: 0, national: 0, tollfree: 0.2539 },
-  DK: { local: 0, mobile: 0, national: 0.003, tollfree: 0.3333 },
-  DO: { local: 0, mobile: 0, national: 0, tollfree: 0.1458 },
-  EG: { local: 0, mobile: 0, national: 0, tollfree: 0.55 },
-  FI: { local: 0.003, mobile: 0, national: 0, tollfree: 0.2444 },
-  GR: { local: 0.003, mobile: 0, national: 0, tollfree: 0.1059 },
-  HK: { local: 0, mobile: 0, national: 0.0063, tollfree: 0 },
-  HU: { local: 0.0063, mobile: 0, national: 0, tollfree: 0.1967 },
-  ID: { local: 0.017, mobile: 0, national: 0, tollfree: 0 },
-  IE: { local: 0.0055, mobile: 0, national: 0.003, tollfree: 0.4965 },
-  IL: { local: 0.0063, mobile: 0, national: 0, tollfree: 0.1112 },
-  JP: { local: 0.0063, mobile: 0, national: 0, tollfree: 0 },
-  LV: { local: 0.0063, mobile: 0, national: 0, tollfree: 0 },
-  LT: { local: 0.0063, mobile: 0, national: 0, tollfree: 0.0512 },
-  MY: { local: 0.0063, mobile: 0, national: 0, tollfree: 0 },
-  MX: { local: 0.0063, mobile: 0, national: 0, tollfree: 0.1807 },
-  NL: { local: 0.003, mobile: 0.003, national: 0.003, tollfree: 0.3067 },
-  NZ: { local: 0.0063, mobile: 0, national: 0, tollfree: 0.2082 },
-  PE: { local: 0, mobile: 0, national: 0, tollfree: 0.3033 },
-  PH: { local: 0.22, mobile: 0, national: 0, tollfree: 0.45 },
-  PL: { local: 0.003, mobile: 0.003, national: 0, tollfree: 0 },
-  PT: { local: 0, mobile: 0, national: 0.003, tollfree: 0.3833 },
-  QA: { local: 0, mobile: 0, national: 0, tollfree: 0.5342 },
-  RO: { local: 0.0063, mobile: 0, national: 0, tollfree: 0 },
-  RU: { local: 0, mobile: 0, national: 0, tollfree: 0.214 },
-  SA: { local: 0, mobile: 0, national: 0, tollfree: 0.744 },
-  SG: { local: 0, mobile: 0, national: 0.0063, tollfree: 0 },
-  SK: { local: 0.0063, mobile: 0, national: 0, tollfree: 0.2766 },
-  SI: { local: 0.0063, mobile: 0, national: 0, tollfree: 0.3067 },
-  ZA: { local: 0.0063, mobile: 0, national: 0, tollfree: 0.0817 },
-  SE: { local: 0.003, mobile: 0.003, national: 0, tollfree: 0.1262 },
-  CH: { local: 0.003, mobile: 0, national: 0, tollfree: 0.1635 },
-  TR: { local: 0.0063, mobile: 0, national: 0, tollfree: 0.0583 },
-  DE: { local: 0.003, mobile: 0, national: 0, tollfree: 0.2 },
+  US: { localIn: 0.003, localOut: 0.0055, mobileIn: 0, mobileOut: 0, nationalIn: 0, nationalOut: 0, tollfreeIn: 0.012, tollfreeOut: 0.001 },
+  CA: { localIn: 0.0045, localOut: 0, mobileIn: 0, mobileOut: 0, nationalIn: 0, nationalOut: 0, tollfreeIn: 0.03, tollfreeOut: 0 },
+  GB: { localIn: 0.006, localOut: 0, mobileIn: 0.003, mobileOut: 0, nationalIn: 0, nationalOut: 0, tollfreeIn: 0.047, tollfreeOut: 0 },
+  AU: { localIn: 0.0025, localOut: 0, mobileIn: 0.005, mobileOut: 0, nationalIn: 0, nationalOut: 0, tollfreeIn: 0.045, tollfreeOut: 0 },
+  IN: { localIn: 0.74, localOut: 0.74, mobileIn: 0, mobileOut: 0, nationalIn: 0, nationalOut: 0, tollfreeIn: 0, tollfreeOut: 0 },
+  FR: { localIn: 0.003, localOut: 0, mobileIn: 0.003, mobileOut: 0, nationalIn: 0, nationalOut: 0, tollfreeIn: 0.247, tollfreeOut: 0 },
+  ES: { localIn: 0.003, localOut: 0, mobileIn: 0, mobileOut: 0, nationalIn: 0, nationalOut: 0, tollfreeIn: 0.2642, tollfreeOut: 0 },
+  AE: { localIn: 0, localOut: 0, mobileIn: 0, mobileOut: 0, nationalIn: 0, nationalOut: 0, tollfreeIn: 0.225, tollfreeOut: 0 },
+  AR: { localIn: 0.0063, localOut: 0, mobileIn: 0, mobileOut: 0, nationalIn: 0, nationalOut: 0, tollfreeIn: 0, tollfreeOut: 0 },
+  AT: { localIn: 0, localOut: 0, mobileIn: 0.003, mobileOut: 0, nationalIn: 0, nationalOut: 0, tollfreeIn: 0.1946, tollfreeOut: 0 },
+  BH: { localIn: 0, localOut: 0, mobileIn: 0, mobileOut: 0, nationalIn: 0, nationalOut: 0, tollfreeIn: 0.2, tollfreeOut: 0 },
+  BE: { localIn: 0.003, localOut: 0, mobileIn: 0, mobileOut: 0, nationalIn: 0, nationalOut: 0, tollfreeIn: 0.2591, tollfreeOut: 0 },
+  BR: { localIn: 0.006, localOut: 0, mobileIn: 0.006, mobileOut: 0, nationalIn: 0, nationalOut: 0, tollfreeIn: 0.18, tollfreeOut: 0 },
+  BG: { localIn: 0.0063, localOut: 0, mobileIn: 0, mobileOut: 0, nationalIn: 0, nationalOut: 0, tollfreeIn: 0, tollfreeOut: 0 },
+  CL: { localIn: 0.0063, localOut: 0, mobileIn: 0, mobileOut: 0, nationalIn: 0, nationalOut: 0, tollfreeIn: 0, tollfreeOut: 0 },
+  CN: { localIn: 0.055, localOut: 0, mobileIn: 0, mobileOut: 0, nationalIn: 0, nationalOut: 0, tollfreeIn: 0.8, tollfreeOut: 0 },
+  CO: { localIn: 0.0063, localOut: 0, mobileIn: 0, mobileOut: 0, nationalIn: 0, nationalOut: 0, tollfreeIn: 0.1421, tollfreeOut: 0 },
+  HR: { localIn: 0.0063, localOut: 0, mobileIn: 0, mobileOut: 0, nationalIn: 0, nationalOut: 0, tollfreeIn: 0.4267, tollfreeOut: 0 },
+  CY: { localIn: 0.0063, localOut: 0, mobileIn: 0, mobileOut: 0, nationalIn: 0, nationalOut: 0, tollfreeIn: 0.1138, tollfreeOut: 0 },
+  CZ: { localIn: 0.0063, localOut: 0, mobileIn: 0, mobileOut: 0, nationalIn: 0, nationalOut: 0, tollfreeIn: 0.2539, tollfreeOut: 0 },
+  DK: { localIn: 0, localOut: 0, mobileIn: 0, mobileOut: 0, nationalIn: 0.003, nationalOut: 0, tollfreeIn: 0.3333, tollfreeOut: 0 },
+  DO: { localIn: 0, localOut: 0, mobileIn: 0, mobileOut: 0, nationalIn: 0, nationalOut: 0, tollfreeIn: 0.1458, tollfreeOut: 0 },
+  EG: { localIn: 0, localOut: 0, mobileIn: 0, mobileOut: 0, nationalIn: 0, nationalOut: 0, tollfreeIn: 0.55, tollfreeOut: 0 },
+  FI: { localIn: 0.003, localOut: 0, mobileIn: 0, mobileOut: 0, nationalIn: 0, nationalOut: 0, tollfreeIn: 0.2444, tollfreeOut: 0 },
+  GR: { localIn: 0.003, localOut: 0, mobileIn: 0, mobileOut: 0, nationalIn: 0, nationalOut: 0, tollfreeIn: 0.1059, tollfreeOut: 0 },
+  HK: { localIn: 0, localOut: 0, mobileIn: 0, mobileOut: 0, nationalIn: 0.0063, nationalOut: 0, tollfreeIn: 0, tollfreeOut: 0 },
+  HU: { localIn: 0.0063, localOut: 0, mobileIn: 0, mobileOut: 0, nationalIn: 0, nationalOut: 0, tollfreeIn: 0.1967, tollfreeOut: 0 },
+  ID: { localIn: 0.017, localOut: 0, mobileIn: 0, mobileOut: 0, nationalIn: 0, nationalOut: 0, tollfreeIn: 0, tollfreeOut: 0 },
+  IE: { localIn: 0.0055, localOut: 0, mobileIn: 0, mobileOut: 0, nationalIn: 0.003, nationalOut: 0, tollfreeIn: 0.4965, tollfreeOut: 0 },
+  IL: { localIn: 0.0063, localOut: 0, mobileIn: 0, mobileOut: 0, nationalIn: 0, nationalOut: 0, tollfreeIn: 0.1112, tollfreeOut: 0 },
+  JP: { localIn: 0.0063, localOut: 0, mobileIn: 0, mobileOut: 0, nationalIn: 0, nationalOut: 0, tollfreeIn: 0, tollfreeOut: 0 },
+  LV: { localIn: 0.0063, localOut: 0, mobileIn: 0, mobileOut: 0, nationalIn: 0, nationalOut: 0, tollfreeIn: 0, tollfreeOut: 0 },
+  LT: { localIn: 0.0063, localOut: 0, mobileIn: 0, mobileOut: 0, nationalIn: 0, nationalOut: 0, tollfreeIn: 0.0512, tollfreeOut: 0 },
+  MY: { localIn: 0.0063, localOut: 0, mobileIn: 0, mobileOut: 0, nationalIn: 0, nationalOut: 0, tollfreeIn: 0, tollfreeOut: 0 },
+  MX: { localIn: 0.0063, localOut: 0, mobileIn: 0, mobileOut: 0, nationalIn: 0, nationalOut: 0, tollfreeIn: 0.1807, tollfreeOut: 0 },
+  NL: { localIn: 0.003, localOut: 0, mobileIn: 0.003, mobileOut: 0, nationalIn: 0.003, nationalOut: 0, tollfreeIn: 0.3067, tollfreeOut: 0 },
+  NZ: { localIn: 0.0063, localOut: 0, mobileIn: 0, mobileOut: 0, nationalIn: 0, nationalOut: 0, tollfreeIn: 0.2082, tollfreeOut: 0 },
+  PE: { localIn: 0, localOut: 0, mobileIn: 0, mobileOut: 0, nationalIn: 0, nationalOut: 0, tollfreeIn: 0.3033, tollfreeOut: 0 },
+  PH: { localIn: 0.22, localOut: 0, mobileIn: 0, mobileOut: 0, nationalIn: 0, nationalOut: 0, tollfreeIn: 0.45, tollfreeOut: 0 },
+  PL: { localIn: 0.003, localOut: 0, mobileIn: 0.003, mobileOut: 0, nationalIn: 0, nationalOut: 0, tollfreeIn: 0, tollfreeOut: 0 },
+  PT: { localIn: 0, localOut: 0, mobileIn: 0, mobileOut: 0, nationalIn: 0.003, nationalOut: 0, tollfreeIn: 0.3833, tollfreeOut: 0 },
+  QA: { localIn: 0, localOut: 0, mobileIn: 0, mobileOut: 0, nationalIn: 0, nationalOut: 0, tollfreeIn: 0.5342, tollfreeOut: 0 },
+  RO: { localIn: 0.0063, localOut: 0, mobileIn: 0, mobileOut: 0, nationalIn: 0, nationalOut: 0, tollfreeIn: 0, tollfreeOut: 0 },
+  RU: { localIn: 0, localOut: 0, mobileIn: 0, mobileOut: 0, nationalIn: 0, nationalOut: 0, tollfreeIn: 0.214, tollfreeOut: 0 },
+  SA: { localIn: 0, localOut: 0, mobileIn: 0, mobileOut: 0, nationalIn: 0, nationalOut: 0, tollfreeIn: 0.744, tollfreeOut: 0 },
+  SG: { localIn: 0, localOut: 0, mobileIn: 0, mobileOut: 0, nationalIn: 0.0063, nationalOut: 0, tollfreeIn: 0, tollfreeOut: 0 },
+  SK: { localIn: 0.0063, localOut: 0, mobileIn: 0, mobileOut: 0, nationalIn: 0, nationalOut: 0, tollfreeIn: 0.2766, tollfreeOut: 0 },
+  SI: { localIn: 0.0063, localOut: 0, mobileIn: 0, mobileOut: 0, nationalIn: 0, nationalOut: 0, tollfreeIn: 0.3067, tollfreeOut: 0 },
+  ZA: { localIn: 0.0063, localOut: 0, mobileIn: 0, mobileOut: 0, nationalIn: 0, nationalOut: 0, tollfreeIn: 0.0817, tollfreeOut: 0 },
+  SE: { localIn: 0.003, localOut: 0, mobileIn: 0.003, mobileOut: 0, nationalIn: 0, nationalOut: 0, tollfreeIn: 0.1262, tollfreeOut: 0 },
+  CH: { localIn: 0.003, localOut: 0, mobileIn: 0, mobileOut: 0, nationalIn: 0, nationalOut: 0, tollfreeIn: 0.1635, tollfreeOut: 0 },
+  TR: { localIn: 0.0063, localOut: 0, mobileIn: 0, mobileOut: 0, nationalIn: 0, nationalOut: 0, tollfreeIn: 0.0583, tollfreeOut: 0 },
+  DE: { localIn: 0.003, localOut: 0, mobileIn: 0, mobileOut: 0, nationalIn: 0, nationalOut: 0, tollfreeIn: 0.2, tollfreeOut: 0 },
 };
 
 // Shared country name mapping for display (used across all pricing pages)
