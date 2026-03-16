@@ -13,6 +13,11 @@ import {
   BadgeCheck,
   ChevronDown,
 } from "lucide-react";
+
+/** Strip all HTML tags except safe inline elements (a, strong, em, br) */
+function sanitizeHtml(html: string): string {
+  return html.replace(/<\/?(?!a\b|strong\b|em\b|br\b)[a-z][^>]*>/gi, "");
+}
 import { useGeoCountry } from "@/hooks/useGeoCountry";
 import { FlickeringGrid } from "@/components/magicui/flickering-grid";
 
@@ -868,7 +873,7 @@ const FAQS = [
   {
     question: "What is RCS messaging?",
     answer:
-      'Rich Communications Services (RCS) is the next generation of SMS messaging. It combines the global reach and reliability of SMS with the rich, interactive features of chat apps like WhatsApp and WeChat. Read more about RCS messaging in our blog post: <a href="https://www.plivo.com/blog/what-is-rcs-messaging/" class="text-[#323dfe] hover:underline">What is RCS Messaging? A Complete Guide</a>.',
+      'Rich Communications Services (RCS) is the next generation of SMS messaging. It combines the global reach and reliability of SMS with the rich, interactive features of chat apps like WhatsApp and WeChat. Read more about RCS messaging in our blog post: <a href="https://www.plivo.com/blog/what-is-rcs-messaging/" target="_blank" rel="noopener noreferrer" class="text-[#323dfe] hover:underline">What is RCS Messaging? A Complete Guide</a>.',
   },
   {
     question:
@@ -940,7 +945,7 @@ function FAQItem({
             <p
               key={i}
               className="text-sm text-gray-600 leading-relaxed mb-3 last:mb-0"
-              dangerouslySetInnerHTML={{ __html: para }}
+              dangerouslySetInnerHTML={{ __html: sanitizeHtml(para) }}
             />
           ))}
         </div>

@@ -48,7 +48,7 @@ export const ContactPage = () => {
           Contact us
         </h1>
         <p className="mt-4 text-center text-muted-foreground">
-          Hopefully this form gets through our spam filters.
+          We'd love to hear from you. Reach out and we'll get back to you soon.
         </p>
 
         <div className="mt-8 flex max-md:flex-col md:mt-12 md:divide-x lg:mt-20">
@@ -57,9 +57,9 @@ export const ContactPage = () => {
             <div>
               <h2 className="text-lg font-semibold">Corporate office</h2>
               <p className="mt-3 text-lg font-medium tracking-tight text-muted-foreground">
-                1 Carlsberg Close
+                6001 W Parmer Ln, STE 370
                 <br />
-                1260 Hillview, Australia
+                Austin, Texas 78727, USA
               </p>
             </div>
 
@@ -67,21 +67,21 @@ export const ContactPage = () => {
               <h2 className="text-lg font-semibold">Email us</h2>
               <div className="mt-3 space-y-2">
                 <div>
-                  <p>Careers</p>
+                  <p>Support</p>
                   <a
-                    href="mailto:careers@streamline.com"
+                    href="mailto:support@plivo.com"
                     className="mt-3 text-lg font-medium tracking-tight text-muted-foreground"
                   >
-                    careers@streamline.com
+                    support@plivo.com
                   </a>
                 </div>
                 <div>
                   <p>Press</p>
                   <a
-                    href="mailto:press@streamline.com"
+                    href="mailto:press@plivo.com"
                     className="mt-3 text-lg font-medium tracking-tight text-muted-foreground"
                   >
-                    press@streamline.com
+                    press@plivo.com
                   </a>
                 </div>
               </div>

@@ -3,6 +3,11 @@ import { Badge } from "@/components/ui/badge";
 import { Clock, ChevronRight } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 
+/** Strip all HTML tags except safe inline elements (a, strong, em, br, li, ul, ol, p) */
+function sanitizeHtml(html: string): string {
+  return html.replace(/<\/?(?!a\b|strong\b|em\b|br\b|li\b|ul\b|ol\b|p\b)[a-z][^>]*>/gi, "");
+}
+
 interface RelatedPost {
   id: string;
   title: string;
@@ -108,7 +113,7 @@ const BlogPost = ({
               </h3>
               <div
                 className="prose prose-sm max-w-none text-gray-600 [&_ul]:list-disc [&_ul]:pl-5 [&_li]:mb-1.5"
-                dangerouslySetInnerHTML={{ __html: keyTakeaways }}
+                dangerouslySetInnerHTML={{ __html: sanitizeHtml(keyTakeaways) }}
               />
             </div>
           )}
