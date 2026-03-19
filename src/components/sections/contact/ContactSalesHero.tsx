@@ -112,6 +112,57 @@ export default function ContactSalesHero() {
     };
   }, []);
 
+  // HubSpot fallback: prevent native POST (which causes 405 on static hosting)
+  // by registering a submit handler the moment the form renders.
+  // If external form-submission.js has loaded, it yields to that script.
+  useEffect(() => {
+    const form = document.getElementById("contact-form") as HTMLFormElement | null;
+    if (!form) return;
+
+    const handler = (e: Event) => {
+      // If external form-submission.js has loaded, let it handle submission
+      if ((window as any).__plivoFormLoaded) return;
+
+      e.preventDefault();
+      const btn = form.querySelector('[type="submit"]') as HTMLButtonElement | null;
+      if (btn) { btn.disabled = true; btn.textContent = "Submitting..."; }
+
+      const name = (form.querySelector("#full_name") as HTMLInputElement)?.value || "";
+      const parts = name.trim().split(/\s+/);
+      const fields = [
+        { name: "firstname", value: parts[0] || "" },
+        { name: "lastname", value: parts.slice(1).join(" ") || "" },
+        { name: "email", value: (form.querySelector("#company_email") as HTMLInputElement)?.value || "" },
+        { name: "phone", value: (form.querySelector("#phone") as HTMLInputElement)?.value || "" },
+        { name: "message", value: (form.querySelector("#detailed_requirement") as HTMLTextAreaElement)?.value || "" },
+      ];
+
+      fetch("https://api.hsforms.com/submissions/v3/integration/submit/20451141/1bd8ce72-8c0d-4dd0-89c2-f2d2bd7dfcd5", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ fields, context: { pageUri: window.location.href, pageName: "Contact Sales" } }),
+      })
+        .then((res) => {
+          if (res.ok) {
+            const step1 = form.closest('[vpf="1"]');
+            const step4 = document.querySelector('[vpf="4"]');
+            if (step1) (step1 as HTMLElement).style.display = "none";
+            if (step4) (step4 as HTMLElement).style.display = "block";
+          } else {
+            alert("Something went wrong. Please try again or email support@plivo.com.");
+            if (btn) { btn.disabled = false; btn.textContent = "Submit"; }
+          }
+        })
+        .catch(() => {
+          alert("Network error. Please try again or email support@plivo.com.");
+          if (btn) { btn.disabled = false; btn.textContent = "Submit"; }
+        });
+    };
+
+    form.addEventListener("submit", handler, true);
+    return () => form.removeEventListener("submit", handler, true);
+  }, []);
+
   return (
     <section className="bg-white pt-6 sm:pt-8 md:pt-12 pb-12 sm:pb-16 md:pb-24">
       <div className="container mx-auto max-w-7xl px-4">
