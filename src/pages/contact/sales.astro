@@ -154,13 +154,55 @@ import ContactSalesHero from "@/components/sections/contact/ContactSalesHero";
 <!-- Plivo form handler — wait for React to render #phone, then load -->
 <script is:inline>
 (function() {
+  var externalLoaded = false;
   var interval = setInterval(function() {
     if (document.getElementById('phone')) {
       clearInterval(interval);
       var s = document.createElement('script');
       s.src = 'https://plivo-static-forms.netlify.app/plivo/form-submission.js';
+      s.onload = function() { externalLoaded = true; };
       document.body.appendChild(s);
     }
   }, 100);
+
+  // Fallback: if external script hasn't loaded, submit directly to HubSpot
+  document.addEventListener('submit', function(e) {
+    var form = e.target;
+    if (!form || form.id !== 'contact-form') return;
+    if (externalLoaded) return; // Let form-submission.js handle it
+
+    e.preventDefault();
+    var btn = form.querySelector('[type="submit"]');
+    if (btn) { btn.disabled = true; btn.textContent = 'Submitting...'; }
+
+    var name = (form.querySelector('#full_name') || {}).value || '';
+    var parts = name.trim().split(/\s+/);
+    var fields = [
+      { name: 'firstname', value: parts[0] || '' },
+      { name: 'lastname', value: parts.slice(1).join(' ') || '' },
+      { name: 'email', value: (form.querySelector('#company_email') || {}).value || '' },
+      { name: 'phone', value: (form.querySelector('#phone') || {}).value || '' },
+      { name: 'message', value: (form.querySelector('#detailed_requirement') || {}).value || '' }
+    ];
+
+    fetch('https://api.hsforms.com/submissions/v3/integration/submit/20451141/1bd8ce72-8c0d-4dd0-89c2-f2d2bd7dfcd5', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ fields: fields, context: { pageUri: window.location.href, pageName: 'Contact Sales' } })
+    }).then(function(res) {
+      if (res.ok) {
+        var step1 = form.closest('[vpf="1"]');
+        var step4 = document.querySelector('[vpf="4"]');
+        if (step1) step1.style.display = 'none';
+        if (step4) step4.style.display = 'block';
+      } else {
+        alert('Something went wrong. Please try again or email support@plivo.com.');
+        if (btn) { btn.disabled = false; btn.textContent = 'Submit'; }
+      }
+    }).catch(function() {
+      alert('Network error. Please try again or email support@plivo.com.');
+      if (btn) { btn.disabled = false; btn.textContent = 'Submit'; }
+    });
+  }, true);
 })();
 </script>

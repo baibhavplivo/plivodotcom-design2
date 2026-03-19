@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Facebook, Linkedin, Twitter, CheckCircle, Loader2 } from "lucide-react";
 
 import { Button } from "../ui/button";
@@ -16,67 +16,75 @@ type FormState = "idle" | "submitting" | "success" | "error";
 export const ContactPage = () => {
   const [formState, setFormState] = useState<FormState>("idle");
   const [errorMsg, setErrorMsg] = useState("");
+  const formRef = useRef<HTMLFormElement>(null);
 
-  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    setFormState("submitting");
-    setErrorMsg("");
+  useEffect(() => {
+    const form = formRef.current;
+    if (!form) return;
 
-    const form = e.currentTarget;
-    const data = new FormData(form);
+    const handler = async (e: Event) => {
+      e.preventDefault();
+      setFormState("submitting");
+      setErrorMsg("");
 
-    const fullName = (data.get("fullName") as string || "").trim();
-    const nameParts = fullName.split(/\s+/);
-    const firstName = nameParts[0] || "";
-    const lastName = nameParts.slice(1).join(" ") || "";
+      const data = new FormData(form);
 
-    const email = (data.get("email") as string || "").trim();
-    const company = (data.get("company") as string || "").trim();
-    const employees = (data.get("employees") as string || "").trim();
-    const message = (data.get("message") as string || "").trim();
+      const fullName = (data.get("fullName") as string || "").trim();
+      const nameParts = fullName.split(/\s+/);
+      const firstName = nameParts[0] || "";
+      const lastName = nameParts.slice(1).join(" ") || "";
 
-    if (!fullName || !email) {
-      setFormState("error");
-      setErrorMsg("Please fill in your name and email address.");
-      return;
-    }
+      const email = (data.get("email") as string || "").trim();
+      const company = (data.get("company") as string || "").trim();
+      const employees = (data.get("employees") as string || "").trim();
+      const message = (data.get("message") as string || "").trim();
 
-    const fields = [
-      { name: "firstname", value: firstName },
-      { name: "lastname", value: lastName },
-      { name: "email", value: email },
-      ...(company ? [{ name: "company", value: company }] : []),
-      ...(employees ? [{ name: "numemployees", value: employees }] : []),
-      ...(message ? [{ name: "message", value: message }] : []),
-    ];
-
-    try {
-      const res = await fetch(
-        `https://api.hsforms.com/submissions/v3/integration/submit/${HUBSPOT_PORTAL_ID}/${HUBSPOT_FORM_ID}`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            fields,
-            context: {
-              pageUri: window.location.href,
-              pageName: "Contact Us",
-            },
-          }),
-        }
-      );
-
-      if (res.ok || res.status === 200) {
-        setFormState("success");
-      } else {
+      if (!fullName || !email) {
         setFormState("error");
-        setErrorMsg("Something went wrong. Please try again or email us directly.");
+        setErrorMsg("Please fill in your name and email address.");
+        return;
       }
-    } catch {
-      setFormState("error");
-      setErrorMsg("Network error. Please try again or email us directly.");
-    }
-  }
+
+      const fields = [
+        { name: "firstname", value: firstName },
+        { name: "lastname", value: lastName },
+        { name: "email", value: email },
+        ...(company ? [{ name: "company", value: company }] : []),
+        ...(employees ? [{ name: "numemployees", value: employees }] : []),
+        ...(message ? [{ name: "message", value: message }] : []),
+      ];
+
+      try {
+        const res = await fetch(
+          `https://api.hsforms.com/submissions/v3/integration/submit/${HUBSPOT_PORTAL_ID}/${HUBSPOT_FORM_ID}`,
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              fields,
+              context: {
+                pageUri: window.location.href,
+                pageName: "Contact Us",
+              },
+            }),
+          }
+        );
+
+        if (res.ok) {
+          setFormState("success");
+        } else {
+          setFormState("error");
+          setErrorMsg("Something went wrong. Please try again or email us directly.");
+        }
+      } catch {
+        setFormState("error");
+        setErrorMsg("Network error. Please try again or email us directly.");
+      }
+    };
+
+    form.addEventListener("submit", handler);
+    return () => form.removeEventListener("submit", handler);
+  }, []);
 
   return (
     <section className="py-16 md:py-28 lg:py-32">
@@ -173,7 +181,7 @@ export const ContactPage = () => {
                 </p>
               </div>
             ) : (
-              <form className="mt-5 space-y-5" onSubmit={handleSubmit}>
+              <form ref={formRef} className="mt-5 space-y-5">
                 <div className="flex flex-col gap-2">
                   <Label>Full name</Label>
                   <Input
