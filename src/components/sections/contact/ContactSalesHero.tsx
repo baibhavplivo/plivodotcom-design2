@@ -120,10 +120,11 @@ export default function ContactSalesHero() {
     if (!form) return;
 
     const handler = (e: Event) => {
-      // Always prevent native POST (causes 405 on static hosting)
-      e.preventDefault();
       // If external form-submission.js has loaded, let it handle submission
       if ((window as any).__plivoFormLoaded) return;
+
+      // Prevent native form submission and handle via HubSpot API
+      e.preventDefault();
       const btn = form.querySelector('[type="submit"]') as HTMLButtonElement | null;
       if (btn) { btn.disabled = true; btn.textContent = "Submitting..."; }
 
@@ -278,7 +279,6 @@ export default function ContactSalesHero() {
 
                       <form
                         id="contact-form"
-                        method="post"
                         noValidate
                         // @ts-expect-error custom attributes for form-submission.js
                         hubspot="contactForm"
