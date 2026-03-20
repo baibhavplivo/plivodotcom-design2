@@ -480,7 +480,7 @@ export default {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Origin: "https://plivo.com",
+            Origin: "https://www.plivo.com",
           },
           body,
         });

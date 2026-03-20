@@ -5,7 +5,7 @@ export const onRequestPost: PagesFunction = async ({ request }) => {
 
   const upstream = await fetch(UPSTREAM, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: { "Content-Type": "application/json", Origin: "https://www.plivo.com" },
     body,
   });
 
