@@ -166,19 +166,35 @@ export default function ContactSalesHero() {
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: body.toString(),
       })
-        .then((res) => {
-          if (res.ok) {
+        .then((res) => res.json().then((data) => ({ ok: res.ok, data })))
+        .then(({ ok, data }) => {
+          if (ok && data.status === "Submitted") {
+            // Success — show thank-you
             const step1 = form.closest('[vpf="1"]');
             const step4 = document.querySelector('[vpf="4"]');
             if (step1) (step1 as HTMLElement).style.display = "none";
             if (step4) (step4 as HTMLElement).style.display = "block";
+          } else if (data.status === "Personal Email" || data.status === "Invalid Email") {
+            // Personal/invalid email rejected — show inline error
+            const emailInput = form.querySelector("#company_email") as HTMLInputElement | null;
+            if (emailInput) {
+              emailInput.classList.add("input-error");
+              let fb = emailInput.parentElement?.querySelector(".invalid-feedback") as HTMLElement | null;
+              if (!fb) {
+                fb = document.createElement("div");
+                fb.className = "invalid-feedback";
+                emailInput.parentElement?.appendChild(fb);
+              }
+              fb.textContent = "Please use your work email address.";
+            }
+            if (btn) { btn.disabled = false; btn.textContent = "Submit"; }
           } else {
-            // Fallback: submit directly to HubSpot
+            // Other error — fallback to direct HubSpot
             return submitToHubSpot(firstName, lastName, email, formattedPhone, description, btn);
           }
         })
         .catch(() => {
-          // Fallback: submit directly to HubSpot
+          // Network error — fallback to direct HubSpot
           submitToHubSpot(firstName, lastName, email, formattedPhone, description, btn);
         });
     };
