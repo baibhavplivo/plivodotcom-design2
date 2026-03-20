@@ -38,6 +38,12 @@ function isValidEmailFormat(email: string): boolean {
   return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email.trim());
 }
 
+const ENRICH_API_URL =
+  "https://plivo-static-forms.netlify.app/.netlify/functions/enrich";
+
+// Cache enrichment results so we don't re-call for the same email
+const enrichCache = new Map<string, boolean>();
+
 const COMPLIANCE_BADGES = [
   { src: "/images/compliance/HIPAA black.svg", alt: "HIPAA", label: "HIPAA" },
   { src: "/images/compliance/GDPR black.svg", alt: "GDPR", label: "GDPR" },
@@ -268,6 +274,19 @@ export default function ContactSalesHero() {
         .then((res) => res.json().then((data) => ({ ok: res.ok, data })))
         .then(({ ok, data }) => {
           if (ok && data.status === "Submitted") {
+            // Set emailCookie from response for cross-page personalization
+            if (data.emailCookie) {
+              try {
+                document.cookie = `plivoEmail=${data.emailCookie};path=/;max-age=${60 * 60 * 24 * 30};SameSite=Lax`;
+              } catch { /* cookie set failed */ }
+            }
+
+            // Handle leadStatus — redirect small leads to signup
+            if (data.leadStatus === "redirectSignup") {
+              window.location.href = "https://console.plivo.com/accounts/register/";
+              return;
+            }
+
             // Success — show thank-you
             const step1 = form.closest('[vpf="1"]');
             const step4 = document.querySelector('[vpf="4"]');
@@ -390,13 +409,18 @@ export default function ContactSalesHero() {
     };
   }, []);
 
-  // Email: blur validation for personal domains and format
+  // Email: blur validation — client-side checks + server-side enrichment API
   useEffect(() => {
     const emailInput = document.getElementById("company_email") as HTMLInputElement | null;
     if (!emailInput) return;
 
+    let enrichAbort: AbortController | null = null;
+
     const getEmailFeedback = () =>
       emailInput.closest(".form-field")?.querySelector(".invalid-feedback") as HTMLElement | null;
+
+    const getLoader = () =>
+      emailInput.parentElement?.querySelector('[vpf="email-loader"]') as HTMLElement | null;
 
     const clearEmailError = () => {
       emailInput.classList.remove("input-error");
@@ -406,6 +430,8 @@ export default function ContactSalesHero() {
       if (invalidIcon) invalidIcon.style.display = "none";
       const validIcon = emailInput.parentElement?.querySelector('[vpf="valid-tick"]') as HTMLElement | null;
       if (validIcon) validIcon.style.display = "none";
+      const loader = getLoader();
+      if (loader) loader.style.display = "none";
     };
 
     const showEmailError = (message: string) => {
@@ -416,6 +442,20 @@ export default function ContactSalesHero() {
       if (invalidIcon) invalidIcon.style.display = "block";
       const validIcon = emailInput.parentElement?.querySelector('[vpf="valid-tick"]') as HTMLElement | null;
       if (validIcon) validIcon.style.display = "none";
+      const loader = getLoader();
+      if (loader) loader.style.display = "none";
+    };
+
+    const showEmailValid = () => {
+      emailInput.classList.remove("input-error");
+      const fb = getEmailFeedback();
+      if (fb) fb.textContent = "";
+      const invalidIcon = emailInput.parentElement?.querySelector('[vpf="invalid-wrong"]') as HTMLElement | null;
+      if (invalidIcon) invalidIcon.style.display = "none";
+      const validIcon = emailInput.parentElement?.querySelector('[vpf="valid-tick"]') as HTMLElement | null;
+      if (validIcon) validIcon.style.display = "block";
+      const loader = getLoader();
+      if (loader) loader.style.display = "none";
     };
 
     const handleBlur = () => {
@@ -423,11 +463,59 @@ export default function ContactSalesHero() {
       if (!value) { clearEmailError(); return; }
       if (!isValidEmailFormat(value)) { showEmailError("Please enter a valid email address."); return; }
       if (isPersonalEmail(value)) { showEmailError("Please use your work email address."); return; }
-      clearEmailError();
+
+      // Check cache first
+      const cached = enrichCache.get(value.toLowerCase());
+      if (cached === true) { showEmailValid(); return; }
+      if (cached === false) { showEmailError("Please use your work email address."); return; }
+
+      // Call enrichment API for server-side validation
+      if (enrichAbort) enrichAbort.abort();
+      enrichAbort = new AbortController();
+
+      // Show loader
+      const loader = getLoader();
+      if (loader) loader.style.display = "block";
+      const validIcon = emailInput.parentElement?.querySelector('[vpf="valid-tick"]') as HTMLElement | null;
+      if (validIcon) validIcon.style.display = "none";
+      const invalidIcon = emailInput.parentElement?.querySelector('[vpf="invalid-wrong"]') as HTMLElement | null;
+      if (invalidIcon) invalidIcon.style.display = "none";
+
+      fetch(`${ENRICH_API_URL}?email=${encodeURIComponent(value)}`, {
+        signal: enrichAbort.signal,
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          // Use isAuthentic if present, otherwise compute from person.domain_type
+          const domainType = data.person?.domain_type || data.email?.domain_type || "";
+          const invalidTypes = ["personal", "disposable", "malicious", "blacklisted"];
+          const isValid = data.isAuthentic !== undefined
+            ? data.isAuthentic !== false
+            : !invalidTypes.includes(domainType);
+          enrichCache.set(value.toLowerCase(), isValid);
+          if (isValid) {
+            showEmailValid();
+          } else {
+            showEmailError(
+              domainType === "personal"
+                ? "Please use your work email address."
+                : "This email address cannot be used. Please try another."
+            );
+          }
+        })
+        .catch((err) => {
+          if (err.name === "AbortError") return;
+          // On API failure, accept the email (backend will validate on submit)
+          clearEmailError();
+        });
     };
 
     const handleInput = () => {
+      if (enrichAbort) { enrichAbort.abort(); enrichAbort = null; }
       if (emailInput.classList.contains("input-error")) clearEmailError();
+      // Also hide valid icon while typing
+      const validIcon = emailInput.parentElement?.querySelector('[vpf="valid-tick"]') as HTMLElement | null;
+      if (validIcon) validIcon.style.display = "none";
     };
 
     emailInput.addEventListener("blur", handleBlur);
@@ -435,6 +523,7 @@ export default function ContactSalesHero() {
     return () => {
       emailInput.removeEventListener("blur", handleBlur);
       emailInput.removeEventListener("input", handleInput);
+      if (enrichAbort) enrichAbort.abort();
     };
   }, []);
 
