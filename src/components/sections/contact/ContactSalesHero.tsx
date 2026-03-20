@@ -112,32 +112,59 @@ export default function ContactSalesHero() {
     };
   }, []);
 
-  // HubSpot fallback: prevent native POST (which causes 405 on static hosting)
-  // by registering a submit handler the moment the form renders.
-  // If external form-submission.js has loaded, it yields to that script.
+  // Submit handler: prevents native POST (which causes 405 on static hosting)
+  // and submits to both the Netlify function (primary) and HubSpot (fallback).
   useEffect(() => {
     const form = document.getElementById("contact-form") as HTMLFormElement | null;
     if (!form) return;
+
+    const getCookie = (name: string) => {
+      const match = document.cookie.match(new RegExp("(^| )" + name + "=([^;]+)"));
+      return match ? match[2] : "";
+    };
 
     const handler = (e: Event) => {
       e.preventDefault();
       const btn = form.querySelector('[type="submit"]') as HTMLButtonElement | null;
       if (btn) { btn.disabled = true; btn.textContent = "Submitting..."; }
 
-      const name = (form.querySelector("#full_name") as HTMLInputElement)?.value || "";
-      const parts = name.trim().split(/\s+/);
-      const fields = [
-        { name: "firstname", value: parts[0] || "" },
-        { name: "lastname", value: parts.slice(1).join(" ") || "" },
-        { name: "email", value: (form.querySelector("#company_email") as HTMLInputElement)?.value || "" },
-        { name: "phone", value: (form.querySelector("#phone") as HTMLInputElement)?.value || "" },
-        { name: "message", value: (form.querySelector("#detailed_requirement") as HTMLTextAreaElement)?.value || "" },
-      ];
+      const fullName = (form.querySelector("#full_name") as HTMLInputElement)?.value || "";
+      const parts = fullName.trim().split(/\s+/);
+      const firstName = parts[0] || "";
+      const lastName = parts.slice(1).join(" ") || "";
+      const email = (form.querySelector("#company_email") as HTMLInputElement)?.value || "";
+      const phone = (form.querySelector("#phone") as HTMLInputElement)?.value || "";
+      const phoneCode = (form.querySelector("#phone-code") as HTMLInputElement)?.value || "";
+      const phoneCountry = (form.querySelector("#phone_country") as HTMLInputElement)?.value || "";
+      const description = (form.querySelector("#detailed_requirement") as HTMLTextAreaElement)?.value || "";
+      const formattedPhone = phoneCode ? `+${phoneCode} ${phone}` : phone;
+      const pageUrl = window.location.origin + window.location.pathname;
 
-      fetch("https://api.hsforms.com/submissions/v3/integration/submit/20451141/1bd8ce72-8c0d-4dd0-89c2-f2d2bd7dfcd5", {
+      // Build payload for the Netlify function (same format as form-submission.js)
+      const formData = new URLSearchParams();
+      formData.set("first_name", firstName);
+      formData.set("last_name", lastName);
+      formData.set("full_name", fullName);
+      formData.set("company_email", email);
+      formData.set("phone", formattedPhone);
+      formData.set("phone_code", phoneCode);
+      formData.set("phone_country", phoneCountry);
+      formData.set("description", description);
+      formData.set("page_url", pageUrl);
+      formData.set("conversion_channel", "contact-sales");
+      formData.set("landing_page", "https://plivo.com");
+
+      const body = new URLSearchParams();
+      body.set("formData", formData.toString());
+      body.set("hubspotutk", getCookie("hubspotutk"));
+      body.set("hubSpot", "contactForm");
+      body.set("ipAddress", "");
+
+      // Primary: submit to Netlify function (same path as production form-submission.js)
+      fetch("https://plivo-static-forms.netlify.app/.netlify/functions/submit", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ fields, context: { pageUri: window.location.href, pageName: "Contact Sales" } }),
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: body.toString(),
       })
         .then((res) => {
           if (res.ok) {
@@ -146,14 +173,54 @@ export default function ContactSalesHero() {
             if (step1) (step1 as HTMLElement).style.display = "none";
             if (step4) (step4 as HTMLElement).style.display = "block";
           } else {
-            alert("Something went wrong. Please try again or email support@plivo.com.");
-            if (btn) { btn.disabled = false; btn.textContent = "Submit"; }
+            // Fallback: submit directly to HubSpot
+            return submitToHubSpot(firstName, lastName, email, formattedPhone, description, btn);
           }
         })
         .catch(() => {
-          alert("Network error. Please try again or email support@plivo.com.");
-          if (btn) { btn.disabled = false; btn.textContent = "Submit"; }
+          // Fallback: submit directly to HubSpot
+          submitToHubSpot(firstName, lastName, email, formattedPhone, description, btn);
         });
+    };
+
+    const submitToHubSpot = (
+      firstName: string, lastName: string, email: string,
+      phone: string, message: string,
+      btn: HTMLButtonElement | null
+    ) => {
+      const hutk = getCookie("hubspotutk");
+      const fields = [
+        { name: "firstname", value: firstName },
+        { name: "lastname", value: lastName },
+        { name: "email", value: email },
+        { name: "phone", value: phone },
+        { name: "message", value: message },
+      ];
+      return fetch("https://api.hsforms.com/submissions/v3/integration/submit/20451141/1bd8ce72-8c0d-4dd0-89c2-f2d2bd7dfcd5", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          fields,
+          context: {
+            hutk: hutk || undefined,
+            pageUri: window.location.href,
+            pageName: "Contact Sales",
+          },
+        }),
+      }).then((res) => {
+        if (res.ok) {
+          const step1 = document.getElementById("contact-form")?.closest('[vpf="1"]');
+          const step4 = document.querySelector('[vpf="4"]');
+          if (step1) (step1 as HTMLElement).style.display = "none";
+          if (step4) (step4 as HTMLElement).style.display = "block";
+        } else {
+          alert("Something went wrong. Please try again or email support@plivo.com.");
+          if (btn) { btn.disabled = false; btn.textContent = "Submit"; }
+        }
+      }).catch(() => {
+        alert("Network error. Please try again or email support@plivo.com.");
+        if (btn) { btn.disabled = false; btn.textContent = "Submit"; }
+      });
     };
 
     form.addEventListener("submit", handler, true);
