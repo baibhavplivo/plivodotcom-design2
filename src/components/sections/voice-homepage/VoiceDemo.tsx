@@ -7,8 +7,9 @@ import { useGeoCountry } from "@/hooks/useGeoCountry";
 // ── Plivo AI Agent constants ────────────────────────────────────────────────
 const ENGLISH_APP_ID = "17457073576163534";
 const HINDI_APP_ID = "17457073576163534";
-const SIP_USERNAME = "dhgifemazn292730447952642444";
-const SIP_PASSWORD = "7Q%76D7D";
+const INDIA_APP_ID = "18059965556351397";
+const TOKEN_API_URL = "/api/voice-agent";
+const TOKEN_ISSUER = "MAOTC4NDM0MDATMMU0NC";
 
 const PLIVO_GRADIENT = "linear-gradient(135deg, #cd3ef9 0%, #323dfe 100%)";
 const ACTIVE_GRADIENT = "linear-gradient(135deg, #ef4444 0%, #dc2626 100%)";
@@ -37,8 +38,26 @@ function mapToClientRegion(continent: string, iso: string): string {
   }
 }
 
-function getAppId(language: Language): string {
+function getAppId(language: Language, countryCode: string): string {
+  if (countryCode === "IN") return INDIA_APP_ID;
   return language === "hindi" ? HINDI_APP_ID : ENGLISH_APP_ID;
+}
+
+async function fetchAccessToken(appId: string): Promise<string> {
+  const res = await fetch(TOKEN_API_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      app: appId,
+      iss: TOKEN_ISSUER,
+      per: { voice: { incoming_allow: true, outgoing_allow: true } },
+      sub: "testsub",
+    }),
+  });
+  if (!res.ok) throw new Error(`Token fetch failed: ${res.status}`);
+  const data = await res.json();
+  if (data.token) return data.token;
+  throw new Error("No token in response");
 }
 
 const BUTTON_TEXT: Record<DemoState, string> = {
@@ -241,7 +260,22 @@ export default function VoiceDemo() {
           client.setConnectTone(false);
         }
 
-        client.login(SIP_USERNAME, SIP_PASSWORD);
+        const appId = getAppId(lang, country);
+        fetchAccessToken(appId)
+          .then((token) => {
+            if (instanceId !== sdkInstanceIdRef.current) return;
+            client.loginWithAccessToken(token);
+          })
+          .catch(() => {
+            if (instanceId !== sdkInstanceIdRef.current) return;
+            initializingRef.current = false;
+            if (retryCountRef.current < maxRetries) {
+              retryCountRef.current++;
+              setTimeout(() => initSdk(lang), 2000);
+            } else {
+              setDemoState("error");
+            }
+          });
       } catch (err) {
         initializingRef.current = false;
         setDemoState("error");
@@ -324,13 +358,13 @@ export default function VoiceDemo() {
       }
 
       setDemoState("calling");
-      const appId = getAppId(selectedLanguage);
+      const appId = getAppId(selectedLanguage, country);
       const extraHeaders = {
         "X-PH-header2": "+919090909090",
         "X-PH-header4": "web",
         "X-PH-header6": "",
         "X-PH-header7": "call",
-        "X-PH-header8": "e2562699-5f26-4d41-a57e-e0d4618827dd",
+        "X-PH-header8": "09b0dcc8-f3ed-4d20-8c6a-460595e990a0",
       };
       const sipUri = `sip:${appId}@app.plivo.com`;
 
