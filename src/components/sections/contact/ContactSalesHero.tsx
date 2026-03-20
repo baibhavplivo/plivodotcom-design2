@@ -781,28 +781,6 @@ export default function ContactSalesHero() {
                           <span className="invalid-feedback error" id="lbl-invalid-phone-number" />
                         </div>
 
-                        {/* Use case */}
-                        <div className="form-field">
-                          <label htmlFor="latest_use_case" className="text-[13px] font-medium text-gray-700 mb-1 block">
-                            Use case <span className="text-red-400">*</span>
-                          </label>
-                          <select
-                            id="latest_use_case"
-                            name="latest_use_case"
-                            className="w-full h-10 rounded-lg border border-gray-300 bg-white px-3 text-sm text-gray-900 cursor-pointer focus:outline-none focus:border-blue-400 focus:ring-[3px] focus:ring-blue-100 hover:border-gray-400 transition-all"
-                          >
-                            <option value="" disabled hidden>Select use case</option>
-                            <option value="AI Agents">AI Agents</option>
-                            <option value="Reseller, Solutions Provider">Reseller, Solutions Provider</option>
-                            <option value="Alerts and Notifications">Alerts and Notifications</option>
-                            <option value="Marketing">Marketing</option>
-                            <option value="Customer Service">Customer Service</option>
-                            <option value="2FA, OTP Verifications">2FA, OTP Verifications</option>
-                            <option value="Other">Other</option>
-                          </select>
-                          <span className="invalid-feedback error" id="lbl-invalid-usecase" />
-                        </div>
-
                         {/* Detailed requirement */}
                         <div className="form-field">
                           <label htmlFor="detailed_requirement" className="text-[13px] font-medium text-gray-700 mb-1 block">
