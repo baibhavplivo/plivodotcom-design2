@@ -100,9 +100,17 @@ import ContactSalesHero from "@/components/sections/contact/ContactSalesHero";
   .steps_progress_wrapper { display: none; }
 
   /* Email validation indicators */
-  .mail-valid, .mail-invalid {
-    width: 16px;
-    height: 16px;
+  .mail-valid {
+    width: 14px;
+    height: 14px;
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .mail-invalid {
+    width: 14px;
+    height: 14px;
     position: absolute;
     right: 12px;
     top: 50%;

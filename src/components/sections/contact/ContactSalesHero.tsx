@@ -169,6 +169,8 @@ export default function ContactSalesHero() {
       const emailFeedback = emailInput?.closest(".form-field")?.querySelector(".invalid-feedback") as HTMLElement | null;
       const fullNameInput = form.querySelector("#full_name") as HTMLInputElement | null;
       const fullNameFeedback = fullNameInput?.closest(".form-field")?.querySelector(".invalid-feedback") as HTMLElement | null;
+      const reqInput = form.querySelector("#detailed_requirement") as HTMLTextAreaElement | null;
+      const reqFeedback = reqInput?.closest(".form-field")?.querySelector(".invalid-feedback") as HTMLElement | null;
 
       // Clear previous errors
       if (fullNameInput) fullNameInput.classList.remove("input-error");
@@ -177,6 +179,8 @@ export default function ContactSalesHero() {
       if (emailFeedback) emailFeedback.textContent = "";
       if (phoneInput) phoneInput.classList.remove("input-error");
       if (phoneFeedback) phoneFeedback.textContent = "";
+      if (reqInput) reqInput.classList.remove("input-error");
+      if (reqFeedback) reqFeedback.textContent = "";
 
       // Validate full name
       if (!fullNameInput?.value.trim()) {
@@ -224,6 +228,21 @@ export default function ContactSalesHero() {
           phoneFeedback.textContent = `Please enter a valid phone number for ${countryName}.`;
         }
         phoneInput?.focus();
+        return;
+      }
+
+      // Validate detailed requirement (minimum 100 characters)
+      const reqValue = reqInput?.value.trim() || "";
+      if (!reqValue) {
+        reqInput?.classList.add("input-error");
+        if (reqFeedback) reqFeedback.textContent = "Please describe your requirement.";
+        reqInput?.focus();
+        return;
+      }
+      if (reqValue.length < 100) {
+        reqInput?.classList.add("input-error");
+        if (reqFeedback) reqFeedback.textContent = `Please provide at least 100 characters (${reqValue.length}/100).`;
+        reqInput?.focus();
         return;
       }
 
@@ -391,8 +410,32 @@ export default function ContactSalesHero() {
         if (phoneCountryInput) phoneCountryInput.value = (countryData.iso2 || "").toUpperCase();
       };
 
+      // Get max digits allowed from the country's example number placeholder
+      const getMaxDigits = () => {
+        const placeholder = phoneInput.getAttribute("placeholder") || "";
+        const digitCount = (placeholder.match(/\d/g) || []).length;
+        return digitCount || 15; // ITU E.164 max as fallback
+      };
+
+      let maxDigits = getMaxDigits();
+
+      // Strip non-digits and enforce max digit count on input
+      const enforceDigitLimit = () => {
+        const raw = phoneInput.value;
+        const digitsOnly = raw.replace(/\D/g, "");
+        if (digitsOnly.length > maxDigits) {
+          phoneInput.value = digitsOnly.slice(0, maxDigits);
+        }
+      };
+
+      phoneInput.addEventListener("input", enforceDigitLimit);
+
       syncHiddenFields();
-      phoneInput.addEventListener("countrychange", syncHiddenFields);
+      phoneInput.addEventListener("countrychange", () => {
+        syncHiddenFields();
+        // Wait a tick for intl-tel-input to update the placeholder
+        setTimeout(() => { maxDigits = getMaxDigits(); }, 0);
+      });
       return true;
     };
 
@@ -525,6 +568,33 @@ export default function ContactSalesHero() {
       emailInput.removeEventListener("input", handleInput);
       if (enrichAbort) enrichAbort.abort();
     };
+  }, []);
+
+  // Detailed requirement: live character counter
+  useEffect(() => {
+    const textarea = document.getElementById("detailed_requirement") as HTMLTextAreaElement | null;
+    const counter = document.getElementById("req-char-count");
+    if (!textarea || !counter) return;
+
+    const MIN_CHARS = 100;
+    const update = () => {
+      const len = textarea.value.trim().length;
+      if (len === 0) {
+        counter.textContent = "";
+      } else {
+        counter.textContent = `${len}/${MIN_CHARS}`;
+        counter.style.color = len >= MIN_CHARS ? "#9ca3af" : "#ef4444";
+      }
+      // Clear error while typing
+      if (textarea.classList.contains("input-error") && len >= MIN_CHARS) {
+        textarea.classList.remove("input-error");
+        const fb = textarea.closest(".form-field")?.querySelector(".invalid-feedback") as HTMLElement | null;
+        if (fb) fb.textContent = "";
+      }
+    };
+
+    textarea.addEventListener("input", update);
+    return () => textarea.removeEventListener("input", update);
   }, []);
 
   return (
@@ -686,7 +756,7 @@ export default function ContactSalesHero() {
                             {/* @ts-expect-error vpf is a custom attribute */}
                             <div vpf="email-loader" style={{ display: "none" }} className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5" />
                             {/* @ts-expect-error vpf is a custom attribute */}
-                            <img vpf="valid-tick" style={{ display: "none" }} alt="valid" src="/images/icons/tick-green.webp" className="mail-valid" />
+                            <svg vpf="valid-tick" style={{ display: "none" }} className="mail-valid" viewBox="0 0 24 24" fill="none" stroke="#22c55e" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
                             {/* @ts-expect-error vpf is a custom attribute */}
                             <img vpf="invalid-wrong" style={{ display: "none" }} alt="invalid" src="/images/icons/red-cross.webp" className="mail-invalid" />
                           </div>
@@ -746,7 +816,10 @@ export default function ContactSalesHero() {
                             required
                             className="w-full min-h-[88px] rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 placeholder:text-gray-400 resize-none hover:border-gray-400 focus:outline-none focus:border-blue-400 focus:ring-[3px] focus:ring-blue-100 transition-all"
                           />
-                          <span className="invalid-feedback error" />
+                          <div className="flex items-center justify-between mt-0.5">
+                            <span className="invalid-feedback error" />
+                            <span id="req-char-count" className="text-[11px] text-gray-400 tabular-nums" />
+                          </div>
                         </div>
 
                         {/* Submit button */}
