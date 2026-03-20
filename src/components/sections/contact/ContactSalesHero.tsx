@@ -120,10 +120,6 @@ export default function ContactSalesHero() {
     if (!form) return;
 
     const handler = (e: Event) => {
-      // If external form-submission.js has loaded, let it handle submission
-      if ((window as any).__plivoFormLoaded) return;
-
-      // Prevent native form submission and handle via HubSpot API
       e.preventDefault();
       const btn = form.querySelector('[type="submit"]') as HTMLButtonElement | null;
       if (btn) { btn.disabled = true; btn.textContent = "Submitting..."; }
