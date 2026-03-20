@@ -706,7 +706,7 @@ export default function ContactSalesHero() {
                   {/* @ts-expect-error vpf is a custom attribute */}
                   <div vpf="1">
                     <div className="space-y-3.5">
-                      <h2 className="text-xl font-semibold text-black mb-3">
+                      <h2 className="font-inter text-xl font-semibold text-black mb-3">
                         Let's create your custom plan together
                       </h2>
 
