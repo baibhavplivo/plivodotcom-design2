@@ -9,6 +9,35 @@ const VALUE_PROPS = [
   "Custom AI agents designed for your use case",
 ];
 
+const PERSONAL_EMAIL_DOMAINS = new Set([
+  "gmail.com", "googlemail.com",
+  "hotmail.com", "hotmail.co.uk", "hotmail.fr", "hotmail.de", "hotmail.it", "hotmail.es",
+  "outlook.com", "outlook.co.uk", "outlook.fr", "outlook.de",
+  "live.com", "live.co.uk", "live.fr", "msn.com",
+  "yahoo.com", "yahoo.co.uk", "yahoo.co.in", "yahoo.fr", "yahoo.de",
+  "yahoo.it", "yahoo.es", "yahoo.ca", "yahoo.com.au", "yahoo.com.br",
+  "ymail.com", "rocketmail.com",
+  "icloud.com", "me.com", "mac.com",
+  "aol.com", "aim.com",
+  "protonmail.com", "proton.me", "pm.me",
+  "mail.com", "gmx.com", "gmx.de", "gmx.net",
+  "yandex.com", "yandex.ru",
+  "inbox.com", "fastmail.com",
+  "tutanota.com", "tuta.io",
+  "rediffmail.com",
+]);
+
+function isPersonalEmail(email: string): boolean {
+  const atIndex = email.lastIndexOf("@");
+  if (atIndex < 1) return false;
+  const domain = email.slice(atIndex + 1).toLowerCase().trim();
+  return PERSONAL_EMAIL_DOMAINS.has(domain);
+}
+
+function isValidEmailFormat(email: string): boolean {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email.trim());
+}
+
 const COMPLIANCE_BADGES = [
   { src: "/images/compliance/HIPAA black.svg", alt: "HIPAA", label: "HIPAA" },
   { src: "/images/compliance/GDPR black.svg", alt: "GDPR", label: "GDPR" },
@@ -125,19 +154,89 @@ export default function ContactSalesHero() {
 
     const handler = (e: Event) => {
       e.preventDefault();
+
+      // --- Client-side validation ---
+      const phoneInput = form.querySelector("#phone") as HTMLInputElement | null;
+      const phoneIti = phoneInput ? (phoneInput as any)._iti : null;
+      const phoneFeedback = document.getElementById("lbl-invalid-phone-number");
+      const emailInput = form.querySelector("#company_email") as HTMLInputElement | null;
+      const emailFeedback = emailInput?.closest(".form-field")?.querySelector(".invalid-feedback") as HTMLElement | null;
+      const fullNameInput = form.querySelector("#full_name") as HTMLInputElement | null;
+      const fullNameFeedback = fullNameInput?.closest(".form-field")?.querySelector(".invalid-feedback") as HTMLElement | null;
+
+      // Clear previous errors
+      if (fullNameInput) fullNameInput.classList.remove("input-error");
+      if (fullNameFeedback) fullNameFeedback.textContent = "";
+      if (emailInput) emailInput.classList.remove("input-error");
+      if (emailFeedback) emailFeedback.textContent = "";
+      if (phoneInput) phoneInput.classList.remove("input-error");
+      if (phoneFeedback) phoneFeedback.textContent = "";
+
+      // Validate full name
+      if (!fullNameInput?.value.trim()) {
+        fullNameInput?.classList.add("input-error");
+        if (fullNameFeedback) fullNameFeedback.textContent = "Full name is required.";
+        fullNameInput?.focus();
+        return;
+      }
+
+      // Validate email
+      const emailValue = emailInput?.value.trim() || "";
+      if (!emailValue) {
+        emailInput?.classList.add("input-error");
+        if (emailFeedback) emailFeedback.textContent = "Work email is required.";
+        emailInput?.focus();
+        return;
+      }
+      if (!isValidEmailFormat(emailValue)) {
+        emailInput?.classList.add("input-error");
+        if (emailFeedback) emailFeedback.textContent = "Please enter a valid email address.";
+        emailInput?.focus();
+        return;
+      }
+      if (isPersonalEmail(emailValue)) {
+        emailInput?.classList.add("input-error");
+        if (emailFeedback) emailFeedback.textContent = "Please use your work email address.";
+        const invalidIcon = emailInput?.parentElement?.querySelector('[vpf="invalid-wrong"]') as HTMLElement | null;
+        if (invalidIcon) invalidIcon.style.display = "block";
+        emailInput?.focus();
+        return;
+      }
+
+      // Validate phone
+      if (!phoneInput?.value.trim()) {
+        phoneInput?.classList.add("input-error");
+        if (phoneFeedback) phoneFeedback.textContent = "Phone number is required.";
+        phoneInput?.focus();
+        return;
+      }
+      if (phoneIti && typeof phoneIti.isValidNumber === "function" && !phoneIti.isValidNumber()) {
+        phoneInput?.classList.add("input-error");
+        if (phoneFeedback) {
+          const countryData = phoneIti.getSelectedCountryData();
+          const countryName = countryData?.name || "the selected country";
+          phoneFeedback.textContent = `Please enter a valid phone number for ${countryName}.`;
+        }
+        phoneInput?.focus();
+        return;
+      }
+
+      // --- Collect form data ---
       const btn = form.querySelector('[type="submit"]') as HTMLButtonElement | null;
       if (btn) { btn.disabled = true; btn.textContent = "Submitting..."; }
 
-      const fullName = (form.querySelector("#full_name") as HTMLInputElement)?.value || "";
+      const fullName = fullNameInput?.value || "";
       const parts = fullName.trim().split(/\s+/);
       const firstName = parts[0] || "";
       const lastName = parts.slice(1).join(" ") || "";
-      const email = (form.querySelector("#company_email") as HTMLInputElement)?.value || "";
-      const phone = (form.querySelector("#phone") as HTMLInputElement)?.value || "";
+      const email = emailValue;
+      const phone = phoneInput?.value || "";
       const phoneCode = (form.querySelector("#phone-code") as HTMLInputElement)?.value || "";
       const phoneCountry = (form.querySelector("#phone_country") as HTMLInputElement)?.value || "";
       const description = (form.querySelector("#detailed_requirement") as HTMLTextAreaElement)?.value || "";
-      const formattedPhone = phoneCode ? `+${phoneCode} ${phone}` : phone;
+      const formattedPhone = phoneIti && typeof phoneIti.getNumber === "function"
+        ? phoneIti.getNumber()
+        : (phoneCode ? `+${phoneCode} ${phone}` : phone);
       const pageUrl = window.location.origin + window.location.pathname;
 
       // Build payload for the Netlify function (same format as form-submission.js)
@@ -241,6 +340,102 @@ export default function ContactSalesHero() {
 
     form.addEventListener("submit", handler, true);
     return () => form.removeEventListener("submit", handler, true);
+  }, []);
+
+  // Initialize intl-tel-input on #phone immediately (don't wait for form-submission.js)
+  useEffect(() => {
+    let cancelled = false;
+    let pollTimer: ReturnType<typeof setInterval>;
+
+    const init = () => {
+      const phoneInput = document.getElementById("phone") as HTMLInputElement | null;
+      if (!phoneInput || !(window as any).intlTelInput) return false;
+
+      // Already initialized — skip
+      if ((phoneInput as any)._iti) return true;
+
+      const iti = (window as any).intlTelInput(phoneInput, {
+        preferredCountries: ["us", "gb", "in", "ca", "au", "de", "fr", "sg", "br", "mx", "ae", "sa"],
+        separateDialCode: true,
+        utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/utils.js",
+        autoPlaceholder: "aggressive",
+      });
+
+      // Store instance as sentinel for form-submission.js
+      (phoneInput as any)._iti = iti;
+
+      const syncHiddenFields = () => {
+        const countryData = iti.getSelectedCountryData();
+        const phoneCodeInput = document.getElementById("phone-code") as HTMLInputElement | null;
+        const phoneCountryInput = document.getElementById("phone_country") as HTMLInputElement | null;
+        if (phoneCodeInput) phoneCodeInput.value = countryData.dialCode || "";
+        if (phoneCountryInput) phoneCountryInput.value = (countryData.iso2 || "").toUpperCase();
+      };
+
+      syncHiddenFields();
+      phoneInput.addEventListener("countrychange", syncHiddenFields);
+      return true;
+    };
+
+    if (!init()) {
+      pollTimer = setInterval(() => {
+        if (cancelled) { clearInterval(pollTimer); return; }
+        if (init()) clearInterval(pollTimer);
+      }, 50);
+    }
+
+    return () => {
+      cancelled = true;
+      if (pollTimer) clearInterval(pollTimer);
+    };
+  }, []);
+
+  // Email: blur validation for personal domains and format
+  useEffect(() => {
+    const emailInput = document.getElementById("company_email") as HTMLInputElement | null;
+    if (!emailInput) return;
+
+    const getEmailFeedback = () =>
+      emailInput.closest(".form-field")?.querySelector(".invalid-feedback") as HTMLElement | null;
+
+    const clearEmailError = () => {
+      emailInput.classList.remove("input-error");
+      const fb = getEmailFeedback();
+      if (fb) fb.textContent = "";
+      const invalidIcon = emailInput.parentElement?.querySelector('[vpf="invalid-wrong"]') as HTMLElement | null;
+      if (invalidIcon) invalidIcon.style.display = "none";
+      const validIcon = emailInput.parentElement?.querySelector('[vpf="valid-tick"]') as HTMLElement | null;
+      if (validIcon) validIcon.style.display = "none";
+    };
+
+    const showEmailError = (message: string) => {
+      emailInput.classList.add("input-error");
+      const fb = getEmailFeedback();
+      if (fb) fb.textContent = message;
+      const invalidIcon = emailInput.parentElement?.querySelector('[vpf="invalid-wrong"]') as HTMLElement | null;
+      if (invalidIcon) invalidIcon.style.display = "block";
+      const validIcon = emailInput.parentElement?.querySelector('[vpf="valid-tick"]') as HTMLElement | null;
+      if (validIcon) validIcon.style.display = "none";
+    };
+
+    const handleBlur = () => {
+      const value = emailInput.value.trim();
+      if (!value) { clearEmailError(); return; }
+      if (!isValidEmailFormat(value)) { showEmailError("Please enter a valid email address."); return; }
+      if (isPersonalEmail(value)) { showEmailError("Please use your work email address."); return; }
+      clearEmailError();
+    };
+
+    const handleInput = () => {
+      if (emailInput.classList.contains("input-error")) clearEmailError();
+    };
+
+    emailInput.addEventListener("blur", handleBlur);
+    emailInput.addEventListener("input", handleInput);
+    return () => {
+      emailInput.removeEventListener("blur", handleBlur);
+      emailInput.removeEventListener("input", handleInput);
+    };
   }, []);
 
   return (

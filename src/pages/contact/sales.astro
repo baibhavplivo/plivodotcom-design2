@@ -21,6 +21,8 @@ import ContactSalesHero from "@/components/sections/contact/ContactSalesHero";
     var origInit = window.intlTelInput;
     if (!origInit) return;
     window.intlTelInput = function(input, options) {
+      // If already initialized by React, return existing instance
+      if (input._iti) return input._iti;
       options = options || {};
       options.preferredCountries = [
         "us", "gb", "in", "ca", "au", "de", "fr", "sg", "br", "mx", "ae", "sa"
