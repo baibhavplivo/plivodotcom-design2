@@ -756,9 +756,9 @@ export default function ContactSalesHero() {
                             {/* @ts-expect-error vpf is a custom attribute */}
                             <div vpf="email-loader" style={{ display: "none" }} className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5" />
                             {/* @ts-expect-error vpf is a custom attribute */}
-                            <svg vpf="valid-tick" style={{ display: "none" }} className="mail-valid" viewBox="0 0 24 24" fill="none" stroke="#22c55e" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
+                            <svg vpf="valid-tick" style={{ display: "none" }} className="mail-valid" viewBox="0 0 24 24" fill="none" stroke="#22c55e" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
                             {/* @ts-expect-error vpf is a custom attribute */}
-                            <img vpf="invalid-wrong" style={{ display: "none" }} alt="invalid" src="/images/icons/red-cross.webp" className="mail-invalid" />
+                            <svg vpf="invalid-wrong" style={{ display: "none" }} className="mail-invalid" viewBox="0 0 24 24" fill="none" stroke="#ef4444" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></svg>
                           </div>
                           <span className="invalid-feedback error" />
                         </div>
