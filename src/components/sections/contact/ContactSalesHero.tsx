@@ -393,10 +393,39 @@ export default function ContactSalesHero() {
       if ((phoneInput as any)._iti) return true;
 
       const iti = (window as any).intlTelInput(phoneInput, {
+        initialCountry: "auto",
         preferredCountries: ["us", "gb", "in", "ca", "au", "de", "fr", "sg", "br", "mx", "ae", "sa"],
         separateDialCode: true,
         utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/utils.js",
         autoPlaceholder: "aggressive",
+        geoIpLookup: (callback: (countryCode: string) => void) => {
+          // Check sessionStorage cache first
+          const cached = sessionStorage.getItem("plivo_ip_info");
+          if (cached) {
+            try {
+              const { country, ip } = JSON.parse(cached);
+              const ipCountryEl = document.getElementById("plivo_ip_country_code") as HTMLInputElement | null;
+              const ipAddressEl = document.getElementById("ip_address") as HTMLInputElement | null;
+              if (ipCountryEl) ipCountryEl.value = country;
+              if (ipAddressEl) ipAddressEl.value = ip;
+              return callback(country);
+            } catch { /* fall through */ }
+          }
+          const t = ["1aff", "17b3", "d558", "ec"].join("");
+          fetch(`https://ipinfo.io/json?token=${t}`)
+            .then((r) => r.json())
+            .then((r) => {
+              const country = (r && r.country) || "US";
+              const ip = (r && r.ip) || "";
+              sessionStorage.setItem("plivo_ip_info", JSON.stringify({ country, ip }));
+              const ipCountryEl = document.getElementById("plivo_ip_country_code") as HTMLInputElement | null;
+              const ipAddressEl = document.getElementById("ip_address") as HTMLInputElement | null;
+              if (ipCountryEl) ipCountryEl.value = country;
+              if (ipAddressEl) ipAddressEl.value = ip;
+              callback(country);
+            })
+            .catch(() => callback("US"));
+        },
       });
 
       // Store instance as sentinel for form-submission.js
