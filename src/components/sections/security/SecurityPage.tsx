@@ -256,7 +256,7 @@ export default function SecurityPage() {
             <div ref={contentRef} className="space-y-10">
               {/* Physical Security */}
               <div id="physical-security" className="rounded-xl border border-gray-200 p-6">
-                <h2 className="font-sora text-xl font-semibold text-black mb-2">
+                <h2 className="font-sora text-xl font-medium text-black mb-2">
                   Physical on-premises security
                 </h2>
                 <p className="text-sm text-gray-500 mb-5">
@@ -294,7 +294,7 @@ export default function SecurityPage() {
 
               {/* Infrastructure Security */}
               <div id="infrastructure-security" className="rounded-xl border border-gray-200 p-6">
-                <h2 className="font-sora text-xl font-semibold text-black mb-2">
+                <h2 className="font-sora text-xl font-medium text-black mb-2">
                   Infrastructure security & availability
                 </h2>
                 <p className="text-sm text-gray-500 mb-5">
@@ -344,7 +344,7 @@ export default function SecurityPage() {
 
               {/* Application Security */}
               <div id="application-security" className="rounded-xl border border-gray-200 p-6">
-                <h2 className="font-sora text-xl font-semibold text-black mb-2">
+                <h2 className="font-sora text-xl font-medium text-black mb-2">
                   Application security
                 </h2>
                 <p className="text-sm text-gray-500 mb-5">
@@ -378,7 +378,7 @@ export default function SecurityPage() {
 
               {/* Data Security */}
               <div id="data-security" className="rounded-xl border border-gray-200 p-6">
-                <h2 className="font-sora text-xl font-semibold text-black mb-2">
+                <h2 className="font-sora text-xl font-medium text-black mb-2">
                   Data security & privacy
                 </h2>
                 <p className="text-sm text-gray-500 mb-5">
@@ -416,7 +416,7 @@ export default function SecurityPage() {
 
               {/* Payment Security */}
               <div id="payment-security" className="rounded-xl border border-gray-200 p-6">
-                <h2 className="font-sora text-xl font-semibold text-black mb-2">
+                <h2 className="font-sora text-xl font-medium text-black mb-2">
                   Payment security
                 </h2>
                 <p className="text-sm text-gray-500 mb-5">
@@ -446,7 +446,7 @@ export default function SecurityPage() {
 
               {/* Compliance */}
               <div id="compliance" className="rounded-xl border border-gray-200 p-6">
-                <h2 className="font-sora text-xl font-semibold text-black mb-2">
+                <h2 className="font-sora text-xl font-medium text-black mb-2">
                   Compliance & certifications
                 </h2>
                 <p className="text-sm text-gray-500 mb-5">
@@ -488,7 +488,7 @@ export default function SecurityPage() {
 
               {/* Operational Transparency */}
               <div className="rounded-xl border border-gray-200 p-6">
-                <h2 className="font-sora text-xl font-semibold text-black mb-2">
+                <h2 className="font-sora text-xl font-medium text-black mb-2">
                   Operational transparency
                 </h2>
                 <p className="text-sm text-gray-500 mb-5">

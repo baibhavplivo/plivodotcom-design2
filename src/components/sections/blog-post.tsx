@@ -72,7 +72,7 @@ const BlogPost = ({
               </div>
             )}
 
-            <h1 className="mb-4 font-sora text-2xl font-semibold leading-tight tracking-tight md:text-3xl lg:text-4xl text-black">
+            <h1 className="mb-4 font-sora text-2xl font-medium leading-tight tracking-tight md:text-3xl lg:text-4xl text-black">
               {title}
             </h1>
             <p className="mx-auto max-w-3xl text-lg font-normal leading-relaxed text-gray-500">
@@ -119,7 +119,7 @@ const BlogPost = ({
           )}
 
           {/* Article Body */}
-          <article className="blog-content prose prose-lg prose-h1:font-sora prose-h2:font-sora prose-headings:font-semibold prose-h2:text-2xl prose-h2:mt-10 prose-h2:mb-4 prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-3 prose-p:text-base prose-p:leading-relaxed prose-p:text-gray-700 prose-a:text-[#323dfe] prose-a:no-underline hover:prose-a:underline prose-img:rounded-lg prose-blockquote:border-l-[#323dfe] prose-blockquote:bg-gray-50 prose-blockquote:py-1 prose-blockquote:not-italic prose-strong:text-black prose-li:text-gray-700 max-w-none">
+          <article className="blog-content prose prose-lg prose-h1:font-sora prose-h2:font-sora prose-headings:font-medium prose-h2:text-2xl prose-h2:mt-10 prose-h2:mb-4 prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-3 prose-p:text-base prose-p:leading-relaxed prose-p:text-gray-700 prose-a:text-[#323dfe] prose-a:no-underline hover:prose-a:underline prose-img:rounded-lg prose-blockquote:border-l-[#323dfe] prose-blockquote:bg-gray-50 prose-blockquote:py-1 prose-blockquote:not-italic prose-strong:text-black prose-li:text-gray-700 max-w-none">
             {children}
           </article>
 
@@ -142,7 +142,7 @@ const BlogPost = ({
       {relatedPosts.length > 0 && (
         <div className="bg-gray-50 py-12">
           <div className="container max-w-7xl">
-            <h2 className="font-sora text-2xl font-semibold text-black mb-8">
+            <h2 className="font-sora text-2xl font-medium text-black mb-8">
               Related Articles
             </h2>
             <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">

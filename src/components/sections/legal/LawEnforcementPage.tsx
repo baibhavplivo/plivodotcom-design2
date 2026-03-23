@@ -6,7 +6,7 @@ export default function LawEnforcementPage() {
   return (
     <LegalLayout activePage="/legal/law-enforcement/">
       <div className="flex items-center justify-between mb-6">
-        <h2 className="font-sora text-xl font-semibold text-black">Law enforcement guidelines</h2>
+        <h2 className="font-sora text-xl font-medium text-black">Law enforcement guidelines</h2>
         <span className="text-xs text-gray-400">Last updated: October 12, 2021</span>
       </div>
       <div className="prose prose-sm max-w-none text-gray-700 leading-relaxed space-y-5">

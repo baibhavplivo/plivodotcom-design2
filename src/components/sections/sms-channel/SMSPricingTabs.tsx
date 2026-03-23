@@ -299,7 +299,7 @@ export default function SMSPricingTabs() {
 function SMSSection({ smsRates, hasCarrierFees, loading }: { smsRates: SMSRateRow[]; hasCarrierFees: boolean; loading: boolean }) {
   return (
     <div>
-      <h2 className="font-sora text-xl font-semibold text-black mb-2">SMS Text Messages</h2>
+      <h2 className="font-sans text-xl font-semibold text-black mb-2">SMS Text Messages</h2>
       {hasCarrierFees && (
         <p className="text-sm text-gray-500 mb-6">
           *Additional carrier surcharge fees apply to all inbound and outbound SMS usage rates.{" "}
@@ -369,7 +369,7 @@ function MMSSection({ mmsRates, hasCarrierFees }: { mmsRates: SMSCountryRates["m
 
   return (
     <div>
-      <h2 className="font-sora text-xl font-semibold text-black mb-2">MMS Multimedia Messages</h2>
+      <h2 className="font-sans text-xl font-semibold text-black mb-2">MMS Multimedia Messages</h2>
       {hasCarrierFees && (
         <p className="text-sm text-gray-500 mb-6">
           *Additional carrier surcharge fees apply to all inbound and outbound MMS usage rates.{" "}
@@ -421,7 +421,7 @@ function MMSSection({ mmsRates, hasCarrierFees }: { mmsRates: SMSCountryRates["m
 function RCSSection({ hasCarrierFees }: { hasCarrierFees: boolean }) {
   return (
     <div>
-      <h2 className="font-sora text-xl font-semibold text-black mb-2">RCS Messages</h2>
+      <h2 className="font-sans text-xl font-semibold text-black mb-2">RCS Messages</h2>
       {hasCarrierFees && (
         <p className="text-sm text-gray-500 mb-6">
           RCS Rich text messages are charged per segment and RCS Rich Media is charged per message. *Additional carrier surcharge fees apply.{" "}
@@ -480,7 +480,7 @@ function LivePhoneNumbersSection({ phoneNumbers, loading, countryCode }: { phone
   const currency = countryCode === "IN" ? "₹" : "$";
   return (
     <div>
-      <h2 className="font-sora text-xl font-semibold text-black mb-2">Phone Number Rental</h2>
+      <h2 className="font-sans text-xl font-semibold text-black mb-2">Phone Number Rental</h2>
       <p className="text-sm text-gray-500 mb-6">
         Monthly rental rates for SMS-enabled phone numbers.
       </p>
@@ -511,7 +511,7 @@ function LivePhoneNumbersSection({ phoneNumbers, loading, countryCode }: { phone
 function PhoneNumbersSection({ phoneNumbers }: { phoneNumbers: NonNullable<SMSCountryRates["phoneNumbers"]> }) {
   return (
     <div>
-      <h2 className="font-sora text-xl font-semibold text-black mb-2">Phone Number Rental</h2>
+      <h2 className="font-sans text-xl font-semibold text-black mb-2">Phone Number Rental</h2>
       {phoneNumbers.note && (
         <p className="text-sm text-gray-500 mb-6">
           **{phoneNumbers.note}
@@ -599,7 +599,7 @@ function SMSCostCalculator() {
 
   return (
     <div>
-      <h2 className="font-sora text-xl font-semibold text-black mb-2">Cost calculator</h2>
+      <h2 className="font-sans text-xl font-semibold text-black mb-2">Cost calculator</h2>
       <p className="text-sm text-gray-500 mb-6">
         Compare SMS costs between Plivo and other providers.
       </p>
@@ -651,7 +651,10 @@ function SMSCostCalculator() {
             step={10000}
             value={volume}
             onChange={(e) => setVolume(Number(e.target.value))}
-            className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[#323dfe]"
+            className="w-full h-2 rounded-lg appearance-none cursor-pointer accent-[#323dfe]"
+            style={{
+              background: `linear-gradient(to right, #323dfe ${((volume - 10000) / 990000) * 100}%, #e5e7eb ${((volume - 10000) / 990000) * 100}%)`,
+            }}
           />
           <div className="flex justify-between text-xs text-gray-400 mt-1">
             <span>10K</span>
@@ -710,7 +713,7 @@ function SMSCostCalculator() {
 function CarrierFeesSection() {
   return (
     <div className="space-y-10">
-      <h2 className="font-sora text-xl font-semibold text-black">Additional Carrier Surcharge Fees</h2>
+      <h2 className="font-sans text-xl font-semibold text-black">Additional Carrier Surcharge Fees</h2>
 
       {/* SMS Carrier Surcharge Fee */}
       <div>

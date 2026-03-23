@@ -6,7 +6,7 @@ export default function ResponsibleDisclosurePage() {
   return (
     <LegalLayout activePage="/legal/responsible-disclosure/">
       <div className="flex items-center justify-between mb-6">
-        <h2 className="font-sora text-xl font-semibold text-black">Responsible disclosure policy</h2>
+        <h2 className="font-sora text-xl font-medium text-black">Responsible disclosure policy</h2>
         <span className="text-xs text-gray-400">Last updated: September 18, 2024</span>
       </div>
       <div className="prose prose-sm max-w-none text-gray-700 leading-relaxed space-y-5">

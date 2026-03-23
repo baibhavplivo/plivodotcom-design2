@@ -280,7 +280,7 @@ export default function VoicePricingTabs() {
 function LocalNumbersSection({ rates, loading }: { rates: VoiceRates | null; loading: boolean }) {
   return (
     <div>
-      <h2 className="font-sora text-xl font-semibold text-black mb-2">Local Numbers</h2>
+      <h2 className="font-sans text-xl font-semibold text-black mb-2">Local Numbers</h2>
       <p className="text-sm text-gray-500 mb-6">
         Per-minute rates for inbound and outbound calls via local numbers.
       </p>
@@ -318,7 +318,7 @@ function TollFreeSection({ rates, loading }: { rates: VoiceRates | null; loading
   const inbound = rates?.tollfreeInbound || "—";
   return (
     <div>
-      <h2 className="font-sora text-xl font-semibold text-black mb-2">Toll-Free Numbers</h2>
+      <h2 className="font-sans text-xl font-semibold text-black mb-2">Toll-Free Numbers</h2>
       <p className="text-sm text-gray-500 mb-6">
         Per-minute rates for inbound and outbound calls via toll-free numbers.
       </p>
@@ -354,7 +354,7 @@ function TollFreeSection({ rates, loading }: { rates: VoiceRates | null; loading
 function IPCallsSection({ rates, loading }: { rates: VoiceRates | null; loading: boolean }) {
   return (
     <div>
-      <h2 className="font-sora text-xl font-semibold text-black mb-2">IP / Browser SDK Calls</h2>
+      <h2 className="font-sans text-xl font-semibold text-black mb-2">IP / Browser SDK Calls</h2>
       <p className="text-sm text-gray-500 mb-6">
         Per-minute rates for calls made or received via SIP or the Browser SDK.
       </p>
@@ -393,7 +393,7 @@ function PhoneRentalSection({ phoneNumbers, loading, countryCode }: { phoneNumbe
 
   return (
     <div>
-      <h2 className="font-sora text-xl font-semibold text-black mb-2">Phone Number Rental</h2>
+      <h2 className="font-sans text-xl font-semibold text-black mb-2">Phone Number Rental</h2>
       <p className="text-sm text-gray-500 mb-6">
         Monthly rental rates for phone numbers.
       </p>
@@ -425,7 +425,7 @@ function PhoneRentalSection({ phoneNumbers, loading, countryCode }: { phoneNumbe
 function AddOnsSection({ countryCode }: { countryCode: string }) {
   return (
     <div>
-      <h2 className="font-sora text-xl font-semibold text-black mb-6">Add-On Services</h2>
+      <h2 className="font-sans text-xl font-semibold text-black mb-6">Add-On Services</h2>
 
       <div className="overflow-x-auto">
         <table className="w-full">

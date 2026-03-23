@@ -6,7 +6,7 @@ export default function CopyrightPage() {
   return (
     <LegalLayout activePage="/legal/copyright/">
       <div className="flex items-center justify-between mb-6">
-        <h2 className="font-sora text-xl font-semibold text-black">Copyright infringement notification</h2>
+        <h2 className="font-sora text-xl font-medium text-black">Copyright infringement notification</h2>
         <span className="text-xs text-gray-400">Last updated: December 20, 2024</span>
       </div>
       <div className="prose prose-sm max-w-none text-gray-700 leading-relaxed space-y-5">

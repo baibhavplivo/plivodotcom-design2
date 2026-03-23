@@ -269,7 +269,7 @@ function MessagingRatesSection({
 
   return (
     <div>
-      <h2 className="font-sora text-xl font-semibold text-black mb-2">
+      <h2 className="font-sans text-xl font-semibold text-black mb-2">
         WhatsApp Messaging Rates
       </h2>
       <p className="text-sm text-gray-500 mb-6">
@@ -331,7 +331,7 @@ function MessagingRatesSection({
 function PlatformFeeSection({ isIndia }: { isIndia: boolean }) {
   return (
     <div>
-      <h2 className="font-sora text-xl font-semibold text-black mb-2">Platform Fee</h2>
+      <h2 className="font-sans text-xl font-semibold text-black mb-2">Platform Fee</h2>
       <p className="text-sm text-gray-500 mb-6">
         Plivo charges a platform fee per conversation in addition to Meta's conversation-based fees.
       </p>

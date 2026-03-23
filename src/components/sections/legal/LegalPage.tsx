@@ -6,7 +6,7 @@ export default function LegalPage() {
   return (
     <LegalLayout activePage="/legal/tos/">
       <div className="flex items-center justify-between mb-6">
-        <h2 className="font-sora text-xl font-semibold text-black">Terms of service</h2>
+        <h2 className="font-sora text-xl font-medium text-black">Terms of service</h2>
         <span className="text-xs text-gray-400">Last updated: August 26, 2025</span>
       </div>
       <div className="prose prose-sm max-w-none text-gray-700 leading-relaxed space-y-5">

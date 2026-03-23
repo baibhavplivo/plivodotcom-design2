@@ -6,7 +6,7 @@ export default function ServicesSchedulePage() {
   return (
     <LegalLayout activePage="/legal/services-schedule/">
       <div className="flex items-center justify-between mb-6">
-        <h2 className="font-sora text-xl font-semibold text-black">Services schedule</h2>
+        <h2 className="font-sora text-xl font-medium text-black">Services schedule</h2>
         <span className="text-xs text-gray-400">Last updated: January 27, 2025</span>
       </div>
       <div className="prose prose-sm max-w-none text-gray-700 leading-relaxed space-y-5">

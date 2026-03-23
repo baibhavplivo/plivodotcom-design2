@@ -15,7 +15,9 @@ function formatCallRate(val: string | undefined, currency = "$"): string {
   if (!val) return `${currency}0.0000/min`;
   const trimmed = val.trim();
   if (trimmed === "" || trimmed.toLowerCase() === "n/a") return `${currency}0.0000/min`;
-  const num = parseFloat(trimmed);
+  // Strip currency symbols ($, ₹, etc.) before parsing
+  const cleaned = trimmed.replace(/[^0-9.\-]/g, "");
+  const num = parseFloat(cleaned);
   if (isNaN(num)) return `${currency}0.0000/min`;
   return `${currency}${num.toFixed(4)}/min`;
 }
@@ -31,6 +33,7 @@ export function useWhatsAppCallRates(countryCode: string): {
   loading: boolean;
 } {
   const cache = useRef<Map<string, WhatsAppCallRates> | null>(null);
+  const latestCountry = useRef(countryCode);
   const [rates, setRates] = useState<WhatsAppCallRates | null>(
     WA_CALL_RATES[countryCode] || null
   );
@@ -41,6 +44,8 @@ export function useWhatsAppCallRates(countryCode: string): {
   const fetching = useRef(false);
 
   useEffect(() => {
+    latestCountry.current = countryCode;
+
     if (cache.current) {
       const found = cache.current.get(countryCode);
       const fallbackCur = countryCode === "IN" ? "₹" : "$";
@@ -53,7 +58,16 @@ export function useWhatsAppCallRates(countryCode: string): {
       return;
     }
 
-    if (fetching.current) return;
+    if (fetching.current) {
+      // Fetch in progress — show hardcoded fallback for the new country
+      const fallbackCur = countryCode === "IN" ? "₹" : "$";
+      setRates(WA_CALL_RATES[countryCode] || {
+        inbound: WA_CALL_FALLBACK?.inbound || `${fallbackCur}0.0040/min`,
+        outbound: WA_CALL_FALLBACK?.outbound || `${fallbackCur}0.0164/min`,
+        currency: fallbackCur,
+      });
+      return;
+    }
     fetching.current = true;
     setLoading(true);
 
@@ -84,16 +98,19 @@ export function useWhatsAppCallRates(countryCode: string): {
         cache.current = ratesMap;
         setCountryCodes(codes);
 
-        const found = ratesMap.get(countryCode);
-        const fbCur = countryCode === "IN" ? "₹" : "$";
-        setRates(found || WA_CALL_RATES[countryCode] || {
+        // Use latest country ref (not stale closure value)
+        const latest = latestCountry.current;
+        const found = ratesMap.get(latest);
+        const fbCur = latest === "IN" ? "₹" : "$";
+        setRates(found || WA_CALL_RATES[latest] || {
           inbound: WA_CALL_FALLBACK?.inbound || `${fbCur}0.0040/min`,
           outbound: WA_CALL_FALLBACK?.outbound || `${fbCur}0.0164/min`,
           currency: fbCur,
         });
       })
       .catch(() => {
-        setRates(WA_CALL_RATES[countryCode] || null);
+        const latest = latestCountry.current;
+        setRates(WA_CALL_RATES[latest] || null);
       })
       .finally(() => setLoading(false));
   }, [countryCode]);

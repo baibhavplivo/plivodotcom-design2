@@ -39,6 +39,7 @@ export function useWhatsAppChatRates(countryCode: string): {
 } {
   const cache = useRef<Map<string, WhatsAppChatRates> | null>(null);
   const allCodes = useRef<string[]>([]);
+  const latestCountry = useRef(countryCode);
   const [rates, setRates] = useState<WhatsAppChatRates | null>(
     WA_CHAT_RATES[countryCode] || null
   );
@@ -49,6 +50,8 @@ export function useWhatsAppChatRates(countryCode: string): {
   const fetching = useRef(false);
 
   useEffect(() => {
+    latestCountry.current = countryCode;
+
     if (cache.current) {
       // Already fetched — just look up
       setRates(cache.current.get(countryCode) || WA_CHAT_RATES[countryCode] || null);
@@ -56,7 +59,11 @@ export function useWhatsAppChatRates(countryCode: string): {
       return;
     }
 
-    if (fetching.current) return;
+    if (fetching.current) {
+      // Fetch in progress — show hardcoded fallback for the new country
+      setRates(WA_CHAT_RATES[countryCode] || null);
+      return;
+    }
     fetching.current = true;
     setLoading(true);
 
@@ -86,14 +93,20 @@ export function useWhatsAppChatRates(countryCode: string): {
           const iso = nameToISO[marketName.toLowerCase()];
           if (!iso) continue;
 
-          const isIndia = iso === "IN";
+          // Skip India — CSV has USD values but India needs INR rates
+          // The hardcoded WA_CHAT_RATES["IN"] has correct INR values
+          if (iso === "IN") {
+            codes.push(iso);
+            continue;
+          }
+
           const chatRates: WhatsAppChatRates = {
             marketing,
             utility,
             authentication,
             authenticationIntl,
             service,
-            currency: isIndia ? "₹" : "$",
+            currency: "$",
           };
 
           ratesMap.set(iso, chatRates);
@@ -103,11 +116,13 @@ export function useWhatsAppChatRates(countryCode: string): {
         cache.current = ratesMap;
         allCodes.current = codes;
         setCountryCodes(codes);
-        setRates(ratesMap.get(countryCode) || WA_CHAT_RATES[countryCode] || null);
+        // Use latest country ref (not stale closure value)
+        const latest = latestCountry.current;
+        setRates(ratesMap.get(latest) || WA_CHAT_RATES[latest] || null);
       })
       .catch(() => {
-        // Keep hardcoded fallback
-        setRates(WA_CHAT_RATES[countryCode] || null);
+        const latest = latestCountry.current;
+        setRates(WA_CHAT_RATES[latest] || null);
       })
       .finally(() => setLoading(false));
   }, [countryCode]);

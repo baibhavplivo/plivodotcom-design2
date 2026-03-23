@@ -59,11 +59,13 @@ export function useCountryPricing(countryCode: string): {
   loading: boolean;
 } {
   const cache = useRef<Map<string, CountryPricingData>>(new Map());
+  const latestCountry = useRef<string>("");
   const [data, setData] = useState<CountryPricingData | null>(null);
   const [loading, setLoading] = useState(true);
 
   const fetchPricing = useCallback(
     (code: string) => {
+      latestCountry.current = code;
       // Check cache
       const cached = cache.current.get(code);
       if (cached) {
@@ -98,6 +100,7 @@ export function useCountryPricing(countryCode: string): {
           return res.json();
         })
         .then((apiData) => {
+          if (latestCountry.current !== code) return;
           if (apiData.error === "Access Denied") throw new Error("Access Denied");
 
           // Extract voice rates from API
@@ -189,6 +192,7 @@ export function useCountryPricing(countryCode: string): {
           setData(result);
         })
         .catch(() => {
+          if (latestCountry.current !== code) return;
           // Fall back to hardcoded data
           const fallback = VOICE_RATES[code];
           const smsFallback = SMS_RATES[code];
@@ -206,7 +210,9 @@ export function useCountryPricing(countryCode: string): {
             setData(null);
           }
         })
-        .finally(() => setLoading(false));
+        .finally(() => {
+          if (latestCountry.current === code) setLoading(false);
+        });
     },
     []
   );

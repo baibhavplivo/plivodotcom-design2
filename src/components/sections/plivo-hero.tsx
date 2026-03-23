@@ -68,7 +68,7 @@ export const PlivoHero = ({ headline, subheadline }: PlivoHeroProps) => {
           <div className="space-y-6 lg:space-y-8">
             {/* Headline */}
             <div>
-              <h1 className="font-sora text-[28px] font-semibold leading-[1.15] tracking-[-0.02em] text-black sm:text-[36px] lg:text-[42px]">
+              <h1 className="font-sora text-[28px] font-medium leading-[1.15] tracking-[-0.02em] text-black sm:text-[36px] lg:text-[42px]">
                 {headline}
               </h1>
               <p className="mt-4 text-[15px] font-normal leading-[1.7] text-gray-600 sm:text-[16px] lg:text-[17px]">
@@ -97,7 +97,7 @@ export const PlivoHero = ({ headline, subheadline }: PlivoHeroProps) => {
             {/* CTAs */}
             <div className="flex flex-wrap items-center gap-3">
               <a
-                href="https://cx.plivo.com/"
+                href="https://cx.plivo.com/pungis2"
                 className="group inline-flex items-center justify-center gap-2 rounded-md bg-black px-6 py-3 text-[14px] font-medium text-white transition-all hover:bg-gray-800 hover:shadow-md"
               >
                 <svg

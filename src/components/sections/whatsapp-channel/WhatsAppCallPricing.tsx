@@ -264,7 +264,7 @@ export default function WhatsAppCallPricing() {
 function InboundCallsSection({ rates, loading }: { rates: WhatsAppCallRates | null; loading: boolean }) {
   return (
     <div>
-      <h2 className="font-sora text-xl font-semibold text-black mb-2">Inbound Calls</h2>
+      <h2 className="font-sans text-xl font-semibold text-black mb-2">Inbound Calls</h2>
       <p className="text-sm text-gray-500 mb-6">
         Per-minute rate for receiving WhatsApp voice calls.
       </p>
@@ -294,7 +294,7 @@ function InboundCallsSection({ rates, loading }: { rates: WhatsAppCallRates | nu
 function OutboundCallsSection({ rates, loading }: { rates: WhatsAppCallRates | null; loading: boolean }) {
   return (
     <div>
-      <h2 className="font-sora text-xl font-semibold text-black mb-2">Outbound Calls</h2>
+      <h2 className="font-sans text-xl font-semibold text-black mb-2">Outbound Calls</h2>
       <p className="text-sm text-gray-500 mb-6">
         Per-minute rate for making WhatsApp voice calls.
       </p>
@@ -327,7 +327,7 @@ function PhoneRentalSection({ phoneNumbers, loading, countryCode }: { phoneNumbe
 
   return (
     <div>
-      <h2 className="font-sora text-xl font-semibold text-black mb-2">Phone Number Rental</h2>
+      <h2 className="font-sans text-xl font-semibold text-black mb-2">Phone Number Rental</h2>
       <p className="text-sm text-gray-500 mb-6">
         Monthly rental rates for WhatsApp-enabled phone numbers.
       </p>

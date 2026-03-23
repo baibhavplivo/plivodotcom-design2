@@ -304,7 +304,7 @@ function CallRatesSection({ rates, countryName, countryCode, loading }: { rates:
 
   return (
     <div>
-      <h2 className="font-sora text-xl font-semibold text-black mb-2">Call rates</h2>
+      <h2 className="font-sans text-xl font-semibold text-black mb-2">Call rates</h2>
       <p className="text-sm text-gray-500 mb-6">
         Per-minute inbound and outbound rates for {countryName}.
       </p>
@@ -368,7 +368,7 @@ function PhoneRentalSection({ phoneNumbers, loading, countryCode }: { phoneNumbe
 
   return (
     <div>
-      <h2 className="font-sora text-xl font-semibold text-black mb-2">Phone number rental</h2>
+      <h2 className="font-sans text-xl font-semibold text-black mb-2">Phone number rental</h2>
       <p className="text-sm text-gray-500 mb-6">
         Monthly rental rates for phone numbers used with SIP trunking.
       </p>
@@ -437,7 +437,7 @@ function CalculatorSection({
   if (!loading && !showLocal && !showTollfree) {
     return (
       <div>
-        <h2 className="font-sora text-xl font-semibold text-black mb-2">Cost calculator</h2>
+        <h2 className="font-sans text-xl font-semibold text-black mb-2">Cost calculator</h2>
         <p className="text-sm text-gray-500 py-4">
           Cost calculator is not available for {countryName}. Contact sales for a custom quote.
         </p>
@@ -447,7 +447,7 @@ function CalculatorSection({
 
   return (
     <div>
-      <h2 className="font-sora text-xl font-semibold text-black mb-2">Cost calculator</h2>
+      <h2 className="font-sans text-xl font-semibold text-black mb-2">Cost calculator</h2>
       <p className="text-sm text-gray-500 mb-6">
         Estimate your monthly SIP trunking costs for {countryName}.
       </p>
@@ -469,7 +469,10 @@ function CalculatorSection({
               step={100000}
               value={localMinutes}
               onChange={(e) => setLocalMinutes(Number(e.target.value))}
-              className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[#323dfe]"
+              className="w-full h-2 rounded-lg appearance-none cursor-pointer accent-[#323dfe]"
+              style={{
+                background: `linear-gradient(to right, #323dfe ${((localMinutes - 100000) / 500000) * 100}%, #e5e7eb ${((localMinutes - 100000) / 500000) * 100}%)`,
+              }}
             />
             <div className="flex justify-between mt-1">
               {minuteSteps.map((step) => (
@@ -505,7 +508,10 @@ function CalculatorSection({
               step={100000}
               value={tollfreeMinutes}
               onChange={(e) => setTollfreeMinutes(Number(e.target.value))}
-              className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[#323dfe]"
+              className="w-full h-2 rounded-lg appearance-none cursor-pointer accent-[#323dfe]"
+              style={{
+                background: `linear-gradient(to right, #323dfe ${((tollfreeMinutes - 100000) / 500000) * 100}%, #e5e7eb ${((tollfreeMinutes - 100000) / 500000) * 100}%)`,
+              }}
             />
             <div className="flex justify-between mt-1">
               {minuteSteps.map((step) => (
@@ -549,7 +555,7 @@ function CalculatorSection({
               Get volume pricing
             </a>
             <a
-              href="https://cx.plivo.com/"
+              href="https://cx.plivo.com/pungis2"
               className="inline-flex items-center justify-center px-6 py-3 text-sm font-medium bg-black text-white rounded-md hover:bg-gray-800 transition-colors"
             >
               Sign up for free
