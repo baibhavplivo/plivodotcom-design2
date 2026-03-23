@@ -94,7 +94,7 @@ export default function AIAgentsHero() {
               Contact Sales
             </a>
             <a
-              href="https://cx.plivo.com/"
+              href="https://cx.plivo.com/pungis2"
               className="inline-flex items-center justify-center px-6 py-3 text-base font-medium bg-black text-white rounded-md hover:bg-gray-800 transition-colors"
             >
               Sign up for free

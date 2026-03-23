@@ -32,7 +32,7 @@ export default function PreFooterCTA({
           {subtitle}
         </p>
         <a
-          href="https://cx.plivo.com/"
+          href="https://cx.plivo.com/pungis2"
           className="animate-appear inline-flex items-center justify-center rounded-md bg-black px-8 py-3 text-base font-medium text-white transition-colors delay-100 hover:bg-gray-800 mt-6"
         >
           Sign up now

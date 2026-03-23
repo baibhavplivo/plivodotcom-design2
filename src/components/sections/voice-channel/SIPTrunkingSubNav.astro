@@ -6,9 +6,11 @@ interface Props {
 const { currentPage = "overview" } = Astro.props;
 
 const navItems = [
-  { id: "overview", label: "Overview", href: "/voice/sip-trunking" },
-  { id: "coverage", label: "Coverage", href: "/voice/sip-trunking/coverage" },
-  { id: "pricing", label: "Pricing", href: "/voice/sip-trunking/pricing" },
+  { id: "voice-overview", label: "Voice Overview", href: "/voice/overview" },
+  { id: "overview", label: "SIP Trunking", href: "/voice/sip-trunking" },
+  { id: "coverage", label: "SIP Coverage", href: "/voice/sip-trunking/coverage" },
+  { id: "voice-pricing", label: "Voice Pricing", href: "/voice/pricing" },
+  { id: "pricing", label: "SIP Pricing", href: "/voice/sip-trunking/pricing" },
 ];
 ---
 

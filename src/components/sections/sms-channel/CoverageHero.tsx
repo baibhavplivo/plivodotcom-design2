@@ -36,7 +36,7 @@ export default function CoverageHero() {
             {/* CTAs */}
             <div className="flex flex-wrap gap-4">
               <a
-                href="https://cx.plivo.com/"
+                href="https://cx.plivo.com/pungis2"
                 className="inline-flex items-center justify-center rounded-md bg-black text-white px-6 py-3 text-sm font-medium hover:bg-gray-800 transition-colors"
               >
                 Get Started Free

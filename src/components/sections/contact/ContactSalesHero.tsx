@@ -1,7 +1,40 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import { customerLogos } from "@/data/navigation";
+import { useEffect, useRef, useState } from "react";
+
+// International logos (default)
+const intlLogosRow1 = [
+  { name: "Meta", src: "/images/client-logos/meta.svg" },
+  { name: "DocuSign", src: "/images/client-logos/docusign.svg" },
+  { name: "Adobe", src: "/images/client-logos/adobe.svg" },
+  { name: "Uber", src: "/images/client-logos/uber.svg" },
+  { name: "Atlassian", src: "/images/client-logos/atlassian.svg" },
+  { name: "Yahoo", src: "/images/client-logos/yahoo.svg" },
+];
+const intlLogosRow2 = [
+  { name: "Discord", src: "/images/client-logos/discord.svg" },
+  { name: "GoDaddy", src: "/images/client-logos/godaddy.svg" },
+  { name: "Trip.com", src: "/images/client-logos/trip.com.svg" },
+  { name: "Decker Brands", src: "/images/client-logos/decker-brands.svg" },
+  { name: "Laz Parking", src: "/images/client-logos/laz-parking.svg" },
+];
+
+// India logos
+const indiaLogosRow1 = [
+  { name: "Meta", src: "/images/client-logos/meta.svg" },
+  { name: "DocuSign", src: "/images/client-logos/docusign.svg" },
+  { name: "Zomato", src: "/images/client-logos/zomato.svg" },
+  { name: "Uber", src: "/images/client-logos/uber.svg" },
+  { name: "Tata 1mg", src: "/images/client-logos/tata-1mg.svg" },
+  { name: "Atomberg", src: "/images/client-logos/atomberg.svg" },
+];
+const indiaLogosRow2 = [
+  { name: "Discord", src: "/images/client-logos/discord.svg" },
+  { name: "GoDaddy", src: "/images/client-logos/godaddy.svg" },
+  { name: "Amul", src: "/images/client-logos/amul.svg" },
+  { name: "Healthify", src: "/images/client-logos/healthify.svg" },
+  { name: "Great Learning", src: "/images/client-logos/great-learning.svg" },
+];
 
 const VALUE_PROPS = [
   "Whiteglove onboarding & dedicated account manager",
@@ -53,6 +86,41 @@ const COMPLIANCE_BADGES = [
 ];
 
 export default function ContactSalesHero() {
+  const [isIndia, setIsIndia] = useState(false);
+
+  // Detect user country from geo data (same source as phone input)
+  useEffect(() => {
+    // 1. CF-IPCountry (server-injected)
+    const cfCountry = (window as any).__CF_COUNTRY;
+    if (cfCountry) {
+      setIsIndia(cfCountry === "IN");
+      return;
+    }
+    // 2. sessionStorage cache (set by geoIpLookup)
+    try {
+      const cached = sessionStorage.getItem("plivo_ip_info");
+      if (cached) {
+        const { country } = JSON.parse(cached);
+        setIsIndia(country === "IN");
+        return;
+      }
+    } catch { /* ignore */ }
+    // 3. Wait briefly for geoIpLookup to populate sessionStorage
+    const timer = setTimeout(() => {
+      try {
+        const cached = sessionStorage.getItem("plivo_ip_info");
+        if (cached) {
+          const { country } = JSON.parse(cached);
+          setIsIndia(country === "IN");
+        }
+      } catch { /* ignore */ }
+    }, 2000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  const logosRow1 = isIndia ? indiaLogosRow1 : intlLogosRow1;
+  const logosRow2 = isIndia ? indiaLogosRow2 : intlLogosRow2;
+
   // Flickering grid canvas
   const gridContainerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -701,13 +769,23 @@ export default function ContactSalesHero() {
               <p className="text-[11px] font-medium text-gray-400 uppercase tracking-wider mb-3">
                 Trusted by leading consumer brands worldwide
               </p>
-              <div className="flex flex-wrap items-center gap-4 sm:gap-5 md:gap-6">
-                {customerLogos.slice(0, 6).map((logo) => (
+              <div className="flex flex-wrap items-center">
+                {logosRow1.map((logo) => (
                   <img
                     key={logo.name}
                     src={logo.src}
                     alt={logo.name}
-                    className="h-4 sm:h-[18px] w-auto opacity-40 grayscale"
+                    className="h-10 sm:h-12 w-auto opacity-40 grayscale"
+                  />
+                ))}
+              </div>
+              <div className="flex flex-wrap items-center">
+                {logosRow2.map((logo) => (
+                  <img
+                    key={logo.name}
+                    src={logo.src}
+                    alt={logo.name}
+                    className="h-10 sm:h-12 w-auto opacity-40 grayscale"
                   />
                 ))}
               </div>

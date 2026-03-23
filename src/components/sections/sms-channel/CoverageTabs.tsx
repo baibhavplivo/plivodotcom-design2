@@ -3,6 +3,7 @@
 import { useState, useMemo, useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
 import { ChevronDown } from "lucide-react";
+import { useGeoCountry } from "@/hooks/useGeoCountry";
 
 type FeatureSectionId = "features" | "regulations" | "deliverability" | "verify-coverage" | "country-specs" | "pricing";
 
@@ -537,6 +538,7 @@ const getCountryDetails = (country: Country): CountryDetails => {
 const defaultCountry = countries.find((c) => c.code === "US") || null;
 
 export default function CoverageTabs() {
+  const { country: geoCountry } = useGeoCountry();
   const [coverageType, setCoverageType] = useState<CoverageType>("outbound");
   const [activeContinent, setActiveContinent] = useState<Continent>("north-america");
   const [selectedCountry, setSelectedCountry] = useState<Country | null>(defaultCountry);
@@ -545,6 +547,18 @@ export default function CoverageTabs() {
   const [isDesktopCountryOpen, setIsDesktopCountryOpen] = useState(false);
   const [isMobileCountryOpen, setIsMobileCountryOpen] = useState(false);
   const [countrySearchQuery, setCountrySearchQuery] = useState("");
+
+  // Auto-select country based on user's IP location
+  const geoApplied = useRef(false);
+  useEffect(() => {
+    if (geoApplied.current) return;
+    const match = countries.find((c) => c.code === geoCountry);
+    if (match) {
+      geoApplied.current = true;
+      setSelectedCountry(match);
+      setActiveContinent(match.continent);
+    }
+  }, [geoCountry]);
   const featureSidebarWrapperRef = useRef<HTMLDivElement>(null);
   const featureContentRef = useRef<HTMLDivElement>(null);
   const desktopDropdownRef = useRef<HTMLDivElement>(null);

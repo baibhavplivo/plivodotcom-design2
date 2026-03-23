@@ -46,7 +46,7 @@ export default function FooterCTA() {
           minutes.
         </p>
         <a
-          href="https://cx.plivo.com/"
+          href="https://cx.plivo.com/pungis2"
           className="inline-flex items-center justify-center rounded-lg bg-white px-8 py-3 text-base font-semibold text-gray-900 transition-all hover:bg-gray-100 hover:shadow-xl hover:-translate-y-0.5 mt-8"
         >
           Sign Up Now

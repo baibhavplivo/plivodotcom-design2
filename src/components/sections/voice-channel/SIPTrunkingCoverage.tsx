@@ -1,8 +1,9 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
 import { SIP_RATES, SIP_COUNTRY_NAMES, PHONE_RENTAL_RATES } from "@/data/pricing-data";
+import { useGeoCountry } from "@/hooks/useGeoCountry";
 
 type CoverageType = "outbound" | "inbound";
 type Continent = "north-america" | "south-america" | "europe" | "asia" | "africa" | "oceania";
@@ -173,9 +174,22 @@ const sipCountries: SIPCountry[] = [
 const defaultCountry = sipCountries.find((c) => c.code === "US") || null;
 
 export default function SIPTrunkingCoverage() {
+  const { country: geoCountry } = useGeoCountry();
   const [coverageType, setCoverageType] = useState<CoverageType>("outbound");
   const [activeContinent, setActiveContinent] = useState<Continent>("north-america");
   const [selectedCountry, setSelectedCountry] = useState<SIPCountry | null>(null);
+
+  // Auto-select country based on user's IP location
+  const geoApplied = useRef(false);
+  useEffect(() => {
+    if (geoApplied.current) return;
+    const match = sipCountries.find((c) => c.code === geoCountry);
+    if (match) {
+      geoApplied.current = true;
+      setSelectedCountry(match);
+      setActiveContinent(match.continent);
+    }
+  }, [geoCountry]);
 
   const filteredCountries = useMemo(() => {
     return sipCountries.filter((country) => {
@@ -450,7 +464,7 @@ function CountryDetailPanel({ country, coverageType }: { country: SIPCountry; co
           View full pricing
         </a>
         <a
-          href="https://cx.plivo.com/"
+          href="https://cx.plivo.com/pungis2"
           className="inline-flex items-center justify-center px-5 py-2.5 text-sm font-medium bg-black text-white rounded-md hover:bg-gray-800 transition-colors"
         >
           Sign up for free

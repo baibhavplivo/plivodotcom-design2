@@ -31,7 +31,7 @@ export default function WhatsAppPreFooterCTA() {
             Talk to Sales
           </a>
           <a
-            href="https://cx.plivo.com/"
+            href="https://cx.plivo.com/pungis2"
             className="inline-flex items-center justify-center rounded-md bg-black px-6 py-3 text-base font-medium text-white transition-colors hover:bg-gray-800"
           >
             Sign up for free

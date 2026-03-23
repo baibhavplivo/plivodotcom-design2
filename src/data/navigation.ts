@@ -105,7 +105,7 @@ export const secondaryNavigation: NavItem[] = [
 // CTA button
 export const ctaNavigation: NavItem = {
   title: "Get started now",
-  href: "https://cx.plivo.com/",
+  href: "https://cx.plivo.com/pungis2",
   external: true,
 };
 
