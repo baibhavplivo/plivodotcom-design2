@@ -1,6 +1,7 @@
 ---
 // ClientLogos.astro - Logo marquee between 2 lines
 // Shows different logo sets based on visitor country (IN vs RoW)
+// "Trusted by leading enterprises worldwide" text on the left
 ---
 
 <section class="bg-white">
@@ -8,77 +9,89 @@
   <div class="w-full h-px bg-gray-200"></div>
 
   <!-- Logo marquee - India set (shown for IN visitors) -->
-  <div id="logos-india" class="relative overflow-hidden py-6" style="display:none;">
-    <div class="marquee-container w-full overflow-hidden">
-      <div class="marquee-content flex gap-8 sm:gap-16 items-center">
-        <!-- India set: Indian brands + international brands Indians know -->
-        <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/meta.svg" alt="Meta" class="logo-img h-6 sm:h-7 w-auto opacity-30" /></div>
-        <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/zomato.svg" alt="Zomato" class="logo-img h-6 sm:h-7 w-auto opacity-30" /></div>
-        <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/uber.svg" alt="Uber" class="logo-img h-6 sm:h-7 w-auto opacity-30" /></div>
-        <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/tata-1mg.svg" alt="Tata 1mg" class="logo-img h-6 sm:h-7 w-auto opacity-30" /></div>
-        <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/discord.svg" alt="Discord" class="logo-img h-6 sm:h-7 w-auto opacity-30" /></div>
-        <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/amul.svg" alt="Amul" class="logo-img h-6 sm:h-7 w-auto opacity-30" /></div>
-        <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/godaddy.svg" alt="GoDaddy" class="logo-img h-6 sm:h-7 w-auto opacity-30" /></div>
-        <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/atomberg.svg" alt="Atomberg" class="logo-img h-6 sm:h-7 w-auto opacity-30" /></div>
-        <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/healthify.svg" alt="Healthify" class="logo-img h-6 sm:h-7 w-auto opacity-30" /></div>
-        <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/great-learning.svg" alt="Great Learning" class="logo-img h-6 sm:h-7 w-auto opacity-30" /></div>
-        <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/yahoo.svg" alt="Yahoo" class="logo-img h-6 sm:h-7 w-auto opacity-30" /></div>
-        <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/masai.svg" alt="Masai" class="logo-img h-6 sm:h-7 w-auto opacity-30" /></div>
-        <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/zolve.svg" alt="Zolve" class="logo-img h-6 sm:h-7 w-auto opacity-30" /></div>
-        <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/trip.com.svg" alt="Trip.com" class="logo-img h-6 sm:h-7 w-auto opacity-30" /></div>
-        <!-- Duplicate for seamless scroll -->
-        <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/meta.svg" alt="Meta" class="logo-img h-6 sm:h-7 w-auto opacity-30" /></div>
-        <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/zomato.svg" alt="Zomato" class="logo-img h-6 sm:h-7 w-auto opacity-30" /></div>
-        <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/uber.svg" alt="Uber" class="logo-img h-6 sm:h-7 w-auto opacity-30" /></div>
-        <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/tata-1mg.svg" alt="Tata 1mg" class="logo-img h-6 sm:h-7 w-auto opacity-30" /></div>
-        <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/discord.svg" alt="Discord" class="logo-img h-6 sm:h-7 w-auto opacity-30" /></div>
-        <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/amul.svg" alt="Amul" class="logo-img h-6 sm:h-7 w-auto opacity-30" /></div>
-        <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/godaddy.svg" alt="GoDaddy" class="logo-img h-6 sm:h-7 w-auto opacity-30" /></div>
-        <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/atomberg.svg" alt="Atomberg" class="logo-img h-6 sm:h-7 w-auto opacity-30" /></div>
-        <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/healthify.svg" alt="Healthify" class="logo-img h-6 sm:h-7 w-auto opacity-30" /></div>
-        <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/great-learning.svg" alt="Great Learning" class="logo-img h-6 sm:h-7 w-auto opacity-30" /></div>
-        <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/yahoo.svg" alt="Yahoo" class="logo-img h-6 sm:h-7 w-auto opacity-30" /></div>
-        <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/masai.svg" alt="Masai" class="logo-img h-6 sm:h-7 w-auto opacity-30" /></div>
-        <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/zolve.svg" alt="Zolve" class="logo-img h-6 sm:h-7 w-auto opacity-30" /></div>
-        <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/trip.com.svg" alt="Trip.com" class="logo-img h-6 sm:h-7 w-auto opacity-30" /></div>
+  <div id="logos-india" style="display:none;">
+    <div class="mx-auto max-w-7xl px-4 flex items-center">
+      <div class="hidden sm:flex flex-shrink-0 pr-6 lg:pr-10 items-center">
+        <p class="text-sm text-gray-400 font-medium leading-snug">Trusted by leading<br />enterprises worldwide</p>
+      </div>
+      <div class="relative overflow-hidden flex-1 min-w-0">
+        <div class="marquee-container w-full overflow-hidden">
+          <div class="marquee-content flex gap-4 sm:gap-8 items-center">
+            <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/meta.svg" alt="Meta" class="logo-img h-16 sm:h-20 w-auto opacity-40" /></div>
+            <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/zomato.svg" alt="Zomato" class="logo-img h-16 sm:h-20 w-auto opacity-40" /></div>
+            <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/uber.svg" alt="Uber" class="logo-img h-16 sm:h-20 w-auto opacity-40" /></div>
+            <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/tata-1mg.svg" alt="Tata 1mg" class="logo-img h-16 sm:h-20 w-auto opacity-40" /></div>
+            <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/discord.svg" alt="Discord" class="logo-img h-16 sm:h-20 w-auto opacity-40" /></div>
+            <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/amul.svg" alt="Amul" class="logo-img h-16 sm:h-20 w-auto opacity-40" /></div>
+            <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/godaddy.svg" alt="GoDaddy" class="logo-img h-16 sm:h-20 w-auto opacity-40" /></div>
+            <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/atomberg.svg" alt="Atomberg" class="logo-img h-16 sm:h-20 w-auto opacity-40" /></div>
+            <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/healthify.svg" alt="Healthify" class="logo-img h-16 sm:h-20 w-auto opacity-40" /></div>
+            <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/great-learning.svg" alt="Great Learning" class="logo-img h-16 sm:h-20 w-auto opacity-40" /></div>
+            <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/yahoo.svg" alt="Yahoo" class="logo-img h-16 sm:h-20 w-auto opacity-40" /></div>
+            <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/masai.svg" alt="Masai" class="logo-img h-16 sm:h-20 w-auto opacity-40" /></div>
+            <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/zolve.svg" alt="Zolve" class="logo-img h-16 sm:h-20 w-auto opacity-40" /></div>
+            <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/trip.com.svg" alt="Trip.com" class="logo-img h-16 sm:h-20 w-auto opacity-40" /></div>
+            <!-- Duplicate for seamless scroll -->
+            <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/meta.svg" alt="Meta" class="logo-img h-16 sm:h-20 w-auto opacity-40" /></div>
+            <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/zomato.svg" alt="Zomato" class="logo-img h-16 sm:h-20 w-auto opacity-40" /></div>
+            <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/uber.svg" alt="Uber" class="logo-img h-16 sm:h-20 w-auto opacity-40" /></div>
+            <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/tata-1mg.svg" alt="Tata 1mg" class="logo-img h-16 sm:h-20 w-auto opacity-40" /></div>
+            <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/discord.svg" alt="Discord" class="logo-img h-16 sm:h-20 w-auto opacity-40" /></div>
+            <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/amul.svg" alt="Amul" class="logo-img h-16 sm:h-20 w-auto opacity-40" /></div>
+            <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/godaddy.svg" alt="GoDaddy" class="logo-img h-16 sm:h-20 w-auto opacity-40" /></div>
+            <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/atomberg.svg" alt="Atomberg" class="logo-img h-16 sm:h-20 w-auto opacity-40" /></div>
+            <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/healthify.svg" alt="Healthify" class="logo-img h-16 sm:h-20 w-auto opacity-40" /></div>
+            <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/great-learning.svg" alt="Great Learning" class="logo-img h-16 sm:h-20 w-auto opacity-40" /></div>
+            <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/yahoo.svg" alt="Yahoo" class="logo-img h-16 sm:h-20 w-auto opacity-40" /></div>
+            <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/masai.svg" alt="Masai" class="logo-img h-16 sm:h-20 w-auto opacity-40" /></div>
+            <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/zolve.svg" alt="Zolve" class="logo-img h-16 sm:h-20 w-auto opacity-40" /></div>
+            <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/trip.com.svg" alt="Trip.com" class="logo-img h-16 sm:h-20 w-auto opacity-40" /></div>
+          </div>
+        </div>
+        <div class="absolute inset-y-0 left-0 w-12 sm:w-24 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
+        <div class="absolute inset-y-0 right-0 w-12 sm:w-24 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
       </div>
     </div>
-    <div class="absolute inset-y-0 left-0 w-12 sm:w-24 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
-    <div class="absolute inset-y-0 right-0 w-12 sm:w-24 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
   </div>
 
   <!-- Logo marquee - International set (default, shown for US/RoW visitors) -->
-  <div id="logos-international" class="relative overflow-hidden py-6">
-    <div class="marquee-container w-full overflow-hidden">
-      <div class="marquee-content flex gap-8 sm:gap-16 items-center">
-        <!-- International set: non-Indian brands -->
-        <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/meta.svg" alt="Meta" class="logo-img h-6 sm:h-7 w-auto opacity-30" /></div>
-        <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/uber.svg" alt="Uber" class="logo-img h-6 sm:h-7 w-auto opacity-30" /></div>
-        <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/discord.svg" alt="Discord" class="logo-img h-6 sm:h-7 w-auto opacity-30" /></div>
-        <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/adobe.svg" alt="Adobe" class="logo-img h-6 sm:h-7 w-auto opacity-30" /></div>
-        <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/godaddy.svg" alt="GoDaddy" class="logo-img h-6 sm:h-7 w-auto opacity-30" /></div>
-        <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/atlassian.svg" alt="Atlassian" class="logo-img h-6 sm:h-7 w-auto opacity-30" /></div>
-        <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/docusign.svg" alt="DocuSign" class="logo-img h-6 sm:h-7 w-auto opacity-30" /></div>
-        <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/yahoo.svg" alt="Yahoo" class="logo-img h-6 sm:h-7 w-auto opacity-30" /></div>
-        <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/decker-brands.svg" alt="Decker Brands" class="logo-img h-6 sm:h-7 w-auto opacity-30" /></div>
-        <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/trip.com.svg" alt="Trip.com" class="logo-img h-6 sm:h-7 w-auto opacity-30" /></div>
-        <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/laz-parking.svg" alt="Laz Parking" class="logo-img h-6 sm:h-7 w-auto opacity-30" /></div>
-        <!-- Duplicate for seamless scroll -->
-        <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/meta.svg" alt="Meta" class="logo-img h-6 sm:h-7 w-auto opacity-30" /></div>
-        <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/uber.svg" alt="Uber" class="logo-img h-6 sm:h-7 w-auto opacity-30" /></div>
-        <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/discord.svg" alt="Discord" class="logo-img h-6 sm:h-7 w-auto opacity-30" /></div>
-        <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/adobe.svg" alt="Adobe" class="logo-img h-6 sm:h-7 w-auto opacity-30" /></div>
-        <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/godaddy.svg" alt="GoDaddy" class="logo-img h-6 sm:h-7 w-auto opacity-30" /></div>
-        <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/atlassian.svg" alt="Atlassian" class="logo-img h-6 sm:h-7 w-auto opacity-30" /></div>
-        <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/docusign.svg" alt="DocuSign" class="logo-img h-6 sm:h-7 w-auto opacity-30" /></div>
-        <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/yahoo.svg" alt="Yahoo" class="logo-img h-6 sm:h-7 w-auto opacity-30" /></div>
-        <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/decker-brands.svg" alt="Decker Brands" class="logo-img h-6 sm:h-7 w-auto opacity-30" /></div>
-        <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/trip.com.svg" alt="Trip.com" class="logo-img h-6 sm:h-7 w-auto opacity-30" /></div>
-        <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/laz-parking.svg" alt="Laz Parking" class="logo-img h-6 sm:h-7 w-auto opacity-30" /></div>
+  <div id="logos-international">
+    <div class="mx-auto max-w-7xl px-4 flex items-center">
+      <div class="hidden sm:flex flex-shrink-0 pr-6 lg:pr-10 items-center">
+        <p class="text-sm text-gray-400 font-medium leading-snug">Trusted by leading<br />enterprises worldwide</p>
+      </div>
+      <div class="relative overflow-hidden flex-1 min-w-0">
+        <div class="marquee-container w-full overflow-hidden">
+          <div class="marquee-content flex gap-4 sm:gap-8 items-center">
+            <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/meta.svg" alt="Meta" class="logo-img h-16 sm:h-20 w-auto opacity-40" /></div>
+            <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/uber.svg" alt="Uber" class="logo-img h-16 sm:h-20 w-auto opacity-40" /></div>
+            <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/discord.svg" alt="Discord" class="logo-img h-16 sm:h-20 w-auto opacity-40" /></div>
+            <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/adobe.svg" alt="Adobe" class="logo-img h-16 sm:h-20 w-auto opacity-40" /></div>
+            <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/godaddy.svg" alt="GoDaddy" class="logo-img h-16 sm:h-20 w-auto opacity-40" /></div>
+            <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/atlassian.svg" alt="Atlassian" class="logo-img h-16 sm:h-20 w-auto opacity-40" /></div>
+            <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/docusign.svg" alt="DocuSign" class="logo-img h-16 sm:h-20 w-auto opacity-40" /></div>
+            <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/yahoo.svg" alt="Yahoo" class="logo-img h-16 sm:h-20 w-auto opacity-40" /></div>
+            <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/decker-brands.svg" alt="Decker Brands" class="logo-img h-16 sm:h-20 w-auto opacity-40" /></div>
+            <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/trip.com.svg" alt="Trip.com" class="logo-img h-16 sm:h-20 w-auto opacity-40" /></div>
+            <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/laz-parking.svg" alt="Laz Parking" class="logo-img h-16 sm:h-20 w-auto opacity-40" /></div>
+            <!-- Duplicate for seamless scroll -->
+            <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/meta.svg" alt="Meta" class="logo-img h-16 sm:h-20 w-auto opacity-40" /></div>
+            <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/uber.svg" alt="Uber" class="logo-img h-16 sm:h-20 w-auto opacity-40" /></div>
+            <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/discord.svg" alt="Discord" class="logo-img h-16 sm:h-20 w-auto opacity-40" /></div>
+            <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/adobe.svg" alt="Adobe" class="logo-img h-16 sm:h-20 w-auto opacity-40" /></div>
+            <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/godaddy.svg" alt="GoDaddy" class="logo-img h-16 sm:h-20 w-auto opacity-40" /></div>
+            <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/atlassian.svg" alt="Atlassian" class="logo-img h-16 sm:h-20 w-auto opacity-40" /></div>
+            <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/docusign.svg" alt="DocuSign" class="logo-img h-16 sm:h-20 w-auto opacity-40" /></div>
+            <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/yahoo.svg" alt="Yahoo" class="logo-img h-16 sm:h-20 w-auto opacity-40" /></div>
+            <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/decker-brands.svg" alt="Decker Brands" class="logo-img h-16 sm:h-20 w-auto opacity-40" /></div>
+            <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/trip.com.svg" alt="Trip.com" class="logo-img h-16 sm:h-20 w-auto opacity-40" /></div>
+            <div class="marquee-item flex-shrink-0"><img src="/images/client-logos/laz-parking.svg" alt="Laz Parking" class="logo-img h-16 sm:h-20 w-auto opacity-40" /></div>
+          </div>
+        </div>
+        <div class="absolute inset-y-0 left-0 w-12 sm:w-24 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
+        <div class="absolute inset-y-0 right-0 w-12 sm:w-24 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
       </div>
     </div>
-    <div class="absolute inset-y-0 left-0 w-12 sm:w-24 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
-    <div class="absolute inset-y-0 right-0 w-12 sm:w-24 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
   </div>
 
   <!-- Line 2 -->
@@ -109,16 +122,13 @@
         indiaEl.style.display = "";
         intlEl.style.display = "none";
       }
-      // else keep default (international visible, india hidden)
     };
 
-    // Check sessionStorage cache (shared with contact form's ipinfo lookup)
     const cached = sessionStorage.getItem("plivo_ip_info");
     if (cached) {
       try { show(JSON.parse(cached).country); return; } catch {}
     }
 
-    // Fetch country from ipinfo
     const t = ["1aff", "17b3", "d558", "ec"].join("");
     fetch(`https://ipinfo.io/json?token=${t}`)
       .then((r) => r.json())

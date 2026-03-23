@@ -55,9 +55,10 @@
       <div class="flex justify-center">
         <a
           href="https://cx.plivo.com/"
-          class="inline-flex items-center justify-center px-6 py-3 text-base font-medium bg-black text-white rounded-md hover:bg-gray-800 transition-colors"
+          class="beam-btn relative inline-flex items-center justify-center px-6 py-3 text-base font-medium bg-black text-white rounded-md hover:bg-gray-800 transition-colors overflow-hidden"
         >
-          Start for free
+          <span class="beam-border"></span>
+          <span class="relative z-10">Start for free</span>
         </a>
       </div>
       <p class="text-sm text-gray-500 mt-4 leading-relaxed">
@@ -67,6 +68,48 @@
     </div>
   </div>
 </section>
+
+<style>
+  .beam-btn {
+    isolation: isolate;
+  }
+  .beam-border {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    overflow: hidden;
+    pointer-events: none;
+  }
+  .beam-border::before {
+    content: "";
+    position: absolute;
+    inset: -200%;
+    background: conic-gradient(
+      from 0deg,
+      transparent 0%,
+      transparent 70%,
+      #323dfe 76%,
+      #8b5cf6 82%,
+      #cd3ef9 88%,
+      transparent 92%,
+      transparent 100%
+    );
+    animation: beam-spin 3s linear infinite;
+  }
+  .beam-border::after {
+    content: "";
+    position: absolute;
+    inset: 1.5px;
+    border-radius: inherit;
+    background: black;
+  }
+  .beam-btn:hover .beam-border::after {
+    background: #1f2937;
+  }
+  @keyframes beam-spin {
+    to { transform: rotate(360deg); }
+  }
+</style>
 
 <script>
   function initHeroFlicker() {
