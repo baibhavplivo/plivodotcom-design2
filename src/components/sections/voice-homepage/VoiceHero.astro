@@ -2,11 +2,11 @@
 // VoiceHero.astro - Hero section for Voice AI homepage
 ---
 
-<section class="hero bg-white pt-10 sm:pt-16 md:pt-20 pb-6">
+<section class="hero bg-white pt-10 sm:pt-16 md:pt-20">
   <div class="container mx-auto max-w-7xl px-4 text-center">
     <!-- Available on pill with clickable channels -->
     <div class="mb-6 flex justify-center">
-      <div class="inline-flex items-center gap-0.5 sm:gap-1 rounded-full bg-gray-50 px-2 sm:px-3 py-1 sm:py-1.5">
+      <div class="inline-flex items-center gap-0.5 sm:gap-1 rounded-full border border-gray-200 px-2 sm:px-3 py-1 sm:py-1.5">
         <span class="text-[10px] sm:text-xs font-medium text-gray-500 mr-0.5 sm:mr-1">Available on</span>
         <a href="/voice/overview" class="inline-flex items-center gap-0.5 sm:gap-1 rounded-full px-1.5 sm:px-2 py-0.5 text-[10px] sm:text-xs font-medium text-gray-600 transition-colors hover:bg-gray-200 hover:text-gray-900">
           <svg class="w-2.5 h-2.5 sm:w-3 sm:h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -40,17 +40,82 @@
     <p class="text-base sm:text-lg md:text-xl text-gray-600 mt-3 max-w-[700px] mx-auto leading-relaxed">
       From no-code builders for teams to flexible APIs for developers, deploy voice agents that actually sound human.
     </p>
-    <div class="flex justify-center mt-8">
-      <a
-        href="https://cx.plivo.com/"
-        class="inline-flex items-center justify-center px-6 py-3 text-base font-medium bg-black text-white rounded-md hover:bg-gray-800 transition-colors"
-      >
-        Start for free
-      </a>
+  </div>
+
+  <!-- CTA area + flickering grid behind it -->
+  <div class="flicker-area relative overflow-hidden" style="height:320px;">
+    <canvas id="hero-flicker-canvas" class="absolute inset-0 z-0 pointer-events-none" style="top:160px;"></canvas>
+    <!-- Gradual top fade -->
+    <div class="absolute inset-x-0 top-0 z-[1] pointer-events-none" style="height:85%;background:linear-gradient(to bottom,white 55%,transparent);"></div>
+    <!-- Left/right fades -->
+    <div class="absolute inset-y-0 left-0 w-20 sm:w-32 bg-gradient-to-r from-white to-transparent z-[1] pointer-events-none"></div>
+    <div class="absolute inset-y-0 right-0 w-20 sm:w-32 bg-gradient-to-l from-white to-transparent z-[1] pointer-events-none"></div>
+    <!-- CTA content on top of dots -->
+    <div class="relative z-[2] text-center pt-6">
+      <div class="flex justify-center">
+        <a
+          href="https://cx.plivo.com/"
+          class="inline-flex items-center justify-center px-6 py-3 text-base font-medium bg-black text-white rounded-md hover:bg-gray-800 transition-colors"
+        >
+          Start for free
+        </a>
+      </div>
+      <p class="text-sm text-gray-500 mt-4 leading-relaxed">
+        $10 in free credits.<br />
+        No credit card required.
+      </p>
     </div>
-    <p class="text-sm text-gray-500 mt-4 leading-relaxed">
-      $10 in free credits.<br />
-      No credit card required.
-    </p>
   </div>
 </section>
+
+<script>
+  function initHeroFlicker() {
+    const canvas = document.getElementById("hero-flicker-canvas") as HTMLCanvasElement | null;
+    if (!canvas) return;
+    const container = canvas.parentElement as HTMLElement | null;
+    if (!container) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    const SQ = 5, GAP = 5, MAX_OP = 0.55, FLICKER = 0.15;
+    const COLOR = "139, 92, 246";
+    let cols = 0, rows = 0, squares = new Float32Array(0), raf: number;
+
+    const setup = () => {
+      const w = container.clientWidth, h = container.clientHeight;
+      if (w <= 0 || h <= 0) return;
+      const dpr = window.devicePixelRatio || 1;
+      canvas.width = w * dpr; canvas.height = h * dpr;
+      canvas.style.width = `${w}px`; canvas.style.height = `${h}px`;
+      cols = Math.floor(w / (SQ + GAP));
+      rows = Math.floor(h / (SQ + GAP));
+      squares = new Float32Array(cols * rows);
+      for (let i = 0; i < squares.length; i++) squares[i] = Math.random() * MAX_OP;
+    };
+    setup();
+
+    let last = 0;
+    const draw = (t: number) => {
+      if (!cols || !rows) { setup(); last = t; raf = requestAnimationFrame(draw); return; }
+      const dt = (t - last) / 1000; last = t;
+      const dpr = window.devicePixelRatio || 1;
+      for (let i = 0; i < squares.length; i++) {
+        if (Math.random() < FLICKER * dt) squares[i] = Math.random() * MAX_OP;
+      }
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (let i = 0; i < cols; i++) {
+        for (let j = 0; j < rows; j++) {
+          ctx.fillStyle = `rgba(${COLOR}, ${squares[i * rows + j]})`;
+          ctx.fillRect(i * (SQ + GAP) * dpr, j * (SQ + GAP) * dpr, SQ * dpr, SQ * dpr);
+        }
+      }
+      raf = requestAnimationFrame(draw);
+    };
+    raf = requestAnimationFrame(draw);
+
+    const ro = new ResizeObserver(() => setup());
+    ro.observe(container);
+  }
+  initHeroFlicker();
+  document.addEventListener("astro:after-swap", initHeroFlicker);
+</script>

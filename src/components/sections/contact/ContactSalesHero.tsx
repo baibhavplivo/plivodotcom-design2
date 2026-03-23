@@ -716,7 +716,7 @@ export default function ContactSalesHero() {
 
             {/* Form Card */}
             <div className="relative z-10 flex items-center justify-center py-6 sm:py-10 md:py-14 px-2 sm:px-6 md:px-10">
-              <div className="w-full sm:max-w-md rounded-xl border border-gray-200 bg-white shadow-[0_1px_3px_rgba(0,0,0,0.06)] p-4 sm:p-5 md:p-6">
+              <div className="w-full sm:max-w-md rounded-xl border border-gray-200 bg-white p-4 sm:p-5 md:p-6">
                 {/* @ts-expect-error vpf is a custom attribute used by form-submission.js */}
                 <div vpf="form-wrapper">
                   {/* Progress indicators (hidden by default, script controls visibility) */}

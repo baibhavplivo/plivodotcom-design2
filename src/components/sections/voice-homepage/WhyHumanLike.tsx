@@ -177,7 +177,7 @@ function AudioPlayer({
   const isGray = variant === "gray";
 
   return (
-    <div className={`relative overflow-hidden rounded-lg bg-white shadow-md ${!isGray ? "shine-border" : ""}`}>
+    <div className={`relative overflow-hidden rounded-lg bg-white ${!isGray ? "shine-border" : ""}`}>
       {/* Shine border effect for ON state */}
       {!isGray && (
         <div className="absolute inset-0 rounded-lg opacity-60" style={{

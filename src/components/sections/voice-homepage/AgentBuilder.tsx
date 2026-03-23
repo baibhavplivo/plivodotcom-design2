@@ -63,14 +63,14 @@ export default function AgentBuilder() {
         {/* Grid Layout */}
         <div className="grid gap-8 md:grid-cols-2">
           {/* Card 1: Modular Infrastructure */}
-          <div className="flex flex-col overflow-hidden rounded-lg bg-gradient-to-b from-fuchsia-100 via-fuchsia-50 via-60% to-neutral-50">
+          <div className="flex flex-col overflow-hidden rounded-lg border agent-card-lines agent-card-border">
             {/* Visual Top */}
             <div className="relative flex h-[220px] sm:h-[350px] md:h-[380px] items-center justify-center overflow-hidden px-4 py-4 sm:px-8 sm:py-6 [&>*]:scale-[0.65] sm:[&>*]:scale-100">
               <DisplayCards cards={modularCards} />
             </div>
 
             {/* Content Bottom */}
-            <div className="flex flex-grow flex-col p-5 sm:p-8 md:p-10">
+            <div className="flex flex-grow flex-col p-5 sm:p-8 md:p-10 agent-card-content">
               <h3 className="mb-3 text-2xl font-semibold text-black">
                 Programmable AI agents
               </h3>
@@ -100,13 +100,13 @@ export default function AgentBuilder() {
           </div>
 
           {/* Card 2: No-Code Builder */}
-          <div className="flex flex-col overflow-visible sm:overflow-hidden rounded-lg bg-gradient-to-b from-indigo-100 via-indigo-50 via-60% to-neutral-50">
+          <div className="flex flex-col overflow-visible sm:overflow-hidden rounded-lg border agent-card-lines agent-card-border">
             {/* Visual Top */}
             <div className="relative flex h-[280px] sm:h-[350px] md:h-[380px] items-center justify-center overflow-visible sm:overflow-hidden px-3 sm:px-8 pt-6 sm:pt-6 pb-4 sm:pb-6">
               <BasicAIChatInput />
             </div>
             {/* Content Bottom */}
-            <div className="flex flex-grow flex-col p-5 sm:p-8 md:p-10">
+            <div className="flex flex-grow flex-col p-5 sm:p-8 md:p-10 agent-card-content">
               <h3 className="mb-3 text-2xl font-semibold text-black">
                 No-code AI agent studio
               </h3>
@@ -137,6 +137,31 @@ export default function AgentBuilder() {
       <style>{`
         .scrollbar-hide::-webkit-scrollbar {
           display: none;
+        }
+        .agent-card-border {
+          border-color: rgba(0,0,0,0.06);
+        }
+        .agent-card-lines {
+          background-image:
+            repeating-linear-gradient(0deg, rgba(0,0,0,0.06), rgba(0,0,0,0.06) 1px, transparent 1px, transparent 40px),
+            repeating-linear-gradient(90deg, rgba(0,0,0,0.06), rgba(0,0,0,0.06) 1px, transparent 1px, transparent 40px);
+          background-size: 40px 40px;
+          background-position: center center;
+        }
+        .agent-card-content {
+          position: relative;
+        }
+        .agent-card-content::before {
+          content: "";
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(to bottom, rgba(255,255,255,0.3) 0%, rgba(255,255,255,1) 80px);
+          pointer-events: none;
+          z-index: 0;
+        }
+        .agent-card-content > * {
+          position: relative;
+          z-index: 1;
         }
       `}</style>
     </section>

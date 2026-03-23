@@ -136,7 +136,7 @@ export default function JobsPage() {
               Plivo began in 2011 offering programmable voice and messaging APIs, evolving into a Communications Platform as a Service (CPaaS) leader. Now we're building the next frontier - autonomous communication agents that handle complex customer interactions at scale. Profitable since 2015, we're backed by Andreessen Horowitz, Battery Ventures, Qualcomm Ventures, and Y Combinator. We're a 100+ person team with offices in India and the US.
             </p>
           </div>
-          <div className="rounded-lg border border-gray-200 bg-white shadow-sm overflow-hidden">
+          <div className="rounded-lg border border-gray-200 bg-white overflow-hidden">
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5">
               {[
                 { value: "2011", label: "Plivo Founded" },

@@ -17,7 +17,7 @@ export default function VoiceDemoCompact() {
   return (
     <div className="flex flex-col items-center lg:items-end">
       {/* Demo Card */}
-      <div className="w-full max-w-[420px] overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm">
+      <div className="w-full max-w-[420px] overflow-hidden rounded-lg border border-gray-200 bg-white">
         {/* Main Content Area with Flickering Grid */}
         <div className="relative min-h-[280px] sm:min-h-[320px] flex flex-col items-center justify-center">
           {/* FlickeringGrid Background - Extends beyond edges to hide grid gaps */}

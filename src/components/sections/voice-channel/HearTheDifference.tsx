@@ -184,7 +184,7 @@ function AudioDemoCard({
   };
 
   return (
-    <div className="rounded-lg border border-gray-200 bg-white p-6 sm:p-8 min-w-[320px] sm:min-w-[400px] shadow-sm">
+    <div className="rounded-lg border border-gray-200 bg-white p-6 sm:p-8 min-w-[320px] sm:min-w-[400px]">
       {/* Pills Row */}
       <div className="flex items-center gap-2 mb-3">
         <span className="inline-block rounded-full border border-gray-200 bg-gray-50 px-3 py-1 text-xs text-gray-500">

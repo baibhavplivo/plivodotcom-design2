@@ -760,7 +760,7 @@ function RCSEarlyAccess() {
           </div>
 
           {/* Right - Form Card */}
-          <div className="rounded-xl border border-gray-200 bg-white shadow-[0_1px_3px_rgba(0,0,0,0.06)] p-5 sm:p-6">
+          <div className="rounded-xl border border-gray-200 bg-white p-5 sm:p-6">
             {submitted ? (
               <div className="text-center py-12">
                 <div className="w-14 h-14 rounded-full bg-emerald-50 flex items-center justify-center mx-auto mb-4">

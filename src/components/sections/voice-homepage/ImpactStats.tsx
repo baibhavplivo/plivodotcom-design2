@@ -133,7 +133,7 @@ export default function ImpactStats() {
         </h2>
 
         {/* Unified Container with Globe */}
-        <div className="relative overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm">
+        <div className="relative overflow-hidden rounded-lg border border-gray-200 bg-white">
           {/* Globe - Positioned absolute on right, cropped */}
           <div className="absolute -right-28 top-1/2 hidden lg:block z-30" style={{ transform: 'translateY(calc(-50% + 40px))' }}>
             <Globe

@@ -116,7 +116,7 @@ export default function AboutPage() {
         <div className="pointer-events-none absolute left-0 right-0 bottom-0 h-12 z-[2] bg-gradient-to-t from-white to-transparent" />
 
         <div className="container relative z-[5] mx-auto max-w-7xl px-4">
-          <div className="relative overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm">
+          <div className="relative overflow-hidden rounded-lg border border-gray-200 bg-white">
             {/* Globe - right side, cropped */}
             <div className="absolute -right-28 top-1/2 hidden lg:block z-[1]" style={{ transform: 'translateY(-50%)' }}>
               <Globe

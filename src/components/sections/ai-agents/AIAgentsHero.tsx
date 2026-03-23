@@ -129,7 +129,7 @@ export default function AIAgentsHero() {
           </div>
 
           {/* Chat mockup */}
-          <div className="mt-6 rounded-xl border border-gray-200 bg-gray-50 overflow-hidden shadow-sm">
+          <div className="mt-6 rounded-xl border border-gray-200 bg-gray-50 overflow-hidden">
             {/* Chat header */}
             <div className="flex items-center gap-3 px-5 py-3 bg-white border-b border-gray-200">
               <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#cd3ef9] to-[#323dfe] flex items-center justify-center">

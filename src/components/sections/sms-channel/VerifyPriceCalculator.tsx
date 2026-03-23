@@ -97,7 +97,7 @@ export default function VerifyPriceCalculator() {
         </div>
 
         {/* Calculator Card */}
-        <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
+        <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
           {/* Controls Row */}
           <div className="p-5 sm:p-6 border-b border-gray-100">
             <div className="grid gap-6 md:grid-cols-3">

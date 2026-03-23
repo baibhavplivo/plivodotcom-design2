@@ -156,7 +156,7 @@ export default function ComplianceSection() {
     <section className="compliance-section bg-white py-12 lg:py-16">
       <div className="container mx-auto max-w-7xl px-4">
         {/* Main card container */}
-        <div className="relative overflow-hidden rounded-3xl border border-gray-200 bg-gray-50 shadow-sm">
+        <div className="relative overflow-hidden rounded-3xl border border-gray-200 bg-gray-50">
           <div className="flex flex-col md:flex-row">
             {/* Left content */}
             <div className="relative z-10 flex-1 p-8 md:p-12">
