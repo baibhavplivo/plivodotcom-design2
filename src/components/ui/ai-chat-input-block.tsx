@@ -101,7 +101,7 @@ const BasicAIChatInput = () => {
           value={prompt}
           onChange={(e) => setPrompt(e.target.value)}
           placeholder="Describe what you need and let AI build it for you"
-          className="min-h-[90px] sm:min-h-[110px] w-full resize-none rounded-lg border border-gray-200 bg-white p-3 sm:p-4 pr-12 text-xs sm:text-sm text-gray-900 placeholder:text-gray-400 focus:border-gray-300 focus:outline-none focus:ring-0"
+          className="min-h-[90px] sm:min-h-[110px] w-full resize-none rounded-lg border border-gray-200 bg-white p-3 sm:p-4 pr-12 text-xs sm:text-sm text-gray-900 placeholder:text-gray-400 focus:border-gray-300 focus:outline-none focus:ring-0 shadow-xl"
         />
         <button
           onClick={handleSubmit}
