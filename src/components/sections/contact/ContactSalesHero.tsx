@@ -399,18 +399,32 @@ export default function ContactSalesHero() {
         utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/utils.js",
         autoPlaceholder: "aggressive",
         geoIpLookup: (callback: (countryCode: string) => void) => {
-          // Check sessionStorage cache first
+          const syncHiddenGeo = (country: string, ip?: string) => {
+            const ipCountryEl = document.getElementById("plivo_ip_country_code") as HTMLInputElement | null;
+            const ipAddressEl = document.getElementById("ip_address") as HTMLInputElement | null;
+            if (ipCountryEl) ipCountryEl.value = country;
+            if (ipAddressEl && ip) ipAddressEl.value = ip;
+          };
+
+          // 1. Server-injected CF-IPCountry (instant, no network call)
+          const cfCountry = (window as any).__CF_COUNTRY;
+          if (cfCountry) {
+            sessionStorage.setItem("plivo_ip_info", JSON.stringify({ country: cfCountry }));
+            syncHiddenGeo(cfCountry);
+            return callback(cfCountry);
+          }
+
+          // 2. Check sessionStorage cache
           const cached = sessionStorage.getItem("plivo_ip_info");
           if (cached) {
             try {
               const { country, ip } = JSON.parse(cached);
-              const ipCountryEl = document.getElementById("plivo_ip_country_code") as HTMLInputElement | null;
-              const ipAddressEl = document.getElementById("ip_address") as HTMLInputElement | null;
-              if (ipCountryEl) ipCountryEl.value = country;
-              if (ipAddressEl) ipAddressEl.value = ip;
+              syncHiddenGeo(country, ip);
               return callback(country);
             } catch { /* fall through */ }
           }
+
+          // 3. Fallback: ipinfo.io (for localhost / non-CF environments)
           const t = ["1aff", "17b3", "d558", "ec"].join("");
           fetch(`https://ipinfo.io/json?token=${t}`)
             .then((r) => r.json())
@@ -418,10 +432,7 @@ export default function ContactSalesHero() {
               const country = (r && r.country) || "US";
               const ip = (r && r.ip) || "";
               sessionStorage.setItem("plivo_ip_info", JSON.stringify({ country, ip }));
-              const ipCountryEl = document.getElementById("plivo_ip_country_code") as HTMLInputElement | null;
-              const ipAddressEl = document.getElementById("ip_address") as HTMLInputElement | null;
-              if (ipCountryEl) ipCountryEl.value = country;
-              if (ipAddressEl) ipAddressEl.value = ip;
+              syncHiddenGeo(country, ip);
               callback(country);
             })
             .catch(() => callback("US"));

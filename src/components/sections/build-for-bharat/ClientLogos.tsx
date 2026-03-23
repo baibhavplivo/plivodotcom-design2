@@ -36,6 +36,15 @@ export default function ClientLogos() {
   const [logos, setLogos] = useState(INTL_LOGOS);
 
   useEffect(() => {
+    // 1. Server-injected CF-IPCountry (instant, no network call)
+    const cfCountry = (window as any).__CF_COUNTRY;
+    if (cfCountry) {
+      sessionStorage.setItem("plivo_ip_info", JSON.stringify({ country: cfCountry }));
+      if (cfCountry === "IN") setLogos(INDIA_LOGOS);
+      return;
+    }
+
+    // 2. Cached result from previous visit
     const cached = sessionStorage.getItem("plivo_ip_info");
     if (cached) {
       try {
@@ -45,6 +54,7 @@ export default function ClientLogos() {
       } catch {}
     }
 
+    // 3. Fallback: ipinfo.io (for localhost / non-CF environments)
     const t = ["1aff", "17b3", "d558", "ec"].join("");
     fetch(`https://ipinfo.io/json?token=${t}`)
       .then((r) => r.json())

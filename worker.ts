@@ -542,7 +542,26 @@ export default {
       return errorResponse("Not found", 404, origin);
     }
 
-    // Serve static assets for everything else
-    return env.ASSETS.fetch(request);
+    // Serve static assets, injecting geo-country for HTML pages
+    const response = await env.ASSETS.fetch(request);
+
+    // Only transform HTML responses
+    const contentType = response.headers.get("Content-Type") || "";
+    if (!contentType.includes("text/html")) return response;
+
+    const country = request.headers.get("CF-IPCountry") || "";
+    if (!country) return response;
+
+    // Inject country code into <head> so client JS can read it instantly
+    return new HTMLRewriter()
+      .on("head", {
+        element(el) {
+          el.prepend(
+            `<script>window.__CF_COUNTRY="${country}"</script>`,
+            { html: true }
+          );
+        },
+      })
+      .transform(response);
   },
 };
