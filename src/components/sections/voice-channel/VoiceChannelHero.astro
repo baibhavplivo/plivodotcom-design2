@@ -1,6 +1,6 @@
 ---
-// VoiceChannelHero.astro - Side-by-side hero with Press to Talk demo
-import VoiceDemoCompact from "./VoiceDemoCompact";
+// VoiceChannelHero.astro - Side-by-side hero with recorded call demo
+import VoiceRecordingCard from "./VoiceRecordingCard";
 ---
 
 <section class="hero bg-white pt-16 sm:pt-20 md:pt-24 pb-8">
@@ -12,27 +12,27 @@ import VoiceDemoCompact from "./VoiceDemoCompact";
           Voice AI agents that handle all your customer requests
         </h1>
         <p class="text-base sm:text-lg text-gray-600 mt-4 max-w-[540px] mx-auto lg:mx-0 leading-relaxed">
-          Deliver human-quality service at machine scale with Voice agent that can schedule appointments, manage orders & bookings, and resolve support issues.
+          Deliver human-quality service at machine scale with Voice agents that can schedule appointments, manage orders & bookings, and resolve support issues.
         </p>
         <div class="flex flex-col sm:flex-row gap-3 mt-8 justify-center lg:justify-start">
-          <a
-            href="/platform/ai-agents/"
-            class="inline-flex items-center justify-center px-6 py-3 text-base font-medium border border-gray-300 text-black rounded-md hover:bg-gray-50 transition-colors"
-          >
-            Explore AI agents
-          </a>
           <a
             href="https://cx.plivo.com/"
             class="inline-flex items-center justify-center px-6 py-3 text-base font-medium bg-black text-white rounded-md hover:bg-gray-800 transition-colors"
           >
-            Try the agent
+            Start for free
+          </a>
+          <a
+            href="/contact/sales/"
+            class="inline-flex items-center justify-center px-6 py-3 text-base font-medium border border-gray-300 text-black rounded-md hover:bg-gray-50 transition-colors"
+          >
+            Talk to sales
           </a>
         </div>
       </div>
 
-      <!-- Right Content - Demo -->
+      <!-- Right Content - Recorded call demo -->
       <div class="order-2 lg:order-2">
-        <VoiceDemoCompact client:visible />
+        <VoiceRecordingCard client:visible />
       </div>
     </div>
   </div>
