@@ -4,6 +4,7 @@ import { useState, useEffect, useRef, useMemo } from "react";
 import { cn } from "@/lib/utils";
 import { ChevronDown } from "lucide-react";
 import type { CountryListItem } from "@/data/pricing-data";
+import { SIP_RATES } from "@/data/pricing-data";
 import { useGeoCountry } from "@/hooks/useGeoCountry";
 import { useCountryISOs } from "@/hooks/useCountryISOs";
 import { useZentrunkPricing } from "@/hooks/useZentrunkPricing";
@@ -35,7 +36,9 @@ function formatRate(rate: number, currency = "$"): string {
 
 export default function SIPTrunkingPricing() {
   const { country: geoCountry } = useGeoCountry();
-  const { countries } = useCountryISOs();
+  const { countries: allCountries } = useCountryISOs();
+  const sipCodes = useMemo(() => new Set(Object.keys(SIP_RATES)), []);
+  const countries = useMemo(() => allCountries.filter(c => sipCodes.has(c.code)), [allCountries, sipCodes]);
   const [selectedCountry, setSelectedCountry] = useState<CountryListItem>(countries[0]);
   const [isCountryOpen, setIsCountryOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<SectionId>("inbound-rates");
@@ -149,7 +152,7 @@ export default function SIPTrunkingPricing() {
               SIP trunking pricing
             </h1>
             <p className="text-gray-600 text-base sm:text-lg max-w-2xl mx-auto">
-              Pay-as-you-go SIP trunking with competitive inbound rates across 55+ countries. No setup fees, no contracts.
+              Pay-as-you-go SIP trunking with competitive inbound rates across 50+ countries. No setup fees, no contracts.
             </p>
           </div>
         </div>

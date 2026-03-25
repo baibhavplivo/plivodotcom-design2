@@ -12,7 +12,7 @@ import type { CountryListItem, SMSCountryRates, CalculatorEntry } from "@/data/p
 import { useGeoCountry } from "@/hooks/useGeoCountry";
 import { useCountryISOs } from "@/hooks/useCountryISOs";
 import { useCountryPricing } from "@/hooks/useCountryPricing";
-import type { SMSRateRow, PhoneNumberInfo } from "@/hooks/useCountryPricing";
+import type { SMSRateRow, PhoneNumberInfo, SMSNetworkRate } from "@/hooks/useCountryPricing";
 
 type SectionId = "sms" | "rcs" | "mms" | "phone-numbers" | "carrier-fees" | "cost-calculator";
 
@@ -46,6 +46,7 @@ export default function SMSPricingTabs() {
 
   const { data: pricingData, loading } = useCountryPricing(selectedCountry.code);
   const liveSmsRates = pricingData?.smsRates || [];
+  const smsNetworkRates = pricingData?.smsNetworkRates || [];
   const phoneNumbers = (pricingData?.phoneNumbers || []).filter(
     (pn) => pn.rentalRate != null && pn.rentalRate > 0
   );
@@ -249,7 +250,7 @@ export default function SMSPricingTabs() {
             <div ref={contentRef} className="min-w-0">
               {/* SMS Section */}
               <div id="sms" className="bg-white rounded-xl border border-gray-200 p-6 mb-6">
-                <SMSSection smsRates={liveSmsRates.length > 0 ? liveSmsRates : (hardcodedRates?.sms || [])} hasCarrierFees={!!hardcodedRates?.hasCarrierFees} loading={loading} />
+                <SMSSection smsRates={liveSmsRates.length > 0 ? liveSmsRates : (hardcodedRates?.sms || [])} smsNetworkRates={smsNetworkRates} hasCarrierFees={!!hardcodedRates?.hasCarrierFees} loading={loading} />
               </div>
 
               {/* RCS Section - US only */}
@@ -277,10 +278,10 @@ export default function SMSPricingTabs() {
                 </div>
               )}
 
-              {/* Carrier Fees Section - US only */}
+              {/* Carrier Fees Section - US/CA */}
               {hardcodedRates?.hasCarrierFees && (
                 <div id="carrier-fees" className="bg-white rounded-xl border border-gray-200 p-6 mb-6">
-                  <CarrierFeesSection />
+                  <CarrierFeesSection countryCode={selectedCountry.code} />
                 </div>
               )}
 
@@ -296,7 +297,23 @@ export default function SMSPricingTabs() {
   );
 }
 
-function SMSSection({ smsRates, hasCarrierFees, loading }: { smsRates: SMSRateRow[]; hasCarrierFees: boolean; loading: boolean }) {
+function SMSSection({ smsRates, smsNetworkRates, hasCarrierFees, loading }: { smsRates: SMSRateRow[]; smsNetworkRates: SMSNetworkRate[]; hasCarrierFees: boolean; loading: boolean }) {
+  const [showNetworkRates, setShowNetworkRates] = useState(false);
+  const toggleRef = useRef<HTMLButtonElement>(null);
+
+  // Use native event listener for Astro hydration compatibility
+  useEffect(() => {
+    const btn = toggleRef.current;
+    if (!btn) return;
+    const handler = () => setShowNetworkRates((prev) => !prev);
+    btn.addEventListener("click", handler);
+    return () => btn.removeEventListener("click", handler);
+  }, []);
+
+  // Check if all network rates are the same
+  const allSameRate = smsNetworkRates.length > 1 &&
+    smsNetworkRates.every((r) => r.rate === smsNetworkRates[0].rate);
+
   return (
     <div>
       <h2 className="font-sans text-xl font-semibold text-black mb-2">SMS Text Messages</h2>
@@ -360,6 +377,40 @@ function SMSSection({ smsRates, hasCarrierFees, loading }: { smsRates: SMSRateRo
           </tbody>
         </table>
       </div>
+
+      {/* Network-Based Pricing */}
+      {!loading && smsNetworkRates.length > 1 && !allSameRate && (
+        <div className="mt-4 border-t border-gray-100 pt-4">
+          <button
+            ref={toggleRef}
+            className="inline-flex items-center gap-1.5 text-sm font-medium text-[#323dfe] hover:underline"
+          >
+            {showNetworkRates ? "Hide" : "View"} network-based pricing
+            <ChevronDown className={cn("h-4 w-4 transition-transform", showNetworkRates && "rotate-180")} />
+          </button>
+
+          {showNetworkRates && (
+            <div className="mt-3 overflow-x-auto">
+              <table className="w-full">
+                <thead>
+                  <tr className="border-b border-gray-200">
+                    <th className="py-2 pr-4 text-left text-xs sm:text-sm font-semibold text-black">Network</th>
+                    <th className="py-2 text-left text-xs sm:text-sm font-semibold text-black">Outbound Rate</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-100">
+                  {smsNetworkRates.map((nr) => (
+                    <tr key={nr.network}>
+                      <td className="py-2 pr-4 text-xs sm:text-sm text-gray-900">{nr.network}</td>
+                      <td className="py-2 text-xs sm:text-sm font-medium text-black">{nr.rate}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 }
@@ -710,7 +761,9 @@ function SMSCostCalculator() {
   );
 }
 
-function CarrierFeesSection() {
+function CarrierFeesSection({ countryCode }: { countryCode: string }) {
+  const isCA = countryCode === "CA";
+
   return (
     <div className="space-y-10">
       <h2 className="font-sans text-xl font-semibold text-black">Additional Carrier Surcharge Fees</h2>
@@ -737,42 +790,103 @@ function CarrierFeesSection() {
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100">
-              <tr>
-                <td className="py-3 pr-4 text-gray-900">AT&T</td>
-                <td className="py-3 px-2 text-center border-l border-gray-100">$0.0030/sms</td>
-                <td className="py-3 px-2 text-center">$0.0030/sms</td>
-                <td className="py-3 px-2 text-center border-l border-gray-100">$0.0030/sms</td>
-                <td className="py-3 px-2 text-center text-gray-400">NA</td>
-                <td className="py-3 px-2 text-center border-l border-gray-100">$0.0030/sms</td>
-                <td className="py-3 px-2 text-center">$0.0030/sms</td>
-              </tr>
-              <tr>
-                <td className="py-3 pr-4 text-gray-900">T-Mobile</td>
-                <td className="py-3 px-2 text-center border-l border-gray-100">$0.0045/sms</td>
-                <td className="py-3 px-2 text-center">$0.0025/sms</td>
-                <td className="py-3 px-2 text-center border-l border-gray-100">$0.0045/sms</td>
-                <td className="py-3 px-2 text-center">$0.0025/sms</td>
-                <td className="py-3 px-2 text-center border-l border-gray-100">$0.0045/sms</td>
-                <td className="py-3 px-2 text-center">$0.0025/sms</td>
-              </tr>
-              <tr>
-                <td className="py-3 pr-4 text-gray-900">Verizon</td>
-                <td className="py-3 px-2 text-center border-l border-gray-100">$0.0040/sms</td>
-                <td className="py-3 px-2 text-center text-gray-400">NA</td>
-                <td className="py-3 px-2 text-center border-l border-gray-100">$0.0040/sms</td>
-                <td className="py-3 px-2 text-center text-gray-400">NA</td>
-                <td className="py-3 px-2 text-center border-l border-gray-100">$0.0040/sms</td>
-                <td className="py-3 px-2 text-center text-gray-400">NA</td>
-              </tr>
-              <tr>
-                <td className="py-3 pr-4 text-gray-900">US Cellular & Other Networks</td>
-                <td className="py-3 px-2 text-center border-l border-gray-100">$0.0050/sms</td>
-                <td className="py-3 px-2 text-center">$0.0025/sms</td>
-                <td className="py-3 px-2 text-center border-l border-gray-100">$0.0045/sms</td>
-                <td className="py-3 px-2 text-center">$0.0025/sms</td>
-                <td className="py-3 px-2 text-center border-l border-gray-100">$0.0045/sms</td>
-                <td className="py-3 px-2 text-center">$0.0025/sms</td>
-              </tr>
+              {isCA ? (
+                <>
+                  <tr>
+                    <td className="py-3 pr-4 text-gray-900">Bell & Virgin</td>
+                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0088/sms</td>
+                    <td className="py-3 px-2 text-center text-gray-400">NA</td>
+                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0054/sms</td>
+                    <td className="py-3 px-2 text-center text-black">$0.0054/sms</td>
+                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0088/sms</td>
+                    <td className="py-3 px-2 text-center text-gray-400">NA</td>
+                  </tr>
+                  <tr>
+                    <td className="py-3 pr-4 text-gray-900">Rogers & Fido</td>
+                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0097/sms</td>
+                    <td className="py-3 px-2 text-center text-gray-400">NA</td>
+                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0044/sms</td>
+                    <td className="py-3 px-2 text-center text-black">$0.0044/sms</td>
+                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0088/sms</td>
+                    <td className="py-3 px-2 text-center text-gray-400">NA</td>
+                  </tr>
+                  <tr>
+                    <td className="py-3 pr-4 text-gray-900">Telus</td>
+                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0100/sms</td>
+                    <td className="py-3 px-2 text-center text-gray-400">NA</td>
+                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0065/sms</td>
+                    <td className="py-3 px-2 text-center text-gray-400">NA</td>
+                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0100/sms</td>
+                    <td className="py-3 px-2 text-center text-gray-400">NA</td>
+                  </tr>
+                  <tr>
+                    <td className="py-3 pr-4 text-gray-900">Freedom</td>
+                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0072/sms</td>
+                    <td className="py-3 px-2 text-center text-gray-400">NA</td>
+                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0080/sms</td>
+                    <td className="py-3 px-2 text-center text-gray-400">NA</td>
+                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0072/sms</td>
+                    <td className="py-3 px-2 text-center text-gray-400">NA</td>
+                  </tr>
+                  <tr>
+                    <td className="py-3 pr-4 text-gray-900">Videotron</td>
+                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0072/sms</td>
+                    <td className="py-3 px-2 text-center text-gray-400">NA</td>
+                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0040/sms</td>
+                    <td className="py-3 px-2 text-center text-black">$0.0040/sms</td>
+                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0072/sms</td>
+                    <td className="py-3 px-2 text-center text-gray-400">NA</td>
+                  </tr>
+                  <tr>
+                    <td className="py-3 pr-4 text-gray-900">Other Networks</td>
+                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0080/sms</td>
+                    <td className="py-3 px-2 text-center text-gray-400">NA</td>
+                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0080/sms</td>
+                    <td className="py-3 px-2 text-center text-gray-400">NA</td>
+                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0080/sms</td>
+                    <td className="py-3 px-2 text-center text-gray-400">NA</td>
+                  </tr>
+                </>
+              ) : (
+                <>
+                  <tr>
+                    <td className="py-3 pr-4 text-gray-900">AT&T</td>
+                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0030/sms</td>
+                    <td className="py-3 px-2 text-center text-black">$0.0030/sms</td>
+                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0030/sms</td>
+                    <td className="py-3 px-2 text-center text-gray-400">NA</td>
+                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0030/sms</td>
+                    <td className="py-3 px-2 text-center text-black">$0.0030/sms</td>
+                  </tr>
+                  <tr>
+                    <td className="py-3 pr-4 text-gray-900">T-Mobile</td>
+                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0045/sms</td>
+                    <td className="py-3 px-2 text-center text-black">$0.0025/sms</td>
+                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0045/sms</td>
+                    <td className="py-3 px-2 text-center text-black">$0.0025/sms</td>
+                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0045/sms</td>
+                    <td className="py-3 px-2 text-center text-black">$0.0025/sms</td>
+                  </tr>
+                  <tr>
+                    <td className="py-3 pr-4 text-gray-900">Verizon</td>
+                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0040/sms</td>
+                    <td className="py-3 px-2 text-center text-gray-400">NA</td>
+                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0040/sms</td>
+                    <td className="py-3 px-2 text-center text-gray-400">NA</td>
+                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0040/sms</td>
+                    <td className="py-3 px-2 text-center text-gray-400">NA</td>
+                  </tr>
+                  <tr>
+                    <td className="py-3 pr-4 text-gray-900">US Cellular & Other Networks</td>
+                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0050/sms</td>
+                    <td className="py-3 px-2 text-center text-black">$0.0025/sms</td>
+                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0045/sms</td>
+                    <td className="py-3 px-2 text-center text-black">$0.0025/sms</td>
+                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0045/sms</td>
+                    <td className="py-3 px-2 text-center text-black">$0.0025/sms</td>
+                  </tr>
+                </>
+              )}
             </tbody>
           </table>
         </div>
@@ -787,118 +901,169 @@ function CarrierFeesSection() {
               <tr className="border-b border-gray-200">
                 <th className="py-3 pr-4 text-left font-semibold text-black whitespace-nowrap" rowSpan={2}>Carrier</th>
                 <th className="py-2 px-2 text-center font-semibold text-black border-l border-gray-200 whitespace-nowrap" colSpan={2}>Long Codes</th>
-                <th className="py-2 px-2 text-center font-semibold text-black border-l border-gray-200 whitespace-nowrap" colSpan={2}>Short Codes</th>
+                {!isCA && <th className="py-2 px-2 text-center font-semibold text-black border-l border-gray-200 whitespace-nowrap" colSpan={2}>Short Codes</th>}
                 <th className="py-2 px-2 text-center font-semibold text-black border-l border-gray-200 whitespace-nowrap" colSpan={2}>Toll-Free</th>
               </tr>
               <tr className="border-b border-gray-200">
                 <th className="py-2 px-2 text-center text-xs font-medium text-gray-600 border-l border-gray-200 whitespace-nowrap">To send MMS</th>
                 <th className="py-2 px-2 text-center text-xs font-medium text-gray-600 whitespace-nowrap">To receive MMS</th>
-                <th className="py-2 px-2 text-center text-xs font-medium text-gray-600 border-l border-gray-200 whitespace-nowrap">To send MMS</th>
-                <th className="py-2 px-2 text-center text-xs font-medium text-gray-600 whitespace-nowrap">To receive MMS</th>
+                {!isCA && <th className="py-2 px-2 text-center text-xs font-medium text-gray-600 border-l border-gray-200 whitespace-nowrap">To send MMS</th>}
+                {!isCA && <th className="py-2 px-2 text-center text-xs font-medium text-gray-600 whitespace-nowrap">To receive MMS</th>}
                 <th className="py-2 px-2 text-center text-xs font-medium text-gray-600 border-l border-gray-200 whitespace-nowrap">To send MMS</th>
                 <th className="py-2 px-2 text-center text-xs font-medium text-gray-600 whitespace-nowrap">To receive MMS</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100">
-              <tr>
-                <td className="py-3 pr-4 text-gray-900">AT&T</td>
-                <td className="py-3 px-2 text-center border-l border-gray-100">$0.0075/mms</td>
-                <td className="py-3 px-2 text-center">$0.0075/mms</td>
-                <td className="py-3 px-2 text-center border-l border-gray-100">$0.0075/mms</td>
-                <td className="py-3 px-2 text-center text-gray-400">NA</td>
-                <td className="py-3 px-2 text-center border-l border-gray-100">$0.0075/mms</td>
-                <td className="py-3 px-2 text-center">$0.0075/mms</td>
-              </tr>
-              <tr>
-                <td className="py-3 pr-4 text-gray-900">T-Mobile</td>
-                <td className="py-3 px-2 text-center border-l border-gray-100">$0.0100/mms</td>
-                <td className="py-3 px-2 text-center">$0.0100/mms</td>
-                <td className="py-3 px-2 text-center border-l border-gray-100">$0.0100/mms</td>
-                <td className="py-3 px-2 text-center">$0.0100/mms</td>
-                <td className="py-3 px-2 text-center border-l border-gray-100">$0.0100/mms</td>
-                <td className="py-3 px-2 text-center">$0.0100/mms</td>
-              </tr>
-              <tr>
-                <td className="py-3 pr-4 text-gray-900">Verizon</td>
-                <td className="py-3 px-2 text-center border-l border-gray-100">$0.0065/mms</td>
-                <td className="py-3 px-2 text-center text-gray-400">NA</td>
-                <td className="py-3 px-2 text-center border-l border-gray-100">$0.0065/mms</td>
-                <td className="py-3 px-2 text-center text-gray-400">NA</td>
-                <td className="py-3 px-2 text-center border-l border-gray-100">$0.0065/mms</td>
-                <td className="py-3 px-2 text-center text-gray-400">NA</td>
-              </tr>
-              <tr>
-                <td className="py-3 pr-4 text-gray-900">US Cellular & Other Networks</td>
-                <td className="py-3 px-2 text-center border-l border-gray-100">$0.0100/mms</td>
-                <td className="py-3 px-2 text-center">$0.0100/mms</td>
-                <td className="py-3 px-2 text-center border-l border-gray-100">$0.0100/mms</td>
-                <td className="py-3 px-2 text-center">$0.0100/mms</td>
-                <td className="py-3 px-2 text-center border-l border-gray-100">$0.0100/mms</td>
-                <td className="py-3 px-2 text-center">$0.0100/mms</td>
-              </tr>
+              {isCA ? (
+                <>
+                  <tr>
+                    <td className="py-3 pr-4 text-gray-900">Bell & Virgin</td>
+                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0310/mms</td>
+                    <td className="py-3 px-2 text-center text-gray-400">NA</td>
+                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0310/mms</td>
+                    <td className="py-3 px-2 text-center text-gray-400">NA</td>
+                  </tr>
+                  <tr>
+                    <td className="py-3 pr-4 text-gray-900">Rogers & Fido</td>
+                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0194/mms</td>
+                    <td className="py-3 px-2 text-center text-gray-400">NA</td>
+                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0176/mms</td>
+                    <td className="py-3 px-2 text-center text-gray-400">NA</td>
+                  </tr>
+                  <tr>
+                    <td className="py-3 pr-4 text-gray-900">Telus</td>
+                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0200/mms</td>
+                    <td className="py-3 px-2 text-center text-gray-400">NA</td>
+                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0200/mms</td>
+                    <td className="py-3 px-2 text-center text-gray-400">NA</td>
+                  </tr>
+                  <tr>
+                    <td className="py-3 pr-4 text-gray-900">Freedom</td>
+                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0096/mms</td>
+                    <td className="py-3 px-2 text-center text-gray-400">NA</td>
+                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0096/mms</td>
+                    <td className="py-3 px-2 text-center text-gray-400">NA</td>
+                  </tr>
+                  <tr>
+                    <td className="py-3 pr-4 text-gray-900">Videotron</td>
+                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0096/mms</td>
+                    <td className="py-3 px-2 text-center text-gray-400">NA</td>
+                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0096/mms</td>
+                    <td className="py-3 px-2 text-center text-gray-400">NA</td>
+                  </tr>
+                  <tr>
+                    <td className="py-3 pr-4 text-gray-900">Other Networks</td>
+                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0160/mms</td>
+                    <td className="py-3 px-2 text-center text-gray-400">NA</td>
+                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0160/mms</td>
+                    <td className="py-3 px-2 text-center text-gray-400">NA</td>
+                  </tr>
+                </>
+              ) : (
+                <>
+                  <tr>
+                    <td className="py-3 pr-4 text-gray-900">AT&T</td>
+                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0075/mms</td>
+                    <td className="py-3 px-2 text-center text-black">$0.0075/mms</td>
+                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0075/mms</td>
+                    <td className="py-3 px-2 text-center text-gray-400">NA</td>
+                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0075/mms</td>
+                    <td className="py-3 px-2 text-center text-black">$0.0075/mms</td>
+                  </tr>
+                  <tr>
+                    <td className="py-3 pr-4 text-gray-900">T-Mobile</td>
+                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0100/mms</td>
+                    <td className="py-3 px-2 text-center text-black">$0.0100/mms</td>
+                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0100/mms</td>
+                    <td className="py-3 px-2 text-center text-black">$0.0100/mms</td>
+                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0100/mms</td>
+                    <td className="py-3 px-2 text-center text-black">$0.0100/mms</td>
+                  </tr>
+                  <tr>
+                    <td className="py-3 pr-4 text-gray-900">Verizon</td>
+                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0065/mms</td>
+                    <td className="py-3 px-2 text-center text-gray-400">NA</td>
+                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0065/mms</td>
+                    <td className="py-3 px-2 text-center text-gray-400">NA</td>
+                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0065/mms</td>
+                    <td className="py-3 px-2 text-center text-gray-400">NA</td>
+                  </tr>
+                  <tr>
+                    <td className="py-3 pr-4 text-gray-900">US Cellular & Other Networks</td>
+                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0100/mms</td>
+                    <td className="py-3 px-2 text-center text-black">$0.0100/mms</td>
+                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0100/mms</td>
+                    <td className="py-3 px-2 text-center text-black">$0.0100/mms</td>
+                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0100/mms</td>
+                    <td className="py-3 px-2 text-center text-black">$0.0100/mms</td>
+                  </tr>
+                </>
+              )}
             </tbody>
           </table>
         </div>
       </div>
 
-      {/* RCS Carrier Surcharge Fee */}
-      <div className="pt-2">
-        <h3 className="text-lg font-medium text-black mb-4">RCS Carrier Surcharge Fee</h3>
-        <div className="overflow-x-auto">
-          <table className="w-full text-sm">
-            <thead>
-              <tr className="border-b border-gray-200">
-                <th className="py-3 pr-4 text-left font-semibold text-black whitespace-nowrap" rowSpan={2}>Carrier</th>
-                <th className="py-2 px-2 text-center font-semibold text-black border-l border-gray-200 whitespace-nowrap" colSpan={2}>RCS Rich</th>
-                <th className="py-2 px-2 text-center font-semibold text-black border-l border-gray-200 whitespace-nowrap" colSpan={2}>RCS Rich Media</th>
-              </tr>
-              <tr className="border-b border-gray-200">
-                <th className="py-2 px-2 text-center text-xs font-medium text-gray-600 border-l border-gray-200 whitespace-nowrap">Outbound*</th>
-                <th className="py-2 px-2 text-center text-xs font-medium text-gray-600 whitespace-nowrap">Inbound*</th>
-                <th className="py-2 px-2 text-center text-xs font-medium text-gray-600 border-l border-gray-200 whitespace-nowrap">Outbound*</th>
-                <th className="py-2 px-2 text-center text-xs font-medium text-gray-600 whitespace-nowrap">Inbound*</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-gray-100">
-              <tr>
-                <td className="py-3 pr-4 text-gray-900">AT&T</td>
-                <td className="py-3 px-2 text-center border-l border-gray-100">$0.0045</td>
-                <td className="py-3 px-2 text-center">$0.0045</td>
-                <td className="py-3 px-2 text-center border-l border-gray-100">$0.01</td>
-                <td className="py-3 px-2 text-center">$0.01</td>
-              </tr>
-              <tr>
-                <td className="py-3 pr-4 text-gray-900">T-Mobile</td>
-                <td className="py-3 px-2 text-center border-l border-gray-100">$0.0062</td>
-                <td className="py-3 px-2 text-center">$0.0025</td>
-                <td className="py-3 px-2 text-center border-l border-gray-100">$0.0125</td>
-                <td className="py-3 px-2 text-center">$0.0125</td>
-              </tr>
-              <tr>
-                <td className="py-3 pr-4 text-gray-900">Verizon</td>
-                <td className="py-3 px-2 text-center border-l border-gray-100">$0.004</td>
-                <td className="py-3 px-2 text-center text-gray-400">$0</td>
-                <td className="py-3 px-2 text-center border-l border-gray-100">$0.006</td>
-                <td className="py-3 px-2 text-center text-gray-400">$0</td>
-              </tr>
-              <tr>
-                <td className="py-3 pr-4 text-gray-900">US Cellular</td>
-                <td className="py-3 px-2 text-center border-l border-gray-100">$0.0062</td>
-                <td className="py-3 px-2 text-center">$0.0025</td>
-                <td className="py-3 px-2 text-center border-l border-gray-100">$0.0135</td>
-                <td className="py-3 px-2 text-center">$0.0135</td>
-              </tr>
-              <tr>
-                <td className="py-3 pr-4 text-gray-900">All other carriers</td>
-                <td className="py-3 px-2 text-center border-l border-gray-100">$0.0045</td>
-                <td className="py-3 px-2 text-center">$0.0045</td>
-                <td className="py-3 px-2 text-center border-l border-gray-100">$0.01</td>
-                <td className="py-3 px-2 text-center">$0.01</td>
-              </tr>
-            </tbody>
-          </table>
+      {/* RCS Carrier Surcharge Fee - US only */}
+      {!isCA && (
+        <div className="pt-2">
+          <h3 className="text-lg font-medium text-black mb-4">RCS Carrier Surcharge Fee</h3>
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="border-b border-gray-200">
+                  <th className="py-3 pr-4 text-left font-semibold text-black whitespace-nowrap" rowSpan={2}>Carrier</th>
+                  <th className="py-2 px-2 text-center font-semibold text-black border-l border-gray-200 whitespace-nowrap" colSpan={2}>RCS Rich</th>
+                  <th className="py-2 px-2 text-center font-semibold text-black border-l border-gray-200 whitespace-nowrap" colSpan={2}>RCS Rich Media</th>
+                </tr>
+                <tr className="border-b border-gray-200">
+                  <th className="py-2 px-2 text-center text-xs font-medium text-gray-600 border-l border-gray-200 whitespace-nowrap">Outbound*</th>
+                  <th className="py-2 px-2 text-center text-xs font-medium text-gray-600 whitespace-nowrap">Inbound*</th>
+                  <th className="py-2 px-2 text-center text-xs font-medium text-gray-600 border-l border-gray-200 whitespace-nowrap">Outbound*</th>
+                  <th className="py-2 px-2 text-center text-xs font-medium text-gray-600 whitespace-nowrap">Inbound*</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-100">
+                <tr>
+                  <td className="py-3 pr-4 text-gray-900">AT&T</td>
+                  <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0045</td>
+                  <td className="py-3 px-2 text-center text-black">$0.0045</td>
+                  <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.01</td>
+                  <td className="py-3 px-2 text-center text-black">$0.01</td>
+                </tr>
+                <tr>
+                  <td className="py-3 pr-4 text-gray-900">T-Mobile</td>
+                  <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0062</td>
+                  <td className="py-3 px-2 text-center text-black">$0.0025</td>
+                  <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0125</td>
+                  <td className="py-3 px-2 text-center text-black">$0.0125</td>
+                </tr>
+                <tr>
+                  <td className="py-3 pr-4 text-gray-900">Verizon</td>
+                  <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.004</td>
+                  <td className="py-3 px-2 text-center text-gray-400">$0</td>
+                  <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.006</td>
+                  <td className="py-3 px-2 text-center text-gray-400">$0</td>
+                </tr>
+                <tr>
+                  <td className="py-3 pr-4 text-gray-900">US Cellular</td>
+                  <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0062</td>
+                  <td className="py-3 px-2 text-center text-black">$0.0025</td>
+                  <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0135</td>
+                  <td className="py-3 px-2 text-center text-black">$0.0135</td>
+                </tr>
+                <tr>
+                  <td className="py-3 pr-4 text-gray-900">All other carriers</td>
+                  <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0045</td>
+                  <td className="py-3 px-2 text-center text-black">$0.0045</td>
+                  <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.01</td>
+                  <td className="py-3 px-2 text-center text-black">$0.01</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }

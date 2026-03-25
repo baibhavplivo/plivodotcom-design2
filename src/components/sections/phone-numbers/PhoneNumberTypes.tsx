@@ -31,7 +31,7 @@ function VoiceSmsIllustration() {
             </div>
             <div>
               <p className="text-sm font-semibold text-gray-900">Voice & SMS numbers</p>
-              <p className="text-[10px] text-gray-500">65+ countries available</p>
+              <p className="text-[10px] text-gray-500">50+ countries available</p>
             </div>
           </div>
 

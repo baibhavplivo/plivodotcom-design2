@@ -138,7 +138,7 @@ export default function PhoneNumbersPricingPage() {
               Phone number pricing
             </h1>
             <p className="text-gray-600 text-base sm:text-lg max-w-2xl mx-auto">
-              Transparent pricing for local, mobile, toll-free, and national numbers across 65+ countries.
+              Transparent pricing for local, mobile, toll-free, and national numbers across 50+ countries.
             </p>
           </div>
         </div>

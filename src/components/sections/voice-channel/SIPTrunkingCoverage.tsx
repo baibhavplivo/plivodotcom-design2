@@ -225,7 +225,7 @@ export default function SIPTrunkingCoverage() {
             SIP trunking coverage
           </h1>
           <p className="text-gray-600 text-base sm:text-lg max-w-2xl mx-auto">
-            Global SIP trunking coverage with outbound termination to 220+ countries and inbound origination in 55+ countries.
+            Global SIP trunking coverage with outbound termination to 220+ countries and inbound origination in 50+ countries.
           </p>
         </div>
 
@@ -252,7 +252,7 @@ export default function SIPTrunkingCoverage() {
                   : "text-gray-600 hover:text-black hover:bg-gray-50"
               )}
             >
-              Inbound (55+ countries)
+              Inbound (50+ countries)
             </button>
           </div>
         </div>
@@ -401,8 +401,8 @@ function CountryDetailPanel({ country, coverageType }: { country: SIPCountry; co
           </div>
         )}
 
-        {/* Phone Number Rental */}
-        {rental && (
+        {/* Phone Number Rental — only for inbound (numbers needed for origination) */}
+        {coverageType === "inbound" && rental && (
           <div>
             <h4 className="font-inter text-base font-semibold text-black mb-3">Phone number rental</h4>
             <div className="overflow-x-auto">

@@ -7,21 +7,25 @@ import type { VoiceRates, CountryListItem } from "@/data/pricing-data";
 import { useGeoCountry } from "@/hooks/useGeoCountry";
 import { useCountryISOs } from "@/hooks/useCountryISOs";
 import { useCountryPricing } from "@/hooks/useCountryPricing";
-import type { PhoneNumberInfo } from "@/hooks/useCountryPricing";
+import type { PhoneNumberInfo, VoiceNetworkRate, AddOnPricing } from "@/hooks/useCountryPricing";
 
 type SectionId =
   | "local-numbers"
   | "tollfree-numbers"
   | "ip-calls"
+  | "destination-rates"
   | "phone-numbers"
   | "add-ons";
 
-function getSections(hasPhoneNumbers: boolean): { id: SectionId; label: string }[] {
+function getSections(hasPhoneNumbers: boolean, hasDestinationRates: boolean): { id: SectionId; label: string }[] {
   const base: { id: SectionId; label: string }[] = [
     { id: "local-numbers", label: "Local Numbers" },
     { id: "tollfree-numbers", label: "Toll-Free Numbers" },
     { id: "ip-calls", label: "IP Calls" },
   ];
+  if (hasDestinationRates) {
+    base.push({ id: "destination-rates", label: "Destination Rates" });
+  }
   if (hasPhoneNumbers) {
     base.push({ id: "phone-numbers", label: "Phone Number Rental" });
   }
@@ -47,6 +51,7 @@ export default function VoicePricingTabs() {
 
   const { data: pricingData, loading } = useCountryPricing(selectedCountry.code);
   const rates = pricingData?.voiceRates || null;
+  const destinationRates = pricingData?.voiceDestinationRates || [];
   const phoneNumbers = (pricingData?.phoneNumbers || []).filter(
     (pn) => pn.rentalRate != null && pn.rentalRate > 0
   );
@@ -74,7 +79,7 @@ export default function VoicePricingTabs() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const sections = getSections(phoneNumbers.length > 0);
+  const sections = getSections(phoneNumbers.length > 0, destinationRates.length > 0);
 
   useEffect(() => {
     const handleScrollAndResize = () => {
@@ -258,6 +263,13 @@ export default function VoicePricingTabs() {
                 <IPCallsSection rates={rates} loading={loading} />
               </div>
 
+              {/* Destination Rates */}
+              {destinationRates.length > 0 && (
+                <div id="destination-rates" className="bg-white rounded-xl border border-gray-200 p-6 mb-6">
+                  <DestinationRatesSection rates={destinationRates} loading={loading} />
+                </div>
+              )}
+
               {/* Phone Number Rental */}
               {phoneNumbers.length > 0 && (
                 <div id="phone-numbers" className="bg-white rounded-xl border border-gray-200 p-6 mb-6">
@@ -267,7 +279,7 @@ export default function VoicePricingTabs() {
 
               {/* Add-Ons */}
               <div id="add-ons" className="bg-white rounded-xl border border-gray-200 p-6">
-                <AddOnsSection countryCode={selectedCountry.code} />
+                <AddOnsSection countryCode={selectedCountry.code} addOnPricing={pricingData?.addOnPricing || null} loading={loading} />
               </div>
             </div>
           </div>
@@ -422,7 +434,99 @@ function PhoneRentalSection({ phoneNumbers, loading, countryCode }: { phoneNumbe
   );
 }
 
-function AddOnsSection({ countryCode }: { countryCode: string }) {
+function DestinationRatesSection({ rates, loading }: { rates: VoiceNetworkRate[]; loading: boolean }) {
+  const [expandedIdx, setExpandedIdx] = useState<number | null>(null);
+
+  // Use native event listeners for Astro hydration compatibility
+  const buttonRefs = useRef<Map<number, HTMLButtonElement>>(new Map());
+
+  useEffect(() => {
+    const handlers: Array<[HTMLButtonElement, () => void]> = [];
+    for (const [idx, btn] of buttonRefs.current.entries()) {
+      const handler = () => {
+        setExpandedIdx((prev) => (prev === idx ? null : idx));
+      };
+      btn.addEventListener("click", handler);
+      handlers.push([btn, handler]);
+    }
+    return () => {
+      for (const [btn, handler] of handlers) {
+        btn.removeEventListener("click", handler);
+      }
+    };
+  }, [rates]);
+
+  return (
+    <div>
+      <h2 className="font-sans text-xl font-semibold text-black mb-2">Destination Rates</h2>
+      <p className="text-sm text-gray-500 mb-6">
+        Outbound call rates per network group. Sorted by lowest rate first.
+      </p>
+
+      <div className="overflow-x-auto">
+        <table className="w-full">
+          <thead>
+            <tr className="border-b border-gray-200">
+              <th className="py-3 pr-4 text-left text-sm font-semibold text-black w-[55%]">Network</th>
+              <th className="py-3 pr-4 text-left text-sm font-semibold text-black">Rate</th>
+              <th className="py-3 text-left text-sm font-semibold text-black w-[100px]">Prefixes</th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-gray-100">
+            {loading ? (
+              <tr>
+                <td className="py-3 pr-4"><Shimmer /></td>
+                <td className="py-3 pr-4"><Shimmer /></td>
+                <td className="py-3"><Shimmer /></td>
+              </tr>
+            ) : (
+              rates.map((entry, idx) => (
+                <tr key={`${entry.networkGroup}-${idx}`}>
+                  <td className="py-3 pr-4 text-sm text-gray-900">{entry.networkGroup}</td>
+                  <td className="py-3 pr-4 text-sm font-medium text-black">{entry.rate}</td>
+                  <td className="py-3 text-sm">
+                    {entry.destinationPrefixes.length > 0 ? (
+                      <div>
+                        <button
+                          ref={(el) => {
+                            if (el) buttonRefs.current.set(idx, el);
+                            else buttonRefs.current.delete(idx);
+                          }}
+                          className="text-[#323dfe] hover:underline text-sm font-medium"
+                        >
+                          {expandedIdx === idx ? "Hide" : "View"}
+                        </button>
+                        {expandedIdx === idx && (
+                          <div className="mt-2 p-3 bg-gray-50 rounded-md text-xs text-gray-600 max-w-xs">
+                            <p className="font-medium text-gray-800 mb-1">Destination Prefixes</p>
+                            <p className="break-all">{entry.destinationPrefixes.join(", ")}</p>
+                            {entry.originationPrefixes.length > 0 && (
+                              <>
+                                <p className="font-medium text-gray-800 mt-2 mb-1">Origination Prefixes</p>
+                                <p className="break-all">{entry.originationPrefixes.join(", ")}</p>
+                              </>
+                            )}
+                          </div>
+                        )}
+                      </div>
+                    ) : (
+                      <span className="text-gray-400">—</span>
+                    )}
+                  </td>
+                </tr>
+              ))
+            )}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+}
+
+function AddOnsSection({ countryCode, addOnPricing, loading }: { countryCode: string; addOnPricing: AddOnPricing | null; loading: boolean }) {
+  const audioRate = addOnPricing?.audioStreamingRate;
+  const isIndia = countryCode === "IN";
+
   return (
     <div>
       <h2 className="font-sans text-xl font-semibold text-black mb-6">Add-On Services</h2>
@@ -438,30 +542,50 @@ function AddOnsSection({ countryCode }: { countryCode: string }) {
           <tbody className="divide-y divide-gray-100">
             <tr>
               <td className="py-3 pr-4 text-sm text-gray-900">Audio Streaming</td>
+              <td className="py-3 text-sm font-medium text-black">
+                {loading ? <Shimmer /> : (audioRate || "Included")}
+              </td>
+            </tr>
+            <tr>
+              <td className="py-3 pr-4 text-sm text-gray-900">Answering Machine Detection</td>
               <td className="py-3 text-sm font-medium text-black">Included</td>
             </tr>
             <tr>
-              <td className="py-3 pr-4 text-sm text-gray-900">Noise Cancellation</td>
+              <td className="py-3 pr-4 text-sm text-gray-900">Call Insights (Basic)</td>
               <td className="py-3 text-sm font-medium text-black">Included</td>
+            </tr>
+            <tr>
+              <td className="py-3 pr-4 text-sm text-gray-900">Call Insights (Premium)</td>
+              <td className="py-3 text-sm font-medium text-black">{isIndia ? "₹0.22/min" : "$0.0025/min"}</td>
             </tr>
             <tr>
               <td className="py-3 pr-4 text-sm text-gray-900">Call Recording</td>
               <td className="py-3 text-sm font-medium text-black">Included</td>
             </tr>
             <tr>
-              <td className="py-3 pr-4 text-sm text-gray-900">Call Insights</td>
+              <td className="py-3 pr-4 text-sm text-gray-900">Recording Storage</td>
+              <td className="py-3 text-sm font-medium text-black">{isIndia ? "₹0.0004" : "$0.0004"}/min/month (free for 90 days)</td>
+            </tr>
+            <tr>
+              <td className="py-3 pr-4 text-sm text-gray-900">Automatic Speech Recognition</td>
+              <td className="py-3 text-sm font-medium text-black">{isIndia ? "₹1.7/15 seconds" : "$0.02/15 seconds"}</td>
+            </tr>
+            <tr>
+              <td className="py-3 pr-4 text-sm text-gray-900">Call Transcription</td>
+              <td className="py-3 text-sm font-medium text-black">{isIndia ? "₹0.81/min" : "$0.0095/min"}</td>
+            </tr>
+            <tr>
+              <td className="py-3 pr-4 text-sm text-gray-900">Conference Calls</td>
               <td className="py-3 text-sm font-medium text-black">Included</td>
             </tr>
             <tr>
-              <td className="py-3 pr-4 text-sm text-gray-900">Answering Machine Detection</td>
+              <td className="py-3 pr-4 text-sm text-gray-900">Multilingual Text to Speech</td>
               <td className="py-3 text-sm font-medium text-black">Included</td>
             </tr>
-            {countryCode === "US" && (
-              <tr>
-                <td className="py-3 pr-4 text-sm text-gray-900">CNAM Lookup</td>
-                <td className="py-3 text-sm font-medium text-black">$0.005/lookup</td>
-              </tr>
-            )}
+            <tr>
+              <td className="py-3 pr-4 text-sm text-gray-900">CNAM Lookup</td>
+              <td className="py-3 text-sm font-medium text-black">{isIndia ? "₹0.42" : "$0.005"}/lookup</td>
+            </tr>
           </tbody>
         </table>
       </div>

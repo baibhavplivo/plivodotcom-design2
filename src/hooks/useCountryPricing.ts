@@ -18,28 +18,41 @@ export interface SMSRateRow {
   inbound: string;
 }
 
+export interface VoiceNetworkRate {
+  networkGroup: string;
+  rate: string;
+  destinationPrefixes: string[];
+  originationPrefixes: string[];
+}
+
+export interface SMSNetworkRate {
+  network: string;
+  rate: string;
+}
+
+export interface AddOnPricing {
+  audioStreamingRate: string | null;
+}
+
 export interface CountryPricingData {
   voiceRates: VoiceRates;
+  voiceDestinationRates: VoiceNetworkRate[];
+  addOnPricing: AddOnPricing;
   smsOutbound: string;
   smsInbound: string;
   smsRates: SMSRateRow[];
+  smsNetworkRates: SMSNetworkRate[];
   phoneNumbers: PhoneNumberInfo[];
   raw: any;
 }
 
-// Hardcoded overrides matching reference pp-final
-const OVERRIDES: Record<string, Partial<VoiceRates>> = {
-  US: { localOutbound: "$0.0115/min", tollfreeOutbound: "$0.0060/min" },
-  CA: { tollfreeOutbound: "$0.0060/min" },
-};
-
 const INDIA_VOICE: VoiceRates = {
-  localInbound: "₹0.74/min",
+  localInbound: "₹2.8/min",
   localOutbound: "₹0.74/min",
-  tollfreeInbound: "Not Supported",
+  tollfreeInbound: "₹1.30/min",
   tollfreeOutbound: "Not Supported",
-  ipInbound: "₹0.50/min",
-  ipOutbound: "₹0.50/min",
+  ipInbound: "₹0.34/min",
+  ipOutbound: "₹0.34/min",
 };
 
 function formatRate(rate: number | string | null | undefined, unit: string, currency = "$"): string {
@@ -51,8 +64,7 @@ function formatRate(rate: number | string | null | undefined, unit: string, curr
 
 /**
  * Fetches live pricing from Plivo's CountryPricing API.
- * Applies hardcoded overrides for US, CA, India.
- * Falls back to static VOICE_RATES on error.
+ * India uses hardcoded INR rates. Falls back to static VOICE_RATES on error.
  */
 export function useCountryPricing(countryCode: string): {
   data: CountryPricingData | null;
@@ -78,9 +90,12 @@ export function useCountryPricing(countryCode: string): {
       if (code === "IN") {
         const indiaData: CountryPricingData = {
           voiceRates: INDIA_VOICE,
+          voiceDestinationRates: [],
+          addOnPricing: { audioStreamingRate: null },
           smsOutbound: "₹0.155/sms",
           smsInbound: "Not Supported",
           smsRates: [{ type: "Longcode", outbound: "₹0.155/sms", inbound: "Not Supported" }],
+          smsNetworkRates: [],
           phoneNumbers: [],
           raw: null,
         };
@@ -144,16 +159,38 @@ export function useCountryPricing(countryCode: string): {
             }
           }
 
-          // Build voice rates object
-          const overrides = OVERRIDES[code] || {};
+          // Build voice rates object (uses live API data)
           const voiceRates: VoiceRates = {
-            localOutbound: overrides.localOutbound || formatRate(localOutRate, "min"),
+            localOutbound: formatRate(localOutRate, "min"),
             localInbound: formatRate(localInbound, "min"),
-            tollfreeOutbound: overrides.tollfreeOutbound || formatRate(tollfreeOutRate, "min"),
+            tollfreeOutbound: formatRate(tollfreeOutRate, "min"),
             tollfreeInbound: formatRate(tollfreeInbound, "min"),
-            ipInbound: "$0.0030/min",
-            ipOutbound: "$0.0030/min",
+            ipInbound: "$0.0055/min",
+            ipOutbound: "$0.0055/min",
           };
+
+          // Extract per-network-group destination rates
+          const voiceDestinationRates: VoiceNetworkRate[] = [];
+          const localOutRates = apiData?.voice?.local?.outbound?.rates;
+          if (Array.isArray(localOutRates)) {
+            const sorted = [...localOutRates].sort(
+              (a: any, b: any) => (parseFloat(a.rate) || 0) - (parseFloat(b.rate) || 0)
+            );
+            for (const entry of sorted) {
+              const r = parseFloat(entry.rate);
+              if (isNaN(r)) continue;
+              voiceDestinationRates.push({
+                networkGroup: entry.voice_network_group || "Default",
+                rate: `$${r.toFixed(4)}/min`,
+                destinationPrefixes: Array.isArray(entry.destination_prefix)
+                  ? entry.destination_prefix
+                  : [],
+                originationPrefixes: Array.isArray(entry.origination_prefix)
+                  ? entry.origination_prefix.filter((p: string) => p)
+                  : [],
+              });
+            }
+          }
 
           // Extract SMS rates (detailed per route type)
           const smsObj = apiData?.sms || {};
@@ -179,11 +216,35 @@ export function useCountryPricing(countryCode: string): {
           const smsOutbound = formatRate(smsObj?.longcode?.outbound?.rate, "sms");
           const smsInbound = formatRate(smsObj?.longcode?.inbound?.rate, "sms");
 
+          // Extract SMS per-operator network rates
+          const smsNetworkRates: SMSNetworkRate[] = [];
+          const longcodeOutRates = smsObj?.longcode?.outbound?.rates;
+          if (longcodeOutRates && typeof longcodeOutRates === "object" && !Array.isArray(longcodeOutRates)) {
+            for (const [network, rate] of Object.entries(longcodeOutRates)) {
+              const formatted = formatRate(rate as any, "sms");
+              if (formatted !== "Not Supported") {
+                smsNetworkRates.push({ network, rate: formatted });
+              }
+            }
+            smsNetworkRates.sort((a, b) => a.network.localeCompare(b.network));
+          }
+
+          // Extract add-on pricing
+          const audioRate = apiData?.voice?.add_on_pricing?.audio_streaming_rate;
+          const addOnPricing: AddOnPricing = {
+            audioStreamingRate: audioRate != null && audioRate !== 0
+              ? formatRate(audioRate, "min")
+              : null,
+          };
+
           const result: CountryPricingData = {
             voiceRates,
+            voiceDestinationRates,
+            addOnPricing,
             smsOutbound,
             smsInbound,
             smsRates,
+            smsNetworkRates,
             phoneNumbers,
             raw: apiData,
           };
@@ -198,10 +259,13 @@ export function useCountryPricing(countryCode: string): {
           const smsFallback = SMS_RATES[code];
           if (fallback || smsFallback) {
             const result: CountryPricingData = {
-              voiceRates: fallback || { localInbound: "Not Supported", localOutbound: "Not Supported", tollfreeInbound: "Not Supported", tollfreeOutbound: "Not Supported", ipInbound: "$0.0030/min", ipOutbound: "$0.0030/min" },
+              voiceRates: fallback || { localInbound: "Not Supported", localOutbound: "Not Supported", tollfreeInbound: "Not Supported", tollfreeOutbound: "Not Supported", ipInbound: "$0.0055/min", ipOutbound: "$0.0055/min" },
+              voiceDestinationRates: [],
+              addOnPricing: { audioStreamingRate: null },
               smsOutbound: smsFallback?.sms?.[0]?.outbound || "Contact sales",
               smsInbound: smsFallback?.sms?.[0]?.inbound || "Contact sales",
               smsRates: (smsFallback?.sms || []) as SMSRateRow[],
+              smsNetworkRates: [],
               phoneNumbers: [],
               raw: null,
             };

@@ -10,7 +10,7 @@ import { useWhatsAppCallRates } from "@/hooks/useWhatsAppCallRates";
 import { useCountryPricing } from "@/hooks/useCountryPricing";
 import type { PhoneNumberInfo } from "@/hooks/useCountryPricing";
 
-type SectionId = "inbound-calls" | "outbound-calls" | "phone-numbers";
+type SectionId = "inbound-calls" | "outbound-calls" | "phone-numbers" | "platform-fee" | "add-ons";
 
 function getSections(hasPhoneNumbers: boolean): { id: SectionId; label: string }[] {
   const base: { id: SectionId; label: string }[] = [
@@ -20,6 +20,8 @@ function getSections(hasPhoneNumbers: boolean): { id: SectionId; label: string }
   if (hasPhoneNumbers) {
     base.push({ id: "phone-numbers", label: "Phone Number Rental" });
   }
+  base.push({ id: "platform-fee", label: "Platform Fee" });
+  base.push({ id: "add-ons", label: "Add-On Services" });
   return base;
 }
 
@@ -249,10 +251,20 @@ export default function WhatsAppCallPricing() {
 
               {/* Phone Number Rental */}
               {phoneNumbers.length > 0 && (
-                <div id="phone-numbers" className="bg-white rounded-xl border border-gray-200 p-6">
+                <div id="phone-numbers" className="bg-white rounded-xl border border-gray-200 p-6 mb-6">
                   <PhoneRentalSection phoneNumbers={phoneNumbers} loading={callLoading} countryCode={selectedCountry.code} />
                 </div>
               )}
+
+              {/* Platform Fee */}
+              <div id="platform-fee" className="bg-white rounded-xl border border-gray-200 p-6 mb-6">
+                <CallPlatformFeeSection isIndia={selectedCountry.code === "IN"} />
+              </div>
+
+              {/* Add-Ons */}
+              <div id="add-ons" className="bg-white rounded-xl border border-gray-200 p-6">
+                <CallAddOnsSection countryCode={selectedCountry.code} />
+              </div>
             </div>
           </div>
         </div>
@@ -349,6 +361,99 @@ function PhoneRentalSection({ phoneNumbers, loading, countryCode }: { phoneNumbe
                 </td>
               </tr>
             ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+}
+
+function CallPlatformFeeSection({ isIndia }: { isIndia: boolean }) {
+  return (
+    <div>
+      <h2 className="font-sans text-xl font-semibold text-black mb-2">Platform Fee</h2>
+      <p className="text-sm text-gray-500 mb-6">
+        Plivo charges a platform fee per conversation in addition to Meta's conversation-based fees.
+      </p>
+
+      <div className="overflow-x-auto">
+        <table className="w-full">
+          <thead>
+            <tr className="border-b border-gray-200">
+              <th className="py-3 pr-4 text-left text-sm font-semibold text-black w-[65%]">Type</th>
+              <th className="py-3 text-left text-sm font-semibold text-black">Rate</th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-gray-100">
+            <tr>
+              <td className="py-3 pr-4 text-sm text-gray-900">Platform fee per conversation</td>
+              <td className="py-3 text-sm font-medium text-black">
+                {isIndia ? "₹0.066/conversation" : "$0.00080/conversation"}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+}
+
+function CallAddOnsSection({ countryCode }: { countryCode: string }) {
+  const isIndia = countryCode === "IN";
+
+  return (
+    <div>
+      <h2 className="font-sans text-xl font-semibold text-black mb-6">Add-On Services</h2>
+
+      <div className="overflow-x-auto">
+        <table className="w-full">
+          <thead>
+            <tr className="border-b border-gray-200">
+              <th className="py-3 pr-4 text-left text-sm font-semibold text-black w-[65%]">Service</th>
+              <th className="py-3 text-left text-sm font-semibold text-black">Price</th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-gray-100">
+            <tr>
+              <td className="py-3 pr-4 text-sm text-gray-900">Answering Machine Detection</td>
+              <td className="py-3 text-sm font-medium text-black">Included</td>
+            </tr>
+            <tr>
+              <td className="py-3 pr-4 text-sm text-gray-900">Call Insights (Basic)</td>
+              <td className="py-3 text-sm font-medium text-black">Included</td>
+            </tr>
+            <tr>
+              <td className="py-3 pr-4 text-sm text-gray-900">Call Insights (Premium)</td>
+              <td className="py-3 text-sm font-medium text-black">{isIndia ? "₹0.22/min" : "$0.0025/min"}</td>
+            </tr>
+            <tr>
+              <td className="py-3 pr-4 text-sm text-gray-900">Call Recording</td>
+              <td className="py-3 text-sm font-medium text-black">Included</td>
+            </tr>
+            <tr>
+              <td className="py-3 pr-4 text-sm text-gray-900">Recording Storage</td>
+              <td className="py-3 text-sm font-medium text-black">{isIndia ? "₹0.0004" : "$0.0004"}/min/month (free for 90 days)</td>
+            </tr>
+            <tr>
+              <td className="py-3 pr-4 text-sm text-gray-900">Automatic Speech Recognition</td>
+              <td className="py-3 text-sm font-medium text-black">{isIndia ? "₹1.7/15 seconds" : "$0.02/15 seconds"}</td>
+            </tr>
+            <tr>
+              <td className="py-3 pr-4 text-sm text-gray-900">Call Transcription</td>
+              <td className="py-3 text-sm font-medium text-black">{isIndia ? "₹0.81/min" : "$0.0095/min"}</td>
+            </tr>
+            <tr>
+              <td className="py-3 pr-4 text-sm text-gray-900">Conference Calls</td>
+              <td className="py-3 text-sm font-medium text-black">Included</td>
+            </tr>
+            <tr>
+              <td className="py-3 pr-4 text-sm text-gray-900">Multilingual Text to Speech</td>
+              <td className="py-3 text-sm font-medium text-black">Included</td>
+            </tr>
+            <tr>
+              <td className="py-3 pr-4 text-sm text-gray-900">CNAM Lookup</td>
+              <td className="py-3 text-sm font-medium text-black">{isIndia ? "₹0.42" : "$0.005"}/lookup</td>
+            </tr>
           </tbody>
         </table>
       </div>

@@ -123,7 +123,7 @@ export default function PhoneNumbersHeroIllustration() {
               <div className="w-1.5 h-1.5 rounded-full bg-green-400" />
               <span className="text-[10px] text-gray-500">Instant activation</span>
             </div>
-            <span className="text-[10px] text-gray-400">65+ countries</span>
+            <span className="text-[10px] text-gray-400">50+ countries</span>
           </div>
         </div>
       </div>

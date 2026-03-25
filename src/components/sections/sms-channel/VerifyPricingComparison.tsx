@@ -20,25 +20,25 @@ const countryRates = [
     country: "United States",
     sms: "$0.0070/sms",
     voice: "$0.0100/min",
-    whatsapp: "$0.0048/conv",
+    whatsapp: "$0.0044/msg",
   },
   {
     country: "Canada",
     sms: "$0.0070/sms",
     voice: "$0.0120/min",
-    whatsapp: "$0.0048/conv",
+    whatsapp: "$0.0044/msg",
   },
   {
     country: "India",
     sms: "₹0.00018/sms",
     voice: "₹0.0048/min",
-    whatsapp: "₹0.0022/conv",
+    whatsapp: "₹0.1232/msg",
   },
   {
     country: "Australia",
     sms: "$0.0451/sms",
     voice: "$0.0230/min",
-    whatsapp: "$0.0165/conv",
+    whatsapp: "$0.0124/msg",
   },
 ];
 

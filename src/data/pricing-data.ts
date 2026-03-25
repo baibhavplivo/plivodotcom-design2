@@ -641,22 +641,27 @@ export const SMS_RATES: Record<string, SMSCountryRates> = {
   },
   CA: {
     sms: [
-      { type: "Long Codes", outbound: "$0.0070/sms", inbound: "$0.0050/sms" },
-      { type: "Toll-Free", outbound: "$0.0072/sms", inbound: "$0.0072/sms" },
-      { type: "Short Code", outbound: "$0.0070/sms", inbound: "$0.0070/sms" },
+      { type: "Long Codes", outbound: "$0.0055/sms", inbound: "$0.0055/sms" },
+      { type: "Toll-Free", outbound: "$0.0055/sms", inbound: "$0.0055/sms" },
+      { type: "Short Code", outbound: "$0.0055/sms", inbound: "$0.0055/sms" },
     ],
     mms: [
       { type: "Long Codes", outbound: "$0.0180/mms", inbound: "$0.0180/mms" },
-      { type: "Toll-Free", outbound: "$0.0180/mms", inbound: "$0.0180/mms" },
+      { type: "Toll-Free", outbound: "$0.020/mms", inbound: "$0.020/mms" },
+      { type: "Short Code", outbound: "$0.020/mms", inbound: "$0.020/mms" },
     ],
     phoneNumbers: {
       types: [
-        { type: "Long Codes", price: "$0.75/month" },
-        { type: "Toll-Free Numbers", price: "$1.00/month" },
-        { type: "Short Code", price: "$700/month (Billed quarterly)" },
+        { type: "Long Codes", price: "$10.00/month" },
+        { type: "Toll-Free Numbers", price: "$10.00/month" },
+        { type: "Short Code", price: "", children: [
+          { type: "Standard", price: "$500/month (Billed quarterly)" },
+          { type: "Vanity", price: "$1,000/month (Billed quarterly)" },
+        ]},
       ],
-      note: "All short codes have a $4,000 one-time fee charged at the time of purchase.",
+      note: "All short codes have a $1,500 one-time fee charged at the time of purchase.",
     },
+    hasCarrierFees: true,
     currency: "$",
   },
   GB: {
