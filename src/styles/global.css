@@ -418,3 +418,15 @@ body {
 .animate-pulse-spark {
   animation: pulse-spark 2s ease-in-out infinite;
 }
+
+/* Form error banner (replaces alert()) */
+.form-error-banner {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #991b1b;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  margin-bottom: 12px;
+  animation: fadeIn 0.2s ease;
+}

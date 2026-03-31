@@ -9,9 +9,7 @@ export default function VoiceDemoCompact() {
   );
 
   const handleTalk = () => {
-    alert(
-      `Voice AI Demo\n\nLanguage: ${selectedLanguage.charAt(0).toUpperCase() + selectedLanguage.slice(1)}\n\nThis would trigger the AI voice conversation.`
-    );
+    // Voice demo not yet connected — no-op placeholder
   };
 
   return (

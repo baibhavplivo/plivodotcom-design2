@@ -1,5 +1,5 @@
 import { Marquee } from "@/components/magicui/marquee";
-import { useEffect, useState } from "react";
+import { useGeoCountry } from "@/hooks/useGeoCountry";
 
 const INDIA_LOGOS = [
   { name: "Meta", src: "/images/client-logos/meta.svg", className: "h-14 sm:h-[70px]" },
@@ -33,39 +33,8 @@ const INTL_LOGOS = [
 ];
 
 export default function ClientLogos() {
-  const [logos, setLogos] = useState(INTL_LOGOS);
-
-  useEffect(() => {
-    // 1. Server-injected CF-IPCountry (instant, no network call)
-    const cfCountry = (window as any).__CF_COUNTRY;
-    if (cfCountry) {
-      sessionStorage.setItem("plivo_ip_info", JSON.stringify({ country: cfCountry }));
-      if (cfCountry === "IN") setLogos(INDIA_LOGOS);
-      return;
-    }
-
-    // 2. Cached result from previous visit
-    const cached = sessionStorage.getItem("plivo_ip_info");
-    if (cached) {
-      try {
-        const { country } = JSON.parse(cached);
-        if (country === "IN") setLogos(INDIA_LOGOS);
-        return;
-      } catch {}
-    }
-
-    // 3. Fallback: ipinfo.io (for localhost / non-CF environments)
-    const t = ["1aff", "17b3", "d558", "ec"].join("");
-    fetch(`https://ipinfo.io/json?token=${t}`)
-      .then((r) => r.json())
-      .then((r) => {
-        const country = (r && r.country) || "US";
-        const ip = (r && r.ip) || "";
-        sessionStorage.setItem("plivo_ip_info", JSON.stringify({ country, ip }));
-        if (country === "IN") setLogos(INDIA_LOGOS);
-      })
-      .catch(() => {});
-  }, []);
+  const { rawCountry } = useGeoCountry();
+  const logos = rawCountry === "IN" ? INDIA_LOGOS : INTL_LOGOS;
 
   return (
     <section className="bg-white py-6 sm:py-8 lg:py-10">

@@ -5,6 +5,7 @@ const GEO_CONTINENT_KEY = "plivo_geo_continent";
 
 export interface GeoInfo {
   country: string;
+  rawCountry: string;
   continent: string;
 }
 
@@ -16,10 +17,10 @@ function effectiveCountry(code: string): string {
 function getCached(): GeoInfo | null {
   if (typeof window === "undefined") return null;
   try {
-    const country = sessionStorage.getItem(GEO_COUNTRY_KEY);
+    const raw = sessionStorage.getItem(GEO_COUNTRY_KEY);
     const continent = sessionStorage.getItem(GEO_CONTINENT_KEY);
-    if (country && continent) return { country: effectiveCountry(country), continent };
-    if (country) return { country: effectiveCountry(country), continent: "" };
+    if (raw && continent) return { country: effectiveCountry(raw), rawCountry: raw, continent };
+    if (raw) return { country: effectiveCountry(raw), rawCountry: raw, continent: "" };
     return null;
   } catch {
     return null;
@@ -35,7 +36,7 @@ function getCached(): GeoInfo | null {
  */
 export function useGeoCountry(fallback: string = "US"): GeoInfo {
   const [geo, setGeo] = useState<GeoInfo>(
-    () => getCached() || { country: fallback, continent: "" }
+    () => getCached() || { country: fallback, rawCountry: fallback, continent: "" }
   );
 
   useEffect(() => {
@@ -58,7 +59,7 @@ export function useGeoCountry(fallback: string = "US"): GeoInfo {
           } catch {
             /* quota exceeded */
           }
-          setGeo({ country: effectiveCountry(country), continent });
+          setGeo({ country: effectiveCountry(country), rawCountry: country, continent });
         }
       })
       .catch(() => {

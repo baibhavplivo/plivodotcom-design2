@@ -12,6 +12,7 @@ import type { ZentrunkRates } from "@/hooks/useZentrunkPricing";
 import { useCountryPricing } from "@/hooks/useCountryPricing";
 import type { PhoneNumberInfo } from "@/hooks/useCountryPricing";
 import { useExchangeRate } from "@/hooks/useExchangeRate";
+import { useSignupUrl } from "@/hooks/useSignupUrl";
 
 type SectionId = "call-rates" | "network-pricing" | "phone-numbers" | "add-ons" | "calculator";
 
@@ -553,6 +554,7 @@ function CalculatorSection({
   loading: boolean;
 }) {
   const { convertToINR, formatPrice } = useExchangeRate();
+  const { url: signupUrl, label: signupLabel } = useSignupUrl();
   const currency = countryCode === "IN" ? "₹" : "$";
   const localRate = rates?.local?.inbound || 0;
   const tollfreeRate = rates?.tollfree?.inbound || 0;
@@ -689,10 +691,11 @@ function CalculatorSection({
               Get volume pricing
             </a>
             <a
-              href="https://cx.plivo.com/pungis2"
+              href={signupUrl}
+              {...(signupUrl.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
               className="inline-flex items-center justify-center px-6 py-3 text-sm font-medium bg-black text-white rounded-md cta-hover-gradient transition-colors"
             >
-              Sign up for free
+              {signupLabel}
             </a>
           </div>
         </div>

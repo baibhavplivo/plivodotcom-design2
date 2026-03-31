@@ -1,6 +1,10 @@
+"use client";
+
 import { FlickeringGrid } from "@/components/magicui/flickering-grid";
+import { useSignupUrl } from "@/hooks/useSignupUrl";
 
 export default function ChatPreFooterCTA() {
+  const { url: signupUrl, label: signupLabel } = useSignupUrl();
   return (
     <section className="relative overflow-hidden bg-white py-12 sm:py-16 md:py-20">
       {/* Flickering Grid Background */}
@@ -31,10 +35,11 @@ export default function ChatPreFooterCTA() {
             Contact Sales
           </a>
           <a
-            href="https://cx.plivo.com/pungis2"
+            href={signupUrl}
+            {...(signupUrl.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
             className="inline-flex items-center justify-center rounded-md bg-black px-6 py-3 text-base font-medium text-white transition-colors cta-hover-gradient"
           >
-            Sign up for free
+            {signupLabel}
           </a>
         </div>
       </div>

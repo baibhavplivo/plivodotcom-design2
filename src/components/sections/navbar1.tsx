@@ -69,6 +69,8 @@ import {
   type NavItem,
   type NavSection,
 } from "@/data/navigation";
+import { useSignupUrl } from "@/hooks/useSignupUrl";
+import { SIGNUP_URL } from "@/data/geo-categories";
 
 // Custom WhatsApp icon
 const WhatsAppIcon = ({ className }: { className?: string }) => (
@@ -149,6 +151,8 @@ interface Navbar1Props {
 const Navbar1 = ({ currentPage = "/" }: Navbar1Props) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const { url: signupUrl, label: signupLabel, category: geoCategory } = useSignupUrl();
+  const isExternalCta = signupUrl === SIGNUP_URL;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -324,14 +328,14 @@ const Navbar1 = ({ currentPage = "/" }: Navbar1Props) => {
 
             {/* Primary CTA */}
             <a
-              href={ctaNavigation.href}
+              href={signupUrl}
               className="hidden items-center rounded-md bg-black px-3.5 py-1.5 text-[13px] font-normal text-white transition-all cta-hover-gradient sm:inline-flex"
-              {...(ctaNavigation.external && {
+              {...(isExternalCta && {
                 target: "_blank",
                 rel: "noopener noreferrer",
               })}
             >
-              {ctaNavigation.title}
+              {signupLabel}
             </a>
 
             {/* Mobile Menu */}
@@ -447,15 +451,15 @@ const Navbar1 = ({ currentPage = "/" }: Navbar1Props) => {
                   {/* CTAs at bottom */}
                   <div className="mt-8 flex flex-col gap-3">
                     <a
-                      href={ctaNavigation.href}
+                      href={signupUrl}
                       className="flex w-full items-center justify-center rounded-md bg-black px-4 py-3 text-[14px] font-medium text-white transition-colors cta-hover-gradient"
                       onClick={() => setIsOpen(false)}
-                      {...(ctaNavigation.external && {
+                      {...(isExternalCta && {
                         target: "_blank",
                         rel: "noopener noreferrer",
                       })}
                     >
-                      {ctaNavigation.title}
+                      {signupLabel}
                     </a>
                     {secondaryNavigation.map((item) => (
                       <a

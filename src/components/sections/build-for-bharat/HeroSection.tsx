@@ -1,8 +1,10 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
+import { useSignupUrl } from "@/hooks/useSignupUrl";
 
 export default function HeroSection() {
+  const { url: signupUrl, label: signupLabel } = useSignupUrl();
   return (
     <div
       className="relative overflow-hidden w-full z-0 h-screen"
@@ -89,10 +91,11 @@ export default function HeroSection() {
           className="mb-8 sm:mb-14"
         >
           <a
-            href="https://cx.plivo.com/pungis2"
+            href={signupUrl}
+            {...(signupUrl.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
             className="inline-flex items-center justify-center px-8 sm:px-10 py-3 sm:py-4 text-base sm:text-lg font-semibold bg-white text-gray-900 rounded-lg hover:bg-gray-100 transition-all duration-200 shadow-lg hover:shadow-xl hover:-translate-y-0.5"
           >
-            Sign Up Now
+            {signupLabel}
           </a>
         </motion.div>
 

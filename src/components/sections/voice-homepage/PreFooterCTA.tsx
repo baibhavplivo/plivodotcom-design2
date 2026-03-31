@@ -2,6 +2,7 @@
 
 import { FlickeringGrid } from "@/components/magicui/flickering-grid";
 import { useGeoCountry } from "@/hooks/useGeoCountry";
+import { useSignupUrl } from "@/hooks/useSignupUrl";
 
 interface PreFooterCTAProps {
   title?: string;
@@ -13,6 +14,7 @@ export default function PreFooterCTA({
   subtitle,
 }: PreFooterCTAProps) {
   const { country } = useGeoCountry();
+  const { url: signupUrl, label: signupLabel } = useSignupUrl();
   const isIndia = country === "IN";
   const resolvedSubtitle = subtitle ?? `Get ${isIndia ? "₹800" : "$10"} in free credits. No credit card required. Deploy your first agent in under 10 minutes.`;
   return (
@@ -38,10 +40,11 @@ export default function PreFooterCTA({
           {resolvedSubtitle}
         </p>
         <a
-          href="https://cx.plivo.com/pungis2"
+          href={signupUrl}
+          {...(signupUrl.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
           className="animate-appear inline-flex items-center justify-center rounded-md bg-black px-8 py-3 text-base font-medium text-white transition-colors delay-100 cta-hover-gradient mt-6"
         >
-          Sign up now
+          {signupLabel}
         </a>
       </div>
     </section>

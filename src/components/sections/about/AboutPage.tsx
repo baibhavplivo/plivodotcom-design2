@@ -33,7 +33,7 @@ const stackLayers = [
     title: "AI Agent Platform",
     desc: "Built on top of our infrastructure, the AI Agent Platform empowers businesses to create AI agents that understand, act, and deliver results at scale.",
     products: [
-      { name: "AI Agent Platform", icon: Sparkles, href: "/platform/ai-agents/" },
+      { name: "AI Agent Platform", icon: Sparkles, href: "/ai/" },
     ],
   },
   {
@@ -58,8 +58,8 @@ const stackLayers = [
     title: "Carrier Network",
     desc: "At our core is a cloud-based carrier network that provides connectivity to 190+ countries globally.",
     products: [
-      { name: "SIP Trunking", icon: Network, href: "/voice/sip-trunking/" },
-      { name: "Phone Numbers", icon: Hash, href: "/phone-numbers/" },
+      { name: "SIP Trunking", icon: Network, href: "/sip-trunking/" },
+      { name: "Phone Numbers", icon: Hash, href: "/virtual-phone-numbers/" },
     ],
   },
 ];

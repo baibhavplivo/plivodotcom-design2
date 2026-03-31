@@ -27,7 +27,7 @@ export interface NavDropdown {
 export const mainNavigation: NavDropdown[] = [
   {
     title: "AI Agents",
-    href: "/platform/ai-agents/",
+    href: "/ai/",
   },
   {
     title: "Platform",
@@ -53,7 +53,7 @@ export const mainNavigation: NavDropdown[] = [
             title: "WhatsApp",
             description:
               "Build AI agents with messaging and calling for 2B+ WhatsApp users",
-            href: "/whatsapp/overview/",
+            href: "/whatsapp-message/overview/",
             icon: "whatsapp",
           },
           {
@@ -69,17 +69,17 @@ export const mainNavigation: NavDropdown[] = [
     bottomItems: [
       {
         title: "SIP trunking",
-        href: "/voice/sip-trunking/",
+        href: "/sip-trunking/",
         icon: "sip",
       },
       {
         title: "Verify",
-        href: "/sms/verify-api/",
+        href: "/verify/",
         icon: "shield-check",
       },
       {
         title: "Phone Numbers",
-        href: "/phone-numbers/",
+        href: "/virtual-phone-numbers/",
         icon: "smartphone",
       },
     ],
@@ -114,7 +114,7 @@ export const footerNavigation = {
   platform: {
     title: "Platform",
     items: [
-      { title: "AI Agents", href: "/platform/ai-agents/" },
+      { title: "AI Agents", href: "/ai/" },
       { title: "Pricing", href: "/pricing/" },
     ],
   },
@@ -123,7 +123,7 @@ export const footerNavigation = {
     items: [
       { title: "Voice", href: "/voice/overview/" },
       { title: "SMS", href: "/sms/overview/" },
-      { title: "WhatsApp", href: "/whatsapp/overview/" },
+      { title: "WhatsApp", href: "/whatsapp-message/overview/" },
       { title: "Chat", href: "/chat/overview/" },
     ],
   },

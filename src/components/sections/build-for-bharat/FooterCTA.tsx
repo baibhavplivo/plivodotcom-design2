@@ -1,6 +1,11 @@
+"use client";
+
+import { useSignupUrl } from "@/hooks/useSignupUrl";
+
 // FooterCTA.tsx - Footer CTA section (dark theme matching hero)
 
 export default function FooterCTA() {
+  const { url: signupUrl, label: signupLabel } = useSignupUrl();
   return (
     <section
       className="relative overflow-hidden py-20 sm:py-28 lg:py-36"
@@ -46,10 +51,11 @@ export default function FooterCTA() {
           minutes.
         </p>
         <a
-          href="https://cx.plivo.com/pungis2"
+          href={signupUrl}
+          {...(signupUrl.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
           className="inline-flex items-center justify-center rounded-lg bg-white px-8 py-3 text-base font-semibold text-gray-900 transition-all hover:bg-gray-100 hover:shadow-xl hover:-translate-y-0.5 mt-8"
         >
-          Sign Up Now
+          {signupLabel}
         </a>
       </div>
     </section>

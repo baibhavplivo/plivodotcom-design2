@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import { useSignupUrl } from "@/hooks/useSignupUrl";
 
 const TABS = [
   {
@@ -35,6 +36,7 @@ const TABS = [
 const INTERVAL = 8000;
 
 export default function AIAgentsHero() {
+  const { url: signupUrl, label: signupLabel } = useSignupUrl();
   const [activeTab, setActiveTab] = useState(0);
   const [progress, setProgress] = useState(0);
   const [visibleMessages, setVisibleMessages] = useState(0);
@@ -94,10 +96,11 @@ export default function AIAgentsHero() {
               Contact Sales
             </a>
             <a
-              href="https://cx.plivo.com/pungis2"
+              href={signupUrl}
+              {...(signupUrl.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
               className="inline-flex items-center justify-center px-6 py-3 text-base font-medium bg-black text-white rounded-md cta-hover-gradient transition-colors"
             >
-              Sign up for free
+              {signupLabel}
             </a>
           </div>
         </div>

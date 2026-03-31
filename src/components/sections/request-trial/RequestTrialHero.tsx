@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useGeoCountry } from "@/hooks/useGeoCountry";
+import { getGeoCategory, SIGNUP_URL } from "@/data/geo-categories";
 
 // International logos (default)
 const intlLogosRow1 = [
@@ -38,9 +39,19 @@ const indiaLogosRow2 = [
 ];
 
 const VALUE_PROPS = [
-  "Whiteglove onboarding & dedicated account manager",
-  "Tiered discounts for committed monthly volumes",
-  "Custom AI agents designed for your use case",
+  "$10 in free credits to test voice, SMS and WhatsApp",
+  "Full API access to all communication channels",
+  "Dedicated support during your trial period",
+];
+
+const USE_CASE_OPTIONS = [
+  "AI Agents",
+  "Reseller/Solutions Provider",
+  "Alerts and Notifications",
+  "Marketing",
+  "Customer Service",
+  "2FA/OTP",
+  "Other",
 ];
 
 const PERSONAL_EMAIL_DOMAINS = new Set([
@@ -75,7 +86,6 @@ function isValidEmailFormat(email: string): boolean {
 const ENRICH_API_URL =
   "https://plivo-static-forms.netlify.app/.netlify/functions/enrich";
 
-// Cache enrichment results so we don't re-call for the same email
 const enrichCache = new Map<string, boolean>();
 
 const COMPLIANCE_BADGES = [
@@ -86,9 +96,37 @@ const COMPLIANCE_BADGES = [
   { src: "/images/compliance/Star Black.svg", alt: "STAR", label: "STAR" },
 ];
 
-export default function ContactSalesHero() {
+export default function RequestTrialHero() {
+  // Geo-gating: detect category and gate access
   const { rawCountry } = useGeoCountry();
+  const category = getGeoCategory(rawCountry);
   const isIndia = rawCountry === "IN";
+
+  const [geoReady, setGeoReady] = useState(() => {
+    if (typeof window === "undefined") return false;
+    try { return !!sessionStorage.getItem("plivo_geo_country"); } catch { return false; }
+  });
+
+  useEffect(() => {
+    if (geoReady) return;
+    const poll = setInterval(() => {
+      try {
+        if (sessionStorage.getItem("plivo_geo_country")) {
+          setGeoReady(true);
+          clearInterval(poll);
+        }
+      } catch { /* ignore */ }
+    }, 200);
+    const timeout = setTimeout(() => { setGeoReady(true); clearInterval(poll); }, 4000);
+    return () => { clearInterval(poll); clearTimeout(timeout); };
+  }, [geoReady]);
+
+  // Redirect Cat A users to signup
+  useEffect(() => {
+    if (geoReady && category === "A") {
+      window.location.href = SIGNUP_URL;
+    }
+  }, [geoReady, category]);
 
   const logosRow1 = isIndia ? indiaLogosRow1 : intlLogosRow1;
   const logosRow2 = isIndia ? indiaLogosRow2 : intlLogosRow2;
@@ -109,7 +147,7 @@ export default function ContactSalesHero() {
     const GRID_GAP = 6;
     const MAX_OPACITY = 0.3;
     const FLICKER_CHANCE = 0.15;
-    const COLOR = "139, 92, 246"; // #8B5CF6
+    const COLOR = "139, 92, 246";
 
     let cols = 0;
     let rows = 0;
@@ -176,9 +214,7 @@ export default function ContactSalesHero() {
 
     animationFrameId = requestAnimationFrame(animate);
 
-    const resizeObserver = new ResizeObserver(() => {
-      setupCanvas();
-    });
+    const resizeObserver = new ResizeObserver(() => { setupCanvas(); });
     resizeObserver.observe(container);
 
     return () => {
@@ -187,10 +223,9 @@ export default function ContactSalesHero() {
     };
   }, []);
 
-  // Submit handler: prevents native POST (which causes 405 on static hosting)
-  // and submits to both the Netlify function (primary) and HubSpot (fallback).
+  // Submit handler
   useEffect(() => {
-    const form = document.getElementById("contact-form") as HTMLFormElement | null;
+    const form = document.getElementById("request-trial-form") as HTMLFormElement | null;
     if (!form) return;
 
     const getCookie = (name: string) => {
@@ -201,7 +236,6 @@ export default function ContactSalesHero() {
     const handler = (e: Event) => {
       e.preventDefault();
 
-      // --- Client-side validation ---
       const phoneInput = form.querySelector("#phone") as HTMLInputElement | null;
       const phoneIti = phoneInput ? (phoneInput as any)._iti : null;
       const phoneFeedback = document.getElementById("lbl-invalid-phone-number");
@@ -209,18 +243,17 @@ export default function ContactSalesHero() {
       const emailFeedback = emailInput?.closest(".form-field")?.querySelector(".invalid-feedback") as HTMLElement | null;
       const fullNameInput = form.querySelector("#full_name") as HTMLInputElement | null;
       const fullNameFeedback = fullNameInput?.closest(".form-field")?.querySelector(".invalid-feedback") as HTMLElement | null;
+      const useCaseSelect = form.querySelector("#use_case") as HTMLSelectElement | null;
+      const useCaseFeedback = useCaseSelect?.closest(".form-field")?.querySelector(".invalid-feedback") as HTMLElement | null;
       const reqInput = form.querySelector("#detailed_requirement") as HTMLTextAreaElement | null;
       const reqFeedback = reqInput?.closest(".form-field")?.querySelector(".invalid-feedback") as HTMLElement | null;
+      const termsCheckbox = form.querySelector("#terms_accepted") as HTMLInputElement | null;
+      const termsFeedback = termsCheckbox?.closest(".form-field")?.querySelector(".invalid-feedback") as HTMLElement | null;
 
       // Clear previous errors
-      if (fullNameInput) fullNameInput.classList.remove("input-error");
-      if (fullNameFeedback) fullNameFeedback.textContent = "";
-      if (emailInput) emailInput.classList.remove("input-error");
-      if (emailFeedback) emailFeedback.textContent = "";
-      if (phoneInput) phoneInput.classList.remove("input-error");
-      if (phoneFeedback) phoneFeedback.textContent = "";
-      if (reqInput) reqInput.classList.remove("input-error");
-      if (reqFeedback) reqFeedback.textContent = "";
+      [fullNameInput, emailInput, phoneInput, reqInput].forEach(el => el?.classList.remove("input-error"));
+      if (useCaseSelect) useCaseSelect.classList.remove("input-error");
+      [fullNameFeedback, emailFeedback, phoneFeedback, useCaseFeedback, reqFeedback, termsFeedback].forEach(el => { if (el) el.textContent = ""; });
 
       // Validate full name
       if (!fullNameInput?.value.trim()) {
@@ -271,6 +304,14 @@ export default function ContactSalesHero() {
         return;
       }
 
+      // Validate use case
+      if (!useCaseSelect?.value) {
+        useCaseSelect?.classList.add("input-error");
+        if (useCaseFeedback) useCaseFeedback.textContent = "Please select a use case.";
+        useCaseSelect?.focus();
+        return;
+      }
+
       // Validate detailed requirement (minimum 100 characters)
       const reqValue = reqInput?.value.trim() || "";
       if (!reqValue) {
@@ -286,6 +327,12 @@ export default function ContactSalesHero() {
         return;
       }
 
+      // Validate terms
+      if (!termsCheckbox?.checked) {
+        if (termsFeedback) termsFeedback.textContent = "You must agree to the terms to continue.";
+        return;
+      }
+
       // --- Collect form data ---
       const btn = form.querySelector('[type="submit"]') as HTMLButtonElement | null;
       if (btn) { btn.disabled = true; btn.textContent = "Submitting..."; }
@@ -298,13 +345,14 @@ export default function ContactSalesHero() {
       const phone = phoneInput?.value || "";
       const phoneCode = (form.querySelector("#phone-code") as HTMLInputElement)?.value || "";
       const phoneCountry = (form.querySelector("#phone_country") as HTMLInputElement)?.value || "";
-      const description = (form.querySelector("#detailed_requirement") as HTMLTextAreaElement)?.value || "";
+      const useCase = useCaseSelect?.value || "";
+      const description = reqValue;
       const formattedPhone = phoneIti && typeof phoneIti.getNumber === "function"
         ? phoneIti.getNumber()
         : (phoneCode ? `+${phoneCode} ${phone}` : phone);
       const pageUrl = window.location.origin + window.location.pathname;
 
-      // Build payload for the Netlify function (same format as form-submission.js)
+      // Build payload for the Netlify function
       const formData = new URLSearchParams();
       formData.set("first_name", firstName);
       formData.set("last_name", lastName);
@@ -313,9 +361,9 @@ export default function ContactSalesHero() {
       formData.set("phone", formattedPhone);
       formData.set("phone_code", phoneCode);
       formData.set("phone_country", phoneCountry);
-      formData.set("description", description);
+      formData.set("description", `[Request Trial] Use case: ${useCase}\n\n${description}`);
       formData.set("page_url", pageUrl);
-      formData.set("conversion_channel", "contact-sales");
+      formData.set("conversion_channel", "request-trial");
       formData.set("landing_page", "https://plivo.com");
 
       const body = new URLSearchParams();
@@ -324,7 +372,6 @@ export default function ContactSalesHero() {
       body.set("hubSpot", "contactForm");
       body.set("ipAddress", "");
 
-      // Primary: submit to Netlify function (same path as production form-submission.js)
       fetch("https://plivo-static-forms.netlify.app/.netlify/functions/submit", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -333,52 +380,47 @@ export default function ContactSalesHero() {
         .then((res) => res.json().then((data) => ({ ok: res.ok, data })))
         .then(({ ok, data }) => {
           if (ok && data.status === "Submitted") {
-            // Set emailCookie from response for cross-page personalization
             if (data.emailCookie) {
               try {
                 document.cookie = `plivoEmail=${data.emailCookie};path=/;max-age=${60 * 60 * 24 * 30};SameSite=Lax`;
               } catch { /* cookie set failed */ }
             }
 
-            // Handle leadStatus — redirect small leads to signup
             if (data.leadStatus === "redirectSignup") {
               window.location.href = "https://console.plivo.com/accounts/register/";
               return;
             }
 
-            // Success — show thank-you
+            // Show thank you
             const step1 = form.closest('[vpf="1"]');
             const step4 = document.querySelector('[vpf="4"]');
             if (step1) (step1 as HTMLElement).style.display = "none";
             if (step4) (step4 as HTMLElement).style.display = "block";
           } else if (data.status === "Personal Email" || data.status === "Invalid Email") {
-            // Personal/invalid email rejected — show inline error
-            const emailInput = form.querySelector("#company_email") as HTMLInputElement | null;
-            if (emailInput) {
-              emailInput.classList.add("input-error");
-              let fb = emailInput.parentElement?.querySelector(".invalid-feedback") as HTMLElement | null;
+            const emailEl = form.querySelector("#company_email") as HTMLInputElement | null;
+            if (emailEl) {
+              emailEl.classList.add("input-error");
+              let fb = emailEl.parentElement?.querySelector(".invalid-feedback") as HTMLElement | null;
               if (!fb) {
                 fb = document.createElement("div");
                 fb.className = "invalid-feedback";
-                emailInput.parentElement?.appendChild(fb);
+                emailEl.parentElement?.appendChild(fb);
               }
               fb.textContent = "Please use your work email address.";
             }
-            if (btn) { btn.disabled = false; btn.textContent = "Submit"; }
+            if (btn) { btn.disabled = false; btn.textContent = "Request Trial"; }
           } else {
-            // Other error — fallback to direct HubSpot
-            return submitToHubSpot(firstName, lastName, email, formattedPhone, description, btn);
+            return submitToHubSpot(firstName, lastName, email, formattedPhone, useCase, description, btn);
           }
         })
         .catch(() => {
-          // Network error — fallback to direct HubSpot
-          submitToHubSpot(firstName, lastName, email, formattedPhone, description, btn);
+          submitToHubSpot(firstName, lastName, email, formattedPhone, useCase, description, btn);
         });
     };
 
     const submitToHubSpot = (
       firstName: string, lastName: string, email: string,
-      phone: string, message: string,
+      phone: string, useCase: string, message: string,
       btn: HTMLButtonElement | null
     ) => {
       const hutk = getCookie("hubspotutk");
@@ -387,9 +429,9 @@ export default function ContactSalesHero() {
         { name: "lastname", value: lastName },
         { name: "email", value: email },
         { name: "phone", value: phone },
-        { name: "message", value: message },
+        { name: "message", value: `[Request Trial] Use case: ${useCase}\n\n${message}` },
       ];
-      return fetch("https://api.hsforms.com/submissions/v3/integration/submit/20451141/1bd8ce72-8c0d-4dd0-89c2-f2d2bd7dfcd5", {
+      return fetch("https://api.hsforms.com/submissions/v3/integration/submit/20451141/988f6264-585c-4985-aaab-f0abedcb9950", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -397,12 +439,12 @@ export default function ContactSalesHero() {
           context: {
             hutk: hutk || undefined,
             pageUri: window.location.href,
-            pageName: "Contact Sales",
+            pageName: "Request Trial",
           },
         }),
       }).then((res) => {
         if (res.ok) {
-          const step1 = document.getElementById("contact-form")?.closest('[vpf="1"]');
+          const step1 = document.getElementById("request-trial-form")?.closest('[vpf="1"]');
           const step4 = document.querySelector('[vpf="4"]');
           if (step1) (step1 as HTMLElement).style.display = "none";
           if (step4) (step4 as HTMLElement).style.display = "block";
@@ -413,10 +455,10 @@ export default function ContactSalesHero() {
           banner.id = "form-error-banner";
           banner.className = "form-error-banner";
           banner.textContent = "Something went wrong. Please try again or email support@plivo.com.";
-          const formEl = document.getElementById("contact-form");
+          const formEl = document.getElementById("request-trial-form");
           if (formEl) formEl.insertAdjacentElement("beforebegin", banner);
           setTimeout(() => banner.remove(), 8000);
-          if (btn) { btn.disabled = false; btn.textContent = "Submit"; }
+          if (btn) { btn.disabled = false; btn.textContent = "Request Trial"; }
         }
       }).catch(() => {
         const existing = document.getElementById("form-error-banner");
@@ -425,10 +467,10 @@ export default function ContactSalesHero() {
         banner.id = "form-error-banner";
         banner.className = "form-error-banner";
         banner.textContent = "Network error. Please try again or email support@plivo.com.";
-        const formEl = document.getElementById("contact-form");
+        const formEl = document.getElementById("request-trial-form");
         if (formEl) formEl.insertAdjacentElement("beforebegin", banner);
         setTimeout(() => banner.remove(), 8000);
-        if (btn) { btn.disabled = false; btn.textContent = "Submit"; }
+        if (btn) { btn.disabled = false; btn.textContent = "Request Trial"; }
       });
     };
 
@@ -436,7 +478,7 @@ export default function ContactSalesHero() {
     return () => form.removeEventListener("submit", handler, true);
   }, []);
 
-  // Initialize intl-tel-input on #phone immediately (don't wait for form-submission.js)
+  // Initialize intl-tel-input on #phone
   useEffect(() => {
     let cancelled = false;
     let pollTimer: ReturnType<typeof setInterval>;
@@ -444,8 +486,6 @@ export default function ContactSalesHero() {
     const init = () => {
       const phoneInput = document.getElementById("phone") as HTMLInputElement | null;
       if (!phoneInput || !(window as any).intlTelInput) return false;
-
-      // Already initialized — skip
       if ((phoneInput as any)._iti) return true;
 
       const iti = (window as any).intlTelInput(phoneInput, {
@@ -462,7 +502,6 @@ export default function ContactSalesHero() {
             if (ipAddressEl && ip) ipAddressEl.value = ip;
           };
 
-          // 1. Server-injected CF-IPCountry (instant, no network call)
           const cfCountry = (window as any).__CF_COUNTRY;
           if (cfCountry) {
             sessionStorage.setItem("plivo_ip_info", JSON.stringify({ country: cfCountry }));
@@ -470,7 +509,6 @@ export default function ContactSalesHero() {
             return callback(cfCountry);
           }
 
-          // 2. Check sessionStorage cache
           const cached = sessionStorage.getItem("plivo_ip_info");
           if (cached) {
             try {
@@ -480,7 +518,6 @@ export default function ContactSalesHero() {
             } catch { /* fall through */ }
           }
 
-          // 3. Fallback: ipinfo.io (for localhost / non-CF environments)
           const t = ["1aff", "17b3", "d558", "ec"].join("");
           fetch(`https://ipinfo.io/json?token=${t}`)
             .then((r) => r.json())
@@ -495,7 +532,6 @@ export default function ContactSalesHero() {
         },
       });
 
-      // Store instance as sentinel for form-submission.js
       (phoneInput as any)._iti = iti;
 
       const syncHiddenFields = () => {
@@ -506,16 +542,14 @@ export default function ContactSalesHero() {
         if (phoneCountryInput) phoneCountryInput.value = (countryData.iso2 || "").toUpperCase();
       };
 
-      // Get max digits allowed from the country's example number placeholder
       const getMaxDigits = () => {
         const placeholder = phoneInput.getAttribute("placeholder") || "";
         const digitCount = (placeholder.match(/\d/g) || []).length;
-        return digitCount || 15; // ITU E.164 max as fallback
+        return digitCount || 15;
       };
 
       let maxDigits = getMaxDigits();
 
-      // Strip non-digits and enforce max digit count on input
       const enforceDigitLimit = () => {
         const raw = phoneInput.value;
         const digitsOnly = raw.replace(/\D/g, "");
@@ -529,7 +563,6 @@ export default function ContactSalesHero() {
       syncHiddenFields();
       phoneInput.addEventListener("countrychange", () => {
         syncHiddenFields();
-        // Wait a tick for intl-tel-input to update the placeholder
         setTimeout(() => { maxDigits = getMaxDigits(); }, 0);
       });
       return true;
@@ -548,7 +581,7 @@ export default function ContactSalesHero() {
     };
   }, []);
 
-  // Email: blur validation — client-side checks + server-side enrichment API
+  // Email blur validation with enrichment API
   useEffect(() => {
     const emailInput = document.getElementById("company_email") as HTMLInputElement | null;
     if (!emailInput) return;
@@ -603,16 +636,13 @@ export default function ContactSalesHero() {
       if (!isValidEmailFormat(value)) { showEmailError("Please enter a valid email address."); return; }
       if (isPersonalEmail(value)) { showEmailError("Please use your work email address."); return; }
 
-      // Check cache first
       const cached = enrichCache.get(value.toLowerCase());
       if (cached === true) { showEmailValid(); return; }
       if (cached === false) { showEmailError("Please use your work email address."); return; }
 
-      // Call enrichment API for server-side validation
       if (enrichAbort) enrichAbort.abort();
       enrichAbort = new AbortController();
 
-      // Show loader
       const loader = getLoader();
       if (loader) loader.style.display = "block";
       const validIcon = emailInput.parentElement?.querySelector('[vpf="valid-tick"]') as HTMLElement | null;
@@ -625,7 +655,6 @@ export default function ContactSalesHero() {
       })
         .then((res) => res.json())
         .then((data) => {
-          // Use isAuthentic if present, otherwise compute from person.domain_type
           const domainType = data.person?.domain_type || data.email?.domain_type || "";
           const invalidTypes = ["personal", "disposable", "malicious", "blacklisted"];
           const isValid = data.isAuthentic !== undefined
@@ -644,7 +673,6 @@ export default function ContactSalesHero() {
         })
         .catch((err) => {
           if (err.name === "AbortError") return;
-          // On API failure, accept the email (backend will validate on submit)
           clearEmailError();
         });
     };
@@ -652,7 +680,6 @@ export default function ContactSalesHero() {
     const handleInput = () => {
       if (enrichAbort) { enrichAbort.abort(); enrichAbort = null; }
       if (emailInput.classList.contains("input-error")) clearEmailError();
-      // Also hide valid icon while typing
       const validIcon = emailInput.parentElement?.querySelector('[vpf="valid-tick"]') as HTMLElement | null;
       if (validIcon) validIcon.style.display = "none";
     };
@@ -681,7 +708,6 @@ export default function ContactSalesHero() {
         counter.textContent = `${len}/${MIN_CHARS}`;
         counter.style.color = len >= MIN_CHARS ? "#9ca3af" : "#ef4444";
       }
-      // Clear error while typing
       if (textarea.classList.contains("input-error") && len >= MIN_CHARS) {
         textarea.classList.remove("input-error");
         const fb = textarea.closest(".form-field")?.querySelector(".invalid-feedback") as HTMLElement | null;
@@ -693,6 +719,58 @@ export default function ContactSalesHero() {
     return () => textarea.removeEventListener("input", update);
   }, []);
 
+  // Loading state while waiting for geo data
+  if (!geoReady) {
+    return (
+      <section className="bg-white pt-24 pb-24 flex items-center justify-center min-h-[60vh]">
+        <div className="text-center">
+          <div className="w-8 h-8 border-2 border-gray-300 border-t-black rounded-full animate-spin mx-auto" />
+          <p className="mt-4 text-sm text-gray-500">Loading...</p>
+        </div>
+      </section>
+    );
+  }
+
+  // Cat A: show redirect spinner (useEffect above handles the actual redirect)
+  if (category === "A") {
+    return (
+      <section className="bg-white pt-24 pb-24 flex items-center justify-center min-h-[60vh]">
+        <div className="text-center">
+          <div className="w-8 h-8 border-2 border-gray-300 border-t-black rounded-full animate-spin mx-auto" />
+          <p className="mt-4 text-sm text-gray-500">Redirecting you to sign up...</p>
+        </div>
+      </section>
+    );
+  }
+
+  // Unsupported: show "not available in your region" message
+  if (category === "unsupported") {
+    return (
+      <section className="bg-white pt-12 sm:pt-16 md:pt-24 pb-12 sm:pb-16 md:pb-24">
+        <div className="container mx-auto max-w-2xl px-4 text-center">
+          <div className="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center mx-auto mb-6">
+            <svg className="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" />
+            </svg>
+          </div>
+          <h1 className="font-sora text-[2rem] sm:text-[2.5rem] font-normal leading-[1.1] tracking-[-0.02em] text-black">
+            We're not available in your region yet
+          </h1>
+          <p className="text-base text-gray-600 mt-4 max-w-lg mx-auto leading-relaxed">
+            Plivo services are currently available in select countries. Please contact our sales team to learn more about availability in your area.
+          </p>
+          <a
+            href="/contact/sales/"
+            className="inline-flex items-center justify-center mt-8 rounded-md bg-black px-6 py-3 text-sm font-medium text-white hover:bg-gray-800 transition-colors"
+          >
+            Contact Sales
+          </a>
+        </div>
+      </section>
+    );
+  }
+
+  // Cat B: show the trial request form
   return (
     <section className="bg-white pt-6 sm:pt-8 md:pt-12 pb-12 sm:pb-16 md:pb-24">
       <div className="container mx-auto max-w-7xl px-4">
@@ -700,12 +778,10 @@ export default function ContactSalesHero() {
           {/* Left Column - Content */}
           <div className="order-2 lg:order-1">
             <h1 className="font-sora text-[2rem] sm:text-[2.5rem] md:text-[3rem] font-normal leading-[1.1] tracking-[-0.02em] text-black">
-              Talk to our sales team
+              Get access to your trial account
             </h1>
             <p className="text-sm sm:text-base text-gray-600 mt-3 leading-relaxed max-w-lg">
-              Connect with our experts to design the right solution for your
-              business - from pricing and compliance to AI agent setup tailored
-              to your use case.
+              Try Plivo's AI-powered communication platform with full API access. Our team will set up your trial account and guide you through the process.
             </p>
 
             {/* Value Props */}
@@ -735,18 +811,9 @@ export default function ContactSalesHero() {
               </p>
               <div className="flex flex-wrap items-center gap-4 sm:gap-6 md:gap-8">
                 {COMPLIANCE_BADGES.map((badge) => (
-                  <div
-                    key={badge.label}
-                    className="flex flex-col items-center gap-1"
-                  >
-                    <img
-                      src={badge.src}
-                      alt={badge.alt}
-                      className="h-7 sm:h-9 w-auto opacity-60"
-                    />
-                    <span className="text-[9px] sm:text-[10px] text-gray-400 font-medium">
-                      {badge.label}
-                    </span>
+                  <div key={badge.label} className="flex flex-col items-center gap-1">
+                    <img src={badge.src} alt={badge.alt} className="h-7 sm:h-9 w-auto opacity-60" />
+                    <span className="text-[9px] sm:text-[10px] text-gray-400 font-medium">{badge.label}</span>
                   </div>
                 ))}
               </div>
@@ -759,22 +826,12 @@ export default function ContactSalesHero() {
               </p>
               <div className="flex flex-wrap items-center">
                 {logosRow1.map((logo) => (
-                  <img
-                    key={logo.name}
-                    src={logo.src}
-                    alt={logo.name}
-                    className="h-10 sm:h-12 w-auto opacity-40 grayscale"
-                  />
+                  <img key={logo.name} src={logo.src} alt={logo.name} className="h-10 sm:h-12 w-auto opacity-40 grayscale" />
                 ))}
               </div>
               <div className="flex flex-wrap items-center">
                 {logosRow2.map((logo) => (
-                  <img
-                    key={logo.name}
-                    src={logo.src}
-                    alt={logo.name}
-                    className="h-10 sm:h-12 w-auto opacity-40 grayscale"
-                  />
+                  <img key={logo.name} src={logo.src} alt={logo.name} className="h-10 sm:h-12 w-auto opacity-40 grayscale" />
                 ))}
               </div>
             </div>
@@ -782,7 +839,6 @@ export default function ContactSalesHero() {
 
           {/* Right Column - Form with flickering grid background */}
           <div ref={gridContainerRef} className="order-1 lg:order-2 relative rounded-2xl">
-            {/* Background layer - overflow-hidden only here so dropdown can escape */}
             <div className="absolute inset-0 overflow-hidden rounded-2xl">
               <canvas ref={canvasRef} className="absolute top-0 left-0 z-0 pointer-events-none" />
               <div className="absolute inset-y-0 left-0 z-[1] w-6 bg-gradient-to-r from-white to-transparent pointer-events-none" />
@@ -796,7 +852,6 @@ export default function ContactSalesHero() {
               <div className="w-full sm:max-w-md rounded-xl border border-gray-200 bg-white p-4 sm:p-5 md:p-6">
                 {/* @ts-expect-error vpf is a custom attribute used by form-submission.js */}
                 <div vpf="form-wrapper">
-                  {/* Progress indicators (hidden by default, script controls visibility) */}
                   <div className="steps_progress_wrapper">
                     <div className="steps_progress_container">
                       {/* @ts-expect-error vpf is a custom attribute */}
@@ -813,15 +868,15 @@ export default function ContactSalesHero() {
                   <div vpf="1">
                     <div className="space-y-3.5">
                       <h2 className="font-inter text-xl font-semibold text-black mb-3">
-                        Let's create your custom plan together
+                        Request your trial account
                       </h2>
 
                       <form
-                        id="contact-form"
+                        id="request-trial-form"
                         noValidate
                         // @ts-expect-error custom attributes for form-submission.js
                         hubspot="contactForm"
-                        conversion_channel="contact-sales"
+                        conversion_channel="request-trial"
                         campaign_source=""
                         pardoturl="https://go.plivo.com/l/873501/2020-07-14/29m2s"
                         zaphook="https://hooks.zapier.com/hooks/catch/23753/o7suwnw/"
@@ -869,7 +924,7 @@ export default function ContactSalesHero() {
                           <span className="invalid-feedback error" />
                         </div>
 
-                        {/* Phone number (intl-tel-input attaches here) */}
+                        {/* Phone number */}
                         <div className="form-field">
                           <label htmlFor="phone" className="text-[13px] font-medium text-gray-700 mb-1 block">
                             Phone number <span className="text-red-400">*</span>
@@ -887,6 +942,27 @@ export default function ContactSalesHero() {
                           <span className="invalid-feedback error" id="lbl-invalid-phone-number" />
                         </div>
 
+                        {/* Use case dropdown */}
+                        <div className="form-field">
+                          <label htmlFor="use_case" className="text-[13px] font-medium text-gray-700 mb-1 block">
+                            Use case <span className="text-red-400">*</span>
+                          </label>
+                          <select
+                            id="use_case"
+                            name="use_case"
+                            required
+                            defaultValue=""
+                            className="w-full h-10 rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 hover:border-gray-400 focus:outline-none focus:border-blue-400 focus:ring-[3px] focus:ring-blue-100 transition-all appearance-none"
+                            style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E\")", backgroundRepeat: "no-repeat", backgroundPosition: "right 12px center" }}
+                          >
+                            <option value="" disabled className="text-gray-400">Select a use case</option>
+                            {USE_CASE_OPTIONS.map((opt) => (
+                              <option key={opt} value={opt}>{opt}</option>
+                            ))}
+                          </select>
+                          <span className="invalid-feedback error" />
+                        </div>
+
                         {/* Detailed requirement */}
                         <div className="form-field">
                           <label htmlFor="detailed_requirement" className="text-[13px] font-medium text-gray-700 mb-1 block">
@@ -896,7 +972,7 @@ export default function ContactSalesHero() {
                             id="detailed_requirement"
                             name="detailed_requirement"
                             maxLength={5000}
-                            placeholder="Detail your use case, channel(s), countries you need service for and estimated volume"
+                            placeholder="Describe your use case, channels needed, countries you need service for and estimated volume"
                             required
                             className="w-full min-h-[88px] rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 placeholder:text-gray-400 resize-none hover:border-gray-400 focus:outline-none focus:border-blue-400 focus:ring-[3px] focus:ring-blue-100 transition-all"
                           />
@@ -904,6 +980,25 @@ export default function ContactSalesHero() {
                             <span className="invalid-feedback error" />
                             <span id="req-char-count" className="text-[11px] text-gray-400 tabular-nums" />
                           </div>
+                        </div>
+
+                        {/* Terms checkbox */}
+                        <div className="form-field">
+                          <label className="flex items-start gap-2 cursor-pointer">
+                            <input
+                              id="terms_accepted"
+                              name="terms_accepted"
+                              type="checkbox"
+                              className="mt-0.5 h-4 w-4 rounded border-gray-300 text-[#323dfe] focus:ring-[#323dfe]"
+                            />
+                            <span className="text-[12px] text-gray-500 leading-relaxed">
+                              I agree to Plivo's{" "}
+                              <a href="/legal/tos/" className="underline hover:text-gray-700">terms of service</a>{" "}
+                              and{" "}
+                              <a href="/legal/privacy/" className="underline hover:text-gray-700">privacy policy</a>
+                            </span>
+                          </label>
+                          <span className="invalid-feedback error" />
                         </div>
 
                         {/* Submit button */}
@@ -914,10 +1009,10 @@ export default function ContactSalesHero() {
                           vpf="submit-btn"
                           className="w-full rounded-md bg-black px-5 py-2.5 text-sm font-medium text-white transition-colors cta-hover-gradient"
                         >
-                          Submit
+                          Request Trial
                         </button>
 
-                        {/* ===== Hidden tracking fields ===== */}
+                        {/* Hidden tracking fields */}
                         <input type="hidden" id="phone_country" name="phone_country" />
                         <input type="hidden" id="phone-code" name="phone_code" />
                         <input type="hidden" id="ip_country" name="ip_country" />
@@ -928,7 +1023,7 @@ export default function ContactSalesHero() {
                         <input type="hidden" id="company_risk_profile" name="company_risk_profile" defaultValue="blocked" />
                         <input type="hidden" id="enriched_segment" name="enriched_segment" />
                         <input type="hidden" id="isTwoLevel" name="isTwoLevel" />
-                        <input type="hidden" id="conversion_channel" name="conversion_channel" defaultValue="contact-sales" />
+                        <input type="hidden" id="conversion_channel" name="conversion_channel" defaultValue="request-trial" />
                         <input type="hidden" id="campaign_source" name="campaign_source" />
                         <input type="hidden" id="plivo_product" name="plivo_product" defaultValue="Voice and SMS API" />
                         <input type="hidden" id="original_referrer" name="original_referrer" />
@@ -940,7 +1035,7 @@ export default function ContactSalesHero() {
                         <input type="hidden" id="asset_type" name="asset_type" />
                         <input type="hidden" id="content_type" name="content_type" />
 
-                        {/* Initial UTM fields */}
+                        {/* UTM fields */}
                         <input type="hidden" id="initial_utm_source" name="initial_utm_source" />
                         <input type="hidden" id="initial_utm_medium" name="initial_utm_medium" />
                         <input type="hidden" id="initial_utm_campaign" name="initial_utm_campaign" />
@@ -960,7 +1055,6 @@ export default function ContactSalesHero() {
                         <input type="hidden" id="initial_utm_engagement_type" name="initial_utm_engagement_type" />
                         <input type="hidden" id="initial_use_case" name="initial_use_case" />
 
-                        {/* Latest UTM fields */}
                         <input type="hidden" id="latest_utm_source" name="latest_utm_source" />
                         <input type="hidden" id="latest_utm_medium" name="latest_utm_medium" />
                         <input type="hidden" id="latest_utm_campaign" name="latest_utm_campaign" />
@@ -979,7 +1073,6 @@ export default function ContactSalesHero() {
                         <input type="hidden" id="latest_utm_campaign_type" name="latest_utm_campaign_type" />
                         <input type="hidden" id="latest_utm_engagement_type" name="latest_utm_engagement_type" />
 
-                        {/* Current UTM fields */}
                         <input type="hidden" id="utm_source" name="utm_source" />
                         <input type="hidden" id="utm_medium" name="utm_medium" />
                         <input type="hidden" id="utm_campaign" name="utm_campaign" />
@@ -998,7 +1091,6 @@ export default function ContactSalesHero() {
                         <input type="hidden" id="utm_referrer" name="utm_referrer" />
                         <input type="hidden" id="landing_page" name="landing_page" />
 
-                        {/* Secondary UTM fields */}
                         <input type="hidden" id="utm_source_2" name="utm_source_2" />
                         <input type="hidden" id="utm_medium_2" name="utm_medium_2" />
                         <input type="hidden" id="utm_campaign_2" name="utm_campaign_2" />
@@ -1017,23 +1109,6 @@ export default function ContactSalesHero() {
                         <input type="hidden" id="utm_referrer_2" name="utm_referrer_2" />
                         <input type="hidden" id="landing_page_2" name="landing_page_2" />
                       </form>
-
-                      <p className="text-[11px] text-gray-400 text-center leading-relaxed mt-3">
-                        By creating an account with Plivo, you agree to Plivo's{" "}
-                        <a
-                          href="/legal/tos/"
-                          className="underline hover:text-gray-600"
-                        >
-                          terms of service
-                        </a>{" "}
-                        and{" "}
-                        <a
-                          href="/legal/privacy/"
-                          className="underline hover:text-gray-600"
-                        >
-                          privacy policy
-                        </a>
-                      </p>
                     </div>
                   </div>
 
@@ -1043,23 +1118,11 @@ export default function ContactSalesHero() {
                     <div id="chat-widget" className="chat-agent-cx" />
                   </div>
 
-                  {/* Cal.com embed container */}
-                  <div className="cal-embed-wrapper" style={{ display: "none" }}>
-                    <div id="cal-div-embed" />
-                    <button type="button" className="cal-cross" style={{ display: "none" }}>&times;</button>
-                  </div>
-
-                  {/* Step 4: Thank you (hidden until form-submission.js shows it) */}
+                  {/* Step 4: Thank you */}
                   {/* @ts-expect-error vpf is a custom attribute */}
                   <div vpf="4" style={{ display: "none" }} className="text-center py-12">
                     <div className="w-14 h-14 rounded-full bg-emerald-50 flex items-center justify-center mx-auto mb-4">
-                      <svg
-                        className="w-7 h-7 text-emerald-500"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth={2.5}
-                        viewBox="0 0 24 24"
-                      >
+                      <svg className="w-7 h-7 text-emerald-500" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
                         <polyline points="20 6 9 17 4 12" />
                       </svg>
                     </div>
@@ -1069,12 +1132,9 @@ export default function ContactSalesHero() {
                     </h3>
                     {/* @ts-expect-error vpf is a custom attribute */}
                     <p vpf="4-desc" className="text-sm text-gray-500 mt-2 max-w-xs mx-auto leading-relaxed">
-                      Thank you. We've received your request. A member of our sales team will get back to you within 1 business day.
+                      Thank you. We've received your trial request. A member of our team will reach out within 1 business day to set up your account.
                     </p>
-                    <a
-                      href="/"
-                      className="inline-block mt-6 text-sm font-medium text-gray-600 hover:text-black transition-colors"
-                    >
+                    <a href="/" className="inline-block mt-6 text-sm font-medium text-gray-600 hover:text-black transition-colors">
                       &larr; Back to homepage
                     </a>
                   </div>

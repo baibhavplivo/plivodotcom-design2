@@ -127,28 +127,34 @@
     // 1. Server-injected CF-IPCountry (instant, no network call)
     const cfCountry = (window as any).__CF_COUNTRY;
     if (cfCountry) {
-      sessionStorage.setItem("plivo_ip_info", JSON.stringify({ country: cfCountry }));
       show(cfCountry);
       return;
     }
 
-    // 2. Cached result from previous visit
-    const cached = sessionStorage.getItem("plivo_ip_info");
-    if (cached) {
-      try { show(JSON.parse(cached).country); return; } catch {}
-    }
+    // 2. Primary geo system (useGeoCountry hook stores here via ipapi.co)
+    try {
+      const geoCountry = sessionStorage.getItem("plivo_geo_country");
+      if (geoCountry) { show(geoCountry); return; }
+    } catch {}
 
-    // 3. Fallback: ipinfo.io (for localhost / non-CF environments)
-    const t = ["1aff", "17b3", "d558", "ec"].join("");
-    fetch(`https://ipinfo.io/json?token=${t}`)
-      .then((r) => r.json())
-      .then((r) => {
-        const country = (r && r.country) || "US";
-        const ip = (r && r.ip) || "";
-        sessionStorage.setItem("plivo_ip_info", JSON.stringify({ country, ip }));
-        show(country);
-      })
-      .catch(() => {});
+    // 3. Secondary geo system (ipinfo.io / intl-tel-input cache)
+    try {
+      const cached = sessionStorage.getItem("plivo_ip_info");
+      if (cached) { show(JSON.parse(cached).country); return; }
+    } catch {}
+
+    // 4. Poll for either key (geo detection is async)
+    let attempts = 0;
+    const poll = setInterval(() => {
+      attempts++;
+      try {
+        const gc = sessionStorage.getItem("plivo_geo_country");
+        if (gc) { show(gc); clearInterval(poll); return; }
+        const ip = sessionStorage.getItem("plivo_ip_info");
+        if (ip) { show(JSON.parse(ip).country); clearInterval(poll); return; }
+      } catch {}
+      if (attempts > 40) clearInterval(poll);
+    }, 100);
   }
   initClientLogos();
   document.addEventListener("astro:after-swap", initClientLogos);

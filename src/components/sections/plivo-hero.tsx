@@ -1,6 +1,7 @@
 "use client";
 
 import { Layers, Bot, Zap, Globe, Phone, MessageSquare } from "lucide-react";
+import { useSignupUrl } from "@/hooks/useSignupUrl";
 
 // Custom WhatsApp icon
 const WhatsAppIcon = ({ className }: { className?: string }) => (
@@ -60,6 +61,7 @@ const features = [
 ];
 
 export const PlivoHero = ({ headline, subheadline }: PlivoHeroProps) => {
+  const { url: signupUrl, label: signupLabel } = useSignupUrl();
   return (
     <section className="relative overflow-hidden bg-white pb-8 pt-12 md:pt-16 lg:pt-20">
       <div className="mx-auto max-w-[1200px] px-6">
@@ -97,7 +99,8 @@ export const PlivoHero = ({ headline, subheadline }: PlivoHeroProps) => {
             {/* CTAs */}
             <div className="flex flex-wrap items-center gap-3">
               <a
-                href="https://cx.plivo.com/pungis2"
+                href={signupUrl}
+                {...(signupUrl.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                 className="group inline-flex items-center justify-center gap-2 rounded-md bg-black px-6 py-3 text-[14px] font-medium text-white transition-all cta-hover-gradient hover:shadow-md"
               >
                 <svg
@@ -112,7 +115,7 @@ export const PlivoHero = ({ headline, subheadline }: PlivoHeroProps) => {
                   <polyline points="4 17 10 11 4 5" />
                   <line x1="12" y1="19" x2="20" y2="19" />
                 </svg>
-                Get started now
+                {signupLabel}
               </a>
               <a
                 href="/talk-to-agent/"

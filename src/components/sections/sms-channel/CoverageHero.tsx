@@ -1,8 +1,10 @@
 "use client";
 
 import Globe from "@/components/ui/globe";
+import { useSignupUrl } from "@/hooks/useSignupUrl";
 
 export default function CoverageHero() {
+  const { url: signupUrl, label: signupLabel } = useSignupUrl();
   return (
     <section className="bg-white py-12 lg:py-20 overflow-hidden">
       <div className="container mx-auto max-w-7xl px-4">
@@ -36,10 +38,11 @@ export default function CoverageHero() {
             {/* CTAs */}
             <div className="flex flex-wrap gap-4">
               <a
-                href="https://cx.plivo.com/pungis2"
+                href={signupUrl}
+                {...(signupUrl.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                 className="inline-flex items-center justify-center rounded-md bg-black text-white px-6 py-3 text-sm font-medium cta-hover-gradient transition-colors"
               >
-                Get Started Free
+                {signupLabel}
               </a>
               <a
                 href="/contact/"

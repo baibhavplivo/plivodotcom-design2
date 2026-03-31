@@ -4,6 +4,7 @@ import { useState, useMemo, useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
 import { SIP_RATES, SIP_COUNTRY_NAMES } from "@/data/pricing-data";
 import { useGeoCountry } from "@/hooks/useGeoCountry";
+import { useSignupUrl } from "@/hooks/useSignupUrl";
 
 type CoverageType = "outbound" | "inbound";
 type Continent = "north-america" | "south-america" | "europe" | "asia" | "africa" | "oceania";
@@ -349,6 +350,7 @@ export default function SIPTrunkingCoverage() {
 }
 
 function CountryDetailPanel({ country, coverageType }: { country: SIPCountry; coverageType: CoverageType }) {
+  const { url: signupUrl, label: signupLabel } = useSignupUrl();
   const rates = SIP_RATES[country.code];
   const dialingCode = DIALING_CODES[country.code] || "";
   const isInbound = country.inbound;
@@ -501,16 +503,17 @@ function CountryDetailPanel({ country, coverageType }: { country: SIPCountry; co
       {/* CTA */}
       <div className="mt-6 pt-4 border-t border-gray-100 flex flex-wrap gap-3">
         <a
-          href={`/voice/sip-trunking/pricing`}
+          href={`/sip-trunking/pricing`}
           className="inline-flex items-center justify-center px-5 py-2.5 text-sm font-medium border border-gray-300 text-black rounded-md hover:bg-gray-50 transition-colors"
         >
           View full pricing
         </a>
         <a
-          href="https://cx.plivo.com/pungis2"
+          href={signupUrl}
+          {...(signupUrl.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
           className="inline-flex items-center justify-center px-5 py-2.5 text-sm font-medium bg-black text-white rounded-md cta-hover-gradient transition-colors"
         >
-          Sign up for free
+          {signupLabel}
         </a>
       </div>
     </div>

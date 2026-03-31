@@ -286,7 +286,7 @@ export default function VerifyPricingPage() {
                     Starts at {waRateDisplay}
                   </td>
                   <td className="px-6 py-4 text-sm">
-                    <a href="/whatsapp/chat-pricing/" className="text-[#323dfe] hover:underline font-medium">
+                    <a href="/whatsapp-message/pricing/" className="text-[#323dfe] hover:underline font-medium">
                       View detailed pricing
                     </a>
                   </td>

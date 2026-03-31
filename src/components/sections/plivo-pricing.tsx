@@ -11,6 +11,7 @@ import { useCountryPricing } from "@/hooks/useCountryPricing";
 import { useWhatsAppChatRates } from "@/hooks/useWhatsAppChatRates";
 import { useWhatsAppCallRates } from "@/hooks/useWhatsAppCallRates";
 import { useExchangeRate } from "@/hooks/useExchangeRate";
+import { useSignupUrl } from "@/hooks/useSignupUrl";
 
 // Country data with flags
 const countries = [
@@ -514,6 +515,7 @@ export function PlivoPricing() {
   const detailsToggle1Ref = useRef<HTMLButtonElement>(null);
   const detailsToggle2Ref = useRef<HTMLButtonElement>(null);
   const { convertPriceString: cp } = useExchangeRate();
+  const { url: signupUrl, label: signupLabel } = useSignupUrl();
 
   // Auto-select country based on IP geolocation
   useEffect(() => {
@@ -686,10 +688,11 @@ export function PlivoPricing() {
                     </p>
                   </div>
                   <a
-                    href="https://cx.plivo.com/pungis2"
+                    href={signupUrl}
+                    {...(signupUrl.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                     className="flex-shrink-0 rounded-md bg-black px-5 py-2.5 text-center text-sm font-medium text-white transition-colors cta-hover-gradient"
                   >
-                    Sign up now
+                    {signupLabel}
                   </a>
                 </div>
 
