@@ -7,9 +7,10 @@ import { useGeoCountry } from "@/hooks/useGeoCountry";
 import { FlickeringGrid } from "@/components/magicui/flickering-grid";
 import { COUNTRY_NAMES, SMS_RATES } from "@/data/pricing-data";
 import { useCountryPricing } from "@/hooks/useCountryPricing";
-import type { PhoneNumberInfo } from "@/hooks/useCountryPricing";
+
 import { useWhatsAppChatRates } from "@/hooks/useWhatsAppChatRates";
 import { useWhatsAppCallRates } from "@/hooks/useWhatsAppCallRates";
+import { useExchangeRate } from "@/hooks/useExchangeRate";
 
 // Country data with flags
 const countries = [
@@ -55,96 +56,6 @@ const countries = [
   { code: "TR", name: "Turkey", flag: "🇹🇷" },
 ];
 
-// Starts at pricing data by country (USD for all except India in INR)
-const startsAtPricing: Record<string, {
-  voice: string;
-  sms: string;
-  phoneNumbers: string;
-  whatsappChat: string;
-  whatsappCall: string;
-  aiAgents: string;
-}> = {
-  US: {
-    voice: "$0.0055/min",
-    sms: "$0.0050/sms",
-    phoneNumbers: "$0.80/month",
-    whatsappChat: "$0.0135/conversation",
-    whatsappCall: "$0.010/min",
-    aiAgents: "$0.005/outcome",
-  },
-  IN: {
-    voice: "₹0.74/min",
-    sms: "₹0.155/sms",
-    phoneNumbers: "₹250/month",
-    whatsappChat: "₹0.12/conversation",
-    whatsappCall: "₹0.45/min",
-    aiAgents: "₹0.30/outcome",
-  },
-  GB: {
-    voice: "$0.0100/min",
-    sms: "$0.0095/sms",
-    phoneNumbers: "$1.00/month",
-    whatsappChat: "$0.0292/conversation",
-    whatsappCall: "$0.015/min",
-    aiAgents: "$0.005/outcome",
-  },
-  AU: {
-    voice: "$0.0055/min",
-    sms: "$0.0042/sms",
-    phoneNumbers: "$0.98/month",
-    whatsappChat: "$0.0195/conversation",
-    whatsappCall: "$0.010/min",
-    aiAgents: "$0.005/outcome",
-  },
-  CA: {
-    voice: "$0.0048/min",
-    sms: "$0.0041/sms",
-    phoneNumbers: "$0.74/month",
-    whatsappChat: "$0.0133/conversation",
-    whatsappCall: "$0.009/min",
-    aiAgents: "$0.005/outcome",
-  },
-  // European countries
-  DE: { voice: "$0.0076/min", sms: "$0.0065/sms", phoneNumbers: "$0.82/month", whatsappChat: "$0.0131/conversation", whatsappCall: "$0.011/min", aiAgents: "$0.005/outcome" },
-  FR: { voice: "$0.0076/min", sms: "$0.0065/sms", phoneNumbers: "$0.82/month", whatsappChat: "$0.0131/conversation", whatsappCall: "$0.011/min", aiAgents: "$0.005/outcome" },
-  IT: { voice: "$0.0076/min", sms: "$0.0065/sms", phoneNumbers: "$0.82/month", whatsappChat: "$0.0131/conversation", whatsappCall: "$0.011/min", aiAgents: "$0.005/outcome" },
-  ES: { voice: "$0.0076/min", sms: "$0.0065/sms", phoneNumbers: "$0.82/month", whatsappChat: "$0.0131/conversation", whatsappCall: "$0.011/min", aiAgents: "$0.005/outcome" },
-  NL: { voice: "$0.0076/min", sms: "$0.0065/sms", phoneNumbers: "$0.82/month", whatsappChat: "$0.0131/conversation", whatsappCall: "$0.011/min", aiAgents: "$0.005/outcome" },
-  BE: { voice: "$0.0076/min", sms: "$0.0065/sms", phoneNumbers: "$0.82/month", whatsappChat: "$0.0131/conversation", whatsappCall: "$0.011/min", aiAgents: "$0.005/outcome" },
-  CH: { voice: "$0.0090/min", sms: "$0.0078/sms", phoneNumbers: "$1.01/month", whatsappChat: "$0.0157/conversation", whatsappCall: "$0.013/min", aiAgents: "$0.005/outcome" },
-  AT: { voice: "$0.0076/min", sms: "$0.0065/sms", phoneNumbers: "$0.82/month", whatsappChat: "$0.0131/conversation", whatsappCall: "$0.011/min", aiAgents: "$0.005/outcome" },
-  SE: { voice: "$0.0067/min", sms: "$0.0057/sms", phoneNumbers: "$0.76/month", whatsappChat: "$0.0114/conversation", whatsappCall: "$0.010/min", aiAgents: "$0.005/outcome" },
-  NO: { voice: "$0.0074/min", sms: "$0.0065/sms", phoneNumbers: "$0.84/month", whatsappChat: "$0.0130/conversation", whatsappCall: "$0.010/min", aiAgents: "$0.005/outcome" },
-  DK: { voice: "$0.0073/min", sms: "$0.0058/sms", phoneNumbers: "$0.88/month", whatsappChat: "$0.0131/conversation", whatsappCall: "$0.010/min", aiAgents: "$0.005/outcome" },
-  FI: { voice: "$0.0076/min", sms: "$0.0065/sms", phoneNumbers: "$0.82/month", whatsappChat: "$0.0131/conversation", whatsappCall: "$0.011/min", aiAgents: "$0.005/outcome" },
-  IE: { voice: "$0.0076/min", sms: "$0.0065/sms", phoneNumbers: "$0.82/month", whatsappChat: "$0.0131/conversation", whatsappCall: "$0.011/min", aiAgents: "$0.005/outcome" },
-  PT: { voice: "$0.0076/min", sms: "$0.0065/sms", phoneNumbers: "$0.82/month", whatsappChat: "$0.0131/conversation", whatsappCall: "$0.011/min", aiAgents: "$0.005/outcome" },
-  PL: { voice: "$0.0063/min", sms: "$0.0055/sms", phoneNumbers: "$0.88/month", whatsappChat: "$0.0125/conversation", whatsappCall: "$0.010/min", aiAgents: "$0.005/outcome" },
-  // Americas
-  BR: { voice: "$0.0063/min", sms: "$0.0054/sms", phoneNumbers: "$0.81/month", whatsappChat: "$0.0126/conversation", whatsappCall: "$0.009/min", aiAgents: "$0.005/outcome" },
-  MX: { voice: "$0.012/min", sms: "$0.010/sms", phoneNumbers: "$1.20/month", whatsappChat: "$0.018/conversation", whatsappCall: "$0.014/min", aiAgents: "$0.005/outcome" },
-  AR: { voice: "$0.015/min", sms: "$0.012/sms", phoneNumbers: "$1.50/month", whatsappChat: "$0.022/conversation", whatsappCall: "$0.018/min", aiAgents: "$0.005/outcome" },
-  CL: { voice: "$0.014/min", sms: "$0.011/sms", phoneNumbers: "$1.40/month", whatsappChat: "$0.020/conversation", whatsappCall: "$0.016/min", aiAgents: "$0.005/outcome" },
-  CO: { voice: "$0.013/min", sms: "$0.010/sms", phoneNumbers: "$1.30/month", whatsappChat: "$0.019/conversation", whatsappCall: "$0.015/min", aiAgents: "$0.005/outcome" },
-  // Asia Pacific
-  JP: { voice: "$0.0057/min", sms: "$0.0050/sms", phoneNumbers: "$0.80/month", whatsappChat: "$0.0134/conversation", whatsappCall: "$0.010/min", aiAgents: "$0.005/outcome" },
-  KR: { voice: "$0.0067/min", sms: "$0.0059/sms", phoneNumbers: "$0.89/month", whatsappChat: "$0.0133/conversation", whatsappCall: "$0.010/min", aiAgents: "$0.005/outcome" },
-  SG: { voice: "$0.0059/min", sms: "$0.0052/sms", phoneNumbers: "$0.81/month", whatsappChat: "$0.0133/conversation", whatsappCall: "$0.010/min", aiAgents: "$0.005/outcome" },
-  HK: { voice: "$0.0070/min", sms: "$0.0061/sms", phoneNumbers: "$0.90/month", whatsappChat: "$0.0141/conversation", whatsappCall: "$0.012/min", aiAgents: "$0.005/outcome" },
-  MY: { voice: "$0.0055/min", sms: "$0.0048/sms", phoneNumbers: "$0.84/month", whatsappChat: "$0.0132/conversation", whatsappCall: "$0.010/min", aiAgents: "$0.005/outcome" },
-  TH: { voice: "$0.0070/min", sms: "$0.0062/sms", phoneNumbers: "$0.84/month", whatsappChat: "$0.0140/conversation", whatsappCall: "$0.011/min", aiAgents: "$0.005/outcome" },
-  ID: { voice: "$0.0057/min", sms: "$0.0050/sms", phoneNumbers: "$0.82/month", whatsappChat: "$0.0126/conversation", whatsappCall: "$0.010/min", aiAgents: "$0.005/outcome" },
-  PH: { voice: "$0.0063/min", sms: "$0.0054/sms", phoneNumbers: "$0.90/month", whatsappChat: "$0.0135/conversation", whatsappCall: "$0.010/min", aiAgents: "$0.005/outcome" },
-  VN: { voice: "$0.0060/min", sms: "$0.0052/sms", phoneNumbers: "$0.80/month", whatsappChat: "$0.0140/conversation", whatsappCall: "$0.010/min", aiAgents: "$0.005/outcome" },
-  NZ: { voice: "$0.0060/min", sms: "$0.0048/sms", phoneNumbers: "$0.78/month", whatsappChat: "$0.0132/conversation", whatsappCall: "$0.010/min", aiAgents: "$0.005/outcome" },
-  // Middle East & Africa
-  ZA: { voice: "$0.0066/min", sms: "$0.0055/sms", phoneNumbers: "$0.83/month", whatsappChat: "$0.0138/conversation", whatsappCall: "$0.010/min", aiAgents: "$0.005/outcome" },
-  AE: { voice: "$0.0068/min", sms: "$0.0060/sms", phoneNumbers: "$0.87/month", whatsappChat: "$0.0150/conversation", whatsappCall: "$0.011/min", aiAgents: "$0.005/outcome" },
-  SA: { voice: "$0.0067/min", sms: "$0.0059/sms", phoneNumbers: "$0.85/month", whatsappChat: "$0.0147/conversation", whatsappCall: "$0.011/min", aiAgents: "$0.005/outcome" },
-  IL: { voice: "$0.0061/min", sms: "$0.0052/sms", phoneNumbers: "$0.83/month", whatsappChat: "$0.0138/conversation", whatsappCall: "$0.011/min", aiAgents: "$0.005/outcome" },
-  TR: { voice: "$0.0056/min", sms: "$0.0050/sms", phoneNumbers: "$0.78/month", whatsappChat: "$0.0140/conversation", whatsappCall: "$0.010/min", aiAgents: "$0.005/outcome" },
-};
-
 // WhatsApp icon component
 function WhatsAppIcon({ className }: { className?: string }) {
   return (
@@ -182,15 +93,13 @@ function ModalTableSection({ title, children, inline }: { title: string; childre
 function VoicePricingContent({ selectedCountry, inline }: { selectedCountry: string; inline?: boolean }) {
   const { data: pricingData, loading } = useCountryPricing(selectedCountry);
   const rates = pricingData?.voiceRates;
-  const phoneNumbers = pricingData?.phoneNumbers?.filter(
-    (pn: PhoneNumberInfo) => pn.rentalRate != null && pn.rentalRate > 0
-  ) || [];
   const countryName = COUNTRY_NAMES[selectedCountry] || selectedCountry;
-  const currency = selectedCountry === "IN" ? "₹" : "$";
+  const { convertPriceString: cp } = useExchangeRate();
 
   const rateCell = (value: string | undefined) => {
     if (loading) return <Shimmer />;
-    return value || "Not Supported";
+    if (!value) return "Not Supported";
+    return cp(value, selectedCountry);
   };
 
   if (!loading && !rates) {
@@ -233,40 +142,6 @@ function VoicePricingContent({ selectedCountry, inline }: { selectedCountry: str
         </table>
       </ModalTableSection>
 
-      {(loading || phoneNumbers.length > 0) && (
-        <ModalTableSection inline={inline} title="Phone number rental">
-          <table className="w-full">
-            <thead>
-              <tr className="text-left text-xs text-gray-500">
-                <th className="pb-2 font-normal w-1/2">Number type</th>
-                <th className="pb-2 font-normal w-1/2">Monthly rental</th>
-              </tr>
-            </thead>
-            <tbody className="text-xs">
-              {loading ? (
-                <>
-                  <tr className="border-t border-dashed border-gray-200">
-                    <td className="py-2.5 font-medium text-black"><Shimmer /></td>
-                    <td className="py-2.5 text-gray-600"><Shimmer /></td>
-                  </tr>
-                  <tr className="border-t border-dashed border-gray-200">
-                    <td className="py-2.5 font-medium text-black"><Shimmer /></td>
-                    <td className="py-2.5 text-gray-600"><Shimmer /></td>
-                  </tr>
-                </>
-              ) : (
-                phoneNumbers.map((pn: PhoneNumberInfo) => (
-                  <tr key={pn.type} className="border-t border-dashed border-gray-200">
-                    <td className="py-2.5 font-medium text-black">{pn.type}</td>
-                    <td className="py-2.5 text-gray-600">{currency}{pn.rentalRate!.toFixed(2)}/month</td>
-                  </tr>
-                ))
-              )}
-            </tbody>
-          </table>
-        </ModalTableSection>
-      )}
-
       <ModalTableSection inline={inline} title="Add-on services">
         <table className="w-full">
           <thead>
@@ -281,11 +156,11 @@ function VoicePricingContent({ selectedCountry, inline }: { selectedCountry: str
               ["Noise cancellation", "Included free"],
               ["Multilingual text to speech", "Included free"],
               ["Call recording", "Included free"],
-              ["Recording storage", `${currency}0.0004/min/month (free for 90 days)`],
+              ["Recording storage", cp("$0.0004/min/month (free for 90 days)", selectedCountry)],
               ["Automatic machine detection", "Included free"],
               ["Dynamic caller ID", "Included free"],
               ["Concurrent calls", "Included free"],
-              ["Transcription", `Auto ${currency}0.0095/minute`],
+              ["Transcription", "Auto " + cp("$0.0095/minute", selectedCountry)],
             ].map(([service, price]) => (
               <tr key={service} className="border-t border-dashed border-gray-200">
                 <td className="py-2.5 font-medium text-black">{service}</td>
@@ -303,11 +178,8 @@ function VoicePricingContent({ selectedCountry, inline }: { selectedCountry: str
 function SMSPricingContent({ selectedCountry, inline }: { selectedCountry: string; inline?: boolean }) {
   const { data: pricingData, loading } = useCountryPricing(selectedCountry);
   const smsRates = pricingData?.smsRates || [];
-  const phoneNumbers = pricingData?.phoneNumbers?.filter(
-    (pn: PhoneNumberInfo) => pn.rentalRate != null && pn.rentalRate > 0
-  ) || [];
   const countryName = COUNTRY_NAMES[selectedCountry] || selectedCountry;
-  const currency = selectedCountry === "IN" ? "₹" : "$";
+  const { convertPriceString: cp } = useExchangeRate();
 
   // Keep hardcoded MMS and carrier fee data from SMS_RATES
   const staticRates = SMS_RATES[selectedCountry];
@@ -347,16 +219,16 @@ function SMSPricingContent({ selectedCountry, inline }: { selectedCountry: strin
               smsRates.map((row) => (
                 <tr key={row.type} className="border-t border-dashed border-gray-200">
                   <td className="py-2.5 font-medium text-black">{row.type}</td>
-                  <td className="py-2.5 text-gray-600">{row.outbound}</td>
-                  <td className="py-2.5 text-gray-600">{row.inbound}</td>
+                  <td className="py-2.5 text-gray-600">{cp(row.outbound, selectedCountry)}</td>
+                  <td className="py-2.5 text-gray-600">{cp(row.inbound, selectedCountry)}</td>
                 </tr>
               ))
             ) : staticRates ? (
               staticRates.sms.map((row) => (
                 <tr key={row.type} className="border-t border-dashed border-gray-200">
                   <td className="py-2.5 font-medium text-black">{row.type}</td>
-                  <td className="py-2.5 text-gray-600">{row.outbound}</td>
-                  <td className="py-2.5 text-gray-600">{row.inbound}</td>
+                  <td className="py-2.5 text-gray-600">{cp(row.outbound, selectedCountry)}</td>
+                  <td className="py-2.5 text-gray-600">{cp(row.inbound, selectedCountry)}</td>
                 </tr>
               ))
             ) : null}
@@ -378,8 +250,8 @@ function SMSPricingContent({ selectedCountry, inline }: { selectedCountry: strin
               {staticRates.mms.map((row) => (
                 <tr key={row.type} className="border-t border-dashed border-gray-200">
                   <td className="py-2.5 font-medium text-black">{row.type}</td>
-                  <td className="py-2.5 text-gray-600">{row.outbound}</td>
-                  <td className="py-2.5 text-gray-600">{row.inbound}</td>
+                  <td className="py-2.5 text-gray-600">{cp(row.outbound, selectedCountry)}</td>
+                  <td className="py-2.5 text-gray-600">{cp(row.inbound, selectedCountry)}</td>
                 </tr>
               ))}
             </tbody>
@@ -387,31 +259,27 @@ function SMSPricingContent({ selectedCountry, inline }: { selectedCountry: strin
         </ModalTableSection>
       )}
 
-      {(loading || phoneNumbers.length > 0) && (
-        <ModalTableSection inline={inline} title="Phone numbers">
+      {selectedCountry === "US" && (
+        <ModalTableSection inline={inline} title="RCS messages">
           <table className="w-full">
             <thead>
               <tr className="text-left text-xs text-gray-500">
-                <th className="pb-2 font-normal w-1/2">Number type</th>
-                <th className="pb-2 font-normal w-1/2">Monthly rental</th>
+                <th className="pb-2 font-normal w-1/3">Type</th>
+                <th className="pb-2 font-normal w-1/3">Outbound</th>
+                <th className="pb-2 font-normal w-1/3">Inbound</th>
               </tr>
             </thead>
             <tbody className="text-xs">
-              {loading ? (
-                <>
-                  <tr className="border-t border-dashed border-gray-200">
-                    <td className="py-4"><Shimmer /></td>
-                    <td className="py-4"><Shimmer /></td>
-                  </tr>
-                </>
-              ) : (
-                phoneNumbers.map((pn: PhoneNumberInfo) => (
-                  <tr key={pn.type} className="border-t border-dashed border-gray-200">
-                    <td className="py-2.5 font-medium text-black">{pn.type}</td>
-                    <td className="py-2.5 text-gray-600">{currency}{pn.rentalRate!.toFixed(2)}/month</td>
-                  </tr>
-                ))
-              )}
+              <tr className="border-t border-dashed border-gray-200">
+                <td className="py-2.5 font-medium text-black">RCS Rich</td>
+                <td className="py-2.5 text-gray-600">$0.00750/msg</td>
+                <td className="py-2.5 text-gray-600">$0.00750/msg</td>
+              </tr>
+              <tr className="border-t border-dashed border-gray-200">
+                <td className="py-2.5 font-medium text-black">RCS Rich Media</td>
+                <td className="py-2.5 text-gray-600">$0.01600/msg</td>
+                <td className="py-2.5 text-gray-600">$0.01440/msg</td>
+              </tr>
             </tbody>
           </table>
         </ModalTableSection>
@@ -447,18 +315,19 @@ function SMSPricingContent({ selectedCountry, inline }: { selectedCountry: strin
 function WhatsAppPricingContent({ selectedCountry, inline }: { selectedCountry: string; inline?: boolean }) {
   const { rates: chatRates, loading: chatLoading } = useWhatsAppChatRates(selectedCountry);
   const { rates: callRates, loading: callLoading } = useWhatsAppCallRates(selectedCountry);
-  const { data: pricingData, loading: pricingLoading } = useCountryPricing(selectedCountry);
-  const phoneNumbers = pricingData?.phoneNumbers?.filter(
-    (pn: PhoneNumberInfo) => pn.rentalRate != null && pn.rentalRate > 0
-  ) || [];
   const countryName = COUNTRY_NAMES[selectedCountry] || selectedCountry;
-  const currency = selectedCountry === "IN" ? "₹" : "$";
+  const { convertPriceString: cp } = useExchangeRate();
 
-  const formatChatRate = (rate: number | undefined, cur: string) => {
+  const chatCurrency = chatRates?.currency || "$";
+  const formatChatRate = (rate: number | undefined) => {
     if (chatLoading) return <Shimmer />;
     if (rate === undefined) return "—";
     if (rate === 0) return "Free";
-    return `${cur}${rate.toFixed(4)}/conversation`;
+    // India rates are already in INR — use currency directly, no cp() conversion
+    if (chatCurrency !== "$") {
+      return `${chatCurrency}${rate.toFixed(4)}/message`;
+    }
+    return cp(`$${rate.toFixed(4)}/message`, selectedCountry);
   };
 
   if (!chatLoading && !chatRates) {
@@ -470,7 +339,6 @@ function WhatsAppPricingContent({ selectedCountry, inline }: { selectedCountry: 
     );
   }
 
-  const chatCurrency = chatRates?.currency || "$";
   const showAuthIntl = chatRates ? chatRates.authenticationIntl > 0 : false;
 
   return (
@@ -479,33 +347,33 @@ function WhatsAppPricingContent({ selectedCountry, inline }: { selectedCountry: 
         <table className="w-full">
           <thead>
             <tr className="text-left text-xs text-gray-500">
-              <th className="pb-2 font-normal w-1/2">Conversation type</th>
-              <th className="pb-2 font-normal w-1/2">Rate</th>
+              <th className="pb-2 font-normal w-1/2">Message Category</th>
+              <th className="pb-2 font-normal w-1/2">Price per message</th>
             </tr>
           </thead>
           <tbody className="text-xs">
             <tr className="border-t border-dashed border-gray-200">
               <td className="py-2.5 font-medium text-black">Marketing</td>
-              <td className="py-2.5 text-gray-600">{formatChatRate(chatRates?.marketing, chatCurrency)}</td>
+              <td className="py-2.5 text-gray-600">{formatChatRate(chatRates?.marketing)}</td>
             </tr>
             <tr className="border-t border-dashed border-gray-200">
               <td className="py-2.5 font-medium text-black">Utility</td>
-              <td className="py-2.5 text-gray-600">{formatChatRate(chatRates?.utility, chatCurrency)}</td>
+              <td className="py-2.5 text-gray-600">{formatChatRate(chatRates?.utility)}</td>
             </tr>
             <tr className="border-t border-dashed border-gray-200">
               <td className="py-2.5 font-medium text-black">Authentication</td>
-              <td className="py-2.5 text-gray-600">{formatChatRate(chatRates?.authentication, chatCurrency)}</td>
+              <td className="py-2.5 text-gray-600">{formatChatRate(chatRates?.authentication)}</td>
             </tr>
             {(showAuthIntl || chatLoading) && (
               <tr className="border-t border-dashed border-gray-200">
                 <td className="py-2.5 font-medium text-black">Authentication (international)</td>
-                <td className="py-2.5 text-gray-600">{formatChatRate(chatRates?.authenticationIntl, chatCurrency)}</td>
+                <td className="py-2.5 text-gray-600">{formatChatRate(chatRates?.authenticationIntl)}</td>
               </tr>
             )}
             <tr className="border-t border-dashed border-gray-200">
               <td className="py-2.5 font-medium text-black">Service</td>
               <td className="py-2.5 text-gray-600">
-                {chatLoading ? <Shimmer /> : (chatRates?.service === 0 ? "Free" : formatChatRate(chatRates?.service, chatCurrency))}
+                {chatLoading ? <Shimmer /> : (chatRates?.service === 0 ? "Free" : formatChatRate(chatRates?.service))}
               </td>
             </tr>
           </tbody>
@@ -524,8 +392,8 @@ function WhatsAppPricingContent({ selectedCountry, inline }: { selectedCountry: 
           <tbody className="text-xs">
             <tr className="border-t border-dashed border-gray-200">
               <td className="py-2.5 font-medium text-black">Voice calls</td>
-              <td className="py-2.5 text-gray-600">{callLoading ? <Shimmer /> : (callRates?.inbound || "—")}</td>
-              <td className="py-2.5 text-gray-600">{callLoading ? <Shimmer /> : (callRates?.outbound || "—")}</td>
+              <td className="py-2.5 text-gray-600">{callLoading ? <Shimmer /> : cp(callRates?.inbound || "—", selectedCountry)}</td>
+              <td className="py-2.5 text-gray-600">{callLoading ? <Shimmer /> : cp(callRates?.outbound || "—", selectedCountry)}</td>
             </tr>
           </tbody>
         </table>
@@ -552,16 +420,6 @@ function WhatsAppPricingContent({ selectedCountry, inline }: { selectedCountry: 
                 <td className="py-2.5 text-gray-600">{price}</td>
               </tr>
             ))}
-            <tr className="border-t border-dashed border-gray-200">
-              <td className="py-2.5 font-medium text-black">Phone number rental</td>
-              <td className="py-2.5 text-gray-600">
-                {pricingLoading ? <Shimmer /> : (
-                  phoneNumbers.length > 0
-                    ? `From ${currency}${Math.min(...phoneNumbers.map((pn: PhoneNumberInfo) => pn.rentalRate!)).toFixed(2)}/month`
-                    : `From ${currency}0.50/month`
-                )}
-              </td>
-            </tr>
           </tbody>
         </table>
       </ModalTableSection>
@@ -571,17 +429,14 @@ function WhatsAppPricingContent({ selectedCountry, inline }: { selectedCountry: 
 
 // AI Agents Pricing Content
 function AIAgentsPricingContent({ selectedCountry, inline }: { selectedCountry: string; inline?: boolean }) {
-  const { data: pricingData, loading } = useCountryPricing(selectedCountry);
-  const voiceRates = pricingData?.voiceRates;
-  const phoneNumbers = pricingData?.phoneNumbers?.filter(
-    (pn: PhoneNumberInfo) => pn.rentalRate != null && pn.rentalRate > 0
-  ) || [];
-  const pricing = startsAtPricing[selectedCountry];
-  const currency = selectedCountry === "IN" ? "₹" : "$";
+  const { convertPriceString: cp } = useExchangeRate();
 
-  const aiRates = selectedCountry === "IN"
-    ? { voice: "₹4.00/min", text: "₹0.30/outcome", image: "₹3.40/image", audio: "₹1.70/min" }
-    : { voice: "$0.050/min", text: "$0.005/outcome", image: "$0.04/image", audio: "$0.02/min" };
+  const aiRates = {
+    voice: selectedCountry === "IN" ? "₹3.00/min" : cp("$0.050/min", selectedCountry),
+    text: cp("$0.005/outcome", selectedCountry),
+    image: cp("$0.04/image", selectedCountry),
+    audio: cp("$0.02/min", selectedCountry),
+  };
 
   return (
     <>
@@ -615,41 +470,6 @@ function AIAgentsPricingContent({ selectedCountry, inline }: { selectedCountry: 
         <p className="text-xs text-gray-500 mt-2">
           Channel pricing (voice calls, SMS, WhatsApp) is charged separately.
         </p>
-      </ModalTableSection>
-
-      <ModalTableSection inline={inline} title="Telephony (charged separately)">
-        <table className="w-full">
-          <thead>
-            <tr className="text-left text-xs text-gray-500">
-              <th className="pb-2 font-normal w-1/2">Service</th>
-              <th className="pb-2 font-normal w-1/2">Rate</th>
-            </tr>
-          </thead>
-          <tbody className="text-xs">
-            <tr className="border-t border-dashed border-gray-200">
-              <td className="py-2.5 font-medium text-black">Inbound calls (local numbers)</td>
-              <td className="py-2.5 text-gray-600">
-                {loading ? <Shimmer /> : (voiceRates?.localInbound || pricing?.voice || "Contact sales")}
-              </td>
-            </tr>
-            <tr className="border-t border-dashed border-gray-200">
-              <td className="py-2.5 font-medium text-black">Outbound calls (local numbers)</td>
-              <td className="py-2.5 text-gray-600">
-                {loading ? <Shimmer /> : (voiceRates?.localOutbound || pricing?.voice || "Contact sales")}
-              </td>
-            </tr>
-            <tr className="border-t border-dashed border-gray-200">
-              <td className="py-2.5 font-medium text-black">Phone number rental</td>
-              <td className="py-2.5 text-gray-600">
-                {loading ? <Shimmer /> : (
-                  phoneNumbers.length > 0
-                    ? `From ${currency}${Math.min(...phoneNumbers.map((pn: PhoneNumberInfo) => pn.rentalRate!)).toFixed(2)}/month`
-                    : pricing?.phoneNumbers || `From ${currency}0.50/month`
-                )}
-              </td>
-            </tr>
-          </tbody>
-        </table>
       </ModalTableSection>
 
       <ModalTableSection inline={inline} title="Platform features">
@@ -688,6 +508,12 @@ export function PlivoPricing() {
   const [mainSearchQuery, setMainSearchQuery] = useState("");
   const [showDetails, setShowDetails] = useState(false);
   const mainDropdownRef = useRef<HTMLDivElement>(null);
+  const mainToggleBtnRef = useRef<HTMLButtonElement>(null);
+  const mainSearchRef = useRef<HTMLInputElement>(null);
+  const mainCountryListRef = useRef<HTMLDivElement>(null);
+  const detailsToggle1Ref = useRef<HTMLButtonElement>(null);
+  const detailsToggle2Ref = useRef<HTMLButtonElement>(null);
+  const { convertPriceString: cp } = useExchangeRate();
 
   // Auto-select country based on IP geolocation
   useEffect(() => {
@@ -713,6 +539,60 @@ export function PlivoPricing() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  // Native event: Country dropdown toggle
+  useEffect(() => {
+    const btn = mainToggleBtnRef.current;
+    if (!btn) return;
+    const handler = () => setIsDropdownOpen((prev) => !prev);
+    btn.addEventListener("click", handler);
+    return () => btn.removeEventListener("click", handler);
+  }, []);
+
+  // Native event: Search input
+  useEffect(() => {
+    const el = mainSearchRef.current;
+    if (!el) return;
+    const handler = (e: Event) => setMainSearchQuery((e.target as HTMLInputElement).value);
+    el.addEventListener("input", handler);
+    return () => el.removeEventListener("input", handler);
+  }, [isDropdownOpen]);
+
+  // Native event: Country list item clicks (event delegation)
+  useEffect(() => {
+    const el = mainCountryListRef.current;
+    if (!el) return;
+    const handler = (e: MouseEvent) => {
+      const item = (e.target as HTMLElement).closest("[data-country-code]");
+      if (!item) return;
+      const code = item.getAttribute("data-country-code")!;
+      if (countries.some(c => c.code === code)) {
+        setSelectedCountry(code);
+        setIsDropdownOpen(false);
+        setMainSearchQuery("");
+      }
+    };
+    el.addEventListener("click", handler);
+    return () => el.removeEventListener("click", handler);
+  }, [isDropdownOpen]);
+
+  // Native event: "See what's included" toggle (Pay as you go)
+  useEffect(() => {
+    const btn = detailsToggle1Ref.current;
+    if (!btn) return;
+    const handler = () => setShowDetails((prev) => !prev);
+    btn.addEventListener("click", handler);
+    return () => btn.removeEventListener("click", handler);
+  }, []);
+
+  // Native event: "See what's included" toggle (Enterprise)
+  useEffect(() => {
+    const btn = detailsToggle2Ref.current;
+    if (!btn) return;
+    const handler = () => setShowDetails((prev) => !prev);
+    btn.addEventListener("click", handler);
+    return () => btn.removeEventListener("click", handler);
+  }, []);
+
   const country = countries.find(c => c.code === selectedCountry) || countries[0];
 
   return (
@@ -721,14 +601,14 @@ export function PlivoPricing() {
       <section className="bg-white pt-8 pb-10 lg:pt-12 lg:pb-12">
         <div className="container mx-auto max-w-7xl px-4 text-center">
           <h1 className="font-sora text-[2rem] sm:text-[2.5rem] md:text-[3rem] font-normal leading-[1.1] tracking-[-0.02em] text-black">
-            Start now with $10 free credits
+            Start now with {selectedCountry === "IN" ? "₹800" : "$10"} free credits
           </h1>
 
           {/* Country Selector */}
           <div className="mt-5 flex justify-center">
             <div className="relative" ref={mainDropdownRef}>
               <button
-                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                ref={mainToggleBtnRef}
                 className="flex w-full max-w-[256px] items-center justify-between rounded-lg border border-gray-200 bg-white px-4 py-2.5 text-sm font-medium text-black transition-colors hover:bg-gray-50"
               >
                 <div className="flex items-center gap-2">
@@ -742,30 +622,27 @@ export function PlivoPricing() {
                 <div className="absolute left-0 right-0 sm:left-1/2 sm:-translate-x-1/2 sm:w-64 top-full mt-1 z-50 max-h-72 overflow-hidden flex flex-col rounded-lg border border-gray-200 bg-white shadow-lg">
                   <div className="p-2 border-b border-gray-100">
                     <input
+                      ref={mainSearchRef}
                       type="text"
                       placeholder="Search country..."
                       value={mainSearchQuery}
-                      onChange={(e) => setMainSearchQuery(e.target.value)}
                       className="w-full px-3 py-2 text-sm text-gray-900 bg-white border border-gray-300 rounded-md focus:outline-none focus:border-gray-500 placeholder:text-gray-400"
                       autoFocus
+                      readOnly={false}
                     />
                   </div>
-                  <div className="overflow-y-auto py-1">
+                  <div className="overflow-y-auto py-1" ref={mainCountryListRef}>
                     {mainFilteredCountries.map((c) => (
-                      <button
+                      <div
                         key={c.code}
-                        onClick={() => {
-                          setSelectedCountry(c.code);
-                          setIsDropdownOpen(false);
-                          setMainSearchQuery("");
-                        }}
-                        className={`flex w-full items-center gap-2 px-3 py-2 text-sm text-black transition-colors hover:bg-gray-50 ${
+                        data-country-code={c.code}
+                        className={`flex w-full items-center gap-2 px-3 py-2 text-sm text-black transition-colors hover:bg-gray-50 cursor-pointer ${
                           c.code === selectedCountry ? 'bg-gray-50 font-medium' : ''
                         }`}
                       >
                         <span className="text-base">{c.flag}</span>
                         <span>{c.name}</span>
-                      </button>
+                      </div>
                     ))}
                     {mainFilteredCountries.length === 0 && (
                       <div className="px-3 py-3 text-sm text-gray-500">No countries found</div>
@@ -805,12 +682,12 @@ export function PlivoPricing() {
                       Pay as you go
                     </h2>
                     <p className="text-gray-600 text-sm mt-1">
-                      $10 in free credits. No credit card required.
+                      {selectedCountry === "IN" ? "₹800" : "$10"} in free credits. No credit card required.
                     </p>
                   </div>
                   <a
                     href="https://cx.plivo.com/pungis2"
-                    className="flex-shrink-0 rounded-md bg-black px-5 py-2.5 text-center text-sm font-medium text-white transition-colors hover:bg-gray-800"
+                    className="flex-shrink-0 rounded-md bg-black px-5 py-2.5 text-center text-sm font-medium text-white transition-colors cta-hover-gradient"
                   >
                     Sign up now
                   </a>
@@ -818,7 +695,7 @@ export function PlivoPricing() {
 
                 {/* See what's included toggle */}
                 <button
-                  onClick={() => setShowDetails(!showDetails)}
+                  ref={detailsToggle1Ref}
                   className="mt-4 flex items-center gap-1 text-sm text-gray-500 hover:text-gray-700"
                 >
                   See what's included
@@ -843,7 +720,7 @@ export function PlivoPricing() {
                         </div>
                         <div className="flex items-center gap-2">
                           <Check className="h-4 w-4 text-[#323dfe]" />
-                          <span className="text-sm text-gray-700">Limited to $2500 of monthly usage</span>
+                          <span className="text-sm text-gray-700">Limited to {selectedCountry === "IN" ? "₹2,00,000" : "$2,500"} of monthly usage</span>
                         </div>
                       </div>
                     </div>
@@ -859,7 +736,7 @@ export function PlivoPricing() {
                       Enterprise
                     </h2>
                     <p className="text-gray-600 text-sm mt-1">
-                      Starts at $500 per month
+                      {selectedCountry === "IN" ? "Starts at ₹75,000 per month" : "Starts at $1,000 per month"}
                     </p>
                   </div>
                   <a
@@ -872,7 +749,7 @@ export function PlivoPricing() {
 
                 {/* See what's included toggle */}
                 <button
-                  onClick={() => setShowDetails(!showDetails)}
+                  ref={detailsToggle2Ref}
                   className="mt-4 flex items-center gap-1 text-sm text-gray-500 hover:text-gray-700"
                 >
                   See what's included

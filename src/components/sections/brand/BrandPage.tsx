@@ -263,7 +263,7 @@ export default function BrandPage() {
               href="https://drive.google.com/file/d/1S_CH5okXH1eMYSilV6mbQNDfCaGPvOC7/view"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 rounded-md bg-black px-6 py-3 text-sm font-medium text-white hover:bg-gray-800 transition-colors"
+              className="inline-flex items-center justify-center gap-2 rounded-md bg-black px-6 py-3 text-sm font-medium text-white cta-hover-gradient transition-colors"
             >
               <Download className="h-4 w-4" aria-hidden="true" />
               Download Brand Kit

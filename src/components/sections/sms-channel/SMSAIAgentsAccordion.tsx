@@ -77,7 +77,7 @@ const knowledgeFeatures: Feature[] = [
 // Brand Personality Configuration Illustration
 function BrandPersonalityIllustration() {
   return (
-    <div className="relative h-full w-full rounded-xl overflow-hidden" style={{ background: 'linear-gradient(135deg, rgba(205, 62, 249, 0.1), rgba(50, 61, 254, 0.1))' }}>
+    <div className="relative h-full w-full rounded-xl overflow-hidden">
       <div className="relative h-full w-full p-3 sm:p-4">
         {/* Configuration Panel */}
         <div className="bg-white rounded-lg border border-gray-200 shadow-sm h-full flex flex-col">
@@ -171,14 +171,12 @@ function TwoWayConversationIllustration() {
   }, []);
 
   return (
-    <div className="relative h-full w-full rounded-xl overflow-hidden" style={{ background: 'linear-gradient(135deg, rgba(205, 62, 249, 0.1), rgba(50, 61, 254, 0.1))' }}>
+    <div className="relative h-full w-full rounded-xl overflow-hidden">
       <div className="relative h-full w-full pt-3 sm:pt-4 flex justify-center overflow-hidden">
         {/* Phone device - larger and extends beyond container */}
         <div className="w-[280px] sm:w-[320px] h-[500px]">
           {/* Phone outer frame with gradient border */}
-          <div className="relative rounded-[36px] p-1.5 shadow-2xl h-full" style={{ background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.1) 100%)' }}>
-            {/* Inner highlight for 3D effect */}
-            <div className="absolute inset-0 rounded-[36px] opacity-15" style={{ background: 'linear-gradient(135deg, rgba(255,255,255,0.4) 0%, transparent 50%, rgba(0,0,0,0.2) 100%)' }} />
+          <div className="relative rounded-[36px] p-1.5 shadow-2xl h-full border border-gray-300 bg-gray-100">
 
             {/* Screen */}
             <div className="relative rounded-[32px] overflow-hidden bg-white shadow-inner h-full flex flex-col">
@@ -314,7 +312,7 @@ function TwoWayConversationIllustration() {
 // High-Performance AI Content Illustration
 function HighPerformanceContentIllustration() {
   return (
-    <div className="relative h-full w-full rounded-xl overflow-hidden" style={{ background: 'linear-gradient(135deg, rgba(205, 62, 249, 0.1), rgba(50, 61, 254, 0.1))' }}>
+    <div className="relative h-full w-full rounded-xl overflow-hidden">
       <div className="relative h-full w-full p-3 sm:p-4">
         {/* Main card */}
         <div className="bg-white rounded-lg border border-gray-200 shadow-sm h-full flex flex-col">
@@ -413,7 +411,7 @@ function HighPerformanceContentIllustration() {
 // Personalized Recommendations Illustration - AI-powered product suggestions
 function PersonalizedRecommendationsIllustration() {
   return (
-    <div className="relative h-full w-full rounded-xl overflow-hidden" style={{ background: 'linear-gradient(135deg, rgba(205, 62, 249, 0.1), rgba(50, 61, 254, 0.1))' }}>
+    <div className="relative h-full w-full rounded-xl overflow-hidden">
       <div className="relative h-full w-full p-3 sm:p-4">
         {/* Recommendations Panel */}
         <div className="bg-white rounded-lg border border-gray-200 shadow-sm h-full flex flex-col">
@@ -495,7 +493,7 @@ function KnowledgeIntegrationIllustration() {
   ];
 
   return (
-    <div className="relative h-full w-full rounded-xl overflow-hidden" style={{ background: 'linear-gradient(135deg, rgba(205, 62, 249, 0.1), rgba(50, 61, 254, 0.1))' }}>
+    <div className="relative h-full w-full rounded-xl overflow-hidden">
       <div className="relative h-full w-full p-3 sm:p-4">
         {/* Main card */}
         <div className="bg-white rounded-lg border border-gray-200 shadow-sm h-full flex flex-col">
@@ -591,7 +589,7 @@ function Availability247Illustration() {
   ];
 
   return (
-    <div className="relative h-full w-full rounded-xl overflow-hidden" style={{ background: 'linear-gradient(135deg, rgba(205, 62, 249, 0.08), rgba(50, 61, 254, 0.08))' }}>
+    <div className="relative h-full w-full rounded-xl overflow-hidden">
       <div className="relative h-full w-full p-3 sm:p-4">
         {/* Main card */}
         <div className="bg-white rounded-xl border border-gray-200 shadow-sm h-full flex flex-col">

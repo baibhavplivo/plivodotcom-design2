@@ -176,7 +176,7 @@ function IllustrationCard({
 
 function CustomizeBrandIllustration() {
   return (
-    <div className="relative h-full w-full rounded-xl overflow-hidden" style={{ background: 'linear-gradient(135deg, rgba(205, 62, 249, 0.1), rgba(50, 61, 254, 0.1))' }}>
+    <div className="relative h-full w-full rounded-xl overflow-hidden">
       <div className="relative h-full w-full p-2.5 sm:p-3 md:p-4">
         <div className="bg-white rounded-xl shadow-lg border border-gray-200 h-full flex flex-col overflow-hidden">
           {/* Header */}
@@ -289,7 +289,7 @@ function Availability247Illustration() {
   ];
   const maxVal = Math.max(...hours.map(h => h.val));
   return (
-    <div className="relative h-full w-full rounded-xl overflow-hidden" style={{ background: 'linear-gradient(135deg, rgba(205, 62, 249, 0.1), rgba(50, 61, 254, 0.1))' }}>
+    <div className="relative h-full w-full rounded-xl overflow-hidden">
       <div className="relative h-full w-full p-3 sm:p-4">
         <div className="bg-white rounded-lg border border-gray-200 shadow-sm h-full flex flex-col">
           {/* Header */}
@@ -560,7 +560,7 @@ function UnifiedProfilesIllustration() {
 
 function KnowledgeSourcesIllustration() {
   return (
-    <div className="relative h-full w-full rounded-xl overflow-hidden" style={{ background: 'linear-gradient(135deg, rgba(205, 62, 249, 0.1), rgba(50, 61, 254, 0.1))' }}>
+    <div className="relative h-full w-full rounded-xl overflow-hidden">
       <div className="relative h-full w-full p-3 sm:p-4">
         <div className="bg-white rounded-lg border border-gray-200 shadow-sm h-full flex flex-col">
           {/* Header bar */}
@@ -669,7 +669,7 @@ function KnowledgeSourcesIllustration() {
 
 function NoCodeStudioIllustration() {
   return (
-    <div className="relative h-full w-full rounded-xl overflow-hidden" style={{ background: 'linear-gradient(135deg, rgba(205, 62, 249, 0.1), rgba(50, 61, 254, 0.1))' }}>
+    <div className="relative h-full w-full rounded-xl overflow-hidden">
       <div className="relative h-full w-full p-3 sm:p-4">
         <div className="bg-white rounded-lg border border-gray-200 shadow-sm h-full flex flex-col">
           <div className="px-4 py-3 border-b border-gray-100 flex items-center gap-3">
@@ -687,7 +687,7 @@ function NoCodeStudioIllustration() {
 
 function HumanInLoopIllustration() {
   return (
-    <div className="relative h-full w-full rounded-xl overflow-hidden" style={{ background: 'linear-gradient(135deg, rgba(205, 62, 249, 0.1), rgba(50, 61, 254, 0.1))' }}>
+    <div className="relative h-full w-full rounded-xl overflow-hidden">
       <div className="relative h-full w-full p-3 sm:p-4">
         <div className="bg-white rounded-lg border border-gray-200 shadow-sm h-full flex flex-col">
           {/* Header */}
@@ -889,7 +889,7 @@ function SeamlessIntegrationsIllustration() {
     )},
   ];
   return (
-    <div className="relative h-full w-full rounded-xl overflow-hidden" style={{ background: 'linear-gradient(135deg, rgba(205, 62, 249, 0.1), rgba(50, 61, 254, 0.1))' }}>
+    <div className="relative h-full w-full rounded-xl overflow-hidden">
       <div className="relative h-full w-full p-3 sm:p-4">
         <div className="bg-white rounded-lg border border-gray-200 shadow-sm h-full flex flex-col">
           <div className="px-4 py-3 border-b border-gray-100 flex items-center gap-3">

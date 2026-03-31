@@ -5,10 +5,6 @@ function VoiceSmsIllustration() {
   return (
     <div
       className="relative h-full w-full rounded-xl overflow-hidden"
-      style={{
-        background:
-          "linear-gradient(135deg, rgba(205, 62, 249, 0.08), rgba(50, 61, 254, 0.08))",
-      }}
     >
       <style>{`
         @keyframes num-pulse {
@@ -76,10 +72,6 @@ function MessagingIllustration() {
   return (
     <div
       className="relative h-full w-full rounded-xl overflow-hidden"
-      style={{
-        background:
-          "linear-gradient(135deg, rgba(50, 61, 254, 0.08), rgba(205, 62, 249, 0.08))",
-      }}
     >
       <div className="relative h-full w-full p-4 sm:p-6 flex flex-col justify-center">
         <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-4 sm:p-5">

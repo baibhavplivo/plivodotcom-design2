@@ -3,10 +3,12 @@
 import { useState, useEffect, useRef, useMemo } from "react";
 import { cn } from "@/lib/utils";
 import { ChevronDown } from "lucide-react";
-import type { VoiceRates, CountryListItem } from "@/data/pricing-data";
+import { VOICE_CALCULATOR_DATA } from "@/data/pricing-data";
+import type { VoiceRates, CountryListItem, CalculatorEntry } from "@/data/pricing-data";
 import { useGeoCountry } from "@/hooks/useGeoCountry";
 import { useCountryISOs } from "@/hooks/useCountryISOs";
 import { useCountryPricing } from "@/hooks/useCountryPricing";
+import { useExchangeRate } from "@/hooks/useExchangeRate";
 import type { PhoneNumberInfo, VoiceNetworkRate, AddOnPricing } from "@/hooks/useCountryPricing";
 
 type SectionId =
@@ -15,7 +17,8 @@ type SectionId =
   | "ip-calls"
   | "destination-rates"
   | "phone-numbers"
-  | "add-ons";
+  | "add-ons"
+  | "cost-calculator";
 
 function getSections(hasPhoneNumbers: boolean, hasDestinationRates: boolean): { id: SectionId; label: string }[] {
   const base: { id: SectionId; label: string }[] = [
@@ -30,6 +33,7 @@ function getSections(hasPhoneNumbers: boolean, hasDestinationRates: boolean): { 
     base.push({ id: "phone-numbers", label: "Phone Number Rental" });
   }
   base.push({ id: "add-ons", label: "Add-On Services" });
+  base.push({ id: "cost-calculator", label: "Cost Calculator" });
   return base;
 }
 
@@ -37,7 +41,7 @@ const Shimmer = () => (
   <span className="inline-block h-4 w-20 bg-gray-100 rounded animate-pulse" />
 );
 
-export default function VoicePricingTabs() {
+export default function VoicePricingTabs({ initialCountry }: { initialCountry?: string } = {}) {
   const { country: geoCountry } = useGeoCountry();
   const { countries } = useCountryISOs();
   const [selectedCountry, setSelectedCountry] = useState<CountryListItem>(countries[0]);
@@ -49,6 +53,15 @@ export default function VoicePricingTabs() {
   const contentRef = useRef<HTMLDivElement>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
+  // Refs for native event listeners (Astro hydration compatibility)
+  const countryToggleBtnRef = useRef<HTMLButtonElement>(null);
+  const countrySearchInputRef = useRef<HTMLInputElement>(null);
+  const countryListRef = useRef<HTMLDivElement>(null);
+  const sectionNavRef = useRef<HTMLUListElement>(null);
+
+  // Keep filteredCountries in a ref so event delegation can access current value
+  const filteredCountriesRef = useRef<CountryListItem[]>(countries);
+
   const { data: pricingData, loading } = useCountryPricing(selectedCountry.code);
   const rates = pricingData?.voiceRates || null;
   const destinationRates = pricingData?.voiceDestinationRates || [];
@@ -58,15 +71,20 @@ export default function VoicePricingTabs() {
 
   // Auto-select country based on IP geolocation
   useEffect(() => {
-    const match = countries.find(c => c.code === geoCountry);
+    const target = initialCountry || geoCountry;
+    if (!target) return;
+    const match = countries.find(c => c.code === target);
     if (match) setSelectedCountry(match);
-  }, [geoCountry, countries]);
+  }, [geoCountry, countries, initialCountry]);
 
   const filteredCountries = useMemo(() => {
     if (!searchQuery) return countries;
     const q = searchQuery.toLowerCase();
     return countries.filter(c => c.name.toLowerCase().includes(q) || c.code.toLowerCase().includes(q));
   }, [searchQuery, countries]);
+
+  // Keep filteredCountries ref in sync
+  filteredCountriesRef.current = filteredCountries;
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -136,6 +154,65 @@ export default function VoicePricingTabs() {
     }
   };
 
+  // Native event listener: Country selector toggle button
+  useEffect(() => {
+    const el = countryToggleBtnRef.current;
+    if (!el) return;
+    const handler = () => {
+      setIsCountryOpen((prev) => !prev);
+    };
+    el.addEventListener("click", handler);
+    return () => el.removeEventListener("click", handler);
+  }, []);
+
+  // Native event listener: Country search input
+  // Re-runs when dropdown opens because the input is conditionally rendered
+  useEffect(() => {
+    const el = countrySearchInputRef.current;
+    if (!el) return;
+    const handler = (e: Event) => {
+      setSearchQuery((e.target as HTMLInputElement).value);
+    };
+    el.addEventListener("input", handler);
+    return () => el.removeEventListener("input", handler);
+  }, [isCountryOpen]);
+
+  // Native event listener: Country list item selection (event delegation)
+  // Re-runs when dropdown opens because the list is conditionally rendered
+  useEffect(() => {
+    const el = countryListRef.current;
+    if (!el) return;
+    const handler = (e: MouseEvent) => {
+      const item = (e.target as HTMLElement).closest("[data-country-code]");
+      if (!item) return;
+      const code = item.getAttribute("data-country-code")!;
+      const match = filteredCountriesRef.current.find((c) => c.code === code);
+      if (match) {
+        setSelectedCountry(match);
+        setIsCountryOpen(false);
+        setSearchQuery("");
+      }
+    };
+    el.addEventListener("click", handler);
+    return () => el.removeEventListener("click", handler);
+  }, [isCountryOpen]);
+
+  // Native event listener: Section navigation (event delegation)
+  useEffect(() => {
+    const el = sectionNavRef.current;
+    if (!el) return;
+    const handler = (e: MouseEvent) => {
+      const item = (e.target as HTMLElement).closest("[data-section-id]");
+      if (!item) return;
+      const id = item.getAttribute("data-section-id") as SectionId;
+      if (id) {
+        scrollToSection(id);
+      }
+    };
+    el.addEventListener("click", handler);
+    return () => el.removeEventListener("click", handler);
+  }, []);
+
   return (
     <>
       {/* Hero Header */}
@@ -165,7 +242,7 @@ export default function VoicePricingTabs() {
                     Select Country
                   </label>
                   <button
-                    onClick={() => setIsCountryOpen(!isCountryOpen)}
+                    ref={countryToggleBtnRef}
                     className="w-full flex items-center gap-3 px-4 py-2.5 bg-white border border-gray-300 rounded-lg hover:border-gray-400 transition-colors"
                   >
                     <span className="text-xl">{selectedCountry.flag}</span>
@@ -187,23 +264,19 @@ export default function VoicePricingTabs() {
                           type="text"
                           placeholder="Search country..."
                           value={searchQuery}
-                          onChange={(e) => setSearchQuery(e.target.value)}
+                          ref={countrySearchInputRef}
                           className="w-full px-3 py-2 text-sm text-gray-900 bg-white border border-gray-300 rounded-md focus:outline-none focus:border-gray-500 placeholder:text-gray-400"
                           autoFocus
                         />
                       </div>
-                      <div className="overflow-y-auto">
+                      <div className="overflow-y-auto" ref={countryListRef}>
                         {filteredCountries.map((country, idx) => (
                           <div key={country.code}>
                             {!country.isPriority && idx > 0 && filteredCountries[idx - 1]?.isPriority && (
                               <div className="border-t border-gray-200 my-1" />
                             )}
                             <button
-                              onClick={() => {
-                                setSelectedCountry(country);
-                                setIsCountryOpen(false);
-                                setSearchQuery("");
-                              }}
+                              data-country-code={country.code}
                               className={cn(
                                 "w-full flex items-center gap-2.5 px-4 py-2.5 hover:bg-gray-50 transition-colors text-left",
                                 selectedCountry.code === country.code && "bg-[#323dfe]/5"
@@ -225,11 +298,11 @@ export default function VoicePricingTabs() {
                 {/* Section Navigation */}
                 <nav className="hidden lg:block">
                   <p className="text-sm font-medium text-gray-700 mb-3">Jump to section</p>
-                  <ul className="space-y-1">
+                  <ul className="space-y-1" ref={sectionNavRef}>
                     {sections.map((section) => (
                       <li key={section.id}>
                         <button
-                          onClick={() => scrollToSection(section.id)}
+                          data-section-id={section.id}
                           className={cn(
                             "w-full text-left px-3 py-2 text-sm transition-colors border-l-2",
                             activeSection === section.id
@@ -250,23 +323,23 @@ export default function VoicePricingTabs() {
             <div ref={contentRef} className="min-w-0">
               {/* Local Numbers */}
               <div id="local-numbers" className="bg-white rounded-xl border border-gray-200 p-6 mb-6">
-                <LocalNumbersSection rates={rates} loading={loading} />
+                <LocalNumbersSection rates={rates} loading={loading} countryCode={selectedCountry.code} />
               </div>
 
               {/* Toll-Free Numbers */}
               <div id="tollfree-numbers" className="bg-white rounded-xl border border-gray-200 p-6 mb-6">
-                <TollFreeSection rates={rates} loading={loading} />
+                <TollFreeSection rates={rates} loading={loading} countryCode={selectedCountry.code} />
               </div>
 
               {/* IP Calls */}
               <div id="ip-calls" className="bg-white rounded-xl border border-gray-200 p-6 mb-6">
-                <IPCallsSection rates={rates} loading={loading} />
+                <IPCallsSection rates={rates} loading={loading} countryCode={selectedCountry.code} />
               </div>
 
               {/* Destination Rates */}
               {destinationRates.length > 0 && (
                 <div id="destination-rates" className="bg-white rounded-xl border border-gray-200 p-6 mb-6">
-                  <DestinationRatesSection rates={destinationRates} loading={loading} />
+                  <DestinationRatesSection rates={destinationRates} loading={loading} countryCode={selectedCountry.code} />
                 </div>
               )}
 
@@ -281,6 +354,11 @@ export default function VoicePricingTabs() {
               <div id="add-ons" className="bg-white rounded-xl border border-gray-200 p-6">
                 <AddOnsSection countryCode={selectedCountry.code} addOnPricing={pricingData?.addOnPricing || null} loading={loading} />
               </div>
+
+              {/* Cost Calculator */}
+              <div id="cost-calculator" className="bg-white rounded-xl border border-gray-200 p-6 mt-6">
+                <VoiceCostCalculator />
+              </div>
             </div>
           </div>
         </div>
@@ -289,7 +367,8 @@ export default function VoicePricingTabs() {
   );
 }
 
-function LocalNumbersSection({ rates, loading }: { rates: VoiceRates | null; loading: boolean }) {
+function LocalNumbersSection({ rates, loading, countryCode }: { rates: VoiceRates | null; loading: boolean; countryCode: string }) {
+  const { convertPriceString } = useExchangeRate();
   return (
     <div>
       <h2 className="font-sans text-xl font-semibold text-black mb-2">Local Numbers</h2>
@@ -309,13 +388,13 @@ function LocalNumbersSection({ rates, loading }: { rates: VoiceRates | null; loa
             <tr>
               <td className="py-3 pr-4 text-sm text-gray-900">Outbound (To make calls)</td>
               <td className="py-3 text-sm font-medium text-black">
-                {loading ? <Shimmer /> : (rates?.localOutbound || "—")}
+                {loading ? <Shimmer /> : (rates?.localOutbound ? convertPriceString(rates.localOutbound, countryCode) : "\u2014")}
               </td>
             </tr>
             <tr>
               <td className="py-3 pr-4 text-sm text-gray-900">Inbound (To receive calls)</td>
               <td className="py-3 text-sm font-medium text-black">
-                {loading ? <Shimmer /> : (rates?.localInbound || "—")}
+                {loading ? <Shimmer /> : (rates?.localInbound ? convertPriceString(rates.localInbound, countryCode) : "\u2014")}
               </td>
             </tr>
           </tbody>
@@ -325,9 +404,12 @@ function LocalNumbersSection({ rates, loading }: { rates: VoiceRates | null; loa
   );
 }
 
-function TollFreeSection({ rates, loading }: { rates: VoiceRates | null; loading: boolean }) {
-  const outbound = rates?.tollfreeOutbound || "—";
-  const inbound = rates?.tollfreeInbound || "—";
+function TollFreeSection({ rates, loading, countryCode }: { rates: VoiceRates | null; loading: boolean; countryCode: string }) {
+  const { convertPriceString } = useExchangeRate();
+  const rawOutbound = rates?.tollfreeOutbound || "\u2014";
+  const rawInbound = rates?.tollfreeInbound || "\u2014";
+  const outbound = rawOutbound !== "\u2014" ? convertPriceString(rawOutbound, countryCode) : rawOutbound;
+  const inbound = rawInbound !== "\u2014" ? convertPriceString(rawInbound, countryCode) : rawInbound;
   return (
     <div>
       <h2 className="font-sans text-xl font-semibold text-black mb-2">Toll-Free Numbers</h2>
@@ -346,13 +428,13 @@ function TollFreeSection({ rates, loading }: { rates: VoiceRates | null; loading
           <tbody className="divide-y divide-gray-100">
             <tr>
               <td className="py-3 pr-4 text-sm text-gray-900">Outbound (To make calls)</td>
-              <td className={cn("py-3 text-sm font-medium", outbound === "Not Supported" ? "text-gray-400" : "text-black")}>
+              <td className={cn("py-3 text-sm font-medium", rawOutbound === "Not Supported" ? "text-gray-400" : "text-black")}>
                 {loading ? <Shimmer /> : outbound}
               </td>
             </tr>
             <tr>
               <td className="py-3 pr-4 text-sm text-gray-900">Inbound (To receive calls)</td>
-              <td className={cn("py-3 text-sm font-medium", inbound === "Not Supported" ? "text-gray-400" : "text-black")}>
+              <td className={cn("py-3 text-sm font-medium", rawInbound === "Not Supported" ? "text-gray-400" : "text-black")}>
                 {loading ? <Shimmer /> : inbound}
               </td>
             </tr>
@@ -363,7 +445,8 @@ function TollFreeSection({ rates, loading }: { rates: VoiceRates | null; loading
   );
 }
 
-function IPCallsSection({ rates, loading }: { rates: VoiceRates | null; loading: boolean }) {
+function IPCallsSection({ rates, loading, countryCode }: { rates: VoiceRates | null; loading: boolean; countryCode: string }) {
+  const { convertPriceString } = useExchangeRate();
   return (
     <div>
       <h2 className="font-sans text-xl font-semibold text-black mb-2">IP / Browser SDK Calls</h2>
@@ -383,13 +466,13 @@ function IPCallsSection({ rates, loading }: { rates: VoiceRates | null; loading:
             <tr>
               <td className="py-3 pr-4 text-sm text-gray-900">Outbound</td>
               <td className="py-3 text-sm font-medium text-black">
-                {loading ? <Shimmer /> : (rates?.ipOutbound || "—")}
+                {loading ? <Shimmer /> : (rates?.ipOutbound ? convertPriceString(rates.ipOutbound, countryCode) : "\u2014")}
               </td>
             </tr>
             <tr>
               <td className="py-3 pr-4 text-sm text-gray-900">Inbound</td>
               <td className="py-3 text-sm font-medium text-black">
-                {loading ? <Shimmer /> : (rates?.ipInbound || "—")}
+                {loading ? <Shimmer /> : (rates?.ipInbound ? convertPriceString(rates.ipInbound, countryCode) : "\u2014")}
               </td>
             </tr>
           </tbody>
@@ -401,7 +484,8 @@ function IPCallsSection({ rates, loading }: { rates: VoiceRates | null; loading:
 
 function PhoneRentalSection({ phoneNumbers, loading, countryCode }: { phoneNumbers: PhoneNumberInfo[]; loading: boolean; countryCode: string }) {
   if (phoneNumbers.length === 0) return null;
-  const currency = countryCode === "IN" ? "₹" : "$";
+  const { convertPriceString } = useExchangeRate();
+  const currency = "$";
 
   return (
     <div>
@@ -423,7 +507,7 @@ function PhoneRentalSection({ phoneNumbers, loading, countryCode }: { phoneNumbe
               <tr key={pn.type}>
                 <td className="py-3 pr-4 text-sm text-gray-900">{pn.type}</td>
                 <td className="py-3 text-sm font-medium text-black">
-                  {loading ? <Shimmer /> : `${currency}${(pn.rentalRate ?? 0).toFixed(2)}/month`}
+                  {loading ? <Shimmer /> : convertPriceString(`$${(pn.rentalRate ?? 0).toFixed(2)}/month`, countryCode)}
                 </td>
               </tr>
             ))}
@@ -434,48 +518,27 @@ function PhoneRentalSection({ phoneNumbers, loading, countryCode }: { phoneNumbe
   );
 }
 
-function DestinationRatesSection({ rates, loading }: { rates: VoiceNetworkRate[]; loading: boolean }) {
-  const [expandedIdx, setExpandedIdx] = useState<number | null>(null);
-
-  // Use native event listeners for Astro hydration compatibility
-  const buttonRefs = useRef<Map<number, HTMLButtonElement>>(new Map());
-
-  useEffect(() => {
-    const handlers: Array<[HTMLButtonElement, () => void]> = [];
-    for (const [idx, btn] of buttonRefs.current.entries()) {
-      const handler = () => {
-        setExpandedIdx((prev) => (prev === idx ? null : idx));
-      };
-      btn.addEventListener("click", handler);
-      handlers.push([btn, handler]);
-    }
-    return () => {
-      for (const [btn, handler] of handlers) {
-        btn.removeEventListener("click", handler);
-      }
-    };
-  }, [rates]);
+function DestinationRatesSection({ rates, loading, countryCode }: { rates: VoiceNetworkRate[]; loading: boolean; countryCode: string }) {
+  const { convertPriceString } = useExchangeRate();
 
   return (
     <div>
-      <h2 className="font-sans text-xl font-semibold text-black mb-2">Destination Rates</h2>
+      <h2 className="font-sans text-xl font-semibold text-black mb-2">Detailed Network Pricing</h2>
       <p className="text-sm text-gray-500 mb-6">
-        Outbound call rates per network group. Sorted by lowest rate first.
+        Pricing per network group – Outbound calls
       </p>
 
       <div className="overflow-x-auto">
         <table className="w-full">
           <thead>
             <tr className="border-b border-gray-200">
-              <th className="py-3 pr-4 text-left text-sm font-semibold text-black w-[55%]">Network</th>
-              <th className="py-3 pr-4 text-left text-sm font-semibold text-black">Rate</th>
-              <th className="py-3 text-left text-sm font-semibold text-black w-[100px]">Prefixes</th>
+              <th className="py-3 pr-4 text-left text-sm font-semibold text-black w-[65%]">Network Group</th>
+              <th className="py-3 text-left text-sm font-semibold text-black">Pricing</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-100">
             {loading ? (
               <tr>
-                <td className="py-3 pr-4"><Shimmer /></td>
                 <td className="py-3 pr-4"><Shimmer /></td>
                 <td className="py-3"><Shimmer /></td>
               </tr>
@@ -483,36 +546,7 @@ function DestinationRatesSection({ rates, loading }: { rates: VoiceNetworkRate[]
               rates.map((entry, idx) => (
                 <tr key={`${entry.networkGroup}-${idx}`}>
                   <td className="py-3 pr-4 text-sm text-gray-900">{entry.networkGroup}</td>
-                  <td className="py-3 pr-4 text-sm font-medium text-black">{entry.rate}</td>
-                  <td className="py-3 text-sm">
-                    {entry.destinationPrefixes.length > 0 ? (
-                      <div>
-                        <button
-                          ref={(el) => {
-                            if (el) buttonRefs.current.set(idx, el);
-                            else buttonRefs.current.delete(idx);
-                          }}
-                          className="text-[#323dfe] hover:underline text-sm font-medium"
-                        >
-                          {expandedIdx === idx ? "Hide" : "View"}
-                        </button>
-                        {expandedIdx === idx && (
-                          <div className="mt-2 p-3 bg-gray-50 rounded-md text-xs text-gray-600 max-w-xs">
-                            <p className="font-medium text-gray-800 mb-1">Destination Prefixes</p>
-                            <p className="break-all">{entry.destinationPrefixes.join(", ")}</p>
-                            {entry.originationPrefixes.length > 0 && (
-                              <>
-                                <p className="font-medium text-gray-800 mt-2 mb-1">Origination Prefixes</p>
-                                <p className="break-all">{entry.originationPrefixes.join(", ")}</p>
-                              </>
-                            )}
-                          </div>
-                        )}
-                      </div>
-                    ) : (
-                      <span className="text-gray-400">—</span>
-                    )}
-                  </td>
+                  <td className="py-3 text-sm font-medium text-black">{convertPriceString(entry.rate, countryCode)}</td>
                 </tr>
               ))
             )}
@@ -525,6 +559,7 @@ function DestinationRatesSection({ rates, loading }: { rates: VoiceNetworkRate[]
 
 function AddOnsSection({ countryCode, addOnPricing, loading }: { countryCode: string; addOnPricing: AddOnPricing | null; loading: boolean }) {
   const audioRate = addOnPricing?.audioStreamingRate;
+  const { convertPriceString: cp } = useExchangeRate();
   const isIndia = countryCode === "IN";
 
   return (
@@ -543,7 +578,7 @@ function AddOnsSection({ countryCode, addOnPricing, loading }: { countryCode: st
             <tr>
               <td className="py-3 pr-4 text-sm text-gray-900">Audio Streaming</td>
               <td className="py-3 text-sm font-medium text-black">
-                {loading ? <Shimmer /> : (audioRate || "Included")}
+                {loading ? <Shimmer /> : (audioRate || "Free")}
               </td>
             </tr>
             <tr>
@@ -556,7 +591,7 @@ function AddOnsSection({ countryCode, addOnPricing, loading }: { countryCode: st
             </tr>
             <tr>
               <td className="py-3 pr-4 text-sm text-gray-900">Call Insights (Premium)</td>
-              <td className="py-3 text-sm font-medium text-black">{isIndia ? "₹0.22/min" : "$0.0025/min"}</td>
+              <td className="py-3 text-sm font-medium text-black">{cp("$0.0025/min", countryCode)}</td>
             </tr>
             <tr>
               <td className="py-3 pr-4 text-sm text-gray-900">Call Recording</td>
@@ -564,15 +599,15 @@ function AddOnsSection({ countryCode, addOnPricing, loading }: { countryCode: st
             </tr>
             <tr>
               <td className="py-3 pr-4 text-sm text-gray-900">Recording Storage</td>
-              <td className="py-3 text-sm font-medium text-black">{isIndia ? "₹0.0004" : "$0.0004"}/min/month (free for 90 days)</td>
+              <td className="py-3 text-sm font-medium text-black">{cp("$0.0004/min", countryCode)}/month (free for 90 days)</td>
             </tr>
             <tr>
               <td className="py-3 pr-4 text-sm text-gray-900">Automatic Speech Recognition</td>
-              <td className="py-3 text-sm font-medium text-black">{isIndia ? "₹1.7/15 seconds" : "$0.02/15 seconds"}</td>
+              <td className="py-3 text-sm font-medium text-black">{cp("$0.02/15 seconds", countryCode)}</td>
             </tr>
             <tr>
               <td className="py-3 pr-4 text-sm text-gray-900">Call Transcription</td>
-              <td className="py-3 text-sm font-medium text-black">{isIndia ? "₹0.81/min" : "$0.0095/min"}</td>
+              <td className="py-3 text-sm font-medium text-black">{cp("$0.0095/min", countryCode)}</td>
             </tr>
             <tr>
               <td className="py-3 pr-4 text-sm text-gray-900">Conference Calls</td>
@@ -584,7 +619,7 @@ function AddOnsSection({ countryCode, addOnPricing, loading }: { countryCode: st
             </tr>
             <tr>
               <td className="py-3 pr-4 text-sm text-gray-900">CNAM Lookup</td>
-              <td className="py-3 text-sm font-medium text-black">{isIndia ? "₹0.42" : "$0.005"}/lookup</td>
+              <td className="py-3 text-sm font-medium text-black">{cp("$0.005/lookup", countryCode)}</td>
             </tr>
           </tbody>
         </table>
@@ -593,3 +628,191 @@ function AddOnsSection({ countryCode, addOnPricing, loading }: { countryCode: st
   );
 }
 
+const VOICE_TOP_CODES = new Set(["US", "IN", "CA", "GB", "AU"]);
+
+function VoiceCostCalculator() {
+  const { country: geoCountry } = useGeoCountry();
+  const [selectedCountry, setSelectedCountry] = useState<CalculatorEntry>(VOICE_CALCULATOR_DATA[0]);
+  const [volume, setVolume] = useState(100000);
+  const [isOpen, setIsOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  // Refs for native event listeners (Astro hydration compatibility)
+  const calcCountryToggleRef = useRef<HTMLButtonElement>(null);
+  const calcCountryListRef = useRef<HTMLDivElement>(null);
+  const volumeSliderRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    const match = VOICE_CALCULATOR_DATA.find(c => c.code === geoCountry);
+    if (match) setSelectedCountry(match);
+  }, [geoCountry]);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  // Native event listener: Calculator country dropdown toggle
+  useEffect(() => {
+    const el = calcCountryToggleRef.current;
+    if (!el) return;
+    const handler = () => {
+      setIsOpen((prev) => !prev);
+    };
+    el.addEventListener("click", handler);
+    return () => el.removeEventListener("click", handler);
+  }, []);
+
+  // Native event listener: Calculator country list selection (event delegation)
+  // Re-runs when dropdown opens because the list is conditionally rendered
+  useEffect(() => {
+    const el = calcCountryListRef.current;
+    if (!el) return;
+    const handler = (e: MouseEvent) => {
+      const item = (e.target as HTMLElement).closest("[data-calc-country]");
+      if (!item) return;
+      const code = item.getAttribute("data-calc-country")!;
+      const match = VOICE_CALCULATOR_DATA.find((c) => c.code === code);
+      if (match) {
+        setSelectedCountry(match);
+        setIsOpen(false);
+      }
+    };
+    el.addEventListener("click", handler);
+    return () => el.removeEventListener("click", handler);
+  }, [isOpen]);
+
+  // Native event listener: Volume slider
+  useEffect(() => {
+    const el = volumeSliderRef.current;
+    if (!el) return;
+    const handler = (e: Event) => {
+      setVolume(Number((e.target as HTMLInputElement).value));
+    };
+    el.addEventListener("input", handler);
+    return () => el.removeEventListener("input", handler);
+  }, []);
+
+  const { convertToINR } = useExchangeRate();
+  const isIndia = selectedCountry.code === "IN";
+  const currency = isIndia ? "\u20b9" : "$";
+  const rawPlivoCost = (selectedCountry.plivo * volume) / 100000;
+  const rawOthersCost = (selectedCountry.others * volume) / 100000;
+  const plivoCost = isIndia ? convertToINR(rawPlivoCost) : rawPlivoCost;
+  const othersCost = isIndia ? convertToINR(rawOthersCost) : rawOthersCost;
+  const savings = othersCost - plivoCost;
+  const savingsPercent = othersCost > 0 ? Math.round((savings / othersCost) * 100) : 0;
+  const maxCost = Math.max(plivoCost, othersCost);
+
+  return (
+    <div>
+      <h2 className="font-sans text-xl font-semibold text-black mb-2">Cost calculator</h2>
+      <p className="text-sm text-gray-500 mb-6">
+        Compare voice call costs between Plivo and other providers.
+      </p>
+
+      <div className="grid gap-4 sm:gap-6 sm:grid-cols-2 mb-8">
+        {/* Country selector - matches main sidebar dropdown */}
+        <div className="relative" ref={dropdownRef}>
+          <label className="block text-sm font-medium text-gray-700 mb-2">Country</label>
+          <button
+            ref={calcCountryToggleRef}
+            className="w-full flex items-center gap-3 px-4 py-2.5 bg-white border border-gray-300 rounded-lg hover:border-gray-400 transition-colors"
+          >
+            <span className="text-xl">{selectedCountry.flag}</span>
+            <span className="text-sm font-medium text-gray-900 flex-1 text-left">{selectedCountry.country}</span>
+            <ChevronDown className={cn("w-4 h-4 text-gray-400 transition-transform", isOpen && "rotate-180")} />
+          </button>
+          {isOpen && (
+            <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-10 max-h-72 overflow-hidden flex flex-col">
+              <div className="overflow-y-auto" ref={calcCountryListRef}>
+                {VOICE_CALCULATOR_DATA.map((entry, idx) => (
+                  <div key={entry.code}>
+                    {!VOICE_TOP_CODES.has(entry.code) && idx > 0 && VOICE_TOP_CODES.has(VOICE_CALCULATOR_DATA[idx - 1]?.code) && (
+                      <div className="border-t border-gray-200 my-1" />
+                    )}
+                    <button
+                      data-calc-country={entry.code}
+                      className={cn(
+                        "w-full flex items-center gap-2.5 px-4 py-2.5 hover:bg-gray-50 transition-colors text-left",
+                        selectedCountry.code === entry.code && "bg-[#323dfe]/5"
+                      )}
+                    >
+                      <span className="text-xl">{entry.flag}</span>
+                      <span className="text-sm text-gray-900">{entry.country}</span>
+                    </button>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* Volume slider */}
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-2">
+            Monthly call volume: <span className="font-semibold text-black">{volume.toLocaleString()} minutes</span>
+          </label>
+          <input
+            type="range"
+            min={10000}
+            max={1000000}
+            step={10000}
+            value={volume}
+            ref={volumeSliderRef}
+            className="w-full h-2 rounded-lg appearance-none cursor-pointer accent-[#323dfe]"
+            style={{
+              background: `linear-gradient(to right, #323dfe ${((volume - 10000) / 990000) * 100}%, #e5e7eb ${((volume - 10000) / 990000) * 100}%)`,
+            }}
+          />
+          <div className="flex justify-between text-xs text-gray-400 mt-1">
+            <span>10K</span>
+            <span>1M</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Comparison bars */}
+      <div className="space-y-4">
+        <div>
+          <div className="flex items-center justify-between mb-1.5">
+            <span className="text-sm font-medium text-black">Plivo</span>
+            <span className="text-sm font-semibold text-black">{currency}{plivoCost.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</span>
+          </div>
+          <div className="h-8 bg-gray-100 rounded-md overflow-hidden">
+            <div
+              className="h-full bg-[#323dfe] rounded-md transition-all duration-500"
+              style={{ width: maxCost > 0 ? `${(plivoCost / maxCost) * 100}%` : '0%' }}
+            />
+          </div>
+        </div>
+        <div>
+          <div className="flex items-center justify-between mb-1.5">
+            <span className="text-sm font-medium text-gray-600">Others</span>
+            <span className="text-sm font-semibold text-gray-600">{currency}{othersCost.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</span>
+          </div>
+          <div className="h-8 bg-gray-100 rounded-md overflow-hidden">
+            <div
+              className="h-full bg-gray-400 rounded-md transition-all duration-500"
+              style={{ width: maxCost > 0 ? `${(othersCost / maxCost) * 100}%` : '0%' }}
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* Savings callout */}
+      {savings > 0 && (
+        <div className="mt-6 p-4 bg-green-50 border border-green-200 rounded-lg">
+          <p className="text-sm text-green-800">
+            Save <span className="font-semibold">{currency}{savings.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</span> per month ({savingsPercent}% less) with Plivo
+          </p>
+        </div>
+      )}
+    </div>
+  );
+}

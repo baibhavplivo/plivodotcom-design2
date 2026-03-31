@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from "react";
-import { VOICE_RATES, PHONE_RENTAL_RATES, SMS_RATES } from "@/data/pricing-data";
+import { VOICE_RATES, PHONE_RENTAL_RATES, SMS_RATES, VOICE_DESTINATION_RATES } from "@/data/pricing-data";
 import type { VoiceRates } from "@/data/pricing-data";
 
 const API_URL = "https://api.plivo.com/v1/Internal/CountryPricing/?country=";
@@ -8,6 +8,7 @@ export interface PhoneNumberInfo {
   type: string;
   rentalRate: number | null;
   inboundVoiceRate: number | null;
+  inboundSmsRate: number | null;
   capabilities: string[];
   status: string;
 }
@@ -46,13 +47,14 @@ export interface CountryPricingData {
   raw: any;
 }
 
-const INDIA_VOICE: VoiceRates = {
-  localInbound: "₹2.8/min",
-  localOutbound: "₹0.74/min",
-  tollfreeInbound: "₹1.30/min",
+// Fallback India voice rates in USD (used when API fails)
+const INDIA_VOICE_USD: VoiceRates = {
+  localInbound: "$0.0087/min",
+  localOutbound: "$0.0087/min",
+  tollfreeInbound: "$0.0153/min",
   tollfreeOutbound: "Not Supported",
-  ipInbound: "₹0.34/min",
-  ipOutbound: "₹0.34/min",
+  ipInbound: "$0.0040/min",
+  ipOutbound: "$0.0040/min",
 };
 
 function formatRate(rate: number | string | null | undefined, unit: string, currency = "$"): string {
@@ -64,7 +66,8 @@ function formatRate(rate: number | string | null | undefined, unit: string, curr
 
 /**
  * Fetches live pricing from Plivo's CountryPricing API.
- * India uses hardcoded INR rates. Falls back to static VOICE_RATES on error.
+ * All rates returned in USD. Components handle INR conversion via useExchangeRate.
+ * Falls back to static VOICE_RATES on error.
  */
 export function useCountryPricing(countryCode: string): {
   data: CountryPricingData | null;
@@ -82,25 +85,6 @@ export function useCountryPricing(countryCode: string): {
       const cached = cache.current.get(code);
       if (cached) {
         setData(cached);
-        setLoading(false);
-        return;
-      }
-
-      // India uses fully hardcoded rates
-      if (code === "IN") {
-        const indiaData: CountryPricingData = {
-          voiceRates: INDIA_VOICE,
-          voiceDestinationRates: [],
-          addOnPricing: { audioStreamingRate: null },
-          smsOutbound: "₹0.155/sms",
-          smsInbound: "Not Supported",
-          smsRates: [{ type: "Longcode", outbound: "₹0.155/sms", inbound: "Not Supported" }],
-          smsNetworkRates: [],
-          phoneNumbers: [],
-          raw: null,
-        };
-        cache.current.set(code, indiaData);
-        setData(indiaData);
         setLoading(false);
         return;
       }
@@ -137,6 +121,7 @@ export function useCountryPricing(countryCode: string): {
                 type: pn.number_type,
                 rentalRate: pn.rental_rate ?? null,
                 inboundVoiceRate: pn.inbound_voice_rate ?? null,
+                inboundSmsRate: pn.inbound_sms_rate ?? null,
                 capabilities: caps,
                 status,
               });
@@ -165,56 +150,209 @@ export function useCountryPricing(countryCode: string): {
             localInbound: formatRate(localInbound, "min"),
             tollfreeOutbound: formatRate(tollfreeOutRate, "min"),
             tollfreeInbound: formatRate(tollfreeInbound, "min"),
-            ipInbound: "$0.0055/min",
-            ipOutbound: "$0.0055/min",
+            ipInbound: formatRate(apiData?.voice?.ip?.inbound?.rate, "min"),
+            ipOutbound: formatRate(
+              apiData?.voice?.ip?.outbound?.rates?.all ?? apiData?.voice?.ip?.outbound?.rate, "min"
+            ),
           };
 
+          // Country-specific overrides matching live plivo.com
+          if (code === "US") {
+            voiceRates.localOutbound = "$0.0115/min";
+            voiceRates.tollfreeOutbound = "$0.0060/min";
+          } else if (code === "CA") {
+            voiceRates.tollfreeOutbound = "$0.0060/min";
+          } else if (code === "IN") {
+            voiceRates.localOutbound = "$0.0087/min";
+            voiceRates.localInbound = "$0.0087/min";
+            voiceRates.tollfreeInbound = "$0.0153/min";
+            voiceRates.tollfreeOutbound = "Not Supported";
+            voiceRates.ipInbound = "$0.0040/min";
+            voiceRates.ipOutbound = "$0.0040/min";
+          }
+
           // Extract per-network-group destination rates
-          const voiceDestinationRates: VoiceNetworkRate[] = [];
-          const localOutRates = apiData?.voice?.local?.outbound?.rates;
-          if (Array.isArray(localOutRates)) {
-            const sorted = [...localOutRates].sort(
-              (a: any, b: any) => (parseFloat(a.rate) || 0) - (parseFloat(b.rate) || 0)
+          let voiceDestinationRates: VoiceNetworkRate[] = [];
+          if (code === "IN") {
+            // India: hardcoded to match live plivo.com (API returns wrong data)
+            voiceDestinationRates = [{
+              networkGroup: "India All Networks from Plivo-IN numbers",
+              rate: "$0.0047/min",
+              destinationPrefixes: ["91"],
+              originationPrefixes: ["91"],
+            }];
+          } else {
+            const localOutRates = apiData?.voice?.local?.outbound?.rates;
+            if (Array.isArray(localOutRates)) {
+              const sorted = [...localOutRates].sort(
+                (a: any, b: any) => (parseFloat(a.rate) || 0) - (parseFloat(b.rate) || 0)
+              );
+              for (const entry of sorted) {
+                const r = parseFloat(entry.rate);
+                if (isNaN(r)) continue;
+                voiceDestinationRates.push({
+                  networkGroup: entry.voice_network_group || "Default",
+                  rate: `$${r.toFixed(4)}/min`,
+                  destinationPrefixes: Array.isArray(entry.destination_prefix)
+                    ? entry.destination_prefix
+                    : [],
+                  originationPrefixes: Array.isArray(entry.origination_prefix)
+                    ? entry.origination_prefix.filter((p: string) => p)
+                    : [],
+                });
+              }
+            }
+          }
+
+          // Extract SMS rates — matching live plivo.com logic:
+          // Inbound rates come from phone_numbers array (min inbound_sms_rate per type)
+          // Outbound rates come from sms.*.outbound.rate (or min of rates object)
+          const smsObj = apiData?.sms || {};
+          const smsRates: SMSRateRow[] = [];
+
+          // Derive inbound SMS rates from phone_numbers (live site logic)
+          let longcodeInboundMin: number | null = null;
+          let shortcodeInboundMin: number | null = null;
+          let tollfreeInboundMin: number | null = null;
+          let mobileInboundRate: number | null = null;
+
+          for (const pn of phoneNumbers) {
+            if (!pn.capabilities.includes("sms")) continue;
+            if (pn.status !== "GA" && pn.status !== "BETA") continue;
+            const nt = pn.type.toLowerCase();
+            const rate = pn.inboundSmsRate;
+            if (rate == null) continue;
+
+            if (["local", "national"].includes(nt)) {
+              if (longcodeInboundMin === null || rate < longcodeInboundMin) {
+                longcodeInboundMin = rate;
+              }
+            }
+            if (nt === "mobile") {
+              mobileInboundRate = rate;
+            }
+            if (nt === "shortcode") {
+              if (shortcodeInboundMin === null || rate < shortcodeInboundMin) {
+                shortcodeInboundMin = rate;
+              }
+            }
+            if (nt === "tollfree") {
+              if (tollfreeInboundMin === null || rate < tollfreeInboundMin) {
+                tollfreeInboundMin = rate;
+              }
+            }
+          }
+
+          // GB/AU override: after Jan 1 2026 UTC, longcode inbound is $0.003
+          const now = new Date();
+          const jan2026 = new Date(Date.UTC(2026, 0, 1));
+          if (now >= jan2026 && (code === "GB" || code === "AU")) {
+            longcodeInboundMin = 0.003;
+          }
+
+          // Helper: format inbound rate with "Contact support" fallback for longcode
+          function formatSmsInbound(rate: number | null, isLongcode = false): string {
+            if (rate == null || isNaN(rate)) {
+              if (isLongcode && now >= jan2026) {
+                return "Contact support";
+              }
+              return "Not Supported";
+            }
+            if (rate === 0) return "Not Supported";
+            return `$${rate.toFixed(4)}/sms`;
+          }
+
+          // Helper: get outbound rate — use single rate field first (matching live plivo.com)
+          // Falls back to min of rates object when single rate is null (e.g. shortcode, tollfree)
+          function getOutboundRate(route: any): string {
+            if (!route?.outbound) return "Not Supported";
+            const singleRate = route.outbound.rate;
+            const ratesObj = route.outbound.rates;
+
+            // Try single rate first (longcode has this)
+            if (singleRate != null) {
+              const num = typeof singleRate === "string" ? parseFloat(singleRate) : singleRate;
+              if (!isNaN(num) && num !== 0) {
+                let prefix = "";
+                if (ratesObj && typeof ratesObj === "object" && !Array.isArray(ratesObj)) {
+                  const vals = Object.values(ratesObj).map(Number).filter(v => !isNaN(v));
+                  if (vals.length > 1 && vals.some(v => v !== vals[0])) {
+                    prefix = "Starts at ";
+                  }
+                }
+                return `${prefix}$${num.toFixed(4)}/sms`;
+              }
+            }
+
+            // Fallback: min of network rates object (shortcode/tollfree have no single rate)
+            if (ratesObj && typeof ratesObj === "object" && !Array.isArray(ratesObj)) {
+              const vals = Object.values(ratesObj).map(Number).filter(v => !isNaN(v));
+              if (vals.length > 0) {
+                const minVal = Math.min(...vals);
+                const hasVariation = vals.some(v => v !== vals[0]);
+                const prefix = hasVariation ? "Starts at " : "";
+                return `${prefix}$${minVal.toFixed(4)}/sms`;
+              }
+            }
+
+            return "Not Supported";
+          }
+
+          // Longcode row
+          const lcOutbound = getOutboundRate(smsObj.longcode);
+          const lcInbound = formatSmsInbound(longcodeInboundMin, true);
+          if (lcOutbound !== "Not Supported" || lcInbound !== "Not Supported") {
+            smsRates.push({ type: "Longcode", outbound: lcOutbound, inbound: lcInbound });
+          }
+
+          // Shortcode row
+          const scOutbound = getOutboundRate(smsObj.shortcode);
+          const scInbound = formatSmsInbound(shortcodeInboundMin);
+          if (scOutbound !== "Not Supported" || scInbound !== "Not Supported") {
+            smsRates.push({ type: "Shortcode", outbound: scOutbound, inbound: scInbound });
+          }
+
+          // Toll-Free row
+          const tfOutbound = getOutboundRate(smsObj.tollfree);
+          const tfInbound = formatSmsInbound(tollfreeInboundMin);
+          if (tfOutbound !== "Not Supported" || tfInbound !== "Not Supported") {
+            smsRates.push({ type: "Toll-Free", outbound: tfOutbound, inbound: tfInbound });
+          }
+
+          // Mobile row — show when mobile numbers with SMS exist
+          if (mobileInboundRate !== null) {
+            const mobileOutbound = getOutboundRate(smsObj.longcode); // mobile outbound uses longcode rate
+            smsRates.push({ type: "Mobile", outbound: mobileOutbound, inbound: formatSmsInbound(mobileInboundRate) });
+          }
+
+          // India: Rename "Longcode" → "International" (ILDO route) and inject "Domestic" (DLT route)
+          // The Domestic DLT rate ($0.00187) is not in the API — hardcoded to match live plivo.com
+          if (code === "IN") {
+            for (const row of smsRates) {
+              if (row.type === "Longcode") row.type = "International";
+            }
+            smsRates.unshift({ type: "Domestic", outbound: "$0.00187/sms", inbound: "Not Supported" });
+          }
+
+          // India: API returns no phone numbers — inject local to match live site
+          if (code === "IN") {
+            const hasLocal = phoneNumbers.some(
+              (pn) => ["local", "national", "mobile"].includes(pn.type.toLowerCase()) && pn.rentalRate != null && pn.rentalRate > 0
             );
-            for (const entry of sorted) {
-              const r = parseFloat(entry.rate);
-              if (isNaN(r)) continue;
-              voiceDestinationRates.push({
-                networkGroup: entry.voice_network_group || "Default",
-                rate: `$${r.toFixed(4)}/min`,
-                destinationPrefixes: Array.isArray(entry.destination_prefix)
-                  ? entry.destination_prefix
-                  : [],
-                originationPrefixes: Array.isArray(entry.origination_prefix)
-                  ? entry.origination_prefix.filter((p: string) => p)
-                  : [],
+            if (!hasLocal) {
+              phoneNumbers.push({
+                type: "Local",
+                rentalRate: 2.94,
+                inboundVoiceRate: null,
+                inboundSmsRate: null,
+                capabilities: ["voice", "sip_trunking"],
+                status: "GA",
               });
             }
           }
 
-          // Extract SMS rates (detailed per route type)
-          const smsObj = apiData?.sms || {};
-          const smsRates: SMSRateRow[] = [];
-          const smsTypes: [string, string][] = [
-            ["longcode", "Longcode"],
-            ["shortcode", "Shortcode"],
-            ["tollfree", "Toll-Free"],
-          ];
-          for (const [key, label] of smsTypes) {
-            const route = smsObj[key];
-            if (!route) continue;
-            const out = route?.outbound?.rate;
-            const inp = route?.inbound?.rate;
-            if (out != null || inp != null) {
-              smsRates.push({
-                type: label,
-                outbound: formatRate(out, "sms"),
-                inbound: formatRate(inp, "sms"),
-              });
-            }
-          }
-          const smsOutbound = formatRate(smsObj?.longcode?.outbound?.rate, "sms");
-          const smsInbound = formatRate(smsObj?.longcode?.inbound?.rate, "sms");
+          const smsOutbound = lcOutbound;
+          const smsInbound = lcInbound;
 
           // Extract SMS per-operator network rates
           const smsNetworkRates: SMSNetworkRate[] = [];
@@ -255,18 +393,29 @@ export function useCountryPricing(countryCode: string): {
         .catch(() => {
           if (latestCountry.current !== code) return;
           // Fall back to hardcoded data
-          const fallback = VOICE_RATES[code];
+          const fallback = code === "IN" ? INDIA_VOICE_USD : VOICE_RATES[code];
           const smsFallback = SMS_RATES[code];
           if (fallback || smsFallback) {
             const result: CountryPricingData = {
               voiceRates: fallback || { localInbound: "Not Supported", localOutbound: "Not Supported", tollfreeInbound: "Not Supported", tollfreeOutbound: "Not Supported", ipInbound: "$0.0055/min", ipOutbound: "$0.0055/min" },
-              voiceDestinationRates: [],
+              voiceDestinationRates: VOICE_DESTINATION_RATES[code]
+                ? VOICE_DESTINATION_RATES[code].map(d => ({
+                    networkGroup: d.group,
+                    rate: `$${parseFloat(d.rate).toFixed(4)}/min`,
+                    destinationPrefixes: d.prefixes,
+                    originationPrefixes: [],
+                  }))
+                : [],
               addOnPricing: { audioStreamingRate: null },
               smsOutbound: smsFallback?.sms?.[0]?.outbound || "Contact sales",
               smsInbound: smsFallback?.sms?.[0]?.inbound || "Contact sales",
               smsRates: (smsFallback?.sms || []) as SMSRateRow[],
               smsNetworkRates: [],
-              phoneNumbers: [],
+              phoneNumbers: code === "IN"
+                ? [
+                    { type: "Local", rentalRate: 2.94, inboundVoiceRate: null, inboundSmsRate: null, capabilities: ["voice", "sip_trunking"], status: "GA" },
+                  ]
+                : [],
               raw: null,
             };
             setData(result);

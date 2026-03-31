@@ -1,4 +1,7 @@
+"use client";
+
 import { FlickeringGrid } from "@/components/magicui/flickering-grid";
+import { useGeoCountry } from "@/hooks/useGeoCountry";
 
 interface PreFooterCTAProps {
   title?: string;
@@ -7,8 +10,11 @@ interface PreFooterCTAProps {
 
 export default function PreFooterCTA({
   title = "Ready to make every call count?",
-  subtitle = "Get $10 in free credits. No credit card required. Deploy your first agent in under 10 minutes."
+  subtitle,
 }: PreFooterCTAProps) {
+  const { country } = useGeoCountry();
+  const isIndia = country === "IN";
+  const resolvedSubtitle = subtitle ?? `Get ${isIndia ? "₹800" : "$10"} in free credits. No credit card required. Deploy your first agent in under 10 minutes.`;
   return (
     <section className="relative overflow-hidden bg-white py-12 sm:py-16 md:py-20">
       {/* Flickering Grid Background */}
@@ -29,11 +35,11 @@ export default function PreFooterCTA({
           {title}
         </h2>
         <p className="animate-appear mx-auto max-w-2xl text-base sm:text-lg text-gray-600 delay-100 mt-3">
-          {subtitle}
+          {resolvedSubtitle}
         </p>
         <a
           href="https://cx.plivo.com/pungis2"
-          className="animate-appear inline-flex items-center justify-center rounded-md bg-black px-8 py-3 text-base font-medium text-white transition-colors delay-100 hover:bg-gray-800 mt-6"
+          className="animate-appear inline-flex items-center justify-center rounded-md bg-black px-8 py-3 text-base font-medium text-white transition-colors delay-100 cta-hover-gradient mt-6"
         >
           Sign up now
         </a>

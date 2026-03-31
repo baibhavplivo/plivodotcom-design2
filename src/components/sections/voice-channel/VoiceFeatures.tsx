@@ -109,7 +109,7 @@ function AudioPlayer({
           onClick={togglePlay}
           className={`flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full transition-colors ${
             isGray
-              ? "bg-black text-white hover:bg-gray-800"
+              ? "bg-black text-white cta-hover-gradient"
               : "bg-[#8b7cf6] text-white hover:bg-[#7c6ce6]"
           }`}
         >

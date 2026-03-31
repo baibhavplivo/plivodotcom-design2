@@ -85,20 +85,8 @@ export default function VerifyHeroIllustration() {
         <div className="w-[288px] sm:w-[320px]">
           {/* Phone outer frame */}
           <div
-            className="relative rounded-[32px] p-1.5 shadow-2xl"
-            style={{
-              background:
-                "linear-gradient(135deg, rgba(205, 62, 249, 0.5) 0%, rgba(50, 61, 254, 0.5) 100%)",
-            }}
+            className="relative rounded-[32px] p-1.5 shadow-2xl border border-gray-300 bg-gray-100"
           >
-            {/* Inner highlight for 3D effect */}
-            <div
-              className="absolute inset-0 rounded-[32px] opacity-15"
-              style={{
-                background:
-                  "linear-gradient(135deg, rgba(255,255,255,0.4) 0%, transparent 50%, rgba(0,0,0,0.2) 100%)",
-              }}
-            />
 
             {/* Screen */}
             <div className="relative rounded-[30px] overflow-hidden bg-white shadow-inner">
@@ -238,7 +226,7 @@ export default function VerifyHeroIllustration() {
                   )}
                 >
                   <div className="flex items-center justify-center gap-1.5 mb-4">
-                    <div className="w-4 h-4 rounded-full bg-gradient-to-br from-[#cd3ef9] to-[#323dfe] flex items-center justify-center">
+                    <div className="w-4 h-4 rounded-full bg-gradient-to-br from-[#cd3ef9] via-[#323dfe] to-black flex items-center justify-center">
                       <svg
                         className="w-2.5 h-2.5 text-white"
                         fill="none"

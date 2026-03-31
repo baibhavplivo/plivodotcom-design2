@@ -9,10 +9,7 @@ function AndroidAutofillIllustration() {
         <div className="relative w-48 sm:w-56">
           {/* Phone outer frame with gradient */}
           <div
-            className="relative rounded-t-[24px] sm:rounded-t-[28px] p-1 shadow-xl"
-            style={{
-              background: "linear-gradient(135deg, rgba(205, 62, 249, 0.5) 0%, rgba(50, 61, 254, 0.5) 100%)",
-            }}
+            className="relative rounded-t-[24px] sm:rounded-t-[28px] p-1 shadow-xl border border-gray-300 bg-gray-100"
           >
             {/* Screen */}
             <div className="relative rounded-t-[22px] sm:rounded-t-[26px] overflow-hidden bg-white">

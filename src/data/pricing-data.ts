@@ -62,11 +62,18 @@ export const TOP_COUNTRY_CODES = new Set(TOP_COUNTRIES.map(c => c.code));
 
 export const VOICE_PRIORITY_COUNTRIES = TOP_COUNTRIES;
 export const WA_CHAT_PRIORITY_COUNTRIES = TOP_COUNTRIES;
-export const WA_CALL_PRIORITY_COUNTRIES = TOP_COUNTRIES;
+export const WA_CALL_PRIORITY_COUNTRIES: CountryOption[] = [
+  { code: "IN", name: "India", flag: "🇮🇳" },
+  { code: "US", name: "United States", flag: "🇺🇸" },
+  { code: "CA", name: "Canada", flag: "🇨🇦" },
+  { code: "GB", name: "United Kingdom", flag: "🇬🇧" },
+  { code: "AU", name: "Australia", flag: "🇦🇺" },
+  { code: "FR", name: "France", flag: "🇫🇷" },
+];
 
 // Phone number rental rates - shared between Voice and WhatsApp Call pages
 export const PHONE_RENTAL_RATES: Record<string, PhoneRentalRates> = {
-  IN: { local: { rate: 250, currency: "₹" }, tollfree: { rate: 1200, currency: "₹" } },
+  IN: { local: { rate: 2.94, currency: "$" } },
   US: { local: { rate: 0.50, currency: "$" }, tollfree: { rate: 1.00, currency: "$" } },
   CA: { local: { rate: 0.75, currency: "$" }, tollfree: { rate: 1.00, currency: "$" } },
   AE: { tollfree: { rate: 50.00, currency: "$" } },
@@ -112,12 +119,12 @@ export const VOICE_RATES: Record<string, VoiceRates> = {
     ipOutbound: "$0.0030/min",
   },
   IN: {
-    localInbound: "₹0.74/min",
-    localOutbound: "₹0.74/min",
+    localInbound: "$0.0087/min",
+    localOutbound: "$0.0087/min",
     tollfreeInbound: "Not Supported",
     tollfreeOutbound: "Not Supported",
-    ipInbound: "₹0.50/min",
-    ipOutbound: "₹0.50/min",
+    ipInbound: "$0.0055/min",
+    ipOutbound: "$0.0055/min",
   },
   FR: {
     localInbound: "$0.0050/min",
@@ -137,23 +144,14 @@ export const VOICE_RATES: Record<string, VoiceRates> = {
   },
 };
 
-// India WhatsApp Chat overrides (INR)
-export const INDIA_WA_CHAT_OVERRIDES: WhatsAppChatRates = {
-  marketing: 0.8536,
-  utility: 0.1232,
-  authentication: 0.1232,
-  authenticationIntl: 2.508,
-  service: 0,
-  currency: "₹",
-};
-
 // WhatsApp Chat pricing by country (from Google Sheets - live data as of Feb 2026)
+// All rates in USD. Components handle INR conversion via useExchangeRate.
 export const WA_CHAT_RATES: Record<string, WhatsAppChatRates> = {
   US: { marketing: 0.0275, utility: 0.0044, authentication: 0.0044, authenticationIntl: 0, service: 0, currency: "$" },
   CA: { marketing: 0.0275, utility: 0.0044, authentication: 0.0044, authenticationIntl: 0, service: 0, currency: "$" },
   GB: { marketing: 0.05819, utility: 0.0242, authentication: 0.0242, authenticationIntl: 0, service: 0, currency: "$" },
   AU: { marketing: 0.08052, utility: 0.01243, authentication: 0.01243, authenticationIntl: 0, service: 0, currency: "$" },
-  IN: { marketing: 0.8536, utility: 0.1232, authentication: 0.1232, authenticationIntl: 2.508, service: 0, currency: "₹" },
+  IN: { marketing: 0.01177, utility: 0.00154, authentication: 0.00154, authenticationIntl: 0.0308, service: 0, currency: "$" },
   FR: { marketing: 0.15752, utility: 0.033, authentication: 0.033, authenticationIntl: 0, service: 0, currency: "$" },
   DE: { marketing: 0.15015, utility: 0.0605, authentication: 0.0605, authenticationIntl: 0, service: 0, currency: "$" },
   BR: { marketing: 0.06875, utility: 0.00748, authentication: 0.00748, authenticationIntl: 0, service: 0, currency: "$" },
@@ -292,7 +290,7 @@ export const WA_CALL_RATES: Record<string, WhatsAppCallRates> = {
   CA: { inbound: "$0.0040/min", outbound: "$0.0160/min", currency: "$" },
   GB: { inbound: "$0.0040/min", outbound: "$0.0134/min", currency: "$" },
   AU: { inbound: "$0.0040/min", outbound: "$0.0148/min", currency: "$" },
-  IN: { inbound: "₹0.45/min", outbound: "₹0.75/min", currency: "₹" },
+  IN: { inbound: "$0.0053/min", outbound: "$0.0088/min", currency: "$" },
   FR: { inbound: "$0.0040/min", outbound: "$0.0134/min", currency: "$" },
   DE: { inbound: "$0.0040/min", outbound: "$0.0138/min", currency: "$" },
   BR: { inbound: "$0.0040/min", outbound: "$0.0142/min", currency: "$" },
@@ -616,14 +614,14 @@ export const SMS_PRIORITY_COUNTRIES = TOP_COUNTRIES;
 export const SMS_RATES: Record<string, SMSCountryRates> = {
   US: {
     sms: [
-      { type: "Long Codes*", outbound: "$0.0070/sms", inbound: "$0.0070/sms" },
-      { type: "Toll-Free", outbound: "$0.0072/sms", inbound: "$0.0072/sms" },
-      { type: "Short Code*", outbound: "$0.0070/sms", inbound: "$0.0070/sms" },
+      { type: "Long Codes*", outbound: "$0.0077/sms", inbound: "$0.0077/sms" },
+      { type: "Toll-Free", outbound: "$0.0079/sms", inbound: "$0.0079/sms" },
+      { type: "Short Code*", outbound: "$0.0077/sms", inbound: "$0.0077/sms" },
     ],
     mms: [
       { type: "Long Codes*", outbound: "$0.0180/mms", inbound: "$0.0180/mms" },
-      { type: "Toll-Free Numbers", outbound: "$0.0180/mms", inbound: "$0.0180/mms" },
-      { type: "Short Code*", outbound: "$0.0180/mms", inbound: "$0.0180/mms" },
+      { type: "Toll-Free Numbers", outbound: "$0.0200/mms", inbound: "$0.0200/mms" },
+      { type: "Short Code*", outbound: "$0.0200/mms", inbound: "$0.0200/mms" },
     ],
     phoneNumbers: {
       types: [
@@ -641,9 +639,9 @@ export const SMS_RATES: Record<string, SMSCountryRates> = {
   },
   CA: {
     sms: [
-      { type: "Long Codes", outbound: "$0.0055/sms", inbound: "$0.0055/sms" },
-      { type: "Toll-Free", outbound: "$0.0055/sms", inbound: "$0.0055/sms" },
-      { type: "Short Code", outbound: "$0.0055/sms", inbound: "$0.0055/sms" },
+      { type: "Long Codes", outbound: "$0.0077/sms", inbound: "$0.0077/sms" },
+      { type: "Toll-Free", outbound: "$0.0079/sms", inbound: "$0.0077/sms" },
+      { type: "Short Code", outbound: "$0.0250/sms", inbound: "$0.0077/sms" },
     ],
     mms: [
       { type: "Long Codes", outbound: "$0.0180/mms", inbound: "$0.0180/mms" },
@@ -666,8 +664,8 @@ export const SMS_RATES: Record<string, SMSCountryRates> = {
   },
   GB: {
     sms: [
-      { type: "Long Codes", outbound: "$0.0400/sms", inbound: "$0.0075/sms" },
-      { type: "Mobile", outbound: "$0.0400/sms", inbound: "$0.0075/sms" },
+      { type: "Long Codes", outbound: "$0.0372/sms", inbound: "$0.0030/sms" },
+      { type: "Mobile", outbound: "$0.0372/sms", inbound: "$0.0030/sms" },
     ],
     phoneNumbers: {
       types: [
@@ -679,9 +677,8 @@ export const SMS_RATES: Record<string, SMSCountryRates> = {
   },
   AU: {
     sms: [
-      { type: "Local", outbound: "$0.0450/sms", inbound: "$0.0075/sms" },
-      { type: "Mobile", outbound: "$0.0450/sms", inbound: "$0.0075/sms" },
-      { type: "Toll-Free", outbound: "$0.0500/sms", inbound: "$0.0100/sms" },
+      { type: "Local", outbound: "$0.0451/sms", inbound: "$0.0030/sms" },
+      { type: "Mobile", outbound: "$0.0451/sms", inbound: "$0.0030/sms" },
     ],
     phoneNumbers: {
       types: [
@@ -694,27 +691,25 @@ export const SMS_RATES: Record<string, SMSCountryRates> = {
   },
   IN: {
     sms: [
-      { type: "Transactional", outbound: "₹0.155/sms", inbound: "Not Supported" },
-      { type: "Promotional", outbound: "₹0.155/sms", inbound: "Not Supported" },
+      { type: "Domestic", outbound: "$0.00187/sms", inbound: "Not Supported" },
+      { type: "International", outbound: "$0.0800/sms", inbound: "Not Supported" },
     ],
     phoneNumbers: {
       types: [
-        { type: "Local Numbers", price: "₹250/month" },
+        { type: "Local Numbers", price: "$2.94/month" },
       ],
     },
-    currency: "₹",
+    currency: "$",
   },
   DE: {
     sms: [
-      { type: "Long Codes", outbound: "$0.0750/sms", inbound: "$0.0075/sms" },
-      { type: "Mobile", outbound: "$0.0750/sms", inbound: "$0.0075/sms" },
+      { type: "Long Codes", outbound: "$0.0950/sms", inbound: "Not Supported" },
     ],
     currency: "$",
   },
   FR: {
     sms: [
-      { type: "Long Codes", outbound: "$0.0650/sms", inbound: "$0.0075/sms" },
-      { type: "Mobile", outbound: "$0.0650/sms", inbound: "$0.0075/sms" },
+      { type: "Long Codes", outbound: "$0.0664/sms", inbound: "Not Supported" },
     ],
     currency: "$",
   },
@@ -729,10 +724,16 @@ export interface PhoneNumberRentalEntry {
   children?: { type: string; price: string }[];
 }
 
+export interface PhoneNumberCompliance {
+  label: string;
+  detail: string;
+}
+
 export interface PhoneNumberCountryPricing {
   numbers: PhoneNumberRentalEntry[];
   currency: string;
   note?: string;
+  compliance?: PhoneNumberCompliance[];
 }
 
 export const PHONE_NUMBER_PRIORITY_COUNTRIES = TOP_COUNTRIES;
@@ -740,8 +741,8 @@ export const PHONE_NUMBER_PRIORITY_COUNTRIES = TOP_COUNTRIES;
 export const PHONE_NUMBER_PRICING: Record<string, PhoneNumberCountryPricing> = {
   US: {
     numbers: [
-      { type: "Local numbers", price: "$1.80/month", capabilities: ["Voice", "SMS", "MMS", "SIP trunking"] },
-      { type: "Toll-free numbers", price: "$2.00/month", capabilities: ["Voice", "SMS", "MMS", "SIP trunking"] },
+      { type: "Local numbers", price: "$0.50/month", capabilities: ["Voice", "SMS", "MMS", "SIP trunking"] },
+      { type: "Toll-free numbers", price: "$1.00/month", capabilities: ["Voice", "SMS", "SIP trunking"] },
       { type: "Short code", price: "", capabilities: ["SMS", "MMS"], children: [
         { type: "Standard", price: "$500/month (billed quarterly)" },
         { type: "Vanity", price: "$1,000/month (billed quarterly)" },
@@ -749,39 +750,63 @@ export const PHONE_NUMBER_PRICING: Record<string, PhoneNumberCountryPricing> = {
     ],
     note: "All short codes have a $1,500 one-time fee charged at the time of purchase.",
     currency: "$",
+    compliance: [
+      { label: "Local numbers", detail: "Not Needed" },
+      { label: "Toll-free numbers", detail: "Not Needed" },
+    ],
   },
   CA: {
     numbers: [
       { type: "Local numbers", price: "$0.75/month", capabilities: ["Voice", "SMS", "MMS", "SIP trunking"] },
-      { type: "Toll-free numbers", price: "$2.00/month", capabilities: ["Voice", "SMS", "MMS", "SIP trunking"] },
+      { type: "Toll-free numbers", price: "$1.00/month", capabilities: ["Voice", "SMS", "SIP trunking"] },
+      { type: "Short code", price: "", capabilities: ["SMS", "MMS"], children: [
+        { type: "Standard", price: "$700/month (billed every 4 months)" },
+      ]},
     ],
+    note: "Short codes have a $4,000 one-time setup fee.",
     currency: "$",
+    compliance: [
+      { label: "Local numbers", detail: "Not Needed" },
+      { label: "Toll-free numbers", detail: "Not Needed" },
+    ],
   },
   GB: {
     numbers: [
-      { type: "Local numbers", price: "$1.40/month", capabilities: ["Voice", "SMS", "SIP trunking"] },
-      { type: "Mobile numbers", price: "$0.85/month", capabilities: ["Voice", "SMS"] },
+      { type: "Local numbers", price: "$0.55/month", capabilities: ["Voice", "SIP trunking"] },
+      { type: "Mobile numbers", price: "$0.85/month", capabilities: ["Voice", "SMS", "SIP trunking"] },
     ],
     currency: "$",
+    compliance: [
+      { label: "Local numbers", detail: "Not Needed" },
+      { label: "Mobile numbers", detail: "Not Needed" },
+    ],
   },
   AU: {
     numbers: [
-      { type: "Local numbers", price: "$1.50/month", capabilities: ["Voice", "SMS", "SIP trunking"] },
-      { type: "Mobile numbers", price: "$3.00/month", capabilities: ["Voice", "SMS"] },
-      { type: "Toll-free numbers", price: "$12.00/month", capabilities: ["Voice", "SMS", "SIP trunking"] },
+      { type: "Local numbers", price: "$1.50/month", capabilities: ["Voice", "SIP trunking"] },
+      { type: "Mobile numbers", price: "$3.00/month", capabilities: ["Voice", "SMS", "SIP trunking"] },
+      { type: "Toll-free numbers", price: "$12.00/month", capabilities: ["Voice", "SIP trunking"] },
     ],
     currency: "$",
+    compliance: [
+      { label: "Local numbers", detail: "Not Needed" },
+      { label: "Toll-free numbers", detail: "Not Needed" },
+      { label: "Mobile numbers", detail: "Not Needed" },
+    ],
   },
   IN: {
     numbers: [
-      { type: "Local numbers", price: "₹250/month", capabilities: ["Voice", "SMS"] },
+      { type: "Local numbers", price: "$2.94/month", capabilities: ["Voice", "SIP trunking"] },
     ],
-    currency: "₹",
+    currency: "$",
+    compliance: [
+      { label: "Local numbers", detail: "Certificate of Incorporation, GST" },
+    ],
   },
   DE: {
     numbers: [
       { type: "Local numbers", price: "$1.00/month", capabilities: ["Voice", "SMS", "SIP trunking"] },
-      { type: "Mobile numbers", price: "$1.50/month", capabilities: ["Voice", "SMS"] },
+      { type: "Mobile numbers", price: "$1.50/month", capabilities: ["Voice", "SMS", "SIP trunking"] },
       { type: "Toll-free numbers", price: "$5.00/month", capabilities: ["Voice", "SIP trunking"] },
     ],
     currency: "$",
@@ -789,30 +814,40 @@ export const PHONE_NUMBER_PRICING: Record<string, PhoneNumberCountryPricing> = {
   FR: {
     numbers: [
       { type: "Local numbers", price: "$2.00/month", capabilities: ["Voice", "SMS", "SIP trunking"] },
-      { type: "Mobile numbers", price: "$2.00/month", capabilities: ["Voice", "SMS"] },
+      { type: "Mobile numbers", price: "$2.00/month", capabilities: ["Voice", "SMS", "SIP trunking"] },
       { type: "Toll-free numbers", price: "$1.35/month", capabilities: ["Voice", "SIP trunking"] },
     ],
     currency: "$",
   },
   BR: {
     numbers: [
-      { type: "Local numbers", price: "$6.17/month", capabilities: ["Voice", "SMS", "SIP trunking"] },
-      { type: "Mobile numbers", price: "$20.00/month", capabilities: ["Voice", "SMS"] },
+      { type: "Local numbers", price: "$6.17/month", capabilities: ["Voice", "SIP trunking"] },
+      { type: "Mobile numbers", price: "$20.00/month", capabilities: ["Voice", "SMS", "SIP trunking"] },
       { type: "Toll-free numbers", price: "$30.00/month", capabilities: ["Voice", "SIP trunking"] },
     ],
     currency: "$",
+    compliance: [
+      { label: "Local numbers", detail: "Local address, Tax ID (CNPJ)" },
+      { label: "Toll-free numbers", detail: "National address, Tax ID (CNPJ)" },
+    ],
   },
   SG: {
     numbers: [
       { type: "National numbers", price: "$16.00/month", capabilities: ["Voice", "SIP trunking"] },
     ],
     currency: "$",
+    compliance: [
+      { label: "National numbers", detail: "National address, Tax ID (NRIC)" },
+    ],
   },
   AE: {
     numbers: [
-      { type: "Toll-free numbers", price: "$20.00/month", capabilities: ["Voice", "SIP trunking"] },
+      { type: "Toll-free numbers", price: "$50.00/month", capabilities: ["Voice", "SIP trunking"] },
     ],
     currency: "$",
+    compliance: [
+      { label: "Toll-free numbers", detail: "Copy of Business Registration, Foreign Address, LOI" },
+    ],
   },
   NZ: {
     numbers: [
@@ -820,11 +855,15 @@ export const PHONE_NUMBER_PRICING: Record<string, PhoneNumberCountryPricing> = {
       { type: "Toll-free numbers", price: "$34.00/month", capabilities: ["Voice", "SIP trunking"] },
     ],
     currency: "$",
+    compliance: [
+      { label: "Local numbers", detail: "National address, NZBN" },
+      { label: "Toll-free numbers", detail: "National address, NZBN" },
+    ],
   },
   IE: {
     numbers: [
       { type: "Local numbers", price: "$0.85/month", capabilities: ["Voice", "SMS", "SIP trunking"] },
-      { type: "National numbers", price: "$0.85/month", capabilities: ["Voice"] },
+      { type: "National numbers", price: "$0.85/month", capabilities: ["Voice", "SIP trunking"] },
       { type: "Toll-free numbers", price: "$21.25/month", capabilities: ["Voice", "SIP trunking"] },
     ],
     currency: "$",
@@ -832,7 +871,7 @@ export const PHONE_NUMBER_PRICING: Record<string, PhoneNumberCountryPricing> = {
   NL: {
     numbers: [
       { type: "Local numbers", price: "$2.55/month", capabilities: ["Voice", "SMS", "SIP trunking"] },
-      { type: "Mobile numbers", price: "$10.00/month", capabilities: ["Voice", "SMS"] },
+      { type: "Mobile numbers", price: "$10.00/month", capabilities: ["Voice", "SMS", "SIP trunking"] },
       { type: "National numbers", price: "$2.55/month", capabilities: ["Voice", "SIP trunking"] },
       { type: "Toll-free numbers", price: "$21.25/month", capabilities: ["Voice", "SIP trunking"] },
     ],
@@ -841,7 +880,7 @@ export const PHONE_NUMBER_PRICING: Record<string, PhoneNumberCountryPricing> = {
   SE: {
     numbers: [
       { type: "Local numbers", price: "$1.00/month", capabilities: ["Voice", "SMS", "SIP trunking"] },
-      { type: "Mobile numbers", price: "$2.50/month", capabilities: ["Voice", "SMS"] },
+      { type: "Mobile numbers", price: "$2.50/month", capabilities: ["Voice", "SMS", "SIP trunking"] },
       { type: "Toll-free numbers", price: "$10.00/month", capabilities: ["Voice", "SIP trunking"] },
     ],
     currency: "$",
@@ -870,14 +909,14 @@ export const PHONE_NUMBER_PRICING: Record<string, PhoneNumberCountryPricing> = {
   PL: {
     numbers: [
       { type: "Local numbers", price: "$0.85/month", capabilities: ["Voice", "SMS", "SIP trunking"] },
-      { type: "Mobile numbers", price: "$11.50/month", capabilities: ["Voice", "SMS"] },
+      { type: "Mobile numbers", price: "$11.50/month", capabilities: ["Voice", "SMS", "SIP trunking"] },
     ],
     currency: "$",
   },
   MX: {
     numbers: [
-      { type: "Local numbers", price: "$5.83/month", capabilities: ["Voice", "SMS"] },
-      { type: "Toll-free numbers", price: "$25.50/month", capabilities: ["Voice"] },
+      { type: "Local numbers", price: "$5.83/month", capabilities: ["Voice", "SMS", "SIP trunking"] },
+      { type: "Toll-free numbers", price: "$25.50/month", capabilities: ["Voice", "SIP trunking"] },
     ],
     currency: "$",
   },
@@ -903,7 +942,7 @@ export const PHONE_NUMBER_PRICING: Record<string, PhoneNumberCountryPricing> = {
   },
   HK: {
     numbers: [
-      { type: "Mobile numbers", price: "$25.00/month", capabilities: ["Voice"] },
+      { type: "Mobile numbers", price: "$25.00/month", capabilities: ["Voice", "SIP trunking"] },
       { type: "National numbers", price: "$5.10/month", capabilities: ["Voice", "SIP trunking"] },
     ],
     currency: "$",
@@ -917,7 +956,7 @@ export const PHONE_NUMBER_PRICING: Record<string, PhoneNumberCountryPricing> = {
   },
   AT: {
     numbers: [
-      { type: "Mobile numbers", price: "$7.00/month", capabilities: ["Voice", "SMS"] },
+      { type: "Mobile numbers", price: "$7.00/month", capabilities: ["Voice", "SMS", "SIP trunking"] },
       { type: "Toll-free numbers", price: "$21.25/month", capabilities: ["Voice", "SIP trunking"] },
     ],
     currency: "$",
@@ -925,7 +964,7 @@ export const PHONE_NUMBER_PRICING: Record<string, PhoneNumberCountryPricing> = {
   BE: {
     numbers: [
       { type: "Local numbers", price: "$2.50/month", capabilities: ["Voice", "SIP trunking"] },
-      { type: "Mobile numbers", price: "$1.00/month", capabilities: ["Voice", "SMS"] },
+      { type: "Mobile numbers", price: "$1.00/month", capabilities: ["Voice", "SMS", "SIP trunking"] },
       { type: "Toll-free numbers", price: "$21.25/month", capabilities: ["Voice", "SIP trunking"] },
     ],
     currency: "$",
@@ -1115,6 +1154,77 @@ export const PHONE_NUMBER_PRICING: Record<string, PhoneNumberCountryPricing> = {
   },
 };
 
+// Phone number rental calculator data — per-type monthly rates
+// For 9 priority countries: uses HARDCODED_PHONE_RATES (correct/current prices)
+// For remaining countries: from PHONE_PRICING reference (phone-number-pricing.html)
+// India uses INR values directly; all others USD
+export interface PhoneCalculatorEntry {
+  local: number;
+  mobile: number;
+  national: number;
+  shortcode: number;
+  tollfree: number;
+}
+
+export const PHONE_CALCULATOR_DATA: Record<string, PhoneCalculatorEntry> = {
+  // 9 priority countries (from HARDCODED_PHONE_RATES)
+  US: { local: 0.50, mobile: 0, national: 0, shortcode: 1000, tollfree: 1.00 },
+  CA: { local: 0.75, mobile: 0, national: 0, shortcode: 0, tollfree: 1.00 },
+  GB: { local: 0.55, mobile: 0.85, national: 0, shortcode: 0, tollfree: 0 },
+  AU: { local: 1.50, mobile: 3, national: 0, shortcode: 0, tollfree: 12 },
+  IN: { local: 250, mobile: 0, national: 0, shortcode: 0, tollfree: 0 },
+  BR: { local: 6.17, mobile: 20, national: 0, shortcode: 0, tollfree: 30 },
+  AE: { local: 0, mobile: 0, national: 0, shortcode: 0, tollfree: 50 },
+  NZ: { local: 2.55, mobile: 0, national: 0, shortcode: 0, tollfree: 34 },
+  SG: { local: 0, mobile: 0, national: 16, shortcode: 0, tollfree: 0 },
+  // Remaining countries (from reference PHONE_PRICING)
+  FR: { local: 2, mobile: 2, national: 0, shortcode: 0, tollfree: 1.35 },
+  ES: { local: 3, mobile: 0, national: 0, shortcode: 0, tollfree: 21.25 },
+  AR: { local: 7.5, mobile: 0, national: 0, shortcode: 0, tollfree: 0 },
+  AT: { local: 0, mobile: 7, national: 0, shortcode: 0, tollfree: 21.25 },
+  BH: { local: 0, mobile: 0, national: 0, shortcode: 0, tollfree: 10 },
+  BE: { local: 2.5, mobile: 1, national: 0, shortcode: 0, tollfree: 21.25 },
+  BG: { local: 2.55, mobile: 0, national: 0, shortcode: 0, tollfree: 0 },
+  CL: { local: 5.95, mobile: 0, national: 0, shortcode: 0, tollfree: 43.22 },
+  CN: { local: 75, mobile: 0, national: 0, shortcode: 0, tollfree: 150 },
+  CO: { local: 17, mobile: 0, national: 0, shortcode: 0, tollfree: 21.25 },
+  HR: { local: 4.25, mobile: 0, national: 0, shortcode: 0, tollfree: 6.5 },
+  CY: { local: 30, mobile: 0, national: 0, shortcode: 0, tollfree: 11.67 },
+  CZ: { local: 1.25, mobile: 0, national: 0, shortcode: 0, tollfree: 29.75 },
+  DK: { local: 0, mobile: 0, national: 2.1, shortcode: 0, tollfree: 21.25 },
+  DO: { local: 0, mobile: 0, national: 0, shortcode: 0, tollfree: 46 },
+  EG: { local: 0, mobile: 0, national: 0, shortcode: 0, tollfree: 50 },
+  FI: { local: 1.25, mobile: 0, national: 0, shortcode: 0, tollfree: 34 },
+  GR: { local: 1.25, mobile: 0, national: 0, shortcode: 0, tollfree: 21.25 },
+  HK: { local: 0, mobile: 25, national: 5.1, shortcode: 0, tollfree: 0 },
+  HU: { local: 3.4, mobile: 0, national: 0, shortcode: 0, tollfree: 11.5 },
+  ID: { local: 25, mobile: 0, national: 0, shortcode: 0, tollfree: 0 },
+  IE: { local: 0.85, mobile: 0, national: 0.85, shortcode: 0, tollfree: 21.25 },
+  IL: { local: 3.4, mobile: 0, national: 0, shortcode: 0, tollfree: 21.25 },
+  IT: { local: 1.5, mobile: 0, national: 0, shortcode: 0, tollfree: 8 },
+  JP: { local: 5, mobile: 0, national: 0, shortcode: 0, tollfree: 0 },
+  LV: { local: 1.5, mobile: 0, national: 0, shortcode: 0, tollfree: 0 },
+  LT: { local: 1.5, mobile: 0, national: 0, shortcode: 0, tollfree: 22 },
+  MY: { local: 18, mobile: 0, national: 0, shortcode: 0, tollfree: 0 },
+  MX: { local: 5.83, mobile: 0, national: 0, shortcode: 0, tollfree: 25.5 },
+  NL: { local: 2.55, mobile: 10, national: 2.55, shortcode: 0, tollfree: 21.25 },
+  PE: { local: 0, mobile: 0, national: 0, shortcode: 0, tollfree: 43.33 },
+  PH: { local: 25, mobile: 0, national: 0, shortcode: 0, tollfree: 21.25 },
+  PL: { local: 0.85, mobile: 11.5, national: 0, shortcode: 0, tollfree: 0 },
+  PT: { local: 0, mobile: 0, national: 1.25, shortcode: 0, tollfree: 21.25 },
+  QA: { local: 0, mobile: 0, national: 0, shortcode: 0, tollfree: 750 },
+  RO: { local: 2.55, mobile: 0, national: 0, shortcode: 0, tollfree: 0 },
+  RU: { local: 0, mobile: 0, national: 0, shortcode: 0, tollfree: 54 },
+  SA: { local: 0, mobile: 0, national: 0, shortcode: 0, tollfree: 115 },
+  SK: { local: 1.5, mobile: 0, national: 0, shortcode: 0, tollfree: 21.25 },
+  SI: { local: 4.25, mobile: 0, national: 0, shortcode: 0, tollfree: 6 },
+  ZA: { local: 1.28, mobile: 0, national: 0, shortcode: 0, tollfree: 7.5 },
+  SE: { local: 1, mobile: 2.5, national: 0, shortcode: 0, tollfree: 10 },
+  CH: { local: 0.85, mobile: 0, national: 0, shortcode: 0, tollfree: 21.25 },
+  TR: { local: 45, mobile: 0, national: 0, shortcode: 0, tollfree: 85 },
+  DE: { local: 1, mobile: 1.5, national: 0, shortcode: 0, tollfree: 5 },
+};
+
 // Voice calculator data - Plivo vs Others (cost per 100K minutes)
 export const VOICE_CALCULATOR_DATA: CalculatorEntry[] = [
   { country: "United States", code: "US", flag: "🇺🇸", others: 2250, plivo: 1500 },
@@ -1131,6 +1241,178 @@ export const VOICE_CALCULATOR_DATA: CalculatorEntry[] = [
   { country: "Spain", code: "ES", flag: "🇪🇸", others: 5900, plivo: 4500 },
 ];
 
+// Voice destination rates per network group (fallback when API fails)
+// India uses hardcoded rate matching live plivo.com; all others from API
+export const VOICE_DESTINATION_RATES: Record<string, Array<{ group: string; rate: string; prefixes: string[] }>> = {
+  IN: [
+    { group: "India All Networks from Plivo-IN numbers", rate: "0.0047", prefixes: ["91"] },
+  ],
+  US: [
+    { group: "United States", rate: "0.0115", prefixes: ["1"] },
+    { group: "United States - Hawaii", rate: "0.0125", prefixes: ["1808"] },
+    { group: "United States - Alaska", rate: "0.0850", prefixes: ["1907"] },
+  ],
+  CA: [
+    { group: "Canada", rate: "0.0120", prefixes: ["1"] },
+  ],
+  GB: [
+    { group: "United Kingdom from EEA", rate: "0.0075", prefixes: ["44"] },
+    { group: "United Kingdom - Mobile (VODAFONE, LYCA) from EEA", rate: "0.0270", prefixes: ["44"] },
+    { group: "United Kingdom - Mobile - Major Carriers (H3G, ORANGE, SKY, TIER 2, T-MOBILE, O2, O3) from EEA", rate: "0.0270", prefixes: ["44"] },
+    { group: "United Kingdom", rate: "0.2800", prefixes: ["44"] },
+    { group: "United Kingdom - Mobile - Major Carriers (H3G, ORANGE, SKY, TIER 2, T-MOBILE, O2, O3)", rate: "0.3000", prefixes: ["44"] },
+    { group: "United Kingdom - Mobile (VODAFONE, LYCA)", rate: "0.3200", prefixes: ["44"] },
+    { group: "United Kingdom - Mobile Others (GUERNSEY, JERSEY, MANX, PNS, DIGICEL, OTHERS)", rate: "0.4720", prefixes: ["44"] },
+    { group: "United Kingdom - Mobile - Major Carriers (H3G, ORANGE, SKY, TIER 2, T-MOBILE, O2, O3) from High Cost Origins", rate: "0.9333", prefixes: ["44"] },
+    { group: "United Kingdom from High Cost Origins", rate: "0.9375", prefixes: ["44"] },
+    { group: "United Kingdom - Premium Services", rate: "0.9500", prefixes: ["44"] },
+    { group: "United Kingdom - Mobile (VODAFONE, LYCA) from High Cost Origins", rate: "1.6333", prefixes: ["44"] },
+    { group: "United Kingdom from Ultra High Cost Origins", rate: "6.0000", prefixes: ["44"] },
+  ],
+  AU: [
+    { group: "Australia", rate: "0.0230", prefixes: ["61"] },
+    { group: "Australia - Mobile", rate: "0.0730", prefixes: ["61"] },
+    { group: "Australia - Premium Services", rate: "3.7830", prefixes: ["61"] },
+  ],
+  FR: [
+    { group: "France from EEA", rate: "0.0195", prefixes: ["33"] },
+    { group: "France - Mobile from EEA", rate: "0.0426", prefixes: ["33"] },
+    { group: "France - Mobile - Major Carriers (Orange, SFR, Bouygues) from EEA", rate: "0.0495", prefixes: ["33"] },
+    { group: "France", rate: "0.0530", prefixes: ["33"] },
+    { group: "France - Mobile", rate: "0.3030", prefixes: ["33"] },
+    { group: "France - Mobile - Major Carriers (Orange, SFR, Bouygues)", rate: "0.3530", prefixes: ["33"] },
+    { group: "France - Premium Services", rate: "5.5000", prefixes: ["33"] },
+  ],
+  DE: [
+    { group: "Germany from EEA", rate: "0.0135", prefixes: ["49"] },
+    { group: "Germany - Mobile - Major Carriers (Vodafone, T-Mob, Telefonica, E Plus) from EEA", rate: "0.0359", prefixes: ["49"] },
+    { group: "Germany - Mobile from EEA", rate: "0.0495", prefixes: ["49"] },
+    { group: "Germany - Mobile - Major Carriers (Vodafone, T-Mob, Telefonica, E Plus)", rate: "0.3850", prefixes: ["49"] },
+    { group: "Germany - Mobile", rate: "0.3850", prefixes: ["49"] },
+    { group: "Germany", rate: "1.0674", prefixes: ["49"] },
+  ],
+  ES: [
+    { group: "Spain from EEA", rate: "0.0071", prefixes: ["34"] },
+    { group: "Spain - Mobile from EEA", rate: "0.0314", prefixes: ["34"] },
+    { group: "Spain - Mobile", rate: "0.2530", prefixes: ["34"] },
+    { group: "Spain", rate: "0.3625", prefixes: ["34"] },
+    { group: "Spain - Premium Services", rate: "0.9030", prefixes: ["34"] },
+    { group: "Spain - Mobile from Spain Fixed", rate: "1.2190", prefixes: ["34"] },
+  ],
+  SG: [
+    { group: "Singapore", rate: "0.0340", prefixes: ["65"] },
+    { group: "Singapore - Mobile", rate: "0.0489", prefixes: ["65"] },
+  ],
+  JP: [
+    { group: "Japan", rate: "0.0385", prefixes: ["81"] },
+    { group: "Japan - IP Phone", rate: "0.1110", prefixes: ["81"] },
+    { group: "Japan - Mobile", rate: "0.1398", prefixes: ["81"] },
+  ],
+  BR: [
+    { group: "Brazil - Fixed - Major Cities (Rio, Sao Paulo, Brasilia, Belo, Campinas, Curitiba, Fortaleza, Golania, Porto Alegre, Recife, Salvador, Vitoria)", rate: "0.0210", prefixes: ["55"] },
+    { group: "Brazil", rate: "0.0330", prefixes: ["55"] },
+    { group: "Brazil - Mobile", rate: "0.0980", prefixes: ["55"] },
+  ],
+  NZ: [
+    { group: "New Zealand", rate: "0.0233", prefixes: ["64"] },
+    { group: "New Zealand - Mobile", rate: "0.0714", prefixes: ["64"] },
+  ],
+  IT: [
+    { group: "Italy", rate: "0.0130", prefixes: ["39"] },
+    { group: "Italy - Mobile from EEA", rate: "0.0359", prefixes: ["39"] },
+    { group: "Italy - Mobile", rate: "0.4530", prefixes: ["39"] },
+    { group: "Italy - Premium Services", rate: "0.6030", prefixes: ["39"] },
+  ],
+  ID: [
+    { group: "Indonesia", rate: "0.0830", prefixes: ["62"] },
+    { group: "Indonesia - Mobile", rate: "0.0830", prefixes: ["62"] },
+  ],
+  PH: [
+    { group: "Philippines", rate: "0.2230", prefixes: ["63"] },
+    { group: "Philippines - Mobile", rate: "0.2890", prefixes: ["63"] },
+    { group: "Philippines - Premium Services", rate: "0.8210", prefixes: ["63"] },
+  ],
+  MX: [
+    { group: "Mexico", rate: "0.0125", prefixes: ["52"] },
+    { group: "Mexico - Mobile", rate: "0.0390", prefixes: ["52"] },
+  ],
+  NL: [
+    { group: "Netherlands from EEA", rate: "0.0145", prefixes: ["31"] },
+    { group: "Netherlands - Mobile - Major Carriers (Lycamobile, Ibasis, Tele2, T-mobile, Telfort, Vodafone) from EEA", rate: "0.0195", prefixes: ["31"] },
+    { group: "Netherlands", rate: "0.3490", prefixes: ["31"] },
+    { group: "Netherlands - Mobile - Major Carriers (Lycamobile, Ibasis, Tele2, T-mobile, Telfort, Vodafone)", rate: "0.4030", prefixes: ["31"] },
+    { group: "Netherlands - Mobile - Others (KPN)", rate: "0.5390", prefixes: ["31"] },
+    { group: "Netherlands - Mobile from Netherlands Fixed", rate: "0.6881", prefixes: ["31"] },
+    { group: "Netherlands - Premium Services", rate: "2.8310", prefixes: ["31"] },
+  ],
+  SE: [
+    { group: "Sweden", rate: "0.0150", prefixes: ["46"] },
+    { group: "Sweden - Shared Services", rate: "0.0309", prefixes: ["46"] },
+    { group: "Sweden - Mobile", rate: "0.5930", prefixes: ["46"] },
+  ],
+  CH: [
+    { group: "Switzerland", rate: "0.0299", prefixes: ["41"] },
+    { group: "Switzerland - Mobile (Swisscom, Sunrise, Salt, Lyca)", rate: "0.1195", prefixes: ["41"] },
+    { group: "Switzerland - Mobile (Swisscom, Lyca) from High Cost Origins", rate: "0.3394", prefixes: ["41"] },
+    { group: "Switzerland - Mobile (Swisscom, Lyca) from Ultra High Cost Origins", rate: "0.6814", prefixes: ["41"] },
+    { group: "Switzerland - Mobile (Sunrise, Salt) from High Cost Origins", rate: "0.9910", prefixes: ["41"] },
+    { group: "Switzerland - Mobile", rate: "0.9982", prefixes: ["41"] },
+    { group: "Switzerland - Mobile (Sunrise, Salt) from Ultra High Cost Origins", rate: "1.6896", prefixes: ["41"] },
+  ],
+  IE: [
+    { group: "Ireland", rate: "0.0130", prefixes: ["353"] },
+    { group: "Ireland - Mobile - Major Carriers (Vodafone, Tesco, O2, Lycatel, Three)", rate: "0.0460", prefixes: ["353"] },
+    { group: "Ireland - Mobile", rate: "0.0804", prefixes: ["353"] },
+    { group: "Ireland - Premium Services", rate: "0.2210", prefixes: ["353"] },
+  ],
+  IL: [
+    { group: "Israel", rate: "0.0170", prefixes: ["972"] },
+    { group: "Israel - Mobile", rate: "0.1510", prefixes: ["972"] },
+    { group: "Israel - Fixed - Others (Palestine)", rate: "0.3010", prefixes: ["972"] },
+    { group: "Israel - Mobile - Others (Palestine)", rate: "0.3010", prefixes: ["972"] },
+  ],
+  KR: [
+    { group: "South Korea - Mobile", rate: "0.0223", prefixes: ["82"] },
+    { group: "South Korea", rate: "0.0296", prefixes: ["82"] },
+  ],
+  MY: [
+    { group: "Malaysia", rate: "0.0444", prefixes: ["60"] },
+    { group: "Malaysia - Mobile", rate: "0.0714", prefixes: ["60"] },
+  ],
+  TH: [
+    { group: "Thailand", rate: "0.0880", prefixes: ["66"] },
+    { group: "Thailand - Mobile", rate: "0.0894", prefixes: ["66"] },
+    { group: "Thailand - Premium Services", rate: "0.9030", prefixes: ["66"] },
+  ],
+  ZA: [
+    { group: "South Africa - Mobile", rate: "0.3390", prefixes: ["27"] },
+    { group: "South Africa", rate: "0.4044", prefixes: ["27"] },
+    { group: "South Africa - Premium Services", rate: "0.8490", prefixes: ["27"] },
+  ],
+  PL: [
+    { group: "Poland", rate: "0.0270", prefixes: ["48"] },
+    { group: "Poland - Fixed - Others (Netia, OLO, T-mobile)", rate: "0.0330", prefixes: ["48"] },
+    { group: "Poland - Mobile from EEA", rate: "0.0584", prefixes: ["48"] },
+    { group: "Poland - Mobile", rate: "0.2330", prefixes: ["48"] },
+    { group: "Poland - Premium Services", rate: "1.1810", prefixes: ["48"] },
+  ],
+  PT: [
+    { group: "Portugal - Fixed - National from EEA", rate: "0.0066", prefixes: ["351"] },
+    { group: "Portugal", rate: "0.0111", prefixes: ["351"] },
+    { group: "Portugal from EEA", rate: "0.0123", prefixes: ["351"] },
+    { group: "Portugal - Fixed - National", rate: "0.0410", prefixes: ["351"] },
+    { group: "Portugal - Mobile from EEA", rate: "0.0430", prefixes: ["351"] },
+    { group: "Portugal - Mobile", rate: "0.4330", prefixes: ["351"] },
+    { group: "Portugal - Premium Services", rate: "0.9430", prefixes: ["351"] },
+    { group: "Portugal - Mobile from Portugal Fixed", rate: "1.2200", prefixes: ["351"] },
+  ],
+  TR: [
+    { group: "Turkey", rate: "0.0530", prefixes: ["90"] },
+    { group: "Turkey - Mobile", rate: "0.2210", prefixes: ["90"] },
+    { group: "Turkey - Premium Services", rate: "0.9010", prefixes: ["90"] },
+  ],
+};
+
 // SMS calculator data - Plivo vs Others (cost per 100K SMS)
 export const SMS_CALCULATOR_DATA: CalculatorEntry[] = [
   { country: "United States", code: "US", flag: "🇺🇸", others: 790, plivo: 528 },
@@ -1141,7 +1423,7 @@ export const SMS_CALCULATOR_DATA: CalculatorEntry[] = [
   { country: "Algeria", code: "DZ", flag: "🇩🇿", others: 29550, plivo: 23264 },
   { country: "Bangladesh", code: "BD", flag: "🇧🇩", others: 32220, plivo: 26534 },
   { country: "China", code: "CN", flag: "🇨🇳", others: 3860, plivo: 3337 },
-  { country: "France", code: "FR", flag: "🇫🇷", others: 7980, plivo: 7100 },
+  { country: "France", code: "FR", flag: "🇫🇷", others: 7980, plivo: 7099.6 },
   { country: "Indonesia", code: "ID", flag: "🇮🇩", others: 44140, plivo: 29591 },
   { country: "Iraq", code: "IQ", flag: "🇮🇶", others: 35000, plivo: 28196 },
   { country: "Israel", code: "IL", flag: "🇮🇱", others: 20040, plivo: 14626 },
@@ -1196,3 +1478,44 @@ export const VERIFY_CALCULATOR_DATA: VerifyCalculatorEntry[] = [
   { country: "Turkey", code: "TR", flag: "🇹🇷", otherSmsCost: 30.5, otherVerifyCost: 50, otherFraudCost: 150, plivoSmsCost: 27.6 },
   { country: "Uzbekistan", code: "UZ", flag: "🇺🇿", otherSmsCost: 382.8, otherVerifyCost: 50, otherFraudCost: 150, plivoSmsCost: 283.4 },
 ];
+
+// Verify WhatsApp rates — from live plivo.com/verify/pricing/ whatsappPricing object
+// These are distinct from WA_CHAT_RATES (which are for the WhatsApp chat pricing page)
+export const VERIFY_WHATSAPP_RATES: Record<string, number> = {
+  // Named country rates
+  AR: 0.0375, BR: 0.0323, CL: 0.0535, CO: 0.0085, EG: 0.0626,
+  FR: 0.0699, DE: 0.0776, IN: 0.0022, ID: 0.0308, IL: 0.0177,
+  IT: 0.0386, MY: 0.0188, MX: 0.0247, NL: 0.0728, NG: 0.0295,
+  PK: 0.0236, PE: 0.0385, RU: 0.0437, SA: 0.0234, ZA: 0.0188,
+  ES: 0.035, TR: 0.0091, AE: 0.0186, GB: 0.0366, US: 0.0143, CA: 0.0143,
+  // Africa tier (0.0152)
+  DZ: 0.0152, AO: 0.0152, BW: 0.0152, BF: 0.0152, BI: 0.0152, CV: 0.0152,
+  CM: 0.0152, CF: 0.0152, TD: 0.0152, KM: 0.0152, CD: 0.0152, DJ: 0.0152,
+  GQ: 0.0152, ER: 0.0152, SZ: 0.0152, ET: 0.0152, GA: 0.0152, GM: 0.0152,
+  GH: 0.0152, GN: 0.0152, GW: 0.0152, CI: 0.0152, KE: 0.0152, LS: 0.0152,
+  LR: 0.0152, LY: 0.0152, MG: 0.0152, MW: 0.0152, ML: 0.0152, MR: 0.0152,
+  MU: 0.0152, MA: 0.0152, MZ: 0.0152, NA: 0.0152, NE: 0.0152, RW: 0.0152,
+  ST: 0.0152, SN: 0.0152, SC: 0.0152, SL: 0.0152, SO: 0.0152, SS: 0.0152,
+  TZ: 0.0152, TG: 0.0152, UG: 0.0152, ZM: 0.0152, ZW: 0.0152,
+  // Asia-Pacific tier (0.0433)
+  AF: 0.0433, AU: 0.0433, BD: 0.0433, BT: 0.0433, BN: 0.0433, KH: 0.0433,
+  CN: 0.0433, TL: 0.0433, FJ: 0.0433, JP: 0.0433, KZ: 0.0433, KG: 0.0433,
+  LA: 0.0433, MV: 0.0433, MN: 0.0433, MM: 0.0433, NZ: 0.0433, KP: 0.0433,
+  PG: 0.0433, PH: 0.0433, SG: 0.0433, KR: 0.0433, LK: 0.0433, TJ: 0.0433,
+  TH: 0.0433, TM: 0.0433, UZ: 0.0433, VN: 0.0433,
+  // Eastern Europe tier (0.0565)
+  AL: 0.0565, BA: 0.0565, BG: 0.0565, HR: 0.0565, CZ: 0.0565, EE: 0.0565,
+  HU: 0.0565, LV: 0.0565, LT: 0.0565, PL: 0.0565, RO: 0.0565, SK: 0.0565,
+  SI: 0.0565, UA: 0.0565,
+  // Americas tier (0.0453)
+  BO: 0.0453, CR: 0.0453, CU: 0.0453, DO: 0.0453, EC: 0.0453, SV: 0.0453,
+  GT: 0.0453, HN: 0.0453, NI: 0.0453, PA: 0.0453, PY: 0.0453, UY: 0.0453,
+  VE: 0.0453,
+  // Middle East tier (0.0186)
+  BH: 0.0186, IR: 0.0186, IQ: 0.0186, JO: 0.0186, KW: 0.0186, LB: 0.0186,
+  OM: 0.0186, QA: 0.0186, SY: 0.0186, YE: 0.0186,
+  // Western Europe tier (0.0386)
+  AT: 0.0386, BE: 0.0386, DK: 0.0386, FI: 0.0386, GR: 0.0386, IS: 0.0386,
+  IE: 0.0386, LU: 0.0386, NO: 0.0386, PT: 0.0386, SE: 0.0386, CH: 0.0386,
+};
+export const VERIFY_WHATSAPP_DEFAULT = 0.0312;

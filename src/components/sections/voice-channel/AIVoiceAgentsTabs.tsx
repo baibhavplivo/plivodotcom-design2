@@ -212,7 +212,7 @@ function VoiceAlertsIllustration() {
           </div>
           {/* Voice playback bar */}
           <div className="flex items-center gap-2 bg-gray-50 rounded-lg px-2.5 py-2">
-            <div className="w-6 h-6 rounded-full bg-gradient-to-br from-[#323dfe] to-[#8b5cf6] flex items-center justify-center flex-shrink-0">
+            <div className="w-6 h-6 rounded-full bg-gradient-to-br from-[#cd3ef9] via-[#323dfe] to-black flex items-center justify-center flex-shrink-0">
               <svg className="w-3 h-3 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M8 5v14l11-7z" />
               </svg>

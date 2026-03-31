@@ -92,16 +92,16 @@ function HumanLikeVoicesIllustration() {
 
   // Voice options based on Plivo voice library - shorter descriptions for desktop fit
   const voices = [
-    { name: "Caleb", type: "Trustworthy. Great for support & sales.", gradient: "from-amber-400 to-orange-500", selected: true },
-    { name: "Jack John", type: "Engaging and positive for support.", gradient: "from-blue-400 to-indigo-500" },
-    { name: "Joseph", type: "Professional and patient. For IVR.", gradient: "from-cyan-400 to-blue-500" },
-    { name: "Kyle", type: "Confident. Great for storytelling.", gradient: "from-purple-400 to-pink-500" },
-    { name: "Sarah", type: "Warm and friendly. Ideal for sales.", gradient: "from-rose-400 to-red-500" },
-    { name: "Emma", type: "Clear and articulate. For support.", gradient: "from-emerald-400 to-teal-500" },
+    { name: "Caleb", type: "Trustworthy. Great for support & sales.", gradient: "from-white via-amber-400 to-orange-500", selected: true },
+    { name: "Jack John", type: "Engaging and positive for support.", gradient: "from-white via-blue-400 to-indigo-500" },
+    { name: "Joseph", type: "Professional and patient. For IVR.", gradient: "from-white via-cyan-400 to-blue-500" },
+    { name: "Kyle", type: "Confident. Great for storytelling.", gradient: "from-white via-purple-400 to-pink-500" },
+    { name: "Sarah", type: "Warm and friendly. Ideal for sales.", gradient: "from-white via-rose-400 to-red-500" },
+    { name: "Emma", type: "Clear and articulate. For support.", gradient: "from-white via-emerald-400 to-teal-500" },
   ];
 
   return (
-    <div className="relative h-full w-full rounded-xl overflow-hidden" style={{ background: 'linear-gradient(135deg, rgba(205, 62, 249, 0.1), rgba(50, 61, 254, 0.1))' }}>
+    <div className="relative h-full w-full rounded-xl overflow-hidden">
       <div className="relative h-full w-full p-2.5 sm:p-3 md:p-4">
         {/* Main card - light theme with grey accents */}
         <div className="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden h-full flex flex-col">
@@ -164,7 +164,7 @@ function HumanLikeVoicesIllustration() {
               <div className="flex-1 bg-gray-50 rounded-lg border border-gray-200 overflow-hidden flex flex-col min-h-0">
                 {/* Selected value */}
                 <div className="flex items-center gap-1.5 px-2 sm:px-2.5 py-1.5 sm:py-2 border-b border-gray-200 bg-white">
-                  <div className="w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center shadow-sm flex-shrink-0">
+                  <div className="w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-gradient-to-br from-white via-amber-400 to-orange-500 flex items-center justify-center shadow-sm flex-shrink-0">
                     <div className="w-0 h-0 border-l-[3px] sm:border-l-[4px] border-l-white border-y-[2px] sm:border-y-[2.5px] border-y-transparent ml-0.5" />
                   </div>
                   <span className="text-[11px] sm:text-xs text-gray-900 font-medium">Caleb</span>
@@ -211,7 +211,7 @@ function HumanLikeVoicesIllustration() {
 // Illustration for Brand-Aligned section
 function BrandAlignedIllustration() {
   return (
-    <div className="relative h-full w-full rounded-xl overflow-hidden" style={{ background: 'linear-gradient(135deg, rgba(205, 62, 249, 0.1), rgba(50, 61, 254, 0.1))' }}>
+    <div className="relative h-full w-full rounded-xl overflow-hidden">
       <div className="relative h-full w-full p-2.5 sm:p-3 md:p-4">
         {/* Main card - light theme with grey accents */}
         <div className="bg-white rounded-xl shadow-lg border border-gray-200 h-full flex flex-col overflow-hidden">
@@ -325,7 +325,7 @@ function SpeechRecognitionIllustration() {
   ];
 
   return (
-    <div className="relative h-full w-full rounded-xl overflow-hidden" style={{ background: 'linear-gradient(135deg, rgba(205, 62, 249, 0.1), rgba(50, 61, 254, 0.1))' }}>
+    <div className="relative h-full w-full rounded-xl overflow-hidden">
       {/* CSS for natural wave animation */}
       <style>{`
         @keyframes wave {
@@ -479,11 +479,11 @@ function ContextAwareIllustration() {
   ];
 
   return (
-    <div className="relative h-full w-full rounded-xl overflow-hidden" style={{ background: 'linear-gradient(135deg, rgba(205, 62, 249, 0.1), rgba(50, 61, 254, 0.1))' }}>
+    <div className="relative h-full w-full rounded-xl overflow-hidden">
       <div className="relative h-full w-full p-3 sm:p-4 md:p-6 flex flex-col justify-center gap-3 sm:gap-4">
 
         {/* Top Card - Order Context */}
-        <div className="bg-white/95 backdrop-blur-sm rounded-xl shadow-lg border border-white/50 p-3 sm:p-4">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3 sm:p-4">
           {/* Order header */}
           <div className="flex items-center justify-between text-[10px] sm:text-xs text-gray-500 mb-3">
             <span>Order placed on - 2nd April</span>
@@ -510,7 +510,7 @@ function ContextAwareIllustration() {
         </div>
 
         {/* Bottom Card - AI Conversation */}
-        <div className="bg-white/95 backdrop-blur-sm rounded-xl shadow-lg border border-white/50 p-3 sm:p-4">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3 sm:p-4">
           {/* Audio waveform bar */}
           <div className="flex items-center gap-2 mb-3 pb-3 border-b border-gray-100">
             <div className="flex items-center gap-1.5 text-gray-400">
@@ -536,7 +536,7 @@ function ContextAwareIllustration() {
           {/* AI Agent message */}
           <div className="flex items-start gap-2.5 sm:gap-3">
             {/* Agent avatar - gradient orb */}
-            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gradient-to-br from-[#323dfe] via-[#8b5cf6] to-[#cd3ef9] flex items-center justify-center flex-shrink-0 shadow-lg">
+            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gradient-to-br from-[#cd3ef9] via-[#323dfe] to-black flex items-center justify-center flex-shrink-0 shadow-lg">
               <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-gradient-to-br from-[#323dfe]/80 to-[#8b5cf6]/80 flex items-center justify-center border border-white/30">
                 <span className="text-white text-xs sm:text-sm">✦</span>
               </div>
@@ -560,7 +560,7 @@ function ContextAwareIllustration() {
 // Illustration for AI Guardrails
 function GuardrailsIllustration() {
   return (
-    <div className="relative h-full w-full rounded-xl overflow-hidden" style={{ background: 'linear-gradient(135deg, rgba(205, 62, 249, 0.1), rgba(50, 61, 254, 0.1))' }}>
+    <div className="relative h-full w-full rounded-xl overflow-hidden">
       <div className="relative h-full w-full p-2.5 sm:p-3 md:p-4">
         {/* Main card - light theme with grey accents */}
         <div className="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden h-full flex flex-col p-3 sm:p-4">
@@ -678,7 +678,7 @@ function AvailabilityIllustration() {
   };
 
   return (
-    <div className="relative h-full w-full rounded-xl overflow-hidden" style={{ background: 'linear-gradient(135deg, rgba(205, 62, 249, 0.1), rgba(50, 61, 254, 0.1))' }}>
+    <div className="relative h-full w-full rounded-xl overflow-hidden">
       <div className="relative h-full w-full p-2.5 sm:p-3 md:p-4">
         {/* Main Dashboard Card */}
         <div className="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden h-full flex flex-col p-3 sm:p-4">

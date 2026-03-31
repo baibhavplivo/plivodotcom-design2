@@ -195,6 +195,12 @@
   }
 }
 
+@utility cta-hover-gradient {
+  &:hover {
+    background-image: linear-gradient(to left, #000000, #4f46e5, #d946ef);
+  }
+}
+
 @layer base {
   *,
   ::after,

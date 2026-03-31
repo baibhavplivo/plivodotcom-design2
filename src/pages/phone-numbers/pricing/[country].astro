@@ -1,0 +1,23 @@
+---
+import PlivoLayout from "@/layouts/PlivoLayout.astro";
+import PhoneNumbersSubNav from "@/components/sections/phone-numbers/PhoneNumbersSubNav.astro";
+import PhoneNumbersPricingPage from "@/components/sections/phone-numbers/PhoneNumbersPricingPage";
+import PhoneNumbersPreFooterCTA from "@/components/sections/phone-numbers/PhoneNumbersPreFooterCTA";
+import { COUNTRY_NAMES } from "@/data/pricing-data";
+
+export function getStaticPaths() {
+  return Object.keys(COUNTRY_NAMES).map((code) => ({
+    params: { country: code.toLowerCase() },
+    props: { countryCode: code },
+  }));
+}
+
+const { countryCode } = Astro.props;
+const countryName = COUNTRY_NAMES[countryCode] || countryCode;
+---
+
+<PlivoLayout title={`Phone Number Pricing - ${countryName} | Plivo`} description={`Phone number pricing for ${countryName}. Local, mobile, toll-free, and national number rates.`}>
+  <PhoneNumbersSubNav currentPage="pricing" />
+  <PhoneNumbersPricingPage client:visible initialCountry={countryCode} />
+  <PhoneNumbersPreFooterCTA client:visible />
+</PlivoLayout>

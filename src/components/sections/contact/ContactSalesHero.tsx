@@ -924,7 +924,7 @@ export default function ContactSalesHero() {
                           type="submit"
                           // @ts-expect-error vpf is a custom attribute
                           vpf="submit-btn"
-                          className="w-full rounded-md bg-black px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-gray-800"
+                          className="w-full rounded-md bg-black px-5 py-2.5 text-sm font-medium text-white transition-colors cta-hover-gradient"
                         >
                           Submit
                         </button>

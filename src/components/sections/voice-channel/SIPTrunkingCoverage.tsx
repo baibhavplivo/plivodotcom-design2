@@ -2,7 +2,7 @@
 
 import { useState, useMemo, useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
-import { SIP_RATES, SIP_COUNTRY_NAMES, PHONE_RENTAL_RATES } from "@/data/pricing-data";
+import { SIP_RATES, SIP_COUNTRY_NAMES } from "@/data/pricing-data";
 import { useGeoCountry } from "@/hooks/useGeoCountry";
 
 type CoverageType = "outbound" | "inbound";
@@ -44,15 +44,39 @@ function getFlagEmoji(countryCode: string): string {
   return String.fromCodePoint(...codePoints);
 }
 
-// Derive number types from SIP_RATES
+// Country dialing codes
+const DIALING_CODES: Record<string, string> = {
+  US: "+1", CA: "+1", MX: "+52", DO: "+1", CR: "+506", PA: "+507",
+  JM: "+1", TT: "+1", GT: "+502", HN: "+504", SV: "+503", NI: "+505",
+  PR: "+1", CU: "+53", HT: "+509",
+  BR: "+55", AR: "+54", CL: "+56", CO: "+57", PE: "+51",
+  VE: "+58", EC: "+593", BO: "+591", UY: "+598", PY: "+595",
+  GB: "+44", DE: "+49", FR: "+33", ES: "+34", IT: "+39",
+  NL: "+31", BE: "+32", AT: "+43", CH: "+41", SE: "+46",
+  DK: "+45", FI: "+358", IE: "+353", PL: "+48", PT: "+351",
+  CZ: "+420", GR: "+30", HU: "+36", RO: "+40", BG: "+359",
+  HR: "+385", SK: "+421", SI: "+386", LT: "+370", LV: "+371",
+  CY: "+357", RU: "+7", NO: "+47", UA: "+380", RS: "+381",
+  IN: "+91", SG: "+65", HK: "+852", JP: "+81", ID: "+62",
+  MY: "+60", PH: "+63", IL: "+972", TR: "+90", AE: "+971",
+  SA: "+966", QA: "+974", BH: "+973", CN: "+86", EG: "+20",
+  KR: "+82", TH: "+66", VN: "+84", PK: "+92", BD: "+880",
+  LK: "+94", KW: "+965", OM: "+968", JO: "+962", LB: "+961", IQ: "+964",
+  ZA: "+27", NG: "+234", KE: "+254", GH: "+233", TZ: "+255",
+  UG: "+256", MA: "+212", TN: "+216", ET: "+251", CM: "+237",
+  SN: "+221", CI: "+225",
+  AU: "+61", NZ: "+64", FJ: "+679", PG: "+675", WS: "+685",
+};
+
+// Derive number types from SIP_RATES (check inbound rates)
 function getNumberTypes(code: string): string[] {
   const rates = SIP_RATES[code];
   if (!rates) return [];
   const types: string[] = [];
-  if (rates.local > 0) types.push("Local");
-  if (rates.mobile > 0) types.push("Mobile");
-  if (rates.national > 0) types.push("National");
-  if (rates.tollfree > 0) types.push("Toll-Free");
+  if (rates.localIn > 0 || rates.localOut > 0) types.push("Local");
+  if (rates.mobileIn > 0 || rates.mobileOut > 0) types.push("Mobile");
+  if (rates.nationalIn > 0 || rates.nationalOut > 0) types.push("National");
+  if (rates.tollfreeIn > 0 || rates.tollfreeOut > 0) types.push("Toll-Free");
   return types;
 }
 
@@ -284,8 +308,8 @@ export default function SIPTrunkingCoverage() {
           <div className="p-6">
             <p className="text-gray-500 text-sm mb-5">
               {coverageType === "inbound"
-                ? "Select a country to view available number types and inbound rates"
-                : "Showing countries with outbound voice termination support"}
+                ? "Select a country to view features, rates, and phone number rental"
+                : "Select a country to view features and coverage details"}
             </p>
             {filteredCountries.length > 0 ? (
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-x-4 gap-y-2">
@@ -326,7 +350,25 @@ export default function SIPTrunkingCoverage() {
 
 function CountryDetailPanel({ country, coverageType }: { country: SIPCountry; coverageType: CoverageType }) {
   const rates = SIP_RATES[country.code];
-  const rental = PHONE_RENTAL_RATES[country.code];
+  const dialingCode = DIALING_CODES[country.code] || "";
+  const isInbound = country.inbound;
+
+  // Build rate rows for the table
+  const rateRows: { type: string; inbound: number; outbound: number }[] = [];
+  if (rates) {
+    if (rates.localIn > 0 || rates.localOut > 0)
+      rateRows.push({ type: "Local", inbound: rates.localIn, outbound: rates.localOut });
+    if (rates.mobileIn > 0 || rates.mobileOut > 0)
+      rateRows.push({ type: "Mobile", inbound: rates.mobileIn, outbound: rates.mobileOut });
+    if (rates.nationalIn > 0 || rates.nationalOut > 0)
+      rateRows.push({ type: "National", inbound: rates.nationalIn, outbound: rates.nationalOut });
+    if (rates.tollfreeIn > 0 || rates.tollfreeOut > 0)
+      rateRows.push({ type: "Toll-Free", inbound: rates.tollfreeIn, outbound: rates.tollfreeOut });
+  }
+
+  // India: rates are in INR (₹), not USD
+  const isIndia = country.code === "IN";
+  const currencySymbol = isIndia ? "₹" : "$";
 
   return (
     <div className="bg-white rounded-xl border border-gray-200 p-6">
@@ -335,12 +377,68 @@ function CountryDetailPanel({ country, coverageType }: { country: SIPCountry; co
         <div>
           <h3 className="text-xl font-semibold text-black">{country.name}</h3>
           <p className="text-sm text-gray-500">
-            {coverageType === "outbound" ? "Outbound voice termination" : "Inbound voice origination"}
+            {isInbound ? "Inbound & Outbound" : "Outbound only"}
           </p>
         </div>
       </div>
 
       <div className="grid gap-6 lg:grid-cols-2">
+        {/* Features */}
+        <div>
+          <h4 className="font-inter text-base font-semibold text-black mb-3">Features</h4>
+          <div className="space-y-2.5">
+            <div className="flex items-center gap-2.5">
+              <span className="flex-shrink-0 w-5 h-5 rounded-full bg-green-100 flex items-center justify-center">
+                <svg className="w-3 h-3 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+              </span>
+              <span className="text-sm text-gray-900">Make calls to PSTN</span>
+            </div>
+            <div className="flex items-center gap-2.5">
+              {isInbound ? (
+                <span className="flex-shrink-0 w-5 h-5 rounded-full bg-green-100 flex items-center justify-center">
+                  <svg className="w-3 h-3 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
+                </span>
+              ) : (
+                <span className="flex-shrink-0 w-5 h-5 rounded-full bg-gray-100 flex items-center justify-center">
+                  <svg className="w-3 h-3 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </span>
+              )}
+              <span className="text-sm text-gray-900">Receive calls from PSTN</span>
+            </div>
+            <div className="flex items-center gap-2.5">
+              <span className="flex-shrink-0 w-5 h-5 rounded-full bg-green-100 flex items-center justify-center">
+                <svg className="w-3 h-3 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+              </span>
+              <span className="text-sm text-gray-900">Secure Trunking</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Country Specs */}
+        <div>
+          <h4 className="font-inter text-base font-semibold text-black mb-3">Country specs</h4>
+          <div className="space-y-2">
+            <div className="flex justify-between py-1.5 border-b border-gray-100">
+              <span className="text-sm text-gray-500">ISO Code</span>
+              <span className="text-sm font-medium text-black">{country.code}</span>
+            </div>
+            {dialingCode && (
+              <div className="flex justify-between py-1.5 border-b border-gray-100">
+                <span className="text-sm text-gray-500">Country Code</span>
+                <span className="text-sm font-medium text-black">{dialingCode}</span>
+              </div>
+            )}
+          </div>
+        </div>
+
         {/* Available Number Types */}
         {country.numberTypes.length > 0 && (
           <div>
@@ -358,86 +456,31 @@ function CountryDetailPanel({ country, coverageType }: { country: SIPCountry; co
           </div>
         )}
 
-        {/* Inbound Rates */}
-        {rates && coverageType === "inbound" && (
+        {/* Call Rates Table */}
+        {rateRows.length > 0 && (
           <div>
-            <h4 className="font-inter text-base font-semibold text-black mb-3">Inbound call rates</h4>
+            <h4 className="font-inter text-base font-semibold text-black mb-3">Call rates</h4>
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead>
                   <tr className="border-b border-gray-200">
                     <th className="py-2 pr-4 text-left text-sm font-semibold text-black">Type</th>
-                    <th className="py-2 text-left text-sm font-semibold text-black">Rate</th>
+                    <th className="py-2 pr-4 text-left text-sm font-semibold text-black">Inbound</th>
+                    <th className="py-2 text-left text-sm font-semibold text-black">Outbound</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-100">
-                  {rates.local > 0 && (
-                    <tr>
-                      <td className="py-2 pr-4 text-sm text-gray-900">Local</td>
-                      <td className="py-2 text-sm font-medium text-black">${rates.local.toFixed(4)}/min</td>
-                    </tr>
-                  )}
-                  {rates.mobile > 0 && (
-                    <tr>
-                      <td className="py-2 pr-4 text-sm text-gray-900">Mobile</td>
-                      <td className="py-2 text-sm font-medium text-black">${rates.mobile.toFixed(4)}/min</td>
-                    </tr>
-                  )}
-                  {rates.national > 0 && (
-                    <tr>
-                      <td className="py-2 pr-4 text-sm text-gray-900">National</td>
-                      <td className="py-2 text-sm font-medium text-black">${rates.national.toFixed(4)}/min</td>
-                    </tr>
-                  )}
-                  {rates.tollfree > 0 && (
-                    <tr>
-                      <td className="py-2 pr-4 text-sm text-gray-900">Toll-Free</td>
-                      <td className="py-2 text-sm font-medium text-black">${rates.tollfree.toFixed(4)}/min</td>
-                    </tr>
-                  )}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        )}
-
-        {/* Phone Number Rental — only for inbound (numbers needed for origination) */}
-        {coverageType === "inbound" && rental && (
-          <div>
-            <h4 className="font-inter text-base font-semibold text-black mb-3">Phone number rental</h4>
-            <div className="overflow-x-auto">
-              <table className="w-full">
-                <thead>
-                  <tr className="border-b border-gray-200">
-                    <th className="py-2 pr-4 text-left text-sm font-semibold text-black">Type</th>
-                    <th className="py-2 text-left text-sm font-semibold text-black">Monthly</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-100">
-                  {rental.local && (
-                    <tr>
-                      <td className="py-2 pr-4 text-sm text-gray-900">Local</td>
+                  {rateRows.map((row) => (
+                    <tr key={row.type}>
+                      <td className="py-2 pr-4 text-sm text-gray-900">{row.type}</td>
+                      <td className="py-2 pr-4 text-sm font-medium text-black">
+                        {row.inbound > 0 ? `${currencySymbol}${row.inbound.toFixed(4)}/min` : "—"}
+                      </td>
                       <td className="py-2 text-sm font-medium text-black">
-                        {rental.local.currency}{rental.local.rate.toFixed(2)}/mo
+                        {row.outbound > 0 ? `${currencySymbol}${row.outbound.toFixed(4)}/min` : "—"}
                       </td>
                     </tr>
-                  )}
-                  {rental.tollfree && (
-                    <tr>
-                      <td className="py-2 pr-4 text-sm text-gray-900">Toll-Free</td>
-                      <td className="py-2 text-sm font-medium text-black">
-                        {rental.tollfree.currency}{rental.tollfree.rate.toFixed(2)}/mo
-                      </td>
-                    </tr>
-                  )}
-                  {rental.mobile && (
-                    <tr>
-                      <td className="py-2 pr-4 text-sm text-gray-900">Mobile</td>
-                      <td className="py-2 text-sm font-medium text-black">
-                        {rental.mobile.currency}{rental.mobile.rate.toFixed(2)}/mo
-                      </td>
-                    </tr>
-                  )}
+                  ))}
                 </tbody>
               </table>
             </div>
@@ -445,11 +488,11 @@ function CountryDetailPanel({ country, coverageType }: { country: SIPCountry; co
         )}
 
         {/* Outbound info for countries without rates */}
-        {coverageType === "outbound" && !rates && (
+        {!rates && (
           <div>
             <h4 className="font-inter text-base font-semibold text-black mb-3">Outbound termination</h4>
             <p className="text-sm text-gray-600">
-              Voice termination to {country.name} is available. Outbound rates are determined by destination network group. Contact sales for detailed per-route pricing.
+              Voice termination to {country.name} is available. Outbound rates are determined by destination and network. Contact sales for detailed per-route pricing.
             </p>
           </div>
         )}
@@ -465,7 +508,7 @@ function CountryDetailPanel({ country, coverageType }: { country: SIPCountry; co
         </a>
         <a
           href="https://cx.plivo.com/pungis2"
-          className="inline-flex items-center justify-center px-5 py-2.5 text-sm font-medium bg-black text-white rounded-md hover:bg-gray-800 transition-colors"
+          className="inline-flex items-center justify-center px-5 py-2.5 text-sm font-medium bg-black text-white rounded-md cta-hover-gradient transition-colors"
         >
           Sign up for free
         </a>

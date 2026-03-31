@@ -18,27 +18,27 @@ const pricingHighlights = [
 const countryRates = [
   {
     country: "United States",
-    sms: "$0.0070/sms",
-    voice: "$0.0100/min",
-    whatsapp: "$0.0044/msg",
+    sms: "$0.0077/sms",
+    voice: "$0.0115/min",
+    whatsapp: "$0.0143/conversation",
   },
   {
     country: "Canada",
-    sms: "$0.0070/sms",
+    sms: "$0.0077/sms",
     voice: "$0.0120/min",
-    whatsapp: "$0.0044/msg",
+    whatsapp: "$0.0143/conversation",
   },
   {
     country: "India",
-    sms: "₹0.00018/sms",
-    voice: "₹0.0048/min",
-    whatsapp: "₹0.1232/msg",
+    sms: "₹0.0800/sms",
+    voice: "₹0.0093/min",
+    whatsapp: "₹0.0022/conversation",
   },
   {
     country: "Australia",
     sms: "$0.0451/sms",
     voice: "$0.0230/min",
-    whatsapp: "$0.0124/msg",
+    whatsapp: "$0.0433/conversation",
   },
 ];
 
@@ -83,18 +83,18 @@ export default function VerifyPricingComparison() {
                   <img src="/images/plivo-logo.svg" alt="Plivo" className="h-5" />
                   <span className="font-medium text-black">Plivo</span>
                 </div>
-                <span className="text-xl font-bold bg-gradient-to-r from-[#cd3ef9] to-[#323dfe] bg-clip-text text-transparent">$2,760</span>
+                <span className="text-xl font-bold bg-gradient-to-r from-[#cd3ef9] to-[#323dfe] bg-clip-text text-transparent">$530</span>
               </div>
               <div className="flex items-center justify-between p-4 bg-gray-100 rounded-lg">
                 <span className="text-gray-600">Other Platforms</span>
-                <span className="text-xl font-bold text-gray-400 line-through">$23,050</span>
+                <span className="text-xl font-bold text-gray-400 line-through">$5,720</span>
               </div>
               <div className="pt-4 border-t border-gray-200">
                 <div className="flex items-center justify-between">
                   <span className="text-gray-600">Your savings with Plivo</span>
                   <div className="text-right">
-                    <span className="text-2xl font-bold bg-gradient-to-r from-[#cd3ef9] to-[#323dfe] bg-clip-text text-transparent">$20,290</span>
-                    <span className="block text-sm bg-gradient-to-r from-[#cd3ef9] to-[#323dfe] bg-clip-text text-transparent font-medium">88% reduction</span>
+                    <span className="text-2xl font-bold bg-gradient-to-r from-[#cd3ef9] to-[#323dfe] bg-clip-text text-transparent">$5,190</span>
+                    <span className="block text-sm bg-gradient-to-r from-[#cd3ef9] to-[#323dfe] bg-clip-text text-transparent font-medium">91% reduction</span>
                   </div>
                 </div>
               </div>

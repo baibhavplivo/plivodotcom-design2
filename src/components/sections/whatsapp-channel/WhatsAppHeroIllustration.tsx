@@ -87,9 +87,7 @@ export default function WhatsAppHeroIllustration() {
         {/* Phone device */}
         <div className="w-[288px] sm:w-[320px]">
           {/* Phone outer frame */}
-          <div className="relative rounded-[32px] p-1.5 shadow-2xl" style={{ background: 'linear-gradient(135deg, rgba(205, 62, 249, 0.5) 0%, rgba(50, 61, 254, 0.5) 100%)' }}>
-            {/* Inner highlight for 3D effect */}
-            <div className="absolute inset-0 rounded-[32px] opacity-15" style={{ background: 'linear-gradient(135deg, rgba(255,255,255,0.4) 0%, transparent 50%, rgba(0,0,0,0.2) 100%)' }} />
+          <div className="relative rounded-[32px] p-1.5 shadow-2xl border border-gray-300 bg-gray-100">
 
             {/* Screen */}
             <div className="relative rounded-[30px] overflow-hidden bg-[#efeae2] shadow-inner">

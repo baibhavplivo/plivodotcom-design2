@@ -883,13 +883,13 @@ export default function DesignSystem() {
               <div className="flex flex-wrap items-center gap-4">
                 <a
                   href="#"
-                  className="inline-flex items-center justify-center rounded-lg bg-black px-6 py-3 text-base font-medium text-white transition-colors hover:bg-gray-800"
+                  className="inline-flex items-center justify-center rounded-lg bg-black px-6 py-3 text-base font-medium text-white transition-colors cta-hover-gradient"
                 >
                   Start for Free
                 </a>
                 <a
                   href="#"
-                  className="inline-flex items-center justify-center gap-2 rounded-lg bg-black px-6 py-3 text-base font-medium text-white transition-colors hover:bg-gray-800"
+                  className="inline-flex items-center justify-center gap-2 rounded-lg bg-black px-6 py-3 text-base font-medium text-white transition-colors cta-hover-gradient"
                 >
                   Learn More <ArrowRight className="h-4 w-4" />
                 </a>
@@ -903,7 +903,7 @@ export default function DesignSystem() {
               <CodeBlock>
                 {`<a className="inline-flex items-center justify-center rounded-lg
   bg-black px-6 py-3 text-base font-medium text-white
-  transition-colors hover:bg-gray-800">
+  transition-colors cta-hover-gradient">
   Start for Free
 </a>`}
               </CodeBlock>
@@ -1036,7 +1036,7 @@ hover: translateY(-2px) + box-shadow: 0 0 30px rgba(205, 62, 249, 0.4);`}
                   </a>
                   <a
                     href="#"
-                    className="inline-flex items-center justify-center rounded-lg bg-black px-6 py-3 text-base font-medium text-white transition-colors hover:bg-gray-800"
+                    className="inline-flex items-center justify-center rounded-lg bg-black px-6 py-3 text-base font-medium text-white transition-colors cta-hover-gradient"
                   >
                     Start for Free
                   </a>
@@ -1365,7 +1365,7 @@ hover: translateY(-2px) + box-shadow: 0 0 30px rgba(205, 62, 249, 0.4);`}
                         </span>
                       </div>
                     </div>
-                    <button className="rounded-lg bg-black px-4 py-2 text-sm font-medium text-white hover:bg-gray-800">
+                    <button className="rounded-lg bg-black px-4 py-2 text-sm font-medium text-white cta-hover-gradient">
                       Try Builder
                     </button>
                   </div>
@@ -1403,7 +1403,7 @@ hover: translateY(-2px) + box-shadow: 0 0 30px rgba(205, 62, 249, 0.4);`}
                         </span>
                       </div>
                     </div>
-                    <button className="rounded-lg bg-black px-4 py-2 text-sm font-medium text-white hover:bg-gray-800">
+                    <button className="rounded-lg bg-black px-4 py-2 text-sm font-medium text-white cta-hover-gradient">
                       Explore API
                     </button>
                   </div>
@@ -2471,7 +2471,7 @@ npm run build`}
                   </a>
                   <a
                     href="#"
-                    className="rounded-lg bg-black px-5 py-2 text-sm font-medium text-white hover:bg-gray-800"
+                    className="rounded-lg bg-black px-5 py-2 text-sm font-medium text-white cta-hover-gradient"
                   >
                     Start for Free
                   </a>
@@ -2508,7 +2508,7 @@ npm run build`}
                       </a>
                       <a
                         href="#"
-                        className="inline-flex items-center justify-center rounded-lg bg-black px-5 py-2.5 text-sm font-medium text-white hover:bg-gray-800"
+                        className="inline-flex items-center justify-center rounded-lg bg-black px-5 py-2.5 text-sm font-medium text-white cta-hover-gradient"
                       >
                         Start for Free
                       </a>
@@ -2570,7 +2570,7 @@ npm run build`}
                 </p>
                 <a
                   href="#"
-                  className="mt-6 inline-block rounded-lg bg-black px-6 py-3 text-sm font-medium text-white hover:bg-gray-800"
+                  className="mt-6 inline-block rounded-lg bg-black px-6 py-3 text-sm font-medium text-white cta-hover-gradient"
                 >
                   Sign up now
                 </a>

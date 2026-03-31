@@ -51,19 +51,8 @@ function RCSPhoneIllustration() {
         <div className="w-[288px] sm:w-[320px]">
           {/* Phone outer frame */}
           <div
-            className="relative rounded-[32px] p-1.5 shadow-2xl"
-            style={{
-              background:
-                "linear-gradient(135deg, rgba(205, 62, 249, 0.5) 0%, rgba(50, 61, 254, 0.5) 100%)",
-            }}
+            className="relative rounded-[36px] p-1.5 shadow-2xl border border-gray-300 bg-gray-100"
           >
-            <div
-              className="absolute inset-0 rounded-[32px] opacity-15"
-              style={{
-                background:
-                  "linear-gradient(135deg, rgba(255,255,255,0.4) 0%, transparent 50%, rgba(0,0,0,0.2) 100%)",
-              }}
-            />
 
             {/* Screen */}
             <div className="relative rounded-[30px] overflow-hidden bg-white shadow-inner">
@@ -211,7 +200,7 @@ function RCSHero() {
             <div className="flex flex-col sm:flex-row gap-3 mt-8 justify-center lg:justify-start">
               <a
                 href="/contact/sales/"
-                className="inline-flex items-center justify-center rounded-md bg-black px-6 py-3 text-base font-medium text-white hover:bg-gray-800 transition-colors"
+                className="inline-flex items-center justify-center rounded-md bg-black px-6 py-3 text-base font-medium text-white cta-hover-gradient transition-colors"
               >
                 Talk to sales
               </a>
@@ -687,6 +676,52 @@ function RCSEarlyAccess() {
       }
 
       if (submitBtn) {
+        const getCookie = (name: string) => {
+          const match = document.cookie.match(new RegExp("(^| )" + name + "=([^;]+)"));
+          return match ? match[2] : "";
+        };
+
+        const submitToHubSpot = (
+          firstName: string, lastName: string, email: string,
+          phone: string, message: string,
+          btn: HTMLButtonElement
+        ) => {
+          const hutk = getCookie("hubspotutk");
+          const fields = [
+            { name: "firstname", value: firstName },
+            { name: "lastname", value: lastName },
+            { name: "email", value: email },
+            { name: "phone", value: phone },
+            { name: "message", value: message },
+          ];
+          return fetch("https://api.hsforms.com/submissions/v3/integration/submit/20451141/1bd8ce72-8c0d-4dd0-89c2-f2d2bd7dfcd5", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              fields,
+              context: {
+                hutk: hutk || undefined,
+                pageUri: window.location.href,
+                pageName: "RCS Early Access",
+              },
+            }),
+          }).then((res) => {
+            if (res.ok) {
+              setSubmitted(true);
+            } else {
+              btn.disabled = false;
+              btn.textContent = "Get access";
+              btn.classList.remove("opacity-70", "cursor-not-allowed");
+              setErrors({ form: "Something went wrong. Please try again." });
+            }
+          }).catch(() => {
+            btn.disabled = false;
+            btn.textContent = "Get access";
+            btn.classList.remove("opacity-70", "cursor-not-allowed");
+            setErrors({ form: "Network error. Please try again." });
+          });
+        };
+
         const handler = (e: Event) => {
           e.preventDefault();
           const btn = submitBtn as HTMLButtonElement;
@@ -710,7 +745,51 @@ function RCSEarlyAccess() {
           btn.disabled = true;
           btn.textContent = "Submitting...";
           btn.classList.add("opacity-70", "cursor-not-allowed");
-          setSubmitted(true);
+
+          const parts = fullName.split(/\s+/);
+          const firstName = parts[0] || "";
+          const lastName = parts.slice(1).join(" ") || "";
+          const code = selectedCodeRef.current;
+          const ctry = RCS_COUNTRY_CODES.find((c) => c.code === code) ?? RCS_COUNTRY_CODES[0];
+          const formattedPhone = `+${ctry.dial.replace("+", "")} ${phone}`;
+          const description = `[RCS Early Access] ${requirement}`;
+
+          // Primary: submit to Netlify function (same as contact sales)
+          const formData = new URLSearchParams();
+          formData.set("first_name", firstName);
+          formData.set("last_name", lastName);
+          formData.set("full_name", fullName);
+          formData.set("company_email", email);
+          formData.set("phone", formattedPhone);
+          formData.set("description", description);
+          formData.set("page_url", window.location.href);
+          formData.set("conversion_channel", "rcs-early-access");
+          formData.set("landing_page", window.location.origin);
+
+          const body = new URLSearchParams();
+          body.set("formData", formData.toString());
+          body.set("hubspotutk", getCookie("hubspotutk"));
+          body.set("hubSpot", "contactForm");
+          body.set("ipAddress", "");
+
+          fetch("https://plivo-static-forms.netlify.app/.netlify/functions/submit", {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: body.toString(),
+          })
+            .then((res) => res.json().then((data) => ({ ok: res.ok, data })))
+            .then(({ ok, data }) => {
+              if (ok && data.status === "Submitted") {
+                setSubmitted(true);
+              } else {
+                // Fallback to direct HubSpot
+                return submitToHubSpot(firstName, lastName, email, formattedPhone, description, btn);
+              }
+            })
+            .catch(() => {
+              // Network error — fallback to direct HubSpot
+              submitToHubSpot(firstName, lastName, email, formattedPhone, description, btn);
+            });
         };
         submitBtn.addEventListener("click", handler);
         cleanups.push(() => submitBtn.removeEventListener("click", handler));
@@ -848,7 +927,7 @@ function RCSEarlyAccess() {
                 <button
                   id="rcs-submit-btn"
                   type="button"
-                  className="w-full rounded-md bg-black px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-gray-800"
+                  className="w-full rounded-md bg-black px-5 py-2.5 text-sm font-medium text-white transition-colors cta-hover-gradient"
                 >
                   Get access
                 </button>
@@ -1012,7 +1091,7 @@ function RCSPreFooter() {
           </a>
           <a
             href="#early-access"
-            className="inline-flex items-center justify-center rounded-md bg-black px-6 py-3 text-base font-medium text-white transition-colors hover:bg-gray-800"
+            className="inline-flex items-center justify-center rounded-md bg-black px-6 py-3 text-base font-medium text-white transition-colors cta-hover-gradient"
           >
             Request early access
           </a>

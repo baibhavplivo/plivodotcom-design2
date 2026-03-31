@@ -73,7 +73,7 @@ export default function GettingStartedSteps() {
             <div className="pt-3 pl-3 sm:pl-4">
               <a
                 href="https://cx.plivo.com/pungis2"
-                className="inline-flex items-center justify-center rounded-md bg-black px-5 sm:px-6 py-2 sm:py-2.5 text-sm font-medium text-white transition-colors hover:bg-gray-800"
+                className="inline-flex items-center justify-center rounded-md bg-black px-5 sm:px-6 py-2 sm:py-2.5 text-sm font-medium text-white transition-colors cta-hover-gradient"
               >
                 Start building for free
               </a>

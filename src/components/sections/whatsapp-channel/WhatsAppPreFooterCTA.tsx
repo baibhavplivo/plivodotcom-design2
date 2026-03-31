@@ -32,7 +32,7 @@ export default function WhatsAppPreFooterCTA() {
           </a>
           <a
             href="https://cx.plivo.com/pungis2"
-            className="inline-flex items-center justify-center rounded-md bg-black px-6 py-3 text-base font-medium text-white transition-colors hover:bg-gray-800"
+            className="inline-flex items-center justify-center rounded-md bg-black px-6 py-3 text-base font-medium text-white transition-colors cta-hover-gradient"
           >
             Sign up for free
           </a>

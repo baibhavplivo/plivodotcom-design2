@@ -175,7 +175,7 @@ export default function CmsDashboard({ onEdit, onNew, onLogout }: CmsDashboardPr
             </button>
             <button
               ref={newBtnRef}
-              className="flex items-center gap-1.5 rounded-md bg-black px-3 py-1.5 text-sm font-medium text-white transition-colors hover:bg-gray-800"
+              className="flex items-center gap-1.5 rounded-md bg-black px-3 py-1.5 text-sm font-medium text-white transition-colors cta-hover-gradient"
             >
               <Plus className="h-4 w-4" />
               New Post

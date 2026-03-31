@@ -6,33 +6,61 @@ import { ChevronDown } from "lucide-react";
 import {
   PHONE_NUMBER_PRIORITY_COUNTRIES,
   PHONE_NUMBER_PRICING,
-  buildCountryList,
+  PHONE_CALCULATOR_DATA,
 } from "@/data/pricing-data";
-import type { CountryOption, PhoneNumberCountryPricing } from "@/data/pricing-data";
+import type { PhoneNumberCountryPricing, PhoneNumberCompliance, PhoneCalculatorEntry } from "@/data/pricing-data";
 import { useGeoCountry } from "@/hooks/useGeoCountry";
+import { useCountryISOs } from "@/hooks/useCountryISOs";
+import { useCountryPricing } from "@/hooks/useCountryPricing";
+import { useExchangeRate } from "@/hooks/useExchangeRate";
+import type { PhoneNumberInfo } from "@/hooks/useCountryPricing";
 
-type SectionId = "number-rental" | "short-codes";
+type SectionId = "number-rental" | "short-codes" | "compliance" | "calculator";
 
-function getSections(countryCode: string): { id: SectionId; label: string }[] {
-  const pricing = PHONE_NUMBER_PRICING[countryCode];
-  const sections: { id: SectionId; label: string }[] = [
-    { id: "number-rental", label: "Number rental" },
-  ];
-  const hasShortCodes = pricing?.numbers.some((n) => n.children);
-  if (hasShortCodes) {
-    sections.push({ id: "short-codes", label: "Short codes" });
-  }
-  return sections;
+/** Map API number type string to display label */
+function formatNumberType(apiType: string): string {
+  const t = (apiType || "").toLowerCase().trim();
+  if (t === "local") return "Local numbers";
+  if (t === "tollfree") return "Toll-free numbers";
+  if (t === "mobile") return "Mobile numbers";
+  if (t === "national") return "National numbers";
+  if (t === "shared_cost") return "Shared cost numbers";
+  return apiType ? `${apiType.charAt(0).toUpperCase()}${apiType.slice(1)} numbers` : "Numbers";
 }
 
-const countries = buildCountryList(
-  Object.keys(PHONE_NUMBER_PRICING),
-  PHONE_NUMBER_PRIORITY_COUNTRIES
-);
+/** Map API capability strings to display labels */
+function formatCapabilities(caps: string[]): string[] {
+  const mapped: string[] = [];
+  for (const c of caps) {
+    const cl = c.toLowerCase();
+    if (cl === "voice") mapped.push("Voice");
+    else if (cl === "sms") mapped.push("SMS");
+    else if (cl === "mms") mapped.push("MMS");
+    else if (cl === "sip_trunking" || cl === "sip trunking") mapped.push("SIP trunking");
+    else mapped.push(c);
+  }
+  return mapped;
+}
 
-export default function PhoneNumbersPricingPage() {
+/** Convert API phoneNumbers to display format */
+function mapApiNumbers(
+  apiNumbers: PhoneNumberInfo[],
+  currency: string
+): PhoneNumberCountryPricing["numbers"] {
+  return apiNumbers
+    .filter((n) => (n.status === "GA" || n.status === "BETA") && n.rentalRate != null)
+    .map((n) => ({
+      type: formatNumberType(n.type),
+      price: `${currency}${n.rentalRate!.toFixed(2)}/month`,
+      capabilities: formatCapabilities(n.capabilities),
+    }));
+}
+
+export default function PhoneNumbersPricingPage({ initialCountry }: { initialCountry?: string } = {}) {
   const { country: geoCountry } = useGeoCountry();
-  const [selectedCountry, setSelectedCountry] = useState<CountryOption>(countries[0]);
+  const { countries: countryList, loading: countriesLoading } = useCountryISOs(PHONE_NUMBER_PRIORITY_COUNTRIES);
+
+  const [selectedCode, setSelectedCode] = useState(initialCountry || "US");
   const [isCountryOpen, setIsCountryOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [activeSection, setActiveSection] = useState<SectionId>("number-rental");
@@ -40,21 +68,102 @@ export default function PhoneNumbersPricingPage() {
   const sidebarWrapperRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const geoApplied = useRef(false);
+  const countryToggleRef = useRef<HTMLButtonElement>(null);
+  const searchInputRef = useRef<HTMLInputElement>(null);
+  const countryListRef = useRef<HTMLDivElement>(null);
+  const sectionTabsRef = useRef<HTMLElement>(null);
+
+  // Fetch live pricing from API + exchange rate for INR conversion
+  const { data: pricingData, loading: pricingLoading } = useCountryPricing(selectedCode);
+  const { formatPrice, convertToINR, convertPriceString } = useExchangeRate();
 
   // Auto-select country based on IP geolocation
   useEffect(() => {
-    const match = countries.find(c => c.code === geoCountry);
-    if (match) setSelectedCountry(match);
-  }, [geoCountry]);
+    if (geoApplied.current || initialCountry) return;
+    if (geoCountry && geoCountry !== "US") {
+      geoApplied.current = true;
+      setSelectedCode(geoCountry);
+    } else if (geoCountry === "US") {
+      geoApplied.current = true;
+    }
+  }, [geoCountry, initialCountry]);
+
+  // Get the selected country item for display
+  const selectedCountry = useMemo(() => {
+    const found = countryList.find((c) => c.code === selectedCode);
+    return found || { code: selectedCode, name: selectedCode, flag: "", isPriority: false };
+  }, [countryList, selectedCode]);
 
   const filteredCountries = useMemo(() => {
-    if (!searchQuery) return countries;
+    if (!searchQuery) return countryList;
     const q = searchQuery.toLowerCase();
-    return countries.filter(
+    return countryList.filter(
       (c) => c.name.toLowerCase().includes(q) || c.code.toLowerCase().includes(q)
     );
-  }, [searchQuery]);
+  }, [searchQuery, countryList]);
 
+  // Convert a price string to local currency if needed
+  const cp = (price: string) => convertPriceString(price, selectedCode);
+
+  // Build display data from API response, falling back to hardcoded
+  const { regularNumbers, shortCodes, note, compliance, hasData } = useMemo(() => {
+    const fallback = PHONE_NUMBER_PRICING[selectedCode];
+
+    const convertNumbers = (nums: PhoneNumberCountryPricing["numbers"]) =>
+      nums.map((n) => ({
+        ...n,
+        price: cp(n.price),
+        children: n.children?.map((c) => ({ ...c, price: cp(c.price) })),
+      }));
+
+    // Try API data first
+    if (pricingData && pricingData.phoneNumbers.length > 0) {
+      const apiNumbers = mapApiNumbers(pricingData.phoneNumbers, "$");
+      const hardcodedShortCodes = fallback?.numbers.filter((n) => n.children) || [];
+      return {
+        regularNumbers: convertNumbers(apiNumbers.length > 0 ? apiNumbers : (fallback?.numbers.filter((n) => !n.children) || [])),
+        shortCodes: convertNumbers(hardcodedShortCodes),
+        note: fallback?.note,
+        compliance: fallback?.compliance || [],
+        hasData: true,
+      };
+    }
+
+    // Fallback to hardcoded data
+    if (fallback) {
+      return {
+        regularNumbers: convertNumbers(fallback.numbers.filter((n) => !n.children)),
+        shortCodes: convertNumbers(fallback.numbers.filter((n) => n.children)),
+        note: fallback.note,
+        compliance: fallback.compliance || [],
+        hasData: true,
+      };
+    }
+
+    // No data available for this country
+    return { regularNumbers: [], shortCodes: [], note: undefined, compliance: [] as PhoneNumberCompliance[], hasData: false };
+  }, [pricingData, selectedCode, cp]);
+
+  const calcData = useMemo(() => PHONE_CALCULATOR_DATA[selectedCode] || null, [selectedCode]);
+
+  const sections = useMemo(() => {
+    const s: { id: SectionId; label: string }[] = [
+      { id: "number-rental", label: "Number rental" },
+    ];
+    if (shortCodes.length > 0) {
+      s.push({ id: "short-codes", label: "Short codes" });
+    }
+    if (compliance.length > 0) {
+      s.push({ id: "compliance", label: "Compliance" });
+    }
+    if (calcData) {
+      s.push({ id: "calculator", label: "Calculator" });
+    }
+    return s;
+  }, [shortCodes, compliance, calcData]);
+
+  // Close dropdown on outside click
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
@@ -66,9 +175,61 @@ export default function PhoneNumbersPricingPage() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const sections = getSections(selectedCountry.code);
-  const pricing = PHONE_NUMBER_PRICING[selectedCountry.code] || PHONE_NUMBER_PRICING["US"];
+  // Native event: country toggle button
+  useEffect(() => {
+    const el = countryToggleRef.current;
+    if (!el) return;
+    const handler = () => setIsCountryOpen((prev) => !prev);
+    el.addEventListener("click", handler);
+    return () => el.removeEventListener("click", handler);
+  }, []);
 
+  // Native event: search input (re-attach when dropdown opens since input is conditionally rendered)
+  useEffect(() => {
+    const el = searchInputRef.current;
+    if (!el) return;
+    const handler = (e: Event) => setSearchQuery((e.target as HTMLInputElement).value);
+    el.addEventListener("input", handler);
+    return () => el.removeEventListener("input", handler);
+  }, [isCountryOpen]);
+
+  // Sync search input DOM value when searchQuery is cleared programmatically
+  useEffect(() => {
+    if (searchInputRef.current && searchQuery === "") {
+      searchInputRef.current.value = "";
+    }
+  }, [searchQuery]);
+
+  // Native event: country list items (event delegation, re-attach when dropdown opens)
+  useEffect(() => {
+    const el = countryListRef.current;
+    if (!el) return;
+    const handler = (e: MouseEvent) => {
+      const item = (e.target as HTMLElement).closest("[data-country-code]");
+      if (!item) return;
+      const code = item.getAttribute("data-country-code")!;
+      setSelectedCode(code);
+      setIsCountryOpen(false);
+      setSearchQuery("");
+    };
+    el.addEventListener("click", handler);
+    return () => el.removeEventListener("click", handler);
+  }, [isCountryOpen]);
+
+  // Native event: section tab navigation (event delegation)
+  useEffect(() => {
+    const el = sectionTabsRef.current;
+    if (!el) return;
+    const handler = (e: MouseEvent) => {
+      const btn = (e.target as HTMLElement).closest("[data-section-id]");
+      if (!btn) return;
+      scrollToSection(btn.getAttribute("data-section-id") as SectionId);
+    };
+    el.addEventListener("click", handler);
+    return () => el.removeEventListener("click", handler);
+  }, []);
+
+  // Scroll spy + sticky sidebar
   useEffect(() => {
     const handleScrollAndResize = () => {
       const sectionElements = sections.map((s) => ({
@@ -124,10 +285,6 @@ export default function PhoneNumbersPricingPage() {
     }
   };
 
-  // Split numbers into regular and short codes
-  const regularNumbers = pricing.numbers.filter((n) => !n.children);
-  const shortCodes = pricing.numbers.filter((n) => n.children);
-
   return (
     <>
       {/* Hero Header */}
@@ -138,7 +295,7 @@ export default function PhoneNumbersPricingPage() {
               Phone number pricing
             </h1>
             <p className="text-gray-600 text-base sm:text-lg max-w-2xl mx-auto">
-              Transparent pricing for local, mobile, toll-free, and national numbers across 50+ countries.
+              Transparent pricing for local, mobile, toll-free, and national numbers across 65+ countries.
             </p>
           </div>
         </div>
@@ -157,7 +314,7 @@ export default function PhoneNumbersPricingPage() {
                     Select country
                   </label>
                   <button
-                    onClick={() => setIsCountryOpen(!isCountryOpen)}
+                    ref={countryToggleRef}
                     className="w-full flex items-center gap-3 px-4 py-2.5 bg-white border border-gray-300 rounded-lg hover:border-gray-400 transition-colors"
                   >
                     <span className="text-xl">{selectedCountry.flag}</span>
@@ -176,29 +333,25 @@ export default function PhoneNumbersPricingPage() {
                     <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-10 max-h-72 overflow-hidden flex flex-col">
                       <div className="p-2 border-b border-gray-100">
                         <input
+                          ref={searchInputRef}
                           type="text"
                           placeholder="Search country..."
-                          value={searchQuery}
-                          onChange={(e) => setSearchQuery(e.target.value)}
+                          defaultValue={searchQuery}
                           className="w-full px-3 py-2 text-sm text-gray-900 bg-white border border-gray-300 rounded-md focus:outline-none focus:border-gray-500 placeholder:text-gray-400"
                           autoFocus
                         />
                       </div>
-                      <div className="overflow-y-auto">
+                      <div ref={countryListRef} className="overflow-y-auto">
                         {filteredCountries.map((country, idx) => (
                           <div key={country.code}>
                             {!country.isPriority && idx > 0 && filteredCountries[idx - 1]?.isPriority && (
                               <div className="border-t border-gray-200 my-1" />
                             )}
                             <button
-                              onClick={() => {
-                                setSelectedCountry(country);
-                                setIsCountryOpen(false);
-                                setSearchQuery("");
-                              }}
+                              data-country-code={country.code}
                               className={cn(
                                 "w-full flex items-center gap-2.5 px-4 py-2.5 hover:bg-gray-50 transition-colors text-left",
-                                selectedCountry.code === country.code && "bg-[#323dfe]/5"
+                                selectedCode === country.code && "bg-[#323dfe]/5"
                               )}
                             >
                               <span className="text-xl">{country.flag}</span>
@@ -215,13 +368,13 @@ export default function PhoneNumbersPricingPage() {
                 </div>
 
                 {/* Section Navigation */}
-                <nav className="hidden lg:block">
+                <nav ref={sectionTabsRef} className="hidden lg:block">
                   <p className="text-sm font-medium text-gray-700 mb-3">Jump to section</p>
                   <ul className="space-y-1">
                     {sections.map((section) => (
                       <li key={section.id}>
                         <button
-                          onClick={() => scrollToSection(section.id)}
+                          data-section-id={section.id}
                           className={cn(
                             "w-full text-left px-3 py-2 text-sm transition-colors border-l-2",
                             activeSection === section.id
@@ -242,21 +395,75 @@ export default function PhoneNumbersPricingPage() {
             <div ref={contentRef} className="min-w-0">
               {/* Number Rental Rates */}
               <div id="number-rental" className="bg-white rounded-xl border border-gray-200 p-6 mb-6">
-                <NumberRentalSection numbers={regularNumbers} />
+                {pricingLoading ? (
+                  <NumberRentalShimmer />
+                ) : hasData && regularNumbers.length > 0 ? (
+                  <NumberRentalSection numbers={regularNumbers} />
+                ) : (
+                  <NoDataSection />
+                )}
               </div>
 
-              {/* Short Codes (US only) */}
+              {/* Short Codes */}
               {shortCodes.length > 0 && (
                 <div id="short-codes" className="bg-white rounded-xl border border-gray-200 p-6 mb-6">
-                  <ShortCodesSection shortCodes={shortCodes} note={pricing.note} />
+                  <ShortCodesSection shortCodes={shortCodes} note={note} />
                 </div>
               )}
 
+              {/* Compliance Requirements */}
+              {compliance.length > 0 && (
+                <div id="compliance" className="bg-white rounded-xl border border-gray-200 p-6 mb-6">
+                  <ComplianceSection requirements={compliance} />
+                </div>
+              )}
+
+              {/* Calculator */}
+              {calcData && (
+                <div id="calculator" className="bg-white rounded-xl border border-gray-200 p-6 mb-6">
+                  <CalculatorSection data={calcData} isIndia={selectedCode === "IN"} />
+                </div>
+              )}
             </div>
           </div>
         </div>
       </section>
     </>
+  );
+}
+
+function NumberRentalShimmer() {
+  return (
+    <div className="animate-pulse">
+      <div className="h-6 bg-gray-200 rounded w-48 mb-2" />
+      <div className="h-4 bg-gray-100 rounded w-64 mb-6" />
+      <div className="space-y-4">
+        {[1, 2, 3].map((i) => (
+          <div key={i} className="flex gap-4">
+            <div className="h-4 bg-gray-100 rounded w-1/3" />
+            <div className="h-4 bg-gray-100 rounded w-1/4" />
+            <div className="h-4 bg-gray-100 rounded w-1/4" />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function NoDataSection() {
+  return (
+    <div>
+      <h2 className="font-sans text-xl font-semibold text-black mb-2">
+        Number rental rates
+      </h2>
+      <p className="text-sm text-gray-500">
+        Phone number pricing is not available for this country.{" "}
+        <a href="/contact-sales/" className="text-[#323dfe] hover:underline">
+          Contact sales
+        </a>{" "}
+        for details.
+      </p>
+    </div>
   );
 }
 
@@ -388,3 +595,165 @@ function ShortCodesSection({
   );
 }
 
+function ComplianceSection({
+  requirements,
+}: {
+  requirements: PhoneNumberCompliance[];
+}) {
+  return (
+    <div>
+      <h2 className="font-sans text-xl font-semibold text-black mb-2">
+        Compliance requirements
+      </h2>
+      <p className="text-sm text-gray-500 mb-6">
+        Documentation and registration required for number purchase in this country.
+      </p>
+      <div className="space-y-3">
+        {requirements.map((req) => (
+          <div key={req.label} className="bg-gray-50 rounded-lg px-4 py-3">
+            <p className="text-sm font-medium text-gray-900">{req.label}</p>
+            <p className="text-sm text-gray-600 mt-1">{req.detail}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+const CALC_TYPES = [
+  { key: "local" as const, label: "Local" },
+  { key: "tollfree" as const, label: "Toll-free" },
+  { key: "national" as const, label: "National" },
+  { key: "mobile" as const, label: "Mobile" },
+  { key: "shortcode" as const, label: "Short code" },
+] as const;
+
+function CalculatorSection({
+  data,
+  isIndia,
+}: {
+  data: PhoneCalculatorEntry;
+  isIndia: boolean;
+}) {
+  const [active, setActive] = useState<Record<string, boolean>>({});
+  const checkboxRefs = useRef<Map<string, HTMLDivElement>>(new Map());
+
+  // Reset when data changes (country switch)
+  useEffect(() => {
+    setActive({});
+  }, [data]);
+
+  // Native event listeners for checkbox toggles
+  useEffect(() => {
+    const handlers: Array<{ el: HTMLDivElement; handler: () => void }> = [];
+    for (const t of CALC_TYPES) {
+      const el = checkboxRefs.current.get(t.key);
+      if (!el) continue;
+      const handler = () => {
+        setActive((prev) => ({ ...prev, [t.key]: !prev[t.key] }));
+      };
+      el.addEventListener("click", handler);
+      handlers.push({ el, handler });
+    }
+    return () => {
+      for (const { el, handler } of handlers) {
+        el.removeEventListener("click", handler);
+      }
+    };
+  }, [data]);
+
+  const currency = isIndia ? "₹" : "$";
+  const currencyLabel = isIndia ? "INR" : "USD";
+
+  const availableTypes = CALC_TYPES.filter((t) => data[t.key] > 0);
+  const grandTotal = availableTypes.reduce(
+    (sum, t) => sum + (active[t.key] ? data[t.key] : 0),
+    0
+  );
+
+  const fmt = (n: number) =>
+    n.toLocaleString(isIndia ? "en-IN" : "en-US", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    });
+
+  return (
+    <div>
+      <h2 className="font-sans text-xl font-semibold text-black mb-2">
+        Estimate your monthly cost
+      </h2>
+      <p className="text-sm text-gray-500 mb-6">
+        Select the number types you need to see the estimated monthly rental.
+      </p>
+
+      {/* Checkbox toggles */}
+      <div className="flex flex-wrap gap-2 mb-6">
+        {availableTypes.map((t) => (
+          <div
+            key={t.key}
+            ref={(el) => {
+              if (el) checkboxRefs.current.set(t.key, el);
+            }}
+            className={cn(
+              "flex items-center gap-2 px-4 py-2 rounded-lg border cursor-pointer select-none transition-colors",
+              active[t.key]
+                ? "border-[#323dfe] bg-[#323dfe]/5 text-[#323dfe]"
+                : "border-gray-200 bg-white text-gray-700 hover:border-gray-300"
+            )}
+          >
+            <div
+              className={cn(
+                "w-4 h-4 rounded border flex items-center justify-center transition-colors",
+                active[t.key]
+                  ? "bg-[#323dfe] border-[#323dfe]"
+                  : "border-gray-300 bg-white"
+              )}
+            >
+              {active[t.key] && (
+                <svg
+                  className="w-3 h-3 text-white"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={3}
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+              )}
+            </div>
+            <span className="text-sm font-medium">{t.label}</span>
+          </div>
+        ))}
+      </div>
+
+      {/* Subtotal rows */}
+      <div className="space-y-0">
+        {availableTypes.map((t) =>
+          active[t.key] ? (
+            <div
+              key={t.key}
+              className="flex items-center justify-between py-3 border-b border-gray-100"
+            >
+              <span className="text-sm text-gray-700">{t.label} numbers</span>
+              <span className="text-sm font-medium text-black">
+                {currency}{fmt(data[t.key])}/month
+              </span>
+            </div>
+          ) : null
+        )}
+      </div>
+
+      {/* Grand total */}
+      <div className="flex items-center justify-between pt-4 mt-2">
+        <span className="text-sm font-semibold text-black">Estimated total</span>
+        <div className="text-right">
+          <span className="text-lg font-bold text-black">
+            {currency}{fmt(grandTotal)}
+          </span>
+          <span className="text-sm text-gray-500 ml-1">/month</span>
+          <p className="text-xs text-gray-400 mt-0.5">{currencyLabel}</p>
+        </div>
+      </div>
+    </div>
+  );
+}

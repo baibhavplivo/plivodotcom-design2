@@ -8,11 +8,11 @@ import { useGeoCountry } from "@/hooks/useGeoCountry";
 import { useCountryISOs } from "@/hooks/useCountryISOs";
 import { useWhatsAppChatRates } from "@/hooks/useWhatsAppChatRates";
 
-type SectionId = "messaging-rates" | "platform-fee";
+type SectionId = "messaging-rates" | "meta-message-types";
 
 const sections: { id: SectionId; label: string }[] = [
   { id: "messaging-rates", label: "Messaging Rates" },
-  { id: "platform-fee", label: "Platform Fee" },
+  { id: "meta-message-types", label: "Meta Message Types" },
 ];
 
 const Shimmer = () => (
@@ -24,7 +24,7 @@ function formatRate(value: number, currency: string, decimals: number = 4): stri
   return `${currency}${value.toFixed(decimals)}/message`;
 }
 
-export default function WhatsAppChatPricing() {
+export default function WhatsAppChatPricing({ initialCountry }: { initialCountry?: string } = {}) {
   const { country: geoCountry } = useGeoCountry();
   const { countries } = useCountryISOs();
   const [selectedCountry, setSelectedCountry] = useState<CountryListItem>(countries[0]);
@@ -36,13 +36,23 @@ export default function WhatsAppChatPricing() {
   const contentRef = useRef<HTMLDivElement>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
+  // Native DOM refs for event delegation
+  const countryToggleRef = useRef<HTMLButtonElement>(null);
+  const searchInputRef = useRef<HTMLInputElement>(null);
+  const countryListRef = useRef<HTMLDivElement>(null);
+  const sectionTabsRef = useRef<HTMLElement>(null);
+  const countriesRef = useRef(countries);
+  countriesRef.current = countries;
+
   const { rates, loading } = useWhatsAppChatRates(selectedCountry.code);
 
   // Auto-select country based on IP geolocation
   useEffect(() => {
-    const match = countries.find(c => c.code === geoCountry);
+    const target = initialCountry || geoCountry;
+    if (!target) return;
+    const match = countries.find(c => c.code === target);
     if (match) setSelectedCountry(match);
-  }, [geoCountry, countries]);
+  }, [geoCountry, countries, initialCountry]);
 
   const filteredCountries = useMemo(() => {
     if (!searchQuery) return countries;
@@ -61,7 +71,57 @@ export default function WhatsAppChatPricing() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const isIndia = selectedCountry.code === "IN";
+  // Pattern A: Country toggle button - native click
+  useEffect(() => {
+    const el = countryToggleRef.current;
+    if (!el) return;
+    const handler = () => setIsCountryOpen(prev => !prev);
+    el.addEventListener("click", handler);
+    return () => el.removeEventListener("click", handler);
+  }, []);
+
+  // Pattern D: Search input - native input event
+  useEffect(() => {
+    const el = searchInputRef.current;
+    if (!el) return;
+    const handler = (e: Event) => setSearchQuery((e.target as HTMLInputElement).value);
+    el.addEventListener("input", handler);
+    return () => el.removeEventListener("input", handler);
+  }, [isCountryOpen]);
+
+  // Pattern B: Country list items - event delegation
+  useEffect(() => {
+    const el = countryListRef.current;
+    if (!el) return;
+    const handler = (e: MouseEvent) => {
+      const item = (e.target as HTMLElement).closest("[data-country-code]");
+      if (!item) return;
+      const code = item.getAttribute("data-country-code")!;
+      const country = countriesRef.current.find(c => c.code === code);
+      if (country) {
+        setSelectedCountry(country);
+        setIsCountryOpen(false);
+        setSearchQuery("");
+      }
+    };
+    el.addEventListener("click", handler);
+    return () => el.removeEventListener("click", handler);
+  }, [isCountryOpen]);
+
+  // Pattern C: Section tab navigation - event delegation
+  useEffect(() => {
+    const el = sectionTabsRef.current;
+    if (!el) return;
+    const handler = (e: MouseEvent) => {
+      const btn = (e.target as HTMLElement).closest("[data-section-id]");
+      if (!btn) return;
+      const sectionId = btn.getAttribute("data-section-id")!;
+      scrollToSection(sectionId as SectionId);
+    };
+    el.addEventListener("click", handler);
+    return () => el.removeEventListener("click", handler);
+  }, []);
+
   const decimals = 4;
 
   useEffect(() => {
@@ -129,7 +189,7 @@ export default function WhatsAppChatPricing() {
               WhatsApp chat pricing
             </h1>
             <p className="text-gray-600 text-base sm:text-lg max-w-2xl mx-auto">
-              Conversation-based pricing with Meta fees and Plivo platform fees - all in one simple invoice.
+              Simplified pricing for all WhatsApp messages
             </p>
           </div>
         </div>
@@ -148,7 +208,7 @@ export default function WhatsAppChatPricing() {
                     Select Country
                   </label>
                   <button
-                    onClick={() => setIsCountryOpen(!isCountryOpen)}
+                    ref={countryToggleRef}
                     className="w-full flex items-center gap-3 px-4 py-2.5 bg-white border border-gray-300 rounded-lg hover:border-gray-400 transition-colors"
                   >
                     <span className="text-xl">{selectedCountry.flag}</span>
@@ -167,26 +227,22 @@ export default function WhatsAppChatPricing() {
                     <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-10 max-h-72 overflow-hidden flex flex-col">
                       <div className="p-2 border-b border-gray-100">
                         <input
+                          ref={searchInputRef}
                           type="text"
                           placeholder="Search country..."
                           value={searchQuery}
-                          onChange={(e) => setSearchQuery(e.target.value)}
                           className="w-full px-3 py-2 text-sm text-gray-900 bg-white border border-gray-300 rounded-md focus:outline-none focus:border-gray-500 placeholder:text-gray-400"
                           autoFocus
                         />
                       </div>
-                      <div className="overflow-y-auto">
+                      <div ref={countryListRef} className="overflow-y-auto">
                         {filteredCountries.map((country, idx) => (
                           <div key={country.code}>
                             {!country.isPriority && idx > 0 && filteredCountries[idx - 1]?.isPriority && (
                               <div className="border-t border-gray-200 my-1" />
                             )}
                             <button
-                              onClick={() => {
-                                setSelectedCountry(country);
-                                setIsCountryOpen(false);
-                                setSearchQuery("");
-                              }}
+                              data-country-code={country.code}
                               className={cn(
                                 "w-full flex items-center gap-2.5 px-4 py-2.5 hover:bg-gray-50 transition-colors text-left",
                                 selectedCountry.code === country.code && "bg-[#323dfe]/5"
@@ -206,13 +262,13 @@ export default function WhatsAppChatPricing() {
                 </div>
 
                 {/* Section Navigation */}
-                <nav className="hidden lg:block">
+                <nav ref={sectionTabsRef} className="hidden lg:block">
                   <p className="text-sm font-medium text-gray-700 mb-3">Jump to section</p>
                   <ul className="space-y-1">
                     {sections.map((section) => (
                       <li key={section.id}>
                         <button
-                          onClick={() => scrollToSection(section.id)}
+                          data-section-id={section.id}
                           className={cn(
                             "w-full text-left px-3 py-2 text-sm transition-colors border-l-2",
                             activeSection === section.id
@@ -236,9 +292,9 @@ export default function WhatsAppChatPricing() {
                 <MessagingRatesSection rates={rates} decimals={decimals} loading={loading} />
               </div>
 
-              {/* Platform Fee */}
-              <div id="platform-fee" className="bg-white rounded-xl border border-gray-200 p-6">
-                <PlatformFeeSection isIndia={isIndia} />
+              {/* Meta Message Types */}
+              <div id="meta-message-types" className="bg-white rounded-xl border border-gray-200 p-6">
+                <MetaMessageTypesSection />
               </div>
             </div>
           </div>
@@ -273,7 +329,7 @@ function MessagingRatesSection({
         WhatsApp Messaging Rates
       </h2>
       <p className="text-sm text-gray-500 mb-6">
-        Pricing is per conversation, which is defined as a 24-hour message thread. Rates include Meta's fees and Plivo's platform fee.
+        Pricing per message by category. Rates include Meta's fees.
       </p>
 
       <div className="overflow-x-auto">
@@ -284,7 +340,7 @@ function MessagingRatesSection({
                 Message Category
               </th>
               <th className="py-3 text-left text-sm font-semibold text-black">
-                Rate per Conversation
+                Price per message
               </th>
             </tr>
           </thead>
@@ -328,29 +384,61 @@ function MessagingRatesSection({
   );
 }
 
-function PlatformFeeSection({ isIndia }: { isIndia: boolean }) {
+const META_MESSAGE_TYPES = [
+  {
+    type: "Marketing",
+    description:
+      "Enables you to achieve a wide range of goals, from generating awareness to driving sales and retargeting customers. Examples include new product, service, or feature announcements, targeted promotions/offers, and cart abandonment reminders.",
+  },
+  {
+    type: "Utility",
+    description:
+      "Enables you to follow-up on user actions or requests. Examples include opt-in confirmation, order/delivery management (e.g., delivery update); account updates or alerts (for example, payment reminder); or feedback surveys.",
+  },
+  {
+    type: "Authentication",
+    description:
+      "Enables you to authenticate users with one-time passcodes, potentially at multiple steps in the login process (e.g., account verification, account recovery, integrity challenges).",
+  },
+  {
+    type: "Service",
+    description: "Enables you to resolve customer inquiries.",
+  },
+];
+
+function MetaMessageTypesSection() {
   return (
     <div>
-      <h2 className="font-sans text-xl font-semibold text-black mb-2">Platform Fee</h2>
+      <h2 className="font-sans text-xl font-semibold text-black mb-2">
+        Meta Message Types
+      </h2>
       <p className="text-sm text-gray-500 mb-6">
-        Plivo charges a platform fee per conversation in addition to Meta's conversation-based fees.
+        WhatsApp conversations are categorized into the following message types by Meta.
       </p>
 
       <div className="overflow-x-auto">
         <table className="w-full">
           <thead>
             <tr className="border-b border-gray-200">
-              <th className="py-3 pr-4 text-left text-sm font-semibold text-black w-[65%]">Fee Type</th>
-              <th className="py-3 text-left text-sm font-semibold text-black">Rate</th>
+              <th className="py-3 pr-4 text-left text-sm font-semibold text-black w-[30%]">
+                Message Type
+              </th>
+              <th className="py-3 text-left text-sm font-semibold text-black">
+                Description
+              </th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-100">
-            <tr>
-              <td className="py-3 pr-4 text-sm text-gray-900">Platform fee per conversation</td>
-              <td className="py-3 text-sm font-medium text-black">
-                {isIndia ? "₹0.066/conversation" : "$0.00080/conversation"}
-              </td>
-            </tr>
+            {META_MESSAGE_TYPES.map((item) => (
+              <tr key={item.type}>
+                <td className="py-3 pr-4 text-sm font-medium text-gray-900 align-top">
+                  {item.type}
+                </td>
+                <td className="py-3 text-sm text-gray-600">
+                  {item.description}
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>

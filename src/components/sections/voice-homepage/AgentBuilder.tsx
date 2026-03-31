@@ -92,7 +92,7 @@ export default function AgentBuilder() {
                 </div>
               </div>
               <div className="mt-auto">
-                <a href="/contact/sales/" className="inline-block w-max rounded-md bg-black px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-gray-800">
+                <a href="/contact/sales/" className="inline-block w-max rounded-md bg-black px-5 py-2.5 text-sm font-medium text-white transition-colors cta-hover-gradient">
                   Talk to us
                 </a>
               </div>
@@ -125,7 +125,7 @@ export default function AgentBuilder() {
                 ))}
               </div>
               <div className="mt-auto">
-                <a href="/signup" className="inline-block w-max rounded-md bg-black px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-gray-800">
+                <a href="/signup" className="inline-block w-max rounded-md bg-black px-5 py-2.5 text-sm font-medium text-white transition-colors cta-hover-gradient">
                   Sign up free
                 </a>
               </div>

@@ -98,7 +98,7 @@ export const PlivoHero = ({ headline, subheadline }: PlivoHeroProps) => {
             <div className="flex flex-wrap items-center gap-3">
               <a
                 href="https://cx.plivo.com/pungis2"
-                className="group inline-flex items-center justify-center gap-2 rounded-md bg-black px-6 py-3 text-[14px] font-medium text-white transition-all hover:bg-gray-800 hover:shadow-md"
+                className="group inline-flex items-center justify-center gap-2 rounded-md bg-black px-6 py-3 text-[14px] font-medium text-white transition-all cta-hover-gradient hover:shadow-md"
               >
                 <svg
                   className="h-4 w-4 transition-transform group-hover:translate-x-0.5"

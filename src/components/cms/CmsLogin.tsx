@@ -87,7 +87,7 @@ export default function CmsLogin({ onSuccess }: CmsLoginProps) {
           <button
             ref={buttonRef}
             disabled={loading}
-            className="w-full rounded-md bg-black px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-gray-800 disabled:cursor-not-allowed disabled:opacity-50"
+            className="w-full rounded-md bg-black px-4 py-2.5 text-sm font-medium text-white transition-colors cta-hover-gradient disabled:cursor-not-allowed disabled:opacity-50"
           >
             {loading ? "Signing in..." : "Access CMS"}
           </button>

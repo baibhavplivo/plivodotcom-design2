@@ -4,8 +4,9 @@ import { useState, useMemo, useEffect, useRef } from "react";
 import { VERIFY_CALCULATOR_DATA, TOP_COUNTRY_CODES, type VerifyCalculatorEntry } from "@/data/pricing-data";
 import { useGeoCountry } from "@/hooks/useGeoCountry";
 
-// Volume options
-const volumeOptions = [10000, 50000, 100000, 500000, 1000000];
+// Volume options matching live site (100K–600K)
+const volumeOptions = [100000, 200000, 300000, 400000, 500000, 600000];
+const volumeLabels = ["100K", "200K", "300K", "400K", "500K", "600K"];
 
 export default function VerifyPriceCalculator() {
   const { country: geoCountry } = useGeoCountry();
@@ -14,6 +15,13 @@ export default function VerifyPriceCalculator() {
   const [isCountryOpen, setIsCountryOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const dropdownRef = useRef<HTMLDivElement>(null);
+
+  // Refs for native event listeners (Astro hydration fix)
+  const countryToggleRef = useRef<HTMLButtonElement>(null);
+  const searchInputRef = useRef<HTMLInputElement>(null);
+  const countryListRef = useRef<HTMLDivElement>(null);
+  const volumeContainerRef = useRef<HTMLDivElement>(null);
+  const countriesRef = useRef(VERIFY_CALCULATOR_DATA);
 
   // Auto-select country based on IP geolocation
   useEffect(() => {
@@ -27,6 +35,7 @@ export default function VerifyPriceCalculator() {
     return VERIFY_CALCULATOR_DATA.filter(c => c.country.toLowerCase().includes(q) || c.code.toLowerCase().includes(q));
   }, [searchQuery]);
 
+  // Close dropdown on outside click
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
@@ -36,6 +45,57 @@ export default function VerifyPriceCalculator() {
     };
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  // Native event: Country dropdown toggle
+  useEffect(() => {
+    const btn = countryToggleRef.current;
+    if (!btn) return;
+    const handler = () => setIsCountryOpen((prev) => !prev);
+    btn.addEventListener("click", handler);
+    return () => btn.removeEventListener("click", handler);
+  }, []);
+
+  // Native event: Search input
+  useEffect(() => {
+    const el = searchInputRef.current;
+    if (!el) return;
+    const handler = (e: Event) => setSearchQuery((e.target as HTMLInputElement).value);
+    el.addEventListener("input", handler);
+    return () => el.removeEventListener("input", handler);
+  }, [isCountryOpen]);
+
+  // Native event: Country list item clicks (event delegation)
+  useEffect(() => {
+    const el = countryListRef.current;
+    if (!el) return;
+    const handler = (e: MouseEvent) => {
+      const item = (e.target as HTMLElement).closest("[data-country-code]");
+      if (!item) return;
+      const code = item.getAttribute("data-country-code")!;
+      const country = countriesRef.current.find(c => c.code === code);
+      if (country) {
+        setSelectedCountry(country);
+        setIsCountryOpen(false);
+        setSearchQuery("");
+      }
+    };
+    el.addEventListener("click", handler);
+    return () => el.removeEventListener("click", handler);
+  }, [isCountryOpen]);
+
+  // Native event: Volume buttons (event delegation)
+  useEffect(() => {
+    const el = volumeContainerRef.current;
+    if (!el) return;
+    const handler = (e: MouseEvent) => {
+      const btn = (e.target as HTMLElement).closest("[data-volume]");
+      if (!btn) return;
+      const v = parseInt(btn.getAttribute("data-volume")!, 10);
+      if (!isNaN(v)) setVolume(v);
+    };
+    el.addEventListener("click", handler);
+    return () => el.removeEventListener("click", handler);
   }, []);
 
   const calculations = useMemo(() => {
@@ -108,7 +168,7 @@ export default function VerifyPriceCalculator() {
                 </label>
                 <div className="relative" ref={dropdownRef}>
                   <button
-                    onClick={() => setIsCountryOpen(!isCountryOpen)}
+                    ref={countryToggleRef}
                     className="w-full flex items-center justify-between px-3 py-2.5 bg-white border border-gray-300 rounded-lg hover:border-gray-400 transition-colors"
                   >
                     <div className="flex items-center gap-2.5">
@@ -130,33 +190,30 @@ export default function VerifyPriceCalculator() {
                     <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-10 max-h-72 overflow-hidden flex flex-col">
                       <div className="p-2 border-b border-gray-100">
                         <input
+                          ref={searchInputRef}
                           type="text"
                           placeholder="Search country..."
                           value={searchQuery}
-                          onChange={(e) => setSearchQuery(e.target.value)}
                           className="w-full px-3 py-2 text-sm text-gray-900 bg-white border border-gray-300 rounded-md focus:outline-none focus:border-gray-500 placeholder:text-gray-400"
                           autoFocus
+                          readOnly={false}
                         />
                       </div>
-                      <div className="overflow-y-auto">
+                      <div className="overflow-y-auto" ref={countryListRef}>
                         {filteredCountries.map((country, idx) => (
                           <div key={country.code}>
                             {!TOP_COUNTRY_CODES.has(country.code) && idx > 0 && TOP_COUNTRY_CODES.has(filteredCountries[idx - 1]?.code) && (
                               <div className="border-t border-gray-200 my-1" />
                             )}
-                            <button
-                              onClick={() => {
-                                setSelectedCountry(country);
-                                setIsCountryOpen(false);
-                                setSearchQuery("");
-                              }}
-                              className={`w-full flex items-center gap-2.5 px-3 py-2.5 hover:bg-gray-50 transition-colors text-left ${
+                            <div
+                              data-country-code={country.code}
+                              className={`w-full flex items-center gap-2.5 px-3 py-2.5 hover:bg-gray-50 transition-colors text-left cursor-pointer ${
                                 selectedCountry.code === country.code ? 'bg-[#323dfe]/5' : ''
                               }`}
                             >
                               <span className="text-xl">{country.flag}</span>
                               <span className="text-sm text-gray-900">{country.country}</span>
-                            </button>
+                            </div>
                           </div>
                         ))}
                         {filteredCountries.length === 0 && (
@@ -177,23 +234,21 @@ export default function VerifyPriceCalculator() {
                   <p className="text-2xl sm:text-3xl font-bold text-gray-900">
                     {formatNumber(volume)}
                   </p>
-                  <div className="flex items-center gap-1.5">
+                  <div className="flex items-center gap-1.5" ref={volumeContainerRef}>
                     {volumeOptions.map((v) => (
-                      <button
+                      <div
                         key={v}
-                        onClick={() => setVolume(v)}
-                        className={`flex-1 h-2 rounded-full transition-colors ${
+                        data-volume={v}
+                        className={`flex-1 h-2 rounded-full transition-colors cursor-pointer ${
                           volume >= v ? 'bg-[#323dfe]' : 'bg-gray-200'
                         }`}
                       />
                     ))}
                   </div>
                   <div className="flex items-center gap-1.5 text-xs text-gray-400">
-                    <span className="flex-1 text-center">10K</span>
-                    <span className="flex-1 text-center">50K</span>
-                    <span className="flex-1 text-center">100K</span>
-                    <span className="flex-1 text-center">500K</span>
-                    <span className="flex-1 text-center">1M</span>
+                    {volumeLabels.map((label) => (
+                      <span key={label} className="flex-1 text-center">{label}</span>
+                    ))}
                   </div>
                 </div>
               </div>

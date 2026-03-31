@@ -325,7 +325,7 @@ const Navbar1 = ({ currentPage = "/" }: Navbar1Props) => {
             {/* Primary CTA */}
             <a
               href={ctaNavigation.href}
-              className="hidden items-center rounded-md bg-black px-3.5 py-1.5 text-[13px] font-normal text-white transition-all hover:bg-gray-800 sm:inline-flex"
+              className="hidden items-center rounded-md bg-black px-3.5 py-1.5 text-[13px] font-normal text-white transition-all cta-hover-gradient sm:inline-flex"
               {...(ctaNavigation.external && {
                 target: "_blank",
                 rel: "noopener noreferrer",
@@ -448,7 +448,7 @@ const Navbar1 = ({ currentPage = "/" }: Navbar1Props) => {
                   <div className="mt-8 flex flex-col gap-3">
                     <a
                       href={ctaNavigation.href}
-                      className="flex w-full items-center justify-center rounded-md bg-black px-4 py-3 text-[14px] font-medium text-white transition-colors hover:bg-gray-800"
+                      className="flex w-full items-center justify-center rounded-md bg-black px-4 py-3 text-[14px] font-medium text-white transition-colors cta-hover-gradient"
                       onClick={() => setIsOpen(false)}
                       {...(ctaNavigation.external && {
                         target: "_blank",

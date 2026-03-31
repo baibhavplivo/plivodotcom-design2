@@ -37,7 +37,7 @@ export default function CoverageHero() {
             <div className="flex flex-wrap gap-4">
               <a
                 href="https://cx.plivo.com/pungis2"
-                className="inline-flex items-center justify-center rounded-md bg-black text-white px-6 py-3 text-sm font-medium hover:bg-gray-800 transition-colors"
+                className="inline-flex items-center justify-center rounded-md bg-black text-white px-6 py-3 text-sm font-medium cta-hover-gradient transition-colors"
               >
                 Get Started Free
               </a>

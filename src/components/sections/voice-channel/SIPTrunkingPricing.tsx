@@ -4,23 +4,28 @@ import { useState, useEffect, useRef, useMemo } from "react";
 import { cn } from "@/lib/utils";
 import { ChevronDown } from "lucide-react";
 import type { CountryListItem } from "@/data/pricing-data";
-import { SIP_RATES } from "@/data/pricing-data";
+import { SIP_RATES, PHONE_NUMBER_PRICING } from "@/data/pricing-data";
 import { useGeoCountry } from "@/hooks/useGeoCountry";
 import { useCountryISOs } from "@/hooks/useCountryISOs";
 import { useZentrunkPricing } from "@/hooks/useZentrunkPricing";
 import type { ZentrunkRates } from "@/hooks/useZentrunkPricing";
 import { useCountryPricing } from "@/hooks/useCountryPricing";
 import type { PhoneNumberInfo } from "@/hooks/useCountryPricing";
+import { useExchangeRate } from "@/hooks/useExchangeRate";
 
-type SectionId = "inbound-rates" | "phone-numbers" | "calculator";
+type SectionId = "call-rates" | "network-pricing" | "phone-numbers" | "add-ons" | "calculator";
 
-function getSections(hasPhoneNumbers: boolean): { id: SectionId; label: string }[] {
+function getSections(hasPhoneNumbers: boolean, hasNetworkGroups: boolean): { id: SectionId; label: string }[] {
   const base: { id: SectionId; label: string }[] = [
-    { id: "inbound-rates", label: "Call rates" },
+    { id: "call-rates", label: "Call rates" },
   ];
+  if (hasNetworkGroups) {
+    base.push({ id: "network-pricing", label: "Detailed network pricing" });
+  }
   if (hasPhoneNumbers) {
     base.push({ id: "phone-numbers", label: "Phone number rental" });
   }
+  base.push({ id: "add-ons", label: "Add-on services" });
   base.push({ id: "calculator", label: "Cost calculator" });
   return base;
 }
@@ -29,11 +34,6 @@ const Shimmer = () => (
   <span className="inline-block h-4 w-20 bg-gray-100 rounded animate-pulse" />
 );
 
-function formatRate(rate: number, currency = "$"): string {
-  if (rate === 0) return "Not available";
-  return `${currency}${rate.toFixed(4)}/min`;
-}
-
 export default function SIPTrunkingPricing() {
   const { country: geoCountry } = useGeoCountry();
   const { countries: allCountries } = useCountryISOs();
@@ -41,7 +41,7 @@ export default function SIPTrunkingPricing() {
   const countries = useMemo(() => allCountries.filter(c => sipCodes.has(c.code)), [allCountries, sipCodes]);
   const [selectedCountry, setSelectedCountry] = useState<CountryListItem>(countries[0]);
   const [isCountryOpen, setIsCountryOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState<SectionId>("inbound-rates");
+  const [activeSection, setActiveSection] = useState<SectionId>("call-rates");
   const [sidebarStyle, setSidebarStyle] = useState<React.CSSProperties>({});
   const sidebarWrapperRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
@@ -50,9 +50,28 @@ export default function SIPTrunkingPricing() {
 
   const { rates: ztRates, loading } = useZentrunkPricing(selectedCountry.code);
   const { data: pricingData } = useCountryPricing(selectedCountry.code);
-  const phoneNumbers = (pricingData?.phoneNumbers || []).filter(
-    (pn) => pn.rentalRate != null && pn.rentalRate > 0
-  );
+  const phoneNumbers = useMemo(() => {
+    // Try API data first
+    const apiNumbers = (pricingData?.phoneNumbers || []).filter(
+      (pn) => pn.rentalRate != null && pn.rentalRate > 0
+    );
+    if (apiNumbers.length > 0) return apiNumbers;
+
+    // Fallback to PHONE_NUMBER_PRICING (API returns "Access Denied" off plivo.com)
+    const pricing = PHONE_NUMBER_PRICING[selectedCountry.code];
+    if (!pricing) return [];
+
+    return pricing.numbers
+      .filter((n) => !n.children && n.capabilities.includes("Voice"))
+      .map((n) => ({
+        type: n.type.replace(" numbers", "").replace(" Numbers", ""),
+        rentalRate: parseFloat(n.price.replace(/[^0-9.]/g, "")),
+        inboundVoiceRate: null,
+        inboundSmsRate: null,
+        capabilities: n.capabilities.map((c) => c.toLowerCase()),
+        status: "GA" as const,
+      }));
+  }, [pricingData, selectedCountry.code]);
 
   // Auto-select country based on IP geolocation
   useEffect(() => {
@@ -64,7 +83,8 @@ export default function SIPTrunkingPricing() {
   const [localMinutes, setLocalMinutes] = useState(100000);
   const [tollfreeMinutes, setTollfreeMinutes] = useState(100000);
 
-  const sections = getSections(phoneNumbers.length > 0);
+  const hasNetworkGroups = (ztRates?.networkGroups?.length ?? 0) > 0;
+  const sections = getSections(phoneNumbers.length > 0, hasNetworkGroups);
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -258,9 +278,16 @@ export default function SIPTrunkingPricing() {
             {/* Right Content */}
             <div ref={contentRef} className="min-w-0">
               {/* Call rates (inbound + outbound) */}
-              <div id="inbound-rates" className="bg-white rounded-xl border border-gray-200 p-6 mb-6">
+              <div id="call-rates" className="bg-white rounded-xl border border-gray-200 p-6 mb-6">
                 <CallRatesSection rates={ztRates} countryName={selectedCountry.name} countryCode={selectedCountry.code} loading={loading} />
               </div>
+
+              {/* Detailed network pricing */}
+              {hasNetworkGroups && (
+                <div id="network-pricing" className="bg-white rounded-xl border border-gray-200 p-6 mb-6">
+                  <NetworkPricingSection rates={ztRates} countryCode={selectedCountry.code} loading={loading} />
+                </div>
+              )}
 
               {/* Phone number rental */}
               {phoneNumbers.length > 0 && (
@@ -268,6 +295,11 @@ export default function SIPTrunkingPricing() {
                   <PhoneRentalSection phoneNumbers={phoneNumbers} loading={loading} countryCode={selectedCountry.code} />
                 </div>
               )}
+
+              {/* Add-on services */}
+              <div id="add-ons" className="bg-white rounded-xl border border-gray-200 p-6 mb-6">
+                <AddOnSection countryCode={selectedCountry.code} />
+              </div>
 
               {/* Cost calculator */}
               <div id="calculator" className="bg-white rounded-xl border border-gray-200 p-6">
@@ -291,7 +323,7 @@ export default function SIPTrunkingPricing() {
 }
 
 function CallRatesSection({ rates, countryName, countryCode, loading }: { rates: ZentrunkRates | null; countryName: string; countryCode: string; loading: boolean }) {
-  const currency = countryCode === "IN" ? "₹" : "$";
+  const { formatPrice } = useExchangeRate();
   const types = [
     { label: "Local", key: "local" as const },
     { label: "Mobile", key: "mobile" as const },
@@ -304,6 +336,8 @@ function CallRatesSection({ rates, countryName, countryCode, loading }: { rates:
     const r = rates[t.key];
     return r.inbound > 0 || r.outbound > 0;
   });
+
+  const showStartsAt = rates?.outboundHasMultipleRates ?? false;
 
   return (
     <div>
@@ -336,14 +370,15 @@ function CallRatesSection({ rates, countryName, countryCode, loading }: { rates:
               ) : (
                 rows.map((t) => {
                   const r = rates![t.key];
+                  const outPrefix = showStartsAt && r.outbound > 0 && t.key !== "tollfree" ? "Starts at " : "";
                   return (
                     <tr key={t.key}>
                       <td className="py-3 pr-4 text-sm text-gray-900">{t.label}</td>
                       <td className={cn("py-3 pr-4 text-sm font-medium", r.inbound > 0 ? "text-black" : "text-gray-400")}>
-                        {r.inbound > 0 ? formatRate(r.inbound, currency) : "Not available"}
+                        {r.inbound > 0 ? formatPrice(r.inbound, countryCode, "min") : "Not available"}
                       </td>
                       <td className={cn("py-3 text-sm font-medium", r.outbound > 0 ? "text-black" : "text-gray-400")}>
-                        {r.outbound > 0 ? formatRate(r.outbound, currency) : "Not available"}
+                        {r.outbound > 0 ? `${outPrefix}${formatPrice(r.outbound, countryCode, "min")}` : "Not available"}
                       </td>
                     </tr>
                   );
@@ -359,15 +394,65 @@ function CallRatesSection({ rates, countryName, countryCode, loading }: { rates:
       )}
 
       <p className="text-xs text-gray-400 mt-4">
-        All rates are pay-as-you-go with no minimum commitment. Volume discounts available.
+        Billing interval for the US and Canada is 6/6, Brazil is 30/30 and for all major international destinations is 1/1.
       </p>
     </div>
   );
 }
 
+function NetworkPricingSection({ rates, countryCode, loading }: { rates: ZentrunkRates | null; countryCode: string; loading: boolean }) {
+  const { formatPrice } = useExchangeRate();
+  const groups = rates?.networkGroups ?? [];
+
+  if (!loading && groups.length === 0) return null;
+
+  return (
+    <div>
+      <h2 className="font-sans text-xl font-semibold text-black mb-2">Detailed network pricing</h2>
+      <p className="text-sm text-gray-500 mb-6">
+        Pricing per network group — Outbound calls
+      </p>
+
+      <div className="overflow-x-auto">
+        <table className="w-full">
+          <thead>
+            <tr className="border-b border-gray-200">
+              <th className="py-3 pr-4 text-left text-sm font-semibold text-black w-[65%]">
+                Network group
+              </th>
+              <th className="py-3 text-left text-sm font-semibold text-black">
+                Outbound call fee
+              </th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-gray-100">
+            {loading ? (
+              [0, 1, 2].map((i) => (
+                <tr key={i}>
+                  <td className="py-3 pr-4 text-sm text-gray-900"><Shimmer /></td>
+                  <td className="py-3 text-sm font-medium text-black"><Shimmer /></td>
+                </tr>
+              ))
+            ) : (
+              groups.map((g, idx) => (
+                <tr key={idx}>
+                  <td className="py-3 pr-4 text-sm text-gray-900">{g.name}</td>
+                  <td className="py-3 text-sm font-medium text-black">
+                    {formatPrice(g.rate, countryCode, "min")}
+                  </td>
+                </tr>
+              ))
+            )}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+}
+
 function PhoneRentalSection({ phoneNumbers, loading, countryCode }: { phoneNumbers: PhoneNumberInfo[]; loading: boolean; countryCode: string }) {
+  const { convertPriceString: cp } = useExchangeRate();
   if (phoneNumbers.length === 0) return null;
-  const currency = countryCode === "IN" ? "₹" : "$";
 
   return (
     <div>
@@ -391,10 +476,50 @@ function PhoneRentalSection({ phoneNumbers, loading, countryCode }: { phoneNumbe
               <tr key={pn.type}>
                 <td className="py-3 pr-4 text-sm text-gray-900">{pn.type}</td>
                 <td className="py-3 text-sm font-medium text-black">
-                  {loading ? <Shimmer /> : `${currency}${(pn.rentalRate ?? 0).toFixed(2)}/month`}
+                  {loading ? <Shimmer /> : cp(`$${(pn.rentalRate ?? 0).toFixed(2)}/month`, countryCode)}
                 </td>
               </tr>
             ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+}
+
+function AddOnSection({ countryCode }: { countryCode: string }) {
+  const { convertPriceString: cp } = useExchangeRate();
+
+  return (
+    <div>
+      <h2 className="font-sans text-xl font-semibold text-black mb-2">Add-on services</h2>
+      <p className="text-sm text-gray-500 mb-6">
+        Additional services available with SIP trunking.
+      </p>
+
+      <div className="overflow-x-auto">
+        <table className="w-full">
+          <thead>
+            <tr className="border-b border-gray-200">
+              <th className="py-3 pr-4 text-left text-sm font-semibold text-black w-[65%]">
+                Service
+              </th>
+              <th className="py-3 text-left text-sm font-semibold text-black">Price</th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-gray-100">
+            <tr>
+              <td className="py-3 pr-4 text-sm text-gray-900">Secure Trunking</td>
+              <td className="py-3 text-sm font-medium text-black">Included</td>
+            </tr>
+            {countryCode === "US" && (
+              <tr>
+                <td className="py-3 pr-4 text-sm text-gray-900">CNAM Lookup</td>
+                <td className="py-3 text-sm font-medium text-black">
+                  {cp("$0.00500/lookup", countryCode)}
+                </td>
+              </tr>
+            )}
           </tbody>
         </table>
       </div>
@@ -427,12 +552,18 @@ function CalculatorSection({
   setTollfreeMinutes: (v: number) => void;
   loading: boolean;
 }) {
+  const { convertToINR, formatPrice } = useExchangeRate();
   const currency = countryCode === "IN" ? "₹" : "$";
   const localRate = rates?.local?.inbound || 0;
   const tollfreeRate = rates?.tollfree?.inbound || 0;
   const localSubtotal = localMinutes * localRate;
   const tollfreeSubtotal = tollfreeMinutes * tollfreeRate;
   const grandTotal = localSubtotal + tollfreeSubtotal;
+
+  const displayAmount = (usd: number): string => {
+    const val = countryCode === "IN" ? convertToINR(usd) : usd;
+    return formatLargeNumber(Math.round(val));
+  };
 
   const showLocal = localRate > 0;
   const showTollfree = tollfreeRate > 0;
@@ -486,10 +617,10 @@ function CalculatorSection({
             </div>
             <div className="flex justify-between mt-3 text-sm">
               <span className="text-gray-500">
-                Rate: {currency}{localRate.toFixed(4)}/min
+                Rate: {formatPrice(localRate, countryCode, "min")}
               </span>
               <span className="font-medium text-black">
-                {currency}{formatLargeNumber(Math.round(localSubtotal))}
+                {currency}{displayAmount(localSubtotal)}
               </span>
             </div>
           </div>
@@ -525,10 +656,10 @@ function CalculatorSection({
             </div>
             <div className="flex justify-between mt-3 text-sm">
               <span className="text-gray-500">
-                Rate: {currency}{tollfreeRate.toFixed(4)}/min
+                Rate: {formatPrice(tollfreeRate, countryCode, "min")}
               </span>
               <span className="font-medium text-black">
-                {currency}{formatLargeNumber(Math.round(tollfreeSubtotal))}
+                {currency}{displayAmount(tollfreeSubtotal)}
               </span>
             </div>
           </div>
@@ -546,7 +677,7 @@ function CalculatorSection({
               </p>
             </div>
             <p className="text-2xl font-bold text-black">
-              {currency}{formatLargeNumber(Math.round(grandTotal))}
+              {currency}{displayAmount(grandTotal)}
             </p>
           </div>
 
@@ -559,7 +690,7 @@ function CalculatorSection({
             </a>
             <a
               href="https://cx.plivo.com/pungis2"
-              className="inline-flex items-center justify-center px-6 py-3 text-sm font-medium bg-black text-white rounded-md hover:bg-gray-800 transition-colors"
+              className="inline-flex items-center justify-center px-6 py-3 text-sm font-medium bg-black text-white rounded-md cta-hover-gradient transition-colors"
             >
               Sign up for free
             </a>

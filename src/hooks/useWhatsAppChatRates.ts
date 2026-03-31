@@ -20,6 +20,16 @@ for (const [code, name] of Object.entries(COUNTRY_NAMES)) {
   nameToISO[name.toLowerCase()] = code;
 }
 
+// India override — hardcoded INR rates matching live plivo.com Webflow code
+const INDIA_INR_RATES: WhatsAppChatRates = {
+  marketing: 0.8536,
+  utility: 0.1232,
+  authentication: 0.1232,
+  authenticationIntl: 2.508,
+  service: 0,
+  currency: "₹",
+};
+
 function parseValue(val: string | undefined): number {
   if (!val) return 0;
   const trimmed = val.trim().toLowerCase();
@@ -54,14 +64,14 @@ export function useWhatsAppChatRates(countryCode: string): {
 
     if (cache.current) {
       // Already fetched — just look up
-      setRates(cache.current.get(countryCode) || WA_CHAT_RATES[countryCode] || null);
+      setRates(countryCode === "IN" ? INDIA_INR_RATES : cache.current.get(countryCode) || WA_CHAT_RATES[countryCode] || null);
       setLoading(false);
       return;
     }
 
     if (fetching.current) {
       // Fetch in progress — show hardcoded fallback for the new country
-      setRates(WA_CHAT_RATES[countryCode] || null);
+      setRates(countryCode === "IN" ? INDIA_INR_RATES : WA_CHAT_RATES[countryCode] || null);
       return;
     }
     fetching.current = true;
@@ -93,13 +103,6 @@ export function useWhatsAppChatRates(countryCode: string): {
           const iso = nameToISO[marketName.toLowerCase()];
           if (!iso) continue;
 
-          // Skip India — CSV has USD values but India needs INR rates
-          // The hardcoded WA_CHAT_RATES["IN"] has correct INR values
-          if (iso === "IN") {
-            codes.push(iso);
-            continue;
-          }
-
           const chatRates: WhatsAppChatRates = {
             marketing,
             utility,
@@ -118,11 +121,11 @@ export function useWhatsAppChatRates(countryCode: string): {
         setCountryCodes(codes);
         // Use latest country ref (not stale closure value)
         const latest = latestCountry.current;
-        setRates(ratesMap.get(latest) || WA_CHAT_RATES[latest] || null);
+        setRates(latest === "IN" ? INDIA_INR_RATES : ratesMap.get(latest) || WA_CHAT_RATES[latest] || null);
       })
       .catch(() => {
         const latest = latestCountry.current;
-        setRates(WA_CHAT_RATES[latest] || null);
+        setRates(latest === "IN" ? INDIA_INR_RATES : WA_CHAT_RATES[latest] || null);
       })
       .finally(() => setLoading(false));
   }, [countryCode]);

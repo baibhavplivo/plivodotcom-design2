@@ -1,7 +1,7 @@
 // Outbound Illustration - calls going out to global destinations
 function OutboundIllustration() {
   return (
-    <div className="relative h-full w-full rounded-xl overflow-hidden" style={{ background: "linear-gradient(135deg, #f3e8ff 0%, #ede9fe 30%, #e0e7ff 60%, #dbeafe 100%)" }}>
+    <div className="relative h-full w-full rounded-xl overflow-hidden bg-gray-50 border border-gray-200">
       <style>{`
         @keyframes outbound-pulse {
           0%, 100% { opacity: 0.3; }
@@ -121,7 +121,7 @@ function OutboundIllustration() {
 // Inbound Illustration - phone numbers being provisioned
 function InboundIllustration() {
   return (
-    <div className="relative h-full w-full rounded-xl overflow-hidden" style={{ background: "linear-gradient(135deg, #f3e8ff 0%, #ede9fe 30%, #e0e7ff 60%, #dbeafe 100%)" }}>
+    <div className="relative h-full w-full rounded-xl overflow-hidden bg-gray-50 border border-gray-200">
       <div className="relative h-full w-full p-4 sm:p-6 flex flex-col justify-center">
         <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-4 sm:p-5">
           {/* Header */}

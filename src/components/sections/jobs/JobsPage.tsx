@@ -294,7 +294,7 @@ export default function JobsPage() {
           </p>
           <a
             href="/contact/sales/"
-            className="inline-flex items-center justify-center rounded-md bg-black px-8 py-3 text-base font-medium text-white transition-colors hover:bg-gray-800 mt-6"
+            className="inline-flex items-center justify-center rounded-md bg-black px-8 py-3 text-base font-medium text-white transition-colors cta-hover-gradient mt-6"
           >
             Get in touch
           </a>

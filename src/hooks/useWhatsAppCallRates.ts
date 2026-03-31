@@ -11,21 +11,42 @@ for (const [code, name] of Object.entries(COUNTRY_NAMES)) {
   nameToISO[name.toLowerCase()] = code;
 }
 
-function formatCallRate(val: string | undefined, currency = "$"): string {
-  if (!val) return `${currency}0.0000/min`;
+/**
+ * Parse a rate value from CSV, preserving the original currency (₹ or $).
+ * Matches the Webflow parseValue() + formatPrice() behaviour:
+ *   ₹ values → "₹X.XX/min" (2 decimals)
+ *   $ values → "$X.XXXX/min" (4 decimals)
+ */
+function formatCallRate(val: string | undefined): { rate: string; currency: string } {
+  const fallback = { rate: "$0.0000/min", currency: "$" };
+  if (!val) return fallback;
   const trimmed = val.trim();
-  if (trimmed === "" || trimmed.toLowerCase() === "n/a") return `${currency}0.0000/min`;
-  // Strip currency symbols ($, ₹, etc.) before parsing
+  if (trimmed === "" || trimmed.toLowerCase() === "n/a") return fallback;
+
+  // Detect INR
+  if (trimmed.startsWith("₹")) {
+    const num = parseFloat(trimmed.substring(1));
+    if (isNaN(num)) return fallback;
+    return { rate: `₹${num.toFixed(2)}/min`, currency: "₹" };
+  }
+
+  // Default: USD
   const cleaned = trimmed.replace(/[^0-9.\-]/g, "");
   const num = parseFloat(cleaned);
-  if (isNaN(num)) return `${currency}0.0000/min`;
-  return `${currency}${num.toFixed(4)}/min`;
+  if (isNaN(num)) return fallback;
+  return { rate: `$${num.toFixed(4)}/min`, currency: "$" };
 }
+
+const STATIC_FALLBACK: WhatsAppCallRates = {
+  inbound: WA_CALL_FALLBACK?.inbound || "$0.0040/min",
+  outbound: WA_CALL_FALLBACK?.outbound || "$0.0164/min",
+  currency: "$",
+};
 
 /**
  * Fetches WhatsApp Call rates from the live Google Sheets CSV.
+ * Preserves ₹/$ currency from CSV. Parses "All other countries" as dynamic fallback.
  * Caches the full dataset on first fetch. Falls back to hardcoded WA_CALL_RATES.
- * Default fallback rate: $0.0040 inbound, $0.0164 outbound.
  */
 export function useWhatsAppCallRates(countryCode: string): {
   rates: WhatsAppCallRates | null;
@@ -33,6 +54,7 @@ export function useWhatsAppCallRates(countryCode: string): {
   loading: boolean;
 } {
   const cache = useRef<Map<string, WhatsAppCallRates> | null>(null);
+  const csvFallback = useRef<WhatsAppCallRates | null>(null);
   const latestCountry = useRef(countryCode);
   const [rates, setRates] = useState<WhatsAppCallRates | null>(
     WA_CALL_RATES[countryCode] || null
@@ -43,29 +65,21 @@ export function useWhatsAppCallRates(countryCode: string): {
   const [loading, setLoading] = useState(true);
   const fetching = useRef(false);
 
+  const getFallback = (): WhatsAppCallRates =>
+    csvFallback.current || STATIC_FALLBACK;
+
   useEffect(() => {
     latestCountry.current = countryCode;
 
     if (cache.current) {
       const found = cache.current.get(countryCode);
-      const fallbackCur = countryCode === "IN" ? "₹" : "$";
-      setRates(found || WA_CALL_RATES[countryCode] || {
-        inbound: WA_CALL_FALLBACK?.inbound || `${fallbackCur}0.0040/min`,
-        outbound: WA_CALL_FALLBACK?.outbound || `${fallbackCur}0.0164/min`,
-        currency: fallbackCur,
-      });
+      setRates(found || WA_CALL_RATES[countryCode] || getFallback());
       setLoading(false);
       return;
     }
 
     if (fetching.current) {
-      // Fetch in progress — show hardcoded fallback for the new country
-      const fallbackCur = countryCode === "IN" ? "₹" : "$";
-      setRates(WA_CALL_RATES[countryCode] || {
-        inbound: WA_CALL_FALLBACK?.inbound || `${fallbackCur}0.0040/min`,
-        outbound: WA_CALL_FALLBACK?.outbound || `${fallbackCur}0.0164/min`,
-        currency: fallbackCur,
-      });
+      setRates(WA_CALL_RATES[countryCode] || getFallback());
       return;
     }
     fetching.current = true;
@@ -78,35 +92,46 @@ export function useWhatsAppCallRates(countryCode: string): {
         const dataLines = lines.slice(1); // Skip header
         const ratesMap = new Map<string, WhatsAppCallRates>();
         const codes: string[] = [];
+        let dynamicFallback: WhatsAppCallRates | null = null;
 
         for (const line of dataLines) {
           const cols = line.split(",");
           const countryName = (cols[0] || "").trim();
           if (!countryName) continue;
 
+          // Parse "All other countries" as dynamic fallback (matching Webflow)
+          if (countryName.toLowerCase() === "all other countries") {
+            const inbound = formatCallRate(cols[1]);
+            const outbound = formatCallRate(cols[2]);
+            dynamicFallback = {
+              inbound: inbound.rate,
+              outbound: outbound.rate,
+              currency: inbound.currency,
+            };
+            continue;
+          }
+
           const iso = nameToISO[countryName.toLowerCase()];
           if (!iso) continue;
 
-          const cur = iso === "IN" ? "₹" : "$";
-          const inbound = formatCallRate(cols[1], cur);
-          const outbound = formatCallRate(cols[2], cur);
+          const inbound = formatCallRate(cols[1]);
+          const outbound = formatCallRate(cols[2]);
 
-          ratesMap.set(iso, { inbound, outbound, currency: cur });
+          ratesMap.set(iso, {
+            inbound: inbound.rate,
+            outbound: outbound.rate,
+            currency: inbound.currency,
+          });
           codes.push(iso);
         }
 
         cache.current = ratesMap;
+        if (dynamicFallback) csvFallback.current = dynamicFallback;
         setCountryCodes(codes);
 
-        // Use latest country ref (not stale closure value)
         const latest = latestCountry.current;
         const found = ratesMap.get(latest);
-        const fbCur = latest === "IN" ? "₹" : "$";
-        setRates(found || WA_CALL_RATES[latest] || {
-          inbound: WA_CALL_FALLBACK?.inbound || `${fbCur}0.0040/min`,
-          outbound: WA_CALL_FALLBACK?.outbound || `${fbCur}0.0164/min`,
-          currency: fbCur,
-        });
+        setRates(found || WA_CALL_RATES[latest] || dynamicFallback || STATIC_FALLBACK);
       })
       .catch(() => {
         const latest = latestCountry.current;

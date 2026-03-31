@@ -1,0 +1,23 @@
+---
+import PlivoLayout from "@/layouts/PlivoLayout.astro";
+import SMSSubNav from "@/components/sections/sms-channel/SMSSubNav.astro";
+import CoverageTabs from "@/components/sections/sms-channel/CoverageTabs";
+import CoveragePreFooterCTA from "@/components/sections/sms-channel/CoveragePreFooterCTA";
+import { COUNTRY_NAMES } from "@/data/pricing-data";
+
+export function getStaticPaths() {
+  return Object.keys(COUNTRY_NAMES).map((code) => ({
+    params: { country: code.toLowerCase() },
+    props: { countryCode: code },
+  }));
+}
+
+const { countryCode } = Astro.props;
+const countryName = COUNTRY_NAMES[countryCode] || countryCode;
+---
+
+<PlivoLayout title={`SMS Coverage - ${countryName} | Plivo`} description={`Plivo SMS coverage details for ${countryName}. Carrier support, delivery rates, and messaging capabilities.`}>
+  <SMSSubNav currentPage="coverage" />
+  <CoverageTabs client:visible initialCountry={countryCode} />
+  <CoveragePreFooterCTA client:visible />
+</PlivoLayout>

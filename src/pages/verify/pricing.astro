@@ -1,0 +1,29 @@
+---
+import PlivoLayout from "@/layouts/PlivoLayout.astro";
+import SMSSubNav from "@/components/sections/sms-channel/SMSSubNav.astro";
+import VerifyPricingPage from "@/components/sections/sms-channel/VerifyPricingPage";
+import VerifyPriceCalculator from "@/components/sections/sms-channel/VerifyPriceCalculator";
+import VerifyRatesTable from "@/components/sections/sms-channel/VerifyRatesTable";
+import VerifyFAQ from "@/components/sections/sms-channel/VerifyFAQ";
+import SMSPreFooterCTA from "@/components/sections/sms-channel/SMSPreFooterCTA";
+---
+
+<PlivoLayout title="Verify Pricing | Plivo" description="Plivo Verify API pricing. $0 OTP verification and fraud shield. Only pay SMS, Voice, or WhatsApp channel charges.">
+  <!-- Sub Navigation -->
+  <SMSSubNav currentPage="verify-pricing" />
+
+  <!-- Hero + Highlights + Channel Pricing + No Charges -->
+  <VerifyPricingPage client:visible />
+
+  <!-- Cost Comparison Calculator -->
+  <VerifyPriceCalculator client:visible />
+
+  <!-- Rates Table (26 countries) -->
+  <VerifyRatesTable client:visible />
+
+  <!-- FAQ -->
+  <VerifyFAQ client:visible />
+
+  <!-- Pre-Footer CTA -->
+  <SMSPreFooterCTA client:visible />
+</PlivoLayout>

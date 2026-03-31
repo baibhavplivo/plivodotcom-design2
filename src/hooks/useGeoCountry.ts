@@ -8,13 +8,18 @@ export interface GeoInfo {
   continent: string;
 }
 
+// Default selection: India users → India, everyone else → US
+function effectiveCountry(code: string): string {
+  return code === "IN" ? "IN" : "US";
+}
+
 function getCached(): GeoInfo | null {
   if (typeof window === "undefined") return null;
   try {
     const country = sessionStorage.getItem(GEO_COUNTRY_KEY);
     const continent = sessionStorage.getItem(GEO_CONTINENT_KEY);
-    if (country && continent) return { country, continent };
-    if (country) return { country, continent: "" };
+    if (country && continent) return { country: effectiveCountry(country), continent };
+    if (country) return { country: effectiveCountry(country), continent: "" };
     return null;
   } catch {
     return null;
@@ -53,7 +58,7 @@ export function useGeoCountry(fallback: string = "US"): GeoInfo {
           } catch {
             /* quota exceeded */
           }
-          setGeo({ country, continent });
+          setGeo({ country: effectiveCountry(country), continent });
         }
       })
       .catch(() => {

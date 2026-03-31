@@ -175,8 +175,7 @@ function TwoWayConversationIllustration() {
         {/* Phone device */}
         <div className="w-[280px] sm:w-[320px] h-[500px]">
           {/* Phone outer frame */}
-          <div className="relative rounded-[36px] p-1.5 shadow-2xl h-full" style={{ background: 'linear-gradient(135deg, rgba(205, 62, 249, 0.4), rgba(50, 61, 254, 0.4))' }}>
-            <div className="absolute inset-0 rounded-[36px] opacity-15" style={{ background: 'linear-gradient(135deg, rgba(255,255,255,0.4) 0%, transparent 50%, rgba(0,0,0,0.2) 100%)' }} />
+          <div className="relative rounded-[36px] p-1.5 shadow-2xl h-full border border-gray-300 bg-gray-100">
 
             {/* Screen */}
             <div className="relative rounded-[32px] overflow-hidden bg-[#efeae2] shadow-inner h-full flex flex-col">
