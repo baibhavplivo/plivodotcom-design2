@@ -1,0 +1,42 @@
+{
+  "country": "Eritrea",
+  "country_iso": "ER",
+  "zentrunk": {
+    "local": {
+      "outbound": {
+        "network_group_rates": {
+          "0.3803": [
+            "Eritrea - Mobile"
+          ],
+          "0.3896": [
+            "Eritrea"
+          ]
+        },
+        "rate": "0.3803",
+        "rates": {
+          "0.3803": [
+            "2917"
+          ],
+          "0.3896": [
+            "291"
+          ]
+        },
+        "tollfree_rate": "NA"
+      }
+    },
+    "outbound": {
+      "network_groups": {
+        "Eritrea": "0.3896",
+        "Eritrea - Mobile": "0.3803"
+      },
+      "rates": {
+        "Fixed": [
+          "0.3896"
+        ],
+        "Mobile": [
+          "0.3803"
+        ]
+      }
+    }
+  }
+}

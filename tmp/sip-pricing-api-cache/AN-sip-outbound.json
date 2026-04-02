@@ -1,0 +1,85 @@
+{
+  "country": "Netherlands Antilles",
+  "country_iso": "AN",
+  "zentrunk": {
+    "local": {
+      "outbound": {
+        "network_group_rates": {
+          "0.1937": [
+            "Netherlands Antilles",
+            "Netherlands Antilles Bonaire",
+            "Netherlands Antilles Curacao",
+            "Netherlands Antilles Mobile",
+            "Netherlands Antilles Mobile Digicel"
+          ]
+        },
+        "rate": "0.1937",
+        "rates": {
+          "0.1937": [
+            "599",
+            "599715",
+            "599717",
+            "599718",
+            "",
+            "5993181",
+            "5993184",
+            "5993185",
+            "5993186",
+            "5993187",
+            "5993188",
+            "5993191",
+            "5993194",
+            "5993195",
+            "5993197",
+            "5993198",
+            "5994161",
+            "5994164",
+            "5994165",
+            "5994166",
+            "5994167",
+            "5994168",
+            "5994169",
+            "5995",
+            "599770",
+            "599777",
+            "59979",
+            "599951",
+            "599952",
+            "599953",
+            "599954",
+            "599956",
+            "599957",
+            "59996",
+            "599700",
+            "599701",
+            "59978",
+            "599965",
+            "599966",
+            "599967",
+            "599968",
+            "599969",
+            "5999724"
+          ]
+        },
+        "tollfree_rate": "NA"
+      }
+    },
+    "outbound": {
+      "network_groups": {
+        "Netherlands Antilles": "0.1937",
+        "Netherlands Antilles Bonaire": "0.1937",
+        "Netherlands Antilles Curacao": "0.1937",
+        "Netherlands Antilles Mobile": "0.1937",
+        "Netherlands Antilles Mobile Digicel": "0.1937"
+      },
+      "rates": {
+        "Mobile": [
+          "0.1937"
+        ],
+        "Others": [
+          "0.1937"
+        ]
+      }
+    }
+  }
+}

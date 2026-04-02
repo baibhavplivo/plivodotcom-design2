@@ -1,0 +1,45 @@
+{
+  "country": "Egypt",
+  "country_iso": "EG",
+  "zentrunk": {
+    "local": {
+      "outbound": {
+        "network_group_rates": {
+          "0.138": [
+            "Egypt"
+          ],
+          "0.188": [
+            "Egypt - Mobile"
+          ]
+        },
+        "rate": "0.138",
+        "rates": {
+          "0.138": [
+            "20"
+          ],
+          "0.188": [
+            "2010",
+            "2011",
+            "2012",
+            "2015"
+          ]
+        },
+        "tollfree_rate": "NA"
+      }
+    },
+    "outbound": {
+      "network_groups": {
+        "Egypt": "0.138",
+        "Egypt - Mobile": "0.188"
+      },
+      "rates": {
+        "Fixed": [
+          "0.138"
+        ],
+        "Mobile": [
+          "0.188"
+        ]
+      }
+    }
+  }
+}

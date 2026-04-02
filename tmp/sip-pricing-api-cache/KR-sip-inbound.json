@@ -1,0 +1,34 @@
+{
+  "country": "Korea, Republic of",
+  "country_iso": "KR",
+  "zentrunk": {
+    "inbound": {
+      "number_groups": {
+        "Korea, Republic of Local Voice": "0.0063",
+        "Korea, Republic of Tollfree Voice": "0.1064"
+      },
+      "rates": {
+        "local": [
+          "0.0063"
+        ],
+        "tollfree": [
+          "0.1064"
+        ]
+      }
+    },
+    "local": {
+      "inbound": {
+        "number_group_rates": {
+          "0.0063": [
+            "Korea, Republic of Local Voice"
+          ],
+          "0.1064": [
+            "Korea, Republic of Tollfree Voice"
+          ]
+        },
+        "rate": "0.0063",
+        "tollfree_rate": "0.1064"
+      }
+    }
+  }
+}

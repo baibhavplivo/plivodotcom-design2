@@ -1,0 +1,141 @@
+{
+  "api_id": "37dbfef6-2e6c-11f1-9396-0242ac110003",
+  "country": "Zimbabwe",
+  "country_code": 263,
+  "country_iso": "ZW",
+  "mms": {
+    "longcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "phone_numbers": [],
+  "sms": {
+    "longcode": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.10146",
+        "rates": {
+          "Zimbabwe - Econet Wireless": "0.29407",
+          "Zimbabwe - NetOne": "0.10146",
+          "Zimbabwe-Telecel": "0.32891"
+        }
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": "0.00000",
+        "rental": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "voice": {
+    "add_on_pricing": {
+      "audio_streaming_rate": 0.004,
+      "mpc_rate": 0,
+      "recording_storage_rate": 0.0004,
+      "speech_recognition": 0.02,
+      "transcription_charge": 0.0095,
+      "webrtc_rate": 0.0033
+    },
+    "ip": {
+      "inbound": {
+        "rate": "0.00330",
+        "rental": null
+      },
+      "outbound": {
+        "rates": {
+          "all": "0.00330"
+        }
+      }
+    },
+    "local": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.30100",
+        "rates": [
+          {
+            "destination_prefix": [
+              "2638630030"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.84100",
+            "voice_network_group": "Zimbabwe - Premium Services",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "263"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.30100",
+            "voice_network_group": "Zimbabwe",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "26371",
+              "26373",
+              "26377",
+              "26378"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.80100",
+            "voice_network_group": "Zimbabwe - Mobile",
+            "voice_unit": 60
+          }
+        ]
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.00000",
+        "rates": null
+      }
+    }
+  }
+}

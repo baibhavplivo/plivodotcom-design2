@@ -107,16 +107,17 @@ function AudioPlayer({
       <div className="flex items-center gap-3 px-4 py-3">
         <button
           onClick={togglePlay}
-          className={`flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full transition-colors ${
-            isGray
-              ? "bg-black text-white cta-hover-gradient"
-              : "bg-[#8b7cf6] text-white hover:bg-[#7c6ce6]"
-          }`}
+          className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full text-white transition-colors hover:scale-105"
+          style={{
+            background: isGray
+              ? "#000000"
+              : "linear-gradient(135deg, #000000 0%, #323dfe 40%, #8b5cf6 70%, #cd3ef9 100%)",
+          }}
         >
           {isPlaying ? (
-            <Pause className="h-3.5 w-3.5" />
+            <Pause className="h-3.5 w-3.5" fill="currentColor" />
           ) : (
-            <Play className="ml-0.5 h-3.5 w-3.5" />
+            <Play className="ml-0.5 h-3.5 w-3.5" fill="currentColor" />
           )}
         </button>
 

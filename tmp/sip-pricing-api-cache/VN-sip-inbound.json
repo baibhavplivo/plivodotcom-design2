@@ -1,0 +1,34 @@
+{
+  "country": "Viet Nam",
+  "country_iso": "VN",
+  "zentrunk": {
+    "inbound": {
+      "number_groups": {
+        "Viet Nam Mobile Voice": "0.0083",
+        "Viet Nam Tollfree Voice": "0.637"
+      },
+      "rates": {
+        "mobile": [
+          "0.0083"
+        ],
+        "tollfree": [
+          "0.637"
+        ]
+      }
+    },
+    "local": {
+      "inbound": {
+        "number_group_rates": {
+          "0.0083": [
+            "Viet Nam Mobile Voice"
+          ],
+          "0.637": [
+            "Viet Nam Tollfree Voice"
+          ]
+        },
+        "rate": "0.0083",
+        "tollfree_rate": "0.637"
+      }
+    }
+  }
+}

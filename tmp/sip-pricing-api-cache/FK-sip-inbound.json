@@ -1,0 +1,17 @@
+{
+  "country": "Falkland Islands (Malvinas)",
+  "country_iso": "FK",
+  "zentrunk": {
+    "inbound": {
+      "number_groups": {},
+      "rates": {}
+    },
+    "local": {
+      "inbound": {
+        "number_group_rates": {},
+        "rate": "NA",
+        "tollfree_rate": "NA"
+      }
+    }
+  }
+}

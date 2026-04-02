@@ -1,0 +1,32 @@
+{
+  "country": "Tuvalu",
+  "country_iso": "TV",
+  "zentrunk": {
+    "local": {
+      "outbound": {
+        "network_group_rates": {
+          "2.498": [
+            "Tuvalu"
+          ]
+        },
+        "rate": "2.498",
+        "rates": {
+          "2.498": [
+            "688"
+          ]
+        },
+        "tollfree_rate": "NA"
+      }
+    },
+    "outbound": {
+      "network_groups": {
+        "Tuvalu": "2.498"
+      },
+      "rates": {
+        "Others": [
+          "2.498"
+        ]
+      }
+    }
+  }
+}

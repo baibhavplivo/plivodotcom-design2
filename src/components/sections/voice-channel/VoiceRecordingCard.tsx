@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { Play, Pause } from "lucide-react";
+import { useGeoCountry } from "@/hooks/useGeoCountry";
 
 function generateWaveformBars(count: number): number[] {
   const bars: number[] = [];
@@ -20,6 +21,12 @@ export default function VoiceRecordingCard() {
   const audioRef = useRef<HTMLAudioElement>(null);
   const [waveformBars] = useState(() => generateWaveformBars(50));
   const playBtnRef = useRef<HTMLButtonElement>(null);
+  const { rawCountry } = useGeoCountry();
+  const isIndia = rawCountry === "IN";
+
+  const audioSrc = isIndia
+    ? "/audio/with-turn-detection.mp3"
+    : "/audio/us-voice-demo.mp3";
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -50,7 +57,7 @@ export default function VoiceRecordingCard() {
       audio.removeEventListener("timeupdate", handleTimeUpdate);
       audio.removeEventListener("ended", handleEnded);
     };
-  }, []);
+  }, [audioSrc]);
 
   // Native click handler (Astro hydration safe)
   useEffect(() => {
@@ -88,7 +95,7 @@ export default function VoiceRecordingCard() {
               E-commerce &amp; Retail
             </span>
             <span className="inline-block rounded-full border border-gray-200 bg-gray-50 px-3 py-1 text-xs text-gray-500">
-              {"\u{1F1EE}\u{1F1F3}"} Hindi
+              {isIndia ? "\u{1F1EE}\u{1F1F3} Hindi" : "\u{1F1FA}\u{1F1F8} English"}
             </span>
           </div>
 
@@ -104,13 +111,13 @@ export default function VoiceRecordingCard() {
               className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full text-white transition-transform hover:scale-105"
               style={{
                 background:
-                  "linear-gradient(135deg, #323dfe 0%, #8b5cf6 50%, #cd3ef9 100%)",
+                  "linear-gradient(135deg, #000000 0%, #323dfe 40%, #8b5cf6 70%, #cd3ef9 100%)",
               }}
             >
               {isPlaying ? (
-                <Pause className="h-4 w-4" />
+                <Pause className="h-4 w-4" fill="currentColor" />
               ) : (
-                <Play className="ml-0.5 h-4 w-4" />
+                <Play className="ml-0.5 h-4 w-4" fill="currentColor" />
               )}
             </button>
 
@@ -154,13 +161,15 @@ export default function VoiceRecordingCard() {
             </div>
             <div className="flex items-center justify-between">
               <span className="text-sm text-gray-400">Cost</span>
-              <span className="text-sm font-medium text-black">$0.04 vs $5.50 human agent</span>
+              <span className="text-sm font-medium text-black">
+                {isIndia ? "\u20B93.40 vs \u20B9462 human agent" : "$0.04 vs $5.50 human agent"}
+              </span>
             </div>
           </div>
         </div>
       </div>
 
-      <audio ref={audioRef} src="/audio/with-noise-cancellation.mp3" preload="metadata" />
+      <audio ref={audioRef} src={audioSrc} preload="metadata" />
     </div>
   );
 }

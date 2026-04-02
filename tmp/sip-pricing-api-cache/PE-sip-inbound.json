@@ -1,0 +1,34 @@
+{
+  "country": "Peru",
+  "country_iso": "PE",
+  "zentrunk": {
+    "inbound": {
+      "number_groups": {
+        "Peru Local Voice": "0.0063",
+        "Peru Tollfree Voice": "0.3033"
+      },
+      "rates": {
+        "local": [
+          "0.0063"
+        ],
+        "tollfree": [
+          "0.3033"
+        ]
+      }
+    },
+    "local": {
+      "inbound": {
+        "number_group_rates": {
+          "0.0063": [
+            "Peru Local Voice"
+          ],
+          "0.3033": [
+            "Peru Tollfree Voice"
+          ]
+        },
+        "rate": "0.0063",
+        "tollfree_rate": "0.3033"
+      }
+    }
+  }
+}

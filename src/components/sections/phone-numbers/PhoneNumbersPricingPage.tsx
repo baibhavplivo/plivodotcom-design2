@@ -1,70 +1,69 @@
 "use client";
 
-import { useState, useEffect, useRef, useMemo } from "react";
+import { useState, useEffect, useRef, useMemo, type CSSProperties } from "react";
 import { cn } from "@/lib/utils";
 import { ChevronDown } from "lucide-react";
 import {
-  PHONE_NUMBER_PRIORITY_COUNTRIES,
-  PHONE_NUMBER_PRICING,
-  PHONE_CALCULATOR_DATA,
+  TOP_COUNTRIES,
+  getFlagEmoji,
 } from "@/data/pricing-data";
-import type { PhoneNumberCountryPricing, PhoneNumberCompliance, PhoneCalculatorEntry } from "@/data/pricing-data";
+import type { CountryListItem } from "@/data/pricing-data";
+import {
+  PHONE_NUMBER_PRICING_CACHE,
+  PHONE_NUMBER_PRICING_COUNTRY_NAMES,
+} from "@/data/phone-number-pricing-cache";
+import type {
+  PhoneNumberCalculatorData,
+  PhoneNumberComplianceRow,
+  PhoneNumberPricingNote,
+  PhoneNumberPricingRow,
+} from "@/data/phone-number-pricing-cache";
 import { useGeoCountry } from "@/hooks/useGeoCountry";
-import { useCountryISOs } from "@/hooks/useCountryISOs";
-import { useCountryPricing } from "@/hooks/useCountryPricing";
-import { useExchangeRate } from "@/hooks/useExchangeRate";
-import type { PhoneNumberInfo } from "@/hooks/useCountryPricing";
 
-type SectionId = "number-rental" | "short-codes" | "compliance" | "calculator";
+type SectionId = "number-rental" | "short-codes" | "requirements" | "calculator";
 
-/** Map API number type string to display label */
-function formatNumberType(apiType: string): string {
-  const t = (apiType || "").toLowerCase().trim();
-  if (t === "local") return "Local numbers";
-  if (t === "tollfree") return "Toll-free numbers";
-  if (t === "mobile") return "Mobile numbers";
-  if (t === "national") return "National numbers";
-  if (t === "shared_cost") return "Shared cost numbers";
-  return apiType ? `${apiType.charAt(0).toUpperCase()}${apiType.slice(1)} numbers` : "Numbers";
-}
+const PHONE_NUMBER_COUNTRY_PRIORITY_INDEX = new Map(
+  TOP_COUNTRIES.map((country, index) => [country.code, index]),
+);
 
-/** Map API capability strings to display labels */
-function formatCapabilities(caps: string[]): string[] {
-  const mapped: string[] = [];
-  for (const c of caps) {
-    const cl = c.toLowerCase();
-    if (cl === "voice") mapped.push("Voice");
-    else if (cl === "sms") mapped.push("SMS");
-    else if (cl === "mms") mapped.push("MMS");
-    else if (cl === "sip_trunking" || cl === "sip trunking") mapped.push("SIP trunking");
-    else mapped.push(c);
-  }
-  return mapped;
-}
+const PHONE_NUMBER_COUNTRIES: CountryListItem[] = Object.entries(
+  PHONE_NUMBER_PRICING_COUNTRY_NAMES,
+)
+  .map(([code, name]) => ({
+    code,
+    name,
+    flag: TOP_COUNTRIES.find((country) => country.code === code)?.flag || getFlagEmoji(code),
+    isPriority: PHONE_NUMBER_COUNTRY_PRIORITY_INDEX.has(code),
+  }))
+  .sort((left, right) => {
+    const leftPriority = PHONE_NUMBER_COUNTRY_PRIORITY_INDEX.get(left.code);
+    const rightPriority = PHONE_NUMBER_COUNTRY_PRIORITY_INDEX.get(right.code);
 
-/** Convert API phoneNumbers to display format */
-function mapApiNumbers(
-  apiNumbers: PhoneNumberInfo[],
-  currency: string
-): PhoneNumberCountryPricing["numbers"] {
-  return apiNumbers
-    .filter((n) => (n.status === "GA" || n.status === "BETA") && n.rentalRate != null)
-    .map((n) => ({
-      type: formatNumberType(n.type),
-      price: `${currency}${n.rentalRate!.toFixed(2)}/month`,
-      capabilities: formatCapabilities(n.capabilities),
-    }));
-}
+    if (leftPriority != null && rightPriority != null) {
+      return leftPriority - rightPriority;
+    }
+    if (leftPriority != null) return -1;
+    if (rightPriority != null) return 1;
+    return left.name.localeCompare(right.name);
+  });
+
+const PHONE_NUMBER_COUNTRY_CODE_SET = new Set(
+  PHONE_NUMBER_COUNTRIES.map((country) => country.code),
+);
 
 export default function PhoneNumbersPricingPage({ initialCountry }: { initialCountry?: string } = {}) {
-  const { country: geoCountry } = useGeoCountry();
-  const { countries: countryList, loading: countriesLoading } = useCountryISOs(PHONE_NUMBER_PRIORITY_COUNTRIES);
+  const { country: geoCountry } = useGeoCountry("US", { mode: "exact" });
 
-  const [selectedCode, setSelectedCode] = useState(initialCountry || "US");
+  const [selectedCode, setSelectedCode] = useState(() => {
+    const normalizedInitialCountry = initialCountry?.toUpperCase();
+    return normalizedInitialCountry && PHONE_NUMBER_COUNTRY_CODE_SET.has(normalizedInitialCountry)
+      ? normalizedInitialCountry
+      : "US";
+  });
   const [isCountryOpen, setIsCountryOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [activeSection, setActiveSection] = useState<SectionId>("number-rental");
-  const [sidebarStyle, setSidebarStyle] = useState<React.CSSProperties>({});
+  const [sidebarStyle, setSidebarStyle] = useState<CSSProperties>({});
   const sidebarWrapperRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -74,94 +73,63 @@ export default function PhoneNumbersPricingPage({ initialCountry }: { initialCou
   const countryListRef = useRef<HTMLDivElement>(null);
   const sectionTabsRef = useRef<HTMLElement>(null);
 
-  // Fetch live pricing from API + exchange rate for INR conversion
-  const { data: pricingData, loading: pricingLoading } = useCountryPricing(selectedCode);
-  const { formatPrice, convertToINR, convertPriceString } = useExchangeRate();
-
   // Auto-select country based on IP geolocation
   useEffect(() => {
     if (geoApplied.current || initialCountry) return;
-    if (geoCountry && geoCountry !== "US") {
+    if (geoCountry && geoCountry !== "US" && PHONE_NUMBER_COUNTRY_CODE_SET.has(geoCountry)) {
       geoApplied.current = true;
       setSelectedCode(geoCountry);
-    } else if (geoCountry === "US") {
+      history.replaceState({}, "", `/virtual-phone-numbers/pricing/${geoCountry.toLowerCase()}/`);
+    } else if (geoCountry === "US" || !geoCountry || !PHONE_NUMBER_COUNTRY_CODE_SET.has(geoCountry)) {
       geoApplied.current = true;
+      setSelectedCode("US");
+      history.replaceState({}, "", `/virtual-phone-numbers/pricing/us/`);
     }
   }, [geoCountry, initialCountry]);
 
   // Get the selected country item for display
   const selectedCountry = useMemo(() => {
-    const found = countryList.find((c) => c.code === selectedCode);
+    const found = PHONE_NUMBER_COUNTRIES.find((c) => c.code === selectedCode);
     return found || { code: selectedCode, name: selectedCode, flag: "", isPriority: false };
-  }, [countryList, selectedCode]);
+  }, [selectedCode]);
 
   const filteredCountries = useMemo(() => {
-    if (!searchQuery) return countryList;
+    if (!searchQuery) return PHONE_NUMBER_COUNTRIES;
     const q = searchQuery.toLowerCase();
-    return countryList.filter(
+    return PHONE_NUMBER_COUNTRIES.filter(
       (c) => c.name.toLowerCase().includes(q) || c.code.toLowerCase().includes(q)
     );
-  }, [searchQuery, countryList]);
+  }, [searchQuery]);
 
-  // Convert a price string to local currency if needed
-  const cp = (price: string) => convertPriceString(price, selectedCode);
+  const pricingData = useMemo(
+    () => PHONE_NUMBER_PRICING_CACHE[selectedCode] || null,
+    [selectedCode],
+  );
 
-  // Build display data from API response, falling back to hardcoded
-  const { regularNumbers, shortCodes, note, compliance, hasData } = useMemo(() => {
-    const fallback = PHONE_NUMBER_PRICING[selectedCode];
-
-    const convertNumbers = (nums: PhoneNumberCountryPricing["numbers"]) =>
-      nums.map((n) => ({
-        ...n,
-        price: cp(n.price),
-        children: n.children?.map((c) => ({ ...c, price: cp(c.price) })),
-      }));
-
-    // Try API data first
-    if (pricingData && pricingData.phoneNumbers.length > 0) {
-      const apiNumbers = mapApiNumbers(pricingData.phoneNumbers, "$");
-      const hardcodedShortCodes = fallback?.numbers.filter((n) => n.children) || [];
-      return {
-        regularNumbers: convertNumbers(apiNumbers.length > 0 ? apiNumbers : (fallback?.numbers.filter((n) => !n.children) || [])),
-        shortCodes: convertNumbers(hardcodedShortCodes),
-        note: fallback?.note,
-        compliance: fallback?.compliance || [],
-        hasData: true,
-      };
-    }
-
-    // Fallback to hardcoded data
-    if (fallback) {
-      return {
-        regularNumbers: convertNumbers(fallback.numbers.filter((n) => !n.children)),
-        shortCodes: convertNumbers(fallback.numbers.filter((n) => n.children)),
-        note: fallback.note,
-        compliance: fallback.compliance || [],
-        hasData: true,
-      };
-    }
-
-    // No data available for this country
-    return { regularNumbers: [], shortCodes: [], note: undefined, compliance: [] as PhoneNumberCompliance[], hasData: false };
-  }, [pricingData, selectedCode, cp]);
-
-  const calcData = useMemo(() => PHONE_CALCULATOR_DATA[selectedCode] || null, [selectedCode]);
+  const regularNumbers = pricingData?.regularNumbers || [];
+  const regularNote = pricingData?.regularNote || null;
+  const shortCodes = pricingData?.shortCodes || [];
+  const shortCodeNote = pricingData?.shortCodeNote || null;
+  const requirements = pricingData?.compliance || [];
+  const calcData = pricingData?.calculator || null;
+  const pricingLoading = false;
+  const hasData = regularNumbers.length > 0;
 
   const sections = useMemo(() => {
     const s: { id: SectionId; label: string }[] = [
-      { id: "number-rental", label: "Number rental" },
+      { id: "number-rental", label: "Phone Number Rental" },
     ];
     if (shortCodes.length > 0) {
-      s.push({ id: "short-codes", label: "Short codes" });
+      s.push({ id: "short-codes", label: "Short Codes" });
     }
-    if (compliance.length > 0) {
-      s.push({ id: "compliance", label: "Compliance" });
+    if (requirements.length > 0) {
+      s.push({ id: "requirements", label: "Requirements" });
     }
     if (calcData) {
-      s.push({ id: "calculator", label: "Calculator" });
+      s.push({ id: "calculator", label: "Estimate" });
     }
     return s;
-  }, [shortCodes, compliance, calcData]);
+  }, [shortCodes, requirements, calcData]);
 
   // Close dropdown on outside click
   useEffect(() => {
@@ -211,6 +179,7 @@ export default function PhoneNumbersPricingPage({ initialCountry }: { initialCou
       setSelectedCode(code);
       setIsCountryOpen(false);
       setSearchQuery("");
+      history.replaceState({}, "", `/virtual-phone-numbers/pricing/${code.toLowerCase()}/`);
     };
     el.addEventListener("click", handler);
     return () => el.removeEventListener("click", handler);
@@ -292,10 +261,10 @@ export default function PhoneNumbersPricingPage({ initialCountry }: { initialCou
         <div className="container mx-auto max-w-7xl px-4">
           <div className="text-center">
             <h1 className="font-sora text-[2rem] sm:text-[2.5rem] md:text-[3rem] font-normal leading-[1.1] tracking-[-0.02em] text-black mb-4">
-              Phone number pricing
+              Phone Numbers Pricing
             </h1>
             <p className="text-gray-600 text-base sm:text-lg max-w-2xl mx-auto">
-              Transparent pricing for local, mobile, toll-free, and national numbers across 65+ countries.
+              Competitive pay-as-you-go phone number pricing with add-on features included. Volume discounts on committed spends as you scale.
             </p>
           </div>
         </div>
@@ -311,7 +280,7 @@ export default function PhoneNumbersPricingPage({ initialCountry }: { initialCou
                 {/* Country Selector */}
                 <div className="relative mb-6" ref={dropdownRef}>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Select country
+                    Select Country
                   </label>
                   <button
                     ref={countryToggleRef}
@@ -398,7 +367,7 @@ export default function PhoneNumbersPricingPage({ initialCountry }: { initialCou
                 {pricingLoading ? (
                   <NumberRentalShimmer />
                 ) : hasData && regularNumbers.length > 0 ? (
-                  <NumberRentalSection numbers={regularNumbers} />
+                  <NumberRentalSection numbers={regularNumbers} note={regularNote} />
                 ) : (
                   <NoDataSection />
                 )}
@@ -407,21 +376,21 @@ export default function PhoneNumbersPricingPage({ initialCountry }: { initialCou
               {/* Short Codes */}
               {shortCodes.length > 0 && (
                 <div id="short-codes" className="bg-white rounded-xl border border-gray-200 p-6 mb-6">
-                  <ShortCodesSection shortCodes={shortCodes} note={note} />
+                  <ShortCodesSection shortCodes={shortCodes} note={shortCodeNote} />
                 </div>
               )}
 
-              {/* Compliance Requirements */}
-              {compliance.length > 0 && (
-                <div id="compliance" className="bg-white rounded-xl border border-gray-200 p-6 mb-6">
-                  <ComplianceSection requirements={compliance} />
+              {/* Requirements */}
+              {requirements.length > 0 && (
+                <div id="requirements" className="bg-white rounded-xl border border-gray-200 p-6 mb-6">
+                  <ComplianceSection requirements={requirements} />
                 </div>
               )}
 
               {/* Calculator */}
               {calcData && (
                 <div id="calculator" className="bg-white rounded-xl border border-gray-200 p-6 mb-6">
-                  <CalculatorSection data={calcData} isIndia={selectedCode === "IN"} />
+                  <CalculatorSection data={calcData} />
                 </div>
               )}
             </div>
@@ -454,11 +423,11 @@ function NoDataSection() {
   return (
     <div>
       <h2 className="font-sans text-xl font-semibold text-black mb-2">
-        Number rental rates
+        Phone Number Rental
       </h2>
       <p className="text-sm text-gray-500">
         Phone number pricing is not available for this country.{" "}
-        <a href="/contact-sales/" className="text-[#323dfe] hover:underline">
+        <a href="/contact/sales/" className="text-[#323dfe] hover:underline">
           Contact sales
         </a>{" "}
         for details.
@@ -469,30 +438,29 @@ function NoDataSection() {
 
 function NumberRentalSection({
   numbers,
+  note,
 }: {
-  numbers: PhoneNumberCountryPricing["numbers"];
+  numbers: PhoneNumberPricingRow[];
+  note: PhoneNumberPricingNote | null;
 }) {
   return (
     <div>
       <h2 className="font-sans text-xl font-semibold text-black mb-2">
-        Number rental rates
+        Phone Number Rental
       </h2>
-      <p className="text-sm text-gray-500 mb-6">
-        Monthly rental rates for phone numbers by type.
-      </p>
 
       <div className="overflow-x-auto">
         <table className="w-full table-fixed">
           <thead>
             <tr className="border-b border-gray-200">
               <th className="py-3 pr-4 text-left text-sm font-semibold text-black w-[40%]">
-                Number type
+                Route Type
               </th>
               <th className="py-3 pr-4 text-left text-sm font-semibold text-black w-[30%]">
-                Price
+                Capability
               </th>
               <th className="py-3 text-left text-sm font-semibold text-black w-[30%]">
-                Capabilities
+                Price
               </th>
             </tr>
           </thead>
@@ -501,9 +469,6 @@ function NumberRentalSection({
               <tr key={number.type}>
                 <td className="py-3 pr-4 text-sm text-gray-900">
                   {number.type}
-                </td>
-                <td className="py-3 pr-4 text-sm font-medium text-black">
-                  {number.price}
                 </td>
                 <td className="py-3 text-sm text-gray-600">
                   <div className="flex flex-wrap gap-1.5">
@@ -517,11 +482,18 @@ function NumberRentalSection({
                     ))}
                   </div>
                 </td>
+                <td className="py-3 pr-4 text-sm font-medium text-black">
+                  {number.price}
+                </td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
+
+      {note && (
+        <PricingNote note={note} className="mt-4" />
+      )}
     </div>
   );
 }
@@ -530,17 +502,14 @@ function ShortCodesSection({
   shortCodes,
   note,
 }: {
-  shortCodes: PhoneNumberCountryPricing["numbers"];
-  note?: string;
+  shortCodes: PhoneNumberPricingRow[];
+  note: PhoneNumberPricingNote | null;
 }) {
   return (
     <div>
       <h2 className="font-sans text-xl font-semibold text-black mb-2">
         Short codes
       </h2>
-      <p className="text-sm text-gray-500 mb-6">
-        Dedicated short codes for high-volume messaging.
-      </p>
 
       <div className="overflow-x-auto">
         <table className="w-full table-fixed">
@@ -550,46 +519,42 @@ function ShortCodesSection({
                 Type
               </th>
               <th className="py-3 pr-4 text-left text-sm font-semibold text-black w-[30%]">
-                Price
+                Capability
               </th>
               <th className="py-3 text-left text-sm font-semibold text-black w-[30%]">
-                Capabilities
+                Price
               </th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-100">
-            {shortCodes.map((sc) =>
-              sc.children?.map((child) => (
-                <tr key={child.type}>
-                  <td className="py-3 pr-4 text-sm text-gray-900">
-                    {child.type}
-                  </td>
-                  <td className="py-3 pr-4 text-sm font-medium text-black">
-                    {child.price}
-                  </td>
-                  <td className="py-3 text-sm text-gray-600">
-                    <div className="flex flex-wrap gap-1.5">
-                      {sc.capabilities.map((cap) => (
-                        <span
-                          key={cap}
-                          className="inline-flex px-2 py-0.5 rounded-full text-[11px] font-medium bg-gray-100 text-gray-700"
-                        >
-                          {cap}
-                        </span>
-                      ))}
-                    </div>
-                  </td>
-                </tr>
-              ))
-            )}
+            {shortCodes.map((shortCode) => (
+              <tr key={shortCode.type}>
+                <td className="py-3 pr-4 text-sm text-gray-900">
+                  {shortCode.type}
+                </td>
+                <td className="py-3 text-sm text-gray-600">
+                  <div className="flex flex-wrap gap-1.5">
+                    {shortCode.capabilities.map((cap) => (
+                      <span
+                        key={cap}
+                        className="inline-flex px-2 py-0.5 rounded-full text-[11px] font-medium bg-gray-100 text-gray-700"
+                      >
+                        {cap}
+                      </span>
+                    ))}
+                  </div>
+                </td>
+                <td className="py-3 pr-4 text-sm font-medium text-black">
+                  {shortCode.price}
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
 
       {note && (
-        <p className="mt-4 text-xs text-gray-500 bg-gray-50 rounded-lg px-4 py-3">
-          {note}
-        </p>
+        <PricingNote note={note} className="mt-4" />
       )}
     </div>
   );
@@ -598,23 +563,39 @@ function ShortCodesSection({
 function ComplianceSection({
   requirements,
 }: {
-  requirements: PhoneNumberCompliance[];
+  requirements: PhoneNumberComplianceRow[];
 }) {
   return (
     <div>
       <h2 className="font-sans text-xl font-semibold text-black mb-2">
-        Compliance requirements
+        Requirements
       </h2>
-      <p className="text-sm text-gray-500 mb-6">
-        Documentation and registration required for number purchase in this country.
-      </p>
-      <div className="space-y-3">
-        {requirements.map((req) => (
-          <div key={req.label} className="bg-gray-50 rounded-lg px-4 py-3">
-            <p className="text-sm font-medium text-gray-900">{req.label}</p>
-            <p className="text-sm text-gray-600 mt-1">{req.detail}</p>
-          </div>
-        ))}
+
+      <div className="overflow-x-auto">
+        <table className="w-full table-fixed">
+          <thead>
+            <tr className="border-b border-gray-200">
+              <th className="py-3 pr-4 text-left text-sm font-semibold text-black w-[35%]">
+                Number Type
+              </th>
+              <th className="py-3 text-left text-sm font-semibold text-black w-[65%]">
+                Compliance Requirements
+              </th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-gray-100">
+            {requirements.map((req) => (
+              <tr key={req.label}>
+                <td className="py-3 pr-4 text-sm text-gray-900">
+                  {req.label}
+                </td>
+                <td className="py-3 text-sm text-gray-600">
+                  {req.detail}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );
@@ -630,10 +611,8 @@ const CALC_TYPES = [
 
 function CalculatorSection({
   data,
-  isIndia,
 }: {
-  data: PhoneCalculatorEntry;
-  isIndia: boolean;
+  data: PhoneNumberCalculatorData;
 }) {
   const [active, setActive] = useState<Record<string, boolean>>({});
   const checkboxRefs = useRef<Map<string, HTMLDivElement>>(new Map());
@@ -662,8 +641,8 @@ function CalculatorSection({
     };
   }, [data]);
 
-  const currency = isIndia ? "₹" : "$";
-  const currencyLabel = isIndia ? "INR" : "USD";
+  const currency = data.currency;
+  const currencyLabel = currency === "₹" ? "INR" : "USD";
 
   const availableTypes = CALC_TYPES.filter((t) => data[t.key] > 0);
   const grandTotal = availableTypes.reduce(
@@ -672,7 +651,7 @@ function CalculatorSection({
   );
 
   const fmt = (n: number) =>
-    n.toLocaleString(isIndia ? "en-IN" : "en-US", {
+    n.toLocaleString(currency === "₹" ? "en-IN" : "en-US", {
       minimumFractionDigits: 2,
       maximumFractionDigits: 2,
     });
@@ -680,7 +659,7 @@ function CalculatorSection({
   return (
     <div>
       <h2 className="font-sans text-xl font-semibold text-black mb-2">
-        Estimate your monthly cost
+        Estimate
       </h2>
       <p className="text-sm text-gray-500 mb-6">
         Select the number types you need to see the estimated monthly rental.
@@ -755,5 +734,30 @@ function CalculatorSection({
         </div>
       </div>
     </div>
+  );
+}
+
+function PricingNote({
+  note,
+  className,
+}: {
+  note: PhoneNumberPricingNote;
+  className?: string;
+}) {
+  return (
+    <p className={cn("rounded-lg bg-gray-50 px-4 py-3 text-xs text-gray-500", className)}>
+      {note.href ? (
+        <a
+          href={note.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-[#323dfe] hover:underline"
+        >
+          {note.text}
+        </a>
+      ) : (
+        note.text
+      )}
+    </p>
   );
 }

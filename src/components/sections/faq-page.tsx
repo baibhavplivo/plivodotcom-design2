@@ -10,7 +10,7 @@ import { Button } from "../ui/button";
 
 import { cn } from "@/lib/utils";
 
-type Category = "Support" | "Account" | "Features" | "Security" | "Other";
+type Category = "Getting Started" | "Products" | "Pricing" | "Security" | "Support";
 
 interface FAQItem {
   question: string;
@@ -19,119 +19,123 @@ interface FAQItem {
 }
 
 const faqItems: FAQItem[] = [
-  // Support Questions
+  // Getting Started
   {
-    category: "Support",
-    question: "Is there a free version?",
+    category: "Getting Started",
+    question: "What is Plivo?",
     answer:
-      "Yes! We offer a generous free plan with just enough features except that one feature you really want! Our strategy is to get your credit card details on file then steadily double our prices against inflation rates.",
+      "Plivo is a cloud communications platform that enables businesses to build, deploy, and scale AI-powered voice and messaging solutions. From no-code AI agent builders to flexible APIs for developers, Plivo powers customer interactions across voice, SMS, WhatsApp, and web chat.",
   },
   {
-    category: "Support",
-    question: "Is support free, or do I need to Perplexity everything?",
+    category: "Getting Started",
+    question: "How do I get started with Plivo?",
     answer:
-      "We pride ourselves on our comprehensive support system. Our chatbot will happily redirect you to our documentation, which will then redirect you back to the chatbot.",
+      "Sign up for a free Plivo account to receive trial credits. No credit card is required. You can start building voice AI agents with our no-code Agent Studio, send SMS or WhatsApp messages via our APIs, or explore our full product suite from the console.",
   },
   {
-    category: "Support",
-    question: "What if I need immediate assistance?",
+    category: "Getting Started",
+    question: "Do I need technical expertise to use Plivo?",
     answer:
-      "Our AI support team will get back to you in approximately 3-5 business years.",
+      "Not necessarily. Our no-code Agent Studio lets non-technical teams build and deploy AI agents without writing code. For developers, we offer comprehensive APIs, SDKs (Python, Node.js, Ruby, PHP, Java, .NET, Go), and detailed documentation.",
   },
-  // Account Questions
+  // Products
   {
-    category: "Account",
-    question: "How do I update my account without breaking my laptop?",
+    category: "Products",
+    question: "What products does Plivo offer?",
     answer:
-      "Our platform is designed to be extremely user-friendly. Just follow our simple 47-step process, and you should be fine!",
+      "Plivo offers Voice AI Agents, SMS, WhatsApp Business API, web chat agents, SIP trunking, virtual phone numbers, and Verify (OTP/2FA). All products can be used independently or combined for omnichannel customer engagement.",
   },
   {
-    category: "Account",
-    question: "How do I update my account without breaking the universe?",
-    answer: "Just be very careful not to press any buttons too hard.",
-  },
-  {
-    category: "Account",
-    question: "What happens if I forget my password?",
-    answer: "You'll need to solve three riddles and defeat a dragon.",
-  },
-  // Features Questions
-  {
-    category: "Features",
-    question: "Are you going to be subsumed by AI?",
+    category: "Products",
+    question: "What are Voice AI Agents?",
     answer:
-      "Probably! But until then, we'll keep pretending we're irreplaceable.",
+      "Voice AI Agents are intelligent virtual assistants that handle inbound and outbound phone calls with human-like conversation quality. They can schedule appointments, manage orders, resolve support issues, and qualify leads — all with sub-500ms latency.",
   },
   {
-    category: "Features",
-    question: "What makes your platform unique?",
+    category: "Products",
+    question: "What channels does Plivo support?",
     answer:
-      "We use at least 7 different types of AI, and none of them work together!",
+      "Plivo supports voice calls (PSTN and SIP), SMS, MMS, WhatsApp Business messaging and calling, and web chat. You can reach customers on the channels they prefer with a unified platform.",
+  },
+  // Pricing
+  {
+    category: "Pricing",
+    question: "How does Plivo pricing work?",
+    answer:
+      "Plivo uses pay-as-you-go pricing with no monthly commitments or minimum fees. Voice calls are billed per minute, SMS per message, and WhatsApp per conversation. Volume discounts are available for high-usage customers.",
   },
   {
-    category: "Features",
-    question: "Do you support integration with other tools?",
-    answer: "We integrate with everything except the tools you actually use.",
+    category: "Pricing",
+    question: "Is there a free trial?",
+    answer:
+      "Yes, new accounts receive free trial credits with no credit card required. This lets you test voice, SMS, WhatsApp, and AI Agent capabilities before committing to paid usage.",
   },
-  // Security Questions
+  {
+    category: "Pricing",
+    question: "What payment methods do you accept?",
+    answer:
+      "We accept all major credit cards (Visa, Mastercard, American Express) and ACH bank transfers for US-based customers. Enterprise customers can arrange invoice-based billing.",
+  },
+  // Security
   {
     category: "Security",
-    question: "How secure is my data?",
+    question: "How secure is Plivo?",
     answer:
-      'We use military-grade encryption, but our password is "password123".',
-  },
-  {
-    category: "Security",
-    question: "What happens in case of a data breach?",
-    answer:
-      "We'll send you a very apologetic email with a $5 gift card to your local coffee shop.",
+      "Plivo is SOC 2 Type II compliant and follows enterprise-grade security practices. All data is encrypted in transit (TLS) and at rest. We maintain strict access controls, regular security audits, and comprehensive monitoring across our global infrastructure.",
   },
   {
     category: "Security",
-    question: "Do you have a backup system?",
+    question: "Is Plivo compliant with industry regulations?",
     answer:
-      "Yes, we back up everything to a USB stick that we keep in a very safe place... somewhere.",
-  },
-  // Other Questions
-  {
-    category: "Other",
-    question: "Why is your pricing so complicated?",
-    answer:
-      "Because simple pricing would make it too easy for you to understand what you're paying for.",
+      "Yes. Plivo supports GDPR, HIPAA, TCPA, and other regulatory requirements. We provide tools for consent management, opt-out handling, and data residency to help you stay compliant across different markets.",
   },
   {
-    category: "Other",
-    question: "Do you offer refunds?",
+    category: "Security",
+    question: "Where is my data stored?",
     answer:
-      "Yes, but only if you can prove you're from an alternate dimension.",
+      "Plivo operates a globally distributed infrastructure with data centers in multiple regions. Enterprise customers can discuss data residency requirements with our sales team to meet specific compliance needs.",
+  },
+  // Support
+  {
+    category: "Support",
+    question: "What support options are available?",
+    answer:
+      "All Plivo accounts get access to our documentation, community resources, and email support. Business and Enterprise plans include priority support with dedicated account managers and faster response times.",
   },
   {
-    category: "Other",
-    question: "What's your roadmap look like?",
-    answer: "It's more of a road-squiggle, really. We're agile!",
+    category: "Support",
+    question: "Do you offer onboarding assistance?",
+    answer:
+      "Yes. Our team helps with WhatsApp Business API approval, number provisioning, integration setup, and AI agent configuration. Enterprise customers receive dedicated onboarding and solution architecture support.",
+  },
+  {
+    category: "Support",
+    question: "Is there a contract or commitment required?",
+    answer:
+      "No. Plivo operates on a pay-as-you-go model with no contracts or long-term commitments. You can start and stop using our services at any time. Enterprise customers may opt for annual agreements with additional benefits.",
   },
 ];
 
 const categories: Category[] = [
-  "Support",
-  "Account",
-  "Features",
+  "Getting Started",
+  "Products",
+  "Pricing",
   "Security",
-  "Other",
+  "Support",
 ];
 
 const TOP_PADDING = 300;
 
 export const FAQPage = () => {
-  const [activeCategory, setActiveCategory] = useState<Category>("Support");
+  const [activeCategory, setActiveCategory] = useState<Category>("Getting Started");
   const observerRef = useRef<IntersectionObserver | null>(null);
   const isScrollingRef = useRef(false);
   const categoryRefs = useRef<Record<Category, HTMLDivElement | null>>({
-    Support: null,
-    Account: null,
-    Features: null,
+    "Getting Started": null,
+    Products: null,
+    Pricing: null,
     Security: null,
-    Other: null,
+    Support: null,
   });
 
   const setupObserver = useCallback(() => {
@@ -229,12 +233,11 @@ export const FAQPage = () => {
     <section className="bg-sand-100 min-h-screen py-16 md:py-28 lg:py-32">
       <div className="container max-w-4xl">
         <div className="text-center">
-          <h1 className="text-center text-4xl font-semibold tracking-tight sm:text-5xl">
-            We've got answers
+          <h1 className="font-sora text-center text-4xl font-normal tracking-tight sm:text-5xl">
+            Frequently asked questions
           </h1>
           <p className="mx-auto mt-4 max-w-xl text-balance text-center text-muted-foreground">
-            This really should be an LLM but we're waiting for RAG to truly
-            reach commodity stage before we touch it.
+            Everything you need to know about Plivo's cloud communications platform.
           </p>
         </div>
 

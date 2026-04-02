@@ -1,0 +1,27 @@
+{
+  "country": "Singapore",
+  "country_iso": "SG",
+  "zentrunk": {
+    "inbound": {
+      "number_groups": {
+        "Singapore National Voice": "0.0063"
+      },
+      "rates": {
+        "national": [
+          "0.0063"
+        ]
+      }
+    },
+    "local": {
+      "inbound": {
+        "number_group_rates": {
+          "0.0063": [
+            "Singapore National Voice"
+          ]
+        },
+        "rate": "0.0063",
+        "tollfree_rate": "NA"
+      }
+    }
+  }
+}

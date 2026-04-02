@@ -1,0 +1,42 @@
+{
+  "country": "Finland",
+  "country_iso": "FI",
+  "zentrunk": {
+    "inbound": {
+      "number_groups": {
+        "Finland Local Voice": "0.003",
+        "Finland Mobile Voice & SMS": "0.003",
+        "Finland National Voice": "0.003",
+        "Finland Tollfree Voice": "0.2444"
+      },
+      "rates": {
+        "local": [
+          "0.003"
+        ],
+        "mobile": [
+          "0.003"
+        ],
+        "national": [
+          "0.003"
+        ],
+        "tollfree": [
+          "0.2444"
+        ]
+      }
+    },
+    "local": {
+      "inbound": {
+        "number_group_rates": {
+          "0.003": [
+            "Finland National Voice"
+          ],
+          "0.2444": [
+            "Finland Tollfree Voice"
+          ]
+        },
+        "rate": "0.003",
+        "tollfree_rate": "0.2444"
+      }
+    }
+  }
+}

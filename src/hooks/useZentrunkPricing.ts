@@ -34,7 +34,7 @@ function safeFirst(val: any): number {
 }
 
 /**
- * Fetches live SIP trunking pricing from Zentrunk Inbound + Outbound APIs.
+ * Fetches live SIP trunking pricing from the SIP Trunking inbound + outbound APIs.
  * Falls back to hardcoded SIP_RATES on error.
  */
 export function useZentrunkPricing(countryCode: string): {

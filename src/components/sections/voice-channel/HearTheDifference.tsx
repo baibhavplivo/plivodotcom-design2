@@ -207,13 +207,13 @@ function AudioDemoCard({
           onClick={togglePlay}
           className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full text-white transition-colors"
           style={{
-            background: "linear-gradient(135deg, #323dfe 0%, #cd3ef9 50%, #9ca3af 100%)",
+            background: "linear-gradient(135deg, #000000 0%, #323dfe 40%, #8b5cf6 70%, #cd3ef9 100%)",
           }}
         >
           {isPlaying ? (
-            <Pause className="h-5 w-5" />
+            <Pause className="h-5 w-5" fill="currentColor" />
           ) : (
-            <Play className="ml-0.5 h-5 w-5" />
+            <Play className="ml-0.5 h-5 w-5" fill="currentColor" />
           )}
         </button>
 

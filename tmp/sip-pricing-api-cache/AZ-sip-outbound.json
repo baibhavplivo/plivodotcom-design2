@@ -1,0 +1,59 @@
+{
+  "country": "Azerbaijan",
+  "country_iso": "AZ",
+  "zentrunk": {
+    "local": {
+      "outbound": {
+        "network_group_rates": {
+          "0.278": [
+            "Azerbaijan"
+          ],
+          "0.4487": [
+            "Azerbaijan - Mobile - Others (Bakcell)"
+          ],
+          "1.5433": [
+            "Azerbaijan - Mobile"
+          ]
+        },
+        "rate": "0.278",
+        "rates": {
+          "0.278": [
+            "994"
+          ],
+          "0.4487": [
+            "99455"
+          ],
+          "1.5433": [
+            "994400",
+            "994404",
+            "99444",
+            "99450",
+            "99451",
+            "99460",
+            "99470",
+            "99477",
+            "994881122",
+            "994900333"
+          ]
+        },
+        "tollfree_rate": "NA"
+      }
+    },
+    "outbound": {
+      "network_groups": {
+        "Azerbaijan": "0.278",
+        "Azerbaijan - Mobile": "1.5433",
+        "Azerbaijan - Mobile - Others (Bakcell)": "0.4487"
+      },
+      "rates": {
+        "Fixed": [
+          "0.278"
+        ],
+        "Mobile": [
+          "0.4487",
+          "1.5433"
+        ]
+      }
+    }
+  }
+}

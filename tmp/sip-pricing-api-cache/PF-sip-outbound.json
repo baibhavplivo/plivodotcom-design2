@@ -1,0 +1,42 @@
+{
+  "country": "French Polynesia",
+  "country_iso": "PF",
+  "zentrunk": {
+    "local": {
+      "outbound": {
+        "network_group_rates": {
+          "0.448": [
+            "French Polynesia",
+            "French Polynesia Mobile"
+          ]
+        },
+        "rate": "0.448",
+        "rates": {
+          "0.448": [
+            "689",
+            "6892",
+            "6893",
+            "6897",
+            "68987",
+            "68989"
+          ]
+        },
+        "tollfree_rate": "NA"
+      }
+    },
+    "outbound": {
+      "network_groups": {
+        "French Polynesia": "0.448",
+        "French Polynesia Mobile": "0.448"
+      },
+      "rates": {
+        "Fixed": [
+          "0.448"
+        ],
+        "Mobile": [
+          "0.448"
+        ]
+      }
+    }
+  }
+}

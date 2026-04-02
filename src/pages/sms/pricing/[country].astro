@@ -1,23 +1,26 @@
 ---
 import PlivoLayout from "@/layouts/PlivoLayout.astro";
 import SMSSubNav from "@/components/sections/sms-channel/SMSSubNav.astro";
-import SMSPricingTabs from "@/components/sections/sms-channel/SMSPricingTabs";
+import SMSPricingPage from "@/components/sections/sms-channel/SMSPricingPage";
 import SMSPreFooterCTA from "@/components/sections/sms-channel/SMSPreFooterCTA";
-import { COUNTRY_NAMES } from "@/data/pricing-data";
+import {
+  SMS_PRICING_COUNTRY_CODES,
+  getSMSPricingMeta,
+} from "@/data/sms-pricing-page";
 
 export function getStaticPaths() {
-  return Object.keys(COUNTRY_NAMES).map((code) => ({
+  return SMS_PRICING_COUNTRY_CODES.map((code) => ({
     params: { country: code.toLowerCase() },
     props: { countryCode: code },
   }));
 }
 
 const { countryCode } = Astro.props;
-const countryName = COUNTRY_NAMES[countryCode] || countryCode;
+const { title, description } = getSMSPricingMeta(countryCode);
 ---
 
-<PlivoLayout title={`SMS Pricing - ${countryName} | Plivo`} description={`Explore Plivo's SMS and RCS pricing for ${countryName}. View rates for SMS, MMS, phone number rental, and add-on services.`}>
+<PlivoLayout title={title} description={description}>
   <SMSSubNav currentPage="pricing" />
-  <SMSPricingTabs client:visible initialCountry={countryCode} />
+  <SMSPricingPage client:load initialCountry={countryCode} />
   <SMSPreFooterCTA client:visible />
 </PlivoLayout>

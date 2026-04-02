@@ -1,0 +1,34 @@
+{
+  "country": "Greece",
+  "country_iso": "GR",
+  "zentrunk": {
+    "inbound": {
+      "number_groups": {
+        "Greece Local Voice": "0.003",
+        "Greece Tollfree Voice": "0.1059"
+      },
+      "rates": {
+        "local": [
+          "0.003"
+        ],
+        "tollfree": [
+          "0.1059"
+        ]
+      }
+    },
+    "local": {
+      "inbound": {
+        "number_group_rates": {
+          "0.003": [
+            "Greece Local Voice"
+          ],
+          "0.1059": [
+            "Greece Tollfree Voice"
+          ]
+        },
+        "rate": "0.003",
+        "tollfree_rate": "0.1059"
+      }
+    }
+  }
+}

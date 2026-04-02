@@ -1,0 +1,167 @@
+{
+  "api_id": "148c1a9e-2e6c-11f1-9396-0242ac110003",
+  "country": "Mozambique",
+  "country_code": 258,
+  "country_iso": "MZ",
+  "mms": {
+    "longcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "phone_numbers": [],
+  "sms": {
+    "longcode": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.13330",
+        "rates": {
+          "Mozambique - Mcel": "0.13330",
+          "Mozambique - Movitel S.A.": "0.82000",
+          "Mozambique - Vodacom": "0.18650",
+          "Mozambique-Others": "0.72000"
+        }
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": "0.00000",
+        "rental": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "voice": {
+    "add_on_pricing": {
+      "audio_streaming_rate": 0.004,
+      "mpc_rate": 0,
+      "recording_storage_rate": 0.0004,
+      "speech_recognition": 0.02,
+      "transcription_charge": 0.0095,
+      "webrtc_rate": 0.0033
+    },
+    "ip": {
+      "inbound": {
+        "rate": "0.00330",
+        "rental": null
+      },
+      "outbound": {
+        "rates": {
+          "all": "0.00330"
+        }
+      }
+    },
+    "local": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.08080",
+        "rates": [
+          {
+            "destination_prefix": [
+              "25882",
+              "25883",
+              "25886",
+              "25887"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.32510",
+            "voice_network_group": "Mozambique - Mobile - Major Carriers (Mcel, Movitel)",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "258"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.08080",
+            "voice_network_group": "Mozambique",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "25884",
+              "25885",
+              "258852894998",
+              "258852894999",
+              "258852895",
+              "258852896",
+              "258852897",
+              "258852898",
+              "2588528990",
+              "2588528991",
+              "2588528992",
+              "2588528993",
+              "2588528994",
+              "2588528995",
+              "2588528996",
+              "2588528997",
+              "2588528998",
+              "25885289990",
+              "25885289991",
+              "25885289992",
+              "25885289993",
+              "25885289994",
+              "25885289995",
+              "25885289996",
+              "25885289997",
+              "25885289998"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.59710",
+            "voice_network_group": "Mozambique - Mobile",
+            "voice_unit": 60
+          }
+        ]
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.00000",
+        "rates": null
+      }
+    }
+  }
+}

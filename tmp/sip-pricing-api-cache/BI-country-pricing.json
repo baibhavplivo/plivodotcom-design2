@@ -1,0 +1,205 @@
+{
+  "api_id": "d239f1f2-2e6b-11f1-921b-0242ac110007",
+  "country": "Burundi",
+  "country_code": 257,
+  "country_iso": "BI",
+  "mms": {
+    "longcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "phone_numbers": [],
+  "sms": {
+    "longcode": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.30820",
+        "rates": {
+          "Burundi - Africell": "0.34590",
+          "Burundi - Econet Wireless": "0.34590",
+          "Burundi - Lacell (Smart Mobile)": "0.30820",
+          "Burundi - Onatel": "0.30820",
+          "Burundi - U-COM": "0.40883",
+          "Burundi-Others": "0.30820"
+        }
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": "0.00000",
+        "rental": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "voice": {
+    "add_on_pricing": {
+      "audio_streaming_rate": 0.004,
+      "mpc_rate": 0,
+      "recording_storage_rate": 0.0004,
+      "speech_recognition": 0.02,
+      "transcription_charge": 0.0095,
+      "webrtc_rate": 0.0033
+    },
+    "ip": {
+      "inbound": {
+        "rate": "0.00330",
+        "rental": null
+      },
+      "outbound": {
+        "rates": {
+          "all": "0.00330"
+        }
+      }
+    },
+    "local": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.96100",
+        "rates": [
+          {
+            "destination_prefix": [
+              "257"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.96100",
+            "voice_network_group": "Burundi",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "25731",
+              "25761",
+              "25768",
+              "25769",
+              "25771",
+              "25772",
+              "25775",
+              "25776",
+              "25777",
+              "25778",
+              "2577810",
+              "2577813",
+              "257783",
+              "25779"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.96100",
+            "voice_network_group": "Burundi - Mobile",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "2571419134",
+              "25721899021",
+              "25721899022",
+              "2572221043",
+              "25722213610",
+              "2572221401",
+              "25722214020",
+              "25722214021",
+              "2572221407",
+              "2572221409",
+              "25722214228",
+              "25722214253",
+              "25722214425",
+              "25722214837",
+              "25722217242",
+              "25722217472",
+              "25722223301",
+              "257222235",
+              "25722223771",
+              "2572222403",
+              "25722224244",
+              "25722224693",
+              "25722228000",
+              "2572222803",
+              "25722228360",
+              "25722228458",
+              "25722228607",
+              "25722228872",
+              "25722228932",
+              "2572228673",
+              "2572910",
+              "25729200157",
+              "25729200158",
+              "2572920016",
+              "257292009",
+              "257293000",
+              "2572930012",
+              "25729300185",
+              "25729300187",
+              "25729300212",
+              "25729300213",
+              "25729300214",
+              "25729300301",
+              "25729300306",
+              "25729300324",
+              "25729300413",
+              "257293009",
+              "2577485",
+              "2578582821",
+              "25789771192",
+              "25789771666",
+              "2579777"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "1.20100",
+            "voice_network_group": "Burundi - Premium Services",
+            "voice_unit": 60
+          }
+        ]
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.00000",
+        "rates": null
+      }
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "country": "Bermuda",
+  "country_iso": "BM",
+  "zentrunk": {
+    "local": {
+      "outbound": {
+        "network_group_rates": {
+          "0.06": [
+            "Bermuda"
+          ]
+        },
+        "rate": "0.06",
+        "rates": {
+          "0.06": [
+            "1441"
+          ]
+        },
+        "tollfree_rate": "NA"
+      }
+    },
+    "outbound": {
+      "network_groups": {
+        "Bermuda": "0.06"
+      },
+      "rates": {
+        "Fixed": [
+          "0.06"
+        ]
+      }
+    }
+  }
+}

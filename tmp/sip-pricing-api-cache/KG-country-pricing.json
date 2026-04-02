@@ -1,0 +1,186 @@
+{
+  "api_id": "09622524-2e6b-11f1-8f3c-0242ac110007",
+  "country": "Kyrgyzstan",
+  "country_code": 996,
+  "country_iso": "KG",
+  "mms": {
+    "longcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "phone_numbers": [],
+  "sms": {
+    "longcode": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.29480",
+        "rates": {
+          "BiMoCom (Megacom)": "0.34675",
+          "Bitel": "0.35986",
+          "Kyrgyzstan-Fonex": "0.29480",
+          "Kyrgyzstan-Others": "0.54990",
+          "Nur Telecom": "0.36240"
+        }
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": "0.00000",
+        "rental": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "voice": {
+    "add_on_pricing": {
+      "audio_streaming_rate": 0.004,
+      "mpc_rate": 0,
+      "recording_storage_rate": 0.0004,
+      "speech_recognition": 0.02,
+      "transcription_charge": 0.0095,
+      "webrtc_rate": 0.0033
+    },
+    "ip": {
+      "inbound": {
+        "rate": "0.00330",
+        "rental": null
+      },
+      "outbound": {
+        "rates": {
+          "all": "0.00330"
+        }
+      }
+    },
+    "local": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.22030",
+        "rates": [
+          {
+            "destination_prefix": [
+              "996",
+              "996312"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.22030",
+            "voice_network_group": "Kyrgyzstan",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "996200",
+              "996201",
+              "996202",
+              "996203",
+              "996204",
+              "996205",
+              "99622",
+              "99650",
+              "996500",
+              "996501",
+              "996502",
+              "996505",
+              "996507",
+              "99651",
+              "99652",
+              "996543",
+              "996545",
+              "99655",
+              "99656550",
+              "99656647",
+              "99656669",
+              "99656688",
+              "99656689",
+              "9965669",
+              "99657",
+              "9966119",
+              "9966126",
+              "99670",
+              "996755",
+              "99677",
+              "996996",
+              "996999"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.27560",
+            "voice_network_group": "Kyrgyzstan - Mobile",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "996312264",
+              "996312788",
+              "99631286",
+              "996566200",
+              "99656687",
+              "996609255",
+              "99665511",
+              "996800230",
+              "996800231",
+              "996800990",
+              "9969120",
+              "9969125",
+              "9969126",
+              "9969127",
+              "9969128"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "2.59100",
+            "voice_network_group": "Kyrgyzstan - Premium Services",
+            "voice_unit": 60
+          }
+        ]
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.00000",
+        "rates": null
+      }
+    }
+  }
+}

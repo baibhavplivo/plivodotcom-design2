@@ -1,0 +1,75 @@
+{
+  "country": "Benin",
+  "country_iso": "BJ",
+  "zentrunk": {
+    "local": {
+      "outbound": {
+        "network_group_rates": {
+          "0.4828": [
+            "Benin - Mobile - Others (Libercom)"
+          ],
+          "0.5579": [
+            "Benin Mobility Services"
+          ],
+          "0.5857": [
+            "Benin",
+            "Benin - Mobile Major Carriers (BELL, Moov, MTN)"
+          ]
+        },
+        "rate": "0.4828",
+        "rates": {
+          "0.4828": [
+            "22990"
+          ],
+          "0.5579": [
+            "2299229",
+            "2299800043"
+          ],
+          "0.5857": [
+            "229",
+            "22960",
+            "22961",
+            "22962",
+            "22963",
+            "22964",
+            "22965",
+            "22966",
+            "22967",
+            "22968",
+            "22969",
+            "22991",
+            "22992",
+            "22993",
+            "22994",
+            "22995",
+            "22996",
+            "22997",
+            "22998",
+            "22999"
+          ]
+        },
+        "tollfree_rate": "NA"
+      }
+    },
+    "outbound": {
+      "network_groups": {
+        "Benin": "0.5857",
+        "Benin - Mobile - Others (Libercom)": "0.4828",
+        "Benin - Mobile Major Carriers (BELL, Moov, MTN)": "0.5857",
+        "Benin Mobility Services": "0.5579"
+      },
+      "rates": {
+        "Fixed": [
+          "0.5857"
+        ],
+        "Mobile": [
+          "0.4828",
+          "0.5857"
+        ],
+        "Others": [
+          "0.5579"
+        ]
+      }
+    }
+  }
+}

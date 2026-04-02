@@ -1,0 +1,31 @@
+{
+  "country": "Hong Kong",
+  "country_iso": "HK",
+  "zentrunk": {
+    "inbound": {
+      "number_groups": {
+        "Hong Kong National Voice": "0.0063",
+        "Hong Kong local Voice": "0.0063"
+      },
+      "rates": {
+        "local": [
+          "0.0063"
+        ],
+        "national": [
+          "0.0063"
+        ]
+      }
+    },
+    "local": {
+      "inbound": {
+        "number_group_rates": {
+          "0.0063": [
+            "Hong Kong local Voice"
+          ]
+        },
+        "rate": "0.0063",
+        "tollfree_rate": "NA"
+      }
+    }
+  }
+}

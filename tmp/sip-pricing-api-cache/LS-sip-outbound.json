@@ -1,0 +1,50 @@
+{
+  "country": "Lesotho",
+  "country_iso": "LS",
+  "zentrunk": {
+    "local": {
+      "outbound": {
+        "network_group_rates": {
+          "0.6133": [
+            "Lesotho Mobile Econet"
+          ],
+          "0.6335": [
+            "Lesotho Mobile Vodacom"
+          ],
+          "0.6468": [
+            "Lesotho"
+          ]
+        },
+        "rate": "0.6133",
+        "rates": {
+          "0.6133": [
+            "2666"
+          ],
+          "0.6335": [
+            "2665"
+          ],
+          "0.6468": [
+            "266"
+          ]
+        },
+        "tollfree_rate": "NA"
+      }
+    },
+    "outbound": {
+      "network_groups": {
+        "Lesotho": "0.6468",
+        "Lesotho Mobile Econet": "0.6133",
+        "Lesotho Mobile Vodacom": "0.6335"
+      },
+      "rates": {
+        "Fixed": [
+          "0.6468"
+        ],
+        "Mobile": [
+          "0.6133",
+          "0.6335"
+        ]
+      }
+    }
+  }
+}

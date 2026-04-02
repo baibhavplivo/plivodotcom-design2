@@ -1,17 +1,18 @@
 /**
- * Fixed USD to INR conversion using rate of 85 (matching live plivo.com).
- * The live site uses a hardcoded multiplier, not a live exchange rate.
+ * Default fixed USD to INR conversion.
+ * Individual pricing pages can override this when their live-source parity
+ * requires a different hardcoded multiplier.
  */
-const FIXED_INR_RATE = 85;
+const DEFAULT_INR_RATE = 85;
 
-export function useExchangeRate(): {
+export function useExchangeRate(overrideRate?: number): {
   rate: number;
   loading: boolean;
   convertToINR: (usd: number) => number;
   formatPrice: (usd: number | string, countryCode: string, unit: string) => string;
   convertPriceString: (priceStr: string, countryCode: string) => string;
 } {
-  const rate = FIXED_INR_RATE;
+  const rate = overrideRate ?? DEFAULT_INR_RATE;
   const loading = false;
 
   const convertToINR = (usd: number) => usd * rate;

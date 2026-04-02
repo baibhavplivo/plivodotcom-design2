@@ -1,0 +1,33 @@
+---
+import PlivoLayout from "@/layouts/PlivoLayout.astro";
+import SIPTrunkingSubNav from "@/components/sections/voice-channel/SIPTrunkingSubNav.astro";
+import SIPTrunkingPricing from "@/components/sections/voice-channel/SIPTrunkingPricing";
+import PreFooterCTA from "@/components/sections/voice-homepage/PreFooterCTA";
+import {
+  SIP_PRICING_COUNTRY_CODES,
+  SIP_PRICING_DATA,
+} from "@/data/sip-pricing-page";
+
+export function getStaticPaths() {
+  return SIP_PRICING_COUNTRY_CODES.map((code) => ({
+    params: { country: code.toLowerCase() },
+    props: { countryCode: code },
+  }));
+}
+
+const { countryCode } = Astro.props;
+const countryName = SIP_PRICING_DATA[countryCode]?.name || countryCode;
+---
+
+<PlivoLayout
+  title={`SIP Trunking Pricing - ${countryName} | Plivo`}
+  description={`SIP Trunking pricing for ${countryName}. Competitive inbound and outbound calling rates, number rental, add-on services, and detailed network pricing.`}
+>
+  <SIPTrunkingSubNav currentPage="pricing" />
+  <SIPTrunkingPricing client:load initialCountry={countryCode} />
+  <PreFooterCTA
+    client:visible
+    title="It's easy to get started. Sign up for free."
+    subtitle="Create your account and receive trial credits or get in touch with us."
+  />
+</PlivoLayout>

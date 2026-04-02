@@ -1,0 +1,58 @@
+{
+  "country": "Venezuela",
+  "country_iso": "VE",
+  "zentrunk": {
+    "local": {
+      "outbound": {
+        "network_group_rates": {
+          "0.043": [
+            "Venezuela"
+          ],
+          "0.118": [
+            "Venezuela - Mobile"
+          ],
+          "0.898": [
+            "Venezuela - Premium Services"
+          ]
+        },
+        "rate": "0.043",
+        "rates": {
+          "0.043": [
+            "58",
+            "58212"
+          ],
+          "0.118": [
+            "5841",
+            "58412",
+            "58414",
+            "58416",
+            "58424",
+            "58426"
+          ],
+          "0.898": [
+            "58415217"
+          ]
+        },
+        "tollfree_rate": "NA"
+      }
+    },
+    "outbound": {
+      "network_groups": {
+        "Venezuela": "0.043",
+        "Venezuela - Mobile": "0.118",
+        "Venezuela - Premium Services": "0.898"
+      },
+      "rates": {
+        "Fixed": [
+          "0.043"
+        ],
+        "Mobile": [
+          "0.118"
+        ],
+        "Others": [
+          "0.898"
+        ]
+      }
+    }
+  }
+}

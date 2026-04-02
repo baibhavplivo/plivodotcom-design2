@@ -9,11 +9,29 @@ interface Props {
 }
 
 const { title, description = "Plivo enables businesses to communicate with their customers through voice, messaging, and more with APIs that simplify cloud communications." } = Astro.props;
+const isDev = import.meta.env.DEV;
+const gtmContainerId = import.meta.env.PROD
+  ? (import.meta.env.PUBLIC_GTM_CONTAINER_ID || "GTM-MXJNN5")
+  : "";
+const gtmAllowedHosts = (import.meta.env.PUBLIC_GTM_ALLOWED_HOSTS || "www.plivo.com")
+  .split(",")
+  .map((host) => host.trim())
+  .filter(Boolean);
 ---
 
 <html lang="en">
   <head>
     <BaseHead title={`${title} | Plivo`} description={description} />
+    {isDev && (
+      <script type="module" is:inline>
+        import RefreshRuntime from "/@react-refresh";
+
+        RefreshRuntime.injectIntoGlobalHook(window);
+        window.$RefreshReg$ = () => {};
+        window.$RefreshSig$ = () => (type) => type;
+        window.__vite_plugin_react_preamble_installed__ = true;
+      </script>
+    )}
   </head>
   <body class="min-h-screen bg-white antialiased">
     <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:rounded-md focus:bg-black focus:px-4 focus:py-2 focus:text-sm focus:text-white focus:outline-none">
@@ -94,10 +112,32 @@ const { title, description = "Plivo enables businesses to communicate with their
     </script>
 
     <!-- Cookie consent banner + analytics loader -->
-    <script is:inline>
+    <script
+      is:inline
+      define:vars={{ gtmContainerId, gtmAllowedHosts }}
+    >
     (function() {
       var consent = null;
       try { consent = localStorage.getItem("plivo_cookie_consent"); } catch(e) {}
+
+      function loadGTM() {
+        if (!gtmContainerId || !Array.isArray(gtmAllowedHosts)) return;
+        if (gtmAllowedHosts.indexOf(window.location.hostname) === -1) return;
+        if (window.__plivoGtmLoaded || document.getElementById("plivo-gtm-script")) return;
+
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          "gtm.start": new Date().getTime(),
+          event: "gtm.js"
+        });
+
+        var gtmScript = document.createElement("script");
+        gtmScript.id = "plivo-gtm-script";
+        gtmScript.async = true;
+        gtmScript.src = "https://www.googletagmanager.com/gtm.js?id=" + encodeURIComponent(gtmContainerId);
+        document.head.appendChild(gtmScript);
+        window.__plivoGtmLoaded = true;
+      }
 
       function loadAnalytics() {
         // HubSpot tracking (portal 20451141)
@@ -109,19 +149,8 @@ const { title, description = "Plivo enables businesses to communicate with their
           hs.src = "//js.hs-scripts.com/20451141.js";
           document.body.appendChild(hs);
         }
-        // GA4 — replace GA_MEASUREMENT_ID with actual ID when available
-        var GA_ID = "GA_MEASUREMENT_ID";
-        if (GA_ID !== "GA_MEASUREMENT_ID" && !document.getElementById("ga4-script")) {
-          var ga = document.createElement("script");
-          ga.id = "ga4-script";
-          ga.async = true;
-          ga.src = "https://www.googletagmanager.com/gtag/js?id=" + GA_ID;
-          document.head.appendChild(ga);
-          window.dataLayer = window.dataLayer || [];
-          function gtag() { window.dataLayer.push(arguments); }
-          gtag("js", new Date());
-          gtag("config", GA_ID);
-        }
+
+        loadGTM();
       }
 
       if (consent === "accepted") {

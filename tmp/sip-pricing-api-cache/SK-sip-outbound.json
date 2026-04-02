@@ -1,0 +1,83 @@
+{
+  "country": "Slovakia",
+  "country_iso": "SK",
+  "zentrunk": {
+    "local": {
+      "outbound": {
+        "network_group_rates": {
+          "0.0042": [
+            "Slovakia",
+            "Slovakia - Mobile"
+          ],
+          "0.0376": [
+            "Slovakia - Mobile - Major Carriers (O2, Orange, Slovak Telecom, SWAN)"
+          ],
+          "1.058": [
+            "Slovakia - Premium Services"
+          ]
+        },
+        "rate": "0.0042",
+        "rates": {
+          "0.0042": [
+            "421",
+            "42118",
+            "421913"
+          ],
+          "0.0376": [
+            "421901",
+            "421902",
+            "421903",
+            "421904",
+            "421905",
+            "421906",
+            "421907",
+            "421908",
+            "421909",
+            "421910",
+            "421911",
+            "421912",
+            "421914",
+            "421915",
+            "421916",
+            "421917",
+            "421918",
+            "421919",
+            "421940",
+            "421944",
+            "421945",
+            "421947",
+            "421948",
+            "421949",
+            "421950",
+            "421951"
+          ],
+          "1.058": [
+            "421650700",
+            "421650906"
+          ]
+        },
+        "tollfree_rate": "NA"
+      }
+    },
+    "outbound": {
+      "network_groups": {
+        "Slovakia": "0.0042",
+        "Slovakia - Mobile": "0.0042",
+        "Slovakia - Mobile - Major Carriers (O2, Orange, Slovak Telecom, SWAN)": "0.0376",
+        "Slovakia - Premium Services": "1.058"
+      },
+      "rates": {
+        "Fixed": [
+          "0.0042"
+        ],
+        "Mobile": [
+          "0.0042",
+          "0.0376"
+        ],
+        "Others": [
+          "1.058"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,169 @@
+{
+  "api_id": "d94ceabe-2e69-11f1-8590-0242ac110007",
+  "country": "Honduras",
+  "country_code": 504,
+  "country_iso": "HN",
+  "mms": {
+    "longcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "phone_numbers": [],
+  "sms": {
+    "longcode": {
+      "inbound": {
+        "rate": "0.00000",
+        "rental": "121.00000"
+      },
+      "outbound": {
+        "rate": "0.20285",
+        "rates": {
+          "Honduras - Default": "0.25900",
+          "Honduras - Digicel Honduras": "0.23398",
+          "Honduras - Hondutel (Empresa Hondurena de Telecomunicaciones)": "0.23398",
+          "Honduras - Sercom (Claro)": "0.20285",
+          "Honduras - Telefonica Celular S.A (CELTEL) (Tigo)": "0.26746"
+        }
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": "0.00000",
+        "rental": "121.00000"
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "voice": {
+    "add_on_pricing": {
+      "audio_streaming_rate": 0.004,
+      "mpc_rate": 0,
+      "recording_storage_rate": 0.0004,
+      "speech_recognition": 0.02,
+      "transcription_charge": 0.0095,
+      "webrtc_rate": 0.0033
+    },
+    "ip": {
+      "inbound": {
+        "rate": "0.00330",
+        "rental": null
+      },
+      "outbound": {
+        "rates": {
+          "all": "0.00330"
+        }
+      }
+    },
+    "local": {
+      "inbound": {
+        "rate": "0.02000",
+        "rental": "400.00000"
+      },
+      "outbound": {
+        "rate": "0.23500",
+        "rates": [
+          {
+            "destination_prefix": [
+              "504"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.23500",
+            "voice_network_group": "Honduras",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "5043",
+              "504314",
+              "504315",
+              "504316",
+              "504317",
+              "504318",
+              "504319",
+              "50432",
+              "50433",
+              "5047214",
+              "5047215",
+              "5047216",
+              "5047217",
+              "5047218",
+              "5047219",
+              "5047240",
+              "5047241",
+              "5047250",
+              "5047251",
+              "5047252",
+              "50474100",
+              "50474101",
+              "50474102",
+              "50474103",
+              "50474104",
+              "5047411",
+              "50474120",
+              "50474121",
+              "50474122",
+              "50474123",
+              "50474124",
+              "50487",
+              "50488",
+              "50489",
+              "5049",
+              "50494",
+              "50495",
+              "50496",
+              "50497",
+              "50498",
+              "50499"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.24080",
+            "voice_network_group": "Honduras - Mobile",
+            "voice_unit": 60
+          }
+        ]
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.00000",
+        "rates": null
+      }
+    }
+  }
+}

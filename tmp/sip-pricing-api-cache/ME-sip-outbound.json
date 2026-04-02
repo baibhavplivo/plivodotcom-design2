@@ -1,0 +1,61 @@
+{
+  "country": "Montenegro",
+  "country_iso": "ME",
+  "zentrunk": {
+    "local": {
+      "outbound": {
+        "network_group_rates": {
+          "0.2513": [
+            "Montenegro"
+          ],
+          "0.599": [
+            "Montenegro - Mobile"
+          ],
+          "0.948": [
+            "Montenegro - Premium Services"
+          ]
+        },
+        "rate": "0.2513",
+        "rates": {
+          "0.2513": [
+            "382"
+          ],
+          "0.599": [
+            "38260",
+            "38263",
+            "38266",
+            "38267",
+            "38268",
+            "38269"
+          ],
+          "0.948": [
+            "382578435",
+            "38278",
+            "382876",
+            "382877",
+            "38288"
+          ]
+        },
+        "tollfree_rate": "NA"
+      }
+    },
+    "outbound": {
+      "network_groups": {
+        "Montenegro": "0.2513",
+        "Montenegro - Mobile": "0.599",
+        "Montenegro - Premium Services": "0.948"
+      },
+      "rates": {
+        "Fixed": [
+          "0.2513"
+        ],
+        "Mobile": [
+          "0.599"
+        ],
+        "Others": [
+          "0.948"
+        ]
+      }
+    }
+  }
+}

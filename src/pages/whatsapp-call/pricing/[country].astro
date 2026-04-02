@@ -2,22 +2,27 @@
 import PlivoLayout from "@/layouts/PlivoLayout.astro";
 import WhatsAppSubNav from "@/components/sections/whatsapp-channel/WhatsAppSubNav.astro";
 import WhatsAppCallPricing from "@/components/sections/whatsapp-channel/WhatsAppCallPricing";
-import WhatsAppPreFooterCTA from "@/components/sections/whatsapp-channel/WhatsAppPreFooterCTA";
-import { COUNTRY_NAMES } from "@/data/pricing-data";
+import WhatsAppPricingVolumeCTA from "@/components/sections/whatsapp-channel/WhatsAppPricingVolumeCTA";
+import WhatsAppCallPricingFAQ from "@/components/sections/whatsapp-channel/WhatsAppCallPricingFAQ";
+import {
+  WHATSAPP_CALL_COUNTRY_CODES,
+  getWhatsAppCallPricingMeta,
+} from "@/data/whatsapp-call-pricing";
 
 export function getStaticPaths() {
-  return Object.keys(COUNTRY_NAMES).map((code) => ({
+  return WHATSAPP_CALL_COUNTRY_CODES.map((code) => ({
     params: { country: code.toLowerCase() },
     props: { countryCode: code },
   }));
 }
 
 const { countryCode } = Astro.props;
-const countryName = COUNTRY_NAMES[countryCode] || countryCode;
+const { title, description } = getWhatsAppCallPricingMeta(countryCode);
 ---
 
-<PlivoLayout title={`WhatsApp Call Pricing - ${countryName} | Plivo`} description={`WhatsApp voice call pricing for ${countryName}. Per-minute rates for inbound and outbound WhatsApp calls.`}>
+<PlivoLayout title={title} description={description}>
   <WhatsAppSubNav currentPage="call-pricing" />
   <WhatsAppCallPricing client:visible initialCountry={countryCode} />
-  <WhatsAppPreFooterCTA client:visible />
+  <WhatsAppPricingVolumeCTA />
+  <WhatsAppCallPricingFAQ />
 </PlivoLayout>

@@ -3,20 +3,22 @@ import PlivoLayout from "@/layouts/PlivoLayout.astro";
 import VoiceSubNav from "@/components/sections/voice-channel/VoiceSubNav.astro";
 import VoicePricingTabs from "@/components/sections/voice-channel/VoicePricingTabs";
 import PreFooterCTA from "@/components/sections/voice-homepage/PreFooterCTA";
-import { COUNTRY_NAMES } from "@/data/pricing-data";
+import { VOICE_PRICING_COUNTRY_CODES } from "@/data/voice-pricing-cache";
 
 export function getStaticPaths() {
-  return Object.keys(COUNTRY_NAMES).map((code) => ({
+  return VOICE_PRICING_COUNTRY_CODES.map((code) => ({
     params: { country: code.toLowerCase() },
     props: { countryCode: code },
   }));
 }
 
 const { countryCode } = Astro.props;
-const countryName = COUNTRY_NAMES[countryCode] || countryCode;
 ---
 
-<PlivoLayout title={`Voice Pricing - ${countryName} | Plivo`} description={`Explore Plivo's voice API pricing for ${countryName}. Per-minute rates for voice calls, SIP trunking, and phone number rental.`}>
+<PlivoLayout
+  title="Voice Pricing"
+  description="Competitive pay-as-you-go voice pricing. Compare country-specific calling, number rental, and add-on costs as you scale."
+>
   <VoiceSubNav currentPage="pricing" />
   <VoicePricingTabs client:visible initialCountry={countryCode} />
   <PreFooterCTA client:visible />

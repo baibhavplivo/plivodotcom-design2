@@ -1,0 +1,57 @@
+{
+  "country": "Cape Verde",
+  "country_iso": "CV",
+  "zentrunk": {
+    "local": {
+      "outbound": {
+        "network_group_rates": {
+          "0.2658": [
+            "Cape Verde"
+          ],
+          "0.4027": [
+            "Cape Verde - Mobile"
+          ]
+        },
+        "rate": "0.2658",
+        "rates": {
+          "0.2658": [
+            "238"
+          ],
+          "0.4027": [
+            "23833",
+            "23836",
+            "23843",
+            "23846",
+            "23851",
+            "23852",
+            "23853",
+            "23858",
+            "23859",
+            "23891",
+            "23892",
+            "23893",
+            "23895",
+            "23897",
+            "23898",
+            "23899"
+          ]
+        },
+        "tollfree_rate": "NA"
+      }
+    },
+    "outbound": {
+      "network_groups": {
+        "Cape Verde": "0.2658",
+        "Cape Verde - Mobile": "0.4027"
+      },
+      "rates": {
+        "Fixed": [
+          "0.2658"
+        ],
+        "Mobile": [
+          "0.4027"
+        ]
+      }
+    }
+  }
+}

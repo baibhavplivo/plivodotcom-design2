@@ -14,29 +14,29 @@ interface FAQItem {
 
 const faqs: FAQItem[] = [
   {
-    question: "How much does it cost to set up a business phone number?",
+    question: "How much does a virtual phone number cost on Plivo?",
     answer:
-      "The cost of setting up a business phone number can vary significantly based on the type of phone system, size of the business, and the company's specific needs. Initial set up costs can vary from minimal - for VoIP systems, for instance - to potentially thousands of dollars for a traditional set up. A small business can expect to pay between $20 and $100 per month per line, depending on the chosen service type and features.",
+      "Plivo offers competitive pay-as-you-go pricing for phone numbers. US local numbers start at $0.50/month, toll-free numbers at $1.00/month, and pricing varies by country and number type. There are no setup fees. Visit our pricing page at /virtual-phone-numbers/pricing/ for detailed rates by country.",
   },
   {
     question: "Does Plivo provide free phone numbers?",
     answer:
-      "While we do not provide free numbers, we do offer trial credits for new accounts to trial our services and features. Refer to our pricing page to learn more about phone number rentals: https://www.plivo.com/virtual-phone-numbers/pricing/",
+      "While we do not provide free numbers, new accounts receive trial credits to test our services and features. You can use these credits to rent numbers and make test calls or send messages. Visit our pricing page at /virtual-phone-numbers/pricing/ for phone number rental rates.",
   },
   {
-    question: "What are options for business phone numbers?",
+    question: "What types of phone numbers does Plivo offer?",
     answer:
-      "There are many options for business phone numbers, including local numbers for voice and SMS; national numbers for voice; and toll-free numbers for voice, SMS, and MMS; mobile numbers for voice, SMS, and MMS; short codes for SMS and MMS; and more.",
+      "Plivo offers local numbers for voice and SMS, toll-free numbers for voice, SMS, and MMS, mobile numbers for voice, SMS, and MMS, and short codes for high-volume SMS and MMS. Numbers are available across 100+ countries.",
   },
   {
     question: "How do I get a toll-free number for my business?",
     answer:
-      "You can get a toll-free number for your business through a service provider like Plivo. Simply sign up for a Plivo account and purchase one the Plivo console (Phone Numbers > Buy Numbers) or through the Plivo Toll-free Verification API.",
+      "You can get a toll-free number through Plivo by signing up for an account and purchasing one from the Plivo console (Phone Numbers > Buy Numbers) or through the Plivo Phone Number API. Toll-free verification is required for US/Canadian toll-free numbers used for messaging.",
   },
   {
-    question: "How do I know if a phone number is owned by Twilio?",
+    question: "Can I port my existing phone numbers to Plivo?",
     answer:
-      "Find out if a phone number is owned by Twilio by texting the Twilio lookup bot (1-855-747-ROBO), using Twilio's Lookup API, or referring to the resources found in Twilio's helper libraries.",
+      "Yes, Plivo supports number porting for most number types across supported countries. You can keep your existing phone numbers while taking advantage of Plivo's platform. Contact our sales team to initiate a porting request.",
   },
 ];
 

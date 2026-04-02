@@ -1,0 +1,32 @@
+{
+  "country": "Palau",
+  "country_iso": "PW",
+  "zentrunk": {
+    "local": {
+      "outbound": {
+        "network_group_rates": {
+          "0.798": [
+            "Palau"
+          ]
+        },
+        "rate": "0.798",
+        "rates": {
+          "0.798": [
+            "680"
+          ]
+        },
+        "tollfree_rate": "NA"
+      }
+    },
+    "outbound": {
+      "network_groups": {
+        "Palau": "0.798"
+      },
+      "rates": {
+        "Fixed": [
+          "0.798"
+        ]
+      }
+    }
+  }
+}

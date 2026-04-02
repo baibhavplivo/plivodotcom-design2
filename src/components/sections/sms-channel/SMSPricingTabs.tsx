@@ -50,7 +50,7 @@ function scrollToCarrierFees() {
 }
 
 export default function SMSPricingTabs({ initialCountry }: { initialCountry?: string } = {}) {
-  const { country: geoCountry } = useGeoCountry();
+  const { country: geoCountry } = useGeoCountry("US", { mode: "exact" });
   const { countries } = useCountryISOs();
   const [selectedCountry, setSelectedCountry] = useState<CountryListItem>(countries[0]);
   const [isCountryOpen, setIsCountryOpen] = useState(false);
@@ -59,9 +59,18 @@ export default function SMSPricingTabs({ initialCountry }: { initialCountry?: st
   const { data: pricingData, loading } = useCountryPricing(selectedCountry.code);
   const liveSmsRates = pricingData?.smsRates || [];
   const smsNetworkRates = pricingData?.smsNetworkRates || [];
-  const phoneNumbers = (pricingData?.phoneNumbers || []).filter(
-    (pn) => pn.rentalRate != null && pn.rentalRate > 0
-  );
+  const phoneNumbers = useMemo(() => {
+    const all = (pricingData?.phoneNumbers || []).filter(
+      (pn: any) => pn.status === "GA" && Number(pn.rentalRate ?? 0) > 0
+    );
+    const byType = new Map<string, typeof all[0]>();
+    for (const pn of all) {
+      const existing = byType.get(pn.type);
+      if (!existing || Number(pn.rentalRate ?? 0) < Number(existing.rentalRate ?? 0))
+        byType.set(pn.type, pn);
+    }
+    return Array.from(byType.values());
+  }, [pricingData]);
 
   // Hardcoded enrichment (MMS, carrier fees) from SMS_RATES
   const hardcodedRates: SMSCountryRates | null = SMS_RATES[selectedCountry.code] || null;
@@ -71,7 +80,10 @@ export default function SMSPricingTabs({ initialCountry }: { initialCountry?: st
     const target = initialCountry || geoCountry;
     if (!target) return;
     const match = countries.find(c => c.code === target);
-    if (match) setSelectedCountry(match);
+    if (match) {
+      setSelectedCountry(match);
+      if (!initialCountry) history.replaceState({}, "", `/sms/pricing/${target.toLowerCase()}/`);
+    }
   }, [geoCountry, countries, initialCountry]);
   const [activeSection, setActiveSection] = useState<SectionId>("sms");
   const [sidebarStyle, setSidebarStyle] = useState<React.CSSProperties>({});
@@ -641,11 +653,11 @@ function LivePhoneNumbersSection({ phoneNumbers, loading, countryCode }: { phone
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-100">
-            {phoneNumbers.map((pn) => (
-              <tr key={pn.type}>
+            {phoneNumbers.map((pn, idx) => (
+              <tr key={`${pn.type}-${idx}`}>
                 <td className="py-3 pr-4 text-sm text-gray-900">{pn.type}</td>
                 <td className="py-3 text-sm font-medium text-black">
-                  {loading ? <Shimmer /> : convertPriceString(`$${(pn.rentalRate ?? 0).toFixed(2)}/month`, countryCode)}
+                  {loading ? <Shimmer /> : convertPriceString(`$${Number(pn.rentalRate ?? 0).toFixed(2)}/month`, countryCode)}
                 </td>
               </tr>
             ))}
@@ -755,60 +767,9 @@ function AddOnServicesSection() {
 }
 
 function SMSCostCalculator({ countryCode }: { countryCode: string }) {
-  const [selectedCountry, setSelectedCountry] = useState<CalculatorEntry>(() => {
-    return SMS_CALCULATOR_DATA.find(c => c.code === countryCode) || SMS_CALCULATOR_DATA[0];
-  });
+  const calcData = useMemo(() => SMS_CALCULATOR_DATA.find(c => c.code === countryCode), [countryCode]);
   const [volume, setVolume] = useState(100000);
-  const [isOpen, setIsOpen] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement>(null);
-
-  // Refs for native event listeners
-  const calcCountryToggleRef = useRef<HTMLButtonElement>(null);
-  const calcCountryListRef = useRef<HTMLDivElement>(null);
   const volumeSliderRef = useRef<HTMLInputElement>(null);
-
-  // Sync calculator country when main page country changes
-  useEffect(() => {
-    const match = SMS_CALCULATOR_DATA.find(c => c.code === countryCode);
-    if (match) setSelectedCountry(match);
-  }, [countryCode]);
-
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        setIsOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
-
-  // Native event listener: Calculator country dropdown toggle
-  useEffect(() => {
-    const el = calcCountryToggleRef.current;
-    if (!el) return;
-    const handler = () => setIsOpen((prev) => !prev);
-    el.addEventListener("click", handler);
-    return () => el.removeEventListener("click", handler);
-  }, []);
-
-  // Native event listener: Calculator country list items (event delegation)
-  useEffect(() => {
-    const el = calcCountryListRef.current;
-    if (!el) return;
-    const handler = (e: MouseEvent) => {
-      const item = (e.target as HTMLElement).closest("[data-calc-country]");
-      if (!item) return;
-      const code = item.getAttribute("data-calc-country")!;
-      const entry = SMS_CALCULATOR_DATA.find(c => c.code === code);
-      if (entry) {
-        setSelectedCountry(entry);
-        setIsOpen(false);
-      }
-    };
-    el.addEventListener("click", handler);
-    return () => el.removeEventListener("click", handler);
-  }, [isOpen]); // re-attach when dropdown opens (list mounts)
 
   // Native event listener: Volume slider
   useEffect(() => {
@@ -820,10 +781,22 @@ function SMSCostCalculator({ countryCode }: { countryCode: string }) {
   }, []);
 
   const { convertToINR } = useExchangeRate();
-  const isIndia = selectedCountry.code === "IN";
+
+  if (!calcData) {
+    return (
+      <div>
+        <h2 className="font-sans text-xl font-semibold text-black mb-2">Cost calculator</h2>
+        <p className="text-sm text-gray-500">
+          Cost calculator is not available for this country. Contact sales for a custom quote.
+        </p>
+      </div>
+    );
+  }
+
+  const isIndia = calcData.code === "IN";
   const currency = isIndia ? "\u20B9" : "$";
-  const rawPlivoCost = (selectedCountry.plivo * volume) / 100000;
-  const rawOthersCost = (selectedCountry.others * volume) / 100000;
+  const rawPlivoCost = (calcData.plivo * volume) / 100000;
+  const rawOthersCost = (calcData.others * volume) / 100000;
   const plivoCost = isIndia ? convertToINR(rawPlivoCost) : rawPlivoCost;
   const othersCost = isIndia ? convertToINR(rawOthersCost) : rawOthersCost;
   const savings = othersCost - plivoCost;
@@ -837,41 +810,7 @@ function SMSCostCalculator({ countryCode }: { countryCode: string }) {
         Compare SMS costs between Plivo and other providers.
       </p>
 
-      <div className="grid gap-4 sm:gap-6 sm:grid-cols-2 mb-8">
-        {/* Country selector */}
-        <div className="relative" ref={dropdownRef}>
-          <label className="block text-sm font-medium text-gray-700 mb-2">Country</label>
-          <button
-            ref={calcCountryToggleRef}
-            className="w-full flex items-center gap-2 px-3 py-2.5 bg-white border border-gray-300 rounded-lg hover:border-gray-400 transition-colors"
-          >
-            <span className="text-lg">{selectedCountry.flag}</span>
-            <span className="text-sm font-medium text-gray-900 flex-1 text-left">{selectedCountry.country}</span>
-            <ChevronDown className={cn("w-4 h-4 text-gray-400 transition-transform", isOpen && "rotate-180")} />
-          </button>
-          {isOpen && (
-            <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-10 max-h-60 overflow-y-auto" ref={calcCountryListRef}>
-              {SMS_CALCULATOR_DATA.map((entry, idx) => (
-                <div key={entry.code}>
-                  {!TOP_COUNTRY_CODES.has(entry.code) && idx > 0 && TOP_COUNTRY_CODES.has(SMS_CALCULATOR_DATA[idx - 1]?.code) && (
-                    <div className="border-t border-gray-200 my-1" />
-                  )}
-                  <button
-                    data-calc-country={entry.code}
-                    className={cn(
-                      "w-full flex items-center gap-2 px-3 py-2.5 hover:bg-gray-50 transition-colors text-left",
-                      selectedCountry.code === entry.code && "bg-[#323dfe]/5"
-                    )}
-                  >
-                    <span className="text-lg">{entry.flag}</span>
-                    <span className="text-sm text-gray-900">{entry.country}</span>
-                  </button>
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
-
+      <div className="mb-8">
         {/* Volume slider */}
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">

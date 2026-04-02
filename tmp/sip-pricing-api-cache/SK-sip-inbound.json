@@ -1,0 +1,34 @@
+{
+  "country": "Slovakia",
+  "country_iso": "SK",
+  "zentrunk": {
+    "inbound": {
+      "number_groups": {
+        "Slovakia Local Voice": "0.0063",
+        "Slovakia Tollfree Voice": "0.2766"
+      },
+      "rates": {
+        "local": [
+          "0.0063"
+        ],
+        "tollfree": [
+          "0.2766"
+        ]
+      }
+    },
+    "local": {
+      "inbound": {
+        "number_group_rates": {
+          "0.0063": [
+            "Slovakia Local Voice"
+          ],
+          "0.2766": [
+            "Slovakia Tollfree Voice"
+          ]
+        },
+        "rate": "0.0063",
+        "tollfree_rate": "0.2766"
+      }
+    }
+  }
+}

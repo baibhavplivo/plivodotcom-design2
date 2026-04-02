@@ -1,0 +1,176 @@
+{
+  "api_id": "c1ac59bc-2e69-11f1-a7be-0242ac110003",
+  "country": "Barbados",
+  "country_code": 1246,
+  "country_iso": "BB",
+  "mms": {
+    "longcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "phone_numbers": [],
+  "sms": {
+    "longcode": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.23550",
+        "rates": {
+          "Barbados - Digicel": "0.29220",
+          "Barbados-LIME (Cable and Wireless)": "0.23620",
+          "Barbados-Others": "0.23550",
+          "Barbados-Sunbeach": "0.23550"
+        }
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": "0.00000",
+        "rental": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "voice": {
+    "add_on_pricing": {
+      "audio_streaming_rate": 0.004,
+      "mpc_rate": 0,
+      "recording_storage_rate": 0.0004,
+      "speech_recognition": 0.02,
+      "transcription_charge": 0.0095,
+      "webrtc_rate": 0.0033
+    },
+    "ip": {
+      "inbound": {
+        "rate": "0.00330",
+        "rental": null
+      },
+      "outbound": {
+        "rates": {
+          "all": "0.00330"
+        }
+      }
+    },
+    "local": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.29100",
+        "rates": [
+          {
+            "destination_prefix": [
+              "1246"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.29100",
+            "voice_network_group": "Barbados",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "124623",
+              "124624",
+              "1246250",
+              "1246251",
+              "1246252",
+              "1246253",
+              "1246254",
+              "1246255",
+              "1246256",
+              "1246257",
+              "1246258",
+              "1246259",
+              "124626",
+              "124628",
+              "1246446",
+              "1246447",
+              "1246448",
+              "1246449",
+              "124645",
+              "124652",
+              "124653",
+              "124654",
+              "1246695",
+              "1246696",
+              "1246697",
+              "124682",
+              "124683",
+              "124684",
+              "124685",
+              "1246883"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.35100",
+            "voice_network_group": "Barbados - Mobile",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "12464331700",
+              "12464331701",
+              "12464331706",
+              "1246629008",
+              "1246629009",
+              "1246776",
+              "1246777",
+              "1246778",
+              "1246899"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "1.80100",
+            "voice_network_group": "Barbados - Premium Services",
+            "voice_unit": 60
+          }
+        ]
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.00000",
+        "rates": null
+      }
+    }
+  }
+}

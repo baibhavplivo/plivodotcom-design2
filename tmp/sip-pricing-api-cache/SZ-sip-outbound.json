@@ -1,0 +1,49 @@
+{
+  "country": "Swaziland",
+  "country_iso": "SZ",
+  "zentrunk": {
+    "local": {
+      "outbound": {
+        "network_group_rates": {
+          "0.1345": [
+            "Swaziland"
+          ],
+          "0.3343": [
+            "Swaziland - Mobile"
+          ]
+        },
+        "rate": "0.1345",
+        "rates": {
+          "0.1345": [
+            "268"
+          ],
+          "0.3343": [
+            "26832",
+            "26833",
+            "26834",
+            "26835",
+            "26876",
+            "26877",
+            "26878",
+            "26879"
+          ]
+        },
+        "tollfree_rate": "NA"
+      }
+    },
+    "outbound": {
+      "network_groups": {
+        "Swaziland": "0.1345",
+        "Swaziland - Mobile": "0.3343"
+      },
+      "rates": {
+        "Fixed": [
+          "0.1345"
+        ],
+        "Mobile": [
+          "0.3343"
+        ]
+      }
+    }
+  }
+}

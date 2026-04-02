@@ -1,0 +1,45 @@
+{
+  "country": "Israel",
+  "country_iso": "IL",
+  "zentrunk": {
+    "inbound": {
+      "number_groups": {
+        "Israel Local Voice": "0.0063",
+        "Israel Mobile Voice & SMS": "0.0085",
+        "Israel National Voice": "0.0063",
+        "Israel Tollfree Voice": "0.1112"
+      },
+      "rates": {
+        "local": [
+          "0.0063"
+        ],
+        "mobile": [
+          "0.0085"
+        ],
+        "national": [
+          "0.0063"
+        ],
+        "tollfree": [
+          "0.1112"
+        ]
+      }
+    },
+    "local": {
+      "inbound": {
+        "number_group_rates": {
+          "0.0063": [
+            "Israel National Voice"
+          ],
+          "0.0085": [
+            "Israel Mobile Voice & SMS"
+          ],
+          "0.1112": [
+            "Israel Tollfree Voice"
+          ]
+        },
+        "rate": "0.0063",
+        "tollfree_rate": "0.1112"
+      }
+    }
+  }
+}

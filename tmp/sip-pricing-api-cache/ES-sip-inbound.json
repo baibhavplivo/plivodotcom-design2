@@ -1,0 +1,44 @@
+{
+  "country": "Spain",
+  "country_iso": "ES",
+  "zentrunk": {
+    "inbound": {
+      "number_groups": {
+        "Spain Local Voice": "0.003",
+        "Spain Mobile Voice & SMS": "0.003",
+        "Spain National Voice": "0.003",
+        "Spain Tollfree Voice": "0.2642",
+        "Spain local Voice & SMS": "0.003",
+        "Spain mobile Voice": "0.003"
+      },
+      "rates": {
+        "local": [
+          "0.003"
+        ],
+        "mobile": [
+          "0.003"
+        ],
+        "national": [
+          "0.003"
+        ],
+        "tollfree": [
+          "0.2642"
+        ]
+      }
+    },
+    "local": {
+      "inbound": {
+        "number_group_rates": {
+          "0.003": [
+            "Spain mobile Voice"
+          ],
+          "0.2642": [
+            "Spain Tollfree Voice"
+          ]
+        },
+        "rate": "0.003",
+        "tollfree_rate": "0.2642"
+      }
+    }
+  }
+}

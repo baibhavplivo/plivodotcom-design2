@@ -1,0 +1,44 @@
+{
+  "country": "Zambia",
+  "country_iso": "ZM",
+  "zentrunk": {
+    "local": {
+      "outbound": {
+        "network_group_rates": {
+          "0.5756": [
+            "Zambia"
+          ],
+          "0.7468": [
+            "Zambia - Mobile"
+          ]
+        },
+        "rate": "0.5756",
+        "rates": {
+          "0.5756": [
+            "260"
+          ],
+          "0.7468": [
+            "26095",
+            "26096",
+            "26097"
+          ]
+        },
+        "tollfree_rate": "NA"
+      }
+    },
+    "outbound": {
+      "network_groups": {
+        "Zambia": "0.5756",
+        "Zambia - Mobile": "0.7468"
+      },
+      "rates": {
+        "Fixed": [
+          "0.5756"
+        ],
+        "Mobile": [
+          "0.7468"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "country": "Uzbekistan",
+  "country_iso": "UZ",
+  "zentrunk": {
+    "local": {
+      "outbound": {
+        "network_group_rates": {
+          "0.1427": [
+            "Uzbekistan",
+            "Uzbekistan - Mobile"
+          ],
+          "0.918": [
+            "Uzbekistan - Premium Services"
+          ]
+        },
+        "rate": "0.1427",
+        "rates": {
+          "0.1427": [
+            "998",
+            "998711",
+            "998712",
+            "998713",
+            "9989"
+          ],
+          "0.918": [
+            "998611199",
+            "998711132"
+          ]
+        },
+        "tollfree_rate": "NA"
+      }
+    },
+    "outbound": {
+      "network_groups": {
+        "Uzbekistan": "0.1427",
+        "Uzbekistan - Mobile": "0.1427",
+        "Uzbekistan - Premium Services": "0.918"
+      },
+      "rates": {
+        "Fixed": [
+          "0.1427"
+        ],
+        "Mobile": [
+          "0.1427"
+        ],
+        "Others": [
+          "0.918"
+        ]
+      }
+    }
+  }
+}

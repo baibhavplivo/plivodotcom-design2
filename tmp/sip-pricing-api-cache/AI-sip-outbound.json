@@ -1,0 +1,65 @@
+{
+  "country": "Anguilla",
+  "country_iso": "AI",
+  "zentrunk": {
+    "local": {
+      "outbound": {
+        "network_group_rates": {
+          "0.318": [
+            "Anguilla"
+          ],
+          "0.378": [
+            "Anguilla - Mobile"
+          ],
+          "0.978": [
+            "Anguilla - Premium Services"
+          ]
+        },
+        "rate": "0.318",
+        "rates": {
+          "0.318": [
+            "1264"
+          ],
+          "0.378": [
+            "1264235",
+            "1264469",
+            "1264476",
+            "1264543",
+            "1264581",
+            "1264582",
+            "1264583",
+            "1264584",
+            "1264729",
+            "1264772"
+          ],
+          "0.978": [
+            "1264536",
+            "1264537",
+            "1264538",
+            "1264539",
+            "1264540"
+          ]
+        },
+        "tollfree_rate": "NA"
+      }
+    },
+    "outbound": {
+      "network_groups": {
+        "Anguilla": "0.318",
+        "Anguilla - Mobile": "0.378",
+        "Anguilla - Premium Services": "0.978"
+      },
+      "rates": {
+        "Fixed": [
+          "0.318"
+        ],
+        "Mobile": [
+          "0.378"
+        ],
+        "Others": [
+          "0.978"
+        ]
+      }
+    }
+  }
+}

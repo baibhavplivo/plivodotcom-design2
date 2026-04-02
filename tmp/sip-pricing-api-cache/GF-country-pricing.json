@@ -1,0 +1,184 @@
+{
+  "api_id": "e8a811e0-2e6a-11f1-9396-0242ac110003",
+  "country": "French Guiana",
+  "country_code": 594,
+  "country_iso": "GF",
+  "mms": {
+    "longcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "phone_numbers": [],
+  "sms": {
+    "longcode": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.15669",
+        "rates": {
+          "French Guiana - Digicel": "0.29210",
+          "French Guiana - Orange Caraibe Mobiles": "0.16632",
+          "French Guiana - Outremer Telecom": "0.15669",
+          "French Guiana-All Networks": "0.18951"
+        }
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": "0.00000",
+        "rental": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "voice": {
+    "add_on_pricing": {
+      "audio_streaming_rate": 0.004,
+      "mpc_rate": 0,
+      "recording_storage_rate": 0.0004,
+      "speech_recognition": 0.02,
+      "transcription_charge": 0.0095,
+      "webrtc_rate": 0.0033
+    },
+    "ip": {
+      "inbound": {
+        "rate": "0.00330",
+        "rental": null
+      },
+      "outbound": {
+        "rates": {
+          "all": "0.00330"
+        }
+      }
+    },
+    "local": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.01690",
+        "rates": [
+          {
+            "destination_prefix": [
+              "59469408",
+              "59469409",
+              "59469412",
+              "59469413",
+              "59469414",
+              "59469415",
+              "59469416",
+              "5946949"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.08680",
+            "voice_network_group": "French Guiana - Mobile - Others (Digicel)",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "594"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.01690",
+            "voice_network_group": "French Guiana",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "594694"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.02740",
+            "voice_network_group": "French Guiana - Mobile",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "59469400",
+              "59469401",
+              "59469402",
+              "59469403",
+              "59469404",
+              "59469405",
+              "59469406",
+              "59469407",
+              "59469417",
+              "59469418",
+              "59469419",
+              "5946942",
+              "59469430",
+              "59469431",
+              "59469432",
+              "59469433",
+              "59469434",
+              "59469438",
+              "59469440",
+              "59469441",
+              "59469442",
+              "59469443",
+              "59469444",
+              "59469445",
+              "59469446",
+              "59469447",
+              "59469448",
+              "59469449"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.11650",
+            "voice_network_group": "French Guiana - Mobile - Major Carriers (Orange, Outremer)",
+            "voice_unit": 60
+          }
+        ]
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.00000",
+        "rates": null
+      }
+    }
+  }
+}

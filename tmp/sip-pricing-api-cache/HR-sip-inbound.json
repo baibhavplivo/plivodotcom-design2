@@ -1,0 +1,39 @@
+{
+  "country": "Croatia",
+  "country_iso": "HR",
+  "zentrunk": {
+    "inbound": {
+      "number_groups": {
+        "Croatia Local Voice": "0.0063",
+        "Croatia Tollfree Voice": "0.4267",
+        "Croatia mobile Voice": "0.0063",
+        "Croatia mobile Voice & SMS": "0.0063"
+      },
+      "rates": {
+        "local": [
+          "0.0063"
+        ],
+        "mobile": [
+          "0.0063"
+        ],
+        "tollfree": [
+          "0.4267"
+        ]
+      }
+    },
+    "local": {
+      "inbound": {
+        "number_group_rates": {
+          "0.0063": [
+            "Croatia mobile Voice & SMS"
+          ],
+          "0.4267": [
+            "Croatia Tollfree Voice"
+          ]
+        },
+        "rate": "0.0063",
+        "tollfree_rate": "0.4267"
+      }
+    }
+  }
+}

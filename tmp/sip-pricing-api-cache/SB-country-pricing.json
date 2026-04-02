@@ -1,0 +1,194 @@
+{
+  "api_id": "5a165b88-2e6c-11f1-9396-0242ac110003",
+  "country": "Solomon Islands",
+  "country_code": 677,
+  "country_iso": "SB",
+  "mms": {
+    "longcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "phone_numbers": [],
+  "sms": {
+    "longcode": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.10181",
+        "rates": {
+          "Solomon Islands - Bmobile (SI) Ltd.": "0.58005",
+          "Solomon Islands - Solomon Telekom Company": "0.10181",
+          "Solomon Islands-Others": "0.14450"
+        }
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": "0.00000",
+        "rental": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "voice": {
+    "add_on_pricing": {
+      "audio_streaming_rate": 0.004,
+      "mpc_rate": 0,
+      "recording_storage_rate": 0.0004,
+      "speech_recognition": 0.02,
+      "transcription_charge": 0.0095,
+      "webrtc_rate": 0.0033
+    },
+    "ip": {
+      "inbound": {
+        "rate": "0.00330",
+        "rental": null
+      },
+      "outbound": {
+        "rates": {
+          "all": "0.00330"
+        }
+      }
+    },
+    "local": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "1.85100",
+        "rates": [
+          {
+            "destination_prefix": [
+              "677"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "1.85100",
+            "voice_network_group": "Solomon Islands",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "67772",
+              "67773",
+              "67774",
+              "67775",
+              "67776",
+              "67777",
+              "67778",
+              "677794",
+              "67784",
+              "67785",
+              "67786",
+              "67787",
+              "677880",
+              "677881",
+              "677882",
+              "677883",
+              "677884",
+              "677885",
+              "677886",
+              "677887",
+              "677888",
+              "6778890",
+              "6778891",
+              "6778892",
+              "6778893",
+              "6778894",
+              "6778895",
+              "6778896",
+              "6778897",
+              "6778898",
+              "67794",
+              "677950",
+              "677951",
+              "677952",
+              "677953",
+              "677954",
+              "677956",
+              "677957",
+              "677958",
+              "677959",
+              "67796",
+              "677970",
+              "677971",
+              "677972",
+              "677973",
+              "677974",
+              "677975",
+              "677976",
+              "677978",
+              "677979",
+              "677980",
+              "677981",
+              "677982",
+              "677983",
+              "677984",
+              "677985",
+              "677986",
+              "677987",
+              "677989",
+              "677990",
+              "677991",
+              "677992",
+              "677993",
+              "677994",
+              "677995",
+              "677996",
+              "677997",
+              "677998"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "1.90100",
+            "voice_network_group": "Solomon Islands - Mobile",
+            "voice_unit": 60
+          }
+        ]
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.00000",
+        "rates": null
+      }
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "country": "China",
+  "country_iso": "CN",
+  "zentrunk": {
+    "inbound": {
+      "number_groups": {
+        "China Local Voice": "0.055",
+        "China Tollfree Voice": "0.8",
+        "China mobile Voice & SMS": "0.055"
+      },
+      "rates": {
+        "local": [
+          "0.055"
+        ],
+        "mobile": [
+          "0.055"
+        ],
+        "tollfree": [
+          "0.8"
+        ]
+      }
+    },
+    "local": {
+      "inbound": {
+        "number_group_rates": {
+          "0.055": [
+            "China mobile Voice & SMS"
+          ],
+          "0.8": [
+            "China Tollfree Voice"
+          ]
+        },
+        "rate": "0.055",
+        "tollfree_rate": "0.8"
+      }
+    }
+  }
+}

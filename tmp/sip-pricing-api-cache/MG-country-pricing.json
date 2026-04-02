@@ -1,0 +1,187 @@
+{
+  "api_id": "fdff76cc-2e6b-11f1-b3dd-0242ac110007",
+  "country": "Madagascar",
+  "country_code": 261,
+  "country_iso": "MG",
+  "mms": {
+    "longcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "phone_numbers": [],
+  "sms": {
+    "longcode": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.33515",
+        "rates": {
+          "Madagascar - Orange Madagascar": "0.65880",
+          "Madagascar - Sacel": "0.53330",
+          "Madagascar - Telecom Malagasy": "0.40910",
+          "Madagascar - ZAIN Madagascar": "0.36720",
+          "Madagascar-All Networks": "0.33515"
+        }
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": "0.00000",
+        "rental": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "voice": {
+    "add_on_pricing": {
+      "audio_streaming_rate": 0.004,
+      "mpc_rate": 0,
+      "recording_storage_rate": 0.0004,
+      "speech_recognition": 0.02,
+      "transcription_charge": 0.0095,
+      "webrtc_rate": 0.0033
+    },
+    "ip": {
+      "inbound": {
+        "rate": "0.00330",
+        "rental": null
+      },
+      "outbound": {
+        "rates": {
+          "all": "0.00330"
+        }
+      }
+    },
+    "local": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.86800",
+        "rates": [
+          {
+            "destination_prefix": [
+              "26130",
+              "26132",
+              "26133",
+              "26134",
+              "26139"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "1.01350",
+            "voice_network_group": "Madagascar - Mobile",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "261200",
+              "261204",
+              "261206",
+              "26120742199",
+              "261208",
+              "26120944023",
+              "26120944052",
+              "26122",
+              "261305458704",
+              "261307299335",
+              "261307299894",
+              "261307299922",
+              "26130729993",
+              "26130729998",
+              "26130967820",
+              "26130967821",
+              "261340052635",
+              "261340052711",
+              "261340115525",
+              "261340115526",
+              "261340116283",
+              "26134020266",
+              "26134055095",
+              "261341370565",
+              "261342607690",
+              "261345388069",
+              "261347076875",
+              "261347076876",
+              "261347385141",
+              "261347385145",
+              "261347385146",
+              "261347385147",
+              "26134738971",
+              "261348256112",
+              "2613488",
+              "261398520106",
+              "261398520867",
+              "261398521730",
+              "261398525440",
+              "261398525442",
+              "261398528748",
+              "261398529702",
+              "261398529758",
+              "261398529980"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "1.86100",
+            "voice_network_group": "Madagascar - Premium Services",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "261"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.86800",
+            "voice_network_group": "Madagascar",
+            "voice_unit": 60
+          }
+        ]
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.00000",
+        "rates": null
+      }
+    }
+  }
+}

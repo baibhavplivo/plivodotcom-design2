@@ -1,0 +1,38 @@
+{
+  "country": "Switzerland",
+  "country_iso": "CH",
+  "zentrunk": {
+    "inbound": {
+      "number_groups": {
+        "Switzerland - mobile - Voice & SMS": "0.003",
+        "Switzerland Local Voice": "0.003",
+        "Switzerland Tollfree Voice": "0.1635"
+      },
+      "rates": {
+        "local": [
+          "0.003"
+        ],
+        "mobile": [
+          "0.003"
+        ],
+        "tollfree": [
+          "0.1635"
+        ]
+      }
+    },
+    "local": {
+      "inbound": {
+        "number_group_rates": {
+          "0.003": [
+            "Switzerland - mobile - Voice & SMS"
+          ],
+          "0.1635": [
+            "Switzerland Tollfree Voice"
+          ]
+        },
+        "rate": "0.003",
+        "tollfree_rate": "0.1635"
+      }
+    }
+  }
+}

@@ -1,0 +1,211 @@
+{
+  "api_id": "c06a325e-2e69-11f1-921b-0242ac110007",
+  "country": "Bahamas",
+  "country_code": 1242,
+  "country_iso": "BS",
+  "mms": {
+    "longcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "phone_numbers": [],
+  "sms": {
+    "longcode": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.06137",
+        "rates": {
+          "Bahamas - Bahamas Telecommunications": "0.07840",
+          "Bahamas-Cybercell  BaTelCo": "0.06137"
+        }
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": "0.00000",
+        "rental": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "voice": {
+    "add_on_pricing": {
+      "audio_streaming_rate": 0.004,
+      "mpc_rate": 0,
+      "recording_storage_rate": 0.0004,
+      "speech_recognition": 0.02,
+      "transcription_charge": 0.0095,
+      "webrtc_rate": 0.0033
+    },
+    "ip": {
+      "inbound": {
+        "rate": "0.00330",
+        "rental": null
+      },
+      "outbound": {
+        "rates": {
+          "all": "0.00330"
+        }
+      }
+    },
+    "local": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.15100",
+        "rates": [
+          {
+            "destination_prefix": [
+              "1242"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.39300",
+            "voice_network_group": "Bahamas",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "1242357",
+              "1242359",
+              "1242375",
+              "1242376",
+              "1242395",
+              "1242421",
+              "1242422",
+              "1242423",
+              "1242424",
+              "1242425",
+              "1242426",
+              "1242427",
+              "1242428",
+              "1242429",
+              "1242431",
+              "1242432",
+              "1242433",
+              "1242434",
+              "1242436",
+              "1242437",
+              "1242438",
+              "1242439",
+              "1242441",
+              "1242442",
+              "1242443",
+              "1242445",
+              "1242446",
+              "1242447",
+              "1242448",
+              "1242449",
+              "1242451",
+              "1242452",
+              "1242453",
+              "1242454",
+              "1242455",
+              "1242456",
+              "1242457",
+              "1242458",
+              "1242462",
+              "1242463",
+              "1242464",
+              "1242465",
+              "1242466",
+              "1242467",
+              "1242468",
+              "124247",
+              "1242481",
+              "1242524",
+              "1242525",
+              "1242533",
+              "1242535",
+              "1242544",
+              "1242551",
+              "1242552",
+              "1242553",
+              "1242554",
+              "1242556",
+              "1242557",
+              "1242558",
+              "1242559",
+              "1242565",
+              "1242577",
+              "1242636",
+              "1242646",
+              "1242727",
+              "1242738",
+              "1242801",
+              "1242802",
+              "1242803",
+              "1242804",
+              "1242805",
+              "1242806",
+              "1242807",
+              "1242808",
+              "1242809",
+              "1242810",
+              "1242812",
+              "1242813",
+              "1242814",
+              "1242815",
+              "1242816",
+              "1242817",
+              "1242818",
+              "1242819",
+              "124282",
+              "1242899"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.39800",
+            "voice_network_group": "Bahamas - Mobile",
+            "voice_unit": 60
+          }
+        ]
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.00000",
+        "rates": null
+      }
+    }
+  }
+}

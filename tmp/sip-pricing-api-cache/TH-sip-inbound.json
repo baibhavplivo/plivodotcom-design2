@@ -1,0 +1,34 @@
+{
+  "country": "Thailand",
+  "country_iso": "TH",
+  "zentrunk": {
+    "inbound": {
+      "number_groups": {
+        "Thailand Tollfree Voice": "0.354",
+        "Thailand local Voice": "0.0063"
+      },
+      "rates": {
+        "local": [
+          "0.0063"
+        ],
+        "tollfree": [
+          "0.354"
+        ]
+      }
+    },
+    "local": {
+      "inbound": {
+        "number_group_rates": {
+          "0.0063": [
+            "Thailand local Voice"
+          ],
+          "0.354": [
+            "Thailand Tollfree Voice"
+          ]
+        },
+        "rate": "0.0063",
+        "tollfree_rate": "0.354"
+      }
+    }
+  }
+}

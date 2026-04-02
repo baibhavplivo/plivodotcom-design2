@@ -1,0 +1,196 @@
+{
+  "api_id": "f06740e0-2e6a-11f1-8222-0242ac110003",
+  "country": "Georgia",
+  "country_code": 995,
+  "country_iso": "GE",
+  "mms": {
+    "longcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "phone_numbers": [],
+  "sms": {
+    "longcode": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.01910",
+        "rates": {
+          "Georgia - Aquafon": "0.14390",
+          "Georgia - Beeline": "0.14610",
+          "Georgia - Default": "0.01910",
+          "Georgia - Geocell": "0.15040",
+          "Georgia - Magti": "0.13730",
+          "Georgia - Silqnet": "0.14390",
+          "Georgia-Mobitel": "0.14239"
+        }
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": "0.00000",
+        "rental": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "voice": {
+    "add_on_pricing": {
+      "audio_streaming_rate": 0.004,
+      "mpc_rate": 0,
+      "recording_storage_rate": 0.0004,
+      "speech_recognition": 0.02,
+      "transcription_charge": 0.0095,
+      "webrtc_rate": 0.0033
+    },
+    "ip": {
+      "inbound": {
+        "rate": "0.00330",
+        "rental": null
+      },
+      "outbound": {
+        "rates": {
+          "all": "0.00330"
+        }
+      }
+    },
+    "local": {
+      "inbound": {
+        "rate": "0.00850",
+        "rental": "39.50000"
+      },
+      "outbound": {
+        "rate": "0.27300",
+        "rates": [
+          {
+            "destination_prefix": [
+              "995"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.41770",
+            "voice_network_group": "Georgia",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "99532"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.27300",
+            "voice_network_group": "Georgia - Fixed - Major Cities (Rbilisi)",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "9955",
+              "995514",
+              "99554444",
+              "995551",
+              "995555",
+              "995557",
+              "995558",
+              "995576",
+              "995577",
+              "995591",
+              "995593",
+              "995595",
+              "995596",
+              "995598",
+              "995599"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.47020",
+            "voice_network_group": "Georgia - Mobile",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "995322010",
+              "995322153636",
+              "995322153747",
+              "995322153773",
+              "995322153965",
+              "995322218225",
+              "995322729851",
+              "995322805290",
+              "995322809414",
+              "995322900552",
+              "99554400",
+              "995552000",
+              "995552001",
+              "995552002",
+              "995552003",
+              "995552004",
+              "995552005",
+              "995552006",
+              "995552007",
+              "995552008",
+              "9955520090",
+              "9955520091",
+              "9955520092",
+              "9955520093",
+              "9955520094",
+              "99572",
+              "99576",
+              "995900001",
+              "995902001",
+              "995903001"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.95100",
+            "voice_network_group": "Georgia - Premium Services",
+            "voice_unit": 60
+          }
+        ]
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.00000",
+        "rates": null
+      }
+    }
+  }
+}

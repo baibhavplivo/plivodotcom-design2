@@ -1,10 +1,8 @@
 "use client";
 
 import { FlickeringGrid } from "@/components/magicui/flickering-grid";
-import { useSignupUrl } from "@/hooks/useSignupUrl";
 
 export default function PhoneNumbersPreFooterCTA() {
-  const { url: signupUrl, label: signupLabel } = useSignupUrl();
   return (
     <section className="relative overflow-hidden bg-white py-12 sm:py-16 md:py-20">
       {/* Flickering Grid Background */}
@@ -29,17 +27,18 @@ export default function PhoneNumbersPreFooterCTA() {
         </p>
         <div className="flex flex-col sm:flex-row gap-3 mt-6">
           <a
-            href="/pricing"
+            href="/contact/sales/"
             className="inline-flex items-center justify-center rounded-md border border-gray-300 bg-white px-6 py-3 text-base font-medium text-black transition-colors hover:bg-gray-50"
           >
-            Get volume pricing
+            Get Volume Pricing
           </a>
           <a
-            href={signupUrl}
-            {...(signupUrl.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+            href="https://console.plivo.com/accounts/request-trial/"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center justify-center rounded-md bg-black px-6 py-3 text-base font-medium text-white transition-colors cta-hover-gradient"
           >
-            {signupLabel}
+            Request Trial
           </a>
         </div>
       </div>

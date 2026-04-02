@@ -1,0 +1,18 @@
+{
+  "country": "Norfolk Island",
+  "country_iso": "NF",
+  "zentrunk": {
+    "local": {
+      "outbound": {
+        "network_group_rates": {},
+        "rate": "NA",
+        "rates": {},
+        "tollfree_rate": "NA"
+      }
+    },
+    "outbound": {
+      "network_groups": {},
+      "rates": {}
+    }
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "country": "Nepal",
+  "country_iso": "NP",
+  "zentrunk": {
+    "local": {
+      "outbound": {
+        "network_group_rates": {
+          "0.218": [
+            "Nepal",
+            "Nepal - Mobile"
+          ]
+        },
+        "rate": "0.218",
+        "rates": {
+          "0.218": [
+            "977",
+            "9771",
+            "977960",
+            "977961",
+            "977962",
+            "977963",
+            "977972",
+            "977974",
+            "977975",
+            "97798",
+            "977980",
+            "977981",
+            "977982",
+            "977984",
+            "977985",
+            "977986"
+          ]
+        },
+        "tollfree_rate": "NA"
+      }
+    },
+    "outbound": {
+      "network_groups": {
+        "Nepal": "0.218",
+        "Nepal - Mobile": "0.218"
+      },
+      "rates": {
+        "Fixed": [
+          "0.218"
+        ],
+        "Mobile": [
+          "0.218"
+        ]
+      }
+    }
+  }
+}

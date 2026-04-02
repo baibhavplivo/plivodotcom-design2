@@ -1,0 +1,69 @@
+{
+  "country": "Myanmar",
+  "country_iso": "MM",
+  "zentrunk": {
+    "local": {
+      "outbound": {
+        "network_group_rates": {
+          "0.3722": [
+            "Myanmar"
+          ],
+          "0.3805": [
+            "Myanmar - Mobile"
+          ],
+          "0.528": [
+            "Myanmar - Premium Services"
+          ]
+        },
+        "rate": "0.3722",
+        "rates": {
+          "0.3722": [
+            "95"
+          ],
+          "0.3805": [
+            "959",
+            "959750",
+            "959751",
+            "959752",
+            "959753",
+            "959754",
+            "959755",
+            "959756",
+            "959757",
+            "959758",
+            "959759",
+            "95976",
+            "95977",
+            "95978",
+            "95979",
+            "95995",
+            "95996",
+            "95997"
+          ],
+          "0.528": [
+            "95957"
+          ]
+        },
+        "tollfree_rate": "NA"
+      }
+    },
+    "outbound": {
+      "network_groups": {
+        "Myanmar": "0.3722",
+        "Myanmar - Mobile": "0.3805",
+        "Myanmar - Premium Services": "0.528"
+      },
+      "rates": {
+        "Fixed": [
+          "0.3722"
+        ],
+        "Mobile": [
+          "0.3805"
+        ],
+        "Others": [
+          "0.528"
+        ]
+      }
+    }
+  }
+}

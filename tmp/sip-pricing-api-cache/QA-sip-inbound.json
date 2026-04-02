@@ -1,0 +1,27 @@
+{
+  "country": "Qatar",
+  "country_iso": "QA",
+  "zentrunk": {
+    "inbound": {
+      "number_groups": {
+        "Qatar Tollfree Voice": "0.5342"
+      },
+      "rates": {
+        "tollfree": [
+          "0.5342"
+        ]
+      }
+    },
+    "local": {
+      "inbound": {
+        "number_group_rates": {
+          "0.5342": [
+            "Qatar Tollfree Voice"
+          ]
+        },
+        "rate": "NA",
+        "tollfree_rate": "0.5342"
+      }
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "country": "Micronesia, Federated States of",
+  "country_iso": "FM",
+  "zentrunk": {
+    "local": {
+      "outbound": {
+        "network_group_rates": {
+          "0.898": [
+            "Micronesia"
+          ]
+        },
+        "rate": "0.898",
+        "rates": {
+          "0.898": [
+            "691"
+          ]
+        },
+        "tollfree_rate": "NA"
+      }
+    },
+    "outbound": {
+      "network_groups": {
+        "Micronesia": "0.898"
+      },
+      "rates": {
+        "Fixed": [
+          "0.898"
+        ]
+      }
+    }
+  }
+}

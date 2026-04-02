@@ -1,0 +1,35 @@
+{
+  "country": "Puerto Rico",
+  "country_iso": "PR",
+  "zentrunk": {
+    "inbound": {
+      "number_groups": {
+        "Puerto Rico Local Voice & SMS": "0.0063",
+        "Puerto Rico Tollfree Voice": "0.08",
+        "Puerto Rico local Voice": "0.0063"
+      },
+      "rates": {
+        "local": [
+          "0.0063"
+        ],
+        "tollfree": [
+          "0.08"
+        ]
+      }
+    },
+    "local": {
+      "inbound": {
+        "number_group_rates": {
+          "0.0063": [
+            "Puerto Rico local Voice"
+          ],
+          "0.08": [
+            "Puerto Rico Tollfree Voice"
+          ]
+        },
+        "rate": "0.0063",
+        "tollfree_rate": "0.08"
+      }
+    }
+  }
+}

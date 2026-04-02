@@ -3,13 +3,18 @@
 import { useState, useMemo, useEffect, useRef } from "react";
 import { VERIFY_CALCULATOR_DATA, TOP_COUNTRY_CODES, type VerifyCalculatorEntry } from "@/data/pricing-data";
 import { useGeoCountry } from "@/hooks/useGeoCountry";
+import {
+  getStoredVerifyCountryCode,
+  subscribeToVerifyCountryChange,
+  syncVerifyCountryCode,
+} from "@/components/sections/sms-channel/verify-country-sync";
 
 // Volume options matching live site (100K–600K)
 const volumeOptions = [100000, 200000, 300000, 400000, 500000, 600000];
 const volumeLabels = ["100K", "200K", "300K", "400K", "500K", "600K"];
 
 export default function VerifyPriceCalculator() {
-  const { country: geoCountry } = useGeoCountry();
+  const { country: geoCountry } = useGeoCountry("US", { mode: "exact" });
   const [selectedCountry, setSelectedCountry] = useState<VerifyCalculatorEntry>(VERIFY_CALCULATOR_DATA[0]);
   const [volume, setVolume] = useState(100000);
   const [isCountryOpen, setIsCountryOpen] = useState(false);
@@ -25,9 +30,21 @@ export default function VerifyPriceCalculator() {
 
   // Auto-select country based on IP geolocation
   useEffect(() => {
-    const match = VERIFY_CALCULATOR_DATA.find(c => c.code === geoCountry);
+    const initialCode = getStoredVerifyCountryCode() ?? geoCountry;
+    const match = VERIFY_CALCULATOR_DATA.find(c => c.code === initialCode);
     if (match) setSelectedCountry(match);
   }, [geoCountry]);
+
+  useEffect(() => {
+    return subscribeToVerifyCountryChange((code) => {
+      const match = VERIFY_CALCULATOR_DATA.find((country) => country.code === code);
+      if (match) {
+        setSelectedCountry((currentCountry) =>
+          currentCountry.code === match.code ? currentCountry : match,
+        );
+      }
+    });
+  }, []);
 
   const filteredCountries = useMemo(() => {
     if (!searchQuery) return VERIFY_CALCULATOR_DATA;
@@ -76,6 +93,7 @@ export default function VerifyPriceCalculator() {
       const country = countriesRef.current.find(c => c.code === code);
       if (country) {
         setSelectedCountry(country);
+        syncVerifyCountryCode(country.code);
         setIsCountryOpen(false);
         setSearchQuery("");
       }
@@ -228,7 +246,7 @@ export default function VerifyPriceCalculator() {
               {/* Volume Selector */}
               <div className="md:col-span-2">
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Select no. of verifications
+                  Select no. of sms
                 </label>
                 <div className="space-y-3">
                   <p className="text-2xl sm:text-3xl font-bold text-gray-900">
@@ -258,7 +276,7 @@ export default function VerifyPriceCalculator() {
           {/* Results Section */}
           <div className="p-5 sm:p-6">
             <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-6">
-              Cost comparison - {formatNumber(volume)} verifications in {selectedCountry.country}
+              Cost comparison - For {formatNumber(volume)} SMS in {selectedCountry.country}
             </h3>
 
             <div className="grid gap-3 md:grid-cols-3">
@@ -294,14 +312,14 @@ export default function VerifyPriceCalculator() {
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2.5">
                       <div className="w-3 h-3 rounded-sm bg-gray-300" />
-                      <span className="text-sm text-gray-600">SMS</span>
+                      <span className="text-sm text-gray-600">SMS Cost</span>
                     </div>
                     <span className="text-sm font-semibold text-gray-900">{formatCurrency(calculations.otherSmsCost)}</span>
                   </div>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2.5">
                       <div className="w-3 h-3 rounded-sm bg-gray-400" />
-                      <span className="text-sm text-gray-600">OTP platform</span>
+                      <span className="text-sm text-gray-600">OTP Verification Cost</span>
                     </div>
                     <span className="text-sm font-semibold text-gray-900">{formatCurrency(calculations.otherVerifyCost)}</span>
                   </div>
@@ -309,7 +327,7 @@ export default function VerifyPriceCalculator() {
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2.5">
                         <div className="w-3 h-3 rounded-sm bg-gray-500" />
-                        <span className="text-sm text-gray-600">Fraud Shield</span>
+                        <span className="text-sm text-gray-600">Fraud Control Cost</span>
                       </div>
                       <span className="text-sm font-semibold text-gray-900">{formatCurrency(calculations.otherFraudCost)}</span>
                     </div>
@@ -339,21 +357,21 @@ export default function VerifyPriceCalculator() {
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2.5">
                       <div className="w-3 h-3 rounded-sm bg-[#323dfe]" />
-                      <span className="text-sm text-gray-600">SMS</span>
+                      <span className="text-sm text-gray-600">SMS Cost</span>
                     </div>
                     <span className="text-sm font-semibold text-gray-900">{formatCurrency(calculations.plivoSmsCost)}</span>
                   </div>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2.5">
                       <div className="w-3 h-3 rounded-sm bg-gray-200" />
-                      <span className="text-sm text-gray-600">OTP platform</span>
+                      <span className="text-sm text-gray-600">OTP Verification Cost</span>
                     </div>
                     <span className="text-sm font-semibold text-[#323dfe]">Free</span>
                   </div>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2.5">
                       <div className="w-3 h-3 rounded-sm bg-gray-200" />
-                      <span className="text-sm text-gray-600">Fraud Shield</span>
+                      <span className="text-sm text-gray-600">Fraud Control Cost</span>
                     </div>
                     <span className="text-sm font-semibold text-[#323dfe]">Free</span>
                   </div>
@@ -363,26 +381,29 @@ export default function VerifyPriceCalculator() {
               {/* Savings */}
               <div className="bg-gray-900 rounded-xl p-6 flex flex-col">
                 <div>
-                  <span className="text-xs font-medium text-gray-400 uppercase tracking-wide">Your Savings</span>
+                  <span className="text-xs font-medium text-gray-400 uppercase tracking-wide">Savings with Plivo</span>
                   <div className="flex items-baseline justify-between mt-1">
                     <p className="text-3xl font-bold text-white">{formatCurrency(calculations.savings)}</p>
                     <p className="text-3xl font-bold text-gray-500/60">{calculations.savingsPercent}% less</p>
                   </div>
+                  <p className="text-sm text-gray-300 mt-3">
+                    With Plivo, you save over {calculations.savingsPercent}% of costs compared to other platforms for every {formatNumber(volume)} SMS sent.
+                  </p>
                 </div>
 
                 {/* Breakdown */}
                 <div className="space-y-3 mt-auto">
                   <div className="flex items-center justify-between">
-                    <span className="text-sm text-gray-400">SMS saved</span>
+                    <span className="text-sm text-gray-400">SMS Cost Saved</span>
                     <span className="text-sm font-semibold text-white">{formatCurrency(calculations.otherSmsCost - calculations.plivoSmsCost)}</span>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-sm text-gray-400">OTP platform saved</span>
+                    <span className="text-sm text-gray-400">OTP Verification Saved</span>
                     <span className="text-sm font-semibold text-gray-300">{formatCurrency(calculations.otherVerifyCost)}</span>
                   </div>
                   {hasFraudCost && (
                     <div className="flex items-center justify-between">
-                      <span className="text-sm text-gray-400">Fraud Shield saved</span>
+                      <span className="text-sm text-gray-400">Fraud Control Saved</span>
                       <span className="text-sm font-semibold text-gray-300">{formatCurrency(calculations.otherFraudCost)}</span>
                     </div>
                   )}

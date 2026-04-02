@@ -1,0 +1,92 @@
+{
+  "country": "Haiti",
+  "country_iso": "HT",
+  "zentrunk": {
+    "local": {
+      "outbound": {
+        "network_group_rates": {
+          "0.423": [
+            "Haiti - Mobile"
+          ],
+          "0.508": [
+            "Haiti",
+            "Haiti - Mobile - Others (Haitel)"
+          ],
+          "0.8365": [
+            "Haiti - Mobile - Major Carriers (Digicel)"
+          ],
+          "1.398": [
+            "Haiti - Premium Services"
+          ]
+        },
+        "rate": "0.423",
+        "rates": {
+          "0.423": [
+            "5093",
+            "50940",
+            "50941",
+            "50942",
+            "50943"
+          ],
+          "0.508": [
+            "509",
+            "509251",
+            "5092530",
+            "5092532",
+            "5092536",
+            "5092538",
+            "5092541",
+            "5092545",
+            "5092547",
+            "5092548",
+            "5092553",
+            "50935",
+            "5095"
+          ],
+          "0.8365": [
+            "509281",
+            "50929",
+            "50931",
+            "50934",
+            "50936",
+            "50937",
+            "50938",
+            "50939",
+            "50944",
+            "50946",
+            "50947",
+            "50948",
+            "50949"
+          ],
+          "1.398": [
+            "5099813",
+            "5099821"
+          ]
+        },
+        "tollfree_rate": "NA"
+      }
+    },
+    "outbound": {
+      "network_groups": {
+        "Haiti": "0.508",
+        "Haiti - Mobile": "0.423",
+        "Haiti - Mobile - Major Carriers (Digicel)": "0.8365",
+        "Haiti - Mobile - Others (Haitel)": "0.508",
+        "Haiti - Premium Services": "1.398"
+      },
+      "rates": {
+        "Fixed": [
+          "0.508"
+        ],
+        "Mobile": [
+          "0.423",
+          "0.508",
+          "0.8365"
+        ],
+        "Others": [
+          "1.398"
+        ]
+      }
+    }
+  }
+}

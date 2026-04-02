@@ -1,0 +1,92 @@
+{
+  "country": "Finland",
+  "country_iso": "FI",
+  "zentrunk": {
+    "local": {
+      "outbound": {
+        "network_group_rates": {
+          "0.598": [
+            "Finland",
+            "Finland Mobile",
+            "Finland Mobile Elisa",
+            "Finland Mobile Telia Company",
+            "Finland Mobile Tismi",
+            "Finland Mobility Services",
+            "Finland Personal Numbering",
+            "Finland Special Services"
+          ]
+        },
+        "rate": "0.598",
+        "rates": {
+          "0.598": [
+            "358",
+            "3584",
+            "358451",
+            "358452",
+            "358453",
+            "358456",
+            "358458",
+            "35846",
+            "35850",
+            "35840",
+            "35842",
+            "3584571",
+            "35810",
+            "358294",
+            "358295",
+            "358299",
+            "35871",
+            "35820",
+            "358290",
+            "358291",
+            "358292",
+            "358293",
+            "358296",
+            "358297",
+            "358298",
+            "35830",
+            "35839",
+            "35860",
+            "358700",
+            "358701",
+            "358704",
+            "358705",
+            "358706",
+            "358707",
+            "358708",
+            "358709",
+            "35873",
+            "35875",
+            "35876",
+            "358800",
+            "3589315980"
+          ]
+        },
+        "tollfree_rate": "NA"
+      }
+    },
+    "outbound": {
+      "network_groups": {
+        "Finland": "0.598",
+        "Finland Mobile": "0.598",
+        "Finland Mobile Elisa": "0.598",
+        "Finland Mobile Telia Company": "0.598",
+        "Finland Mobile Tismi": "0.598",
+        "Finland Mobility Services": "0.598",
+        "Finland Personal Numbering": "0.598",
+        "Finland Special Services": "0.598"
+      },
+      "rates": {
+        "Fixed": [
+          "0.598"
+        ],
+        "Mobile": [
+          "0.598"
+        ],
+        "Others": [
+          "0.598"
+        ]
+      }
+    }
+  }
+}

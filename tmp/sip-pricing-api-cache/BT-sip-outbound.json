@@ -1,0 +1,40 @@
+{
+  "country": "Bhutan",
+  "country_iso": "BT",
+  "zentrunk": {
+    "local": {
+      "outbound": {
+        "network_group_rates": {
+          "0.0997": [
+            "Bhutan",
+            "Bhutan - Mobile"
+          ]
+        },
+        "rate": "0.0997",
+        "rates": {
+          "0.0997": [
+            "975",
+            "97516",
+            "97517",
+            "97577"
+          ]
+        },
+        "tollfree_rate": "NA"
+      }
+    },
+    "outbound": {
+      "network_groups": {
+        "Bhutan": "0.0997",
+        "Bhutan - Mobile": "0.0997"
+      },
+      "rates": {
+        "Fixed": [
+          "0.0997"
+        ],
+        "Mobile": [
+          "0.0997"
+        ]
+      }
+    }
+  }
+}

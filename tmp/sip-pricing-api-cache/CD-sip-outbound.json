@@ -1,0 +1,201 @@
+{
+  "country": "Congo, the Democratic Republic of the",
+  "country_iso": "CD",
+  "zentrunk": {
+    "local": {
+      "outbound": {
+        "network_group_rates": {
+          "0.5158": [
+            "Democratic Republic Of The Congo Mobile Orange"
+          ],
+          "0.5203": [
+            "Democratic Republic Of The Congo Mobile Vodacom"
+          ],
+          "0.5522": [
+            "Democratic Republic Of The Congo Mobile Airtel"
+          ],
+          "0.636": [
+            "Democratic Republic Of The Congo Mobile Africell"
+          ],
+          "0.7281": [
+            "Democratic Republic Of The Congo",
+            "Democratic Republic Of The Congo Mobile"
+          ],
+          "0.7407": [
+            "Democratic Republic Of The Congo Mobile Tatem"
+          ],
+          "1.718": [
+            "Democratic Republic Of The Congo Mobility Services"
+          ],
+          "2.088": [
+            "Democratic Republic Of The Congo Mobility Services TYPE_A"
+          ],
+          "3.678": [
+            "Democratic Republic Of The Congo Special Services"
+          ]
+        },
+        "rate": "0.5158",
+        "rates": {
+          "0.5158": [
+            "243800",
+            "243801",
+            "243802",
+            "243803",
+            "243804",
+            "243805",
+            "243806",
+            "243807",
+            "243808",
+            "2438090",
+            "2438091",
+            "2438092",
+            "2438093",
+            "2438094",
+            "2438095",
+            "2438096",
+            "2438097",
+            "24384",
+            "24385",
+            "24389"
+          ],
+          "0.5203": [
+            "24381",
+            "24382"
+          ],
+          "0.5522": [
+            "24397",
+            "24398",
+            "24399"
+          ],
+          "0.636": [
+            "24390",
+            "24391"
+          ],
+          "0.7281": [
+            "243",
+            "24373",
+            "24378",
+            "24392",
+            "24393",
+            "24394",
+            "24395",
+            "24396"
+          ],
+          "0.7407": [
+            "24387"
+          ],
+          "1.718": [
+            "243738010",
+            "243851472625",
+            "243851628560",
+            "243851886200",
+            "243879900186",
+            "243879900264",
+            "243879900305",
+            "243879900423",
+            "243879900620",
+            "243879900727",
+            "243879900971",
+            "243879901103",
+            "243879901104",
+            "243879901146",
+            "243879901157",
+            "243879901174",
+            "243879901192",
+            "243879908",
+            "24388749",
+            "243987690211",
+            "243987690589",
+            "243987690746",
+            "243987692353",
+            "243987695539",
+            "243987698559",
+            "243997989",
+            "24399855363"
+          ],
+          "2.088": [
+            "2438098",
+            "2438099",
+            "243820000034",
+            "243820000035",
+            "243820000036",
+            "243820000037",
+            "243820000038",
+            "243820000039",
+            "24382000004",
+            "24382000005",
+            "24382000006",
+            "24382000007",
+            "24382000008",
+            "24382000009",
+            "2438200001",
+            "2438200002",
+            "2438200003",
+            "2438200004",
+            "2438200005",
+            "2438200006",
+            "2438200007",
+            "2438200008",
+            "2438200009",
+            "24382000100",
+            "24382000101",
+            "24382000102",
+            "243820001030",
+            "243820001031",
+            "243820001032",
+            "243820001033",
+            "24386"
+          ],
+          "3.678": [
+            "243123",
+            "243124",
+            "243127",
+            "243133",
+            "243141",
+            "24339",
+            "24342",
+            "24343",
+            "24347",
+            "24348",
+            "24349",
+            "24358",
+            "243770"
+          ]
+        },
+        "tollfree_rate": "NA"
+      }
+    },
+    "outbound": {
+      "network_groups": {
+        "Democratic Republic Of The Congo": "0.7281",
+        "Democratic Republic Of The Congo Mobile": "0.7281",
+        "Democratic Republic Of The Congo Mobile Africell": "0.636",
+        "Democratic Republic Of The Congo Mobile Airtel": "0.5522",
+        "Democratic Republic Of The Congo Mobile Orange": "0.5158",
+        "Democratic Republic Of The Congo Mobile Tatem": "0.7407",
+        "Democratic Republic Of The Congo Mobile Vodacom": "0.5203",
+        "Democratic Republic Of The Congo Mobility Services": "1.718",
+        "Democratic Republic Of The Congo Mobility Services TYPE_A": "2.088",
+        "Democratic Republic Of The Congo Special Services": "3.678"
+      },
+      "rates": {
+        "Fixed": [
+          "0.7281"
+        ],
+        "Mobile": [
+          "0.5158",
+          "0.5203",
+          "0.5522",
+          "0.636",
+          "0.7281",
+          "0.7407"
+        ],
+        "Others": [
+          "1.718",
+          "2.088",
+          "3.678"
+        ]
+      }
+    }
+  }
+}

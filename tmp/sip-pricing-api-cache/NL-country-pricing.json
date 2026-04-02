@@ -1,0 +1,594 @@
+{
+  "api_id": "8a54dfaa-2e6b-11f1-8590-0242ac110007",
+  "country": "Netherlands",
+  "country_code": 31,
+  "country_iso": "NL",
+  "mms": {
+    "longcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "phone_numbers": [
+    {
+      "capabilities": [
+        "voice"
+      ],
+      "cnam_lookup_rate": "0.00000",
+      "country": "Netherlands",
+      "country_code": 31,
+      "country_iso": "NL",
+      "effective_date": "2018-05-29",
+      "inbound_mms_rate": "0.00000",
+      "inbound_sms_rate": "0.00000",
+      "inbound_voice_rate": "0.30970",
+      "number_type": "Tollfree",
+      "rental_rate": "21.25000",
+      "setup_rate": "43.83000",
+      "status": "PREVIEW"
+    },
+    {
+      "capabilities": [
+        "sms",
+        "voice"
+      ],
+      "cnam_lookup_rate": "0.00000",
+      "country": "Netherlands",
+      "country_code": 31,
+      "country_iso": "NL",
+      "effective_date": "2019-03-27",
+      "inbound_mms_rate": "0.00000",
+      "inbound_sms_rate": "0.37500",
+      "inbound_voice_rate": "0.15300",
+      "number_type": "Mobile",
+      "rental_rate": "10.00000",
+      "setup_rate": "0.00000",
+      "status": "BETA"
+    },
+    {
+      "capabilities": [
+        "voice"
+      ],
+      "cnam_lookup_rate": "0.00000",
+      "country": "Netherlands",
+      "country_code": 31,
+      "country_iso": "NL",
+      "effective_date": "2018-04-09",
+      "inbound_mms_rate": "0.00000",
+      "inbound_sms_rate": "0.00000",
+      "inbound_voice_rate": "0.00850",
+      "number_type": "National",
+      "rental_rate": "2.55000",
+      "setup_rate": "0.00000",
+      "status": "PREVIEW"
+    },
+    {
+      "capabilities": [
+        "voice"
+      ],
+      "cnam_lookup_rate": "0.00000",
+      "country": "Netherlands",
+      "country_code": 31,
+      "country_iso": "NL",
+      "effective_date": "2018-04-09",
+      "inbound_mms_rate": "0.00000",
+      "inbound_sms_rate": "0.00000",
+      "inbound_voice_rate": "0.00850",
+      "number_type": "Local",
+      "rental_rate": "2.55000",
+      "setup_rate": "0.00000",
+      "status": "GA"
+    }
+  ],
+  "sms": {
+    "longcode": {
+      "inbound": {
+        "rate": "0.00000",
+        "rental": "8.75000"
+      },
+      "outbound": {
+        "rate": "0.16320",
+        "rates": {
+          "Aspider Solutions Nederland": "0.16920",
+          "Intercity Mobile Communications": "0.16320",
+          "Netherlands - AT&T Global Network Services Nederland": "0.16920",
+          "Netherlands - Elephant Talk": "0.16920",
+          "Netherlands - KPN": "0.16920",
+          "Netherlands - KPN - Telfort Mobile": "0.16800",
+          "Netherlands - Lancelot": "0.17140",
+          "Netherlands - Lycamobile Netherlands": "0.16630",
+          "Netherlands - Mundio Mobile": "0.16990",
+          "Netherlands - Private Mobility Nederland": "0.16920",
+          "Netherlands - Roamware (Netherlands)": "0.16920",
+          "Netherlands - T-Mobile Netherlands": "0.17050",
+          "Netherlands - Tele2  Nederland": "0.29814",
+          "Netherlands - Teleena Holding": "0.16670",
+          "Netherlands - UPC Nederland": "0.16920",
+          "Netherlands - Vodafone Libertel": "0.16800",
+          "Netherlands - Voiceworks": "0.16840",
+          "Netherlands - Ziggo": "0.16920",
+          "Netherlands-Others": "0.16920",
+          "Netherlands-Tismi": "0.16920",
+          "Netherlands-Truphone": "0.16780"
+        }
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": "0.00000",
+        "rental": "8.75000"
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "voice": {
+    "add_on_pricing": {
+      "audio_streaming_rate": 0.004,
+      "mpc_rate": 0,
+      "recording_storage_rate": 0.0004,
+      "speech_recognition": 0.02,
+      "transcription_charge": 0.0095,
+      "webrtc_rate": 0.0033
+    },
+    "ip": {
+      "inbound": {
+        "rate": "0.00330",
+        "rental": null
+      },
+      "outbound": {
+        "rates": {
+          "all": "0.00330"
+        }
+      }
+    },
+    "local": {
+      "inbound": {
+        "rate": "0.00500",
+        "rental": "2.55000"
+      },
+      "outbound": {
+        "rate": "0.01450",
+        "rates": [
+          {
+            "destination_prefix": [
+              "3163230",
+              "3163240",
+              "3163241",
+              "3163242",
+              "3163243",
+              "3163244",
+              "3163245",
+              "3163246",
+              "3163247",
+              "3163248",
+              "3163249",
+              "316351",
+              "316353",
+              "316366",
+              "316367",
+              "316368",
+              "316369",
+              "31637",
+              "316370",
+              "316371",
+              "316372",
+              "316373",
+              "316374",
+              "316375",
+              "316376",
+              "316377",
+              "316580",
+              "316590",
+              "316591",
+              "316592",
+              "316593",
+              "316594",
+              "316595",
+              "316596",
+              "316597",
+              "316598",
+              "316599",
+              "3167350",
+              "3167351",
+              "3167352",
+              "316761",
+              "3168021",
+              "316868",
+              "31688",
+              "3168991",
+              "3168992",
+              "3168993",
+              "3168994",
+              "3168997",
+              "3168998",
+              "3168999",
+              "31970000",
+              "31970002",
+              "3197005",
+              "3197006",
+              "31970065",
+              "31970090",
+              "31970094",
+              "31970100",
+              "31970101",
+              "31970103",
+              "31970104",
+              "31970106",
+              "31970107",
+              "319701500"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.53900",
+            "voice_network_group": "Netherlands - Mobile - Others (KPN)",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "3114",
+              "31202626905",
+              "3120807",
+              "31208080102",
+              "31242002",
+              "31382002",
+              "31660",
+              "31670",
+              "31671",
+              "31672",
+              "316730",
+              "316731",
+              "316732",
+              "316733",
+              "316734",
+              "3167353",
+              "3167354",
+              "3167355",
+              "3167356",
+              "3167357",
+              "3167358",
+              "3167359",
+              "316736",
+              "316737",
+              "316738",
+              "316739",
+              "31674",
+              "31675",
+              "316760",
+              "31677",
+              "31678",
+              "31679",
+              "3168995",
+              "31702003",
+              "317439018",
+              "3184",
+              "3185",
+              "318500",
+              "318501",
+              "318502",
+              "318503",
+              "318504",
+              "318505",
+              "3185060",
+              "3185061",
+              "3185062",
+              "3185063",
+              "3185064",
+              "3185065",
+              "3185066",
+              "3185067",
+              "3185068",
+              "3185069",
+              "318507",
+              "318508",
+              "318509",
+              "31851",
+              "31852",
+              "31853",
+              "31854",
+              "31855",
+              "31856",
+              "31857",
+              "31858",
+              "31859",
+              "3187",
+              "3190",
+              "31970105"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "2.83100",
+            "voice_network_group": "Netherlands - Premium Services",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "316",
+              "3160",
+              "31610",
+              "31611",
+              "31612",
+              "31613",
+              "31614",
+              "31615",
+              "31616",
+              "31617",
+              "31618",
+              "31619",
+              "31620",
+              "31621",
+              "31622",
+              "31623"
+            ],
+            "origination_prefix": [
+              "30",
+              "316",
+              "32",
+              "33",
+              "34",
+              "351",
+              "352",
+              "353",
+              "354",
+              "355",
+              "356",
+              "357",
+              "358",
+              "359",
+              "36",
+              "370",
+              "371",
+              "372",
+              "385",
+              "386",
+              "39",
+              "40",
+              "420",
+              "421",
+              "423",
+              "43",
+              "44",
+              "45",
+              "46",
+              "47",
+              "48",
+              "49"
+            ],
+            "rate": "0.01950",
+            "voice_network_group": "Netherlands - Mobile - Major Carriers (Lycamobile, Ibasis, Tele2, T-mobile, Telfort, Vodafone) from EEA",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "316",
+              "3160",
+              "31610",
+              "31611",
+              "31612",
+              "31613",
+              "31614",
+              "31615",
+              "31616",
+              "31617",
+              "31618",
+              "31619",
+              "31620",
+              "31621",
+              "31622",
+              "31623",
+              "3163230",
+              "3163240",
+              "3163241",
+              "3163242",
+              "3163243",
+              "3163244",
+              "3163245",
+              "3163246",
+              "3163247",
+              "3163248",
+              "3163249",
+              "316351",
+              "316353",
+              "316366",
+              "316367",
+              "316368",
+              "316369",
+              "31637",
+              "316370",
+              "316371",
+              "316372",
+              "316373",
+              "316374",
+              "316375",
+              "316376",
+              "316377",
+              "316580",
+              "316590",
+              "316591",
+              "316592",
+              "316593",
+              "316594",
+              "316595",
+              "316596",
+              "316597",
+              "316598",
+              "316599",
+              "3167350",
+              "3167351",
+              "3167352",
+              "316761",
+              "3168021",
+              "316868",
+              "31688",
+              "3168991",
+              "3168992",
+              "3168993",
+              "3168994",
+              "3168997",
+              "3168998",
+              "3168999",
+              "31970000",
+              "31970002",
+              "3197005",
+              "3197006",
+              "31970065",
+              "31970090",
+              "31970094",
+              "31970100",
+              "31970101",
+              "31970103",
+              "31970104",
+              "31970106",
+              "31970107",
+              "319701500"
+            ],
+            "origination_prefix": [
+              "31"
+            ],
+            "rate": "0.68810",
+            "voice_network_group": "Netherlands - Mobile from Netherlands Fixed",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "31",
+              "31202626905",
+              "3120807",
+              "31208080102",
+              "31242002",
+              "31382002",
+              "31702003",
+              "318",
+              "3184"
+            ],
+            "origination_prefix": [
+              "30",
+              "31",
+              "32",
+              "33",
+              "34",
+              "351",
+              "352",
+              "353",
+              "354",
+              "355",
+              "356",
+              "357",
+              "358",
+              "359",
+              "36",
+              "370",
+              "371",
+              "372",
+              "385",
+              "386",
+              "39",
+              "40",
+              "420",
+              "421",
+              "423",
+              "43",
+              "44",
+              "45",
+              "46",
+              "47",
+              "48",
+              "49"
+            ],
+            "rate": "0.01450",
+            "voice_network_group": "Netherlands from EEA",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "31",
+              "318"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.34900",
+            "voice_network_group": "Netherlands",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "316",
+              "3160",
+              "31610",
+              "31611",
+              "31612",
+              "31613",
+              "31614",
+              "31615",
+              "31616",
+              "31617",
+              "31618",
+              "31619",
+              "31620",
+              "31621",
+              "31622",
+              "31623"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.40300",
+            "voice_network_group": "Netherlands - Mobile - Major Carriers (Lycamobile, Ibasis, Tele2, T-mobile, Telfort, Vodafone)",
+            "voice_unit": 60
+          }
+        ]
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": "0.30970",
+        "rental": "21.25000"
+      },
+      "outbound": {
+        "rate": "2.83100",
+        "rates": [
+          {
+            "destination_prefix": [
+              "31800"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "2.83100",
+            "voice_network_group": "Netherlands - Premium Services",
+            "voice_unit": 60
+          }
+        ]
+      }
+    }
+  }
+}

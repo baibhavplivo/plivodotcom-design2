@@ -1,0 +1,40 @@
+{
+  "country": "Cook Islands",
+  "country_iso": "CK",
+  "zentrunk": {
+    "local": {
+      "outbound": {
+        "network_group_rates": {
+          "1.798": [
+            "Cook Islands",
+            "Cook Islands Mobile"
+          ]
+        },
+        "rate": "1.798",
+        "rates": {
+          "1.798": [
+            "682",
+            "6825",
+            "6827",
+            "6828"
+          ]
+        },
+        "tollfree_rate": "NA"
+      }
+    },
+    "outbound": {
+      "network_groups": {
+        "Cook Islands": "1.798",
+        "Cook Islands Mobile": "1.798"
+      },
+      "rates": {
+        "Fixed": [
+          "1.798"
+        ],
+        "Mobile": [
+          "1.798"
+        ]
+      }
+    }
+  }
+}

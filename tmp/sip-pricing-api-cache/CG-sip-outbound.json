@@ -1,0 +1,78 @@
+{
+  "country": "Congo",
+  "country_iso": "CG",
+  "zentrunk": {
+    "local": {
+      "outbound": {
+        "network_group_rates": {
+          "0.6789": [
+            "Congo - Mobile - Others (MTN)"
+          ],
+          "0.7319": [
+            "Congo"
+          ],
+          "0.7867": [
+            "Congo - Mobile"
+          ],
+          "0.856": [
+            "Congo - Mobile -Major Carriers (Airtel)"
+          ],
+          "1.498": [
+            "Congo - Premium Services"
+          ]
+        },
+        "rate": "0.6789",
+        "rates": {
+          "0.6789": [
+            "2426"
+          ],
+          "0.7319": [
+            "242"
+          ],
+          "0.7867": [
+            "2421",
+            "242220",
+            "242226",
+            "242227",
+            "242228"
+          ],
+          "0.856": [
+            "2424",
+            "2425"
+          ],
+          "1.498": [
+            "24211804",
+            "24280020",
+            "24280110",
+            "24280111",
+            "24280112",
+            "24280113"
+          ]
+        },
+        "tollfree_rate": "NA"
+      }
+    },
+    "outbound": {
+      "network_groups": {
+        "Congo": "0.7319",
+        "Congo - Mobile": "0.7867",
+        "Congo - Mobile - Others (MTN)": "0.6789",
+        "Congo - Mobile -Major Carriers (Airtel)": "0.856",
+        "Congo - Premium Services": "1.498"
+      },
+      "rates": {
+        "Fixed": [
+          "0.7319"
+        ],
+        "Mobile": [
+          "0.6789",
+          "0.7867",
+          "0.856"
+        ],
+        "Others": [
+          "1.498"
+        ]
+      }
+    }
+  }
+}

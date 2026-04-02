@@ -1,0 +1,449 @@
+{
+  "api_id": "38d8af5c-2e6c-11f1-9396-0242ac110003",
+  "country": "Australia",
+  "country_code": 61,
+  "country_iso": "AU",
+  "mms": {
+    "longcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "phone_numbers": [
+    {
+      "capabilities": [
+        "sms",
+        "voice"
+      ],
+      "cnam_lookup_rate": "0.00000",
+      "country": "Australia",
+      "country_code": 61,
+      "country_iso": "AU",
+      "effective_date": "2026-01-01",
+      "inbound_mms_rate": "0.00000",
+      "inbound_sms_rate": "0.00300",
+      "inbound_voice_rate": "0.00750",
+      "number_type": "Mobile",
+      "rental_rate": "5.00000",
+      "setup_rate": "0.00000",
+      "status": "GA"
+    },
+    {
+      "capabilities": [
+        "voice"
+      ],
+      "cnam_lookup_rate": "0.00000",
+      "country": "Australia",
+      "country_code": 61,
+      "country_iso": "AU",
+      "effective_date": "2026-01-01",
+      "inbound_mms_rate": "0.00000",
+      "inbound_sms_rate": "0.00000",
+      "inbound_voice_rate": "0.00550",
+      "number_type": "Local",
+      "rental_rate": "2.50000",
+      "setup_rate": "0.00000",
+      "status": "GA"
+    },
+    {
+      "capabilities": [
+        "voice"
+      ],
+      "cnam_lookup_rate": "0.00000",
+      "country": "Australia",
+      "country_code": 61,
+      "country_iso": "AU",
+      "effective_date": "2026-01-01",
+      "inbound_mms_rate": "0.00000",
+      "inbound_sms_rate": "0.00000",
+      "inbound_voice_rate": "0.04000",
+      "number_type": "Tollfree",
+      "rental_rate": "12.00000",
+      "setup_rate": "50.00000",
+      "status": "GA"
+    }
+  ],
+  "sms": {
+    "longcode": {
+      "inbound": {
+        "rate": "0.00000",
+        "rental": "5.00000"
+      },
+      "outbound": {
+        "rate": "0.04513",
+        "rates": {
+          "Australia - Default": "0.04730",
+          "Australia - Dialogue Communications Pty Limited": "0.04730",
+          "Australia - Other Networks": "0.37297",
+          "Australia - Pivotel Satellite Pty Limited": "0.04513",
+          "Australia - Rail Corporation": "0.04730",
+          "Australia - SingTel Optus": "0.04554",
+          "Australia - Telstra Corporation": "0.04595",
+          "Australia - Victorian Rail Track": "0.04730",
+          "Australia - Vodafone Australia PTY Limited": "0.04561",
+          "Australia - Vodafone Hutchison Australia": "0.66667",
+          "Australia Lycamobile Pty Ltd": "0.04550",
+          "Australia-YES OPTUS": "0.04730"
+        }
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": "0.00000",
+        "rental": "5.00000"
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "voice": {
+    "add_on_pricing": {
+      "audio_streaming_rate": 0.004,
+      "mpc_rate": 0,
+      "recording_storage_rate": 0.0004,
+      "speech_recognition": 0.02,
+      "transcription_charge": 0.0095,
+      "webrtc_rate": 0.0033
+    },
+    "ip": {
+      "inbound": {
+        "rate": "0.00330",
+        "rental": null
+      },
+      "outbound": {
+        "rates": {
+          "all": "0.00330"
+        }
+      }
+    },
+    "local": {
+      "inbound": {
+        "rate": "0.00550",
+        "rental": "2.50000"
+      },
+      "outbound": {
+        "rate": "0.02300",
+        "rates": [
+          {
+            "destination_prefix": [
+              "61",
+              "61251",
+              "61261",
+              "61262",
+              "6127",
+              "6128",
+              "6129",
+              "61370",
+              "6138",
+              "6139",
+              "6172",
+              "6173",
+              "61860",
+              "61861",
+              "61862",
+              "61863",
+              "61864",
+              "61865",
+              "61866",
+              "61870",
+              "61871",
+              "61872",
+              "61873",
+              "61874",
+              "61875",
+              "61881",
+              "61882",
+              "61883",
+              "61884",
+              "61892",
+              "61893",
+              "61894"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.02300",
+            "voice_network_group": "Australia",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "6113",
+              "6114",
+              "6114515",
+              "6114518",
+              "6114525",
+              "6114528",
+              "6114535",
+              "6114538",
+              "611471",
+              "6116",
+              "6118",
+              "614",
+              "61400",
+              "61401",
+              "61402",
+              "61403",
+              "61404",
+              "61405",
+              "61406",
+              "61407",
+              "61408",
+              "61409",
+              "61410",
+              "61411",
+              "61412",
+              "61413",
+              "61414",
+              "61415",
+              "61416",
+              "61417",
+              "61418",
+              "61419",
+              "61420",
+              "614202",
+              "614203",
+              "614204",
+              "614205",
+              "614206",
+              "614207",
+              "614208",
+              "614209",
+              "61421",
+              "61422",
+              "61423",
+              "61424",
+              "61425",
+              "61426",
+              "61427",
+              "61428",
+              "61429",
+              "61430",
+              "61431",
+              "61432",
+              "61433",
+              "61434",
+              "61435",
+              "61436",
+              "61437",
+              "61438",
+              "61439",
+              "614444",
+              "614445",
+              "61447",
+              "61448",
+              "61449",
+              "614490",
+              "614491",
+              "614492",
+              "614495",
+              "614496",
+              "614497",
+              "614498",
+              "614499",
+              "61450",
+              "61451",
+              "61452",
+              "614520",
+              "614521",
+              "614522",
+              "614523",
+              "614524",
+              "614525",
+              "614526",
+              "61453",
+              "61455",
+              "61456",
+              "61457",
+              "61458",
+              "61459",
+              "61460",
+              "61466",
+              "61467",
+              "614683",
+              "614684",
+              "614685",
+              "614686",
+              "614687",
+              "614688",
+              "614689",
+              "61469",
+              "614690",
+              "614691",
+              "614692",
+              "614693",
+              "6146940",
+              "6146941",
+              "6146942",
+              "6146943",
+              "6146944",
+              "6146954",
+              "6146955",
+              "6146956",
+              "6146957",
+              "6146958",
+              "6146959",
+              "614696",
+              "614697",
+              "614698",
+              "614699",
+              "61470",
+              "6147000001",
+              "614701",
+              "614702",
+              "614703",
+              "614704",
+              "614705",
+              "614706",
+              "6147070",
+              "6147071",
+              "6147072",
+              "6147073",
+              "6147074",
+              "6147075",
+              "6147076",
+              "6147077",
+              "6147078",
+              "614725",
+              "614726",
+              "614727",
+              "614728",
+              "614729",
+              "61473",
+              "61474",
+              "61475",
+              "61476",
+              "61477",
+              "61478",
+              "614790",
+              "614791",
+              "614801",
+              "614802",
+              "61481",
+              "61482",
+              "614820",
+              "614821",
+              "614822",
+              "614823",
+              "614824",
+              "614825",
+              "614826",
+              "614827",
+              "614828",
+              "614829",
+              "614830",
+              "614831",
+              "614832",
+              "614833",
+              "614838",
+              "614839",
+              "61484",
+              "61486",
+              "61487",
+              "61488",
+              "614880",
+              "614881",
+              "614882",
+              "614883",
+              "614884",
+              "614885",
+              "614886",
+              "614887",
+              "614888",
+              "614889",
+              "614899",
+              "61490",
+              "614910",
+              "614911",
+              "614912",
+              "614913",
+              "614914",
+              "614916",
+              "614917",
+              "614918",
+              "614919",
+              "61492",
+              "614930",
+              "614931",
+              "614932",
+              "614933",
+              "614934",
+              "61497",
+              "61498",
+              "61499"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.07300",
+            "voice_network_group": "Australia - Mobile",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "61145",
+              "61147",
+              "6142010",
+              "614858"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "3.78300",
+            "voice_network_group": "Australia - Premium Services",
+            "voice_unit": 60
+          }
+        ]
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": "0.04000",
+        "rental": "12.00000"
+      },
+      "outbound": {
+        "rate": "0.06690",
+        "rates": [
+          {
+            "destination_prefix": [
+              "611300",
+              "611800"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.07300",
+            "voice_network_group": "Australia - Mobile",
+            "voice_unit": 60
+          }
+        ]
+      }
+    }
+  }
+}

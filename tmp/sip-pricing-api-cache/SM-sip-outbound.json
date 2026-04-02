@@ -1,0 +1,83 @@
+{
+  "country": "San Marino",
+  "country_iso": "SM",
+  "zentrunk": {
+    "local": {
+      "outbound": {
+        "network_group_rates": {
+          "0.0378": [
+            "San Marino"
+          ],
+          "1.019": [
+            "San Marino Mobile Alternative",
+            "San Marino Mobile San Marino Telecom"
+          ],
+          "1.198": [
+            "San Marino Special Services TYPE_B"
+          ],
+          "1.458": [
+            "San Marino Special Services"
+          ],
+          "1.618": [
+            "San Marino Special Services TYPE_A"
+          ],
+          "1.9872": [
+            "San Marino Fixed TIS"
+          ]
+        },
+        "rate": "0.0378",
+        "rates": {
+          "0.0378": [
+            "378"
+          ],
+          "1.019": [
+            "378660",
+            "378663",
+            "378664",
+            "378665",
+            "378667",
+            "37866"
+          ],
+          "1.198": [
+            "37855"
+          ],
+          "1.458": [
+            "3787"
+          ],
+          "1.618": [
+            "37877"
+          ],
+          "1.9872": [
+            "37858"
+          ]
+        },
+        "tollfree_rate": "NA"
+      }
+    },
+    "outbound": {
+      "network_groups": {
+        "San Marino": "0.0378",
+        "San Marino Fixed TIS": "1.9872",
+        "San Marino Mobile Alternative": "1.019",
+        "San Marino Mobile San Marino Telecom": "1.019",
+        "San Marino Special Services": "1.458",
+        "San Marino Special Services TYPE_A": "1.618",
+        "San Marino Special Services TYPE_B": "1.198"
+      },
+      "rates": {
+        "Fixed": [
+          "0.0378",
+          "1.9872"
+        ],
+        "Mobile": [
+          "1.019"
+        ],
+        "Others": [
+          "1.198",
+          "1.458",
+          "1.618"
+        ]
+      }
+    }
+  }
+}

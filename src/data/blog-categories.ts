@@ -106,7 +106,7 @@ export const BLOG_CATEGORIES: Record<string, string> = {
   "voicemail": "Voicemail",
   "webrtc": "Webrtc",
   "whatsapp-business-api": "Whatsapp Business API",
-  "zentrunk": "Zentrunk",
+  "zentrunk": "SIP Trunking",
 };
 
 export const CATEGORY_SLUGS = Object.keys(BLOG_CATEGORIES);

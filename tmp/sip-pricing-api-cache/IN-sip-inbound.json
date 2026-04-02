@@ -1,0 +1,34 @@
+{
+  "country": "India",
+  "country_iso": "IN",
+  "zentrunk": {
+    "inbound": {
+      "number_groups": {
+        "India - local - Voice": "0.00925",
+        "India Tollfree Voice": "0.22"
+      },
+      "rates": {
+        "local": [
+          "0.00925"
+        ],
+        "tollfree": [
+          "0.22"
+        ]
+      }
+    },
+    "local": {
+      "inbound": {
+        "number_group_rates": {
+          "0.00925": [
+            "India - local - Voice"
+          ],
+          "0.22": [
+            "India Tollfree Voice"
+          ]
+        },
+        "rate": "0.00925",
+        "tollfree_rate": "0.22"
+      }
+    }
+  }
+}

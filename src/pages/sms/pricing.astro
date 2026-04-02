@@ -1,17 +1,18 @@
 ---
 import PlivoLayout from "@/layouts/PlivoLayout.astro";
 import SMSSubNav from "@/components/sections/sms-channel/SMSSubNav.astro";
-import SMSPricingTabs from "@/components/sections/sms-channel/SMSPricingTabs";
+import SMSPricingPage from "@/components/sections/sms-channel/SMSPricingPage";
 import SMSPreFooterCTA from "@/components/sections/sms-channel/SMSPreFooterCTA";
 ---
 
-<PlivoLayout title="SMS/RCS Pricing | Plivo" description="Explore Plivo's competitive SMS and RCS pricing for the United States. View rates for SMS, RCS, MMS, phone number rental, and add-on services.">
+<PlivoLayout
+  title="SMS Messaging API Pricing"
+  description="Get competitive pay-as-you-go SMS pricing, MMS pricing, and phone number rentals, with volume discounts available for committed spend."
+>
   <!-- SMS Sub Navigation -->
   <SMSSubNav currentPage="pricing" />
 
-  <!-- Pricing Tabs with Country Selection -->
-  <SMSPricingTabs client:visible />
-
-  <!-- Pre-Footer CTA -->
+  <!-- Country-specific pricing content -->
+  <SMSPricingPage client:load />
   <SMSPreFooterCTA client:visible />
 </PlivoLayout>

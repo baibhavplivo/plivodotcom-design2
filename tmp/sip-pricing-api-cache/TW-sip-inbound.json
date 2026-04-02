@@ -1,0 +1,34 @@
+{
+  "country": "Taiwan, Province of China",
+  "country_iso": "TW",
+  "zentrunk": {
+    "inbound": {
+      "number_groups": {
+        "Taiwan, Province of China Tollfree Voice": "0.32",
+        "Taiwan, Province of China local Voice": "0.094"
+      },
+      "rates": {
+        "local": [
+          "0.094"
+        ],
+        "tollfree": [
+          "0.32"
+        ]
+      }
+    },
+    "local": {
+      "inbound": {
+        "number_group_rates": {
+          "0.094": [
+            "Taiwan, Province of China local Voice"
+          ],
+          "0.32": [
+            "Taiwan, Province of China Tollfree Voice"
+          ]
+        },
+        "rate": "0.094",
+        "tollfree_rate": "0.32"
+      }
+    }
+  }
+}

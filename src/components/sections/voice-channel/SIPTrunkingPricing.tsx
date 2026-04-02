@@ -1,93 +1,536 @@
 "use client";
 
-import { useState, useEffect, useRef, useMemo } from "react";
-import { cn } from "@/lib/utils";
+import type { CSSProperties } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { ChevronDown } from "lucide-react";
+
+import {
+  SIP_PRICING_BILLING_NOTE,
+  SIP_PRICING_COUNTRIES,
+  SIP_PRICING_DATA,
+  SIP_PRICING_HERO,
+  SIP_PRICING_PHONE_NOTE,
+  SIP_PRICING_SUPPORT_URL,
+  SIP_PRICING_VOLUME_CTA,
+  type SIPPricingAddOnRow,
+  type SIPPricingCallRow,
+  type SIPPricingCountryData,
+  type SIPPricingNetworkRow,
+  type SIPPricingPhoneRow,
+} from "@/data/sip-pricing-page";
 import type { CountryListItem } from "@/data/pricing-data";
-import { SIP_RATES, PHONE_NUMBER_PRICING } from "@/data/pricing-data";
 import { useGeoCountry } from "@/hooks/useGeoCountry";
-import { useCountryISOs } from "@/hooks/useCountryISOs";
-import { useZentrunkPricing } from "@/hooks/useZentrunkPricing";
-import type { ZentrunkRates } from "@/hooks/useZentrunkPricing";
-import { useCountryPricing } from "@/hooks/useCountryPricing";
-import type { PhoneNumberInfo } from "@/hooks/useCountryPricing";
-import { useExchangeRate } from "@/hooks/useExchangeRate";
 import { useSignupUrl } from "@/hooks/useSignupUrl";
+import { cn } from "@/lib/utils";
 
-type SectionId = "call-rates" | "network-pricing" | "phone-numbers" | "add-ons" | "calculator";
+type SectionId =
+  | "call-rates"
+  | "network-pricing"
+  | "phone-numbers"
+  | "add-ons"
+  | "calculator";
 
-function getSections(hasPhoneNumbers: boolean, hasNetworkGroups: boolean): { id: SectionId; label: string }[] {
-  const base: { id: SectionId; label: string }[] = [
-    { id: "call-rates", label: "Call rates" },
-  ];
-  if (hasNetworkGroups) {
-    base.push({ id: "network-pricing", label: "Detailed network pricing" });
-  }
-  if (hasPhoneNumbers) {
-    base.push({ id: "phone-numbers", label: "Phone number rental" });
-  }
-  base.push({ id: "add-ons", label: "Add-on services" });
-  base.push({ id: "calculator", label: "Cost calculator" });
-  return base;
+interface SIPTrunkingPricingProps {
+  initialCountry?: string;
 }
 
-const Shimmer = () => (
-  <span className="inline-block h-4 w-20 bg-gray-100 rounded animate-pulse" />
-);
+const DEFAULT_COUNTRY_CODE = "US";
+const SECTION_HEADING_CLASS = "font-sans text-xl font-semibold text-black mb-2";
+const SECTION_DESCRIPTION_CLASS = "mb-6 text-sm text-gray-500";
+const TEXT_LINK_CLASS =
+  "text-[#323dfe] hover:text-[#2832cc] hover:underline transition-colors";
+const MINUTE_STEPS = [100000, 200000, 300000, 400000, 500000, 600000];
 
-export default function SIPTrunkingPricing() {
-  const { country: geoCountry } = useGeoCountry();
-  const { countries: allCountries } = useCountryISOs();
-  const sipCodes = useMemo(() => new Set(Object.keys(SIP_RATES)), []);
-  const countries = useMemo(() => allCountries.filter(c => sipCodes.has(c.code)), [allCountries, sipCodes]);
-  const [selectedCountry, setSelectedCountry] = useState<CountryListItem>(countries[0]);
-  const [isCountryOpen, setIsCountryOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState<SectionId>("call-rates");
-  const [sidebarStyle, setSidebarStyle] = useState<React.CSSProperties>({});
-  const sidebarWrapperRef = useRef<HTMLDivElement>(null);
-  const contentRef = useRef<HTMLDivElement>(null);
-  const dropdownRef = useRef<HTMLDivElement>(null);
-  const [searchQuery, setSearchQuery] = useState("");
+function findCountry(code?: string) {
+  if (!code) return null;
+  return (
+    SIP_PRICING_COUNTRIES.find((country) => country.code === code.toUpperCase()) ||
+    null
+  );
+}
 
-  const { rates: ztRates, loading } = useZentrunkPricing(selectedCountry.code);
-  const { data: pricingData } = useCountryPricing(selectedCountry.code);
-  const phoneNumbers = useMemo(() => {
-    // Try API data first
-    const apiNumbers = (pricingData?.phoneNumbers || []).filter(
-      (pn) => pn.rentalRate != null && pn.rentalRate > 0
-    );
-    if (apiNumbers.length > 0) return apiNumbers;
+function updatePricingPath(countryCode: string) {
+  if (typeof window === "undefined") return;
 
-    // Fallback to PHONE_NUMBER_PRICING (API returns "Access Denied" off plivo.com)
-    const pricing = PHONE_NUMBER_PRICING[selectedCountry.code];
-    if (!pricing) return [];
+  const nextPath = `/sip-trunking/pricing/${countryCode.toLowerCase()}/`;
+  if (window.location.pathname !== nextPath) {
+    window.history.replaceState({}, "", nextPath);
+  }
+}
 
-    return pricing.numbers
-      .filter((n) => !n.children && n.capabilities.includes("Voice"))
-      .map((n) => ({
-        type: n.type.replace(" numbers", "").replace(" Numbers", ""),
-        rentalRate: parseFloat(n.price.replace(/[^0-9.]/g, "")),
-        inboundVoiceRate: null,
-        inboundSmsRate: null,
-        capabilities: n.capabilities.map((c) => c.toLowerCase()),
-        status: "GA" as const,
-      }));
-  }, [pricingData, selectedCountry.code]);
+function getSections(countryData: SIPPricingCountryData) {
+  const sections: { id: SectionId; label: string }[] = [
+    { id: "call-rates", label: "Voice calls" },
+  ];
 
-  // Auto-select country based on IP geolocation
-  useEffect(() => {
-    const match = countries.find(c => c.code === geoCountry);
-    if (match) setSelectedCountry(match);
-  }, [geoCountry, countries]);
+  if (countryData.networkRows.length > 0) {
+    sections.push({ id: "network-pricing", label: "Detailed network pricing" });
+  }
 
-  // Calculator state
+  if (countryData.phoneRows.length > 0) {
+    sections.push({ id: "phone-numbers", label: "Phone number rental" });
+  }
+
+  sections.push({ id: "add-ons", label: "Add-on services" });
+
+  if (countryData.calculator) {
+    sections.push({ id: "calculator", label: "Cost calculator" });
+  }
+
+  return sections;
+}
+
+function isUnavailableValue(value: string) {
+  return /^(na|not supported|not available)$/i.test(value.trim());
+}
+
+function valueClassName(value: string) {
+  return isUnavailableValue(value) ? "text-gray-400" : "text-black";
+}
+
+function cleanNote(value: string) {
+  return value.replace(/^\*\*/, "").trim();
+}
+
+function formatLargeNumber(value: number) {
+  return new Intl.NumberFormat("en-US").format(value);
+}
+
+function formatRate(value: number, currencySymbol: string) {
+  return `${currencySymbol}${value.toFixed(4)}/min`;
+}
+
+function formatSliderBackground(value: number) {
+  const percentage = ((value - 100000) / 500000) * 100;
+  return `linear-gradient(to right, #323dfe ${percentage}%, #e5e7eb ${percentage}%)`;
+}
+
+function renderOutboundValue(row: SIPPricingCallRow) {
+  if (row.startsAt && !isUnavailableValue(row.outbound)) {
+    return `Starts at ${row.outbound}`;
+  }
+  return row.outbound;
+}
+
+function CallRatesSection({
+  countryData,
+  onOpenNetworkPricing,
+}: {
+  countryData: SIPPricingCountryData;
+  onOpenNetworkPricing: () => void;
+}) {
+  const hasNetworkRows = countryData.networkRows.length > 0;
+
+  return (
+    <div>
+      <h2 className={SECTION_HEADING_CLASS}>Voice calls</h2>
+      <p className={SECTION_DESCRIPTION_CLASS}>
+        Per-minute rates for available SIP Trunking number routes. Network-level
+        outbound call pricing is available where rates vary by number type.
+      </p>
+
+      {countryData.callRows.length > 0 ? (
+        <div className="overflow-x-auto">
+          <table className="w-full">
+            <thead>
+              <tr className="border-b border-gray-200">
+                <th className="py-3 pr-4 text-left text-sm font-semibold text-black w-[38%]">
+                  Number type
+                </th>
+                <th className="py-3 pr-4 text-left text-sm font-semibold text-black">
+                  To make calls (Outbound)
+                </th>
+                <th className="py-3 text-left text-sm font-semibold text-black">
+                  To receive calls (Inbound)
+                </th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-100">
+              {countryData.callRows.map((row) => (
+                <tr key={row.label}>
+                  <td className="py-3 pr-4 text-sm text-gray-900">{row.label}</td>
+                  <td className="py-3 pr-4 text-sm font-medium">
+                    <div className={valueClassName(renderOutboundValue(row))}>
+                      {renderOutboundValue(row)}
+                    </div>
+                    {row.showDetailedPricingLink && hasNetworkRows && (
+                      <button
+                        type="button"
+                        onClick={onOpenNetworkPricing}
+                        className={cn("mt-1 text-sm font-medium", TEXT_LINK_CLASS)}
+                      >
+                        View detailed pricing
+                      </button>
+                    )}
+                  </td>
+                  <td
+                    className={cn(
+                      "py-3 text-sm font-medium",
+                      valueClassName(row.inbound),
+                    )}
+                  >
+                    {row.inbound}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      ) : (
+        <div className="py-4 text-sm text-gray-500">
+          No call pricing is currently available for {countryData.name}. Contact
+          sales for a custom quote.
+        </div>
+      )}
+
+      <p className="mt-4 text-xs text-gray-400">{SIP_PRICING_BILLING_NOTE}</p>
+    </div>
+  );
+}
+
+function NetworkPricingSection({
+  rows,
+  countryName,
+}: {
+  rows: SIPPricingNetworkRow[];
+  countryName: string;
+}) {
+  if (rows.length === 0) return null;
+
+  return (
+    <div>
+      <h2 className={SECTION_HEADING_CLASS}>Detailed network pricing</h2>
+      <p className={SECTION_DESCRIPTION_CLASS}>
+        Network-level outbound call pricing for {countryName}.
+      </p>
+
+      <div className="overflow-x-auto">
+        <table className="w-full">
+          <thead>
+            <tr className="border-b border-gray-200">
+              <th className="py-3 pr-4 text-left text-sm font-semibold text-black w-[65%]">
+                Network group
+              </th>
+              <th className="py-3 text-left text-sm font-semibold text-black">
+                Outbound calls
+              </th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-gray-100">
+            {rows.map((row) => (
+              <tr key={row.label}>
+                <td className="py-3 pr-4 text-sm text-gray-900">{row.label}</td>
+                <td
+                  className={cn(
+                    "py-3 text-sm font-medium",
+                    valueClassName(row.price),
+                  )}
+                >
+                  {row.price}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+}
+
+function PhoneRentalSection({
+  rows,
+}: {
+  rows: SIPPricingPhoneRow[];
+}) {
+  if (rows.length === 0) return null;
+
+  return (
+    <div>
+      <h2 className={SECTION_HEADING_CLASS}>Phone number rental</h2>
+      <p className={SECTION_DESCRIPTION_CLASS}>
+        Monthly rental rates for voice-capable phone numbers available with SIP
+        Trunking.
+      </p>
+
+      <div className="overflow-x-auto">
+        <table className="w-full">
+          <thead>
+            <tr className="border-b border-gray-200">
+              <th className="py-3 pr-4 text-left text-sm font-semibold text-black w-[65%]">
+                Number type
+              </th>
+              <th className="py-3 text-left text-sm font-semibold text-black">
+                Price
+              </th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-gray-100">
+            {rows.map((row) => (
+              <tr key={row.label}>
+                <td className="py-3 pr-4 text-sm text-gray-900">{row.label}</td>
+                <td
+                  className={cn(
+                    "py-3 text-sm font-medium",
+                    valueClassName(row.price || "Not Supported"),
+                  )}
+                >
+                  {row.price || "Not Supported"}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <p className="mt-4 text-xs text-gray-400">{cleanNote(SIP_PRICING_PHONE_NOTE)}</p>
+    </div>
+  );
+}
+
+function AddOnSection({
+  rows,
+}: {
+  rows: SIPPricingAddOnRow[];
+}) {
+  return (
+    <div>
+      <h2 className={SECTION_HEADING_CLASS}>Add-on services</h2>
+      <p className={SECTION_DESCRIPTION_CLASS}>
+        Additional services available with SIP Trunking.
+      </p>
+
+      <div className="overflow-x-auto">
+        <table className="w-full">
+          <thead>
+            <tr className="border-b border-gray-200">
+              <th className="py-3 pr-4 text-left text-sm font-semibold text-black w-[65%]">
+                Service
+              </th>
+              <th className="py-3 text-left text-sm font-semibold text-black">
+                Price
+              </th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-gray-100">
+            {rows.map((row) => (
+              <tr key={row.label}>
+                <td className="py-3 pr-4 text-sm text-gray-900">{row.label}</td>
+                <td
+                  className={cn(
+                    "py-3 text-sm font-medium",
+                    valueClassName(row.price),
+                  )}
+                >
+                  {row.price}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+}
+
+function CalculatorSection({
+  countryData,
+}: {
+  countryData: SIPPricingCountryData;
+}) {
+  const { url: signupUrl, label: signupLabel } = useSignupUrl();
+  const calculator = countryData.calculator;
   const [localMinutes, setLocalMinutes] = useState(100000);
   const [tollfreeMinutes, setTollfreeMinutes] = useState(100000);
 
-  const hasNetworkGroups = (ztRates?.networkGroups?.length ?? 0) > 0;
-  const sections = getSections(phoneNumbers.length > 0, hasNetworkGroups);
+  if (!calculator) {
+    return (
+      <div>
+        <h2 className={SECTION_HEADING_CLASS}>Cost calculator</h2>
+        <p className="py-4 text-sm text-gray-500">
+          Cost calculator is not available for {countryData.name}. Contact sales
+          for a custom quote.
+        </p>
+      </div>
+    );
+  }
 
-  // Close dropdown when clicking outside
+  const showLocal = calculator.localRate > 0;
+  const showTollfree = calculator.tollfreeRate > 0;
+  const localSubtotal = Math.round(localMinutes * calculator.localRate);
+  const tollfreeSubtotal = Math.round(tollfreeMinutes * calculator.tollfreeRate);
+  const total = localSubtotal + tollfreeSubtotal;
+
+  return (
+    <div>
+      <h2 className={SECTION_HEADING_CLASS}>Cost calculator</h2>
+      <p className={SECTION_DESCRIPTION_CLASS}>
+        Estimate your monthly SIP Trunking costs for {countryData.name}.
+      </p>
+
+      <div className="space-y-8">
+        {showLocal && (
+          <div>
+            <div className="mb-3 flex items-center justify-between">
+              <span className="text-sm font-medium text-gray-900">
+                Local inbound minutes
+              </span>
+              <span className="text-sm font-medium text-black">
+                {formatLargeNumber(localMinutes)} min
+              </span>
+            </div>
+            <input
+              type="range"
+              min={100000}
+              max={600000}
+              step={100000}
+              value={localMinutes}
+              onChange={(event) => setLocalMinutes(Number(event.target.value))}
+              className="h-2 w-full cursor-pointer appearance-none rounded-lg accent-[#323dfe]"
+              style={{ background: formatSliderBackground(localMinutes) }}
+            />
+            <div className="mt-1 flex justify-between">
+              {MINUTE_STEPS.map((step) => (
+                <span key={step} className="text-[10px] text-gray-400">
+                  {step / 1000}K
+                </span>
+              ))}
+            </div>
+            <div className="mt-3 flex justify-between text-sm">
+              <span className="text-gray-500">
+                Rate: {formatRate(calculator.localRate, calculator.currencySymbol)}
+              </span>
+              <span className="font-medium text-black">
+                {calculator.currencySymbol}
+                {formatLargeNumber(localSubtotal)}
+              </span>
+            </div>
+          </div>
+        )}
+
+        {showTollfree && (
+          <div>
+            <div className="mb-3 flex items-center justify-between">
+              <span className="text-sm font-medium text-gray-900">
+                Toll-free inbound minutes
+              </span>
+              <span className="text-sm font-medium text-black">
+                {formatLargeNumber(tollfreeMinutes)} min
+              </span>
+            </div>
+            <input
+              type="range"
+              min={100000}
+              max={600000}
+              step={100000}
+              value={tollfreeMinutes}
+              onChange={(event) => setTollfreeMinutes(Number(event.target.value))}
+              className="h-2 w-full cursor-pointer appearance-none rounded-lg accent-[#323dfe]"
+              style={{ background: formatSliderBackground(tollfreeMinutes) }}
+            />
+            <div className="mt-1 flex justify-between">
+              {MINUTE_STEPS.map((step) => (
+                <span key={step} className="text-[10px] text-gray-400">
+                  {step / 1000}K
+                </span>
+              ))}
+            </div>
+            <div className="mt-3 flex justify-between text-sm">
+              <span className="text-gray-500">
+                Rate: {formatRate(calculator.tollfreeRate, calculator.currencySymbol)}
+              </span>
+              <span className="font-medium text-black">
+                {calculator.currencySymbol}
+                {formatLargeNumber(tollfreeSubtotal)}
+              </span>
+            </div>
+          </div>
+        )}
+
+        <div className="border-t border-gray-200 pt-6">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-lg font-semibold text-black">
+                Estimated monthly cost
+              </p>
+              <p className="mt-1 text-xs text-gray-500">
+                Based on {formatLargeNumber(showLocal ? localMinutes : 0)}
+                {showLocal && showTollfree ? " local + " : ""}
+                {showTollfree
+                  ? `${formatLargeNumber(tollfreeMinutes)} toll-free`
+                  : ""}{" "}
+                minutes
+              </p>
+            </div>
+            <p className="text-2xl font-bold text-black">
+              {calculator.currencySymbol}
+              {formatLargeNumber(total)}
+            </p>
+          </div>
+
+          <p className="mt-4 text-sm text-gray-600">
+            {SIP_PRICING_VOLUME_CTA.title}
+          </p>
+
+          <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+            <a
+              href={SIP_PRICING_VOLUME_CTA.buttonHref}
+              className="inline-flex items-center justify-center rounded-md border border-gray-300 px-6 py-3 text-sm font-medium text-black transition-colors hover:bg-gray-50"
+            >
+              {SIP_PRICING_VOLUME_CTA.buttonLabel}
+            </a>
+            <a
+              href={signupUrl}
+              {...(signupUrl.startsWith("http")
+                ? { target: "_blank", rel: "noopener noreferrer" }
+                : {})}
+              className="cta-hover-gradient inline-flex items-center justify-center rounded-md bg-black px-6 py-3 text-sm font-medium text-white transition-colors"
+            >
+              {signupLabel}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default function SIPTrunkingPricing({
+  initialCountry,
+}: SIPTrunkingPricingProps) {
+  const { country: geoCountry } = useGeoCountry(DEFAULT_COUNTRY_CODE, {
+    mode: "exact",
+  });
+  const initialSelection = (
+    findCountry(initialCountry) ||
+    findCountry(DEFAULT_COUNTRY_CODE) ||
+    SIP_PRICING_COUNTRIES[0]
+  ) as CountryListItem;
+  const initialized = useRef(Boolean(findCountry(initialCountry)));
+  const [selectedCountry, setSelectedCountry] =
+    useState<CountryListItem>(initialSelection);
+  const [isCountryOpen, setIsCountryOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [activeSection, setActiveSection] = useState<SectionId>("call-rates");
+  const [sidebarStyle, setSidebarStyle] = useState<CSSProperties>({});
+  const sidebarWrapperRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (initialized.current) return;
+
+    const preferred =
+      findCountry(geoCountry) ||
+      findCountry(DEFAULT_COUNTRY_CODE) ||
+      SIP_PRICING_COUNTRIES[0];
+
+    if (!preferred) return;
+
+    initialized.current = true;
+    setSelectedCountry(preferred);
+    updatePricingPath(preferred.code);
+  }, [geoCountry]);
+
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
@@ -95,16 +538,21 @@ export default function SIPTrunkingPricing() {
         setSearchQuery("");
       }
     };
+
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  // Scroll spy + sticky sidebar
+  const countryData =
+    SIP_PRICING_DATA[selectedCountry.code] || SIP_PRICING_DATA[DEFAULT_COUNTRY_CODE];
+
+  const sections = useMemo(() => getSections(countryData), [countryData]);
+
   useEffect(() => {
     const handleScrollAndResize = () => {
-      const sectionElements = sections.map((s) => ({
-        id: s.id,
-        element: document.getElementById(s.id),
+      const sectionElements = sections.map((section) => ({
+        id: section.id,
+        element: document.getElementById(section.id),
       }));
 
       for (const section of sectionElements) {
@@ -140,6 +588,7 @@ export default function SIPTrunkingPricing() {
     window.addEventListener("scroll", handleScrollAndResize);
     window.addEventListener("resize", handleScrollAndResize);
     handleScrollAndResize();
+
     return () => {
       window.removeEventListener("scroll", handleScrollAndResize);
       window.removeEventListener("resize", handleScrollAndResize);
@@ -148,123 +597,141 @@ export default function SIPTrunkingPricing() {
 
   const scrollToSection = (id: SectionId) => {
     const element = document.getElementById(id);
-    if (element) {
-      const offset = 120;
-      const top = element.getBoundingClientRect().top + window.scrollY - offset;
-      window.scrollTo({ top, behavior: "smooth" });
-    }
+    if (!element) return;
+
+    const offset = 120;
+    const top = element.getBoundingClientRect().top + window.scrollY - offset;
+    window.scrollTo({ top, behavior: "smooth" });
   };
 
   const filteredCountries = useMemo(() => {
-    if (!searchQuery) return countries;
-    const q = searchQuery.toLowerCase();
-    return countries.filter(
-      (c) => c.name.toLowerCase().includes(q) || c.code.toLowerCase().includes(q)
+    if (!searchQuery) return SIP_PRICING_COUNTRIES;
+
+    const query = searchQuery.toLowerCase();
+    return SIP_PRICING_COUNTRIES.filter(
+      (country) =>
+        country.name.toLowerCase().includes(query) ||
+        country.code.toLowerCase().includes(query),
     );
-  }, [searchQuery, countries]);
+  }, [searchQuery]);
+
+  const handleCountrySelect = (country: CountryListItem) => {
+    setSelectedCountry(country);
+    setIsCountryOpen(false);
+    setSearchQuery("");
+    updatePricingPath(country.code);
+  };
 
   return (
     <>
-      {/* Hero Header */}
-      <section className="bg-white pt-[56px] sm:pt-[64px] md:pt-[72px] pb-10">
+      <section className="bg-white pb-10 pt-[56px] sm:pt-[64px] md:pt-[72px]">
         <div className="container mx-auto max-w-7xl px-4">
           <div className="text-center">
-            <h1 className="font-sora text-[2rem] sm:text-[2.5rem] md:text-[3rem] font-normal leading-[1.1] tracking-[-0.02em] text-black mb-4">
-              SIP trunking pricing
+            <h1 className="mb-4 font-sora text-[2rem] font-normal leading-[1.1] tracking-[-0.02em] text-black sm:text-[2.5rem] md:text-[3rem]">
+              {SIP_PRICING_HERO.title}
             </h1>
-            <p className="text-gray-600 text-base sm:text-lg max-w-2xl mx-auto">
-              Pay-as-you-go SIP trunking with competitive inbound rates across 50+ countries. No setup fees, no contracts.
+            <p className="mx-auto max-w-2xl text-base text-gray-600 sm:text-lg">
+              {SIP_PRICING_HERO.description}
+            </p>
+            <p className="mt-4 text-sm text-gray-600">
+              <a href={SIP_PRICING_HERO.volumeLinkHref} className={TEXT_LINK_CLASS}>
+                {SIP_PRICING_HERO.volumeLinkLabel}
+              </a>
             </p>
           </div>
         </div>
       </section>
 
-      {/* Two Column Layout */}
       <section className="bg-white pb-12 lg:pb-20">
         <div className="container mx-auto max-w-7xl px-4">
-          <div className="lg:grid lg:grid-cols-[256px_1fr] lg:gap-8 lg:items-start">
-            {/* Left Sidebar Wrapper */}
+          <div className="lg:grid lg:grid-cols-[256px_1fr] lg:items-start lg:gap-8">
             <div ref={sidebarWrapperRef} className="mb-8 lg:mb-0">
-              <aside className="bg-white z-30" style={sidebarStyle}>
-                {/* Country Selector */}
+              <aside className="z-30 bg-white" style={sidebarStyle}>
                 <div className="relative mb-6" ref={dropdownRef}>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="mb-2 block text-sm font-medium text-gray-700">
                     Select country
                   </label>
                   <button
+                    type="button"
                     onClick={() => {
-                      setIsCountryOpen(!isCountryOpen);
+                      setIsCountryOpen((open) => !open);
                       setSearchQuery("");
                     }}
-                    className="w-full flex items-center gap-3 px-4 py-2.5 bg-white border border-gray-300 rounded-lg hover:border-gray-400 transition-colors"
+                    className="flex w-full items-center gap-3 rounded-lg border border-gray-300 bg-white px-4 py-2.5 transition-colors hover:border-gray-400"
                   >
                     <span className="text-xl">{selectedCountry.flag}</span>
-                    <span className="text-sm font-medium text-gray-900 flex-1 text-left">
+                    <span className="flex-1 text-left text-sm font-medium text-gray-900">
                       {selectedCountry.name}
                     </span>
                     <ChevronDown
                       className={cn(
-                        "w-4 h-4 text-gray-400 transition-transform",
-                        isCountryOpen && "rotate-180"
+                        "h-4 w-4 text-gray-400 transition-transform",
+                        isCountryOpen && "rotate-180",
                       )}
                     />
                   </button>
 
                   {isCountryOpen && (
-                    <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-10">
-                      <div className="p-2 border-b border-gray-100">
+                    <div className="absolute left-0 right-0 top-full z-10 mt-1 rounded-lg border border-gray-200 bg-white shadow-lg">
+                      <div className="border-b border-gray-100 p-2">
                         <input
                           type="text"
                           placeholder="Search countries..."
                           value={searchQuery}
-                          onChange={(e) => setSearchQuery(e.target.value)}
-                          className="w-full px-3 py-2 text-sm text-gray-900 bg-white border border-gray-300 rounded-md focus:outline-none focus:border-gray-500 placeholder:text-gray-400"
+                          onChange={(event) => setSearchQuery(event.target.value)}
+                          className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 placeholder:text-gray-400 focus:border-gray-500 focus:outline-none"
                           autoFocus
                         />
                       </div>
                       <div className="max-h-56 overflow-y-auto">
-                        {filteredCountries.map((country, idx) => (
+                        {filteredCountries.map((country, index) => (
                           <div key={country.code}>
-                            {!country.isPriority && idx > 0 && filteredCountries[idx - 1]?.isPriority && (
-                              <div className="border-t border-gray-200 my-1" />
-                            )}
+                            {!country.isPriority &&
+                              index > 0 &&
+                              filteredCountries[index - 1]?.isPriority && (
+                                <div className="my-1 border-t border-gray-200" />
+                              )}
                             <button
-                              onClick={() => {
-                                setSelectedCountry(country);
-                                setIsCountryOpen(false);
-                                setSearchQuery("");
-                              }}
+                              type="button"
+                              onClick={() => handleCountrySelect(country)}
                               className={cn(
-                                "w-full flex items-center gap-2.5 px-4 py-2.5 hover:bg-gray-50 transition-colors text-left",
-                                selectedCountry.code === country.code && "bg-[#323dfe]/5"
+                                "flex w-full items-center gap-2.5 px-4 py-2.5 text-left transition-colors hover:bg-gray-50",
+                                selectedCountry.code === country.code &&
+                                  "bg-[#323dfe]/5",
                               )}
                             >
                               <span className="text-xl">{country.flag}</span>
-                              <span className="text-sm text-gray-900">{country.name}</span>
+                              <span className="text-sm text-gray-900">
+                                {country.name}
+                              </span>
                             </button>
                           </div>
                         ))}
                         {filteredCountries.length === 0 && (
-                          <div className="px-4 py-3 text-sm text-gray-500">No countries found</div>
+                          <div className="px-4 py-3 text-sm text-gray-500">
+                            No countries found
+                          </div>
                         )}
                       </div>
                     </div>
                   )}
                 </div>
 
-                {/* Section Navigation */}
                 <nav className="hidden lg:block">
-                  <p className="text-sm font-medium text-gray-700 mb-3">Jump to section</p>
+                  <p className="mb-3 text-sm font-medium text-gray-700">
+                    Jump to section
+                  </p>
                   <ul className="space-y-1">
                     {sections.map((section) => (
                       <li key={section.id}>
                         <button
+                          type="button"
                           onClick={() => scrollToSection(section.id)}
                           className={cn(
-                            "w-full text-left px-3 py-2 text-sm transition-colors border-l-2",
+                            "w-full border-l-2 px-3 py-2 text-left text-sm transition-colors",
                             activeSection === section.id
-                              ? "border-[#323dfe] text-[#323dfe] font-medium"
-                              : "border-transparent text-gray-600 hover:border-gray-300 hover:text-gray-900"
+                              ? "border-[#323dfe] font-medium text-[#323dfe]"
+                              : "border-transparent text-gray-600 hover:border-gray-300 hover:text-gray-900",
                           )}
                         >
                           {section.label}
@@ -276,430 +743,63 @@ export default function SIPTrunkingPricing() {
               </aside>
             </div>
 
-            {/* Right Content */}
             <div ref={contentRef} className="min-w-0">
-              {/* Call rates (inbound + outbound) */}
-              <div id="call-rates" className="bg-white rounded-xl border border-gray-200 p-6 mb-6">
-                <CallRatesSection rates={ztRates} countryName={selectedCountry.name} countryCode={selectedCountry.code} loading={loading} />
-              </div>
-
-              {/* Detailed network pricing */}
-              {hasNetworkGroups && (
-                <div id="network-pricing" className="bg-white rounded-xl border border-gray-200 p-6 mb-6">
-                  <NetworkPricingSection rates={ztRates} countryCode={selectedCountry.code} loading={loading} />
-                </div>
-              )}
-
-              {/* Phone number rental */}
-              {phoneNumbers.length > 0 && (
-                <div id="phone-numbers" className="bg-white rounded-xl border border-gray-200 p-6 mb-6">
-                  <PhoneRentalSection phoneNumbers={phoneNumbers} loading={loading} countryCode={selectedCountry.code} />
-                </div>
-              )}
-
-              {/* Add-on services */}
-              <div id="add-ons" className="bg-white rounded-xl border border-gray-200 p-6 mb-6">
-                <AddOnSection countryCode={selectedCountry.code} />
-              </div>
-
-              {/* Cost calculator */}
-              <div id="calculator" className="bg-white rounded-xl border border-gray-200 p-6">
-                <CalculatorSection
-                  rates={ztRates}
-                  countryName={selectedCountry.name}
-                  countryCode={selectedCountry.code}
-                  localMinutes={localMinutes}
-                  setLocalMinutes={setLocalMinutes}
-                  tollfreeMinutes={tollfreeMinutes}
-                  setTollfreeMinutes={setTollfreeMinutes}
-                  loading={loading}
+              <div id="call-rates" className="mb-6 rounded-xl border border-gray-200 bg-white p-6">
+                <CallRatesSection
+                  countryData={countryData}
+                  onOpenNetworkPricing={() => scrollToSection("network-pricing")}
                 />
               </div>
+
+              {countryData.networkRows.length > 0 && (
+                <div
+                  id="network-pricing"
+                  className="mb-6 rounded-xl border border-gray-200 bg-white p-6"
+                >
+                  <NetworkPricingSection
+                    rows={countryData.networkRows}
+                    countryName={countryData.name}
+                  />
+                </div>
+              )}
+
+              {countryData.phoneRows.length > 0 && (
+                <div
+                  id="phone-numbers"
+                  className="mb-6 rounded-xl border border-gray-200 bg-white p-6"
+                >
+                  <PhoneRentalSection rows={countryData.phoneRows} />
+                </div>
+              )}
+
+              <div id="add-ons" className="mb-6 rounded-xl border border-gray-200 bg-white p-6">
+                <AddOnSection rows={countryData.addOnRows} />
+              </div>
+
+              {countryData.calculator ? (
+                <div id="calculator" className="rounded-xl border border-gray-200 bg-white p-6">
+                  <CalculatorSection countryData={countryData} />
+                </div>
+              ) : (
+                <div className="rounded-xl border border-gray-200 bg-white p-6">
+                  <p className="text-sm text-gray-500">
+                    Need volume pricing or a country-specific quote?{" "}
+                    <a
+                      href={SIP_PRICING_SUPPORT_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={TEXT_LINK_CLASS}
+                    >
+                      Contact support
+                    </a>
+                    .
+                  </p>
+                </div>
+              )}
             </div>
           </div>
         </div>
       </section>
     </>
-  );
-}
-
-function CallRatesSection({ rates, countryName, countryCode, loading }: { rates: ZentrunkRates | null; countryName: string; countryCode: string; loading: boolean }) {
-  const { formatPrice } = useExchangeRate();
-  const types = [
-    { label: "Local", key: "local" as const },
-    { label: "Mobile", key: "mobile" as const },
-    { label: "National", key: "national" as const },
-    { label: "Toll-Free", key: "tollfree" as const },
-  ];
-
-  const rows = types.filter((t) => {
-    if (!rates) return true;
-    const r = rates[t.key];
-    return r.inbound > 0 || r.outbound > 0;
-  });
-
-  const showStartsAt = rates?.outboundHasMultipleRates ?? false;
-
-  return (
-    <div>
-      <h2 className="font-sans text-xl font-semibold text-black mb-2">Call rates</h2>
-      <p className="text-sm text-gray-500 mb-6">
-        Per-minute inbound and outbound rates for {countryName}.
-      </p>
-
-      {loading || rows.length > 0 ? (
-        <div className="overflow-x-auto">
-          <table className="w-full">
-            <thead>
-              <tr className="border-b border-gray-200">
-                <th className="py-3 pr-4 text-left text-sm font-semibold text-black w-[40%]">
-                  Number type
-                </th>
-                <th className="py-3 pr-4 text-left text-sm font-semibold text-black">Inbound</th>
-                <th className="py-3 text-left text-sm font-semibold text-black">Outbound</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-gray-100">
-              {loading ? (
-                types.map((t) => (
-                  <tr key={t.key}>
-                    <td className="py-3 pr-4 text-sm text-gray-900">{t.label}</td>
-                    <td className="py-3 pr-4 text-sm font-medium text-black"><Shimmer /></td>
-                    <td className="py-3 text-sm font-medium text-black"><Shimmer /></td>
-                  </tr>
-                ))
-              ) : (
-                rows.map((t) => {
-                  const r = rates![t.key];
-                  const outPrefix = showStartsAt && r.outbound > 0 && t.key !== "tollfree" ? "Starts at " : "";
-                  return (
-                    <tr key={t.key}>
-                      <td className="py-3 pr-4 text-sm text-gray-900">{t.label}</td>
-                      <td className={cn("py-3 pr-4 text-sm font-medium", r.inbound > 0 ? "text-black" : "text-gray-400")}>
-                        {r.inbound > 0 ? formatPrice(r.inbound, countryCode, "min") : "Not available"}
-                      </td>
-                      <td className={cn("py-3 text-sm font-medium", r.outbound > 0 ? "text-black" : "text-gray-400")}>
-                        {r.outbound > 0 ? `${outPrefix}${formatPrice(r.outbound, countryCode, "min")}` : "Not available"}
-                      </td>
-                    </tr>
-                  );
-                })
-              )}
-            </tbody>
-          </table>
-        </div>
-      ) : (
-        <div className="text-sm text-gray-500 py-4">
-          No rates available for {countryName}. Contact sales for a custom quote.
-        </div>
-      )}
-
-      <p className="text-xs text-gray-400 mt-4">
-        Billing interval for the US and Canada is 6/6, Brazil is 30/30 and for all major international destinations is 1/1.
-      </p>
-    </div>
-  );
-}
-
-function NetworkPricingSection({ rates, countryCode, loading }: { rates: ZentrunkRates | null; countryCode: string; loading: boolean }) {
-  const { formatPrice } = useExchangeRate();
-  const groups = rates?.networkGroups ?? [];
-
-  if (!loading && groups.length === 0) return null;
-
-  return (
-    <div>
-      <h2 className="font-sans text-xl font-semibold text-black mb-2">Detailed network pricing</h2>
-      <p className="text-sm text-gray-500 mb-6">
-        Pricing per network group — Outbound calls
-      </p>
-
-      <div className="overflow-x-auto">
-        <table className="w-full">
-          <thead>
-            <tr className="border-b border-gray-200">
-              <th className="py-3 pr-4 text-left text-sm font-semibold text-black w-[65%]">
-                Network group
-              </th>
-              <th className="py-3 text-left text-sm font-semibold text-black">
-                Outbound call fee
-              </th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-gray-100">
-            {loading ? (
-              [0, 1, 2].map((i) => (
-                <tr key={i}>
-                  <td className="py-3 pr-4 text-sm text-gray-900"><Shimmer /></td>
-                  <td className="py-3 text-sm font-medium text-black"><Shimmer /></td>
-                </tr>
-              ))
-            ) : (
-              groups.map((g, idx) => (
-                <tr key={idx}>
-                  <td className="py-3 pr-4 text-sm text-gray-900">{g.name}</td>
-                  <td className="py-3 text-sm font-medium text-black">
-                    {formatPrice(g.rate, countryCode, "min")}
-                  </td>
-                </tr>
-              ))
-            )}
-          </tbody>
-        </table>
-      </div>
-    </div>
-  );
-}
-
-function PhoneRentalSection({ phoneNumbers, loading, countryCode }: { phoneNumbers: PhoneNumberInfo[]; loading: boolean; countryCode: string }) {
-  const { convertPriceString: cp } = useExchangeRate();
-  if (phoneNumbers.length === 0) return null;
-
-  return (
-    <div>
-      <h2 className="font-sans text-xl font-semibold text-black mb-2">Phone number rental</h2>
-      <p className="text-sm text-gray-500 mb-6">
-        Monthly rental rates for phone numbers used with SIP trunking.
-      </p>
-
-      <div className="overflow-x-auto">
-        <table className="w-full">
-          <thead>
-            <tr className="border-b border-gray-200">
-              <th className="py-3 pr-4 text-left text-sm font-semibold text-black w-[65%]">
-                Number type
-              </th>
-              <th className="py-3 text-left text-sm font-semibold text-black">Price</th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-gray-100">
-            {phoneNumbers.map((pn) => (
-              <tr key={pn.type}>
-                <td className="py-3 pr-4 text-sm text-gray-900">{pn.type}</td>
-                <td className="py-3 text-sm font-medium text-black">
-                  {loading ? <Shimmer /> : cp(`$${(pn.rentalRate ?? 0).toFixed(2)}/month`, countryCode)}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </div>
-  );
-}
-
-function AddOnSection({ countryCode }: { countryCode: string }) {
-  const { convertPriceString: cp } = useExchangeRate();
-
-  return (
-    <div>
-      <h2 className="font-sans text-xl font-semibold text-black mb-2">Add-on services</h2>
-      <p className="text-sm text-gray-500 mb-6">
-        Additional services available with SIP trunking.
-      </p>
-
-      <div className="overflow-x-auto">
-        <table className="w-full">
-          <thead>
-            <tr className="border-b border-gray-200">
-              <th className="py-3 pr-4 text-left text-sm font-semibold text-black w-[65%]">
-                Service
-              </th>
-              <th className="py-3 text-left text-sm font-semibold text-black">Price</th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-gray-100">
-            <tr>
-              <td className="py-3 pr-4 text-sm text-gray-900">Secure Trunking</td>
-              <td className="py-3 text-sm font-medium text-black">Included</td>
-            </tr>
-            {countryCode === "US" && (
-              <tr>
-                <td className="py-3 pr-4 text-sm text-gray-900">CNAM Lookup</td>
-                <td className="py-3 text-sm font-medium text-black">
-                  {cp("$0.00500/lookup", countryCode)}
-                </td>
-              </tr>
-            )}
-          </tbody>
-        </table>
-      </div>
-    </div>
-  );
-}
-
-function formatLargeNumber(num: number): string {
-  return new Intl.NumberFormat("en-US").format(num);
-}
-
-const minuteSteps = [100000, 200000, 300000, 400000, 500000, 600000];
-
-function CalculatorSection({
-  rates,
-  countryName,
-  countryCode,
-  localMinutes,
-  setLocalMinutes,
-  tollfreeMinutes,
-  setTollfreeMinutes,
-  loading,
-}: {
-  rates: ZentrunkRates | null;
-  countryName: string;
-  countryCode: string;
-  localMinutes: number;
-  setLocalMinutes: (v: number) => void;
-  tollfreeMinutes: number;
-  setTollfreeMinutes: (v: number) => void;
-  loading: boolean;
-}) {
-  const { convertToINR, formatPrice } = useExchangeRate();
-  const { url: signupUrl, label: signupLabel } = useSignupUrl();
-  const currency = countryCode === "IN" ? "₹" : "$";
-  const localRate = rates?.local?.inbound || 0;
-  const tollfreeRate = rates?.tollfree?.inbound || 0;
-  const localSubtotal = localMinutes * localRate;
-  const tollfreeSubtotal = tollfreeMinutes * tollfreeRate;
-  const grandTotal = localSubtotal + tollfreeSubtotal;
-
-  const displayAmount = (usd: number): string => {
-    const val = countryCode === "IN" ? convertToINR(usd) : usd;
-    return formatLargeNumber(Math.round(val));
-  };
-
-  const showLocal = localRate > 0;
-  const showTollfree = tollfreeRate > 0;
-
-  if (!loading && !showLocal && !showTollfree) {
-    return (
-      <div>
-        <h2 className="font-sans text-xl font-semibold text-black mb-2">Cost calculator</h2>
-        <p className="text-sm text-gray-500 py-4">
-          Cost calculator is not available for {countryName}. Contact sales for a custom quote.
-        </p>
-      </div>
-    );
-  }
-
-  return (
-    <div>
-      <h2 className="font-sans text-xl font-semibold text-black mb-2">Cost calculator</h2>
-      <p className="text-sm text-gray-500 mb-6">
-        Estimate your monthly SIP trunking costs for {countryName}.
-      </p>
-
-      <div className="space-y-8">
-        {/* Local Minutes Slider */}
-        {showLocal && (
-          <div>
-            <div className="flex items-center justify-between mb-3">
-              <span className="text-sm font-medium text-gray-900">Local inbound minutes</span>
-              <span className="text-sm font-medium text-black">
-                {formatLargeNumber(localMinutes)} min
-              </span>
-            </div>
-            <input
-              type="range"
-              min={100000}
-              max={600000}
-              step={100000}
-              value={localMinutes}
-              onChange={(e) => setLocalMinutes(Number(e.target.value))}
-              className="w-full h-2 rounded-lg appearance-none cursor-pointer accent-[#323dfe]"
-              style={{
-                background: `linear-gradient(to right, #323dfe ${((localMinutes - 100000) / 500000) * 100}%, #e5e7eb ${((localMinutes - 100000) / 500000) * 100}%)`,
-              }}
-            />
-            <div className="flex justify-between mt-1">
-              {minuteSteps.map((step) => (
-                <span key={step} className="text-[10px] text-gray-400">
-                  {step / 1000}K
-                </span>
-              ))}
-            </div>
-            <div className="flex justify-between mt-3 text-sm">
-              <span className="text-gray-500">
-                Rate: {formatPrice(localRate, countryCode, "min")}
-              </span>
-              <span className="font-medium text-black">
-                {currency}{displayAmount(localSubtotal)}
-              </span>
-            </div>
-          </div>
-        )}
-
-        {/* Toll-Free Minutes Slider */}
-        {showTollfree && (
-          <div>
-            <div className="flex items-center justify-between mb-3">
-              <span className="text-sm font-medium text-gray-900">Toll-free inbound minutes</span>
-              <span className="text-sm font-medium text-black">
-                {formatLargeNumber(tollfreeMinutes)} min
-              </span>
-            </div>
-            <input
-              type="range"
-              min={100000}
-              max={600000}
-              step={100000}
-              value={tollfreeMinutes}
-              onChange={(e) => setTollfreeMinutes(Number(e.target.value))}
-              className="w-full h-2 rounded-lg appearance-none cursor-pointer accent-[#323dfe]"
-              style={{
-                background: `linear-gradient(to right, #323dfe ${((tollfreeMinutes - 100000) / 500000) * 100}%, #e5e7eb ${((tollfreeMinutes - 100000) / 500000) * 100}%)`,
-              }}
-            />
-            <div className="flex justify-between mt-1">
-              {minuteSteps.map((step) => (
-                <span key={step} className="text-[10px] text-gray-400">
-                  {step / 1000}K
-                </span>
-              ))}
-            </div>
-            <div className="flex justify-between mt-3 text-sm">
-              <span className="text-gray-500">
-                Rate: {formatPrice(tollfreeRate, countryCode, "min")}
-              </span>
-              <span className="font-medium text-black">
-                {currency}{displayAmount(tollfreeSubtotal)}
-              </span>
-            </div>
-          </div>
-        )}
-
-        {/* Grand Total */}
-        <div className="border-t border-gray-200 pt-6">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-lg font-semibold text-black">Estimated monthly cost</p>
-              <p className="text-xs text-gray-500 mt-1">
-                Based on {formatLargeNumber(showLocal ? localMinutes : 0)}
-                {showLocal && showTollfree ? " local + " : ""}
-                {showTollfree ? `${formatLargeNumber(tollfreeMinutes)} toll-free` : ""} minutes
-              </p>
-            </div>
-            <p className="text-2xl font-bold text-black">
-              {currency}{displayAmount(grandTotal)}
-            </p>
-          </div>
-
-          <div className="mt-6 flex flex-col sm:flex-row gap-3">
-            <a
-              href="/contact/sales"
-              className="inline-flex items-center justify-center px-6 py-3 text-sm font-medium border border-gray-300 text-black rounded-md hover:bg-gray-50 transition-colors"
-            >
-              Get volume pricing
-            </a>
-            <a
-              href={signupUrl}
-              {...(signupUrl.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-              className="inline-flex items-center justify-center px-6 py-3 text-sm font-medium bg-black text-white rounded-md cta-hover-gradient transition-colors"
-            >
-              {signupLabel}
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
   );
 }

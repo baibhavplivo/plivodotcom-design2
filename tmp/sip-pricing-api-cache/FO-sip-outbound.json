@@ -1,0 +1,61 @@
+{
+  "country": "Faroe Islands",
+  "country_iso": "FO",
+  "zentrunk": {
+    "local": {
+      "outbound": {
+        "network_group_rates": {
+          "0.0713": [
+            "Faroe Islands"
+          ],
+          "0.1217": [
+            "Faroe Islands Mobile"
+          ]
+        },
+        "rate": "0.0713",
+        "rates": {
+          "0.0713": [
+            "298"
+          ],
+          "0.1217": [
+            "29821",
+            "29822",
+            "29823",
+            "29824",
+            "29825",
+            "29826",
+            "29827",
+            "29828",
+            "29829",
+            "2985",
+            "29871",
+            "29872",
+            "29873",
+            "29874",
+            "29875",
+            "29876",
+            "29877",
+            "29878",
+            "29879",
+            "29888"
+          ]
+        },
+        "tollfree_rate": "NA"
+      }
+    },
+    "outbound": {
+      "network_groups": {
+        "Faroe Islands": "0.0713",
+        "Faroe Islands Mobile": "0.1217"
+      },
+      "rates": {
+        "Fixed": [
+          "0.0713"
+        ],
+        "Mobile": [
+          "0.1217"
+        ]
+      }
+    }
+  }
+}

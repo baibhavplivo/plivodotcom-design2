@@ -1,0 +1,114 @@
+{
+  "country": "Tajikistan",
+  "country_iso": "TJ",
+  "zentrunk": {
+    "local": {
+      "outbound": {
+        "network_group_rates": {
+          "0.1618": [
+            "Tajikistan Mobile Beeline"
+          ],
+          "0.2105": [
+            "Tajikistan Mobile Megafon"
+          ],
+          "0.2197": [
+            "Tajikistan Mobile M Teko",
+            "Tajikistan Mobile Telcom",
+            "Tajikistan Mobile TK Mobile",
+            "Tajikistan Mobile Tochik Telecom"
+          ],
+          "0.2428": [
+            "Tajikistan Mobile Tcell"
+          ],
+          "0.2512": [
+            "Tajikistan",
+            "Tajikistan Mobile",
+            "Tajikistan Mobile Babilon"
+          ],
+          "1.178": [
+            "Tajikistan Special Services"
+          ]
+        },
+        "rate": "0.1618",
+        "rates": {
+          "0.1618": [
+            "992911",
+            "992915",
+            "992917",
+            "992919"
+          ],
+          "0.2105": [
+            "99255",
+            "99288",
+            "99290"
+          ],
+          "0.2197": [
+            "99296",
+            "99297",
+            "99295",
+            "99299"
+          ],
+          "0.2428": [
+            "99250",
+            "99277",
+            "99292",
+            "99293"
+          ],
+          "0.2512": [
+            "992",
+            "9929",
+            "992918",
+            "99294",
+            "99298"
+          ],
+          "1.178": [
+            "99237230",
+            "992411111",
+            "992601000",
+            "992601002",
+            "992601003",
+            "992601004",
+            "992601005",
+            "992601006",
+            "992601007",
+            "992601008",
+            "992601009",
+            "99260200",
+            "99260300"
+          ]
+        },
+        "tollfree_rate": "NA"
+      }
+    },
+    "outbound": {
+      "network_groups": {
+        "Tajikistan": "0.2512",
+        "Tajikistan Mobile": "0.2512",
+        "Tajikistan Mobile Babilon": "0.2512",
+        "Tajikistan Mobile Beeline": "0.1618",
+        "Tajikistan Mobile M Teko": "0.2197",
+        "Tajikistan Mobile Megafon": "0.2105",
+        "Tajikistan Mobile TK Mobile": "0.2197",
+        "Tajikistan Mobile Tcell": "0.2428",
+        "Tajikistan Mobile Telcom": "0.2197",
+        "Tajikistan Mobile Tochik Telecom": "0.2197",
+        "Tajikistan Special Services": "1.178"
+      },
+      "rates": {
+        "Fixed": [
+          "0.2512"
+        ],
+        "Mobile": [
+          "0.1618",
+          "0.2105",
+          "0.2197",
+          "0.2428",
+          "0.2512"
+        ],
+        "Others": [
+          "1.178"
+        ]
+      }
+    }
+  }
+}

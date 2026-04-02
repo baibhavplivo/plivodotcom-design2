@@ -1,0 +1,69 @@
+{
+  "country": "New Zealand",
+  "country_iso": "NZ",
+  "zentrunk": {
+    "local": {
+      "outbound": {
+        "network_group_rates": {
+          "0.019": [
+            "New Zealand"
+          ],
+          "0.058": [
+            "New Zealand Mobile",
+            "New Zealand Mobile Vodafone"
+          ]
+        },
+        "rate": "0.019",
+        "rates": {
+          "0.019": [
+            "64"
+          ],
+          "0.058": [
+            "6420",
+            "64204",
+            "6422",
+            "6423",
+            "64241",
+            "64242",
+            "64243",
+            "64244",
+            "64245",
+            "64246",
+            "64247",
+            "64248",
+            "64249",
+            "6425",
+            "6426",
+            "6427",
+            "6428",
+            "64201",
+            "64202",
+            "64205",
+            "6421",
+            "64280",
+            "642824",
+            "6428258",
+            "642885",
+            "6429"
+          ]
+        },
+        "tollfree_rate": "NA"
+      }
+    },
+    "outbound": {
+      "network_groups": {
+        "New Zealand": "0.019",
+        "New Zealand Mobile": "0.058",
+        "New Zealand Mobile Vodafone": "0.058"
+      },
+      "rates": {
+        "Fixed": [
+          "0.019"
+        ],
+        "Mobile": [
+          "0.058"
+        ]
+      }
+    }
+  }
+}

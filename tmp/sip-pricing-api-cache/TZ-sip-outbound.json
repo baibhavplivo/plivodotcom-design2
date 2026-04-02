@@ -1,0 +1,111 @@
+{
+  "country": "Tanzania, United Republic of",
+  "country_iso": "TZ",
+  "zentrunk": {
+    "local": {
+      "outbound": {
+        "network_group_rates": {
+          "0.4655": [
+            "Tanzania",
+            "Tanzania Mobile Airtel"
+          ],
+          "0.4835": [
+            "Tanzania Mobile"
+          ],
+          "0.4875": [
+            "Tanzania Mobile Tigo"
+          ],
+          "0.5114": [
+            "Tanzania Mobile Vodacom"
+          ],
+          "0.5237": [
+            "Tanzania Mobile SMART"
+          ],
+          "0.5299": [
+            "Tanzania Mobile Zantel"
+          ],
+          "0.6224": [
+            "Tanzania Mobile Smile"
+          ],
+          "0.698": [
+            "Tanzania Special Services"
+          ]
+        },
+        "rate": "0.4655",
+        "rates": {
+          "0.4655": [
+            "255",
+            "25568",
+            "25569",
+            "25578"
+          ],
+          "0.4835": [
+            "25561",
+            "25562",
+            "25573"
+          ],
+          "0.4875": [
+            "25565",
+            "25567",
+            "25571"
+          ],
+          "0.5114": [
+            "25574",
+            "25575",
+            "25576"
+          ],
+          "0.5237": [
+            "25579"
+          ],
+          "0.5299": [
+            "25577"
+          ],
+          "0.6224": [
+            "25566"
+          ],
+          "0.698": [
+            "25541147",
+            "25541175",
+            "25541179",
+            "255901135",
+            "255901136",
+            "255901137",
+            "255901138",
+            "255901139"
+          ]
+        },
+        "tollfree_rate": "NA"
+      }
+    },
+    "outbound": {
+      "network_groups": {
+        "Tanzania": "0.4655",
+        "Tanzania Mobile": "0.4835",
+        "Tanzania Mobile Airtel": "0.4655",
+        "Tanzania Mobile SMART": "0.5237",
+        "Tanzania Mobile Smile": "0.6224",
+        "Tanzania Mobile Tigo": "0.4875",
+        "Tanzania Mobile Vodacom": "0.5114",
+        "Tanzania Mobile Zantel": "0.5299",
+        "Tanzania Special Services": "0.698"
+      },
+      "rates": {
+        "Fixed": [
+          "0.4655"
+        ],
+        "Mobile": [
+          "0.4655",
+          "0.4835",
+          "0.4875",
+          "0.5114",
+          "0.5237",
+          "0.5299",
+          "0.6224"
+        ],
+        "Others": [
+          "0.698"
+        ]
+      }
+    }
+  }
+}

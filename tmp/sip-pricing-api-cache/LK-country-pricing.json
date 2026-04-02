@@ -1,0 +1,235 @@
+{
+  "api_id": "18585a58-2e6b-11f1-8f3c-0242ac110007",
+  "country": "Sri Lanka",
+  "country_code": 94,
+  "country_iso": "LK",
+  "mms": {
+    "longcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "phone_numbers": [],
+  "sms": {
+    "longcode": {
+      "inbound": {
+        "rate": "0.00000",
+        "rental": "332.75000"
+      },
+      "outbound": {
+        "rate": "0.29930",
+        "rates": {
+          "Sri Lanka - Bharti Airtel Lanka (Pvt) Ltd": "0.33930",
+          "Sri Lanka - Dialog Axiata": "0.35250",
+          "Sri Lanka - Etisalat": "0.42050",
+          "Sri Lanka - Hutchison": "0.32780",
+          "Sri Lanka - Mobitel (Pvt) Limited": "0.48330",
+          "Sri Lanka - Other Networks": "0.29930"
+        }
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": "0.00000",
+        "rental": "332.75000"
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "voice": {
+    "add_on_pricing": {
+      "audio_streaming_rate": 0.004,
+      "mpc_rate": 0,
+      "recording_storage_rate": 0.0004,
+      "speech_recognition": 0.02,
+      "transcription_charge": 0.0095,
+      "webrtc_rate": 0.0033
+    },
+    "ip": {
+      "inbound": {
+        "rate": "0.00330",
+        "rental": null
+      },
+      "outbound": {
+        "rates": {
+          "all": "0.00330"
+        }
+      }
+    },
+    "local": {
+      "inbound": {
+        "rate": "0.27300",
+        "rental": "35.56000"
+      },
+      "outbound": {
+        "rate": "0.22100",
+        "rates": [
+          {
+            "destination_prefix": [
+              "94",
+              "94112",
+              "94113",
+              "94117",
+              "9419733",
+              "94212",
+              "94213",
+              "94217",
+              "94232",
+              "94233",
+              "94237",
+              "94242",
+              "94243",
+              "94247",
+              "94252",
+              "94253",
+              "94257",
+              "94262",
+              "94263",
+              "94267",
+              "94272",
+              "94273",
+              "94277",
+              "94312",
+              "94313",
+              "94317",
+              "94322",
+              "94323",
+              "94327",
+              "94332",
+              "94333",
+              "94337",
+              "94342",
+              "94343",
+              "94347",
+              "94352",
+              "94353",
+              "94357",
+              "94362",
+              "94363",
+              "94367",
+              "94372",
+              "94373",
+              "94377",
+              "94382",
+              "94383",
+              "94387",
+              "94412",
+              "94413",
+              "94417",
+              "94452",
+              "94453",
+              "94457",
+              "94472",
+              "94473",
+              "94477",
+              "94512",
+              "94513",
+              "94517",
+              "94522",
+              "94523",
+              "94527",
+              "94542",
+              "94543",
+              "94547",
+              "94552",
+              "94553",
+              "94557",
+              "94572",
+              "94573",
+              "94577",
+              "94632",
+              "94633",
+              "94637",
+              "94652",
+              "94653",
+              "94657",
+              "94662",
+              "94663",
+              "94667",
+              "94672",
+              "94673",
+              "94677",
+              "94812",
+              "94813",
+              "94817",
+              "94912",
+              "94913",
+              "94917"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.22100",
+            "voice_network_group": "Sri Lanka",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "94702",
+              "94703",
+              "94704",
+              "94705",
+              "9471",
+              "9472",
+              "9475",
+              "94761",
+              "94762",
+              "94763",
+              "94764",
+              "94765",
+              "94766",
+              "94767",
+              "94768",
+              "94769",
+              "9477",
+              "9478"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.22100",
+            "voice_network_group": "Sri Lanka - Mobile",
+            "voice_unit": 60
+          }
+        ]
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.00000",
+        "rates": null
+      }
+    }
+  }
+}

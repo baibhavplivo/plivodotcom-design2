@@ -1,0 +1,17 @@
+{
+  "country": "Tanzania, United Republic of",
+  "country_iso": "TZ",
+  "zentrunk": {
+    "inbound": {
+      "number_groups": {},
+      "rates": {}
+    },
+    "local": {
+      "inbound": {
+        "number_group_rates": {},
+        "rate": "NA",
+        "tollfree_rate": "NA"
+      }
+    }
+  }
+}

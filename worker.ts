@@ -1,5 +1,8 @@
 const VOICE_AGENT_UPSTREAM =
   "https://plivo-static-forms.netlify.app/.netlify/functions/voice-agent";
+const DOCS_UPSTREAM = "https://docs.plivo.com";
+const DOCS_PUBLIC_PREFIX = "https://www.plivo.com/docs";
+const DOCS_APEX_PREFIX = "https://plivo.com/docs";
 
 const GITHUB_API = "https://api.github.com";
 const BLOG_PATH = "src/content/blog";
@@ -108,6 +111,46 @@ function jsonResponse(data: unknown, status = 200, origin?: string): Response {
 
 function errorResponse(error: string, status: number, origin?: string): Response {
   return jsonResponse({ error }, status, origin);
+}
+
+async function proxyDocsRequest(request: Request): Promise<Response> {
+  const upstreamUrl = new URL(request.url);
+  upstreamUrl.protocol = "https:";
+  upstreamUrl.host = new URL(DOCS_UPSTREAM).host;
+
+  const upstreamResponse = await fetch(new Request(upstreamUrl.toString(), request));
+  const headers = new Headers(upstreamResponse.headers);
+  const location = headers.get("Location");
+  const contentType = headers.get("Content-Type") || "";
+  const shouldRewriteBody =
+    contentType.includes("text/html") ||
+    contentType.includes("text/xml") ||
+    contentType.includes("application/xml");
+
+  if (location?.includes(DOCS_APEX_PREFIX)) {
+    headers.set("Location", location.replaceAll(DOCS_APEX_PREFIX, DOCS_PUBLIC_PREFIX));
+  }
+
+  if (!shouldRewriteBody) {
+    return new Response(upstreamResponse.body, {
+      status: upstreamResponse.status,
+      statusText: upstreamResponse.statusText,
+      headers,
+    });
+  }
+
+  headers.delete("Content-Length");
+
+  const body = (await upstreamResponse.text()).replaceAll(
+    DOCS_APEX_PREFIX,
+    DOCS_PUBLIC_PREFIX
+  );
+
+  return new Response(body, {
+    status: upstreamResponse.status,
+    statusText: upstreamResponse.statusText,
+    headers,
+  });
 }
 
 // ─── Frontmatter parser/serializer ──────────────────────────────
@@ -470,6 +513,11 @@ export default {
     // Handle CORS preflight for all /api/ routes
     if (request.method === "OPTIONS" && url.pathname.startsWith("/api/")) {
       return new Response(null, { status: 204, headers: corsHeaders(origin) });
+    }
+
+    // ── Documentation passthrough ──
+    if (url.pathname === "/docs" || url.pathname.startsWith("/docs/")) {
+      return proxyDocsRequest(request);
     }
 
     // ── Voice agent proxy (existing) ──

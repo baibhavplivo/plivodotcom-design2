@@ -1,0 +1,40 @@
+{
+  "country": "Sao Tome and Principe",
+  "country_iso": "ST",
+  "zentrunk": {
+    "local": {
+      "outbound": {
+        "network_group_rates": {
+          "1.783": [
+            "Sao Tome And Principe",
+            "Sao Tome And Principe - Mobile"
+          ]
+        },
+        "rate": "1.783",
+        "rates": {
+          "1.783": [
+            "239",
+            "23990",
+            "23998",
+            "23999"
+          ]
+        },
+        "tollfree_rate": "NA"
+      }
+    },
+    "outbound": {
+      "network_groups": {
+        "Sao Tome And Principe": "1.783",
+        "Sao Tome And Principe - Mobile": "1.783"
+      },
+      "rates": {
+        "Fixed": [
+          "1.783"
+        ],
+        "Mobile": [
+          "1.783"
+        ]
+      }
+    }
+  }
+}

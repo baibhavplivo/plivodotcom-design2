@@ -1,0 +1,178 @@
+{
+  "api_id": "5a688b92-2e6c-11f1-8222-0242ac110003",
+  "country": "Tonga",
+  "country_code": 676,
+  "country_iso": "TO",
+  "mms": {
+    "longcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "phone_numbers": [],
+  "sms": {
+    "longcode": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.07480",
+        "rates": {
+          "Tonga - Tonfon": "0.36980",
+          "Tonga - U-Call": "0.07480",
+          "Tonga-Others": "0.80140"
+        }
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": "0.00000",
+        "rental": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "voice": {
+    "add_on_pricing": {
+      "audio_streaming_rate": 0.004,
+      "mpc_rate": 0,
+      "recording_storage_rate": 0.0004,
+      "speech_recognition": 0.02,
+      "transcription_charge": 0.0095,
+      "webrtc_rate": 0.0033
+    },
+    "ip": {
+      "inbound": {
+        "rate": "0.00330",
+        "rental": null
+      },
+      "outbound": {
+        "rates": {
+          "all": "0.00330"
+        }
+      }
+    },
+    "local": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "1.90100",
+        "rates": [
+          {
+            "destination_prefix": [
+              "676"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "2.20100",
+            "voice_network_group": "Tonga",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "67611",
+              "67612",
+              "67613",
+              "67614",
+              "67615",
+              "67616",
+              "67617",
+              "67618",
+              "67619",
+              "67639",
+              "67645",
+              "67646",
+              "67647",
+              "67648",
+              "67649",
+              "67651",
+              "67652",
+              "67653",
+              "67654",
+              "67655",
+              "67656",
+              "67657",
+              "67658",
+              "67659",
+              "67661",
+              "67662",
+              "67663",
+              "67664",
+              "67665",
+              "67666",
+              "67667",
+              "67668",
+              "676685",
+              "676686",
+              "676687",
+              "676688",
+              "676689",
+              "67672",
+              "67673",
+              "67674",
+              "67675",
+              "67676",
+              "67677",
+              "67678",
+              "67681",
+              "67682",
+              "67683",
+              "67684",
+              "67686",
+              "67687",
+              "67688",
+              "67689"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "1.90100",
+            "voice_network_group": "Tonga - Mobile",
+            "voice_unit": 60
+          }
+        ]
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.00000",
+        "rates": null
+      }
+    }
+  }
+}

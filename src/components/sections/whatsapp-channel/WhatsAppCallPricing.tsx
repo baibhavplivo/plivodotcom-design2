@@ -1,162 +1,138 @@
 "use client";
 
-import { useState, useEffect, useRef, useMemo } from "react";
-import { cn } from "@/lib/utils";
+import {
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  type CSSProperties,
+} from "react";
 import { ChevronDown } from "lucide-react";
-import type { CountryListItem, WhatsAppCallRates } from "@/data/pricing-data";
-import { WA_CALL_PRIORITY_COUNTRIES } from "@/data/pricing-data";
-import { useGeoCountry } from "@/hooks/useGeoCountry";
-import { useCountryISOs } from "@/hooks/useCountryISOs";
-import { useWhatsAppCallRates } from "@/hooks/useWhatsAppCallRates";
-import { useCountryPricing } from "@/hooks/useCountryPricing";
-import type { PhoneNumberInfo } from "@/hooks/useCountryPricing";
-import { useExchangeRate } from "@/hooks/useExchangeRate";
 
-type SectionId = "inbound-calls" | "outbound-calls" | "audio-streaming" | "phone-numbers" | "add-ons";
+import { useGeoCountry } from "@/hooks/useGeoCountry";
+import { cn } from "@/lib/utils";
+import {
+  WHATSAPP_CALL_COUNTRIES,
+  WHATSAPP_CALL_DEFAULT_COUNTRY_CODE,
+  WHATSAPP_CALL_PAGE_COPY,
+  WHATSAPP_CALL_ADD_ONS_INR_NOTE,
+  WHATSAPP_CALL_ADD_ONS_USD_NOTE,
+  formatWhatsAppCallRate,
+  getWhatsAppCallAddOns,
+  getWhatsAppCallCountry,
+  getWhatsAppCallPhoneRates,
+  type WhatsAppCallAddOnRow,
+  type WhatsAppCallPhoneRate,
+  type WhatsAppCallPricingValue,
+} from "@/data/whatsapp-call-pricing";
+
+type SectionId = "whatsapp-calling" | "phone-numbers" | "add-ons";
+
+const DEFAULT_COUNTRY =
+  getWhatsAppCallCountry(WHATSAPP_CALL_DEFAULT_COUNTRY_CODE) ?? WHATSAPP_CALL_COUNTRIES[0];
 
 function getSections(hasPhoneNumbers: boolean): { id: SectionId; label: string }[] {
-  const base: { id: SectionId; label: string }[] = [
-    { id: "inbound-calls", label: "Inbound Calls" },
-    { id: "outbound-calls", label: "Outbound Calls" },
-    { id: "audio-streaming", label: "Audio Streaming" },
+  const sections: { id: SectionId; label: string }[] = [
+    { id: "whatsapp-calling", label: "WhatsApp Calling" },
   ];
+
   if (hasPhoneNumbers) {
-    base.push({ id: "phone-numbers", label: "Phone Number Rental" });
+    sections.push({ id: "phone-numbers", label: "Phone Number Rental" });
   }
-  base.push({ id: "add-ons", label: "Add-On Services" });
-  return base;
+
+  sections.push({ id: "add-ons", label: "Add-On Services" });
+  return sections;
 }
 
-const Shimmer = () => (
-  <span className="inline-block h-4 w-20 bg-gray-100 rounded animate-pulse" />
-);
-
-export default function WhatsAppCallPricing({ initialCountry }: { initialCountry?: string } = {}) {
-  const { country: geoCountry } = useGeoCountry();
-  const { countries } = useCountryISOs(WA_CALL_PRIORITY_COUNTRIES);
-  const [selectedCountry, setSelectedCountry] = useState<CountryListItem>(countries[0]);
+export default function WhatsAppCallPricing({
+  initialCountry,
+}: {
+  initialCountry?: string;
+}) {
+  const { country: geoCountry } = useGeoCountry(
+    WHATSAPP_CALL_DEFAULT_COUNTRY_CODE,
+    { mode: "exact" },
+  );
+  const resolvedInitialCountry = useMemo(
+    () => getWhatsAppCallCountry(initialCountry || geoCountry) ?? DEFAULT_COUNTRY,
+    [geoCountry, initialCountry],
+  );
+  const [selectedCountry, setSelectedCountry] = useState(resolvedInitialCountry);
   const [isCountryOpen, setIsCountryOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-  const [activeSection, setActiveSection] = useState<SectionId>("inbound-calls");
-  const [sidebarStyle, setSidebarStyle] = useState<React.CSSProperties>({});
+  const [activeSection, setActiveSection] = useState<SectionId>("whatsapp-calling");
+  const [sidebarStyle, setSidebarStyle] = useState<CSSProperties>({});
   const sidebarWrapperRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  // Native DOM refs for event delegation
-  const countryToggleRef = useRef<HTMLButtonElement>(null);
-  const searchInputRef = useRef<HTMLInputElement>(null);
-  const countryListRef = useRef<HTMLDivElement>(null);
-  const sectionTabsRef = useRef<HTMLElement>(null);
-  const countriesRef = useRef(countries);
-  countriesRef.current = countries;
-
-  const { rates, loading: callLoading } = useWhatsAppCallRates(selectedCountry.code);
-  const { data: pricingData } = useCountryPricing(selectedCountry.code);
-  const phoneNumbers = (pricingData?.phoneNumbers || []).filter(
-    (pn) => pn.rentalRate != null && pn.rentalRate > 0
-  );
-
-  // Auto-select country based on IP geolocation
   useEffect(() => {
-    const target = initialCountry || geoCountry;
-    if (!target) return;
-    const match = countries.find(c => c.code === target);
-    if (match) setSelectedCountry(match);
-  }, [geoCountry, countries, initialCountry]);
+    setSelectedCountry((currentCountry) =>
+      currentCountry.code === resolvedInitialCountry.code
+        ? currentCountry
+        : resolvedInitialCountry,
+    );
+
+    if (!initialCountry && geoCountry) {
+      const nextCountry = getWhatsAppCallCountry(geoCountry) ?? DEFAULT_COUNTRY;
+      history.replaceState(
+        {},
+        "",
+        `/whatsapp-call/pricing/${nextCountry.code.toLowerCase()}/`,
+      );
+    }
+  }, [geoCountry, initialCountry, resolvedInitialCountry]);
 
   const filteredCountries = useMemo(() => {
-    if (!searchQuery) return countries;
-    const q = searchQuery.toLowerCase();
-    return countries.filter(c => c.name.toLowerCase().includes(q) || c.code.toLowerCase().includes(q));
-  }, [searchQuery, countries]);
+    if (!searchQuery) return WHATSAPP_CALL_COUNTRIES;
+    const query = searchQuery.toLowerCase();
+    return WHATSAPP_CALL_COUNTRIES.filter(
+      (country) =>
+        country.name.toLowerCase().includes(query) ||
+        country.code.toLowerCase().includes(query),
+    );
+  }, [searchQuery]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
         setIsCountryOpen(false);
         setSearchQuery("");
       }
     };
+
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  // Pattern A: Country toggle button - native click
-  useEffect(() => {
-    const el = countryToggleRef.current;
-    if (!el) return;
-    const handler = () => setIsCountryOpen(prev => !prev);
-    el.addEventListener("click", handler);
-    return () => el.removeEventListener("click", handler);
-  }, []);
-
-  // Pattern D: Search input - native input event
-  // Re-run when dropdown opens since the input is conditionally rendered
-  useEffect(() => {
-    if (!isCountryOpen) return;
-    const el = searchInputRef.current;
-    if (!el) return;
-    const handler = (e: Event) => setSearchQuery((e.target as HTMLInputElement).value);
-    el.addEventListener("input", handler);
-    return () => el.removeEventListener("input", handler);
-  }, [isCountryOpen]);
-
-  // Pattern B: Country list items - event delegation
-  // Re-run when dropdown opens since the list is conditionally rendered
-  useEffect(() => {
-    if (!isCountryOpen) return;
-    const el = countryListRef.current;
-    if (!el) return;
-    const handler = (e: MouseEvent) => {
-      const item = (e.target as HTMLElement).closest("[data-country-code]");
-      if (!item) return;
-      const code = item.getAttribute("data-country-code")!;
-      const country = countriesRef.current.find(c => c.code === code);
-      if (country) {
-        setSelectedCountry(country);
-        setIsCountryOpen(false);
-        setSearchQuery("");
-      }
-    };
-    el.addEventListener("click", handler);
-    return () => el.removeEventListener("click", handler);
-  }, [isCountryOpen]);
-
-  // Pattern C: Section tab navigation - event delegation
-  useEffect(() => {
-    const el = sectionTabsRef.current;
-    if (!el) return;
-    const handler = (e: MouseEvent) => {
-      const btn = (e.target as HTMLElement).closest("[data-section-id]");
-      if (!btn) return;
-      const sectionId = btn.getAttribute("data-section-id")!;
-      scrollToSection(sectionId as SectionId);
-    };
-    el.addEventListener("click", handler);
-    return () => el.removeEventListener("click", handler);
-  }, []);
-
-  const sections = getSections(phoneNumbers.length > 0);
+  const phoneRates = getWhatsAppCallPhoneRates(selectedCountry.code) ?? [];
+  const addOns = getWhatsAppCallAddOns(selectedCountry.code);
+  const sections = useMemo(() => getSections(phoneRates.length > 0), [phoneRates.length]);
 
   useEffect(() => {
     const handleScrollAndResize = () => {
-      const sectionElements = sections.map((s) => ({
-        id: s.id,
-        element: document.getElementById(s.id),
+      const sectionElements = sections.map((section) => ({
+        id: section.id,
+        element: document.getElementById(section.id),
       }));
 
       for (const section of sectionElements) {
-        if (section.element) {
-          const rect = section.element.getBoundingClientRect();
-          if (rect.top <= 150 && rect.bottom > 150) {
-            setActiveSection(section.id);
-            break;
-          }
+        if (!section.element) continue;
+        const rect = section.element.getBoundingClientRect();
+        if (rect.top <= 150 && rect.bottom > 150) {
+          setActiveSection(section.id);
+          break;
         }
       }
 
-      if (window.innerWidth >= 1024 && sidebarWrapperRef.current && contentRef.current) {
+      if (
+        window.innerWidth >= 1024 &&
+        sidebarWrapperRef.current &&
+        contentRef.current
+      ) {
         const wrapperRect = sidebarWrapperRef.current.getBoundingClientRect();
         const contentRect = contentRef.current.getBoundingClientRect();
         const topThreshold = 125;
@@ -168,127 +144,147 @@ export default function WhatsAppCallPricing({ initialCountry }: { initialCountry
             left: `${wrapperRect.left}px`,
             width: "256px",
           });
-        } else {
-          setSidebarStyle({});
+          return;
         }
-      } else {
-        setSidebarStyle({});
       }
+
+      setSidebarStyle({});
     };
 
     window.addEventListener("scroll", handleScrollAndResize);
     window.addEventListener("resize", handleScrollAndResize);
     handleScrollAndResize();
+
     return () => {
       window.removeEventListener("scroll", handleScrollAndResize);
       window.removeEventListener("resize", handleScrollAndResize);
     };
   }, [sections]);
 
+  const handleCountryChange = (
+    country: (typeof WHATSAPP_CALL_COUNTRIES)[number],
+  ) => {
+    setSelectedCountry(country);
+    setIsCountryOpen(false);
+    setSearchQuery("");
+    history.replaceState(
+      {},
+      "",
+      `/whatsapp-call/pricing/${country.code.toLowerCase()}/`,
+    );
+  };
+
   const scrollToSection = (id: SectionId) => {
     const element = document.getElementById(id);
-    if (element) {
-      const offset = 120;
-      const top = element.getBoundingClientRect().top + window.scrollY - offset;
-      window.scrollTo({ top, behavior: "smooth" });
-    }
+    if (!element) return;
+
+    const top = element.getBoundingClientRect().top + window.scrollY - 120;
+    window.scrollTo({ top, behavior: "smooth" });
   };
 
   return (
     <>
-      {/* Hero Header */}
-      <section className="bg-white pt-[56px] sm:pt-[64px] md:pt-[72px] pb-10">
+      <section className="bg-white pb-10 pt-[56px] sm:pt-[64px] md:pt-[72px]">
         <div className="container mx-auto max-w-7xl px-4">
           <div className="text-center">
-            <h1 className="font-sora text-[2rem] sm:text-[2.5rem] md:text-[3rem] font-normal leading-[1.1] tracking-[-0.02em] text-black mb-4">
-              WhatsApp call pricing
+            <h1 className="mb-4 font-sora text-[2rem] font-normal leading-[1.1] tracking-[-0.02em] text-black sm:text-[2.5rem] md:text-[3rem]">
+              {WHATSAPP_CALL_PAGE_COPY.title}
             </h1>
-            <p className="text-gray-600 text-base sm:text-lg max-w-2xl mx-auto">
-              Per-minute rates for WhatsApp inbound and outbound voice calls.
+            <p className="mx-auto max-w-2xl text-base text-gray-600 sm:text-lg">
+              {WHATSAPP_CALL_PAGE_COPY.subtitle}
             </p>
           </div>
         </div>
       </section>
 
-      {/* Two Column Layout */}
       <section className="bg-white pb-12 lg:pb-20">
         <div className="container mx-auto max-w-7xl px-4">
-          <div className="lg:grid lg:grid-cols-[256px_1fr] lg:gap-8 lg:items-start">
-            {/* Left Sidebar Wrapper */}
+          <div className="lg:grid lg:grid-cols-[256px_1fr] lg:items-start lg:gap-8">
             <div ref={sidebarWrapperRef} className="mb-8 lg:mb-0">
-              <aside className="bg-white z-30" style={sidebarStyle}>
-                {/* Country Selector */}
+              <aside className="z-30 bg-white" style={sidebarStyle}>
                 <div className="relative mb-6" ref={dropdownRef}>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Select Country
+                  <label className="mb-2 block text-sm font-medium text-gray-700">
+                    {WHATSAPP_CALL_PAGE_COPY.countrySelectorLabel}
                   </label>
+
                   <button
-                    ref={countryToggleRef}
-                    className="w-full flex items-center gap-3 px-4 py-2.5 bg-white border border-gray-300 rounded-lg hover:border-gray-400 transition-colors"
+                    type="button"
+                    onClick={() => setIsCountryOpen((open) => !open)}
+                    className="flex w-full items-center gap-3 rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-left transition-colors hover:border-gray-400"
                   >
                     <span className="text-xl">{selectedCountry.flag}</span>
-                    <span className="text-sm font-medium text-gray-900 flex-1 text-left">
+                    <span className="flex-1 text-sm font-medium text-gray-900">
                       {selectedCountry.name}
                     </span>
                     <ChevronDown
                       className={cn(
-                        "w-4 h-4 text-gray-400 transition-transform",
-                        isCountryOpen && "rotate-180"
+                        "h-4 w-4 text-gray-400 transition-transform",
+                        isCountryOpen && "rotate-180",
                       )}
                     />
                   </button>
 
                   {isCountryOpen && (
-                    <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-10 max-h-72 overflow-hidden flex flex-col">
-                      <div className="p-2 border-b border-gray-100">
+                    <div className="absolute left-0 right-0 top-full z-10 mt-1 flex max-h-72 flex-col overflow-hidden rounded-lg border border-gray-200 bg-white shadow-lg">
+                      <div className="border-b border-gray-100 p-2">
                         <input
-                          ref={searchInputRef}
                           type="text"
                           placeholder="Search country..."
                           value={searchQuery}
-                          className="w-full px-3 py-2 text-sm text-gray-900 bg-white border border-gray-300 rounded-md focus:outline-none focus:border-gray-500 placeholder:text-gray-400"
+                          onChange={(event) => setSearchQuery(event.target.value)}
+                          className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 placeholder:text-gray-400 focus:border-gray-500 focus:outline-none"
                           autoFocus
                         />
                       </div>
-                      <div ref={countryListRef} className="overflow-y-auto">
-                        {filteredCountries.map((country, idx) => (
+                      <div className="overflow-y-auto">
+                        {filteredCountries.map((country, index) => (
                           <div key={country.code}>
-                            {!country.isPriority && idx > 0 && filteredCountries[idx - 1]?.isPriority && (
-                              <div className="border-t border-gray-200 my-1" />
-                            )}
+                            {!country.isPriority &&
+                              index > 0 &&
+                              filteredCountries[index - 1]?.isPriority && (
+                                <div className="my-1 border-t border-gray-200" />
+                              )}
                             <button
-                              data-country-code={country.code}
+                              type="button"
+                              onClick={() => handleCountryChange(country)}
                               className={cn(
-                                "w-full flex items-center gap-2.5 px-4 py-2.5 hover:bg-gray-50 transition-colors text-left",
-                                selectedCountry.code === country.code && "bg-[#323dfe]/5"
+                                "flex w-full items-center gap-2.5 px-4 py-2.5 text-left transition-colors hover:bg-gray-50",
+                                selectedCountry.code === country.code &&
+                                  "bg-[#323dfe]/5",
                               )}
                             >
                               <span className="text-xl">{country.flag}</span>
-                              <span className="text-sm text-gray-900">{country.name}</span>
+                              <span className="text-sm text-gray-900">
+                                {country.name}
+                              </span>
                             </button>
                           </div>
                         ))}
                         {filteredCountries.length === 0 && (
-                          <div className="px-4 py-3 text-sm text-gray-500">No countries found</div>
+                          <div className="px-4 py-3 text-sm text-gray-500">
+                            No countries found
+                          </div>
                         )}
                       </div>
                     </div>
                   )}
                 </div>
 
-                {/* Section Navigation */}
-                <nav ref={sectionTabsRef} className="hidden lg:block">
-                  <p className="text-sm font-medium text-gray-700 mb-3">Jump to section</p>
+                <nav className="hidden lg:block">
+                  <p className="mb-3 text-sm font-medium text-gray-700">
+                    {WHATSAPP_CALL_PAGE_COPY.sectionNavLabel}
+                  </p>
                   <ul className="space-y-1">
                     {sections.map((section) => (
                       <li key={section.id}>
                         <button
-                          data-section-id={section.id}
+                          type="button"
+                          onClick={() => scrollToSection(section.id)}
                           className={cn(
-                            "w-full text-left px-3 py-2 text-sm transition-colors border-l-2",
+                            "w-full border-l-2 px-3 py-2 text-left text-sm transition-colors",
                             activeSection === section.id
-                              ? "border-[#323dfe] text-[#323dfe] font-medium"
-                              : "border-transparent text-gray-600 hover:border-gray-300 hover:text-gray-900"
+                              ? "border-[#323dfe] font-medium text-[#323dfe]"
+                              : "border-transparent text-gray-600 hover:border-gray-300 hover:text-gray-900",
                           )}
                         >
                           {section.label}
@@ -300,33 +296,31 @@ export default function WhatsAppCallPricing({ initialCountry }: { initialCountry
               </aside>
             </div>
 
-            {/* Right Content */}
             <div ref={contentRef} className="min-w-0">
-              {/* Inbound Calls */}
-              <div id="inbound-calls" className="bg-white rounded-xl border border-gray-200 p-6 mb-6">
-                <InboundCallsSection rates={rates} loading={callLoading} />
+              <div
+                id="whatsapp-calling"
+                className="mb-6 rounded-xl border border-gray-200 bg-white p-6 scroll-mt-32"
+              >
+                <WhatsAppCallingSection pricing={selectedCountry.pricing} />
               </div>
 
-              {/* Outbound Calls */}
-              <div id="outbound-calls" className="bg-white rounded-xl border border-gray-200 p-6 mb-6">
-                <OutboundCallsSection rates={rates} loading={callLoading} />
-              </div>
-
-              {/* Audio Streaming */}
-              <div id="audio-streaming" className="bg-white rounded-xl border border-gray-200 p-6 mb-6">
-                <AudioStreamingSection />
-              </div>
-
-              {/* Phone Number Rental */}
-              {phoneNumbers.length > 0 && (
-                <div id="phone-numbers" className="bg-white rounded-xl border border-gray-200 p-6 mb-6">
-                  <PhoneRentalSection phoneNumbers={phoneNumbers} loading={callLoading} countryCode={selectedCountry.code} />
+              {phoneRates.length > 0 && (
+                <div
+                  id="phone-numbers"
+                  className="mb-6 rounded-xl border border-gray-200 bg-white p-6 scroll-mt-32"
+                >
+                  <PhoneNumbersSection phoneRates={phoneRates} />
                 </div>
               )}
 
-              {/* Add-Ons */}
-              <div id="add-ons" className="bg-white rounded-xl border border-gray-200 p-6">
-                <CallAddOnsSection countryCode={selectedCountry.code} />
+              <div
+                id="add-ons"
+                className="rounded-xl border border-gray-200 bg-white p-6 scroll-mt-32"
+              >
+                <AddOnServicesSection
+                  addOns={addOns}
+                  isIndia={selectedCountry.code === "IN"}
+                />
               </div>
             </div>
           </div>
@@ -336,29 +330,42 @@ export default function WhatsAppCallPricing({ initialCountry }: { initialCountry
   );
 }
 
-function InboundCallsSection({ rates, loading }: { rates: WhatsAppCallRates | null; loading: boolean }) {
+function WhatsAppCallingSection({
+  pricing,
+}: {
+  pricing: WhatsAppCallPricingValue;
+}) {
+  const rows = [
+    { label: "Inbound", price: formatWhatsAppCallRate(pricing.inbound) },
+    { label: "Outbound", price: formatWhatsAppCallRate(pricing.outbound) },
+    { label: "Audio streaming (per stream)", price: "Free" },
+  ];
+
   return (
     <div>
-      <h2 className="font-sans text-xl font-semibold text-black mb-2">Inbound Calls</h2>
-      <p className="text-sm text-gray-500 mb-6">
-        Per-minute rate for receiving WhatsApp voice calls.
-      </p>
+      <h2 className="mb-2 font-sans text-xl font-semibold text-black">
+        {WHATSAPP_CALL_PAGE_COPY.callingSectionTitle}
+      </h2>
 
       <div className="overflow-x-auto">
         <table className="w-full">
           <thead>
             <tr className="border-b border-gray-200">
-              <th className="py-3 pr-4 text-left text-sm font-semibold text-black w-[65%]">Type</th>
-              <th className="py-3 text-left text-sm font-semibold text-black">Rate</th>
+              <th className="w-[65%] py-3 pr-4 text-left text-sm font-semibold text-black">
+                Call Type
+              </th>
+              <th className="py-3 text-left text-sm font-semibold text-black">
+                Price per minute
+              </th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-100">
-            <tr>
-              <td className="py-3 pr-4 text-sm text-gray-900">WhatsApp Inbound Calls</td>
-              <td className="py-3 text-sm font-medium text-black">
-                {loading ? <Shimmer /> : (rates?.inbound || "—")}
-              </td>
-            </tr>
+            {rows.map((row) => (
+              <tr key={row.label}>
+                <td className="py-3 pr-4 text-sm text-gray-900">{row.label}</td>
+                <td className="py-3 text-sm font-medium text-black">{row.price}</td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
@@ -366,86 +373,34 @@ function InboundCallsSection({ rates, loading }: { rates: WhatsAppCallRates | nu
   );
 }
 
-function OutboundCallsSection({ rates, loading }: { rates: WhatsAppCallRates | null; loading: boolean }) {
+function PhoneNumbersSection({
+  phoneRates,
+}: {
+  phoneRates: WhatsAppCallPhoneRate[];
+}) {
   return (
     <div>
-      <h2 className="font-sans text-xl font-semibold text-black mb-2">Outbound Calls</h2>
-      <p className="text-sm text-gray-500 mb-6">
-        Per-minute rate for making WhatsApp voice calls.
-      </p>
+      <h2 className="mb-6 font-sans text-xl font-semibold text-black">
+        {WHATSAPP_CALL_PAGE_COPY.phoneNumbersTitle}
+      </h2>
 
       <div className="overflow-x-auto">
         <table className="w-full">
           <thead>
             <tr className="border-b border-gray-200">
-              <th className="py-3 pr-4 text-left text-sm font-semibold text-black w-[65%]">Type</th>
-              <th className="py-3 text-left text-sm font-semibold text-black">Rate</th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-gray-100">
-            <tr>
-              <td className="py-3 pr-4 text-sm text-gray-900">WhatsApp Outbound Calls</td>
-              <td className="py-3 text-sm font-medium text-black">
-                {loading ? <Shimmer /> : (rates?.outbound || "—")}
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  );
-}
-
-// Hardcoded phone rental rates matching live plivo.com (Webflow)
-const HARDCODED_PHONE_RENTAL: Record<string, Record<string, string>> = {
-  IN: { Local: "₹250.00/month" },
-  US: { Local: "$0.50/month", "Toll-Free": "$1.00/month" },
-  CA: { Local: "$0.75/month", "Toll-Free": "$1.00/month" },
-  AE: { "Toll-Free": "$50.00/month" },
-  BR: { Local: "$6.17/month", "Toll-Free": "$30.00/month" },
-  AU: { Local: "$1.50/month", "Toll-Free": "$12.00/month", Mobile: "$3.00/month" },
-  NZ: { Local: "$2.55/month", "Toll-Free": "$34.00/month" },
-  GB: { Local: "$1.40/month", Mobile: "$0.85/month" },
-  SG: { Local: "$16.00/month" },
-};
-
-function PhoneRentalSection({ phoneNumbers, loading, countryCode }: { phoneNumbers: PhoneNumberInfo[]; loading: boolean; countryCode: string }) {
-  const { convertPriceString } = useExchangeRate();
-  if (phoneNumbers.length === 0) return null;
-
-  // Use hardcoded rates when available (matches live plivo.com exactly)
-  const hardcoded = HARDCODED_PHONE_RENTAL[countryCode];
-
-  return (
-    <div>
-      <h2 className="font-sans text-xl font-semibold text-black mb-2">Phone Number Rental</h2>
-      <p className="text-sm text-gray-500 mb-6">
-        Monthly rental rates for WhatsApp-enabled phone numbers.
-      </p>
-
-      <div className="overflow-x-auto">
-        <table className="w-full">
-          <thead>
-            <tr className="border-b border-gray-200">
-              <th className="py-3 pr-4 text-left text-sm font-semibold text-black w-[65%]">Number Type</th>
+              <th className="w-[65%] py-3 pr-4 text-left text-sm font-semibold text-black">
+                Route Type
+              </th>
               <th className="py-3 text-left text-sm font-semibold text-black">Price</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-100">
-            {phoneNumbers.map((pn) => {
-              const hardcodedPrice = hardcoded?.[pn.type];
-              const displayPrice = hardcodedPrice
-                ? hardcodedPrice
-                : convertPriceString(`$${(pn.rentalRate ?? 0).toFixed(2)}/month`, countryCode);
-              return (
-                <tr key={pn.type}>
-                  <td className="py-3 pr-4 text-sm text-gray-900">{pn.type}</td>
-                  <td className="py-3 text-sm font-medium text-black">
-                    {loading ? <Shimmer /> : displayPrice}
-                  </td>
-                </tr>
-              );
-            })}
+            {phoneRates.map((row) => (
+              <tr key={row.label}>
+                <td className="py-3 pr-4 text-sm text-gray-900">{row.label}</td>
+                <td className="py-3 text-sm font-medium text-black">{row.price}</td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
@@ -453,90 +408,75 @@ function PhoneRentalSection({ phoneNumbers, loading, countryCode }: { phoneNumbe
   );
 }
 
-function AudioStreamingSection() {
+function AddOnServicesSection({
+  addOns,
+  isIndia,
+}: {
+  addOns: WhatsAppCallAddOnRow[];
+  isIndia: boolean;
+}) {
+  const note = isIndia ? WHATSAPP_CALL_ADD_ONS_INR_NOTE : WHATSAPP_CALL_ADD_ONS_USD_NOTE;
+
   return (
     <div>
-      <h2 className="font-sans text-xl font-semibold text-black mb-2">Audio Streaming</h2>
-      <p className="text-sm text-gray-500 mb-6">
-        Real-time audio streaming for WhatsApp voice calls.
+      <h2 className="mb-2 font-sans text-xl font-semibold text-black">
+        {WHATSAPP_CALL_PAGE_COPY.addOnsTitle}
+      </h2>
+      <p className="mb-6 text-sm text-gray-500">
+        {note}{" "}
+        {isIndia && (
+          <a
+            href={WHATSAPP_CALL_PAGE_COPY.recordingStorageSupportHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[#323dfe] hover:underline"
+          >
+            Read More.
+          </a>
+        )}
       </p>
 
       <div className="overflow-x-auto">
         <table className="w-full">
           <thead>
             <tr className="border-b border-gray-200">
-              <th className="py-3 pr-4 text-left text-sm font-semibold text-black w-[65%]">Type</th>
-              <th className="py-3 text-left text-sm font-semibold text-black">Rate</th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-gray-100">
-            <tr>
-              <td className="py-3 pr-4 text-sm text-gray-900">Audio Streaming (per stream)</td>
-              <td className="py-3 text-sm font-medium text-black">Free</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  );
-}
-
-function CallAddOnsSection({ countryCode }: { countryCode: string }) {
-  const { convertPriceString: cp } = useExchangeRate();
-
-  return (
-    <div>
-      <h2 className="font-sans text-xl font-semibold text-black mb-6">Add-On Services</h2>
-
-      <div className="overflow-x-auto">
-        <table className="w-full">
-          <thead>
-            <tr className="border-b border-gray-200">
-              <th className="py-3 pr-4 text-left text-sm font-semibold text-black w-[65%]">Service</th>
+              <th className="w-[65%] py-3 pr-4 text-left text-sm font-semibold text-black">
+                Service
+              </th>
               <th className="py-3 text-left text-sm font-semibold text-black">Price</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-100">
-            <tr>
-              <td className="py-3 pr-4 text-sm text-gray-900">Answering Machine Detection</td>
-              <td className="py-3 text-sm font-medium text-black">Included</td>
-            </tr>
-            <tr>
-              <td className="py-3 pr-4 text-sm text-gray-900">Call Insights (Basic)</td>
-              <td className="py-3 text-sm font-medium text-black">Included</td>
-            </tr>
-            <tr>
-              <td className="py-3 pr-4 text-sm text-gray-900">Call Insights (Premium)</td>
-              <td className="py-3 text-sm font-medium text-black">{cp("$0.0025/min", countryCode)}</td>
-            </tr>
-            <tr>
-              <td className="py-3 pr-4 text-sm text-gray-900">Call Recording</td>
-              <td className="py-3 text-sm font-medium text-black">Included</td>
-            </tr>
-            <tr>
-              <td className="py-3 pr-4 text-sm text-gray-900">Recording Storage</td>
-              <td className="py-3 text-sm font-medium text-black">{cp("$0.0004/min/month", countryCode)} (free for 90 days)</td>
-            </tr>
-            <tr>
-              <td className="py-3 pr-4 text-sm text-gray-900">Automatic Speech Recognition</td>
-              <td className="py-3 text-sm font-medium text-black">{cp("$0.02/15 seconds", countryCode)}</td>
-            </tr>
-            <tr>
-              <td className="py-3 pr-4 text-sm text-gray-900">Call Transcription</td>
-              <td className="py-3 text-sm font-medium text-black">{cp("$0.0095/min", countryCode)}</td>
-            </tr>
-            <tr>
-              <td className="py-3 pr-4 text-sm text-gray-900">Conference Calls</td>
-              <td className="py-3 text-sm font-medium text-black">Included</td>
-            </tr>
-            <tr>
-              <td className="py-3 pr-4 text-sm text-gray-900">Multilingual Text to Speech</td>
-              <td className="py-3 text-sm font-medium text-black">Included</td>
-            </tr>
-            <tr>
-              <td className="py-3 pr-4 text-sm text-gray-900">CNAM Lookup</td>
-              <td className="py-3 text-sm font-medium text-black">{cp("$0.005/lookup", countryCode)}</td>
-            </tr>
+            {addOns.map((row) => (
+              <tr key={row.label}>
+                <td className="py-3 pr-4 align-top">
+                  <div className="flex items-center gap-2 text-sm text-gray-900">
+                    <span>{row.label}</span>
+                    {row.badge && (
+                      <span className="rounded-full bg-gray-100 px-2 py-0.5 text-[11px] font-medium uppercase tracking-[0.08em] text-gray-600">
+                        {row.badge}
+                      </span>
+                    )}
+                  </div>
+                </td>
+                <td className="py-3 align-top">
+                  {row.children ? (
+                    <div className="space-y-3">
+                      {row.children.map((child) => (
+                        <div key={child.label}>
+                          <div className="text-xs uppercase tracking-[0.08em] text-gray-500">
+                            {child.label}
+                          </div>
+                          <div className="text-sm font-medium text-black">{child.price}</div>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <div className="text-sm font-medium text-black">{row.price}</div>
+                  )}
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>

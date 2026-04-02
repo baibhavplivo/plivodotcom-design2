@@ -17,7 +17,7 @@ const {
   noIndex = false,
 } = Astro.props;
 
-const siteUrl = Astro.site?.href || 'https://plivo.com';
+const siteUrl = Astro.site?.href || 'https://www.plivo.com';
 const pageUrl = canonicalUrl || new URL(Astro.url.pathname, siteUrl).href;
 const ogImage = new URL(image, siteUrl).href;
 ---

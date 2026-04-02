@@ -1,0 +1,57 @@
+{
+  "country": "Mongolia",
+  "country_iso": "MN",
+  "zentrunk": {
+    "local": {
+      "outbound": {
+        "network_group_rates": {
+          "0.023": [
+            "Mongolia",
+            "Mongolia - Mobile"
+          ],
+          "2.498": [
+            "Mongolia - Premium Services"
+          ]
+        },
+        "rate": "0.023",
+        "rates": {
+          "0.023": [
+            "976",
+            "97650",
+            "97653",
+            "97655",
+            "97680",
+            "97685",
+            "97686",
+            "97688",
+            "97689",
+            "9769"
+          ],
+          "2.498": [
+            "9761800",
+            "9761900"
+          ]
+        },
+        "tollfree_rate": "NA"
+      }
+    },
+    "outbound": {
+      "network_groups": {
+        "Mongolia": "0.023",
+        "Mongolia - Mobile": "0.023",
+        "Mongolia - Premium Services": "2.498"
+      },
+      "rates": {
+        "Fixed": [
+          "0.023"
+        ],
+        "Mobile": [
+          "0.023"
+        ],
+        "Others": [
+          "2.498"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "country": "Mauritania",
+  "country_iso": "MR",
+  "zentrunk": {
+    "local": {
+      "outbound": {
+        "network_group_rates": {
+          "0.786": [
+            "Mauritania - Mobile - Major Carriers (Mauritel, Chinguitel)"
+          ],
+          "0.7939": [
+            "Mauritania"
+          ],
+          "0.9929": [
+            "Mauritania - Mobile - Others (Mattel)"
+          ]
+        },
+        "rate": "0.786",
+        "rates": {
+          "0.786": [
+            "22220",
+            "22221",
+            "22222",
+            "22223",
+            "22224",
+            "22226",
+            "22227",
+            "22228",
+            "22229",
+            "22240",
+            "22241",
+            "22242",
+            "22243",
+            "22244",
+            "22246",
+            "22247",
+            "22248",
+            "22249"
+          ],
+          "0.7939": [
+            "222",
+            "22225"
+          ],
+          "0.9929": [
+            "22230",
+            "22231",
+            "22232",
+            "22233",
+            "22234",
+            "22236",
+            "22237",
+            "22238",
+            "22239"
+          ]
+        },
+        "tollfree_rate": "NA"
+      }
+    },
+    "outbound": {
+      "network_groups": {
+        "Mauritania": "0.7939",
+        "Mauritania - Mobile - Major Carriers (Mauritel, Chinguitel)": "0.786",
+        "Mauritania - Mobile - Others (Mattel)": "0.9929"
+      },
+      "rates": {
+        "Fixed": [
+          "0.7939"
+        ],
+        "Mobile": [
+          "0.786",
+          "0.9929"
+        ]
+      }
+    }
+  }
+}

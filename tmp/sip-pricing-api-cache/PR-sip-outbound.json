@@ -1,0 +1,33 @@
+{
+  "country": "Puerto Rico",
+  "country_iso": "PR",
+  "zentrunk": {
+    "local": {
+      "outbound": {
+        "network_group_rates": {
+          "0.014": [
+            "Puerto Rico"
+          ]
+        },
+        "rate": "0.014",
+        "rates": {
+          "0.014": [
+            "1787",
+            "1939"
+          ]
+        },
+        "tollfree_rate": "NA"
+      }
+    },
+    "outbound": {
+      "network_groups": {
+        "Puerto Rico": "0.014"
+      },
+      "rates": {
+        "Fixed": [
+          "0.014"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "country": "Turkmenistan",
+  "country_iso": "TM",
+  "zentrunk": {
+    "local": {
+      "outbound": {
+        "network_group_rates": {
+          "0.1377": [
+            "Turkmenistan"
+          ],
+          "0.2022": [
+            "Turkmenistan Mobile"
+          ]
+        },
+        "rate": "0.1377",
+        "rates": {
+          "0.1377": [
+            "993"
+          ],
+          "0.2022": [
+            "99360",
+            "99361",
+            "99362",
+            "99363",
+            "99364",
+            "99365",
+            "99366",
+            "99367",
+            "99368",
+            "99369",
+            "99377"
+          ]
+        },
+        "tollfree_rate": "NA"
+      }
+    },
+    "outbound": {
+      "network_groups": {
+        "Turkmenistan": "0.1377",
+        "Turkmenistan Mobile": "0.2022"
+      },
+      "rates": {
+        "Fixed": [
+          "0.1377"
+        ],
+        "Mobile": [
+          "0.2022"
+        ]
+      }
+    }
+  }
+}

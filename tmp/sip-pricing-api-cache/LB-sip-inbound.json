@@ -1,0 +1,17 @@
+{
+  "country": "Lebanon",
+  "country_iso": "LB",
+  "zentrunk": {
+    "inbound": {
+      "number_groups": {},
+      "rates": {}
+    },
+    "local": {
+      "inbound": {
+        "number_group_rates": {},
+        "rate": "NA",
+        "tollfree_rate": "NA"
+      }
+    }
+  }
+}

@@ -1,0 +1,120 @@
+{
+  "country": "Indonesia",
+  "country_iso": "ID",
+  "zentrunk": {
+    "local": {
+      "outbound": {
+        "network_group_rates": {
+          "0.066": [
+            "Indonesia",
+            "Indonesia Bandung",
+            "Indonesia Batam",
+            "Indonesia Bogor",
+            "Indonesia Denpasar",
+            "Indonesia Jakarta",
+            "Indonesia Malang",
+            "Indonesia Medan",
+            "Indonesia Surabaya"
+          ],
+          "0.07": [
+            "Indonesia Mobile",
+            "Indonesia Mobile Indosat Ooredoo",
+            "Indonesia Mobile Indosat Ooredoo II",
+            "Indonesia Mobile Telkomsel",
+            "Indonesia Mobile Three",
+            "Indonesia Mobile XL",
+            "Indonesia Satellite Mobile"
+          ]
+        },
+        "rate": "0.066",
+        "rates": {
+          "0.066": [
+            "62",
+            "6222",
+            "62778",
+            "62251",
+            "62361",
+            "6221",
+            "62341",
+            "6261",
+            "6231"
+          ],
+          "0.07": [
+            "6281",
+            "6282",
+            "6283",
+            "6285",
+            "6286",
+            "6288",
+            "6289",
+            "62815",
+            "62856",
+            "62857",
+            "62870",
+            "62814",
+            "62816",
+            "62855",
+            "62858",
+            "62811",
+            "62812",
+            "62813",
+            "62821",
+            "62822",
+            "62823",
+            "62851",
+            "62852",
+            "62853",
+            "62895",
+            "62896",
+            "62897",
+            "62898",
+            "62899",
+            "62817",
+            "62818",
+            "62819",
+            "62831",
+            "62832",
+            "62833",
+            "62838",
+            "62859",
+            "62877",
+            "62878",
+            "62868"
+          ]
+        },
+        "tollfree_rate": "NA"
+      }
+    },
+    "outbound": {
+      "network_groups": {
+        "Indonesia": "0.066",
+        "Indonesia Bandung": "0.066",
+        "Indonesia Batam": "0.066",
+        "Indonesia Bogor": "0.066",
+        "Indonesia Denpasar": "0.066",
+        "Indonesia Jakarta": "0.066",
+        "Indonesia Malang": "0.066",
+        "Indonesia Medan": "0.066",
+        "Indonesia Mobile": "0.07",
+        "Indonesia Mobile Indosat Ooredoo": "0.07",
+        "Indonesia Mobile Indosat Ooredoo II": "0.07",
+        "Indonesia Mobile Telkomsel": "0.07",
+        "Indonesia Mobile Three": "0.07",
+        "Indonesia Mobile XL": "0.07",
+        "Indonesia Satellite Mobile": "0.07",
+        "Indonesia Surabaya": "0.066"
+      },
+      "rates": {
+        "Fixed": [
+          "0.066"
+        ],
+        "Mobile": [
+          "0.07"
+        ],
+        "Others": [
+          "0.066"
+        ]
+      }
+    }
+  }
+}

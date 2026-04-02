@@ -1,0 +1,38 @@
+{
+  "country": "Czech Republic",
+  "country_iso": "CZ",
+  "zentrunk": {
+    "inbound": {
+      "number_groups": {
+        "Czech Republic Local Voice": "0.0063",
+        "Czech Republic Tollfree Voice": "0.2539",
+        "Czech Republic mobile Voice": "0.0063"
+      },
+      "rates": {
+        "local": [
+          "0.0063"
+        ],
+        "mobile": [
+          "0.0063"
+        ],
+        "tollfree": [
+          "0.2539"
+        ]
+      }
+    },
+    "local": {
+      "inbound": {
+        "number_group_rates": {
+          "0.0063": [
+            "Czech Republic mobile Voice"
+          ],
+          "0.2539": [
+            "Czech Republic Tollfree Voice"
+          ]
+        },
+        "rate": "0.0063",
+        "tollfree_rate": "0.2539"
+      }
+    }
+  }
+}

@@ -1,0 +1,155 @@
+{
+  "api_id": "a8d51cc4-2e6b-11f1-b3dd-0242ac110007",
+  "country": "San Marino",
+  "country_code": 378,
+  "country_iso": "SM",
+  "mms": {
+    "longcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "phone_numbers": [],
+  "sms": {
+    "longcode": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.07000",
+        "rates": {
+          "San Marino - Telecom Italia San Marino": "0.07000",
+          "San Marino-Others": "0.07000"
+        }
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": "0.00000",
+        "rental": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "voice": {
+    "add_on_pricing": {
+      "audio_streaming_rate": 0.004,
+      "mpc_rate": 0,
+      "recording_storage_rate": 0.0004,
+      "speech_recognition": 0.02,
+      "transcription_charge": 0.0095,
+      "webrtc_rate": 0.0033
+    },
+    "ip": {
+      "inbound": {
+        "rate": "0.00330",
+        "rental": null
+      },
+      "outbound": {
+        "rates": {
+          "all": "0.00330"
+        }
+      }
+    },
+    "local": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.04080",
+        "rates": [
+          {
+            "destination_prefix": [
+              "378"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.04080",
+            "voice_network_group": "San Marino",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "37858"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "1.99020",
+            "voice_network_group": "San Marino - Fixed - Others (TIS)",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "37866",
+              "378660",
+              "378663",
+              "378664",
+              "378665",
+              "378667"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "1.02200",
+            "voice_network_group": "San Marino - Mobile",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "37855",
+              "3787",
+              "37877"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "1.62100",
+            "voice_network_group": "San Marino - Premium Services",
+            "voice_unit": 60
+          }
+        ]
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.00000",
+        "rates": null
+      }
+    }
+  }
+}

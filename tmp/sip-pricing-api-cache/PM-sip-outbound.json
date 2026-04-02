@@ -1,0 +1,43 @@
+{
+  "country": "Saint Pierre and Miquelon",
+  "country_iso": "PM",
+  "zentrunk": {
+    "local": {
+      "outbound": {
+        "network_group_rates": {
+          "0.303": [
+            "Saint Pierre And Miquelon"
+          ],
+          "0.6545": [
+            "Saint Pierre And Miquelon Mobile"
+          ]
+        },
+        "rate": "0.303",
+        "rates": {
+          "0.303": [
+            "508"
+          ],
+          "0.6545": [
+            "50840",
+            "50855"
+          ]
+        },
+        "tollfree_rate": "NA"
+      }
+    },
+    "outbound": {
+      "network_groups": {
+        "Saint Pierre And Miquelon": "0.303",
+        "Saint Pierre And Miquelon Mobile": "0.6545"
+      },
+      "rates": {
+        "Fixed": [
+          "0.303"
+        ],
+        "Mobile": [
+          "0.6545"
+        ]
+      }
+    }
+  }
+}

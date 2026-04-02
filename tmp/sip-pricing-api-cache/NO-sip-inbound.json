@@ -1,0 +1,42 @@
+{
+  "country": "Norway",
+  "country_iso": "NO",
+  "zentrunk": {
+    "inbound": {
+      "number_groups": {
+        "Norway Tollfree Voice": "0.0615",
+        "Norway local Voice": "0.003",
+        "Norway mobile Voice": "0.003",
+        "Norway national Voice": "0.003"
+      },
+      "rates": {
+        "local": [
+          "0.003"
+        ],
+        "mobile": [
+          "0.003"
+        ],
+        "national": [
+          "0.003"
+        ],
+        "tollfree": [
+          "0.0615"
+        ]
+      }
+    },
+    "local": {
+      "inbound": {
+        "number_group_rates": {
+          "0.003": [
+            "Norway national Voice"
+          ],
+          "0.0615": [
+            "Norway Tollfree Voice"
+          ]
+        },
+        "rate": "0.003",
+        "tollfree_rate": "0.0615"
+      }
+    }
+  }
+}

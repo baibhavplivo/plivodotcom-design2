@@ -1,0 +1,38 @@
+{
+  "country": "New Zealand",
+  "country_iso": "NZ",
+  "zentrunk": {
+    "inbound": {
+      "number_groups": {
+        "New Zealand Local Voice": "0.0063",
+        "New Zealand Tollfree Voice": "0.2082",
+        "New Zealand mobile Voice": "0.0063"
+      },
+      "rates": {
+        "local": [
+          "0.0063"
+        ],
+        "mobile": [
+          "0.0063"
+        ],
+        "tollfree": [
+          "0.2082"
+        ]
+      }
+    },
+    "local": {
+      "inbound": {
+        "number_group_rates": {
+          "0.0063": [
+            "New Zealand mobile Voice"
+          ],
+          "0.2082": [
+            "New Zealand Tollfree Voice"
+          ]
+        },
+        "rate": "0.0063",
+        "tollfree_rate": "0.2082"
+      }
+    }
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "country": "Belize",
+  "country_iso": "BZ",
+  "zentrunk": {
+    "local": {
+      "outbound": {
+        "network_group_rates": {
+          "0.3025": [
+            "Belize"
+          ],
+          "0.3062": [
+            "Belize - Mobile"
+          ]
+        },
+        "rate": "0.3025",
+        "rates": {
+          "0.3025": [
+            "501"
+          ],
+          "0.3062": [
+            "50160",
+            "50161",
+            "50162",
+            "50163",
+            "50164",
+            "50165",
+            "50166",
+            "50167",
+            "50168"
+          ]
+        },
+        "tollfree_rate": "NA"
+      }
+    },
+    "outbound": {
+      "network_groups": {
+        "Belize": "0.3025",
+        "Belize - Mobile": "0.3062"
+      },
+      "rates": {
+        "Fixed": [
+          "0.3025"
+        ],
+        "Mobile": [
+          "0.3062"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "country": "France",
+  "country_iso": "FR",
+  "zentrunk": {
+    "inbound": {
+      "number_groups": {
+        "France - local - Voice & SMS": "0.003",
+        "France Local Voice": "0.003",
+        "France Mobile Voice & SMS": "0.003",
+        "France Tollfree Voice": "0.247",
+        "France national Voice": "0.003"
+      },
+      "rates": {
+        "local": [
+          "0.003"
+        ],
+        "mobile": [
+          "0.003"
+        ],
+        "national": [
+          "0.003"
+        ],
+        "tollfree": [
+          "0.247"
+        ]
+      }
+    },
+    "local": {
+      "inbound": {
+        "number_group_rates": {
+          "0.003": [
+            "France - local - Voice & SMS"
+          ],
+          "0.247": [
+            "France Tollfree Voice"
+          ]
+        },
+        "rate": "0.003",
+        "tollfree_rate": "0.247"
+      }
+    }
+  }
+}

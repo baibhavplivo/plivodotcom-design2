@@ -1,0 +1,237 @@
+{
+  "api_id": "8868c92c-2e6b-11f1-8f3c-0242ac110007",
+  "country": "Malta",
+  "country_code": 356,
+  "country_iso": "MT",
+  "mms": {
+    "longcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "phone_numbers": [],
+  "sms": {
+    "longcode": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.05494",
+        "rates": {
+          "Malta - Melita": "0.06680",
+          "Malta - Mobisle Communications Limited": "0.07692",
+          "Malta - Others": "0.06535",
+          "Malta - Vodafone Malta": "0.05494",
+          "Malta-GO": "0.06535"
+        }
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": "0.00000",
+        "rental": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "voice": {
+    "add_on_pricing": {
+      "audio_streaming_rate": 0.004,
+      "mpc_rate": 0,
+      "recording_storage_rate": 0.0004,
+      "speech_recognition": 0.02,
+      "transcription_charge": 0.0095,
+      "webrtc_rate": 0.0033
+    },
+    "ip": {
+      "inbound": {
+        "rate": "0.00330",
+        "rental": null
+      },
+      "outbound": {
+        "rates": {
+          "all": "0.00330"
+        }
+      }
+    },
+    "local": {
+      "inbound": {
+        "rate": "0.00850",
+        "rental": "4.67000"
+      },
+      "outbound": {
+        "rate": "0.01270",
+        "rates": [
+          {
+            "destination_prefix": [
+              "35672",
+              "35677",
+              "35679",
+              "35692",
+              "35694",
+              "3569696",
+              "3569697",
+              "3569811",
+              "3569812",
+              "3569813",
+              "3569889",
+              "3569897",
+              "35699"
+            ],
+            "origination_prefix": [
+              "30",
+              "31",
+              "32",
+              "33",
+              "34",
+              "351",
+              "352",
+              "353",
+              "354",
+              "355",
+              "356",
+              "357",
+              "358",
+              "359",
+              "36",
+              "370",
+              "371",
+              "372",
+              "385",
+              "386",
+              "39",
+              "40",
+              "420",
+              "421",
+              "423",
+              "43",
+              "44",
+              "45",
+              "46",
+              "47",
+              "48",
+              "49"
+            ],
+            "rate": "0.02130",
+            "voice_network_group": "Malta - Mobile from EEA",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "356"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.53560",
+            "voice_network_group": "Malta",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "35672",
+              "35677",
+              "35679",
+              "35692",
+              "35694",
+              "3569696",
+              "3569697",
+              "3569811",
+              "3569812",
+              "3569813",
+              "3569889",
+              "3569897",
+              "35699"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "1.40100",
+            "voice_network_group": "Malta - Mobile",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "356"
+            ],
+            "origination_prefix": [
+              "30",
+              "31",
+              "32",
+              "33",
+              "34",
+              "351",
+              "352",
+              "353",
+              "354",
+              "355",
+              "356",
+              "357",
+              "358",
+              "359",
+              "36",
+              "370",
+              "371",
+              "372",
+              "385",
+              "386",
+              "39",
+              "40",
+              "420",
+              "421",
+              "423",
+              "43",
+              "44",
+              "45",
+              "46",
+              "47",
+              "48",
+              "49"
+            ],
+            "rate": "0.01270",
+            "voice_network_group": "Malta from EEA",
+            "voice_unit": 60
+          }
+        ]
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.00000",
+        "rates": null
+      }
+    }
+  }
+}

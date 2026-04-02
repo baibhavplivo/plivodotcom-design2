@@ -1,0 +1,27 @@
+{
+  "country": "Bangladesh",
+  "country_iso": "BD",
+  "zentrunk": {
+    "inbound": {
+      "number_groups": {
+        "Bangladesh - local - Voice": "0.091"
+      },
+      "rates": {
+        "local": [
+          "0.091"
+        ]
+      }
+    },
+    "local": {
+      "inbound": {
+        "number_group_rates": {
+          "0.091": [
+            "Bangladesh - local - Voice"
+          ]
+        },
+        "rate": "0.091",
+        "tollfree_rate": "NA"
+      }
+    }
+  }
+}

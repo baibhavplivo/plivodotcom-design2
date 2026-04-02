@@ -1,0 +1,54 @@
+{
+  "country": "Aruba",
+  "country_iso": "AW",
+  "zentrunk": {
+    "local": {
+      "outbound": {
+        "network_group_rates": {
+          "0.31": [
+            "Aruba - Mobile"
+          ],
+          "0.3118": [
+            "Aruba"
+          ]
+        },
+        "rate": "0.31",
+        "rates": {
+          "0.31": [
+            "29756",
+            "29759",
+            "297600",
+            "297622",
+            "297630",
+            "297640",
+            "297641",
+            "297642",
+            "29766",
+            "29769",
+            "29773",
+            "29774",
+            "29799"
+          ],
+          "0.3118": [
+            "297"
+          ]
+        },
+        "tollfree_rate": "NA"
+      }
+    },
+    "outbound": {
+      "network_groups": {
+        "Aruba": "0.3118",
+        "Aruba - Mobile": "0.31"
+      },
+      "rates": {
+        "Fixed": [
+          "0.3118"
+        ],
+        "Mobile": [
+          "0.31"
+        ]
+      }
+    }
+  }
+}

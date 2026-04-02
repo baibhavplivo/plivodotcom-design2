@@ -1,0 +1,27 @@
+{
+  "country": "Ghana",
+  "country_iso": "GH",
+  "zentrunk": {
+    "inbound": {
+      "number_groups": {
+        "Ghana local Voice": "0.017"
+      },
+      "rates": {
+        "local": [
+          "0.017"
+        ]
+      }
+    },
+    "local": {
+      "inbound": {
+        "number_group_rates": {
+          "0.017": [
+            "Ghana local Voice"
+          ]
+        },
+        "rate": "0.017",
+        "tollfree_rate": "NA"
+      }
+    }
+  }
+}

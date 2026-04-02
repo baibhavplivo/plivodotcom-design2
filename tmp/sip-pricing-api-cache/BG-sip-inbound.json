@@ -1,0 +1,27 @@
+{
+  "country": "Bulgaria",
+  "country_iso": "BG",
+  "zentrunk": {
+    "inbound": {
+      "number_groups": {
+        "Bulgaria Local Voice": "0.0063"
+      },
+      "rates": {
+        "local": [
+          "0.0063"
+        ]
+      }
+    },
+    "local": {
+      "inbound": {
+        "number_group_rates": {
+          "0.0063": [
+            "Bulgaria Local Voice"
+          ]
+        },
+        "rate": "0.0063",
+        "tollfree_rate": "NA"
+      }
+    }
+  }
+}

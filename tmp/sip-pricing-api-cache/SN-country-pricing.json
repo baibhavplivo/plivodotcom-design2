@@ -1,0 +1,177 @@
+{
+  "api_id": "16dd52ae-2e6c-11f1-b8c1-0242ac110006",
+  "country": "Senegal",
+  "country_code": 221,
+  "country_iso": "SN",
+  "mms": {
+    "longcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "phone_numbers": [],
+  "sms": {
+    "longcode": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.29168",
+        "rates": {
+          "Senegal - Expresso Senegal (Sudatel)": "0.47295",
+          "Senegal - Orange Senegal (Sonatel)": "0.29168",
+          "Senegal - Others (Sonatel)": "0.54400",
+          "Senegal - Tigo (Sentel)": "0.43478"
+        }
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": "0.00000",
+        "rental": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "voice": {
+    "add_on_pricing": {
+      "audio_streaming_rate": 0.004,
+      "mpc_rate": 0,
+      "recording_storage_rate": 0.0004,
+      "speech_recognition": 0.02,
+      "transcription_charge": 0.0095,
+      "webrtc_rate": 0.0033
+    },
+    "ip": {
+      "inbound": {
+        "rate": "0.00330",
+        "rental": null
+      },
+      "outbound": {
+        "rates": {
+          "all": "0.00330"
+        }
+      }
+    },
+    "local": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.33200",
+        "rates": [
+          {
+            "destination_prefix": [
+              "221"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.33200",
+            "voice_network_group": "Senegal",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "221300",
+              "2213010",
+              "2213011",
+              "2213012",
+              "2213013",
+              "2213014",
+              "2213015",
+              "221302",
+              "221303",
+              "221304",
+              "221305",
+              "221306",
+              "221307",
+              "221308",
+              "221309",
+              "22132"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.62720",
+            "voice_network_group": "Senegal - Fixed - Major Carriers (Tigo, Expresso)",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "22170",
+              "22172110",
+              "22172111",
+              "22172112",
+              "22176",
+              "22177",
+              "22178"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.59150",
+            "voice_network_group": "Senegal - Mobile",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "2213016",
+              "2213017",
+              "2213018",
+              "2213019",
+              "221338292929",
+              "221338697100",
+              "221338697194"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.58650",
+            "voice_network_group": "Senegal - Premium Services",
+            "voice_unit": 60
+          }
+        ]
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.00000",
+        "rates": null
+      }
+    }
+  }
+}

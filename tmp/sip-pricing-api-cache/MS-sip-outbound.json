@@ -1,0 +1,48 @@
+{
+  "country": "Montserrat",
+  "country_iso": "MS",
+  "zentrunk": {
+    "local": {
+      "outbound": {
+        "network_group_rates": {
+          "0.418": [
+            "Montserrat",
+            "Montserrat - Mobile"
+          ]
+        },
+        "rate": "0.418",
+        "rates": {
+          "0.418": [
+            "1664",
+            "1664349",
+            "1664391",
+            "1664392",
+            "1664393",
+            "1664394",
+            "1664395",
+            "1664396",
+            "1664492",
+            "1664493",
+            "1664495",
+            "1664496"
+          ]
+        },
+        "tollfree_rate": "NA"
+      }
+    },
+    "outbound": {
+      "network_groups": {
+        "Montserrat": "0.418",
+        "Montserrat - Mobile": "0.418"
+      },
+      "rates": {
+        "Fixed": [
+          "0.418"
+        ],
+        "Mobile": [
+          "0.418"
+        ]
+      }
+    }
+  }
+}

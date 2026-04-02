@@ -1,0 +1,32 @@
+{
+  "country": "Niue",
+  "country_iso": "NU",
+  "zentrunk": {
+    "local": {
+      "outbound": {
+        "network_group_rates": {
+          "2.598": [
+            "Niue"
+          ]
+        },
+        "rate": "2.598",
+        "rates": {
+          "2.598": [
+            "683"
+          ]
+        },
+        "tollfree_rate": "NA"
+      }
+    },
+    "outbound": {
+      "network_groups": {
+        "Niue": "2.598"
+      },
+      "rates": {
+        "Fixed": [
+          "2.598"
+        ]
+      }
+    }
+  }
+}

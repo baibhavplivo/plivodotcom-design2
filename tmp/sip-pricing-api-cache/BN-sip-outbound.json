@@ -1,0 +1,43 @@
+{
+  "country": "Brunei Darussalam",
+  "country_iso": "BN",
+  "zentrunk": {
+    "local": {
+      "outbound": {
+        "network_group_rates": {
+          "0.0374": [
+            "Brunei",
+            "Brunei - Mobile"
+          ]
+        },
+        "rate": "0.0374",
+        "rates": {
+          "0.0374": [
+            "673",
+            "673228",
+            "67371",
+            "67372",
+            "67373",
+            "67377",
+            "6738"
+          ]
+        },
+        "tollfree_rate": "NA"
+      }
+    },
+    "outbound": {
+      "network_groups": {
+        "Brunei": "0.0374",
+        "Brunei - Mobile": "0.0374"
+      },
+      "rates": {
+        "Fixed": [
+          "0.0374"
+        ],
+        "Mobile": [
+          "0.0374"
+        ]
+      }
+    }
+  }
+}

@@ -4,10 +4,18 @@ import { useState, useMemo, useEffect, useRef, useCallback } from "react";
 import { cn } from "@/lib/utils";
 import { ChevronDown } from "lucide-react";
 import { useGeoCountry } from "@/hooks/useGeoCountry";
-import { useCountryPricing } from "@/hooks/useCountryPricing";
 import { useExchangeRate } from "@/hooks/useExchangeRate";
-import type { PhoneNumberInfo, SMSRateRow } from "@/hooks/useCountryPricing";
 import { xlsxCoverageData } from "@/data/sms-coverage-data";
+import {
+  SMS_COVERAGE_CONTINENT_LABELS,
+  SMS_COVERAGE_CONTINENT_ORDER,
+  SMS_COVERAGE_COUNTRIES,
+  SMS_COVERAGE_PAGE_META,
+  SMS_COVERAGE_PRIORITY_COUNTRY_CODES,
+  type SmsCoverageContinent as Continent,
+  type SmsCoverageCountry as Country,
+} from "@/data/sms-coverage-cache";
+import { SMS_COVERAGE_PRICING_CACHE } from "@/data/sms-coverage-pricing-cache";
 
 type FeatureSectionId = "number-types" | "features" | "regulations" | "deliverability" | "verify-coverage" | "country-specs" | "pricing";
 
@@ -22,19 +30,11 @@ const featureSections: { id: FeatureSectionId; label: string }[] = [
 ];
 
 type CoverageType = "outbound" | "inbound";
-type Continent = "north-america" | "south-america" | "europe" | "asia" | "africa" | "oceania";
 
-// Popular countries shown at the top of dropdown selectors
-const PRIORITY_COUNTRY_CODES = ["US", "IN", "CA", "GB", "AU"];
-
-interface Country {
-  name: string;
-  code: string;
-  flag: string;
-  continent: Continent;
-  outbound: boolean;
-  inbound: boolean;
-}
+const PRIORITY_COUNTRY_CODES = [...SMS_COVERAGE_PRIORITY_COUNTRY_CODES];
+const continentLabels = SMS_COVERAGE_CONTINENT_LABELS;
+const continentOrder = SMS_COVERAGE_CONTINENT_ORDER;
+const countries = SMS_COVERAGE_COUNTRIES;
 
 interface CountryDetails {
   features: {
@@ -73,318 +73,14 @@ interface CountryDetails {
   };
 }
 
-const continentLabels: Record<Continent, string> = {
-  "north-america": "North America",
-  "south-america": "South America",
-  "europe": "Europe",
-  "asia": "Asia",
-  "africa": "Africa",
-  "oceania": "Oceania",
-};
-
-const continentOrder: Continent[] = [
-  "north-america",
-  "south-america",
-  "europe",
-  "asia",
-  "africa",
-  "oceania",
-];
-
-// Complete countries data from screenshots
-const countries: Country[] = [
-  // North America
-  { name: "Anguilla", code: "AI", flag: "\u{1F1E6}\u{1F1EE}", continent: "north-america", outbound: true, inbound: true },
-  { name: "Antigua and Barbuda", code: "AG", flag: "\u{1F1E6}\u{1F1EC}", continent: "north-america", outbound: true, inbound: true },
-  { name: "Aruba", code: "AW", flag: "\u{1F1E6}\u{1F1FC}", continent: "north-america", outbound: true, inbound: true },
-  { name: "Bahamas", code: "BS", flag: "\u{1F1E7}\u{1F1F8}", continent: "north-america", outbound: true, inbound: true },
-  { name: "Barbados", code: "BB", flag: "\u{1F1E7}\u{1F1E7}", continent: "north-america", outbound: true, inbound: true },
-  { name: "Belize", code: "BZ", flag: "\u{1F1E7}\u{1F1FF}", continent: "north-america", outbound: true, inbound: false },
-  { name: "Bermuda", code: "BM", flag: "\u{1F1E7}\u{1F1F2}", continent: "north-america", outbound: true, inbound: true },
-  { name: "Canada", code: "CA", flag: "\u{1F1E8}\u{1F1E6}", continent: "north-america", outbound: true, inbound: true },
-  { name: "Cayman Islands", code: "KY", flag: "\u{1F1F0}\u{1F1FE}", continent: "north-america", outbound: true, inbound: true },
-  { name: "Costa Rica", code: "CR", flag: "\u{1F1E8}\u{1F1F7}", continent: "north-america", outbound: true, inbound: false },
-  { name: "Cuba", code: "CU", flag: "\u{1F1E8}\u{1F1FA}", continent: "north-america", outbound: true, inbound: false },
-  { name: "Dominica", code: "DM", flag: "\u{1F1E9}\u{1F1F2}", continent: "north-america", outbound: true, inbound: true },
-  { name: "Dominican Republic", code: "DO", flag: "\u{1F1E9}\u{1F1F4}", continent: "north-america", outbound: true, inbound: false },
-  { name: "El Salvador", code: "SV", flag: "\u{1F1F8}\u{1F1FB}", continent: "north-america", outbound: true, inbound: false },
-  { name: "Greenland", code: "GL", flag: "\u{1F1EC}\u{1F1F1}", continent: "north-america", outbound: true, inbound: false },
-  { name: "Grenada", code: "GD", flag: "\u{1F1EC}\u{1F1E9}", continent: "north-america", outbound: true, inbound: true },
-  { name: "Guadeloupe & Martinique", code: "GP", flag: "\u{1F1EC}\u{1F1F5}", continent: "north-america", outbound: true, inbound: false },
-  { name: "Guatemala", code: "GT", flag: "\u{1F1EC}\u{1F1F9}", continent: "north-america", outbound: true, inbound: false },
-  { name: "Haiti", code: "HT", flag: "\u{1F1ED}\u{1F1F9}", continent: "north-america", outbound: true, inbound: false },
-  { name: "Honduras", code: "HN", flag: "\u{1F1ED}\u{1F1F3}", continent: "north-america", outbound: true, inbound: false },
-  { name: "Jamaica", code: "JM", flag: "\u{1F1EF}\u{1F1F2}", continent: "north-america", outbound: true, inbound: true },
-  { name: "Mexico", code: "MX", flag: "\u{1F1F2}\u{1F1FD}", continent: "north-america", outbound: true, inbound: true },
-  { name: "Montserrat", code: "MS", flag: "\u{1F1F2}\u{1F1F8}", continent: "north-america", outbound: true, inbound: true },
-  { name: "Netherlands Antilles", code: "AN", flag: "\u{1F1E7}\u{1F1F6}", continent: "north-america", outbound: true, inbound: false },
-  { name: "Nicaragua", code: "NI", flag: "\u{1F1F3}\u{1F1EE}", continent: "north-america", outbound: true, inbound: false },
-  { name: "Northern Mariana Islands", code: "MP", flag: "\u{1F1F2}\u{1F1F5}", continent: "north-america", outbound: true, inbound: false },
-  { name: "Panama", code: "PA", flag: "\u{1F1F5}\u{1F1E6}", continent: "north-america", outbound: true, inbound: false },
-  { name: "Puerto Rico", code: "PR", flag: "\u{1F1F5}\u{1F1F7}", continent: "north-america", outbound: true, inbound: true },
-  { name: "Saint Barthelemy", code: "BL", flag: "\u{1F1E7}\u{1F1F1}", continent: "north-america", outbound: true, inbound: false },
-  { name: "Saint Kitts and Nevis", code: "KN", flag: "\u{1F1F0}\u{1F1F3}", continent: "north-america", outbound: true, inbound: true },
-  { name: "Saint Lucia", code: "LC", flag: "\u{1F1F1}\u{1F1E8}", continent: "north-america", outbound: true, inbound: true },
-  { name: "Saint Martin", code: "MF", flag: "\u{1F1F2}\u{1F1EB}", continent: "north-america", outbound: true, inbound: false },
-  { name: "Saint Pierre and Miquelon", code: "PM", flag: "\u{1F1F5}\u{1F1F2}", continent: "north-america", outbound: true, inbound: false },
-  { name: "Saint Vincent and the Grenadines", code: "VC", flag: "\u{1F1FB}\u{1F1E8}", continent: "north-america", outbound: true, inbound: true },
-  { name: "Trinidad and Tobago", code: "TT", flag: "\u{1F1F9}\u{1F1F9}", continent: "north-america", outbound: true, inbound: true },
-  { name: "Turks and Caicos Islands", code: "TC", flag: "\u{1F1F9}\u{1F1E8}", continent: "north-america", outbound: true, inbound: true },
-  { name: "United States", code: "US", flag: "\u{1F1FA}\u{1F1F8}", continent: "north-america", outbound: true, inbound: true },
-  { name: "United States Virgin Islands", code: "VI", flag: "\u{1F1FB}\u{1F1EE}", continent: "north-america", outbound: true, inbound: true },
-
-  // South America
-  { name: "Argentina", code: "AR", flag: "\u{1F1E6}\u{1F1F7}", continent: "south-america", outbound: true, inbound: true },
-  { name: "Bolivia", code: "BO", flag: "\u{1F1E7}\u{1F1F4}", continent: "south-america", outbound: true, inbound: false },
-  { name: "Brazil", code: "BR", flag: "\u{1F1E7}\u{1F1F7}", continent: "south-america", outbound: true, inbound: true },
-  { name: "Chile", code: "CL", flag: "\u{1F1E8}\u{1F1F1}", continent: "south-america", outbound: true, inbound: true },
-  { name: "Colombia", code: "CO", flag: "\u{1F1E8}\u{1F1F4}", continent: "south-america", outbound: true, inbound: false },
-  { name: "Curacao", code: "CW", flag: "\u{1F1E8}\u{1F1FC}", continent: "south-america", outbound: true, inbound: false },
-  { name: "Ecuador", code: "EC", flag: "\u{1F1EA}\u{1F1E8}", continent: "south-america", outbound: true, inbound: false },
-  { name: "Falkland Islands", code: "FK", flag: "\u{1F1EB}\u{1F1F0}", continent: "south-america", outbound: true, inbound: false },
-  { name: "French Guiana", code: "GF", flag: "\u{1F1EC}\u{1F1EB}", continent: "south-america", outbound: true, inbound: false },
-  { name: "Guyana", code: "GY", flag: "\u{1F1EC}\u{1F1FE}", continent: "south-america", outbound: true, inbound: false },
-  { name: "Paraguay", code: "PY", flag: "\u{1F1F5}\u{1F1FE}", continent: "south-america", outbound: true, inbound: false },
-  { name: "Peru", code: "PE", flag: "\u{1F1F5}\u{1F1EA}", continent: "south-america", outbound: true, inbound: false },
-  { name: "Suriname", code: "SR", flag: "\u{1F1F8}\u{1F1F7}", continent: "south-america", outbound: true, inbound: false },
-  { name: "Uruguay", code: "UY", flag: "\u{1F1FA}\u{1F1FE}", continent: "south-america", outbound: true, inbound: false },
-  { name: "Venezuela", code: "VE", flag: "\u{1F1FB}\u{1F1EA}", continent: "south-america", outbound: true, inbound: false },
-
-  // Asia
-  { name: "Afghanistan", code: "AF", flag: "\u{1F1E6}\u{1F1EB}", continent: "asia", outbound: true, inbound: false },
-  { name: "Armenia", code: "AM", flag: "\u{1F1E6}\u{1F1F2}", continent: "asia", outbound: true, inbound: false },
-  { name: "Azerbaijan", code: "AZ", flag: "\u{1F1E6}\u{1F1FF}", continent: "asia", outbound: true, inbound: false },
-  { name: "Bahrain", code: "BH", flag: "\u{1F1E7}\u{1F1ED}", continent: "asia", outbound: true, inbound: false },
-  { name: "Bangladesh", code: "BD", flag: "\u{1F1E7}\u{1F1E9}", continent: "asia", outbound: true, inbound: false },
-  { name: "Bhutan", code: "BT", flag: "\u{1F1E7}\u{1F1F9}", continent: "asia", outbound: true, inbound: false },
-  { name: "Brunei", code: "BN", flag: "\u{1F1E7}\u{1F1F3}", continent: "asia", outbound: true, inbound: false },
-  { name: "Cambodia", code: "KH", flag: "\u{1F1F0}\u{1F1ED}", continent: "asia", outbound: true, inbound: false },
-  { name: "China", code: "CN", flag: "\u{1F1E8}\u{1F1F3}", continent: "asia", outbound: true, inbound: false },
-  { name: "Georgia", code: "GE", flag: "\u{1F1EC}\u{1F1EA}", continent: "asia", outbound: true, inbound: false },
-  { name: "Hong Kong", code: "HK", flag: "\u{1F1ED}\u{1F1F0}", continent: "asia", outbound: true, inbound: true },
-  { name: "India", code: "IN", flag: "\u{1F1EE}\u{1F1F3}", continent: "asia", outbound: true, inbound: true },
-  { name: "Indonesia", code: "ID", flag: "\u{1F1EE}\u{1F1E9}", continent: "asia", outbound: true, inbound: true },
-  { name: "Iran", code: "IR", flag: "\u{1F1EE}\u{1F1F7}", continent: "asia", outbound: true, inbound: false },
-  { name: "Iraq", code: "IQ", flag: "\u{1F1EE}\u{1F1F6}", continent: "asia", outbound: true, inbound: false },
-  { name: "Israel", code: "IL", flag: "\u{1F1EE}\u{1F1F1}", continent: "asia", outbound: true, inbound: true },
-  { name: "Japan", code: "JP", flag: "\u{1F1EF}\u{1F1F5}", continent: "asia", outbound: true, inbound: true },
-  { name: "Jordan", code: "JO", flag: "\u{1F1EF}\u{1F1F4}", continent: "asia", outbound: true, inbound: false },
-  { name: "Kazakhstan", code: "KZ", flag: "\u{1F1F0}\u{1F1FF}", continent: "asia", outbound: true, inbound: false },
-  { name: "Kuwait", code: "KW", flag: "\u{1F1F0}\u{1F1FC}", continent: "asia", outbound: true, inbound: false },
-  { name: "Kyrgyzstan", code: "KG", flag: "\u{1F1F0}\u{1F1EC}", continent: "asia", outbound: true, inbound: false },
-  { name: "Laos", code: "LA", flag: "\u{1F1F1}\u{1F1E6}", continent: "asia", outbound: true, inbound: false },
-  { name: "Lebanon", code: "LB", flag: "\u{1F1F1}\u{1F1E7}", continent: "asia", outbound: true, inbound: false },
-  { name: "Macao", code: "MO", flag: "\u{1F1F2}\u{1F1F4}", continent: "asia", outbound: true, inbound: false },
-  { name: "Malaysia", code: "MY", flag: "\u{1F1F2}\u{1F1FE}", continent: "asia", outbound: true, inbound: true },
-  { name: "Maldives", code: "MV", flag: "\u{1F1F2}\u{1F1FB}", continent: "asia", outbound: true, inbound: false },
-  { name: "Mongolia", code: "MN", flag: "\u{1F1F2}\u{1F1F3}", continent: "asia", outbound: true, inbound: false },
-  { name: "Myanmar", code: "MM", flag: "\u{1F1F2}\u{1F1F2}", continent: "asia", outbound: true, inbound: false },
-  { name: "Nepal", code: "NP", flag: "\u{1F1F3}\u{1F1F5}", continent: "asia", outbound: true, inbound: false },
-  { name: "Oman", code: "OM", flag: "\u{1F1F4}\u{1F1F2}", continent: "asia", outbound: true, inbound: false },
-  { name: "Pakistan", code: "PK", flag: "\u{1F1F5}\u{1F1F0}", continent: "asia", outbound: true, inbound: false },
-  { name: "Palestine", code: "PS", flag: "\u{1F1F5}\u{1F1F8}", continent: "asia", outbound: true, inbound: false },
-  { name: "Philippines", code: "PH", flag: "\u{1F1F5}\u{1F1ED}", continent: "asia", outbound: true, inbound: true },
-  { name: "Qatar", code: "QA", flag: "\u{1F1F6}\u{1F1E6}", continent: "asia", outbound: true, inbound: false },
-  { name: "Saudi Arabia", code: "SA", flag: "\u{1F1F8}\u{1F1E6}", continent: "asia", outbound: true, inbound: false },
-  { name: "Singapore", code: "SG", flag: "\u{1F1F8}\u{1F1EC}", continent: "asia", outbound: true, inbound: true },
-  { name: "South Korea", code: "KR", flag: "\u{1F1F0}\u{1F1F7}", continent: "asia", outbound: true, inbound: true },
-  { name: "Sri Lanka", code: "LK", flag: "\u{1F1F1}\u{1F1F0}", continent: "asia", outbound: true, inbound: false },
-  { name: "Syria", code: "SY", flag: "\u{1F1F8}\u{1F1FE}", continent: "asia", outbound: true, inbound: false },
-  { name: "Taiwan", code: "TW", flag: "\u{1F1F9}\u{1F1FC}", continent: "asia", outbound: true, inbound: false },
-  { name: "Tajikistan", code: "TJ", flag: "\u{1F1F9}\u{1F1EF}", continent: "asia", outbound: true, inbound: false },
-  { name: "Thailand", code: "TH", flag: "\u{1F1F9}\u{1F1ED}", continent: "asia", outbound: true, inbound: false },
-  { name: "Timor-Leste", code: "TL", flag: "\u{1F1F9}\u{1F1F1}", continent: "asia", outbound: true, inbound: false },
-  { name: "Turkey", code: "TR", flag: "\u{1F1F9}\u{1F1F7}", continent: "asia", outbound: true, inbound: false },
-  { name: "Turkmenistan", code: "TM", flag: "\u{1F1F9}\u{1F1F2}", continent: "asia", outbound: true, inbound: false },
-  { name: "United Arab Emirates", code: "AE", flag: "\u{1F1E6}\u{1F1EA}", continent: "asia", outbound: true, inbound: true },
-  { name: "Uzbekistan", code: "UZ", flag: "\u{1F1FA}\u{1F1FF}", continent: "asia", outbound: true, inbound: false },
-  { name: "Vietnam", code: "VN", flag: "\u{1F1FB}\u{1F1F3}", continent: "asia", outbound: true, inbound: false },
-  { name: "Yemen", code: "YE", flag: "\u{1F1FE}\u{1F1EA}", continent: "asia", outbound: true, inbound: false },
-
-  // Europe
-  { name: "Albania", code: "AL", flag: "\u{1F1E6}\u{1F1F1}", continent: "europe", outbound: true, inbound: false },
-  { name: "Andorra", code: "AD", flag: "\u{1F1E6}\u{1F1E9}", continent: "europe", outbound: true, inbound: false },
-  { name: "Austria", code: "AT", flag: "\u{1F1E6}\u{1F1F9}", continent: "europe", outbound: true, inbound: true },
-  { name: "Belarus", code: "BY", flag: "\u{1F1E7}\u{1F1FE}", continent: "europe", outbound: true, inbound: false },
-  { name: "Belgium", code: "BE", flag: "\u{1F1E7}\u{1F1EA}", continent: "europe", outbound: true, inbound: true },
-  { name: "Bosnia and Herzegovina", code: "BA", flag: "\u{1F1E7}\u{1F1E6}", continent: "europe", outbound: true, inbound: false },
-  { name: "British Virgin Islands", code: "VG", flag: "\u{1F1FB}\u{1F1EC}", continent: "europe", outbound: true, inbound: true },
-  { name: "Bulgaria", code: "BG", flag: "\u{1F1E7}\u{1F1EC}", continent: "europe", outbound: true, inbound: false },
-  { name: "Croatia", code: "HR", flag: "\u{1F1ED}\u{1F1F7}", continent: "europe", outbound: true, inbound: true },
-  { name: "Cyprus", code: "CY", flag: "\u{1F1E8}\u{1F1FE}", continent: "europe", outbound: true, inbound: false },
-  { name: "Czech Republic", code: "CZ", flag: "\u{1F1E8}\u{1F1FF}", continent: "europe", outbound: true, inbound: true },
-  { name: "Denmark", code: "DK", flag: "\u{1F1E9}\u{1F1F0}", continent: "europe", outbound: true, inbound: true },
-  { name: "Estonia", code: "EE", flag: "\u{1F1EA}\u{1F1EA}", continent: "europe", outbound: true, inbound: true },
-  { name: "Faroe Islands", code: "FO", flag: "\u{1F1EB}\u{1F1F4}", continent: "europe", outbound: true, inbound: false },
-  { name: "Finland", code: "FI", flag: "\u{1F1EB}\u{1F1EE}", continent: "europe", outbound: true, inbound: true },
-  { name: "France", code: "FR", flag: "\u{1F1EB}\u{1F1F7}", continent: "europe", outbound: true, inbound: true },
-  { name: "Germany", code: "DE", flag: "\u{1F1E9}\u{1F1EA}", continent: "europe", outbound: true, inbound: true },
-  { name: "Gibraltar", code: "GI", flag: "\u{1F1EC}\u{1F1EE}", continent: "europe", outbound: true, inbound: false },
-  { name: "Greece", code: "GR", flag: "\u{1F1EC}\u{1F1F7}", continent: "europe", outbound: true, inbound: false },
-  { name: "Guernsey", code: "GG", flag: "\u{1F1EC}\u{1F1EC}", continent: "europe", outbound: true, inbound: false },
-  { name: "Hungary", code: "HU", flag: "\u{1F1ED}\u{1F1FA}", continent: "europe", outbound: true, inbound: true },
-  { name: "Iceland", code: "IS", flag: "\u{1F1EE}\u{1F1F8}", continent: "europe", outbound: true, inbound: false },
-  { name: "Ireland", code: "IE", flag: "\u{1F1EE}\u{1F1EA}", continent: "europe", outbound: true, inbound: true },
-  { name: "Italy", code: "IT", flag: "\u{1F1EE}\u{1F1F9}", continent: "europe", outbound: true, inbound: true },
-  { name: "Kosovo", code: "XK", flag: "\u{1F1FD}\u{1F1F0}", continent: "europe", outbound: true, inbound: false },
-  { name: "Latvia", code: "LV", flag: "\u{1F1F1}\u{1F1FB}", continent: "europe", outbound: true, inbound: true },
-  { name: "Liechtenstein", code: "LI", flag: "\u{1F1F1}\u{1F1EE}", continent: "europe", outbound: true, inbound: false },
-  { name: "Lithuania", code: "LT", flag: "\u{1F1F1}\u{1F1F9}", continent: "europe", outbound: true, inbound: true },
-  { name: "Luxembourg", code: "LU", flag: "\u{1F1F1}\u{1F1FA}", continent: "europe", outbound: true, inbound: false },
-  { name: "Macedonia", code: "MK", flag: "\u{1F1F2}\u{1F1F0}", continent: "europe", outbound: true, inbound: false },
-  { name: "Malta", code: "MT", flag: "\u{1F1F2}\u{1F1F9}", continent: "europe", outbound: true, inbound: false },
-  { name: "Martinique", code: "MQ", flag: "\u{1F1F2}\u{1F1F6}", continent: "europe", outbound: true, inbound: false },
-  { name: "Moldova", code: "MD", flag: "\u{1F1F2}\u{1F1E9}", continent: "europe", outbound: true, inbound: false },
-  { name: "Monaco", code: "MC", flag: "\u{1F1F2}\u{1F1E8}", continent: "europe", outbound: true, inbound: false },
-  { name: "Montenegro", code: "ME", flag: "\u{1F1F2}\u{1F1EA}", continent: "europe", outbound: true, inbound: false },
-  { name: "Netherlands", code: "NL", flag: "\u{1F1F3}\u{1F1F1}", continent: "europe", outbound: true, inbound: true },
-  { name: "Norway", code: "NO", flag: "\u{1F1F3}\u{1F1F4}", continent: "europe", outbound: true, inbound: true },
-  { name: "Poland", code: "PL", flag: "\u{1F1F5}\u{1F1F1}", continent: "europe", outbound: true, inbound: true },
-  { name: "Portugal", code: "PT", flag: "\u{1F1F5}\u{1F1F9}", continent: "europe", outbound: true, inbound: true },
-  { name: "Romania", code: "RO", flag: "\u{1F1F7}\u{1F1F4}", continent: "europe", outbound: true, inbound: true },
-  { name: "Russia", code: "RU", flag: "\u{1F1F7}\u{1F1FA}", continent: "europe", outbound: true, inbound: false },
-  { name: "San Marino", code: "SM", flag: "\u{1F1F8}\u{1F1F2}", continent: "europe", outbound: true, inbound: false },
-  { name: "Serbia", code: "RS", flag: "\u{1F1F7}\u{1F1F8}", continent: "europe", outbound: true, inbound: false },
-  { name: "Slovakia", code: "SK", flag: "\u{1F1F8}\u{1F1F0}", continent: "europe", outbound: true, inbound: true },
-  { name: "Slovenia", code: "SI", flag: "\u{1F1F8}\u{1F1EE}", continent: "europe", outbound: true, inbound: true },
-  { name: "Spain", code: "ES", flag: "\u{1F1EA}\u{1F1F8}", continent: "europe", outbound: true, inbound: true },
-  { name: "Sweden", code: "SE", flag: "\u{1F1F8}\u{1F1EA}", continent: "europe", outbound: true, inbound: true },
-  { name: "Switzerland", code: "CH", flag: "\u{1F1E8}\u{1F1ED}", continent: "europe", outbound: true, inbound: true },
-  { name: "Ukraine", code: "UA", flag: "\u{1F1FA}\u{1F1E6}", continent: "europe", outbound: true, inbound: false },
-  { name: "United Kingdom", code: "GB", flag: "\u{1F1EC}\u{1F1E7}", continent: "europe", outbound: true, inbound: true },
-
-  // Africa
-  { name: "Algeria", code: "DZ", flag: "\u{1F1E9}\u{1F1FF}", continent: "africa", outbound: true, inbound: false },
-  { name: "Angola", code: "AO", flag: "\u{1F1E6}\u{1F1F4}", continent: "africa", outbound: true, inbound: false },
-  { name: "Benin", code: "BJ", flag: "\u{1F1E7}\u{1F1EF}", continent: "africa", outbound: true, inbound: false },
-  { name: "Botswana", code: "BW", flag: "\u{1F1E7}\u{1F1FC}", continent: "africa", outbound: true, inbound: false },
-  { name: "Burkina Faso", code: "BF", flag: "\u{1F1E7}\u{1F1EB}", continent: "africa", outbound: true, inbound: false },
-  { name: "Burundi", code: "BI", flag: "\u{1F1E7}\u{1F1EE}", continent: "africa", outbound: true, inbound: false },
-  { name: "Cameroon", code: "CM", flag: "\u{1F1E8}\u{1F1F2}", continent: "africa", outbound: true, inbound: false },
-  { name: "Cape Verde", code: "CV", flag: "\u{1F1E8}\u{1F1FB}", continent: "africa", outbound: true, inbound: false },
-  { name: "Central African Republic", code: "CF", flag: "\u{1F1E8}\u{1F1EB}", continent: "africa", outbound: true, inbound: false },
-  { name: "Chad", code: "TD", flag: "\u{1F1F9}\u{1F1E9}", continent: "africa", outbound: true, inbound: false },
-  { name: "Comoros", code: "KM", flag: "\u{1F1F0}\u{1F1F2}", continent: "africa", outbound: true, inbound: false },
-  { name: "Congo", code: "CG", flag: "\u{1F1E8}\u{1F1EC}", continent: "africa", outbound: true, inbound: false },
-  { name: "Democratic Republic Congo", code: "CD", flag: "\u{1F1E8}\u{1F1E9}", continent: "africa", outbound: true, inbound: false },
-  { name: "Djibouti", code: "DJ", flag: "\u{1F1E9}\u{1F1EF}", continent: "africa", outbound: true, inbound: false },
-  { name: "Egypt", code: "EG", flag: "\u{1F1EA}\u{1F1EC}", continent: "africa", outbound: true, inbound: false },
-  { name: "Equatorial Guinea", code: "GQ", flag: "\u{1F1EC}\u{1F1F6}", continent: "africa", outbound: true, inbound: false },
-  { name: "Eritrea", code: "ER", flag: "\u{1F1EA}\u{1F1F7}", continent: "africa", outbound: true, inbound: false },
-  { name: "Ethiopia", code: "ET", flag: "\u{1F1EA}\u{1F1F9}", continent: "africa", outbound: true, inbound: false },
-  { name: "Gabon", code: "GA", flag: "\u{1F1EC}\u{1F1E6}", continent: "africa", outbound: true, inbound: false },
-  { name: "Gambia", code: "GM", flag: "\u{1F1EC}\u{1F1F2}", continent: "africa", outbound: true, inbound: false },
-  { name: "Ghana", code: "GH", flag: "\u{1F1EC}\u{1F1ED}", continent: "africa", outbound: true, inbound: false },
-  { name: "Guinea", code: "GN", flag: "\u{1F1EC}\u{1F1F3}", continent: "africa", outbound: true, inbound: false },
-  { name: "Guinea-Bissau", code: "GW", flag: "\u{1F1EC}\u{1F1FC}", continent: "africa", outbound: true, inbound: false },
-  { name: "Ivory Coast", code: "CI", flag: "\u{1F1E8}\u{1F1EE}", continent: "africa", outbound: true, inbound: false },
-  { name: "Kenya", code: "KE", flag: "\u{1F1F0}\u{1F1EA}", continent: "africa", outbound: true, inbound: true },
-  { name: "Lesotho", code: "LS", flag: "\u{1F1F1}\u{1F1F8}", continent: "africa", outbound: true, inbound: false },
-  { name: "Liberia", code: "LR", flag: "\u{1F1F1}\u{1F1F7}", continent: "africa", outbound: true, inbound: false },
-  { name: "Libya", code: "LY", flag: "\u{1F1F1}\u{1F1FE}", continent: "africa", outbound: true, inbound: false },
-  { name: "Madagascar", code: "MG", flag: "\u{1F1F2}\u{1F1EC}", continent: "africa", outbound: true, inbound: false },
-  { name: "Malawi", code: "MW", flag: "\u{1F1F2}\u{1F1FC}", continent: "africa", outbound: true, inbound: false },
-  { name: "Mali", code: "ML", flag: "\u{1F1F2}\u{1F1F1}", continent: "africa", outbound: true, inbound: false },
-  { name: "Mauritania", code: "MR", flag: "\u{1F1F2}\u{1F1F7}", continent: "africa", outbound: true, inbound: false },
-  { name: "Mauritius", code: "MU", flag: "\u{1F1F2}\u{1F1FA}", continent: "africa", outbound: true, inbound: false },
-  { name: "Morocco", code: "MA", flag: "\u{1F1F2}\u{1F1E6}", continent: "africa", outbound: true, inbound: false },
-  { name: "Mozambique", code: "MZ", flag: "\u{1F1F2}\u{1F1FF}", continent: "africa", outbound: true, inbound: false },
-  { name: "Namibia", code: "NA", flag: "\u{1F1F3}\u{1F1E6}", continent: "africa", outbound: true, inbound: false },
-  { name: "Niger", code: "NE", flag: "\u{1F1F3}\u{1F1EA}", continent: "africa", outbound: true, inbound: false },
-  { name: "Nigeria", code: "NG", flag: "\u{1F1F3}\u{1F1EC}", continent: "africa", outbound: true, inbound: false },
-  { name: "Reunion", code: "RE", flag: "\u{1F1F7}\u{1F1EA}", continent: "africa", outbound: true, inbound: false },
-  { name: "Rwanda", code: "RW", flag: "\u{1F1F7}\u{1F1FC}", continent: "africa", outbound: true, inbound: false },
-  { name: "Sao Tome and Principe", code: "ST", flag: "\u{1F1F8}\u{1F1F9}", continent: "africa", outbound: true, inbound: false },
-  { name: "Senegal", code: "SN", flag: "\u{1F1F8}\u{1F1F3}", continent: "africa", outbound: true, inbound: false },
-  { name: "Seychelles", code: "SC", flag: "\u{1F1F8}\u{1F1E8}", continent: "africa", outbound: true, inbound: false },
-  { name: "Sierra Leone", code: "SL", flag: "\u{1F1F8}\u{1F1F1}", continent: "africa", outbound: true, inbound: false },
-  { name: "Somalia", code: "SO", flag: "\u{1F1F8}\u{1F1F4}", continent: "africa", outbound: true, inbound: false },
-  { name: "South Africa", code: "ZA", flag: "\u{1F1FF}\u{1F1E6}", continent: "africa", outbound: true, inbound: true },
-  { name: "South Sudan", code: "SS", flag: "\u{1F1F8}\u{1F1F8}", continent: "africa", outbound: true, inbound: false },
-  { name: "Sudan", code: "SD", flag: "\u{1F1F8}\u{1F1E9}", continent: "africa", outbound: true, inbound: false },
-  { name: "Swaziland", code: "SZ", flag: "\u{1F1F8}\u{1F1FF}", continent: "africa", outbound: true, inbound: false },
-  { name: "Tanzania", code: "TZ", flag: "\u{1F1F9}\u{1F1FF}", continent: "africa", outbound: true, inbound: false },
-  { name: "Togo", code: "TG", flag: "\u{1F1F9}\u{1F1EC}", continent: "africa", outbound: true, inbound: false },
-  { name: "Tunisia", code: "TN", flag: "\u{1F1F9}\u{1F1F3}", continent: "africa", outbound: true, inbound: false },
-  { name: "Uganda", code: "UG", flag: "\u{1F1FA}\u{1F1EC}", continent: "africa", outbound: true, inbound: false },
-  { name: "Zambia", code: "ZM", flag: "\u{1F1FF}\u{1F1F2}", continent: "africa", outbound: true, inbound: false },
-  { name: "Zimbabwe", code: "ZW", flag: "\u{1F1FF}\u{1F1FC}", continent: "africa", outbound: true, inbound: false },
-
-  // Oceania
-  { name: "American-Samoa", code: "AS", flag: "\u{1F1E6}\u{1F1F8}", continent: "oceania", outbound: true, inbound: false },
-  { name: "Australia", code: "AU", flag: "\u{1F1E6}\u{1F1FA}", continent: "oceania", outbound: true, inbound: true },
-  { name: "Cook Islands", code: "CK", flag: "\u{1F1E8}\u{1F1F0}", continent: "oceania", outbound: true, inbound: false },
-  { name: "Fiji", code: "FJ", flag: "\u{1F1EB}\u{1F1EF}", continent: "oceania", outbound: true, inbound: false },
-  { name: "French Polynesia", code: "PF", flag: "\u{1F1F5}\u{1F1EB}", continent: "oceania", outbound: true, inbound: false },
-  { name: "Guam", code: "GU", flag: "\u{1F1EC}\u{1F1FA}", continent: "oceania", outbound: true, inbound: false },
-  { name: "Marshall Islands", code: "MH", flag: "\u{1F1F2}\u{1F1ED}", continent: "oceania", outbound: true, inbound: false },
-  { name: "Micronesia", code: "FM", flag: "\u{1F1EB}\u{1F1F2}", continent: "oceania", outbound: true, inbound: false },
-  { name: "New Caledonia", code: "NC", flag: "\u{1F1F3}\u{1F1E8}", continent: "oceania", outbound: true, inbound: false },
-  { name: "New Zealand", code: "NZ", flag: "\u{1F1F3}\u{1F1FF}", continent: "oceania", outbound: true, inbound: true },
-  { name: "Niue", code: "NU", flag: "\u{1F1F3}\u{1F1FA}", continent: "oceania", outbound: true, inbound: false },
-  { name: "Norfolk Island", code: "NF", flag: "\u{1F1F3}\u{1F1EB}", continent: "oceania", outbound: true, inbound: false },
-  { name: "Palau", code: "PW", flag: "\u{1F1F5}\u{1F1FC}", continent: "oceania", outbound: true, inbound: false },
-  { name: "Papua New Guinea", code: "PG", flag: "\u{1F1F5}\u{1F1EC}", continent: "oceania", outbound: true, inbound: false },
-  { name: "Samoa", code: "WS", flag: "\u{1F1FC}\u{1F1F8}", continent: "oceania", outbound: true, inbound: false },
-  { name: "Solomon Islands", code: "SB", flag: "\u{1F1F8}\u{1F1E7}", continent: "oceania", outbound: true, inbound: false },
-  { name: "Tonga", code: "TO", flag: "\u{1F1F9}\u{1F1F4}", continent: "oceania", outbound: true, inbound: false },
-  { name: "Tuvalu", code: "TV", flag: "\u{1F1F9}\u{1F1FB}", continent: "oceania", outbound: true, inbound: false },
-  { name: "Vanuatu", code: "VU", flag: "\u{1F1FB}\u{1F1FA}", continent: "oceania", outbound: true, inbound: false },
-];
-
-// Country details data
-const countryDetailsData: Record<string, CountryDetails> = {
-  US: {
-    features: {
-      sendingToMobile: "Supported",
-      sendingToLandline: "Supported (If enabled for SMS)",
-      smsConcatenation: "Yes",
-      smsConcatenationNote: "Sprint does not support proper concatenation for P2P messages. They do support it for A2P.",
-      twoWaySms: "Supported",
-      powerpack: "Supported",
-    },
-    regulations: {
-      senderIdType: "Numeric only (10DLC, Short Code, Toll-Free)",
-      senderIdRegulations: "Alphanumeric sender IDs are not supported. The originating number must be an SMS-enabled Plivo number in US/Canada or a US short code.",
-      registrationRequirements: "10DLC registration via The Campaign Registry (TCR) is mandatory for A2P messaging over long codes. Register your brand (with exact EIN match) and each messaging campaign. Unregistered traffic is blocked by all major US carriers since February 2025.",
-      contentRestrictions: "CTIA messaging guidelines apply. Messages must clearly identify the sender and purpose. Prohibited content includes SHAFT (Sex, Hate, Alcohol, Firearms, Tobacco) for standard campaigns.",
-      consentRequirements: "Express written consent required for marketing messages. Prior express consent required for informational messages. Consent must be documented and retained.",
-      optOutRequirements: "STOP keyword support mandatory. Must honor opt-out requests immediately. Include opt-out instructions in first message and periodically.",
-      complianceNotes: "Brand vetting score determines message throughput. Campaign registration typically takes 3-7 business days. Auth+ 2.0 verification required for brands. Short codes require separate approval process.",
-    },
-    deliverability: {
-      deliveryReportType: "Network (Longcodes) / Handset (TF & short codes)",
-      deliveryReportReliability: "Reliable",
-      senderIdProvisioningTime: "Not supported",
-      senderIdRegistrationCharges: "No",
-      numericSenderIdSupported: "Supported",
-    },
-    verifyCoverage: {
-      servicability: "Very Reliable",
-      sidUsed: "Does not support SID",
-      contentMaintained: "Yes",
-    },
-    countrySpecs: {
-      isoCode: "US",
-      countryCode: "+ 1",
-      mcc: "+ 310, 311, 316",
-    },
-  },
-};
-
 // Get country details with fallback for countries without specific data
 const getCountryDetails = (country: Country): CountryDetails => {
-  // 1. Hand-written detailed data (US only — has unique 10DLC/carrier data)
-  if (countryDetailsData[country.code]) {
-    return countryDetailsData[country.code];
-  }
-
-  // 2. XLSX-derived data (227 countries from SMS Coverage Excel)
+  // XLSX-derived data (226 countries from the live SMS coverage workbook)
   if (xlsxCoverageData[country.code]) {
     return xlsxCoverageData[country.code] as CountryDetails;
   }
 
-  // 3. Generic fallback for SMS-outbound-only countries
+  // Generic fallback for any future country that has not yet been added
   return {
     features: {
       sendingToMobile: "Supported",
@@ -425,28 +121,46 @@ const getCountryDetails = (country: Country): CountryDetails => {
 // Get United States as default selected country
 const defaultCountry = countries.find((c) => c.code === "US") || null;
 
+function resolveInitialCountry(initialCountry?: string) {
+  if (!initialCountry) return defaultCountry;
+  return countries.find((country) => country.code === initialCountry) || defaultCountry;
+}
+
 export default function CoverageTabs({ initialCountry }: { initialCountry?: string } = {}) {
-  const { country: geoCountry } = useGeoCountry();
+  const { country: geoCountry } = useGeoCountry("US", { mode: "exact" });
   const [coverageType, setCoverageType] = useState<CoverageType>("outbound");
-  const [activeContinent, setActiveContinent] = useState<Continent>("north-america");
-  const [selectedCountry, setSelectedCountry] = useState<Country | null>(defaultCountry);
-  const [activeFeatureSection, setActiveFeatureSection] = useState<FeatureSectionId>("features");
+  const [activeContinent, setActiveContinent] = useState<Continent>(
+    () => resolveInitialCountry(initialCountry)?.continent || "north-america"
+  );
+  const [selectedCountry, setSelectedCountry] = useState<Country | null>(
+    () => resolveInitialCountry(initialCountry)
+  );
+  const [activeFeatureSection, setActiveFeatureSection] = useState<FeatureSectionId>("number-types");
   const [featureSidebarStyle, setFeatureSidebarStyle] = useState<React.CSSProperties>({});
   const [isDesktopCountryOpen, setIsDesktopCountryOpen] = useState(false);
   const [isMobileCountryOpen, setIsMobileCountryOpen] = useState(false);
   const [countrySearchQuery, setCountrySearchQuery] = useState("");
 
-  // Fetch live pricing + phone number data from API
-  const { data: pricingData, loading: pricingLoading } = useCountryPricing(selectedCountry?.code || "US");
   const { convertPriceString } = useExchangeRate();
+  const formatCoveragePrice = useCallback(
+    (value: string, routeType: string) => {
+      if (selectedCountry?.code === "IN" && routeType === "ILDO") {
+        return value;
+      }
 
-  // SMS-capable number types from API
-  const smsNumberTypes = useMemo(() => {
-    if (!pricingData?.phoneNumbers) return [];
-    return pricingData.phoneNumbers.filter(
-      (pn) => pn.capabilities.includes("sms") && (pn.status === "GA" || pn.status === "BETA")
+      return convertPriceString(value, selectedCountry?.code || "US");
+    },
+    [convertPriceString, selectedCountry],
+  );
+  const coveragePricingData = useMemo(() => {
+    if (!selectedCountry) return null;
+    return (
+      SMS_COVERAGE_PRICING_CACHE[selectedCountry.code] || {
+        supportedNumberTypes: [],
+        pricingRows: [],
+      }
     );
-  }, [pricingData]);
+  }, [selectedCountry]);
 
   // Auto-select country based on user's IP location
   const geoApplied = useRef(false);
@@ -782,10 +496,10 @@ export default function CoverageTabs({ initialCountry }: { initialCountry?: stri
         {/* Hero Header */}
         <div className="text-center mb-10">
           <h1 className="font-sora text-[2rem] sm:text-[2.5rem] md:text-[3rem] font-normal leading-[1.1] tracking-[-0.02em] text-black mb-4">
-            Global SMS Coverage
+            {SMS_COVERAGE_PAGE_META.heading}
           </h1>
           <p className="text-gray-600 text-base sm:text-lg max-w-2xl mx-auto">
-            Explore our comprehensive SMS coverage across 220+ countries with direct carrier connections.
+            {SMS_COVERAGE_PAGE_META.subheading}
           </p>
         </div>
 
@@ -1015,23 +729,17 @@ export default function CoverageTabs({ initialCountry }: { initialCountry?: stri
               {/* Supported Number Types Section */}
               <div id="feature-number-types" className="bg-white rounded-xl border border-gray-200 p-6 mb-6">
                 <h4 className="font-inter text-lg font-semibold text-black mb-4">Supported Number Types</h4>
-                {pricingLoading ? (
+                {coveragePricingData && coveragePricingData.supportedNumberTypes.length > 0 ? (
                   <div className="flex flex-wrap gap-3">
-                    {[1, 2, 3].map((i) => (
-                      <span key={i} className="inline-block h-8 w-32 bg-gray-100 rounded-full animate-pulse" />
-                    ))}
-                  </div>
-                ) : smsNumberTypes.length > 0 ? (
-                  <div className="flex flex-wrap gap-3">
-                    {smsNumberTypes.map((pn) => (
+                    {coveragePricingData.supportedNumberTypes.map((numberType) => (
                       <span
-                        key={pn.type}
+                        key={numberType}
                         className="inline-flex items-center gap-1.5 px-4 py-2 bg-gray-50 rounded-full text-sm font-medium text-black"
                       >
                         <svg className="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                         </svg>
-                        {pn.type} Numbers
+                        {numberType}
                       </span>
                     ))}
                   </div>
@@ -1192,44 +900,52 @@ export default function CoverageTabs({ initialCountry }: { initialCountry?: stri
                 </div>
               </div>
 
-              {/* Pricing Section -- Dynamic from API */}
+              {/* Pricing Section */}
               <div id="feature-pricing" className="bg-white rounded-xl border border-gray-200 p-6">
                 <h4 className="font-inter text-lg font-semibold text-black mb-2">Pricing</h4>
                 <p className="text-xs text-gray-500 mb-4">*Additional carrier charges may apply to outbound & inbound SMS rates.</p>
-                {pricingLoading ? (
-                  <div className="space-y-3">
-                    {[1, 2, 3].map((i) => (
-                      <div key={i} className="flex gap-4">
-                        <span className="inline-block h-5 w-24 bg-gray-100 rounded animate-pulse" />
-                        <span className="inline-block h-5 w-28 bg-gray-100 rounded animate-pulse" />
-                        <span className="inline-block h-5 w-28 bg-gray-100 rounded animate-pulse" />
-                      </div>
-                    ))}
-                  </div>
-                ) : pricingData && pricingData.smsRates.length > 0 ? (
-                  <div className="overflow-x-auto">
-                    <table className="w-full">
-                      <thead>
-                        <tr className="border-b border-gray-200">
-                          <th className="py-3 pr-4 text-left text-sm font-semibold text-black">Route Type</th>
-                          <th className="py-3 pr-4 text-left text-sm font-semibold text-black">To send SMS (Outbound)</th>
-                          <th className="py-3 text-left text-sm font-semibold text-black">To receive SMS (Inbound)</th>
-                        </tr>
-                      </thead>
-                      <tbody className="divide-y divide-gray-100">
-                        {pricingData.smsRates.map((row, i) => (
-                          <tr key={i}>
-                            <td className="py-3 pr-4 text-sm text-gray-900">{row.type}</td>
-                            <td className="py-3 pr-4 text-sm font-medium text-black">{convertPriceString(row.outbound, selectedCountry?.code || "US")}</td>
-                            <td className="py-3 text-sm font-medium text-black">{convertPriceString(row.inbound, selectedCountry?.code || "US")}</td>
+                {coveragePricingData && coveragePricingData.pricingRows.length > 0 ? (
+                  <>
+                    <div className="overflow-x-auto">
+                      <table className="w-full">
+                        <thead>
+                          <tr className="border-b border-gray-200">
+                            <th className="py-3 pr-4 text-left text-sm font-semibold text-black">Route Type</th>
+                            <th className="py-3 pr-4 text-left text-sm font-semibold text-black">To send SMS (Outbound)</th>
+                            <th className="py-3 text-left text-sm font-semibold text-black">To receive SMS (Inbound)</th>
                           </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
+                        </thead>
+                        <tbody className="divide-y divide-gray-100">
+                          {coveragePricingData.pricingRows.map((row, i) => (
+                            <tr key={i}>
+                              <td className="py-3 pr-4 text-sm text-gray-900">{row.type}</td>
+                              <td className="py-3 pr-4 text-sm font-medium text-black">
+                                {formatCoveragePrice(row.outbound, row.type)}
+                              </td>
+                              <td className="py-3 text-sm font-medium text-black">
+                                {formatCoveragePrice(row.inbound, row.type)}
+                              </td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                    <a
+                      href={`/sms/pricing/${selectedCountry.code.toLowerCase()}/`}
+                      className="mt-4 inline-flex text-sm font-medium text-[#323dfe] hover:text-[#2832cc] hover:underline transition-colors"
+                    >
+                      View detailed pricing
+                    </a>
+                  </>
                 ) : (
                   <p className="text-sm text-gray-500">
-                    <a href="/contact/sales/" className="text-[#323dfe] hover:underline font-medium">Contact sales</a> for pricing details in {selectedCountry.name}.
+                    <a
+                      href="/contact/sales/"
+                      className="font-medium text-[#323dfe] hover:text-[#2832cc] hover:underline transition-colors"
+                    >
+                      Contact sales
+                    </a>{" "}
+                    for pricing details in {selectedCountry.name}.
                   </p>
                 )}
                 <p className="text-xs text-gray-500 mt-4">

@@ -56,7 +56,7 @@ function getFaqItems(isIndia: boolean) {
 }
 
 export function PlivoPricingFAQ() {
-  const { country } = useGeoCountry();
+  const { country } = useGeoCountry("US", { mode: "exact" });
   const isIndia = country === "IN";
   const faqItems = getFaqItems(isIndia);
   return (

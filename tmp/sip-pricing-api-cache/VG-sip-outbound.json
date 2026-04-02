@@ -1,0 +1,82 @@
+{
+  "country": "Virgin Islands, British",
+  "country_iso": "VG",
+  "zentrunk": {
+    "local": {
+      "outbound": {
+        "network_group_rates": {
+          "0.308": [
+            "British Virgin Islands"
+          ],
+          "0.368": [
+            "British Virgin Islands Mobile",
+            "British Virgin Islands Mobile Digicel"
+          ]
+        },
+        "rate": "0.308",
+        "rates": {
+          "0.308": [
+            "1284"
+          ],
+          "0.368": [
+            "1284440",
+            "1284441",
+            "1284442",
+            "1284443",
+            "1284444",
+            "1284445",
+            "1284446",
+            "12844688",
+            "12844689",
+            "12844960",
+            "12844966",
+            "12844967",
+            "12844968",
+            "12844969",
+            "1284499",
+            "1284540",
+            "1284541",
+            "1284542",
+            "1284543",
+            "1284544",
+            "1284545",
+            "1284546",
+            "1284547",
+            "1284596",
+            "1284599",
+            "1284689",
+            "1284960",
+            "1284300",
+            "1284340",
+            "1284341",
+            "1284342",
+            "1284343",
+            "1284344",
+            "1284345",
+            "1284346",
+            "1284347",
+            "1284368",
+            "1284393",
+            "1284394"
+          ]
+        },
+        "tollfree_rate": "NA"
+      }
+    },
+    "outbound": {
+      "network_groups": {
+        "British Virgin Islands": "0.308",
+        "British Virgin Islands Mobile": "0.368",
+        "British Virgin Islands Mobile Digicel": "0.368"
+      },
+      "rates": {
+        "Mobile": [
+          "0.368"
+        ],
+        "Others": [
+          "0.308"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "country": "Saint Vincent and the Grenadines",
+  "country_iso": "VC",
+  "zentrunk": {
+    "inbound": {
+      "number_groups": {},
+      "rates": {}
+    },
+    "local": {
+      "inbound": {
+        "number_group_rates": {},
+        "rate": "NA",
+        "tollfree_rate": "NA"
+      }
+    }
+  }
+}

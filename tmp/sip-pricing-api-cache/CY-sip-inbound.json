@@ -1,0 +1,34 @@
+{
+  "country": "Cyprus",
+  "country_iso": "CY",
+  "zentrunk": {
+    "inbound": {
+      "number_groups": {
+        "Cyprus Local Voice": "0.0063",
+        "Cyprus Tollfree Voice": "0.1138"
+      },
+      "rates": {
+        "local": [
+          "0.0063"
+        ],
+        "tollfree": [
+          "0.1138"
+        ]
+      }
+    },
+    "local": {
+      "inbound": {
+        "number_group_rates": {
+          "0.0063": [
+            "Cyprus Local Voice"
+          ],
+          "0.1138": [
+            "Cyprus Tollfree Voice"
+          ]
+        },
+        "rate": "0.0063",
+        "tollfree_rate": "0.1138"
+      }
+    }
+  }
+}

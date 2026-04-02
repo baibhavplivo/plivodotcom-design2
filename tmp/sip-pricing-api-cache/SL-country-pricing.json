@@ -1,0 +1,179 @@
+{
+  "api_id": "1787b550-2e6c-11f1-b4c6-0242ac110006",
+  "country": "Sierra Leone",
+  "country_code": 232,
+  "country_iso": "SL",
+  "mms": {
+    "longcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "phone_numbers": [],
+  "sms": {
+    "longcode": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.19747",
+        "rates": {
+          "Sierra Leone - Africell": "0.38980",
+          "Sierra Leone - Airtel (Sierra Leone) Ltd": "0.38980",
+          "Sierra Leone - Comium": "0.19747",
+          "Sierra Leone - Datatel": "0.38980",
+          "Sierra Leone - Lintel": "0.23200",
+          "Sierra Leone - Mobitel": "0.38980",
+          "Sierra Leone-Others": "0.38980"
+        }
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": "0.00000",
+        "rental": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "voice": {
+    "add_on_pricing": {
+      "audio_streaming_rate": 0.004,
+      "mpc_rate": 0,
+      "recording_storage_rate": 0.0004,
+      "speech_recognition": 0.02,
+      "transcription_charge": 0.0095,
+      "webrtc_rate": 0.0033
+    },
+    "ip": {
+      "inbound": {
+        "rate": "0.00330",
+        "rental": null
+      },
+      "outbound": {
+        "rates": {
+          "all": "0.00330"
+        }
+      }
+    },
+    "local": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.74100",
+        "rates": [
+          {
+            "destination_prefix": [
+              "232"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.79710",
+            "voice_network_group": "Sierra Leone",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "23225",
+              "23230",
+              "23233",
+              "23234",
+              "23240",
+              "23244",
+              "23247",
+              "23248",
+              "23249",
+              "23250",
+              "23255",
+              "23256",
+              "23275",
+              "23276",
+              "23277",
+              "23278",
+              "23279",
+              "23280",
+              "23288",
+              "23299"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.79710",
+            "voice_network_group": "Sierra Leone - Mobile",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "23221",
+              "23222",
+              "23232",
+              "23252830063",
+              "23252830226",
+              "23252830431",
+              "23252830465",
+              "23252830510",
+              "23252830549",
+              "23252830711",
+              "23252830769",
+              "23252830783",
+              "23252830840",
+              "23252831061",
+              "23252831076",
+              "23252831143",
+              "23257",
+              "23258",
+              "23259"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.74100",
+            "voice_network_group": "Sierra Leone - Premium Services",
+            "voice_unit": 60
+          }
+        ]
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.00000",
+        "rates": null
+      }
+    }
+  }
+}

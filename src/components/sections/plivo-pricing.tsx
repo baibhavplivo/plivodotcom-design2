@@ -503,7 +503,7 @@ function AIAgentsPricingContent({ selectedCountry, inline }: { selectedCountry: 
 }
 
 export function PlivoPricing() {
-  const { country: geoCountry } = useGeoCountry();
+  const { country: geoCountry } = useGeoCountry("US", { mode: "exact" });
   const [selectedCountry, setSelectedCountry] = useState("US");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [mainSearchQuery, setMainSearchQuery] = useState("");

@@ -1,0 +1,27 @@
+{
+  "country": "Venezuela",
+  "country_iso": "VE",
+  "zentrunk": {
+    "inbound": {
+      "number_groups": {
+        "Venezuela tollfree Voice": "0.424"
+      },
+      "rates": {
+        "tollfree": [
+          "0.424"
+        ]
+      }
+    },
+    "local": {
+      "inbound": {
+        "number_group_rates": {
+          "0.424": [
+            "Venezuela tollfree Voice"
+          ]
+        },
+        "rate": "NA",
+        "tollfree_rate": "0.424"
+      }
+    }
+  }
+}
