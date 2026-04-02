@@ -211,12 +211,14 @@ function getHubSpotConfig(formType: FormType, env: Env): {
   formId: string;
   pageName: string;
 } {
+  // Use the known live public HubSpot forms directly so Cloudflare env drift
+  // cannot silently route successful submissions into the wrong HubSpot form.
   return {
-    portalId: env.HUBSPOT_PORTAL_ID || DEFAULT_HUBSPOT_PORTAL_ID,
+    portalId: DEFAULT_HUBSPOT_PORTAL_ID,
     formId:
       formType === "contact-sales"
-        ? env.HUBSPOT_CONTACT_SALES_FORM_ID || DEFAULT_CONTACT_SALES_FORM_ID
-        : env.HUBSPOT_REQUEST_TRIAL_FORM_ID || DEFAULT_REQUEST_TRIAL_FORM_ID,
+        ? DEFAULT_CONTACT_SALES_FORM_ID
+        : DEFAULT_REQUEST_TRIAL_FORM_ID,
     pageName: formType === "contact-sales" ? "Contact Sales" : "Request Trial",
   };
 }
