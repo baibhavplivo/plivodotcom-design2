@@ -5,57 +5,82 @@ import { Phone, MessageSquare, Sparkles, Check, ChevronDown } from "lucide-react
 import { cn } from "@/lib/utils";
 import { useGeoCountry } from "@/hooks/useGeoCountry";
 import { FlickeringGrid } from "@/components/magicui/flickering-grid";
-import { COUNTRY_NAMES, SMS_RATES } from "@/data/pricing-data";
-import { useCountryPricing } from "@/hooks/useCountryPricing";
-
-import { useWhatsAppChatRates } from "@/hooks/useWhatsAppChatRates";
-import { useWhatsAppCallRates } from "@/hooks/useWhatsAppCallRates";
+import { buildCountryList, COUNTRY_NAMES, TOP_COUNTRIES } from "@/data/pricing-data";
+import { VOICE_PRICING_CACHE, VOICE_PRICING_COUNTRY_NAMES } from "@/data/voice-pricing-cache";
+import {
+  SMS_PRICING_COUNTRY_CODES,
+  SMS_RCS_RATES,
+  getSMSPricingData,
+} from "@/data/sms-pricing-page";
+import {
+  WHATSAPP_CHAT_COUNTRY_CODES,
+  getWhatsAppChatCountry,
+} from "@/data/whatsapp-chat-pricing";
+import {
+  WHATSAPP_CALL_COUNTRIES,
+  formatWhatsAppCallRate,
+  getWhatsAppCallAddOns,
+  getWhatsAppCallCountry,
+} from "@/data/whatsapp-call-pricing";
 import { useExchangeRate } from "@/hooks/useExchangeRate";
 import { useSignupUrl } from "@/hooks/useSignupUrl";
 
-// Country data with flags
-const countries = [
-  { code: "US", name: "United States", flag: "🇺🇸" },
-  { code: "IN", name: "India", flag: "🇮🇳" },
-  { code: "GB", name: "United Kingdom", flag: "🇬🇧" },
-  { code: "AU", name: "Australia", flag: "🇦🇺" },
-  { code: "CA", name: "Canada", flag: "🇨🇦" },
-  { code: "DE", name: "Germany", flag: "🇩🇪" },
-  { code: "FR", name: "France", flag: "🇫🇷" },
-  { code: "IT", name: "Italy", flag: "🇮🇹" },
-  { code: "ES", name: "Spain", flag: "🇪🇸" },
-  { code: "NL", name: "Netherlands", flag: "🇳🇱" },
-  { code: "BE", name: "Belgium", flag: "🇧🇪" },
-  { code: "CH", name: "Switzerland", flag: "🇨🇭" },
-  { code: "AT", name: "Austria", flag: "🇦🇹" },
-  { code: "SE", name: "Sweden", flag: "🇸🇪" },
-  { code: "NO", name: "Norway", flag: "🇳🇴" },
-  { code: "DK", name: "Denmark", flag: "🇩🇰" },
-  { code: "FI", name: "Finland", flag: "🇫🇮" },
-  { code: "IE", name: "Ireland", flag: "🇮🇪" },
-  { code: "PT", name: "Portugal", flag: "🇵🇹" },
-  { code: "PL", name: "Poland", flag: "🇵🇱" },
-  { code: "BR", name: "Brazil", flag: "🇧🇷" },
-  { code: "MX", name: "Mexico", flag: "🇲🇽" },
-  { code: "AR", name: "Argentina", flag: "🇦🇷" },
-  { code: "CL", name: "Chile", flag: "🇨🇱" },
-  { code: "CO", name: "Colombia", flag: "🇨🇴" },
-  { code: "JP", name: "Japan", flag: "🇯🇵" },
-  { code: "KR", name: "South Korea", flag: "🇰🇷" },
-  { code: "SG", name: "Singapore", flag: "🇸🇬" },
-  { code: "HK", name: "Hong Kong", flag: "🇭🇰" },
-  { code: "MY", name: "Malaysia", flag: "🇲🇾" },
-  { code: "TH", name: "Thailand", flag: "🇹🇭" },
-  { code: "ID", name: "Indonesia", flag: "🇮🇩" },
-  { code: "PH", name: "Philippines", flag: "🇵🇭" },
-  { code: "VN", name: "Vietnam", flag: "🇻🇳" },
-  { code: "NZ", name: "New Zealand", flag: "🇳🇿" },
-  { code: "ZA", name: "South Africa", flag: "🇿🇦" },
-  { code: "AE", name: "United Arab Emirates", flag: "🇦🇪" },
-  { code: "SA", name: "Saudi Arabia", flag: "🇸🇦" },
-  { code: "IL", name: "Israel", flag: "🇮🇱" },
-  { code: "TR", name: "Turkey", flag: "🇹🇷" },
+const MAIN_PRICING_COUNTRY_CODES = Array.from(
+  new Set([
+    ...Object.keys(VOICE_PRICING_COUNTRY_NAMES),
+    ...SMS_PRICING_COUNTRY_CODES,
+    ...WHATSAPP_CHAT_COUNTRY_CODES,
+    ...WHATSAPP_CALL_COUNTRIES.map((country) => country.code),
+  ]),
+);
+
+const countries = buildCountryList(MAIN_PRICING_COUNTRY_CODES, TOP_COUNTRIES);
+
+const INDIA_SMS_SUMMARY_ROWS = [
+  { label: "Domestic", outbound: "₹0.20/sms", inbound: "Not Supported" },
+  { label: "ILDO", outbound: "$0.0800/sms", inbound: "Not Supported" },
 ];
+
+const VOICE_ADD_ON_ROWS_INR = [
+  ["Answering Machine Detection", "₹0.0000/min"],
+  ["Call Insights - Basic", "₹0.0000/min"],
+  ["Call Insights - Premium", "₹0.22/min"],
+  ["Call Recording", "₹0.0000/min"],
+  ["Recording Storage *", "₹0.0000/min"],
+  ["Automatic Speech Recognition", "₹1.7/ 15 seconds"],
+  ["Call Transcription", "₹0.81/min"],
+  ["Conference Calls", "₹0.0000/min"],
+  ["Multilingual Text to Speech", "₹0.0000/min"],
+] as const;
+
+const VOICE_ADD_ON_ROWS_USD = [
+  ["Answering Machine Detection", "$0.0000/min"],
+  ["Call Insights - Basic", "$0.0000/min"],
+  ["Call Insights - Premium", "$0.0025/min"],
+  ["Call Recording", "$0.0000/min"],
+  ["Recording Storage *", "$0.0000/min"],
+  ["Automatic Speech Recognition", "$0.02/ 15 seconds"],
+  ["Call Transcription", "$0.0095/min"],
+  ["Conference Calls", "$0.0000/min"],
+  ["Multilingual Text to Speech", "$0.0000/min"],
+  ["CNAM Lookup", "$0.00500/lookup"],
+] as const;
+
+function toSMSRouteLabel(type: string, countryCode: string) {
+  if (type === "Longcode") {
+    return countryCode === "US" || countryCode === "CA"
+      ? "Long Codes*"
+      : "Long Codes";
+  }
+  if (type === "Shortcode") {
+    return countryCode === "US" || countryCode === "CA"
+      ? "Short Code*"
+      : "Short Code";
+  }
+  if (type === "Toll-Free") return "Toll-Free";
+  if (type === "Mobile") return "Mobile Numbers";
+  return type;
+}
 
 // WhatsApp icon component
 function WhatsAppIcon({ className }: { className?: string }) {
@@ -65,10 +90,6 @@ function WhatsAppIcon({ className }: { className?: string }) {
     </svg>
   );
 }
-
-const Shimmer = () => (
-  <span className="inline-block h-4 w-20 bg-gray-100 rounded animate-pulse" />
-);
 
 // Reusable table section block
 function ModalTableSection({ title, children, inline }: { title: string; children: React.ReactNode; inline?: boolean }) {
@@ -92,18 +113,18 @@ function ModalTableSection({ title, children, inline }: { title: string; childre
 
 // Voice Pricing Content
 function VoicePricingContent({ selectedCountry, inline }: { selectedCountry: string; inline?: boolean }) {
-  const { data: pricingData, loading } = useCountryPricing(selectedCountry);
+  const pricingData = VOICE_PRICING_CACHE[selectedCountry] || null;
   const rates = pricingData?.voiceRates;
   const countryName = COUNTRY_NAMES[selectedCountry] || selectedCountry;
   const { convertPriceString: cp } = useExchangeRate();
 
-  const rateCell = (value: string | undefined) => {
-    if (loading) return <Shimmer />;
-    if (!value) return "Not Supported";
+  const rateCell = (value: string | undefined, forceFree = false) => {
+    if (forceFree) return "Free";
+    if (!value || value === "Not Supported") return "Not Supported";
     return cp(value, selectedCountry);
   };
 
-  if (!loading && !rates) {
+  if (!rates) {
     return (
       <div className="text-center py-8">
         <p className="text-sm text-gray-500">Detailed voice pricing for {countryName} is available on request.</p>
@@ -112,33 +133,40 @@ function VoicePricingContent({ selectedCountry, inline }: { selectedCountry: str
     );
   }
 
+  const voiceRows = [
+    ["Local Calls", rateCell(rates.localOutbound), rateCell(rates.localInbound)],
+    ...(rates.mobileOutbound !== "Not Supported" || rates.mobileInbound !== "Not Supported"
+      ? [["Mobile Calls", rateCell(rates.mobileOutbound), rateCell(rates.mobileInbound)]]
+      : []),
+    ...(rates.tollfreeOutbound !== "Not Supported" || rates.tollfreeInbound !== "Not Supported"
+      ? [["Toll-Free Calls", rateCell(rates.tollfreeOutbound), rateCell(rates.tollfreeInbound)]]
+      : []),
+    ["Browser SDK and SIP Calls", rateCell(rates.ipOutbound), rateCell(rates.ipInbound)],
+    ["Audio streaming (per stream/min)", rateCell(undefined, true), rateCell(undefined, true)],
+  ];
+
+  const addOnRows =
+    selectedCountry === "IN" ? VOICE_ADD_ON_ROWS_INR : VOICE_ADD_ON_ROWS_USD;
+
   return (
     <>
       <ModalTableSection inline={inline} title="Voice calls">
         <table className="w-full">
           <thead>
             <tr className="text-left text-xs text-gray-500">
-              <th className="pb-2 font-normal w-1/3">Number type</th>
+              <th className="pb-2 font-normal w-1/3">Route type</th>
               <th className="pb-2 font-normal w-1/3">Outbound calls</th>
               <th className="pb-2 font-normal w-1/3">Inbound calls</th>
             </tr>
           </thead>
           <tbody className="text-xs">
-            <tr className="border-t border-dashed border-gray-200">
-              <td className="py-2.5 font-medium text-black">Local numbers</td>
-              <td className="py-2.5 text-gray-600">{rateCell(rates?.localOutbound)}</td>
-              <td className="py-2.5 text-gray-600">{rateCell(rates?.localInbound)}</td>
-            </tr>
-            <tr className="border-t border-dashed border-gray-200">
-              <td className="py-2.5 font-medium text-black">Toll-free</td>
-              <td className="py-2.5 text-gray-600">{rateCell(rates?.tollfreeOutbound)}</td>
-              <td className="py-2.5 text-gray-600">{rateCell(rates?.tollfreeInbound)}</td>
-            </tr>
-            <tr className="border-t border-dashed border-gray-200">
-              <td className="py-2.5 font-medium text-black">SIP / browser / app</td>
-              <td className="py-2.5 text-gray-600">{rateCell(rates?.ipOutbound)}</td>
-              <td className="py-2.5 text-gray-600">{rateCell(rates?.ipInbound)}</td>
-            </tr>
+            {voiceRows.map(([label, outbound, inbound]) => (
+              <tr key={label} className="border-t border-dashed border-gray-200">
+                <td className="py-2.5 font-medium text-black">{label}</td>
+                <td className="py-2.5 text-gray-600">{outbound}</td>
+                <td className="py-2.5 text-gray-600">{inbound}</td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </ModalTableSection>
@@ -152,17 +180,7 @@ function VoicePricingContent({ selectedCountry, inline }: { selectedCountry: str
             </tr>
           </thead>
           <tbody className="text-xs">
-            {[
-              ["Audio streaming", "Included free"],
-              ["Noise cancellation", "Included free"],
-              ["Multilingual text to speech", "Included free"],
-              ["Call recording", "Included free"],
-              ["Recording storage", cp("$0.0004/min/month (free for 90 days)", selectedCountry)],
-              ["Automatic machine detection", "Included free"],
-              ["Dynamic caller ID", "Included free"],
-              ["Concurrent calls", "Included free"],
-              ["Transcription", "Auto " + cp("$0.0095/minute", selectedCountry)],
-            ].map(([service, price]) => (
+            {addOnRows.map(([service, price]) => (
               <tr key={service} className="border-t border-dashed border-gray-200">
                 <td className="py-2.5 font-medium text-black">{service}</td>
                 <td className="py-2.5 text-gray-600">{price}</td>
@@ -170,6 +188,9 @@ function VoicePricingContent({ selectedCountry, inline }: { selectedCountry: str
             ))}
           </tbody>
         </table>
+        <p className="mt-2 text-[11px] text-gray-500">
+          * Free for 90 days. $0.0004/min per month afterwards.
+        </p>
       </ModalTableSection>
     </>
   );
@@ -177,15 +198,19 @@ function VoicePricingContent({ selectedCountry, inline }: { selectedCountry: str
 
 // SMS Pricing Content
 function SMSPricingContent({ selectedCountry, inline }: { selectedCountry: string; inline?: boolean }) {
-  const { data: pricingData, loading } = useCountryPricing(selectedCountry);
-  const smsRates = pricingData?.smsRates || [];
+  const pricingData = getSMSPricingData(selectedCountry);
   const countryName = COUNTRY_NAMES[selectedCountry] || selectedCountry;
-  const { convertPriceString: cp } = useExchangeRate();
 
-  // Keep hardcoded MMS and carrier fee data from SMS_RATES
-  const staticRates = SMS_RATES[selectedCountry];
+  const smsRows =
+    selectedCountry === "IN"
+      ? INDIA_SMS_SUMMARY_ROWS
+      : pricingData?.smsRates.map((row) => ({
+          label: toSMSRouteLabel(row.type, selectedCountry),
+          outbound: row.outbound,
+          inbound: row.inbound,
+        })) || [];
 
-  if (!loading && smsRates.length === 0 && !staticRates) {
+  if (smsRows.length === 0) {
     return (
       <div className="text-center py-8">
         <p className="text-sm text-gray-500">Detailed SMS pricing for {countryName} is available on request.</p>
@@ -200,68 +225,25 @@ function SMSPricingContent({ selectedCountry, inline }: { selectedCountry: strin
         <table className="w-full">
           <thead>
             <tr className="text-left text-xs text-gray-500">
-              <th className="pb-2 font-normal w-1/3">Number type</th>
+              <th className="pb-2 font-normal w-1/3">Route type</th>
               <th className="pb-2 font-normal w-1/3">Outbound SMS</th>
               <th className="pb-2 font-normal w-1/3">Inbound SMS</th>
             </tr>
           </thead>
           <tbody className="text-xs">
-            {loading ? (
-              <>
-                {[1, 2].map((i) => (
-                  <tr key={i} className="border-t border-dashed border-gray-200">
-                    <td className="py-4"><Shimmer /></td>
-                    <td className="py-4"><Shimmer /></td>
-                    <td className="py-4"><Shimmer /></td>
-                  </tr>
-                ))}
-              </>
-            ) : smsRates.length > 0 ? (
-              smsRates.map((row) => (
-                <tr key={row.type} className="border-t border-dashed border-gray-200">
-                  <td className="py-2.5 font-medium text-black">{row.type}</td>
-                  <td className="py-2.5 text-gray-600">{cp(row.outbound, selectedCountry)}</td>
-                  <td className="py-2.5 text-gray-600">{cp(row.inbound, selectedCountry)}</td>
-                </tr>
-              ))
-            ) : staticRates ? (
-              staticRates.sms.map((row) => (
-                <tr key={row.type} className="border-t border-dashed border-gray-200">
-                  <td className="py-2.5 font-medium text-black">{row.type}</td>
-                  <td className="py-2.5 text-gray-600">{cp(row.outbound, selectedCountry)}</td>
-                  <td className="py-2.5 text-gray-600">{cp(row.inbound, selectedCountry)}</td>
-                </tr>
-              ))
-            ) : null}
+            {smsRows.map((row) => (
+              <tr key={row.label} className="border-t border-dashed border-gray-200">
+                <td className="py-2.5 font-medium text-black">{row.label}</td>
+                <td className="py-2.5 text-gray-600">{row.outbound}</td>
+                <td className="py-2.5 text-gray-600">{row.inbound}</td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </ModalTableSection>
 
-      {staticRates?.mms && staticRates.mms.length > 0 && (
-        <ModalTableSection inline={inline} title="MMS messaging">
-          <table className="w-full">
-            <thead>
-              <tr className="text-left text-xs text-gray-500">
-                <th className="pb-2 font-normal w-1/3">Number type</th>
-                <th className="pb-2 font-normal w-1/3">Outbound MMS</th>
-                <th className="pb-2 font-normal w-1/3">Inbound MMS</th>
-              </tr>
-            </thead>
-            <tbody className="text-xs">
-              {staticRates.mms.map((row) => (
-                <tr key={row.type} className="border-t border-dashed border-gray-200">
-                  <td className="py-2.5 font-medium text-black">{row.type}</td>
-                  <td className="py-2.5 text-gray-600">{cp(row.outbound, selectedCountry)}</td>
-                  <td className="py-2.5 text-gray-600">{cp(row.inbound, selectedCountry)}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </ModalTableSection>
-      )}
-
       {selectedCountry === "US" && (
-        <ModalTableSection inline={inline} title="RCS messages">
+        <ModalTableSection inline={inline} title="RCS messaging">
           <table className="w-full">
             <thead>
               <tr className="text-left text-xs text-gray-500">
@@ -271,39 +253,13 @@ function SMSPricingContent({ selectedCountry, inline }: { selectedCountry: strin
               </tr>
             </thead>
             <tbody className="text-xs">
-              <tr className="border-t border-dashed border-gray-200">
-                <td className="py-2.5 font-medium text-black">RCS Rich</td>
-                <td className="py-2.5 text-gray-600">$0.00750/msg</td>
-                <td className="py-2.5 text-gray-600">$0.00750/msg</td>
-              </tr>
-              <tr className="border-t border-dashed border-gray-200">
-                <td className="py-2.5 font-medium text-black">RCS Rich Media</td>
-                <td className="py-2.5 text-gray-600">$0.01600/msg</td>
-                <td className="py-2.5 text-gray-600">$0.01440/msg</td>
-              </tr>
-            </tbody>
-          </table>
-        </ModalTableSection>
-      )}
-
-      {staticRates?.hasCarrierFees && (
-        <ModalTableSection inline={inline} title="Carrier fees">
-          <table className="w-full">
-            <thead>
-              <tr className="text-left text-xs text-gray-500">
-                <th className="pb-2 font-normal w-1/2">Fee type</th>
-                <th className="pb-2 font-normal w-1/2">Rate</th>
-              </tr>
-            </thead>
-            <tbody className="text-xs">
-              <tr className="border-t border-dashed border-gray-200">
-                <td className="py-2.5 font-medium text-black">A2P 10DLC campaign registration</td>
-                <td className="py-2.5 text-gray-600">Varies by carrier</td>
-              </tr>
-              <tr className="border-t border-dashed border-gray-200">
-                <td className="py-2.5 font-medium text-black">Carrier surcharges</td>
-                <td className="py-2.5 text-gray-600">Passed through at cost</td>
-              </tr>
+              {SMS_RCS_RATES.map((row) => (
+                <tr key={row.type} className="border-t border-dashed border-gray-200">
+                  <td className="py-2.5 font-medium text-black">{row.type}</td>
+                  <td className="py-2.5 text-gray-600">{row.outbound}</td>
+                  <td className="py-2.5 text-gray-600">{row.inbound}</td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </ModalTableSection>
@@ -314,24 +270,20 @@ function SMSPricingContent({ selectedCountry, inline }: { selectedCountry: strin
 
 // WhatsApp Pricing Content
 function WhatsAppPricingContent({ selectedCountry, inline }: { selectedCountry: string; inline?: boolean }) {
-  const { rates: chatRates, loading: chatLoading } = useWhatsAppChatRates(selectedCountry);
-  const { rates: callRates, loading: callLoading } = useWhatsAppCallRates(selectedCountry);
+  const chatCountry = getWhatsAppChatCountry(selectedCountry);
+  const callCountry = getWhatsAppCallCountry(selectedCountry);
+  const chatRates = chatCountry?.pricing;
+  const callRates = callCountry?.pricing;
+  const addOns = getWhatsAppCallAddOns(selectedCountry);
   const countryName = COUNTRY_NAMES[selectedCountry] || selectedCountry;
-  const { convertPriceString: cp } = useExchangeRate();
 
-  const chatCurrency = chatRates?.currency || "$";
-  const formatChatRate = (rate: number | undefined) => {
-    if (chatLoading) return <Shimmer />;
+  const formatChatRate = (rate: number | undefined, currency: "$" | "₹") => {
     if (rate === undefined) return "—";
     if (rate === 0) return "Free";
-    // India rates are already in INR — use currency directly, no cp() conversion
-    if (chatCurrency !== "$") {
-      return `${chatCurrency}${rate.toFixed(4)}/message`;
-    }
-    return cp(`$${rate.toFixed(4)}/message`, selectedCountry);
+    return `${currency}${rate.toFixed(4)}/message`;
   };
 
-  if (!chatLoading && !chatRates) {
+  if (!chatRates && !callRates) {
     return (
       <div className="text-center py-8">
         <p className="text-sm text-gray-500">Detailed WhatsApp pricing for {countryName} is available on request.</p>
@@ -340,87 +292,100 @@ function WhatsAppPricingContent({ selectedCountry, inline }: { selectedCountry: 
     );
   }
 
-  const showAuthIntl = chatRates ? chatRates.authenticationIntl > 0 : false;
-
   return (
     <>
-      <ModalTableSection inline={inline} title="WhatsApp Business conversations">
-        <table className="w-full">
-          <thead>
-            <tr className="text-left text-xs text-gray-500">
-              <th className="pb-2 font-normal w-1/2">Message Category</th>
-              <th className="pb-2 font-normal w-1/2">Price per message</th>
-            </tr>
-          </thead>
-          <tbody className="text-xs">
-            <tr className="border-t border-dashed border-gray-200">
-              <td className="py-2.5 font-medium text-black">Marketing</td>
-              <td className="py-2.5 text-gray-600">{formatChatRate(chatRates?.marketing)}</td>
-            </tr>
-            <tr className="border-t border-dashed border-gray-200">
-              <td className="py-2.5 font-medium text-black">Utility</td>
-              <td className="py-2.5 text-gray-600">{formatChatRate(chatRates?.utility)}</td>
-            </tr>
-            <tr className="border-t border-dashed border-gray-200">
-              <td className="py-2.5 font-medium text-black">Authentication</td>
-              <td className="py-2.5 text-gray-600">{formatChatRate(chatRates?.authentication)}</td>
-            </tr>
-            {(showAuthIntl || chatLoading) && (
-              <tr className="border-t border-dashed border-gray-200">
-                <td className="py-2.5 font-medium text-black">Authentication (international)</td>
-                <td className="py-2.5 text-gray-600">{formatChatRate(chatRates?.authenticationIntl)}</td>
+      {chatRates && (
+        <ModalTableSection inline={inline} title="WhatsApp Business conversations">
+          <table className="w-full">
+            <thead>
+              <tr className="text-left text-xs text-gray-500">
+                <th className="pb-2 font-normal w-1/2">Message Category</th>
+                <th className="pb-2 font-normal w-1/2">Price per message</th>
               </tr>
-            )}
-            <tr className="border-t border-dashed border-gray-200">
-              <td className="py-2.5 font-medium text-black">Service</td>
-              <td className="py-2.5 text-gray-600">
-                {chatLoading ? <Shimmer /> : (chatRates?.service === 0 ? "Free" : formatChatRate(chatRates?.service))}
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </ModalTableSection>
+            </thead>
+            <tbody className="text-xs">
+              <tr className="border-t border-dashed border-gray-200">
+                <td className="py-2.5 font-medium text-black">Marketing</td>
+                <td className="py-2.5 text-gray-600">{formatChatRate(chatRates.marketing, chatRates.currency)}</td>
+              </tr>
+              <tr className="border-t border-dashed border-gray-200">
+                <td className="py-2.5 font-medium text-black">Utility</td>
+                <td className="py-2.5 text-gray-600">{formatChatRate(chatRates.utility, chatRates.currency)}</td>
+              </tr>
+              <tr className="border-t border-dashed border-gray-200">
+                <td className="py-2.5 font-medium text-black">Authentication</td>
+                <td className="py-2.5 text-gray-600">{formatChatRate(chatRates.authentication, chatRates.currency)}</td>
+              </tr>
+              {chatRates.authenticationIntl > 0 && (
+                <tr className="border-t border-dashed border-gray-200">
+                  <td className="py-2.5 font-medium text-black">Authentication (international)</td>
+                  <td className="py-2.5 text-gray-600">{formatChatRate(chatRates.authenticationIntl, chatRates.currency)}</td>
+                </tr>
+              )}
+              <tr className="border-t border-dashed border-gray-200">
+                <td className="py-2.5 font-medium text-black">Service</td>
+                <td className="py-2.5 text-gray-600">
+                  {chatRates.service === 0 ? "Free" : formatChatRate(chatRates.service, chatRates.currency)}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </ModalTableSection>
+      )}
 
-      <ModalTableSection inline={inline} title="WhatsApp voice calls">
+      {callRates && (
+        <ModalTableSection inline={inline} title="WhatsApp voice calls">
+          <table className="w-full">
+            <thead>
+              <tr className="text-left text-xs text-gray-500">
+                <th className="pb-2 font-normal w-1/2">Call type</th>
+                <th className="pb-2 font-normal w-1/2">Price per minute</th>
+              </tr>
+            </thead>
+            <tbody className="text-xs">
+              <tr className="border-t border-dashed border-gray-200">
+                <td className="py-2.5 font-medium text-black">Inbound</td>
+                <td className="py-2.5 text-gray-600">{formatWhatsAppCallRate(callRates.inbound)}</td>
+              </tr>
+              <tr className="border-t border-dashed border-gray-200">
+                <td className="py-2.5 font-medium text-black">Outbound</td>
+                <td className="py-2.5 text-gray-600">{formatWhatsAppCallRate(callRates.outbound)}</td>
+              </tr>
+              <tr className="border-t border-dashed border-gray-200">
+                <td className="py-2.5 font-medium text-black">Audio streaming (per stream)</td>
+                <td className="py-2.5 text-gray-600">Free</td>
+              </tr>
+            </tbody>
+          </table>
+        </ModalTableSection>
+      )}
+
+      <ModalTableSection inline={inline} title="Add-on services">
         <table className="w-full">
           <thead>
             <tr className="text-left text-xs text-gray-500">
-              <th className="pb-2 font-normal w-1/3">Direction</th>
-              <th className="pb-2 font-normal w-1/3">Inbound</th>
-              <th className="pb-2 font-normal w-1/3">Outbound</th>
-            </tr>
-          </thead>
-          <tbody className="text-xs">
-            <tr className="border-t border-dashed border-gray-200">
-              <td className="py-2.5 font-medium text-black">Voice calls</td>
-              <td className="py-2.5 text-gray-600">{callLoading ? <Shimmer /> : cp(callRates?.inbound || "—", selectedCountry)}</td>
-              <td className="py-2.5 text-gray-600">{callLoading ? <Shimmer /> : cp(callRates?.outbound || "—", selectedCountry)}</td>
-            </tr>
-          </tbody>
-        </table>
-      </ModalTableSection>
-
-      <ModalTableSection inline={inline} title="Platform features">
-        <table className="w-full">
-          <thead>
-            <tr className="text-left text-xs text-gray-500">
-              <th className="pb-2 font-normal w-1/2">Feature</th>
+              <th className="pb-2 font-normal w-1/2">Service</th>
               <th className="pb-2 font-normal w-1/2">Price</th>
             </tr>
           </thead>
           <tbody className="text-xs">
-            {[
-              ["WhatsApp Business API access", "Included free"],
-              ["Template message management", "Included free"],
-              ["Rich media support", "Included free"],
-              ["Interactive buttons & lists", "Included free"],
-              ["Webhook delivery", "Included free"],
-            ].map(([feature, price]) => (
-              <tr key={feature} className="border-t border-dashed border-gray-200">
-                <td className="py-2.5 font-medium text-black">{feature}</td>
-                <td className="py-2.5 text-gray-600">{price}</td>
-              </tr>
-            ))}
+            {addOns.flatMap((row) => {
+              if (!row.children?.length) {
+                return (
+                  <tr key={row.label} className="border-t border-dashed border-gray-200">
+                    <td className="py-2.5 font-medium text-black">{row.label}</td>
+                    <td className="py-2.5 text-gray-600">{row.price}</td>
+                  </tr>
+                );
+              }
+
+              return row.children.map((child) => (
+                <tr key={`${row.label}-${child.label}`} className="border-t border-dashed border-gray-200">
+                  <td className="py-2.5 font-medium text-black">{`${row.label} - ${child.label}`}</td>
+                  <td className="py-2.5 text-gray-600">{child.price}</td>
+                </tr>
+              ));
+            })}
           </tbody>
         </table>
       </ModalTableSection>
@@ -509,11 +474,6 @@ export function PlivoPricing() {
   const [mainSearchQuery, setMainSearchQuery] = useState("");
   const [showDetails, setShowDetails] = useState(false);
   const mainDropdownRef = useRef<HTMLDivElement>(null);
-  const mainToggleBtnRef = useRef<HTMLButtonElement>(null);
-  const mainSearchRef = useRef<HTMLInputElement>(null);
-  const mainCountryListRef = useRef<HTMLDivElement>(null);
-  const detailsToggle1Ref = useRef<HTMLButtonElement>(null);
-  const detailsToggle2Ref = useRef<HTMLButtonElement>(null);
   const { convertPriceString: cp } = useExchangeRate();
   const { url: signupUrl, label: signupLabel } = useSignupUrl();
 
@@ -541,60 +501,6 @@ export function PlivoPricing() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  // Native event: Country dropdown toggle
-  useEffect(() => {
-    const btn = mainToggleBtnRef.current;
-    if (!btn) return;
-    const handler = () => setIsDropdownOpen((prev) => !prev);
-    btn.addEventListener("click", handler);
-    return () => btn.removeEventListener("click", handler);
-  }, []);
-
-  // Native event: Search input
-  useEffect(() => {
-    const el = mainSearchRef.current;
-    if (!el) return;
-    const handler = (e: Event) => setMainSearchQuery((e.target as HTMLInputElement).value);
-    el.addEventListener("input", handler);
-    return () => el.removeEventListener("input", handler);
-  }, [isDropdownOpen]);
-
-  // Native event: Country list item clicks (event delegation)
-  useEffect(() => {
-    const el = mainCountryListRef.current;
-    if (!el) return;
-    const handler = (e: MouseEvent) => {
-      const item = (e.target as HTMLElement).closest("[data-country-code]");
-      if (!item) return;
-      const code = item.getAttribute("data-country-code")!;
-      if (countries.some(c => c.code === code)) {
-        setSelectedCountry(code);
-        setIsDropdownOpen(false);
-        setMainSearchQuery("");
-      }
-    };
-    el.addEventListener("click", handler);
-    return () => el.removeEventListener("click", handler);
-  }, [isDropdownOpen]);
-
-  // Native event: "See what's included" toggle (Pay as you go)
-  useEffect(() => {
-    const btn = detailsToggle1Ref.current;
-    if (!btn) return;
-    const handler = () => setShowDetails((prev) => !prev);
-    btn.addEventListener("click", handler);
-    return () => btn.removeEventListener("click", handler);
-  }, []);
-
-  // Native event: "See what's included" toggle (Enterprise)
-  useEffect(() => {
-    const btn = detailsToggle2Ref.current;
-    if (!btn) return;
-    const handler = () => setShowDetails((prev) => !prev);
-    btn.addEventListener("click", handler);
-    return () => btn.removeEventListener("click", handler);
-  }, []);
-
   const country = countries.find(c => c.code === selectedCountry) || countries[0];
 
   return (
@@ -610,7 +516,11 @@ export function PlivoPricing() {
           <div className="mt-5 flex justify-center">
             <div className="relative" ref={mainDropdownRef}>
               <button
-                ref={mainToggleBtnRef}
+                type="button"
+                onClick={() => {
+                  setIsDropdownOpen((open) => !open);
+                  setMainSearchQuery("");
+                }}
                 className="flex w-full max-w-[256px] items-center justify-between rounded-lg border border-gray-200 bg-white px-4 py-2.5 text-sm font-medium text-black transition-colors hover:bg-gray-50"
               >
                 <div className="flex items-center gap-2">
@@ -624,27 +534,31 @@ export function PlivoPricing() {
                 <div className="absolute left-0 right-0 sm:left-1/2 sm:-translate-x-1/2 sm:w-64 top-full mt-1 z-50 max-h-72 overflow-hidden flex flex-col rounded-lg border border-gray-200 bg-white shadow-lg">
                   <div className="p-2 border-b border-gray-100">
                     <input
-                      ref={mainSearchRef}
                       type="text"
                       placeholder="Search country..."
                       value={mainSearchQuery}
+                      onChange={(event) => setMainSearchQuery(event.target.value)}
                       className="w-full px-3 py-2 text-sm text-gray-900 bg-white border border-gray-300 rounded-md focus:outline-none focus:border-gray-500 placeholder:text-gray-400"
                       autoFocus
-                      readOnly={false}
                     />
                   </div>
-                  <div className="overflow-y-auto py-1" ref={mainCountryListRef}>
+                  <div className="overflow-y-auto py-1">
                     {mainFilteredCountries.map((c) => (
-                      <div
+                      <button
                         key={c.code}
-                        data-country-code={c.code}
-                        className={`flex w-full items-center gap-2 px-3 py-2 text-sm text-black transition-colors hover:bg-gray-50 cursor-pointer ${
+                        type="button"
+                        onClick={() => {
+                          setSelectedCountry(c.code);
+                          setIsDropdownOpen(false);
+                          setMainSearchQuery("");
+                        }}
+                        className={`flex w-full items-center gap-2 px-3 py-2 text-left text-sm text-black transition-colors hover:bg-gray-50 ${
                           c.code === selectedCountry ? 'bg-gray-50 font-medium' : ''
                         }`}
                       >
                         <span className="text-base">{c.flag}</span>
                         <span>{c.name}</span>
-                      </div>
+                      </button>
                     ))}
                     {mainFilteredCountries.length === 0 && (
                       <div className="px-3 py-3 text-sm text-gray-500">No countries found</div>
@@ -698,7 +612,8 @@ export function PlivoPricing() {
 
                 {/* See what's included toggle */}
                 <button
-                  ref={detailsToggle1Ref}
+                  type="button"
+                  onClick={() => setShowDetails((prev) => !prev)}
                   className="mt-4 flex items-center gap-1 text-sm text-gray-500 hover:text-gray-700"
                 >
                   See what's included
@@ -752,7 +667,8 @@ export function PlivoPricing() {
 
                 {/* See what's included toggle */}
                 <button
-                  ref={detailsToggle2Ref}
+                  type="button"
+                  onClick={() => setShowDetails((prev) => !prev)}
                   className="mt-4 flex items-center gap-1 text-sm text-gray-500 hover:text-gray-700"
                 >
                   See what's included
