@@ -2,6 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useGeoCountry } from "@/hooks/useGeoCountry";
+import { getCookie, syncFormAttribution } from "@/lib/form-attribution";
+import { splitFullName, validateBusinessEmail } from "@/lib/form-shared";
 
 // International logos (default)
 const intlLogosRow1 = [
@@ -43,40 +45,10 @@ const VALUE_PROPS = [
   "Custom AI agents designed for your use case",
 ];
 
-const PERSONAL_EMAIL_DOMAINS = new Set([
-  "gmail.com", "googlemail.com",
-  "hotmail.com", "hotmail.co.uk", "hotmail.fr", "hotmail.de", "hotmail.it", "hotmail.es",
-  "outlook.com", "outlook.co.uk", "outlook.fr", "outlook.de",
-  "live.com", "live.co.uk", "live.fr", "msn.com",
-  "yahoo.com", "yahoo.co.uk", "yahoo.co.in", "yahoo.fr", "yahoo.de",
-  "yahoo.it", "yahoo.es", "yahoo.ca", "yahoo.com.au", "yahoo.com.br",
-  "ymail.com", "rocketmail.com",
-  "icloud.com", "me.com", "mac.com",
-  "aol.com", "aim.com",
-  "protonmail.com", "proton.me", "pm.me",
-  "mail.com", "gmx.com", "gmx.de", "gmx.net",
-  "yandex.com", "yandex.ru",
-  "inbox.com", "fastmail.com",
-  "tutanota.com", "tuta.io",
-  "rediffmail.com",
-]);
-
-function isPersonalEmail(email: string): boolean {
-  const atIndex = email.lastIndexOf("@");
-  if (atIndex < 1) return false;
-  const domain = email.slice(atIndex + 1).toLowerCase().trim();
-  return PERSONAL_EMAIL_DOMAINS.has(domain);
-}
-
-function isValidEmailFormat(email: string): boolean {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email.trim());
-}
-
-const ENRICH_API_URL =
-  "https://plivo-static-forms.netlify.app/.netlify/functions/enrich";
+const ENRICH_API_URL = "/api/forms/validate-email";
 
 // Cache enrichment results so we don't re-call for the same email
-const enrichCache = new Map<string, boolean>();
+const enrichCache = new Map<string, { isValid: boolean; message: string }>();
 
 const COMPLIANCE_BADGES = [
   { src: "/images/compliance/HIPAA black.svg", alt: "HIPAA", label: "HIPAA" },
@@ -187,21 +159,41 @@ export default function ContactSalesHero() {
     };
   }, []);
 
-  // Submit handler: prevents native POST (which causes 405 on static hosting)
-  // and submits to both the Netlify function (primary) and HubSpot (fallback).
+  // Submit handler: validates client-side, then posts to our Worker for
+  // server-side validation and HubSpot submission.
   useEffect(() => {
     const form = document.getElementById("contact-form") as HTMLFormElement | null;
     if (!form) return;
 
-    const getCookie = (name: string) => {
-      const match = document.cookie.match(new RegExp("(^| )" + name + "=([^;]+)"));
-      return match ? match[2] : "";
+    const showThankYou = () => {
+      const step1 = form.closest('[vpf="1"]');
+      const step4 = document.querySelector('[vpf="4"]');
+      if (step1) (step1 as HTMLElement).style.display = "none";
+      if (step4) (step4 as HTMLElement).style.display = "block";
     };
 
-    const handler = (e: Event) => {
+    const resetSubmitButton = (btn: HTMLButtonElement | null) => {
+      if (!btn) return;
+      btn.disabled = false;
+      btn.textContent = "Submit";
+    };
+
+    const showFormErrorBanner = (message: string, btn: HTMLButtonElement | null) => {
+      const existing = document.getElementById("form-error-banner");
+      if (existing) existing.remove();
+
+      const banner = document.createElement("div");
+      banner.id = "form-error-banner";
+      banner.className = "form-error-banner";
+      banner.textContent = message;
+      form.insertAdjacentElement("beforebegin", banner);
+      setTimeout(() => banner.remove(), 8000);
+      resetSubmitButton(btn);
+    };
+
+    const handler = async (e: Event) => {
       e.preventDefault();
 
-      // --- Client-side validation ---
       const phoneInput = form.querySelector("#phone") as HTMLInputElement | null;
       const phoneIti = phoneInput ? (phoneInput as any)._iti : null;
       const phoneFeedback = document.getElementById("lbl-invalid-phone-number");
@@ -211,8 +203,11 @@ export default function ContactSalesHero() {
       const fullNameFeedback = fullNameInput?.closest(".form-field")?.querySelector(".invalid-feedback") as HTMLElement | null;
       const reqInput = form.querySelector("#detailed_requirement") as HTMLTextAreaElement | null;
       const reqFeedback = reqInput?.closest(".form-field")?.querySelector(".invalid-feedback") as HTMLElement | null;
+      const invalidIcon = emailInput?.parentElement?.querySelector('[vpf="invalid-wrong"]') as HTMLElement | null;
+      const validIcon = emailInput?.parentElement?.querySelector('[vpf="valid-tick"]') as HTMLElement | null;
+      const existingBanner = document.getElementById("form-error-banner");
 
-      // Clear previous errors
+      if (existingBanner) existingBanner.remove();
       if (fullNameInput) fullNameInput.classList.remove("input-error");
       if (fullNameFeedback) fullNameFeedback.textContent = "";
       if (emailInput) emailInput.classList.remove("input-error");
@@ -221,8 +216,9 @@ export default function ContactSalesHero() {
       if (phoneFeedback) phoneFeedback.textContent = "";
       if (reqInput) reqInput.classList.remove("input-error");
       if (reqFeedback) reqFeedback.textContent = "";
+      if (invalidIcon) invalidIcon.style.display = "none";
+      if (validIcon) validIcon.style.display = "none";
 
-      // Validate full name
       if (!fullNameInput?.value.trim()) {
         fullNameInput?.classList.add("input-error");
         if (fullNameFeedback) fullNameFeedback.textContent = "Full name is required.";
@@ -230,7 +226,6 @@ export default function ContactSalesHero() {
         return;
       }
 
-      // Validate email
       const emailValue = emailInput?.value.trim() || "";
       if (!emailValue) {
         emailInput?.classList.add("input-error");
@@ -238,22 +233,15 @@ export default function ContactSalesHero() {
         emailInput?.focus();
         return;
       }
-      if (!isValidEmailFormat(emailValue)) {
+      const emailValidation = validateBusinessEmail(emailValue);
+      if (!emailValidation.isValid) {
         emailInput?.classList.add("input-error");
-        if (emailFeedback) emailFeedback.textContent = "Please enter a valid email address.";
-        emailInput?.focus();
-        return;
-      }
-      if (isPersonalEmail(emailValue)) {
-        emailInput?.classList.add("input-error");
-        if (emailFeedback) emailFeedback.textContent = "Please use your work email address.";
-        const invalidIcon = emailInput?.parentElement?.querySelector('[vpf="invalid-wrong"]') as HTMLElement | null;
+        if (emailFeedback) emailFeedback.textContent = emailValidation.message;
         if (invalidIcon) invalidIcon.style.display = "block";
         emailInput?.focus();
         return;
       }
 
-      // Validate phone
       if (!phoneInput?.value.trim()) {
         phoneInput?.classList.add("input-error");
         if (phoneFeedback) phoneFeedback.textContent = "Phone number is required.";
@@ -271,7 +259,6 @@ export default function ContactSalesHero() {
         return;
       }
 
-      // Validate detailed requirement (minimum 100 characters)
       const reqValue = reqInput?.value.trim() || "";
       if (!reqValue) {
         reqInput?.classList.add("input-error");
@@ -286,147 +273,105 @@ export default function ContactSalesHero() {
         return;
       }
 
-      // --- Collect form data ---
       const btn = form.querySelector('[type="submit"]') as HTMLButtonElement | null;
-      if (btn) { btn.disabled = true; btn.textContent = "Submitting..."; }
+      if (btn) {
+        btn.disabled = true;
+        btn.textContent = "Submitting...";
+      }
 
-      const fullName = fullNameInput?.value || "";
-      const parts = fullName.trim().split(/\s+/);
-      const firstName = parts[0] || "";
-      const lastName = parts.slice(1).join(" ") || "";
-      const email = emailValue;
-      const phone = phoneInput?.value || "";
-      const phoneCode = (form.querySelector("#phone-code") as HTMLInputElement)?.value || "";
-      const phoneCountry = (form.querySelector("#phone_country") as HTMLInputElement)?.value || "";
-      const description = (form.querySelector("#detailed_requirement") as HTMLTextAreaElement)?.value || "";
-      const formattedPhone = phoneIti && typeof phoneIti.getNumber === "function"
-        ? phoneIti.getNumber()
-        : (phoneCode ? `+${phoneCode} ${phone}` : phone);
-      const pageUrl = window.location.origin + window.location.pathname;
+      try {
+        syncFormAttribution(form);
 
-      // Build payload for the Netlify function (same format as form-submission.js)
-      const formData = new URLSearchParams();
-      formData.set("first_name", firstName);
-      formData.set("last_name", lastName);
-      formData.set("full_name", fullName);
-      formData.set("company_email", email);
-      formData.set("phone", formattedPhone);
-      formData.set("phone_code", phoneCode);
-      formData.set("phone_country", phoneCountry);
-      formData.set("description", description);
-      formData.set("page_url", pageUrl);
-      formData.set("conversion_channel", "contact-sales");
-      formData.set("landing_page", "https://plivo.com");
+        const fullName = fullNameInput?.value || "";
+        const { firstName, lastName } = splitFullName(fullName);
+        const phone = phoneInput?.value || "";
+        const phoneCode = (form.querySelector("#phone-code") as HTMLInputElement)?.value || "";
+        const formattedPhone =
+          phoneIti && typeof phoneIti.getNumber === "function"
+            ? phoneIti.getNumber()
+            : phoneCode
+              ? `+${phoneCode}${phone.replace(/\D/g, "")}`
+              : phone;
 
-      const body = new URLSearchParams();
-      body.set("formData", formData.toString());
-      body.set("hubspotutk", getCookie("hubspotutk"));
-      body.set("hubSpot", "contactForm");
-      body.set("ipAddress", "");
+        const formData = new FormData(form);
+        formData.set("first_name", firstName);
+        formData.set("last_name", lastName);
+        formData.set("full_name", fullName);
+        formData.set("company_email", emailValue);
+        formData.set("phone", formattedPhone);
+        formData.set("description", reqValue);
+        formData.set("detailed_requirement", reqValue);
+        formData.set("page_url", `${window.location.origin}${window.location.pathname}`);
+        formData.set("conversion_channel", "contact-sales");
 
-      // Primary: submit to Netlify function (same path as production form-submission.js)
-      fetch("https://plivo-static-forms.netlify.app/.netlify/functions/submit", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: body.toString(),
-      })
-        .then((res) => res.json().then((data) => ({ ok: res.ok, data })))
-        .then(({ ok, data }) => {
-          if (ok && data.status === "Submitted") {
-            // Handle leadStatus — redirect small leads to signup
-            if (data.leadStatus === "redirectSignup") {
-              window.location.href = "https://console.plivo.com/accounts/register/";
-              return;
-            }
-
-            // Success — show thank-you
-            const step1 = form.closest('[vpf="1"]');
-            const step4 = document.querySelector('[vpf="4"]');
-            if (step1) (step1 as HTMLElement).style.display = "none";
-            if (step4) (step4 as HTMLElement).style.display = "block";
-          } else if (data.status === "Personal Email" || data.status === "Invalid Email") {
-            // Personal/invalid email rejected — show inline error
-            const emailInput = form.querySelector("#company_email") as HTMLInputElement | null;
-            if (emailInput) {
-              emailInput.classList.add("input-error");
-              let fb = emailInput.parentElement?.querySelector(".invalid-feedback") as HTMLElement | null;
-              if (!fb) {
-                fb = document.createElement("div");
-                fb.className = "invalid-feedback";
-                emailInput.parentElement?.appendChild(fb);
-              }
-              fb.textContent = "Please use your work email address.";
-            }
-            if (btn) { btn.disabled = false; btn.textContent = "Submit"; }
-          } else {
-            // Other error — fallback to direct HubSpot
-            return submitToHubSpot(firstName, lastName, email, formattedPhone, description, btn);
-          }
-        })
-        .catch(() => {
-          // Network error — fallback to direct HubSpot
-          submitToHubSpot(firstName, lastName, email, formattedPhone, description, btn);
+        const response = await fetch("/api/forms/submit", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            formType: "contact-sales",
+            fields: Object.fromEntries(
+              Array.from(formData.entries()).map(([key, value]) => [key, String(value)])
+            ),
+            context: {
+              hutk: getCookie("hubspotutk"),
+              pageUri: window.location.href,
+              pageName: "Contact Sales",
+            },
+          }),
         });
-    };
 
-    const submitToHubSpot = (
-      firstName: string, lastName: string, email: string,
-      phone: string, message: string,
-      btn: HTMLButtonElement | null
-    ) => {
-      const hutk = getCookie("hubspotutk");
-      const fields = [
-        { name: "firstname", value: firstName },
-        { name: "lastname", value: lastName },
-        { name: "email", value: email },
-        { name: "phone", value: phone },
-        { name: "message", value: message },
-      ];
-      return fetch("https://api.hsforms.com/submissions/v3/integration/submit/20451141/1bd8ce72-8c0d-4dd0-89c2-f2d2bd7dfcd5", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          fields,
-          context: {
-            hutk: hutk || undefined,
-            pageUri: window.location.href,
-            pageName: "Contact Sales",
-          },
-        }),
-      }).then((res) => {
-        if (res.ok) {
-          const step1 = document.getElementById("contact-form")?.closest('[vpf="1"]');
-          const step4 = document.querySelector('[vpf="4"]');
-          if (step1) (step1 as HTMLElement).style.display = "none";
-          if (step4) (step4 as HTMLElement).style.display = "block";
-        } else {
-          const existing = document.getElementById("form-error-banner");
-          if (existing) existing.remove();
-          const banner = document.createElement("div");
-          banner.id = "form-error-banner";
-          banner.className = "form-error-banner";
-          banner.textContent = "Something went wrong. Please try again or email support@plivo.com.";
-          const formEl = document.getElementById("contact-form");
-          if (formEl) formEl.insertAdjacentElement("beforebegin", banner);
-          setTimeout(() => banner.remove(), 8000);
-          if (btn) { btn.disabled = false; btn.textContent = "Submit"; }
+        const data = (await response.json().catch(() => null)) as
+          | {
+              ok?: boolean;
+              fieldErrors?: Record<string, string>;
+              message?: string;
+            }
+          | null;
+
+        if (!response.ok || !data?.ok) {
+          if (data?.fieldErrors?.full_name) {
+            fullNameInput?.classList.add("input-error");
+            if (fullNameFeedback) fullNameFeedback.textContent = data.fieldErrors.full_name;
+          }
+          if (data?.fieldErrors?.company_email) {
+            emailInput?.classList.add("input-error");
+            if (emailFeedback) emailFeedback.textContent = data.fieldErrors.company_email;
+            if (invalidIcon) invalidIcon.style.display = "block";
+          }
+          if (data?.fieldErrors?.phone) {
+            phoneInput?.classList.add("input-error");
+            if (phoneFeedback) phoneFeedback.textContent = data.fieldErrors.phone;
+          }
+          if (data?.fieldErrors?.detailed_requirement) {
+            reqInput?.classList.add("input-error");
+            if (reqFeedback) reqFeedback.textContent = data.fieldErrors.detailed_requirement;
+          }
+
+          if (!data?.fieldErrors || Object.keys(data.fieldErrors).length === 0) {
+            showFormErrorBanner(
+              data?.message || "Something went wrong. Please try again or email support@plivo.com.",
+              btn
+            );
+          } else {
+            resetSubmitButton(btn);
+          }
+          return;
         }
-      }).catch(() => {
-        const existing = document.getElementById("form-error-banner");
-        if (existing) existing.remove();
-        const banner = document.createElement("div");
-        banner.id = "form-error-banner";
-        banner.className = "form-error-banner";
-        banner.textContent = "Network error. Please try again or email support@plivo.com.";
-        const formEl = document.getElementById("contact-form");
-        if (formEl) formEl.insertAdjacentElement("beforebegin", banner);
-        setTimeout(() => banner.remove(), 8000);
-        if (btn) { btn.disabled = false; btn.textContent = "Submit"; }
-      });
+
+        showThankYou();
+      } catch {
+        showFormErrorBanner("Network error. Please try again or email support@plivo.com.", btn);
+      }
     };
 
     form.addEventListener("submit", handler, true);
     return () => form.removeEventListener("submit", handler, true);
+  }, []);
+
+  useEffect(() => {
+    const form = document.getElementById("contact-form") as HTMLFormElement | null;
+    if (!form) return;
+    syncFormAttribution(form);
   }, []);
 
   // Initialize intl-tel-input on #phone immediately (don't wait for form-submission.js)
@@ -593,19 +538,23 @@ export default function ContactSalesHero() {
     const handleBlur = () => {
       const value = emailInput.value.trim();
       if (!value) { clearEmailError(); return; }
-      if (!isValidEmailFormat(value)) { showEmailError("Please enter a valid email address."); return; }
-      if (isPersonalEmail(value)) { showEmailError("Please use your work email address."); return; }
+      const localValidation = validateBusinessEmail(value);
+      if (!localValidation.isValid) {
+        showEmailError(localValidation.message);
+        return;
+      }
 
       // Check cache first
       const cached = enrichCache.get(value.toLowerCase());
-      if (cached === true) { showEmailValid(); return; }
-      if (cached === false) { showEmailError("Please use your work email address."); return; }
+      if (cached?.isValid) { showEmailValid(); return; }
+      if (cached && !cached.isValid) {
+        showEmailError(cached.message);
+        return;
+      }
 
-      // Call enrichment API for server-side validation
       if (enrichAbort) enrichAbort.abort();
       enrichAbort = new AbortController();
 
-      // Show loader
       const loader = getLoader();
       if (loader) loader.style.display = "block";
       const validIcon = emailInput.parentElement?.querySelector('[vpf="valid-tick"]') as HTMLElement | null;
@@ -613,31 +562,28 @@ export default function ContactSalesHero() {
       const invalidIcon = emailInput.parentElement?.querySelector('[vpf="invalid-wrong"]') as HTMLElement | null;
       if (invalidIcon) invalidIcon.style.display = "none";
 
-      fetch(`${ENRICH_API_URL}?email=${encodeURIComponent(value)}`, {
+      fetch(ENRICH_API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         signal: enrichAbort.signal,
+        body: JSON.stringify({
+          formType: "contact-sales",
+          email: value,
+        }),
       })
         .then((res) => res.json())
         .then((data) => {
-          // Use isAuthentic if present, otherwise compute from person.domain_type
-          const domainType = data.person?.domain_type || data.email?.domain_type || "";
-          const invalidTypes = ["personal", "disposable", "malicious", "blacklisted"];
-          const isValid = data.isAuthentic !== undefined
-            ? data.isAuthentic !== false
-            : !invalidTypes.includes(domainType);
-          enrichCache.set(value.toLowerCase(), isValid);
+          const isValid = data?.ok === true;
+          const message = typeof data?.message === "string" ? data.message : "Please use your work email address.";
+          enrichCache.set(value.toLowerCase(), { isValid, message });
           if (isValid) {
             showEmailValid();
           } else {
-            showEmailError(
-              domainType === "personal"
-                ? "Please use your work email address."
-                : "This email address cannot be used. Please try another."
-            );
+            showEmailError(message);
           }
         })
         .catch((err) => {
           if (err.name === "AbortError") return;
-          // On API failure, accept the email (backend will validate on submit)
           clearEmailError();
         });
     };
@@ -645,7 +591,6 @@ export default function ContactSalesHero() {
     const handleInput = () => {
       if (enrichAbort) { enrichAbort.abort(); enrichAbort = null; }
       if (emailInput.classList.contains("input-error")) clearEmailError();
-      // Also hide valid icon while typing
       const validIcon = emailInput.parentElement?.querySelector('[vpf="valid-tick"]') as HTMLElement | null;
       if (validIcon) validIcon.style.display = "none";
     };

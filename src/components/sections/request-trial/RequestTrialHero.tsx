@@ -3,6 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import { useGeoCountry } from "@/hooks/useGeoCountry";
 import { getGeoCategory, SIGNUP_URL } from "@/data/geo-categories";
+import { getCookie, syncFormAttribution } from "@/lib/form-attribution";
+import { splitFullName, validateBusinessEmail } from "@/lib/form-shared";
 
 // International logos (default)
 const intlLogosRow1 = [
@@ -54,39 +56,9 @@ const USE_CASE_OPTIONS = [
   "Other",
 ];
 
-const PERSONAL_EMAIL_DOMAINS = new Set([
-  "gmail.com", "googlemail.com",
-  "hotmail.com", "hotmail.co.uk", "hotmail.fr", "hotmail.de", "hotmail.it", "hotmail.es",
-  "outlook.com", "outlook.co.uk", "outlook.fr", "outlook.de",
-  "live.com", "live.co.uk", "live.fr", "msn.com",
-  "yahoo.com", "yahoo.co.uk", "yahoo.co.in", "yahoo.fr", "yahoo.de",
-  "yahoo.it", "yahoo.es", "yahoo.ca", "yahoo.com.au", "yahoo.com.br",
-  "ymail.com", "rocketmail.com",
-  "icloud.com", "me.com", "mac.com",
-  "aol.com", "aim.com",
-  "protonmail.com", "proton.me", "pm.me",
-  "mail.com", "gmx.com", "gmx.de", "gmx.net",
-  "yandex.com", "yandex.ru",
-  "inbox.com", "fastmail.com",
-  "tutanota.com", "tuta.io",
-  "rediffmail.com",
-]);
+const ENRICH_API_URL = "/api/forms/validate-email";
 
-function isPersonalEmail(email: string): boolean {
-  const atIndex = email.lastIndexOf("@");
-  if (atIndex < 1) return false;
-  const domain = email.slice(atIndex + 1).toLowerCase().trim();
-  return PERSONAL_EMAIL_DOMAINS.has(domain);
-}
-
-function isValidEmailFormat(email: string): boolean {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email.trim());
-}
-
-const ENRICH_API_URL =
-  "https://plivo-static-forms.netlify.app/.netlify/functions/enrich";
-
-const enrichCache = new Map<string, boolean>();
+const enrichCache = new Map<string, { isValid: boolean; message: string }>();
 
 const COMPLIANCE_BADGES = [
   { src: "/images/compliance/HIPAA black.svg", alt: "HIPAA", label: "HIPAA" },
@@ -223,17 +195,41 @@ export default function RequestTrialHero() {
     };
   }, []);
 
-  // Submit handler
+  // Submit handler: validates client-side, then posts to our Worker for
+  // server-side validation and HubSpot submission.
   useEffect(() => {
+    if (!geoReady || category === "A" || category === "unsupported") return;
+
     const form = document.getElementById("request-trial-form") as HTMLFormElement | null;
     if (!form) return;
 
-    const getCookie = (name: string) => {
-      const match = document.cookie.match(new RegExp("(^| )" + name + "=([^;]+)"));
-      return match ? match[2] : "";
+    const showThankYou = () => {
+      const step1 = form.closest('[vpf="1"]');
+      const step4 = document.querySelector('[vpf="4"]');
+      if (step1) (step1 as HTMLElement).style.display = "none";
+      if (step4) (step4 as HTMLElement).style.display = "block";
     };
 
-    const handler = (e: Event) => {
+    const resetSubmitButton = (btn: HTMLButtonElement | null) => {
+      if (!btn) return;
+      btn.disabled = false;
+      btn.textContent = "Request Trial";
+    };
+
+    const showFormErrorBanner = (message: string, btn: HTMLButtonElement | null) => {
+      const existing = document.getElementById("form-error-banner");
+      if (existing) existing.remove();
+
+      const banner = document.createElement("div");
+      banner.id = "form-error-banner";
+      banner.className = "form-error-banner";
+      banner.textContent = message;
+      form.insertAdjacentElement("beforebegin", banner);
+      setTimeout(() => banner.remove(), 8000);
+      resetSubmitButton(btn);
+    };
+
+    const handler = async (e: Event) => {
       e.preventDefault();
 
       const phoneInput = form.querySelector("#phone") as HTMLInputElement | null;
@@ -249,13 +245,17 @@ export default function RequestTrialHero() {
       const reqFeedback = reqInput?.closest(".form-field")?.querySelector(".invalid-feedback") as HTMLElement | null;
       const termsCheckbox = form.querySelector("#terms_accepted") as HTMLInputElement | null;
       const termsFeedback = termsCheckbox?.closest(".form-field")?.querySelector(".invalid-feedback") as HTMLElement | null;
+      const invalidIcon = emailInput?.parentElement?.querySelector('[vpf="invalid-wrong"]') as HTMLElement | null;
+      const validIcon = emailInput?.parentElement?.querySelector('[vpf="valid-tick"]') as HTMLElement | null;
+      const existingBanner = document.getElementById("form-error-banner");
 
-      // Clear previous errors
+      if (existingBanner) existingBanner.remove();
       [fullNameInput, emailInput, phoneInput, reqInput].forEach(el => el?.classList.remove("input-error"));
       if (useCaseSelect) useCaseSelect.classList.remove("input-error");
       [fullNameFeedback, emailFeedback, phoneFeedback, useCaseFeedback, reqFeedback, termsFeedback].forEach(el => { if (el) el.textContent = ""; });
+      if (invalidIcon) invalidIcon.style.display = "none";
+      if (validIcon) validIcon.style.display = "none";
 
-      // Validate full name
       if (!fullNameInput?.value.trim()) {
         fullNameInput?.classList.add("input-error");
         if (fullNameFeedback) fullNameFeedback.textContent = "Full name is required.";
@@ -263,7 +263,6 @@ export default function RequestTrialHero() {
         return;
       }
 
-      // Validate email
       const emailValue = emailInput?.value.trim() || "";
       if (!emailValue) {
         emailInput?.classList.add("input-error");
@@ -271,22 +270,15 @@ export default function RequestTrialHero() {
         emailInput?.focus();
         return;
       }
-      if (!isValidEmailFormat(emailValue)) {
+      const emailValidation = validateBusinessEmail(emailValue);
+      if (!emailValidation.isValid) {
         emailInput?.classList.add("input-error");
-        if (emailFeedback) emailFeedback.textContent = "Please enter a valid email address.";
-        emailInput?.focus();
-        return;
-      }
-      if (isPersonalEmail(emailValue)) {
-        emailInput?.classList.add("input-error");
-        if (emailFeedback) emailFeedback.textContent = "Please use your work email address.";
-        const invalidIcon = emailInput?.parentElement?.querySelector('[vpf="invalid-wrong"]') as HTMLElement | null;
+        if (emailFeedback) emailFeedback.textContent = emailValidation.message;
         if (invalidIcon) invalidIcon.style.display = "block";
         emailInput?.focus();
         return;
       }
 
-      // Validate phone
       if (!phoneInput?.value.trim()) {
         phoneInput?.classList.add("input-error");
         if (phoneFeedback) phoneFeedback.textContent = "Phone number is required.";
@@ -304,7 +296,6 @@ export default function RequestTrialHero() {
         return;
       }
 
-      // Validate use case
       if (!useCaseSelect?.value) {
         useCaseSelect?.classList.add("input-error");
         if (useCaseFeedback) useCaseFeedback.textContent = "Please select a use case.";
@@ -312,7 +303,6 @@ export default function RequestTrialHero() {
         return;
       }
 
-      // Validate detailed requirement (minimum 100 characters)
       const reqValue = reqInput?.value.trim() || "";
       if (!reqValue) {
         reqInput?.classList.add("input-error");
@@ -327,153 +317,130 @@ export default function RequestTrialHero() {
         return;
       }
 
-      // Validate terms
       if (!termsCheckbox?.checked) {
         if (termsFeedback) termsFeedback.textContent = "You must agree to the terms to continue.";
         return;
       }
 
-      // --- Collect form data ---
       const btn = form.querySelector('[type="submit"]') as HTMLButtonElement | null;
-      if (btn) { btn.disabled = true; btn.textContent = "Submitting..."; }
+      if (btn) {
+        btn.disabled = true;
+        btn.textContent = "Submitting...";
+      }
 
-      const fullName = fullNameInput?.value || "";
-      const parts = fullName.trim().split(/\s+/);
-      const firstName = parts[0] || "";
-      const lastName = parts.slice(1).join(" ") || "";
-      const email = emailValue;
-      const phone = phoneInput?.value || "";
-      const phoneCode = (form.querySelector("#phone-code") as HTMLInputElement)?.value || "";
-      const phoneCountry = (form.querySelector("#phone_country") as HTMLInputElement)?.value || "";
-      const useCase = useCaseSelect?.value || "";
-      const description = reqValue;
-      const formattedPhone = phoneIti && typeof phoneIti.getNumber === "function"
-        ? phoneIti.getNumber()
-        : (phoneCode ? `+${phoneCode} ${phone}` : phone);
-      const pageUrl = window.location.origin + window.location.pathname;
-
-      // Build payload for the Netlify function
-      const formData = new URLSearchParams();
-      formData.set("first_name", firstName);
-      formData.set("last_name", lastName);
-      formData.set("full_name", fullName);
-      formData.set("company_email", email);
-      formData.set("phone", formattedPhone);
-      formData.set("phone_code", phoneCode);
-      formData.set("phone_country", phoneCountry);
-      formData.set("description", `[Request Trial] Use case: ${useCase}\n\n${description}`);
-      formData.set("page_url", pageUrl);
-      formData.set("conversion_channel", "request-trial");
-      formData.set("landing_page", "https://plivo.com");
-
-      const body = new URLSearchParams();
-      body.set("formData", formData.toString());
-      body.set("hubspotutk", getCookie("hubspotutk"));
-      body.set("hubSpot", "contactForm");
-      body.set("ipAddress", "");
-
-      fetch("https://plivo-static-forms.netlify.app/.netlify/functions/submit", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: body.toString(),
-      })
-        .then((res) => res.json().then((data) => ({ ok: res.ok, data })))
-        .then(({ ok, data }) => {
-          if (ok && data.status === "Submitted") {
-            if (data.leadStatus === "redirectSignup") {
-              window.location.href = "https://console.plivo.com/accounts/register/";
-              return;
-            }
-
-            // Show thank you
-            const step1 = form.closest('[vpf="1"]');
-            const step4 = document.querySelector('[vpf="4"]');
-            if (step1) (step1 as HTMLElement).style.display = "none";
-            if (step4) (step4 as HTMLElement).style.display = "block";
-          } else if (data.status === "Personal Email" || data.status === "Invalid Email") {
-            const emailEl = form.querySelector("#company_email") as HTMLInputElement | null;
-            if (emailEl) {
-              emailEl.classList.add("input-error");
-              let fb = emailEl.parentElement?.querySelector(".invalid-feedback") as HTMLElement | null;
-              if (!fb) {
-                fb = document.createElement("div");
-                fb.className = "invalid-feedback";
-                emailEl.parentElement?.appendChild(fb);
-              }
-              fb.textContent = "Please use your work email address.";
-            }
-            if (btn) { btn.disabled = false; btn.textContent = "Request Trial"; }
-          } else {
-            return submitToHubSpot(firstName, lastName, email, formattedPhone, useCase, description, btn);
-          }
-        })
-        .catch(() => {
-          submitToHubSpot(firstName, lastName, email, formattedPhone, useCase, description, btn);
+      try {
+        syncFormAttribution(form, {
+          currentUseCase: useCaseSelect?.value || "",
         });
-    };
 
-    const submitToHubSpot = (
-      firstName: string, lastName: string, email: string,
-      phone: string, useCase: string, message: string,
-      btn: HTMLButtonElement | null
-    ) => {
-      const hutk = getCookie("hubspotutk");
-      const fields = [
-        { name: "firstname", value: firstName },
-        { name: "lastname", value: lastName },
-        { name: "email", value: email },
-        { name: "phone", value: phone },
-        { name: "message", value: `[Request Trial] Use case: ${useCase}\n\n${message}` },
-      ];
-      return fetch("https://api.hsforms.com/submissions/v3/integration/submit/20451141/988f6264-585c-4985-aaab-f0abedcb9950", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          fields,
-          context: {
-            hutk: hutk || undefined,
-            pageUri: window.location.href,
-            pageName: "Request Trial",
-          },
-        }),
-      }).then((res) => {
-        if (res.ok) {
-          const step1 = document.getElementById("request-trial-form")?.closest('[vpf="1"]');
-          const step4 = document.querySelector('[vpf="4"]');
-          if (step1) (step1 as HTMLElement).style.display = "none";
-          if (step4) (step4 as HTMLElement).style.display = "block";
-        } else {
-          const existing = document.getElementById("form-error-banner");
-          if (existing) existing.remove();
-          const banner = document.createElement("div");
-          banner.id = "form-error-banner";
-          banner.className = "form-error-banner";
-          banner.textContent = "Something went wrong. Please try again or email support@plivo.com.";
-          const formEl = document.getElementById("request-trial-form");
-          if (formEl) formEl.insertAdjacentElement("beforebegin", banner);
-          setTimeout(() => banner.remove(), 8000);
-          if (btn) { btn.disabled = false; btn.textContent = "Request Trial"; }
+        const fullName = fullNameInput?.value || "";
+        const { firstName, lastName } = splitFullName(fullName);
+        const phone = phoneInput?.value || "";
+        const phoneCode = (form.querySelector("#phone-code") as HTMLInputElement)?.value || "";
+        const useCase = useCaseSelect?.value || "";
+        const formattedPhone =
+          phoneIti && typeof phoneIti.getNumber === "function"
+            ? phoneIti.getNumber()
+            : phoneCode
+              ? `+${phoneCode}${phone.replace(/\D/g, "")}`
+              : phone;
+
+        const formData = new FormData(form);
+        formData.set("first_name", firstName);
+        formData.set("last_name", lastName);
+        formData.set("full_name", fullName);
+        formData.set("company_email", emailValue);
+        formData.set("phone", formattedPhone);
+        formData.set("use_case", useCase);
+        formData.set("latest_use_case", useCase);
+        formData.set("description", reqValue);
+        formData.set("detailed_requirement", reqValue);
+        formData.set("page_url", `${window.location.origin}${window.location.pathname}`);
+        formData.set("conversion_channel", "request-trial");
+
+        const response = await fetch("/api/forms/submit", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            formType: "request-trial",
+            fields: Object.fromEntries(
+              Array.from(formData.entries()).map(([key, value]) => [key, String(value)])
+            ),
+            context: {
+              hutk: getCookie("hubspotutk"),
+              pageUri: window.location.href,
+              pageName: "Request Trial",
+            },
+          }),
+        });
+
+        const data = (await response.json().catch(() => null)) as
+          | {
+              ok?: boolean;
+              fieldErrors?: Record<string, string>;
+              message?: string;
+            }
+          | null;
+
+        if (!response.ok || !data?.ok) {
+          if (data?.fieldErrors?.full_name) {
+            fullNameInput?.classList.add("input-error");
+            if (fullNameFeedback) fullNameFeedback.textContent = data.fieldErrors.full_name;
+          }
+          if (data?.fieldErrors?.company_email) {
+            emailInput?.classList.add("input-error");
+            if (emailFeedback) emailFeedback.textContent = data.fieldErrors.company_email;
+            if (invalidIcon) invalidIcon.style.display = "block";
+          }
+          if (data?.fieldErrors?.phone) {
+            phoneInput?.classList.add("input-error");
+            if (phoneFeedback) phoneFeedback.textContent = data.fieldErrors.phone;
+          }
+          if (data?.fieldErrors?.use_case) {
+            useCaseSelect?.classList.add("input-error");
+            if (useCaseFeedback) useCaseFeedback.textContent = data.fieldErrors.use_case;
+          }
+          if (data?.fieldErrors?.detailed_requirement) {
+            reqInput?.classList.add("input-error");
+            if (reqFeedback) reqFeedback.textContent = data.fieldErrors.detailed_requirement;
+          }
+          if (data?.fieldErrors?.terms_accepted && termsFeedback) {
+            termsFeedback.textContent = data.fieldErrors.terms_accepted;
+          }
+
+          if (!data?.fieldErrors || Object.keys(data.fieldErrors).length === 0) {
+            showFormErrorBanner(
+              data?.message || "Something went wrong. Please try again or email support@plivo.com.",
+              btn
+            );
+          } else {
+            resetSubmitButton(btn);
+          }
+          return;
         }
-      }).catch(() => {
-        const existing = document.getElementById("form-error-banner");
-        if (existing) existing.remove();
-        const banner = document.createElement("div");
-        banner.id = "form-error-banner";
-        banner.className = "form-error-banner";
-        banner.textContent = "Network error. Please try again or email support@plivo.com.";
-        const formEl = document.getElementById("request-trial-form");
-        if (formEl) formEl.insertAdjacentElement("beforebegin", banner);
-        setTimeout(() => banner.remove(), 8000);
-        if (btn) { btn.disabled = false; btn.textContent = "Request Trial"; }
-      });
+
+        showThankYou();
+      } catch {
+        showFormErrorBanner("Network error. Please try again or email support@plivo.com.", btn);
+      }
     };
 
     form.addEventListener("submit", handler, true);
     return () => form.removeEventListener("submit", handler, true);
-  }, []);
+  }, [category, geoReady]);
+
+  useEffect(() => {
+    if (!geoReady || category === "A" || category === "unsupported") return;
+
+    const form = document.getElementById("request-trial-form") as HTMLFormElement | null;
+    if (!form) return;
+    syncFormAttribution(form);
+  }, [category, geoReady]);
 
   // Initialize intl-tel-input on #phone
   useEffect(() => {
+    if (!geoReady || category === "A" || category === "unsupported") return;
+
     let cancelled = false;
     let pollTimer: ReturnType<typeof setInterval>;
 
@@ -573,10 +540,12 @@ export default function RequestTrialHero() {
       cancelled = true;
       if (pollTimer) clearInterval(pollTimer);
     };
-  }, []);
+  }, [category, geoReady]);
 
   // Email blur validation with enrichment API
   useEffect(() => {
+    if (!geoReady || category === "A" || category === "unsupported") return;
+
     const emailInput = document.getElementById("company_email") as HTMLInputElement | null;
     if (!emailInput) return;
 
@@ -627,12 +596,18 @@ export default function RequestTrialHero() {
     const handleBlur = () => {
       const value = emailInput.value.trim();
       if (!value) { clearEmailError(); return; }
-      if (!isValidEmailFormat(value)) { showEmailError("Please enter a valid email address."); return; }
-      if (isPersonalEmail(value)) { showEmailError("Please use your work email address."); return; }
+      const localValidation = validateBusinessEmail(value);
+      if (!localValidation.isValid) {
+        showEmailError(localValidation.message);
+        return;
+      }
 
       const cached = enrichCache.get(value.toLowerCase());
-      if (cached === true) { showEmailValid(); return; }
-      if (cached === false) { showEmailError("Please use your work email address."); return; }
+      if (cached?.isValid) { showEmailValid(); return; }
+      if (cached && !cached.isValid) {
+        showEmailError(cached.message);
+        return;
+      }
 
       if (enrichAbort) enrichAbort.abort();
       enrichAbort = new AbortController();
@@ -644,25 +619,24 @@ export default function RequestTrialHero() {
       const invalidIcon = emailInput.parentElement?.querySelector('[vpf="invalid-wrong"]') as HTMLElement | null;
       if (invalidIcon) invalidIcon.style.display = "none";
 
-      fetch(`${ENRICH_API_URL}?email=${encodeURIComponent(value)}`, {
+      fetch(ENRICH_API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         signal: enrichAbort.signal,
+        body: JSON.stringify({
+          formType: "request-trial",
+          email: value,
+        }),
       })
         .then((res) => res.json())
         .then((data) => {
-          const domainType = data.person?.domain_type || data.email?.domain_type || "";
-          const invalidTypes = ["personal", "disposable", "malicious", "blacklisted"];
-          const isValid = data.isAuthentic !== undefined
-            ? data.isAuthentic !== false
-            : !invalidTypes.includes(domainType);
-          enrichCache.set(value.toLowerCase(), isValid);
+          const isValid = data?.ok === true;
+          const message = typeof data?.message === "string" ? data.message : "Please use your work email address.";
+          enrichCache.set(value.toLowerCase(), { isValid, message });
           if (isValid) {
             showEmailValid();
           } else {
-            showEmailError(
-              domainType === "personal"
-                ? "Please use your work email address."
-                : "This email address cannot be used. Please try another."
-            );
+            showEmailError(message);
           }
         })
         .catch((err) => {
@@ -685,10 +659,12 @@ export default function RequestTrialHero() {
       emailInput.removeEventListener("input", handleInput);
       if (enrichAbort) enrichAbort.abort();
     };
-  }, []);
+  }, [category, geoReady]);
 
   // Detailed requirement: live character counter
   useEffect(() => {
+    if (!geoReady || category === "A" || category === "unsupported") return;
+
     const textarea = document.getElementById("detailed_requirement") as HTMLTextAreaElement | null;
     const counter = document.getElementById("req-char-count");
     if (!textarea || !counter) return;
@@ -711,7 +687,7 @@ export default function RequestTrialHero() {
 
     textarea.addEventListener("input", update);
     return () => textarea.removeEventListener("input", update);
-  }, []);
+  }, [category, geoReady]);
 
   // Loading state while waiting for geo data
   if (!geoReady) {
