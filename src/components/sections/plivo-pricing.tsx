@@ -66,6 +66,49 @@ const VOICE_ADD_ON_ROWS_USD = [
   ["CNAM Lookup", "$0.00500/lookup"],
 ] as const;
 
+type SummaryAddOnRow = {
+  label: string;
+  price: string;
+};
+
+function normalizeSummaryValue(value: string) {
+  return value.trim().replace(/\s+/g, " ").toLowerCase();
+}
+
+function getSummaryAddOnKey({ label, price }: SummaryAddOnRow) {
+  return `${normalizeSummaryValue(label)}::${normalizeSummaryValue(price)}`;
+}
+
+function getVoiceSummaryAddOns(countryCode: string): SummaryAddOnRow[] {
+  const rows = countryCode === "IN" ? VOICE_ADD_ON_ROWS_INR : VOICE_ADD_ON_ROWS_USD;
+  return rows.map(([label, price]) => ({ label, price }));
+}
+
+function flattenWhatsAppAddOns(
+  rows: ReturnType<typeof getWhatsAppCallAddOns>,
+): SummaryAddOnRow[] {
+  return rows.flatMap((row) => {
+    if (!row.children?.length) {
+      return row.price ? [{ label: row.label, price: row.price }] : [];
+    }
+
+    return row.children.map((child) => ({
+      label: `${row.label} - ${child.label}`,
+      price: child.price,
+    }));
+  });
+}
+
+function dedupeSummaryAddOns(rows: SummaryAddOnRow[]) {
+  const seen = new Set<string>();
+  return rows.filter((row) => {
+    const key = getSummaryAddOnKey(row);
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+}
+
 function toSMSRouteLabel(type: string, countryCode: string) {
   if (type === "Longcode") {
     return countryCode === "US" || countryCode === "CA"
@@ -275,6 +318,12 @@ function WhatsAppPricingContent({ selectedCountry, inline }: { selectedCountry: 
   const chatRates = chatCountry?.pricing;
   const callRates = callCountry?.pricing;
   const addOns = getWhatsAppCallAddOns(selectedCountry);
+  const voiceAddOnKeys = new Set(
+    getVoiceSummaryAddOns(selectedCountry).map((row) => getSummaryAddOnKey(row)),
+  );
+  const uniqueWhatsAppAddOns = dedupeSummaryAddOns(flattenWhatsAppAddOns(addOns)).filter(
+    (row) => !voiceAddOnKeys.has(getSummaryAddOnKey(row)),
+  );
   const countryName = COUNTRY_NAMES[selectedCountry] || selectedCountry;
 
   const formatChatRate = (rate: number | undefined, currency: "$" | "₹") => {
@@ -360,35 +409,26 @@ function WhatsAppPricingContent({ selectedCountry, inline }: { selectedCountry: 
         </ModalTableSection>
       )}
 
-      <ModalTableSection inline={inline} title="Add-on services">
-        <table className="w-full">
-          <thead>
-            <tr className="text-left text-xs text-gray-500">
-              <th className="pb-2 font-normal w-1/2">Service</th>
-              <th className="pb-2 font-normal w-1/2">Price</th>
-            </tr>
-          </thead>
-          <tbody className="text-xs">
-            {addOns.flatMap((row) => {
-              if (!row.children?.length) {
-                return (
-                  <tr key={row.label} className="border-t border-dashed border-gray-200">
-                    <td className="py-2.5 font-medium text-black">{row.label}</td>
-                    <td className="py-2.5 text-gray-600">{row.price}</td>
-                  </tr>
-                );
-              }
-
-              return row.children.map((child) => (
-                <tr key={`${row.label}-${child.label}`} className="border-t border-dashed border-gray-200">
-                  <td className="py-2.5 font-medium text-black">{`${row.label} - ${child.label}`}</td>
-                  <td className="py-2.5 text-gray-600">{child.price}</td>
+      {uniqueWhatsAppAddOns.length > 0 && (
+        <ModalTableSection inline={inline} title="Add-on services">
+          <table className="w-full">
+            <thead>
+              <tr className="text-left text-xs text-gray-500">
+                <th className="pb-2 font-normal w-1/2">Service</th>
+                <th className="pb-2 font-normal w-1/2">Price</th>
+              </tr>
+            </thead>
+            <tbody className="text-xs">
+              {uniqueWhatsAppAddOns.map((row) => (
+                <tr key={row.label} className="border-t border-dashed border-gray-200">
+                  <td className="py-2.5 font-medium text-black">{row.label}</td>
+                  <td className="py-2.5 text-gray-600">{row.price}</td>
                 </tr>
-              ));
-            })}
-          </tbody>
-        </table>
-      </ModalTableSection>
+              ))}
+            </tbody>
+          </table>
+        </ModalTableSection>
+      )}
     </>
   );
 }
