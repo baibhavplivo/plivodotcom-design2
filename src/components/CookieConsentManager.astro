@@ -1,0 +1,526 @@
+---
+interface Props {
+  gtmContainerId: string;
+  gtmAllowedHosts: string[];
+}
+
+const { gtmContainerId, gtmAllowedHosts } = Astro.props;
+const consentVersion = "2026-04-02";
+const hubspotScriptSrc = "//js.hs-scripts.com/20451141.js";
+---
+
+<div
+  id="plivo-cookie-consent-root"
+  data-gtm-container-id={gtmContainerId}
+  data-gtm-allowed-hosts={JSON.stringify(gtmAllowedHosts)}
+  data-hubspot-script-src={hubspotScriptSrc}
+  data-consent-version={consentVersion}
+>
+  <div
+    id="plivo-cookie-banner"
+    hidden
+    class="fixed inset-x-0 bottom-0 z-[120] px-4 pb-4"
+    aria-live="polite"
+  >
+    <div class="mx-auto max-w-6xl rounded-2xl border border-gray-200 bg-white p-4 shadow-[0_-12px_40px_rgba(15,17,23,0.12)] md:p-6">
+      <div class="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+        <div class="max-w-3xl">
+          <p class="font-sora text-lg font-medium text-black">Your cookie choices</p>
+          <p class="mt-2 text-sm leading-6 text-gray-600">
+            We use cookies and similar technologies to keep the site working,
+            measure performance, and support marketing attribution. Non-essential
+            storage stays off until you choose. You can change your mind at any time.
+          </p>
+          <div class="mt-3 flex flex-wrap gap-4 text-sm">
+            <a href="/cookie-policy/" class="font-medium text-[#323dfe] hover:underline">
+              View cookie policy
+            </a>
+            <button
+              id="plivo-cookie-open-preferences"
+              type="button"
+              class="font-medium text-gray-700 hover:text-black"
+            >
+              Manage preferences
+            </button>
+          </div>
+        </div>
+
+        <div class="flex flex-col gap-2 sm:flex-row sm:items-center">
+          <button
+            id="plivo-cookie-reject-all"
+            type="button"
+            class="rounded-md border border-gray-300 px-4 py-2.5 text-sm font-medium text-black transition-colors hover:bg-gray-50"
+          >
+            Reject non-essential
+          </button>
+          <button
+            id="plivo-cookie-accept-all"
+            type="button"
+            class="rounded-md bg-black px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-gray-800"
+          >
+            Accept all
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button
+    id="plivo-cookie-settings-button"
+    type="button"
+    hidden
+    class="fixed bottom-4 left-4 z-[110] rounded-full border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-black shadow-[0_12px_30px_rgba(15,17,23,0.12)] transition-colors hover:bg-gray-50"
+  >
+    Cookie settings
+  </button>
+
+  <div
+    id="plivo-cookie-modal"
+    hidden
+    class="fixed inset-0 z-[130] flex items-center justify-center bg-black/40 px-4 py-8"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="plivo-cookie-modal-title"
+  >
+    <div class="w-full max-w-2xl rounded-2xl bg-white p-6 shadow-2xl sm:p-7">
+      <div class="flex items-start justify-between gap-4">
+        <div>
+          <p id="plivo-cookie-modal-title" class="font-sora text-2xl font-medium text-black">
+            Cookie preferences
+          </p>
+          <p class="mt-2 max-w-xl text-sm leading-6 text-gray-600">
+            Necessary storage is always on. Use the toggles below to allow or deny
+            optional analytics and marketing technologies.
+          </p>
+        </div>
+        <button
+          id="plivo-cookie-close-modal"
+          type="button"
+          class="rounded-full border border-gray-200 p-2 text-gray-500 transition-colors hover:bg-gray-50 hover:text-black"
+          aria-label="Close cookie preferences"
+        >
+          <svg class="h-4 w-4" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M3.333 3.333 12.667 12.667M12.667 3.333 3.333 12.667" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="mt-6 space-y-4">
+        <div class="rounded-xl border border-gray-200 bg-gray-50 p-4">
+          <div class="flex items-start justify-between gap-4">
+            <div>
+              <p class="text-sm font-semibold text-black">Necessary</p>
+              <p class="mt-1 text-sm leading-6 text-gray-600">
+                Required for security, form handling, theme preference, and saving your consent choices.
+              </p>
+            </div>
+            <span class="rounded-full bg-black px-2.5 py-1 text-xs font-medium text-white">
+              Always on
+            </span>
+          </div>
+        </div>
+
+        <label class="flex items-start justify-between gap-4 rounded-xl border border-gray-200 p-4">
+          <div>
+            <p class="text-sm font-semibold text-black">Analytics</p>
+            <p class="mt-1 text-sm leading-6 text-gray-600">
+              Helps us understand site usage and performance through analytics tags managed with Google Tag Manager.
+            </p>
+          </div>
+          <input
+            id="plivo-cookie-analytics"
+            type="checkbox"
+            class="mt-1 h-5 w-5 shrink-0 accent-[#323dfe]"
+          />
+        </label>
+
+        <label class="flex items-start justify-between gap-4 rounded-xl border border-gray-200 p-4">
+          <div>
+            <p class="text-sm font-semibold text-black">Marketing</p>
+            <p class="mt-1 text-sm leading-6 text-gray-600">
+              Supports lead attribution and marketing follow-up with HubSpot tracking cookies.
+            </p>
+          </div>
+          <input
+            id="plivo-cookie-marketing"
+            type="checkbox"
+            class="mt-1 h-5 w-5 shrink-0 accent-[#323dfe]"
+          />
+        </label>
+      </div>
+
+      <div class="mt-6 flex flex-col gap-3 border-t border-gray-100 pt-5 sm:flex-row sm:items-center sm:justify-between">
+        <a href="/cookie-policy/" class="text-sm font-medium text-[#323dfe] hover:underline">
+          Learn more about our cookies
+        </a>
+        <div class="flex flex-col gap-2 sm:flex-row">
+          <button
+            id="plivo-cookie-save-preferences"
+            type="button"
+            class="rounded-md border border-gray-300 px-4 py-2.5 text-sm font-medium text-black transition-colors hover:bg-gray-50"
+          >
+            Save preferences
+          </button>
+          <button
+            id="plivo-cookie-modal-accept-all"
+            type="button"
+            class="rounded-md bg-black px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-gray-800"
+          >
+            Accept all
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script
+  is:inline
+  define:vars={{ consentVersion }}
+>
+  (function () {
+    var root = document.getElementById("plivo-cookie-consent-root");
+    if (!root) return;
+
+    var STORAGE_KEY = "plivo_cookie_preferences";
+    var LEGACY_KEY = "plivo_cookie_consent";
+    var banner = document.getElementById("plivo-cookie-banner");
+    var modal = document.getElementById("plivo-cookie-modal");
+    var settingsButton = document.getElementById("plivo-cookie-settings-button");
+    var analyticsInput = document.getElementById("plivo-cookie-analytics");
+    var marketingInput = document.getElementById("plivo-cookie-marketing");
+    var gtmContainerId = root.getAttribute("data-gtm-container-id") || "";
+    var allowedHosts = [];
+    var hubspotScriptSrc = root.getAttribute("data-hubspot-script-src") || "";
+
+    try {
+      allowedHosts = JSON.parse(root.getAttribute("data-gtm-allowed-hosts") || "[]");
+    } catch (error) {
+      allowedHosts = [];
+    }
+
+    function hostAllowed() {
+      if (!allowedHosts.length) return true;
+      return allowedHosts.indexOf(window.location.hostname) !== -1;
+    }
+
+    function getDefaultPreferences() {
+      return {
+        version: consentVersion,
+        necessary: true,
+        analytics: false,
+        marketing: false,
+        decidedAt: "",
+      };
+    }
+
+    function normalisePreferences(value) {
+      var defaults = getDefaultPreferences();
+      if (!value || typeof value !== "object") return defaults;
+      return {
+        version: value.version || consentVersion,
+        necessary: true,
+        analytics: Boolean(value.analytics),
+        marketing: Boolean(value.marketing),
+        decidedAt: value.decidedAt || "",
+      };
+    }
+
+    function readStoredPreferences() {
+      try {
+        var raw = localStorage.getItem(STORAGE_KEY);
+        if (raw) return normalisePreferences(JSON.parse(raw));
+      } catch (error) {}
+
+      try {
+        var legacy = localStorage.getItem(LEGACY_KEY);
+        if (legacy === "accepted") {
+          return {
+            version: consentVersion,
+            necessary: true,
+            analytics: true,
+            marketing: true,
+            decidedAt: "",
+          };
+        }
+        if (legacy === "rejected") {
+          return {
+            version: consentVersion,
+            necessary: true,
+            analytics: false,
+            marketing: false,
+            decidedAt: "",
+          };
+        }
+      } catch (error) {}
+
+      return null;
+    }
+
+    function storePreferences(preferences) {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(preferences));
+        localStorage.removeItem(LEGACY_KEY);
+      } catch (error) {}
+    }
+
+    function hasDecision(preferences) {
+      return Boolean(preferences && preferences.decidedAt);
+    }
+
+    function syncInputs(preferences) {
+      if (analyticsInput) analyticsInput.checked = Boolean(preferences.analytics);
+      if (marketingInput) marketingInput.checked = Boolean(preferences.marketing);
+    }
+
+    function openModal() {
+      syncInputs(currentPreferences || getDefaultPreferences());
+      if (modal) modal.hidden = false;
+      document.documentElement.style.overflow = "hidden";
+    }
+
+    function closeModal() {
+      if (modal) modal.hidden = true;
+      document.documentElement.style.overflow = "";
+    }
+
+    function showBanner() {
+      if (banner) banner.hidden = false;
+      if (settingsButton) settingsButton.hidden = true;
+    }
+
+    function hideBanner() {
+      if (banner) banner.hidden = true;
+      if (settingsButton) settingsButton.hidden = false;
+    }
+
+    function clearCookie(name, options) {
+      var suffix = "; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/; SameSite=Lax";
+      var cookie = name + "=;" + suffix;
+      document.cookie = cookie;
+
+      var hostname = window.location.hostname;
+      var parts = hostname.split(".");
+      if (parts.length > 1) {
+        var rootDomain = "." + parts.slice(-2).join(".");
+        document.cookie = name + "=;" + suffix + "; domain=" + rootDomain;
+        document.cookie = name + "=;" + suffix + "; domain=" + hostname;
+      }
+
+      if (options && options.secure) {
+        document.cookie = name + "=;" + suffix + "; Secure";
+      }
+    }
+
+    function clearCookiesByPrefix(prefixes) {
+      var cookies = document.cookie ? document.cookie.split(";") : [];
+      for (var i = 0; i < cookies.length; i++) {
+        var item = cookies[i].trim();
+        var separatorIndex = item.indexOf("=");
+        var name = separatorIndex >= 0 ? item.slice(0, separatorIndex) : item;
+        for (var j = 0; j < prefixes.length; j++) {
+          if (name === prefixes[j] || name.indexOf(prefixes[j]) === 0) {
+            clearCookie(name);
+            break;
+          }
+        }
+      }
+    }
+
+    function clearAnalyticsCookies() {
+      clearCookiesByPrefix(["_ga", "_gid", "_gat", "_gcl_"]);
+    }
+
+    function clearMarketingCookies() {
+      clearCookiesByPrefix([
+        "hubspotutk",
+        "__hssc",
+        "__hssrc",
+        "__hstc",
+        "messagesUtk",
+        "hs-messages-is-open",
+        "hs-messages-hide-welcome-message",
+      ]);
+    }
+
+    function pushConsentEvent(preferences) {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: "plivo_cookie_preferences_updated",
+        plivo_cookie_analytics: preferences.analytics ? "granted" : "denied",
+        plivo_cookie_marketing: preferences.marketing ? "granted" : "denied",
+      });
+    }
+
+    function loadGtmIfAllowed(preferences) {
+      if (!preferences.analytics) return;
+      if (!gtmContainerId || !hostAllowed()) return;
+      if (window.__plivoGtmLoaded || document.getElementById("plivo-gtm-script")) return;
+
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        "gtm.start": new Date().getTime(),
+        event: "gtm.js",
+      });
+      pushConsentEvent(preferences);
+
+      var script = document.createElement("script");
+      script.id = "plivo-gtm-script";
+      script.async = true;
+      script.src = "https://www.googletagmanager.com/gtm.js?id=" + encodeURIComponent(gtmContainerId);
+      document.head.appendChild(script);
+      window.__plivoGtmLoaded = true;
+    }
+
+    function loadHubSpotIfAllowed(preferences) {
+      if (!preferences.marketing) return;
+      if (!hubspotScriptSrc || !hostAllowed()) return;
+      if (window.__plivoHubSpotLoaded || document.getElementById("hs-script-loader")) return;
+
+      var script = document.createElement("script");
+      script.id = "hs-script-loader";
+      script.async = true;
+      script.defer = true;
+      script.src = hubspotScriptSrc;
+      document.body.appendChild(script);
+      window.__plivoHubSpotLoaded = true;
+    }
+
+    function applyPreferences(preferences, options) {
+      var nextPreferences = normalisePreferences(preferences);
+      var previousPreferences = currentPreferences;
+      var revokingAnalytics = Boolean(previousPreferences && previousPreferences.analytics && !nextPreferences.analytics);
+      var revokingMarketing = Boolean(previousPreferences && previousPreferences.marketing && !nextPreferences.marketing);
+
+      currentPreferences = nextPreferences;
+      syncInputs(nextPreferences);
+      storePreferences(nextPreferences);
+      hideBanner();
+      closeModal();
+
+      if (!nextPreferences.analytics) clearAnalyticsCookies();
+      if (!nextPreferences.marketing) clearMarketingCookies();
+
+      loadGtmIfAllowed(nextPreferences);
+      loadHubSpotIfAllowed(nextPreferences);
+
+      if (options && options.forceReloadOnRevoke && (revokingAnalytics || revokingMarketing)) {
+        window.location.reload();
+        return;
+      }
+    }
+
+    function createPreferences(overrides) {
+      var defaults = getDefaultPreferences();
+      return {
+        version: consentVersion,
+        necessary: true,
+        analytics: Boolean(overrides.analytics),
+        marketing: Boolean(overrides.marketing),
+        decidedAt: new Date().toISOString(),
+      };
+    }
+
+    function saveFromInputs() {
+      applyPreferences(
+        createPreferences({
+          analytics: analyticsInput && analyticsInput.checked,
+          marketing: marketingInput && marketingInput.checked,
+        }),
+        { forceReloadOnRevoke: true },
+      );
+    }
+
+    var currentPreferences = readStoredPreferences();
+
+    if (currentPreferences && !hasDecision(currentPreferences)) {
+      currentPreferences.decidedAt = new Date().toISOString();
+      storePreferences(currentPreferences);
+    }
+
+    if (currentPreferences) {
+      hideBanner();
+      syncInputs(currentPreferences);
+      if (!currentPreferences.analytics) clearAnalyticsCookies();
+      if (!currentPreferences.marketing) clearMarketingCookies();
+      loadGtmIfAllowed(currentPreferences);
+      loadHubSpotIfAllowed(currentPreferences);
+    } else {
+      showBanner();
+      syncInputs(getDefaultPreferences());
+    }
+
+    var acceptAllButtons = [
+      document.getElementById("plivo-cookie-accept-all"),
+      document.getElementById("plivo-cookie-modal-accept-all"),
+    ];
+
+    for (var index = 0; index < acceptAllButtons.length; index++) {
+      var acceptButton = acceptAllButtons[index];
+      if (!acceptButton) continue;
+      acceptButton.addEventListener("click", function () {
+        applyPreferences(
+          createPreferences({ analytics: true, marketing: true }),
+          { forceReloadOnRevoke: false },
+        );
+      });
+    }
+
+    var rejectAllButton = document.getElementById("plivo-cookie-reject-all");
+    if (rejectAllButton) {
+      rejectAllButton.addEventListener("click", function () {
+        applyPreferences(
+          createPreferences({ analytics: false, marketing: false }),
+          { forceReloadOnRevoke: true },
+        );
+      });
+    }
+
+    var openPreferencesButton = document.getElementById("plivo-cookie-open-preferences");
+    if (openPreferencesButton) {
+      openPreferencesButton.addEventListener("click", openModal);
+    }
+
+    if (settingsButton) {
+      settingsButton.addEventListener("click", openModal);
+    }
+
+    var savePreferencesButton = document.getElementById("plivo-cookie-save-preferences");
+    if (savePreferencesButton) {
+      savePreferencesButton.addEventListener("click", saveFromInputs);
+    }
+
+    var closeModalButton = document.getElementById("plivo-cookie-close-modal");
+    if (closeModalButton) {
+      closeModalButton.addEventListener("click", closeModal);
+    }
+
+    if (modal) {
+      modal.addEventListener("click", function (event) {
+        if (event.target === modal) closeModal();
+      });
+    }
+
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape" && modal && !modal.hidden) {
+        closeModal();
+      }
+    });
+
+    document.addEventListener("click", function (event) {
+      var target = event.target;
+      if (!(target instanceof Element)) return;
+      var trigger = target.closest("[data-cookie-settings]");
+      if (!trigger) return;
+      event.preventDefault();
+      openModal();
+    });
+
+    window.PlivoCookieConsent = {
+      openPreferences: openModal,
+      getPreferences: function () {
+        return currentPreferences || getDefaultPreferences();
+      },
+    };
+  })();
+</script>

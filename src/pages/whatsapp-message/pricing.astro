@@ -1,0 +1,24 @@
+---
+import PlivoLayout from "@/layouts/PlivoLayout.astro";
+import WhatsAppSubNav from "@/components/sections/whatsapp-channel/WhatsAppSubNav.astro";
+import WhatsAppChatPricing from "@/components/sections/whatsapp-channel/WhatsAppChatPricing";
+import WhatsAppPricingVolumeCTA from "@/components/sections/whatsapp-channel/WhatsAppPricingVolumeCTA";
+import WhatsAppPricingFAQ from "@/components/sections/whatsapp-channel/WhatsAppPricingFAQ";
+import { getWhatsAppChatPricingMeta } from "@/data/whatsapp-chat-pricing";
+
+const { title, description } = getWhatsAppChatPricingMeta();
+---
+
+<PlivoLayout title={title} description={description}>
+  <!-- WhatsApp Sub Navigation -->
+  <WhatsAppSubNav currentPage="chat-pricing" />
+
+  <!-- WhatsApp Chat Pricing with Country Selection -->
+  <WhatsAppChatPricing client:visible />
+
+  <!-- Volume Pricing CTA -->
+  <WhatsAppPricingVolumeCTA />
+
+  <!-- Pricing FAQ -->
+  <WhatsAppPricingFAQ />
+</PlivoLayout>

@@ -1,0 +1,39 @@
+{
+  "country": "Lao People's Democratic Republic",
+  "country_iso": "LA",
+  "zentrunk": {
+    "local": {
+      "outbound": {
+        "network_group_rates": {
+          "0.0982": [
+            "Laos",
+            "Laos Mobile"
+          ]
+        },
+        "rate": "0.0982",
+        "rates": {
+          "0.0982": [
+            "856",
+            "85620",
+            "856307"
+          ]
+        },
+        "tollfree_rate": "NA"
+      }
+    },
+    "outbound": {
+      "network_groups": {
+        "Laos": "0.0982",
+        "Laos Mobile": "0.0982"
+      },
+      "rates": {
+        "Fixed": [
+          "0.0982"
+        ],
+        "Mobile": [
+          "0.0982"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,130 @@
+{
+  "api_id": "1a58b442-2e6b-11f1-8590-0242ac110007",
+  "country": "Timor Leste",
+  "country_code": 670,
+  "country_iso": "TL",
+  "mms": {
+    "longcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "phone_numbers": [],
+  "sms": {
+    "longcode": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.04837",
+        "rates": {
+          "Telin Telcomcel": "0.19352",
+          "Timor Telecom": "0.04837",
+          "Timor-Leste": "0.13662",
+          "Viettel Telmor": "0.39963"
+        }
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": "0.00000",
+        "rental": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "voice": {
+    "add_on_pricing": {
+      "audio_streaming_rate": 0.004,
+      "mpc_rate": 0,
+      "recording_storage_rate": 0.0004,
+      "speech_recognition": 0.02,
+      "transcription_charge": 0.0095,
+      "webrtc_rate": 0.0033
+    },
+    "ip": {
+      "inbound": {
+        "rate": "0.00330",
+        "rental": null
+      },
+      "outbound": {
+        "rates": {
+          "all": "0.00330"
+        }
+      }
+    },
+    "local": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.85120",
+        "rates": [
+          {
+            "destination_prefix": [
+              "670"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.85120",
+            "voice_network_group": "East Timor",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "6707",
+              "67073",
+              "67074"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.85120",
+            "voice_network_group": "East Timor - Mobile",
+            "voice_unit": 60
+          }
+        ]
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.00000",
+        "rates": null
+      }
+    }
+  }
+}

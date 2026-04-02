@@ -1,0 +1,188 @@
+{
+  "api_id": "fcaaca38-2e6b-11f1-a084-0242ac110003",
+  "country": "Kenya",
+  "country_code": 254,
+  "country_iso": "KE",
+  "mms": {
+    "longcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "phone_numbers": [],
+  "sms": {
+    "longcode": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.13980",
+        "rates": {
+          "Kenya - Airtel": "0.71000",
+          "Kenya - Essar Telecom Kenya": "0.28670",
+          "Kenya - Safaricom (GSM)": "0.13980",
+          "Kenya - Telkom Kenya Ltd (Orange)": "0.60250",
+          "Kenya-Econet": "0.16378",
+          "Kenya-Jamii Telecommunications": "0.20000",
+          "Kenya-Other": "0.28670"
+        }
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": "0.00000",
+        "rental": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "voice": {
+    "add_on_pricing": {
+      "audio_streaming_rate": 0.004,
+      "mpc_rate": 0,
+      "recording_storage_rate": 0.0004,
+      "speech_recognition": 0.02,
+      "transcription_charge": 0.0095,
+      "webrtc_rate": 0.0033
+    },
+    "ip": {
+      "inbound": {
+        "rate": "0.00330",
+        "rental": null
+      },
+      "outbound": {
+        "rates": {
+          "all": "0.00330"
+        }
+      }
+    },
+    "local": {
+      "inbound": {
+        "rate": "0.02300",
+        "rental": "11.11000"
+      },
+      "outbound": {
+        "rate": "0.38100",
+        "rates": [
+          {
+            "destination_prefix": [
+              "2547",
+              "254747",
+              "25477"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.38100",
+            "voice_network_group": "Kenya - Mobile",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "25470",
+              "25471",
+              "25472",
+              "25473",
+              "254740",
+              "254741",
+              "254742",
+              "254743",
+              "254745",
+              "254746",
+              "254748",
+              "254750",
+              "254751",
+              "254752",
+              "254753",
+              "254754",
+              "254755",
+              "254756",
+              "254757",
+              "254758",
+              "254759",
+              "254760",
+              "254763",
+              "254764",
+              "254765",
+              "254767",
+              "25478",
+              "25479"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.45100",
+            "voice_network_group": "Kenya - Mobile - Major Carriers (Safaricom, Airtel)",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "25420479",
+              "254206180304",
+              "254207608203",
+              "254207608290",
+              "254207608312",
+              "254207608600",
+              "25423555"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "1.06100",
+            "voice_network_group": "Kenya - Premium Services",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "254"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.38100",
+            "voice_network_group": "Kenya",
+            "voice_unit": 60
+          }
+        ]
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.00000",
+        "rates": null
+      }
+    }
+  }
+}

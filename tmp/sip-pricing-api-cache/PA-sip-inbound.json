@@ -1,0 +1,38 @@
+{
+  "country": "Panama",
+  "country_iso": "PA",
+  "zentrunk": {
+    "inbound": {
+      "number_groups": {
+        "Panama Local Voice": "0.0063",
+        "Panama Tollfree Voice": "0.0517",
+        "Panama national Voice": "0.0063"
+      },
+      "rates": {
+        "local": [
+          "0.0063"
+        ],
+        "national": [
+          "0.0063"
+        ],
+        "tollfree": [
+          "0.0517"
+        ]
+      }
+    },
+    "local": {
+      "inbound": {
+        "number_group_rates": {
+          "0.0063": [
+            "Panama national Voice"
+          ],
+          "0.0517": [
+            "Panama Tollfree Voice"
+          ]
+        },
+        "rate": "0.0063",
+        "tollfree_rate": "0.0517"
+      }
+    }
+  }
+}

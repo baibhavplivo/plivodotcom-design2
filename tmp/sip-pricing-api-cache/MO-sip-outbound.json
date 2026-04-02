@@ -1,0 +1,42 @@
+{
+  "country": "Macao",
+  "country_iso": "MO",
+  "zentrunk": {
+    "local": {
+      "outbound": {
+        "network_group_rates": {
+          "1": [
+            "Macao"
+          ],
+          "0.91": [
+            "Macao - Mobile"
+          ]
+        },
+        "rate": "0.91",
+        "rates": {
+          "1": [
+            "853"
+          ],
+          "0.91": [
+            "8536"
+          ]
+        },
+        "tollfree_rate": "NA"
+      }
+    },
+    "outbound": {
+      "network_groups": {
+        "Macao": "1",
+        "Macao - Mobile": "0.91"
+      },
+      "rates": {
+        "Fixed": [
+          "1"
+        ],
+        "Mobile": [
+          "0.91"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,212 @@
+{
+  "api_id": "a97d7b26-2e6b-11f1-a7be-0242ac110003",
+  "country": "Slovakia",
+  "country_code": 421,
+  "country_iso": "SK",
+  "mms": {
+    "longcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "phone_numbers": [
+    {
+      "capabilities": [
+        "voice"
+      ],
+      "cnam_lookup_rate": "0.00000",
+      "country": "Slovakia",
+      "country_code": 421,
+      "country_iso": "SK",
+      "effective_date": "2018-04-09",
+      "inbound_mms_rate": "0.00000",
+      "inbound_sms_rate": "0.00000",
+      "inbound_voice_rate": "0.00850",
+      "number_type": "Local",
+      "rental_rate": "1.50000",
+      "setup_rate": "0.00000",
+      "status": "GA"
+    },
+    {
+      "capabilities": [
+        "voice"
+      ],
+      "cnam_lookup_rate": "0.00000",
+      "country": "Slovakia",
+      "country_code": 421,
+      "country_iso": "SK",
+      "effective_date": "2018-05-29",
+      "inbound_mms_rate": "0.00000",
+      "inbound_sms_rate": "0.00000",
+      "inbound_voice_rate": "0.27960",
+      "number_type": "Tollfree",
+      "rental_rate": "21.25000",
+      "setup_rate": "0.00000",
+      "status": "BETA"
+    }
+  ],
+  "sms": {
+    "longcode": {
+      "inbound": {
+        "rate": "0.00000",
+        "rental": "25.00000"
+      },
+      "outbound": {
+        "rate": "0.07713",
+        "rates": {
+          "Slovakia - Orange": "0.08167",
+          "Slovakia - T Mobile": "0.07713",
+          "Slovakia - Telefonica O2": "0.08543",
+          "Slovakia-Swan  4ka": "0.08543"
+        }
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": "0.00000",
+        "rental": "25.00000"
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "voice": {
+    "add_on_pricing": {
+      "audio_streaming_rate": 0.004,
+      "mpc_rate": 0,
+      "recording_storage_rate": 0.0004,
+      "speech_recognition": 0.02,
+      "transcription_charge": 0.0095,
+      "webrtc_rate": 0.0033
+    },
+    "ip": {
+      "inbound": {
+        "rate": "0.00330",
+        "rental": null
+      },
+      "outbound": {
+        "rates": {
+          "all": "0.00330"
+        }
+      }
+    },
+    "local": {
+      "inbound": {
+        "rate": "0.00850",
+        "rental": "1.50000"
+      },
+      "outbound": {
+        "rate": "0.00720",
+        "rates": [
+          {
+            "destination_prefix": [
+              "421",
+              "42118"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.00720",
+            "voice_network_group": "Slovakia",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "421913"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.00720",
+            "voice_network_group": "Slovakia - Mobile",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "421901",
+              "421902",
+              "421903",
+              "421904",
+              "421905",
+              "421906",
+              "421907",
+              "421908",
+              "421909",
+              "421910",
+              "421911",
+              "421912",
+              "421914",
+              "421915",
+              "421916",
+              "421917",
+              "421918",
+              "421919",
+              "421940",
+              "421944",
+              "421945",
+              "421947",
+              "421948",
+              "421949",
+              "421950",
+              "421951"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.04060",
+            "voice_network_group": "Slovakia - Mobile - Major Carriers (O2, Orange, Slovak Telecom, SWAN)",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "421650700",
+              "421650906"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "1.06100",
+            "voice_network_group": "Slovakia - Premium Services",
+            "voice_unit": 60
+          }
+        ]
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": "0.27960",
+        "rental": "21.25000"
+      },
+      "outbound": {
+        "rate": "0.00000",
+        "rates": null
+      }
+    }
+  }
+}

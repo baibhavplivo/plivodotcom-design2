@@ -1,0 +1,182 @@
+{
+  "api_id": "37344062-2e6c-11f1-921b-0242ac110007",
+  "country": "Uganda",
+  "country_code": 256,
+  "country_iso": "UG",
+  "mms": {
+    "longcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "phone_numbers": [],
+  "sms": {
+    "longcode": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.15950",
+        "rates": {
+          "Uganda - Airtel Uganda LTD": "0.35410",
+          "Uganda - MTN (Uganda) Ltd": "0.20510",
+          "Uganda - Orange Uganda": "0.15950",
+          "Uganda - Smile Communications Uganda Ltd": "0.28800",
+          "Uganda - Uganda Telecom Ltd": "0.41150",
+          "Uganda - Warid Telecom Uganda": "0.28800",
+          "Uganda-Others": "0.28800"
+        }
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": "0.00000",
+        "rental": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "voice": {
+    "add_on_pricing": {
+      "audio_streaming_rate": 0.004,
+      "mpc_rate": 0,
+      "recording_storage_rate": 0.0004,
+      "speech_recognition": 0.02,
+      "transcription_charge": 0.0095,
+      "webrtc_rate": 0.0033
+    },
+    "ip": {
+      "inbound": {
+        "rate": "0.00330",
+        "rental": null
+      },
+      "outbound": {
+        "rates": {
+          "all": "0.00330"
+        }
+      }
+    },
+    "local": {
+      "inbound": {
+        "rate": "0.04300",
+        "rental": "22.22000"
+      },
+      "outbound": {
+        "rate": "0.54690",
+        "rates": [
+          {
+            "destination_prefix": [
+              "256",
+              "256200",
+              "256201",
+              "2562025",
+              "2562026",
+              "2562027",
+              "2562028",
+              "2562029",
+              "25620300",
+              "25620301",
+              "25620302",
+              "25620303",
+              "25620304",
+              "25630",
+              "25631",
+              "25633",
+              "25634",
+              "25635",
+              "25636",
+              "25637",
+              "25638"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.61640",
+            "voice_network_group": "Uganda",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "2562065",
+              "2562066",
+              "2562067",
+              "2562068",
+              "2562069",
+              "256477",
+              "25671",
+              "256720",
+              "256723",
+              "2567260",
+              "25674"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.63680",
+            "voice_network_group": "Uganda - Mobile",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "25632",
+              "25639",
+              "25670",
+              "256730",
+              "2567330",
+              "2567331",
+              "2567332",
+              "25675",
+              "25677",
+              "25678",
+              "25679"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.54690",
+            "voice_network_group": "Uganda - Mobile - Major Carriers (MTN, Airtel, Africell,Gemtel, K2 Telecom, Lycatel)",
+            "voice_unit": 60
+          }
+        ]
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.00000",
+        "rates": null
+      }
+    }
+  }
+}

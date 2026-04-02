@@ -1,0 +1,35 @@
+{
+  "country": "Belgium",
+  "country_iso": "BE",
+  "zentrunk": {
+    "inbound": {
+      "number_groups": {
+        "Belgium Tollfree Voice": "0.2591",
+        "Belgium local Voice": "0.003",
+        "Belgium local Voice & SMS": "0.003"
+      },
+      "rates": {
+        "local": [
+          "0.003"
+        ],
+        "tollfree": [
+          "0.2591"
+        ]
+      }
+    },
+    "local": {
+      "inbound": {
+        "number_group_rates": {
+          "0.003": [
+            "Belgium local Voice & SMS"
+          ],
+          "0.2591": [
+            "Belgium Tollfree Voice"
+          ]
+        },
+        "rate": "0.003",
+        "tollfree_rate": "0.2591"
+      }
+    }
+  }
+}

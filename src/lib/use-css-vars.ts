@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
 export function useCssVar(varName: string, el?: HTMLElement | null) {
-  const [value, setValue] = useState<string>('');
+  const [value, setValue] = useState<string>("");
 
   useEffect(() => {
     const target = el ?? document.documentElement;
@@ -14,22 +14,22 @@ export function useCssVar(varName: string, el?: HTMLElement | null) {
 
     compute();
     const onResize = () => compute();
-    window.addEventListener('resize', onResize, { passive: true });
+    window.addEventListener("resize", onResize, { passive: true });
 
     const mo = new MutationObserver(() => compute());
     mo.observe(document.documentElement, {
       attributes: true,
-      attributeFilter: ['class'],
+      attributeFilter: ["class"],
     });
 
-    const mql = window.matchMedia('(prefers-color-scheme: dark)');
+    const mql = window.matchMedia("(prefers-color-scheme: dark)");
     const onMql = () => compute();
-    mql.addEventListener?.('change', onMql);
+    mql.addEventListener?.("change", onMql);
 
     return () => {
-      window.removeEventListener('resize', onResize);
+      window.removeEventListener("resize", onResize);
       mo.disconnect();
-      mql.removeEventListener?.('change', onMql);
+      mql.removeEventListener?.("change", onMql);
     };
   }, [varName, el]);
 

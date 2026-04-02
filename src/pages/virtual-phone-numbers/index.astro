@@ -1,0 +1,29 @@
+---
+import PlivoLayout from "@/layouts/PlivoLayout.astro";
+import PhoneNumbersSubNav from "@/components/sections/phone-numbers/PhoneNumbersSubNav.astro";
+import PhoneNumbersHero from "@/components/sections/phone-numbers/PhoneNumbersHero.astro";
+import ClientLogos from "@/components/sections/voice-homepage/ClientLogos.astro";
+import PhoneNumbersUseCases from "@/components/sections/phone-numbers/PhoneNumbersUseCases";
+import PhoneNumberTypes from "@/components/sections/phone-numbers/PhoneNumberTypes";
+import PhoneNumbersPricing from "@/components/sections/phone-numbers/PhoneNumbersPricing";
+import PhoneNumbersFeatures from "@/components/sections/phone-numbers/PhoneNumbersFeatures";
+import PhoneNumbersWhyPlivo from "@/components/sections/phone-numbers/PhoneNumbersWhyPlivo";
+import PhoneNumbersFAQ from "@/components/sections/phone-numbers/PhoneNumbersFAQ";
+import PhoneNumbersPreFooterCTA from "@/components/sections/phone-numbers/PhoneNumbersPreFooterCTA";
+---
+
+<PlivoLayout
+  title="Phone Numbers"
+  description="Instantly buy local, mobile, and toll-free numbers in more than 65 countries using Plivo's API and console."
+>
+  <PhoneNumbersSubNav currentPage="overview" />
+  <PhoneNumbersHero />
+  <ClientLogos />
+  <PhoneNumbersUseCases client:visible />
+  <PhoneNumberTypes client:visible />
+  <PhoneNumbersPricing client:visible />
+  <PhoneNumbersFeatures client:visible />
+  <PhoneNumbersWhyPlivo client:visible />
+  <PhoneNumbersFAQ client:visible />
+  <PhoneNumbersPreFooterCTA client:visible />
+</PlivoLayout>

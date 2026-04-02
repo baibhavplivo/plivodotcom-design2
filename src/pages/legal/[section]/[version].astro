@@ -1,0 +1,21 @@
+---
+import PlivoLayout from "@/layouts/PlivoLayout.astro";
+import SyncedLegalPage from "@/components/sections/legal/SyncedLegalPage";
+import { legalArchiveRoutes } from "@/data/legal/archive-routes";
+
+export function getStaticPaths() {
+  return legalArchiveRoutes.map((route) => ({
+    params: {
+      section: route.section,
+      version: route.version,
+    },
+    props: route,
+  }));
+}
+
+const { activePage, pageKey, title, description } = Astro.props;
+---
+
+<PlivoLayout title={title} description={description}>
+  <SyncedLegalPage activePage={activePage} pageKey={pageKey} />
+</PlivoLayout>

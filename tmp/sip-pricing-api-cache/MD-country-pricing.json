@@ -1,0 +1,218 @@
+{
+  "api_id": "8913fb26-2e6b-11f1-8f3c-0242ac110007",
+  "country": "Moldova",
+  "country_code": 373,
+  "country_iso": "MD",
+  "mms": {
+    "longcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "phone_numbers": [],
+  "sms": {
+    "longcode": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.08821",
+        "rates": {
+          "Moldova - Eventis Mobile": "0.13890",
+          "Moldova - MoldCell": "0.19440",
+          "Moldova - Moldtelecom": "0.11560",
+          "Moldova - Orange Moldova": "0.09600",
+          "Moldova, Republic Of-IDC": "0.08821",
+          "Moldova, Republic Of-Unite": "0.08821",
+          "Moldova-All Networks": "0.08821"
+        }
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": "0.00000",
+        "rental": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "voice": {
+    "add_on_pricing": {
+      "audio_streaming_rate": 0.004,
+      "mpc_rate": 0,
+      "recording_storage_rate": 0.0004,
+      "speech_recognition": 0.02,
+      "transcription_charge": 0.0095,
+      "webrtc_rate": 0.0033
+    },
+    "ip": {
+      "inbound": {
+        "rate": "0.00330",
+        "rental": null
+      },
+      "outbound": {
+        "rates": {
+          "all": "0.00330"
+        }
+      }
+    },
+    "local": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.37580",
+        "rates": [
+          {
+            "destination_prefix": [
+              "373",
+              "37321",
+              "3735"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.45120",
+            "voice_network_group": "Moldova",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "37377"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.37580",
+            "voice_network_group": "Moldova - Mobile",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "37360",
+              "373610",
+              "373611",
+              "373620",
+              "373621",
+              "37367",
+              "37368",
+              "37369",
+              "37376",
+              "37378",
+              "37379"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.52400",
+            "voice_network_group": "Moldova - Mobile - Major Carriers (Orange, Moldcell)",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "37322208068",
+              "37322208191",
+              "3732537017",
+              "37325371842",
+              "37329921370",
+              "37329921449",
+              "37329921498",
+              "37329921519",
+              "37329921622",
+              "37330004",
+              "37330310",
+              "37349964827",
+              "37390002",
+              "37390003",
+              "37390004",
+              "37390015",
+              "37390016",
+              "37390035",
+              "37390036",
+              "37390037",
+              "37390038",
+              "37390039",
+              "37390040",
+              "37390041",
+              "37390042",
+              "37390043",
+              "37390044",
+              "37390045",
+              "373900667",
+              "373900668",
+              "373900669",
+              "37390067",
+              "37390068",
+              "37390069",
+              "37390070",
+              "37390071",
+              "37390072",
+              "37390073",
+              "37390074",
+              "37390075",
+              "373900760",
+              "373900761",
+              "373900762",
+              "373900763",
+              "373900764",
+              "373900765",
+              "373900766",
+              "37390078",
+              "37390500",
+              "373905010",
+              "37390511",
+              "37390512",
+              "37390516",
+              "37390616"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "1.14100",
+            "voice_network_group": "Moldova - Premium Services",
+            "voice_unit": 60
+          }
+        ]
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.00000",
+        "rates": null
+      }
+    }
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "country": "Central African Republic",
+  "country_iso": "CF",
+  "zentrunk": {
+    "local": {
+      "outbound": {
+        "network_group_rates": {
+          "0.695": [
+            "Central African Republic"
+          ],
+          "0.933": [
+            "Central African Republic - Mobile"
+          ],
+          "1.198": [
+            "Central African Republic - Premium Services"
+          ]
+        },
+        "rate": "0.695",
+        "rates": {
+          "0.695": [
+            "236"
+          ],
+          "0.933": [
+            "23670",
+            "23672",
+            "23675",
+            "23677"
+          ],
+          "1.198": [
+            "23621",
+            "23622",
+            "23636",
+            "23674"
+          ]
+        },
+        "tollfree_rate": "NA"
+      }
+    },
+    "outbound": {
+      "network_groups": {
+        "Central African Republic": "0.695",
+        "Central African Republic - Mobile": "0.933",
+        "Central African Republic - Premium Services": "1.198"
+      },
+      "rates": {
+        "Fixed": [
+          "0.695"
+        ],
+        "Mobile": [
+          "0.933"
+        ],
+        "Others": [
+          "1.198"
+        ]
+      }
+    }
+  }
+}

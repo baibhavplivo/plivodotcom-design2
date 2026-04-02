@@ -1,0 +1,142 @@
+{
+  "api_id": "d2e823d0-2e6b-11f1-a7be-0242ac110003",
+  "country": "Cape Verde",
+  "country_code": 238,
+  "country_iso": "CV",
+  "mms": {
+    "longcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "phone_numbers": [],
+  "sms": {
+    "longcode": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.17071",
+        "rates": {
+          "Cape Verde - Cabo Verde Movel": "0.17071",
+          "Cape Verde - TPlus Telecom": "0.26561",
+          "Cape Verde-Others": "0.26504"
+        }
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": "0.00000",
+        "rental": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "voice": {
+    "add_on_pricing": {
+      "audio_streaming_rate": 0.004,
+      "mpc_rate": 0,
+      "recording_storage_rate": 0.0004,
+      "speech_recognition": 0.02,
+      "transcription_charge": 0.0095,
+      "webrtc_rate": 0.0033
+    },
+    "ip": {
+      "inbound": {
+        "rate": "0.00330",
+        "rental": null
+      },
+      "outbound": {
+        "rates": {
+          "all": "0.00330"
+        }
+      }
+    },
+    "local": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.26880",
+        "rates": [
+          {
+            "destination_prefix": [
+              "238"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.26880",
+            "voice_network_group": "Cape Verde",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "23833",
+              "23836",
+              "23843",
+              "23846",
+              "23851",
+              "23852",
+              "23853",
+              "23858",
+              "23859",
+              "23891",
+              "23892",
+              "23893",
+              "23895",
+              "23897",
+              "23898",
+              "23899"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.40570",
+            "voice_network_group": "Cape Verde - Mobile",
+            "voice_unit": 60
+          }
+        ]
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.00000",
+        "rates": null
+      }
+    }
+  }
+}

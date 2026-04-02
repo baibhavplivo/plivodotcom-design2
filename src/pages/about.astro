@@ -1,10 +1,8 @@
 ---
-import DefaultLayout from '@/layouts/DefaultLayout.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
-
-import { AboutSection } from '@/components/sections/about-section';
+import PlivoLayout from '@/layouts/PlivoLayout.astro';
+import AboutPage from '@/components/sections/about/AboutPage';
 ---
 
-<DefaultLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
- <AboutSection />
-</DefaultLayout>
+<PlivoLayout title="About" description="Plivo's mission is to simplify customer engagement. Founded in 2011, profitable since 2015, serving 190+ countries with 1B+ API requests per month.">
+  <AboutPage client:load />
+</PlivoLayout>

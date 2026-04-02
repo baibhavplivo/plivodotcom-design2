@@ -1,0 +1,303 @@
+{
+  "api_id": "0b28ddbc-2e6b-11f1-921b-0242ac110007",
+  "country": "Malaysia",
+  "country_code": 60,
+  "country_iso": "MY",
+  "mms": {
+    "longcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "phone_numbers": [
+    {
+      "capabilities": [
+        "voice"
+      ],
+      "cnam_lookup_rate": "0.00000",
+      "country": "Malaysia",
+      "country_code": 60,
+      "country_iso": "MY",
+      "effective_date": "2018-04-09",
+      "inbound_mms_rate": "0.00000",
+      "inbound_sms_rate": "0.00000",
+      "inbound_voice_rate": "0.00850",
+      "number_type": "Local",
+      "rental_rate": "18.00000",
+      "setup_rate": "0.00000",
+      "status": "BETA"
+    }
+  ],
+  "sms": {
+    "longcode": {
+      "inbound": {
+        "rate": "0.00000",
+        "rental": "30.25000"
+      },
+      "outbound": {
+        "rate": "0.03157",
+        "rates": {
+          "Malaysia - Baraka Telecom Sdn Bhd": "0.60310",
+          "Malaysia - Celcom": "0.25672",
+          "Malaysia - DiGi Telecom": "0.29372",
+          "Malaysia - Maxis": "0.24520",
+          "Malaysia - Other": "0.25330",
+          "Malaysia - Packet One Network Sdn Bhd": "0.03157",
+          "Malaysia - Samata Communications": "0.75616",
+          "Malaysia - Talk Focus": "0.25330",
+          "Malaysia - Telekom Malaysia Berhad": "0.25330",
+          "Malaysia - U Mobile": "0.24250",
+          "Malaysia - YTL Communications Sdn Bhd": "0.03282",
+          "Tune Talk Sdn Bhd": "0.23710"
+        }
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": "0.00000",
+        "rental": "30.25000"
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "voice": {
+    "add_on_pricing": {
+      "audio_streaming_rate": 0.004,
+      "mpc_rate": 0,
+      "recording_storage_rate": 0.0004,
+      "speech_recognition": 0.02,
+      "transcription_charge": 0.0095,
+      "webrtc_rate": 0.0033
+    },
+    "ip": {
+      "inbound": {
+        "rate": "0.00330",
+        "rental": null
+      },
+      "outbound": {
+        "rates": {
+          "all": "0.00330"
+        }
+      }
+    },
+    "local": {
+      "inbound": {
+        "rate": "0.00850",
+        "rental": "18.00000"
+      },
+      "outbound": {
+        "rate": "0.04440",
+        "rates": [
+          {
+            "destination_prefix": [
+              "60",
+              "603",
+              "607"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.04440",
+            "voice_network_group": "Malaysia",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "601",
+              "601017",
+              "60102",
+              "601030",
+              "601031",
+              "601032",
+              "601033",
+              "601034",
+              "601036",
+              "601037",
+              "601038",
+              "601039",
+              "601040",
+              "601041",
+              "601042",
+              "601043",
+              "601046",
+              "601050",
+              "601051",
+              "601052",
+              "601053",
+              "601054",
+              "601056",
+              "601057",
+              "601058",
+              "601059",
+              "601066",
+              "601070",
+              "601071",
+              "601076",
+              "601077",
+              "601078",
+              "601079",
+              "601080",
+              "601081",
+              "601082",
+              "601083",
+              "601084",
+              "601085",
+              "601086",
+              "601087",
+              "601088",
+              "601089",
+              "601090",
+              "601091",
+              "601092",
+              "601093",
+              "601094",
+              "601095",
+              "601096",
+              "601097",
+              "601098",
+              "601110",
+              "601111",
+              "601112",
+              "601113",
+              "601114",
+              "601115",
+              "601116",
+              "601117",
+              "601118",
+              "601119",
+              "601120",
+              "601121",
+              "601122",
+              "601123",
+              "601124",
+              "601125",
+              "601126",
+              "601127",
+              "601128",
+              "601129",
+              "601131",
+              "601132",
+              "601133",
+              "601134",
+              "601135",
+              "601136",
+              "601137",
+              "601138",
+              "601139",
+              "601140",
+              "601141",
+              "601142",
+              "601144",
+              "601145",
+              "601146",
+              "601147",
+              "601149",
+              "601150",
+              "601151",
+              "601152",
+              "601153",
+              "601154",
+              "601155",
+              "601156",
+              "601157",
+              "601158",
+              "601159",
+              "601164",
+              "601169",
+              "601170",
+              "601171",
+              "6012",
+              "6013",
+              "60142",
+              "60143",
+              "601440",
+              "60145",
+              "60146",
+              "60147",
+              "60148",
+              "60149",
+              "601548",
+              "60159",
+              "601591",
+              "601596",
+              "6016",
+              "6017",
+              "601812",
+              "60182",
+              "601831",
+              "601832",
+              "601835",
+              "601836",
+              "601837",
+              "601838",
+              "601839",
+              "601840",
+              "601846",
+              "601847",
+              "601857",
+              "601866",
+              "601876",
+              "601877",
+              "601878",
+              "601879",
+              "601887",
+              "601890",
+              "601891",
+              "601892",
+              "601893",
+              "601894",
+              "601895",
+              "601896",
+              "601897",
+              "601898",
+              "6019"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.07140",
+            "voice_network_group": "Malaysia - Mobile",
+            "voice_unit": 60
+          }
+        ]
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.00000",
+        "rates": null
+      }
+    }
+  }
+}

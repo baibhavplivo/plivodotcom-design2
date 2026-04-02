@@ -1,0 +1,51 @@
+{
+  "country": "Guinea-Bissau",
+  "country_iso": "GW",
+  "zentrunk": {
+    "local": {
+      "outbound": {
+        "network_group_rates": {
+          "0.8552": [
+            "Guinea-Bissau",
+            "Guinea-Bissau - Mobile"
+          ],
+          "1.248": [
+            "Guinea-Bissau - Premium Services"
+          ]
+        },
+        "rate": "0.8552",
+        "rates": {
+          "0.8552": [
+            "245",
+            "2457",
+            "24595",
+            "24596",
+            "24597"
+          ],
+          "1.248": [
+            "24540"
+          ]
+        },
+        "tollfree_rate": "NA"
+      }
+    },
+    "outbound": {
+      "network_groups": {
+        "Guinea-Bissau": "0.8552",
+        "Guinea-Bissau - Mobile": "0.8552",
+        "Guinea-Bissau - Premium Services": "1.248"
+      },
+      "rates": {
+        "Fixed": [
+          "0.8552"
+        ],
+        "Mobile": [
+          "0.8552"
+        ],
+        "Others": [
+          "1.248"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "country": "Andorra",
+  "country_iso": "AD",
+  "zentrunk": {
+    "local": {
+      "outbound": {
+        "network_group_rates": {
+          "0.0462": [
+            "Andorra"
+          ],
+          "0.2953": [
+            "Andorra - Mobile"
+          ]
+        },
+        "rate": "0.0462",
+        "rates": {
+          "0.0462": [
+            "376"
+          ],
+          "0.2953": [
+            "3763",
+            "3765",
+            "3766"
+          ]
+        },
+        "tollfree_rate": "NA"
+      }
+    },
+    "outbound": {
+      "network_groups": {
+        "Andorra": "0.0462",
+        "Andorra - Mobile": "0.2953"
+      },
+      "rates": {
+        "Fixed": [
+          "0.0462"
+        ],
+        "Mobile": [
+          "0.2953"
+        ]
+      }
+    }
+  }
+}

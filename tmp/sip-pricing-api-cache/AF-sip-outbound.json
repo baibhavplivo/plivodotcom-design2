@@ -1,0 +1,47 @@
+{
+  "country": "Afghanistan",
+  "country_iso": "AF",
+  "zentrunk": {
+    "local": {
+      "outbound": {
+        "network_group_rates": {
+          "0.378": [
+            "Afghanistan",
+            "Afghanistan - Mobile"
+          ]
+        },
+        "rate": "0.378",
+        "rates": {
+          "0.378": [
+            "93",
+            "9370",
+            "9371",
+            "9372",
+            "9373",
+            "9374",
+            "9375",
+            "9376",
+            "9377",
+            "9378",
+            "9379"
+          ]
+        },
+        "tollfree_rate": "NA"
+      }
+    },
+    "outbound": {
+      "network_groups": {
+        "Afghanistan": "0.378",
+        "Afghanistan - Mobile": "0.378"
+      },
+      "rates": {
+        "Fixed": [
+          "0.378"
+        ],
+        "Mobile": [
+          "0.378"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,26 @@
+---
+import PlivoLayout from "@/layouts/PlivoLayout.astro";
+import SMSSubNav from "@/components/sections/sms-channel/SMSSubNav.astro";
+import SMSPricingPage from "@/components/sections/sms-channel/SMSPricingPage";
+import SMSPreFooterCTA from "@/components/sections/sms-channel/SMSPreFooterCTA";
+import {
+  SMS_PRICING_COUNTRY_CODES,
+  getSMSPricingMeta,
+} from "@/data/sms-pricing-page";
+
+export function getStaticPaths() {
+  return SMS_PRICING_COUNTRY_CODES.map((code) => ({
+    params: { country: code.toLowerCase() },
+    props: { countryCode: code },
+  }));
+}
+
+const { countryCode } = Astro.props;
+const { title, description } = getSMSPricingMeta(countryCode);
+---
+
+<PlivoLayout title={title} description={description}>
+  <SMSSubNav currentPage="pricing" />
+  <SMSPricingPage client:load initialCountry={countryCode} />
+  <SMSPreFooterCTA client:visible />
+</PlivoLayout>

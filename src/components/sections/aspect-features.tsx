@@ -39,7 +39,7 @@ const ITEMS: ItemType[] = [
   },
   {
     title: "Transaction Ledger",
-    description: "Drill into every debit, credit and memo—no spreadsheets.",
+    description: "Drill into every debit, credit and memo-no spreadsheets.",
     image: { src: "/images/homepage/features-tabs/4.webp", alt: "" },
     link: "/features/support",
   },
@@ -47,8 +47,8 @@ const ITEMS: ItemType[] = [
 
 export default function AspectFeatures() {
   return (
-    <section className="overflow-hidden bg-obsidian px-2.5 md:px-0">
-      <div className="container relative border border-b-0 border-t-0 border-dark-gray px-0">
+    <section className="bg-obsidian overflow-hidden px-2.5 md:px-0">
+      <div className="border-dark-gray container relative border border-b-0 border-t-0 px-0">
         <div className="grid grid-cols-1 md:grid-cols-3">
           {ITEMS.map((item, i) => (
             <Item key={i} {...item} index={i} />
@@ -71,7 +71,7 @@ function Item(props: ItemType & { index: number }) {
   return (
     <div
       className={cn(
-        "relative flex flex-col overflow-hidden border-b border-dark-gray p-6 max-md:min-h-[400px]",
+        "border-dark-gray relative flex flex-col overflow-hidden border-b p-6 max-md:min-h-[400px]",
         wide && "gap-2 md:flex-row",
         borderRight,
         colSpan,
@@ -108,7 +108,7 @@ function Item(props: ItemType & { index: number }) {
           wide && "md:order-1 md:w-1/2 md:justify-center",
         )}
       >
-        <h3 className="text-foreground text-xl font-medium">{title}</h3>
+        <h3 className="text-xl font-medium text-foreground">{title}</h3>
         <p className="text-mid-gray">{description}</p>
         <Button asChild variant="link" size="link" className="gap-1 self-start">
           <a href={link}>

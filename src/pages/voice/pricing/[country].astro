@@ -1,0 +1,25 @@
+---
+import PlivoLayout from "@/layouts/PlivoLayout.astro";
+import VoiceSubNav from "@/components/sections/voice-channel/VoiceSubNav.astro";
+import VoicePricingTabs from "@/components/sections/voice-channel/VoicePricingTabs";
+import PreFooterCTA from "@/components/sections/voice-homepage/PreFooterCTA";
+import { VOICE_PRICING_COUNTRY_CODES } from "@/data/voice-pricing-cache";
+
+export function getStaticPaths() {
+  return VOICE_PRICING_COUNTRY_CODES.map((code) => ({
+    params: { country: code.toLowerCase() },
+    props: { countryCode: code },
+  }));
+}
+
+const { countryCode } = Astro.props;
+---
+
+<PlivoLayout
+  title="Voice Pricing"
+  description="Competitive pay-as-you-go voice pricing. Compare country-specific calling, number rental, and add-on costs as you scale."
+>
+  <VoiceSubNav currentPage="pricing" />
+  <VoicePricingTabs client:visible initialCountry={countryCode} />
+  <PreFooterCTA client:visible />
+</PlivoLayout>

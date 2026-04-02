@@ -1,0 +1,32 @@
+{
+  "country": "Marshall Islands",
+  "country_iso": "MH",
+  "zentrunk": {
+    "local": {
+      "outbound": {
+        "network_group_rates": {
+          "0.498": [
+            "Marshall Islands"
+          ]
+        },
+        "rate": "0.498",
+        "rates": {
+          "0.498": [
+            "692"
+          ]
+        },
+        "tollfree_rate": "NA"
+      }
+    },
+    "outbound": {
+      "network_groups": {
+        "Marshall Islands": "0.498"
+      },
+      "rates": {
+        "Fixed": [
+          "0.498"
+        ]
+      }
+    }
+  }
+}

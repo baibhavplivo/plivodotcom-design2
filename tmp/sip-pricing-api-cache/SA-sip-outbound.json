@@ -1,0 +1,132 @@
+{
+  "country": "Saudi Arabia",
+  "country_iso": "SA",
+  "zentrunk": {
+    "local": {
+      "outbound": {
+        "network_group_rates": {
+          "0.18": [
+            "Saudi Arabia",
+            "Saudi Arabia Fixed Atheeb Wimax",
+            "Saudi Arabia Riyad"
+          ],
+          "0.28": [
+            "Saudi Arabia Mobile",
+            "Saudi Arabia Mobile ETISALAT MOBILY",
+            "Saudi Arabia Mobile Zain"
+          ],
+          "2.497": [
+            "Saudi Arabia",
+            "Saudi Arabia Fixed Atheeb Wimax",
+            "Saudi Arabia Mobile",
+            "Saudi Arabia Mobile ETISALAT MOBILY",
+            "Saudi Arabia Mobile Zain",
+            "Saudi Arabia Riyad"
+          ]
+        },
+        "rate": "0.18",
+        "rates": {
+          "0.18": [
+            "966",
+            "9666510",
+            "9666511",
+            "9667510",
+            "9667511",
+            "9668111",
+            "96611"
+          ],
+          "0.28": [
+            "96650",
+            "96651",
+            "96653",
+            "96655",
+            "966570",
+            "966571",
+            "966572",
+            "9665730",
+            "9665731",
+            "9665732",
+            "9665733",
+            "9665734",
+            "9665735",
+            "9665736",
+            "9665737",
+            "9665738",
+            "9665739",
+            "96654",
+            "96656",
+            "966576",
+            "966577",
+            "966578",
+            "96658",
+            "96659"
+          ],
+          "2.497": [
+            "966",
+            "9666510",
+            "9666511",
+            "9667510",
+            "9667511",
+            "9668111",
+            "96650",
+            "96651",
+            "96653",
+            "96655",
+            "966570",
+            "966571",
+            "966572",
+            "9665730",
+            "9665731",
+            "9665732",
+            "9665733",
+            "9665734",
+            "9665735",
+            "9665736",
+            "9665737",
+            "9665738",
+            "9665739",
+            "96654",
+            "96656",
+            "966576",
+            "966577",
+            "966578",
+            "96658",
+            "96659",
+            "96611"
+          ]
+        },
+        "tollfree_rate": "NA"
+      }
+    },
+    "outbound": {
+      "network_groups": {
+        "Saudi Arabia": "0.18",
+        "Saudi Arabia - From High Cost Origins": "2.497",
+        "Saudi Arabia Fixed Atheeb Wimax": "0.18",
+        "Saudi Arabia Fixed Atheeb Wimax - From High Cost Origins": "2.497",
+        "Saudi Arabia Mobile": "0.28",
+        "Saudi Arabia Mobile - From High Cost Origins": "2.497",
+        "Saudi Arabia Mobile ETISALAT MOBILY": "0.28",
+        "Saudi Arabia Mobile ETISALAT MOBILY - From High Cost Origins": "2.497",
+        "Saudi Arabia Mobile Zain": "0.28",
+        "Saudi Arabia Mobile Zain - From High Cost Origins": "2.497",
+        "Saudi Arabia Riyad": "0.18",
+        "Saudi Arabia Riyad - From High Cost Origins": "2.497"
+      },
+      "rates": {
+        "Fixed": [
+          "0.18",
+          "2.497"
+        ],
+        "Mobile": [
+          "0.28",
+          "2.497"
+        ],
+        "Others": [
+          "0.18",
+          "2.497"
+        ]
+      }
+    }
+  }
+}

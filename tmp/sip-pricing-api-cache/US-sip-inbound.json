@@ -1,0 +1,36 @@
+{
+  "country": "United States",
+  "country_iso": "US",
+  "zentrunk": {
+    "inbound": {
+      "number_groups": {
+        "United States Local Voice & SMS": "0.003",
+        "United States Tollfree Voice & SMS": "0.012",
+        "United States local Voice": "0.003",
+        "United States tollfree Voice": "0.012"
+      },
+      "rates": {
+        "local": [
+          "0.003"
+        ],
+        "tollfree": [
+          "0.012"
+        ]
+      }
+    },
+    "local": {
+      "inbound": {
+        "number_group_rates": {
+          "0.003": [
+            "United States Local Voice & SMS"
+          ],
+          "0.012": [
+            "United States tollfree Voice"
+          ]
+        },
+        "rate": "0.003",
+        "tollfree_rate": "0.012"
+      }
+    }
+  }
+}

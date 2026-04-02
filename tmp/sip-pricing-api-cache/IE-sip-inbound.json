@@ -1,0 +1,41 @@
+{
+  "country": "Ireland",
+  "country_iso": "IE",
+  "zentrunk": {
+    "inbound": {
+      "number_groups": {
+        "Ireland Local Voice": "0.0055",
+        "Ireland National Voice": "0.003",
+        "Ireland Tollfree Voice": "0.4965"
+      },
+      "rates": {
+        "local": [
+          "0.0055"
+        ],
+        "national": [
+          "0.003"
+        ],
+        "tollfree": [
+          "0.4965"
+        ]
+      }
+    },
+    "local": {
+      "inbound": {
+        "number_group_rates": {
+          "0.003": [
+            "Ireland National Voice"
+          ],
+          "0.0055": [
+            "Ireland Local Voice"
+          ],
+          "0.4965": [
+            "Ireland Tollfree Voice"
+          ]
+        },
+        "rate": "0.003",
+        "tollfree_rate": "0.4965"
+      }
+    }
+  }
+}

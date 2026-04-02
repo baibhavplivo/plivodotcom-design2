@@ -1,0 +1,142 @@
+{
+  "api_id": "0caea342-2e6b-11f1-921b-0242ac110007",
+  "country": "Nepal",
+  "country_code": 977,
+  "country_iso": "NP",
+  "mms": {
+    "longcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "phone_numbers": [],
+  "sms": {
+    "longcode": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.25461",
+        "rates": {
+          "Nepal - Default": "0.67740",
+          "Nepal - Nepal Telecom": "0.27060",
+          "Nepal - Smart Telecom": "0.25461",
+          "Nepal - Spice Nepal": "0.36884"
+        }
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": "0.00000",
+        "rental": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "voice": {
+    "add_on_pricing": {
+      "audio_streaming_rate": 0.004,
+      "mpc_rate": 0,
+      "recording_storage_rate": 0.0004,
+      "speech_recognition": 0.02,
+      "transcription_charge": 0.0095,
+      "webrtc_rate": 0.0033
+    },
+    "ip": {
+      "inbound": {
+        "rate": "0.00330",
+        "rental": null
+      },
+      "outbound": {
+        "rates": {
+          "all": "0.00330"
+        }
+      }
+    },
+    "local": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.22100",
+        "rates": [
+          {
+            "destination_prefix": [
+              "977960",
+              "977961",
+              "977962",
+              "977963",
+              "977972",
+              "977974",
+              "977975",
+              "97798",
+              "977980",
+              "977981",
+              "977982",
+              "977984",
+              "977985",
+              "977986"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.22100",
+            "voice_network_group": "Nepal - Mobile",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "977",
+              "9771"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.22100",
+            "voice_network_group": "Nepal",
+            "voice_unit": 60
+          }
+        ]
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.00000",
+        "rates": null
+      }
+    }
+  }
+}

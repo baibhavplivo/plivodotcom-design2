@@ -1,0 +1,169 @@
+{
+  "api_id": "dd9e3906-2e69-11f1-a7be-0242ac110003",
+  "country": "Netherlands Antilles",
+  "country_code": 599,
+  "country_iso": "AN",
+  "mms": {
+    "longcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "phone_numbers": [],
+  "sms": {
+    "longcode": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.13000",
+        "rates": {
+          "Netherlands Antilles - Digicel": "0.19200",
+          "Netherlands Antilles - Satel": "0.13000",
+          "Netherlands Antilles- All Networks": "0.13000",
+          "Netherlands Antilles-Telcell": "0.13000"
+        }
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": "0.00000",
+        "rental": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "voice": {
+    "add_on_pricing": {
+      "audio_streaming_rate": 0.004,
+      "mpc_rate": 0,
+      "recording_storage_rate": 0.0004,
+      "speech_recognition": 0.02,
+      "transcription_charge": 0.0095,
+      "webrtc_rate": 0.0033
+    },
+    "ip": {
+      "inbound": {
+        "rate": "0.00330",
+        "rental": null
+      },
+      "outbound": {
+        "rates": {
+          "all": "0.00330"
+        }
+      }
+    },
+    "local": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.19670",
+        "rates": [
+          {
+            "destination_prefix": [
+              "599",
+              "599715",
+              "599717",
+              "599718",
+              "5999"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.19670",
+            "voice_network_group": "Netherlands Antilles",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "5993181",
+              "5993184",
+              "5993185",
+              "5993186",
+              "5993187",
+              "5993188",
+              "5993191",
+              "5993194",
+              "5993195",
+              "5993197",
+              "5993198",
+              "5994161",
+              "5994164",
+              "5994165",
+              "5994166",
+              "5994167",
+              "5994168",
+              "5994169",
+              "5995",
+              "599700",
+              "599701",
+              "599770",
+              "599777",
+              "59978",
+              "59979",
+              "599951",
+              "599952",
+              "599953",
+              "599954",
+              "599956",
+              "599957",
+              "59996",
+              "599965",
+              "599966",
+              "599967",
+              "599968",
+              "599969",
+              "5999724"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.19670",
+            "voice_network_group": "Netherlands Antilles - Mobile",
+            "voice_unit": 60
+          }
+        ]
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.00000",
+        "rates": null
+      }
+    }
+  }
+}

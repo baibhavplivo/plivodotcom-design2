@@ -1,0 +1,40 @@
+{
+  "country": "Greenland",
+  "country_iso": "GL",
+  "zentrunk": {
+    "local": {
+      "outbound": {
+        "network_group_rates": {
+          "0.647": [
+            "Greenland",
+            "Greenland Mobile"
+          ]
+        },
+        "rate": "0.647",
+        "rates": {
+          "0.647": [
+            "299",
+            "2992",
+            "2994",
+            "2995"
+          ]
+        },
+        "tollfree_rate": "NA"
+      }
+    },
+    "outbound": {
+      "network_groups": {
+        "Greenland": "0.647",
+        "Greenland Mobile": "0.647"
+      },
+      "rates": {
+        "Fixed": [
+          "0.647"
+        ],
+        "Mobile": [
+          "0.647"
+        ]
+      }
+    }
+  }
+}

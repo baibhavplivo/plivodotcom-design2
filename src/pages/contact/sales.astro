@@ -1,0 +1,177 @@
+---
+import PlivoLayout from "@/layouts/PlivoLayout.astro";
+import ContactSalesHero from "@/components/sections/contact/ContactSalesHero";
+---
+
+<PlivoLayout title="Contact Sales" description="Talk to our sales team for volume pricing, custom AI agent setup, and enterprise solutions.">
+  <ContactSalesHero client:only="react" />
+
+  <!-- intl-tel-input CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/css/intlTelInput.css" />
+
+  <!-- jQuery (required by form-submission.js) -->
+  <script is:inline src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+  <!-- intl-tel-input JS -->
+  <script is:inline src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/intlTelInput.min.js"></script>
+
+  <!-- Override preferredCountries before form-submission.js initializes -->
+  <script is:inline>
+  (function() {
+    var origInit = window.intlTelInput;
+    if (!origInit) return;
+    window.intlTelInput = function(input, options) {
+      // If already initialized by React, return existing instance
+      if (input._iti) return input._iti;
+      options = options || {};
+      options.preferredCountries = [
+        "us", "gb", "in", "ca", "au", "de", "fr", "sg", "br", "mx", "ae", "sa"
+      ];
+      return origInit.call(this, input, options);
+    };
+    // Preserve static properties (e.g. intlTelInput.getInstance)
+    Object.keys(origInit).forEach(function(key) {
+      window.intlTelInput[key] = origInit[key];
+    });
+  })();
+  </script>
+
+  <!-- Plivo form handler — wait for React to render #phone, then load -->
+  <script is:inline>
+  (function() {
+    var interval = setInterval(function() {
+      if (document.getElementById('phone')) {
+        clearInterval(interval);
+        var s = document.createElement('script');
+        s.src = 'https://plivo-static-forms.netlify.app/plivo/form-submission.js';
+        s.onload = function() { window.__plivoFormLoaded = true; };
+        document.body.appendChild(s);
+      }
+    }, 100);
+  })();
+  </script>
+</PlivoLayout>
+
+<!-- CSS overrides to match intl-tel-input and form-submission.js to our design -->
+<style is:global>
+  /* intl-tel-input container */
+  .iti { width: 100%; }
+  /* Selected country dial code text (next to flag) */
+  .iti .iti__selected-dial-code {
+    color: #111827;
+  }
+  .iti .iti__tel-input {
+    width: 100%;
+    height: 2.5rem;
+    border-radius: 0.5rem;
+    border: 1px solid #d1d5db;
+    padding: 0.5rem 0.75rem 0.5rem 52px;
+    font-size: 0.875rem;
+    background: white;
+    color: #111827;
+    transition: all 0.15s;
+  }
+  .iti .iti__tel-input:hover { border-color: #9ca3af; }
+  .iti .iti__tel-input:focus {
+    border-color: #60a5fa;
+    outline: none;
+    box-shadow: 0 0 0 3px #dbeafe;
+  }
+  .iti .iti__tel-input.input-error {
+    border-color: #f87171;
+  }
+  .iti .iti__tel-input.input-error:focus {
+    box-shadow: 0 0 0 3px #fee2e2;
+  }
+
+  /* Form validation feedback */
+  .invalid-feedback {
+    font-size: 0.75rem;
+    color: #ef4444;
+    margin-top: 0.25rem;
+    display: block;
+    min-height: 0;
+  }
+  .input-error {
+    border-color: #f87171 !important;
+  }
+
+  /* VPF steps (hidden by default, script toggles display) */
+  .steps_progress_wrapper { display: none; }
+
+  /* Email validation indicators */
+  .mail-valid {
+    width: 14px;
+    height: 14px;
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .mail-invalid {
+    width: 14px;
+    height: 14px;
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .lottie-animation[vpf="email-loader"] {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  /* intl-tel-input country dropdown */
+  .iti__country-list {
+    z-index: 100;
+    max-height: 200px;
+    border-radius: 0.5rem;
+    border: 1px solid #d1d5db;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+    background: white;
+  }
+  .iti__country-list .iti__country {
+    color: #111827;
+    font-size: 0.875rem;
+    padding: 6px 10px;
+  }
+  .iti__country-list .iti__country--highlight {
+    background-color: #f3f4f6;
+  }
+  .iti__country-list .iti__country-name,
+  .iti__country-list .iti__dial-code {
+    color: #111827;
+  }
+  /* Make dropdown match the full input width, not the flag button */
+  .iti {
+    position: relative;
+  }
+  .iti .iti__country-list {
+    left: 0;
+    width: 100%;
+    min-width: 280px;
+  }
+
+  /* Chat widget container */
+  .chat-agent-cx {
+    min-height: 400px;
+  }
+
+  /* Force all intl-tel-input text to be dark (Tailwind reset can override) */
+  .iti,
+  .iti *,
+  .iti__selected-dial-code,
+  .iti__country-list *,
+  .iti__search-input {
+    color: #111827;
+  }
+
+  /* Mobile fix for intl-tel-input dropdown */
+  @media only screen and (max-width: 480px) {
+    .iti { z-index: 99999; }
+  }
+</style>

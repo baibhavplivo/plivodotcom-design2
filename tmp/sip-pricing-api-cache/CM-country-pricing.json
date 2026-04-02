@@ -1,0 +1,171 @@
+{
+  "api_id": "d2965500-2e6b-11f1-b8c1-0242ac110006",
+  "country": "Cameroon",
+  "country_code": 237,
+  "country_iso": "CM",
+  "mms": {
+    "longcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "phone_numbers": [],
+  "sms": {
+    "longcode": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.21130",
+        "rates": {
+          "Cameroon - Blue_Camtel": "0.26170",
+          "Cameroon - MTN": "0.21130",
+          "Cameroon - Orange": "0.27162",
+          "Cameroon- All Networks": "0.25382"
+        }
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": "0.00000",
+        "rental": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "voice": {
+    "add_on_pricing": {
+      "audio_streaming_rate": 0.004,
+      "mpc_rate": 0,
+      "recording_storage_rate": 0.0004,
+      "speech_recognition": 0.02,
+      "transcription_charge": 0.0095,
+      "webrtc_rate": 0.0033
+    },
+    "ip": {
+      "inbound": {
+        "rate": "0.00330",
+        "rental": null
+      },
+      "outbound": {
+        "rates": {
+          "all": "0.00330"
+        }
+      }
+    },
+    "local": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.44630",
+        "rates": [
+          {
+            "destination_prefix": [
+              "237",
+              "2373342",
+              "2373343"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.44630",
+            "voice_network_group": "Cameroon",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "2376",
+              "237650",
+              "237651",
+              "237652",
+              "237653",
+              "237654",
+              "237655",
+              "237656",
+              "237657",
+              "2376580",
+              "2376581",
+              "2376582",
+              "2376583",
+              "2376584",
+              "2376585",
+              "2376586",
+              "2376587",
+              "23767",
+              "237680",
+              "237681",
+              "237682",
+              "237683",
+              "23769"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.51480",
+            "voice_network_group": "Cameroon - Mobile",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "237222258",
+              "23722258",
+              "237222945",
+              "23722945",
+              "23733320294",
+              "23733325554",
+              "23733326391",
+              "23733327815",
+              "2378"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "2.50100",
+            "voice_network_group": "Cameroon - Premium Services",
+            "voice_unit": 60
+          }
+        ]
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.00000",
+        "rates": null
+      }
+    }
+  }
+}

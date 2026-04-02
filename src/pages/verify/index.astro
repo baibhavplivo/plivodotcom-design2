@@ -1,0 +1,53 @@
+---
+import PlivoLayout from "@/layouts/PlivoLayout.astro";
+import SMSSubNav from "@/components/sections/sms-channel/SMSSubNav.astro";
+import VerifyHero from "@/components/sections/sms-channel/VerifyHero.astro";
+import ClientLogos from "@/components/sections/voice-homepage/ClientLogos.astro";
+import VerifyFeaturesGrid from "@/components/sections/sms-channel/VerifyFeaturesGrid";
+import VerifyCustomization from "@/components/sections/sms-channel/VerifyCustomization";
+import VerifyCodeSection from "@/components/sections/sms-channel/VerifyCodeSection";
+import VerifyCompliance from "@/components/sections/sms-channel/VerifyCompliance";
+import VerifyPriceCalculator from "@/components/sections/sms-channel/VerifyPriceCalculator";
+import VerifyRatesTable from "@/components/sections/sms-channel/VerifyRatesTable";
+import VerifyFAQ from "@/components/sections/sms-channel/VerifyFAQ";
+import VerifyDifferentiators from "@/components/sections/sms-channel/VerifyDifferentiators";
+import SMSPreFooterCTA from "@/components/sections/sms-channel/SMSPreFooterCTA";
+---
+
+<PlivoLayout title="Verify API | Plivo" description="Verify new users with Plivo. Eliminate fake accounts and verify customers anywhere, in real time, with a 95% conversion rate.">
+  <!-- SMS Sub Navigation -->
+  <SMSSubNav currentPage="verify-api" />
+
+  <!-- Hero Section with Phone Illustration -->
+  <VerifyHero />
+
+  <!-- Client Logos -->
+  <ClientLogos />
+
+  <!-- Features Grid -->
+  <VerifyFeaturesGrid client:visible />
+
+  <!-- Price Calculator -->
+  <VerifyPriceCalculator client:visible />
+
+  <!-- Rates Table -->
+  <VerifyRatesTable client:visible />
+
+  <!-- Code Section -->
+  <VerifyCodeSection client:visible />
+
+  <!-- Compliance Section -->
+  <VerifyCompliance client:visible />
+
+  <!-- Customization Features -->
+  <VerifyCustomization client:visible />
+
+  <!-- Key Differentiators -->
+  <VerifyDifferentiators client:visible />
+
+  <!-- FAQ Section -->
+  <VerifyFAQ client:visible />
+
+  <!-- Pre-Footer CTA -->
+  <SMSPreFooterCTA client:visible />
+</PlivoLayout>

@@ -1,0 +1,46 @@
+{
+  "country": "Rwanda",
+  "country_iso": "RW",
+  "zentrunk": {
+    "local": {
+      "outbound": {
+        "network_group_rates": {
+          "0.406": [
+            "Rwanda"
+          ],
+          "0.4872": [
+            "Rwanda - Mobile"
+          ]
+        },
+        "rate": "0.406",
+        "rates": {
+          "0.406": [
+            "250",
+            "25028"
+          ],
+          "0.4872": [
+            "25072",
+            "25073",
+            "25075",
+            "25078"
+          ]
+        },
+        "tollfree_rate": "NA"
+      }
+    },
+    "outbound": {
+      "network_groups": {
+        "Rwanda": "0.406",
+        "Rwanda - Mobile": "0.4872"
+      },
+      "rates": {
+        "Fixed": [
+          "0.406"
+        ],
+        "Mobile": [
+          "0.4872"
+        ]
+      }
+    }
+  }
+}

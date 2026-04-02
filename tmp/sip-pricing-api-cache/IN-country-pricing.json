@@ -1,0 +1,423 @@
+{
+  "api_id": "f1344ad6-2e6a-11f1-921b-0242ac110007",
+  "country": "India",
+  "country_code": 91,
+  "country_iso": "IN",
+  "mms": {
+    "longcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "phone_numbers": [
+    {
+      "capabilities": [
+        "voice"
+      ],
+      "cnam_lookup_rate": "0.00000",
+      "country": "India",
+      "country_code": 91,
+      "country_iso": "IN",
+      "effective_date": "2025-09-02",
+      "inbound_mms_rate": "0.00000",
+      "inbound_sms_rate": "0.00000",
+      "inbound_voice_rate": "0.00925",
+      "number_type": "Local",
+      "rental_rate": "3.12500",
+      "setup_rate": "0.00000",
+      "status": "BETA"
+    }
+  ],
+  "sms": {
+    "longcode": {
+      "inbound": {
+        "rate": "0.00200",
+        "rental": "120.00000"
+      },
+      "outbound": {
+        "rate": "0.08000",
+        "rates": {
+          "Aircel - Andhra Pradesh": "0.08000",
+          "Aircel - Assam": "0.08000",
+          "Aircel - Bihar & Jharkhand": "0.08000",
+          "Aircel - Chennai": "0.08000",
+          "Aircel - Delhi": "0.08000",
+          "Aircel - Gujarat": "0.08000",
+          "Aircel - Haryana": "0.08000",
+          "Aircel - Himachal Pradesh": "0.08000",
+          "Aircel - Jammu & Kashmir": "0.08000",
+          "Aircel - Karnataka": "0.08000",
+          "Aircel - Kerala": "0.08000",
+          "Aircel - Kolkata": "0.08000",
+          "Aircel - Madhya Pradesh": "0.08000",
+          "Aircel - Maharashtra": "0.08000",
+          "Aircel - Mumbai": "0.08000",
+          "Aircel - North East": "0.08000",
+          "Aircel - Orissa": "0.08000",
+          "Aircel - Punjab": "0.08000",
+          "Aircel - Rajasthan": "0.08000",
+          "Aircel - Tamil Nadu": "0.08000",
+          "Aircel - Uttar Pradesh East": "0.08000",
+          "Aircel - Uttar Pradesh West": "0.08000",
+          "Aircel - West Bengal": "0.08000",
+          "BSNL - Andhra Pradesh": "0.08000",
+          "BSNL - Assam": "0.08000",
+          "BSNL - Bihar": "0.08000",
+          "BSNL - Chennai": "0.08000",
+          "BSNL - Gujarat": "0.08000",
+          "BSNL - Haryana": "0.08000",
+          "BSNL - Himachal Pradesh": "0.08000",
+          "BSNL - Jammu & Kashmir": "0.08000",
+          "BSNL - Karnataka": "0.08000",
+          "BSNL - Kolkata": "0.08000",
+          "BSNL - Madhya Pradesh & Chattisgarh": "0.08000",
+          "BSNL - Maharashtra & Goa": "0.08000",
+          "BSNL - North East": "0.08000",
+          "BSNL - Orissa": "0.08000",
+          "BSNL - Punjab": "0.08000",
+          "BSNL - Rajasthan": "0.08000",
+          "BSNL - Tamil Nadu": "0.08000",
+          "BSNL - Uttar Pradesh East": "0.08000",
+          "BSNL - Uttar Pradesh West": "0.08000",
+          "BSNL - West Bengal": "0.08000",
+          "BSNL- Kerala": "0.08000",
+          "Bharti Airtel - Andhra Pradesh": "0.08000",
+          "Bharti Airtel - Bihar Jharkhand": "0.08000",
+          "Bharti Airtel - Chennai": "0.08000",
+          "Bharti Airtel - Delhi": "0.08000",
+          "Bharti Airtel - Gujarat": "0.08000",
+          "Bharti Airtel - Haryana": "0.08000",
+          "Bharti Airtel - Himachal Pradesh": "0.08000",
+          "Bharti Airtel - Karnataka": "0.08000",
+          "Bharti Airtel - Kerala": "0.08000",
+          "Bharti Airtel - Kolkata": "0.08000",
+          "Bharti Airtel - Madhya Pradesh": "0.08000",
+          "Bharti Airtel - Maharashtra & Goa": "0.08000",
+          "Bharti Airtel - Mumbai": "0.08000",
+          "Bharti Airtel - North East": "0.08000",
+          "Bharti Airtel - Punjab": "0.08000",
+          "Bharti Airtel - Rajasthan": "0.08000",
+          "Bharti Airtel - Tamil Nadu": "0.08000",
+          "Bharti Airtel - Uttar Pradesh West": "0.08000",
+          "DSPL - Andhra Pradesh": "0.08000",
+          "DSPL - Assam": "0.08000",
+          "DSPL - Bihar": "0.08000",
+          "DSPL - Delhi": "0.08000",
+          "DSPL - Gujarat": "0.08000",
+          "DSPL - Haryana": "0.08000",
+          "DSPL - Himachal Pradesh": "0.08000",
+          "DSPL - Jammu & Kashmir": "0.08000",
+          "DSPL - Karnataka": "0.08000",
+          "DSPL - Kerala": "0.08000",
+          "DSPL - Kolkata": "0.08000",
+          "DSPL - Madhya Pradesh": "0.08000",
+          "DSPL - Maharashtra": "0.08000",
+          "DSPL - Mumbai": "0.08000",
+          "DSPL - North East": "0.08000",
+          "DSPL - Orissa": "0.08000",
+          "DSPL - Rajasthan": "0.08000",
+          "DSPL - Tamil Nadu & Chennai": "0.08000",
+          "DSPL - Uttar Pradesh East": "0.08000",
+          "DSPL - Uttar Pradesh West": "0.08000",
+          "DSPL - West Bengal": "0.08000",
+          "Etisalat - Andhra Pradesh": "0.08000",
+          "Etisalat - Bahir": "0.08000",
+          "Etisalat - Delhi": "0.08000",
+          "Etisalat - Gujarat": "0.08000",
+          "Etisalat - Haryana": "0.08000",
+          "Etisalat - Karnataka": "0.08000",
+          "Etisalat - Kerala": "0.08000",
+          "Etisalat - Madhya Pradesh": "0.08000",
+          "Etisalat - Maharashtra": "0.08000",
+          "Etisalat - Mumbai": "0.08000",
+          "Etisalat - Punjab": "0.08000",
+          "Etisalat - Rajashan": "0.08000",
+          "Etisalat - Tamil Nadu & Chennai": "0.08000",
+          "Etisalat - Uttar Pradesh East": "0.08000",
+          "Etisalat - Uttar Pradesh West": "0.08000",
+          "IDEA - Andhra Pradesh": "0.08000",
+          "IDEA - Assam": "0.08000",
+          "IDEA - Bihar & Jharkhand": "0.08000",
+          "IDEA - Delhi": "0.08000",
+          "IDEA - Gujarat": "0.08000",
+          "IDEA - Haryana": "0.08000",
+          "IDEA - Himachal Pradesh": "0.08000",
+          "IDEA - Jammu & Kashmir": "0.08000",
+          "IDEA - Karnataka": "0.08000",
+          "IDEA - Kerala": "0.08000",
+          "IDEA - Kolkata": "0.08000",
+          "IDEA - Madhya Pradesh": "0.08000",
+          "IDEA - Maharashtra": "0.08000",
+          "IDEA - Mumbai": "0.08000",
+          "IDEA - North East": "0.08000",
+          "IDEA - Orissa": "0.08000",
+          "IDEA - Punjab": "0.08000",
+          "IDEA - Rajasthan": "0.08000",
+          "IDEA - Tamil Nadu & Chennai": "0.08000",
+          "IDEA - Uttar Pradesh East": "0.08000",
+          "IDEA - Uttar Pradesh West": "0.08000",
+          "IDEA - West Bengal": "0.08000",
+          "India - Bharat Sanchar Nigam Ltd (BSNL)": "0.08000",
+          "India - Bharti Airtel Ltd": "0.08000",
+          "India - HFCL Connect (Ping)": "0.08000",
+          "India - Loop Telecom Ltd": "0.08000",
+          "India - Mahanagar Telephone Nigam Ltd (MTNL)": "0.08000",
+          "India - Reliance Telecom Pvt Ltd": "0.08000",
+          "India - S. Tel Ltd.": "0.08000",
+          "India - Sistema Shyam TeleServices (MTS)": "0.08000",
+          "India - TATA Indicom  / DOCOMO (Virgin Mobile)": "0.08000",
+          "India - Videocon Telecom": "0.08000",
+          "India All": "0.08000",
+          "Loop Mobile - Andhra Pradesh": "0.08000",
+          "Loop Mobile - Assam": "0.08000",
+          "Loop Mobile - Bihar & Jharkhand": "0.08000",
+          "Loop Mobile - Delhi": "0.08000",
+          "Loop Mobile - Gujarat": "0.08000",
+          "Loop Mobile - Haryana": "0.08000",
+          "Loop Mobile - Himachal Pradesh": "0.08000",
+          "Loop Mobile - Jammu & Kashmir": "0.08000",
+          "Loop Mobile - Karnataka": "0.08000",
+          "Loop Mobile - Kerala": "0.08000",
+          "Loop Mobile - Madhya Pradesh & Chattisgarh": "0.08000",
+          "Loop Mobile - Maharashrta & Goa": "0.08000",
+          "Loop Mobile - Mumbai": "0.08000",
+          "Loop Mobile - North East": "0.08000",
+          "Loop Mobile - Orissa": "0.08000",
+          "Loop Mobile - Punjab": "0.08000",
+          "Loop Mobile - Rajasthan": "0.08000",
+          "Loop Mobile - Tamil Nadu": "0.08000",
+          "Loop Mobile - Uttar Pradesh East": "0.08000",
+          "Loop Mobile - Uttar Pradesh West": "0.08000",
+          "Loop Mobile - West Bengal": "0.08000",
+          "MTNL Dolphin - Delhi": "0.08000",
+          "MTNL Dolphin - Mumbai": "0.08000",
+          "Reliance - Andhra Pradesh": "0.08000",
+          "Reliance - Assam": "0.08000",
+          "Reliance - Bahir & Jharkhand": "0.08000",
+          "Reliance - CDMA - Bihar & Jharkhand": "0.08000",
+          "Reliance - Delhi": "0.08000",
+          "Reliance - Gujarat": "0.08000",
+          "Reliance - Haryana": "0.08000",
+          "Reliance - Himachal Pradesh": "0.08000",
+          "Reliance - Jammu & Kashmir": "0.08000",
+          "Reliance - Karnataka": "0.08000",
+          "Reliance - Kerala": "0.08000",
+          "Reliance - Madhya Pradesh & Chattisgarh": "0.08000",
+          "Reliance - Maharashtra & Goa": "0.08000",
+          "Reliance - Mumbai": "0.08000",
+          "Reliance - North East": "0.08000",
+          "Reliance - Orissa": "0.08000",
+          "Reliance - Rajashan": "0.08000",
+          "Reliance - Tamil Nadu": "0.08000",
+          "Reliance - Uttar Pradesh East": "0.08000",
+          "Reliance - Uttar Pradesh West": "0.08000",
+          "Reliance - West Bengal": "0.08000",
+          "S. Tel - Assam": "0.08000",
+          "S. Tel - Bihar": "0.08000",
+          "S. Tel - Himachal Pradesh": "0.08000",
+          "S. Tel - Nesa": "0.08000",
+          "S. Tel - Orissa": "0.08000",
+          "SISTEMA Shayam Teleservices - Gujarat": "0.08000",
+          "SISTEMA Shayam Teleservices - Haryana": "0.08000",
+          "SISTEMA Shayam Teleservices - Himachal Pradesh": "0.08000",
+          "SISTEMA Shayam Teleservices - Jammu & Kashmir": "0.08000",
+          "SISTEMA Shayam Teleservices - Karnataka": "0.08000",
+          "SISTEMA Shayam Teleservices - Kerala": "0.08000",
+          "SISTEMA Shayam Teleservices - Kolkata": "0.08000",
+          "SISTEMA Shayam Teleservices - Madhya Pradesh": "0.08000",
+          "SISTEMA Shayam Teleservices - Maharashtra": "0.08000",
+          "SISTEMA Shayam Teleservices - Mumbai": "0.08000",
+          "SISTEMA Shayam Teleservices - North East": "0.08000",
+          "SISTEMA Shayam Teleservices - Orissa": "0.08000",
+          "SISTEMA Shayam Teleservices - Punjab": "0.08000",
+          "SISTEMA Shayam Teleservices - Rajasthan": "0.08000",
+          "SISTEMA Shayam Teleservices - Tamil Nadu & Chennai": "0.08000",
+          "SISTEMA Shayam Teleservices - Uttar Pradesh East": "0.08000",
+          "SISTEMA Shayam Teleservices - Uttar Pradesh West": "0.08000",
+          "SISTEMA Shayam Teleservices - West Bengal": "0.08000",
+          "SISTEMA Shyam Teleservices - Andhra Pradesh": "0.08000",
+          "SISTEMA Shyam Teleservices - Assam": "0.08000",
+          "SISTEMA Shyam Teleservices - Bihar": "0.08000",
+          "SISTEMA Shyam Teleservices - Delhi": "0.08000",
+          "Spice Mobility - Andhra Pradesh": "0.08000",
+          "Spice Mobility - Dehli": "0.08000",
+          "Spice Mobility - Haryana": "0.08000",
+          "Spice Mobility - Maharashtra & Goa": "0.08000",
+          "TATA Docomo - Andhra Pradesh": "0.08000",
+          "TATA Docomo - Bihar & Jharkhand": "0.08000",
+          "TATA Docomo - Delhi": "0.08000",
+          "TATA Docomo - Gujarat": "0.08000",
+          "TATA Docomo - Haryana": "0.08000",
+          "TATA Docomo - Himachal Pradesh": "0.08000",
+          "TATA Docomo - Karnataka": "0.08000",
+          "TATA Docomo - Kerala": "0.08000",
+          "TATA Docomo - Kolkata": "0.08000",
+          "TATA Docomo - Madhya Pradesh": "0.08000",
+          "TATA Docomo - Maharashtra & Goa": "0.08000",
+          "TATA Docomo - Orissa": "0.08000",
+          "TATA Docomo - Punjab": "0.08000",
+          "TATA Docomo - RO WB": "0.08000",
+          "TATA Docomo - Rajasthan": "0.08000",
+          "TATA Docomo - Tamil Nadu": "0.08000",
+          "TATA Docomo - Uttar Pradesh East": "0.08000",
+          "TATA Docomo - Uttar Pradesh West": "0.08000",
+          "TATA Docomo Mumbai": "0.08000",
+          "Uninor - Andhra Pradesh": "0.08000",
+          "Uninor - Assam": "0.08000",
+          "Uninor - Bihar & Jharkhand": "0.08000",
+          "Uninor - Delhi": "0.08000",
+          "Uninor - Gujarat": "0.08000",
+          "Uninor - Haryana": "0.08000",
+          "Uninor - Himachal Pradesh": "0.08000",
+          "Uninor - Jammu & Kashmir": "0.08000",
+          "Uninor - Karnataka": "0.08000",
+          "Uninor - Kerala": "0.08000",
+          "Uninor - Kolkata": "0.08000",
+          "Uninor - Madhya Pradesh & Chattisgarh": "0.08000",
+          "Uninor - Maharashtra": "0.08000",
+          "Uninor - Mumbai": "0.08000",
+          "Uninor - North East": "0.08000",
+          "Uninor - Orissa": "0.08000",
+          "Uninor - Punjab": "0.08000",
+          "Uninor - Rajasthan": "0.08000",
+          "Uninor - Tamil Nadu & Chennai": "0.08000",
+          "Uninor - Uttar Pradesh & Uttaran": "0.08000",
+          "Uninor - Uttar Pradesh East": "0.08000",
+          "Uninor - West Bengal & Andaman Nikobar": "0.08000",
+          "Vodafone - Andhra Pradesh": "0.08000",
+          "Vodafone - Assam": "0.08000",
+          "Vodafone - Bihar & Jharkhand": "0.08000",
+          "Vodafone - Chennai": "0.08000",
+          "Vodafone - Delhi": "0.08000",
+          "Vodafone - Gujarat": "0.08000",
+          "Vodafone - Haryana": "0.08000",
+          "Vodafone - Himachal Pradesh": "0.08000",
+          "Vodafone - Jammu & Kashmir": "0.08000",
+          "Vodafone - Karnataka": "0.08000",
+          "Vodafone - Kerala": "0.08000",
+          "Vodafone - Kolkata": "0.08000",
+          "Vodafone - Madhya  & Chattisgarh": "0.08000",
+          "Vodafone - Maharashtra & Goa": "0.08000",
+          "Vodafone - Mumbai": "0.08000",
+          "Vodafone - North East": "0.08000",
+          "Vodafone - Orissa": "0.08000",
+          "Vodafone - Punjab": "0.08000",
+          "Vodafone - Rajasthan": "0.08000",
+          "Vodafone - Tamil Nadu": "0.08000",
+          "Vodafone - Uttar Pradesh East": "0.08000",
+          "Vodafone - Uttar Pradesh West": "0.08000",
+          "Vodafone - West Bengal": "0.08000"
+        }
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": "0.00000",
+        "rental": "120.00000"
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "voice": {
+    "add_on_pricing": {
+      "audio_streaming_rate": 0.004,
+      "mpc_rate": 0,
+      "recording_storage_rate": 0.0004,
+      "speech_recognition": 0.02,
+      "transcription_charge": 0.0095,
+      "webrtc_rate": 0.0033
+    },
+    "ip": {
+      "inbound": {
+        "rate": "0.00330",
+        "rental": null
+      },
+      "outbound": {
+        "rates": {
+          "all": "0.00330"
+        }
+      }
+    },
+    "local": {
+      "inbound": {
+        "rate": "0.00000",
+        "rental": "0.00000"
+      },
+      "outbound": {
+        "rate": "0.00925",
+        "rates": [
+          {
+            "destination_prefix": [
+              "91"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.05000",
+            "voice_network_group": "India All Networks International",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "91"
+            ],
+            "origination_prefix": [
+              "91"
+            ],
+            "rate": "0.00925",
+            "voice_network_group": "India All Networks Domestic",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "91"
+            ],
+            "origination_prefix": [
+              "91140"
+            ],
+            "rate": "0.01000",
+            "voice_network_group": "India All Networks from Plivo-140 series",
+            "voice_unit": 60
+          }
+        ]
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": "0.20000",
+        "rental": "15.00000"
+      },
+      "outbound": {
+        "rate": "0.00000",
+        "rates": null
+      }
+    }
+  }
+}

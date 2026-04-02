@@ -1,0 +1,32 @@
+{
+  "country": "Virgin Islands, U.s.",
+  "country_iso": "VI",
+  "zentrunk": {
+    "local": {
+      "outbound": {
+        "network_group_rates": {
+          "0.038": [
+            "United States Virgin Islands"
+          ]
+        },
+        "rate": "0.038",
+        "rates": {
+          "0.038": [
+            "1340"
+          ]
+        },
+        "tollfree_rate": "NA"
+      }
+    },
+    "outbound": {
+      "network_groups": {
+        "United States Virgin Islands": "0.038"
+      },
+      "rates": {
+        "Others": [
+          "0.038"
+        ]
+      }
+    }
+  }
+}

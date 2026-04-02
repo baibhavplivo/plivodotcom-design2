@@ -13,7 +13,7 @@ const ITEMS = [
       href: "https://mercury.com",
     },
     testimonial:
-      "“Since integrating Aspect’s unified dashboard, we’ve consolidated all our Mercury accounts into one view—no more juggling multiple logins or spreadsheets.”",
+      "“Since integrating Aspect’s unified dashboard, we’ve consolidated all our Mercury accounts into one view-no more juggling multiple logins or spreadsheets.”",
     avatar: "/images/homepage/testimonials/avatar.webp",
     nameSurname: "John Doe",
     company: "Mercury, Inc.",
@@ -27,7 +27,7 @@ const ITEMS = [
       href: "https://watershed.com",
     },
     testimonial:
-      "“Aspect has been a game‑changer for our Watershed team—real‑time balances and built‑in analytics keep us on top of cash flow like never before.”",
+      "“Aspect has been a game‑changer for our Watershed team-real‑time balances and built‑in analytics keep us on top of cash flow like never before.”",
     avatar: "/images/homepage/testimonials/avatar.webp",
     nameSurname: "Jane Smith",
     company: "Watershed Labs",
@@ -41,7 +41,7 @@ const ITEMS = [
       href: "https://retool.com",
     },
     testimonial:
-      "“Building internal tools with Retool used to feel disjointed—now with Aspect’s APIs and dashboards, everything flows seamlessly in one place.”",
+      "“Building internal tools with Retool used to feel disjointed-now with Aspect’s APIs and dashboards, everything flows seamlessly in one place.”",
     avatar: "/images/homepage/testimonials/avatar.webp",
     nameSurname: "Alex Li",
     company: "Retool",
@@ -55,7 +55,7 @@ const ITEMS = [
       href: "https://descript.com",
     },
     testimonial:
-      "“Our whole content team loves how Aspect surfaces real‑time spending data alongside our Descript workflows—insights we never had before.”",
+      "“Our whole content team loves how Aspect surfaces real‑time spending data alongside our Descript workflows-insights we never had before.”",
     avatar: "/images/homepage/testimonials/avatar.webp",
     nameSurname: "Emily Nguyen",
     company: "Descript",
@@ -66,11 +66,11 @@ export default function AspectTestimonials() {
   return (
     <section className="bg-obsidian overflow-hidden px-2.5 lg:px-0">
       <div className="border-dark-gray container flex flex-col items-center justify-center gap-8 overflow-hidden border border-t-0 py-12 text-center md:py-20">
-        <h2 className="text-foreground text-balance text-2xl tracking-tight md:text-4xl lg:text-5xl">
+        <h2 className="text-balance text-2xl tracking-tight text-foreground md:text-4xl lg:text-5xl">
           What Our Customers Are Saying
         </h2>
         <p className="text-mid-gray max-w-lg text-base">
-          Don’t just take our word for it—see how our platform is empowering
+          Don’t just take our word for it-see how our platform is empowering
           teams to achieve more, aspect workflows, and transform their
           day‑to‑day operations.
         </p>
@@ -81,7 +81,7 @@ export default function AspectTestimonials() {
             ))}
           </div>
           <div className="bg-dark-gray h-3 w-px" />
-          <p className="text-foreground text-sm">Real Results.</p>
+          <p className="text-sm text-foreground">Real Results.</p>
         </div>
       </div>
 
@@ -109,7 +109,7 @@ export default function AspectTestimonials() {
                     className="object-contain transition-opacity hover:opacity-70"
                   />
                 </a>
-                <p className="text-foreground text-xl">{item.testimonial}</p>
+                <p className="text-xl text-foreground">{item.testimonial}</p>
               </div>
               <div className="flex">
                 <img
@@ -120,10 +120,10 @@ export default function AspectTestimonials() {
                   className="rounded-full"
                 />
                 <div className="ml-4">
-                  <p className="text-foreground font-semibold">
+                  <p className="font-semibold text-foreground">
                     {item.nameSurname}
                   </p>
-                  <p className="text-foreground text-sm">{item.company}</p>
+                  <p className="text-sm text-foreground">{item.company}</p>
                 </div>
               </div>
             </div>

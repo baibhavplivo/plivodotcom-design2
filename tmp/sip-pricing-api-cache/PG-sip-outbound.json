@@ -1,0 +1,64 @@
+{
+  "country": "Papua New Guinea",
+  "country_iso": "PG",
+  "zentrunk": {
+    "local": {
+      "outbound": {
+        "network_group_rates": {
+          "2.31": [
+            "Papua New Guinea"
+          ],
+          "2.43": [
+            "Papua New Guinea - Mobile"
+          ],
+          "2.56": [
+            "Papua New Guinea - Premium Services"
+          ]
+        },
+        "rate": "2.31",
+        "rates": {
+          "2.31": [
+            "675"
+          ],
+          "2.43": [
+            "6752015",
+            "675644",
+            "67568",
+            "67569",
+            "6757",
+            "67570",
+            "67571",
+            "67572",
+            "67573",
+            "67574",
+            "67576",
+            "67579",
+            "67588"
+          ],
+          "2.56": [
+            "67518497899"
+          ]
+        },
+        "tollfree_rate": "NA"
+      }
+    },
+    "outbound": {
+      "network_groups": {
+        "Papua New Guinea": "2.31",
+        "Papua New Guinea - Mobile": "2.43",
+        "Papua New Guinea - Premium Services": "2.56"
+      },
+      "rates": {
+        "Fixed": [
+          "2.31"
+        ],
+        "Mobile": [
+          "2.43"
+        ],
+        "Others": [
+          "2.56"
+        ]
+      }
+    }
+  }
+}

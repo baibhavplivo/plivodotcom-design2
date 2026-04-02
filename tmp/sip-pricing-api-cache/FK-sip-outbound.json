@@ -1,0 +1,39 @@
+{
+  "country": "Falkland Islands (Malvinas)",
+  "country_iso": "FK",
+  "zentrunk": {
+    "local": {
+      "outbound": {
+        "network_group_rates": {
+          "2.3974": [
+            "Falkland Islands",
+            "Falkland Islands Mobile"
+          ]
+        },
+        "rate": "2.3974",
+        "rates": {
+          "2.3974": [
+            "500",
+            "5005",
+            "5006"
+          ]
+        },
+        "tollfree_rate": "NA"
+      }
+    },
+    "outbound": {
+      "network_groups": {
+        "Falkland Islands": "2.3974",
+        "Falkland Islands Mobile": "2.3974"
+      },
+      "rates": {
+        "Fixed": [
+          "2.3974"
+        ],
+        "Mobile": [
+          "2.3974"
+        ]
+      }
+    }
+  }
+}

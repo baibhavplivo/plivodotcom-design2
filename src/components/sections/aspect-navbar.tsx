@@ -60,11 +60,11 @@ export default function Navbar({ currentPath }: NavbarProps) {
   return (
     <header
       className={cn(
-        "relative z-50 h-20 border-b border-b-dark-gray px-2.5 lg:px-0",
+        "border-b-dark-gray relative z-50 h-20 border-b px-2.5 lg:px-0",
         bgColor,
       )}
     >
-      <div className="container flex h-20 items-center border-l border-r border-l-dark-gray border-r-dark-gray">
+      <div className="border-l-dark-gray border-r-dark-gray container flex h-20 items-center border-l border-r">
         <div className="flex w-full items-center justify-between py-3">
           {/* Logo */}
           <a href="/" className="flex items-center gap-2">
@@ -86,7 +86,7 @@ export default function Navbar({ currentPath }: NavbarProps) {
                     <NavigationMenuItem key={link.label} className="text-sm">
                       <NavigationMenuTrigger
                         className={cn(
-                          "text-foreground bg-transparent text-sm font-normal",
+                          "bg-transparent text-sm font-normal text-foreground",
                           "hover:bg-transparent focus:bg-transparent active:bg-transparent",
                           "hover:text-muted-foreground focus:text-muted-foreground",
                           "data-[state=open]:bg-transparent data-[state=open]:text-muted-foreground",
@@ -95,19 +95,19 @@ export default function Navbar({ currentPath }: NavbarProps) {
                       >
                         {link.label}
                       </NavigationMenuTrigger>
-                      <NavigationMenuContent className="rounded-md bg-obsidian">
-                        <ul className="w-[400px] bg-obsidian p-3">
+                      <NavigationMenuContent className="bg-obsidian rounded-md">
+                        <ul className="bg-obsidian w-[400px] p-3">
                           {link.dropdownItems.map((item) => (
                             <li key={item.title}>
                               <NavigationMenuLink asChild>
                                 <a
                                   href={item.href}
-                                  className="outline-hidden flex items-start rounded-md p-3 leading-none no-underline transition-colors hover:bg-dark-gray hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                                  className="outline-hidden hover:bg-dark-gray hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground flex items-start rounded-md p-3 leading-none no-underline transition-colors"
                                 >
                                   <item.icon className="text-mid-gray size-4" />
 
                                   <div className="ml-2 space-y-1.5">
-                                    <div className="text-foreground text-sm font-medium leading-none">
+                                    <div className="text-sm font-medium leading-none text-foreground">
                                       {item.title}
                                     </div>
                                     <p className="text-mid-gray line-clamp-2 text-sm leading-tight">
@@ -126,7 +126,7 @@ export default function Navbar({ currentPath }: NavbarProps) {
                       <a
                         href={link.href}
                         className={cn(
-                          "text-foreground p-2 text-sm hover:text-muted-foreground",
+                          "p-2 text-sm text-foreground hover:text-muted-foreground",
                           pathname === link.href && "text-muted-foreground",
                         )}
                       >
@@ -182,7 +182,7 @@ export default function Navbar({ currentPath }: NavbarProps) {
       {/* Mobile Menu Overlay */}
       <div
         className={cn(
-          "container absolute inset-x-0 top-full flex h-[calc(100vh-80px)] flex-col border-t border-t-dark-gray px-2.5 lg:px-0",
+          "border-t-dark-gray container absolute inset-x-0 top-full flex h-[calc(100vh-80px)] flex-col border-t px-2.5 lg:px-0",
           "transition duration-300 ease-in-out lg:hidden",
           isMenuOpen
             ? "pointer-events-auto translate-y-0 opacity-100"
@@ -190,7 +190,7 @@ export default function Navbar({ currentPath }: NavbarProps) {
           bgColor,
         )}
       >
-        <div className="h-[calc(100vh-80px)] border-x border-dark-gray px-5">
+        <div className="border-dark-gray h-[calc(100vh-80px)] border-x px-5">
           <nav className="mt-6 flex flex-1 flex-col gap-6">
             {ITEMS.map((link) =>
               link.dropdownItems ? (
@@ -201,7 +201,7 @@ export default function Navbar({ currentPath }: NavbarProps) {
                         openDropdown === link.label ? null : link.label,
                       )
                     }
-                    className="text-foreground flex w-full items-center justify-between text-lg tracking-[-0.36px]"
+                    className="flex w-full items-center justify-between text-lg tracking-[-0.36px] text-foreground"
                     aria-label={`${link.label} menu`}
                     aria-expanded={openDropdown === link.label}
                   >
@@ -216,7 +216,7 @@ export default function Navbar({ currentPath }: NavbarProps) {
                   </button>
                   <div
                     className={cn(
-                      "ml-1 space-y-3 overflow-hidden border-b border-b-dark-gray transition-all",
+                      "border-b-dark-gray ml-1 space-y-3 overflow-hidden border-b transition-all",
                       openDropdown === link.label
                         ? "mt-3 max-h-[1000px] pb-6 opacity-100"
                         : "max-h-0 opacity-0",
@@ -230,11 +230,11 @@ export default function Navbar({ currentPath }: NavbarProps) {
                           setIsMenuOpen(false);
                           setOpenDropdown(null);
                         }}
-                        className="flex items-start gap-3 rounded-md p-2 hover:bg-accent"
+                        className="hover:bg-accent flex items-start gap-3 rounded-md p-2"
                       >
                         <item.icon className="text-mid-gray size-6 shrink-0" />
                         <div>
-                          <div className="text-foreground font-medium">
+                          <div className="font-medium text-foreground">
                             {item.title}
                           </div>
                           <p className="text-sm text-muted-foreground">
@@ -250,7 +250,7 @@ export default function Navbar({ currentPath }: NavbarProps) {
                   key={link.label}
                   href={link.href}
                   className={cn(
-                    "text-foreground text-lg tracking-[-0.36px]",
+                    "text-lg tracking-[-0.36px] text-foreground",
                     pathname === link.href && "text-muted-foreground",
                   )}
                   onClick={() => setIsMenuOpen(false)}

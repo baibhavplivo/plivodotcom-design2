@@ -1,0 +1,168 @@
+{
+  "api_id": "bff81c86-2e6a-11f1-8222-0242ac110003",
+  "country": "Trinidad and Tobago",
+  "country_code": 1868,
+  "country_iso": "TT",
+  "mms": {
+    "longcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "phone_numbers": [],
+  "sms": {
+    "longcode": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.23436",
+        "rates": {
+          "Trinidad and Tobago - Digicel (Trinidad & Tobago)": "0.29920",
+          "Trinidad and Tobago - LaqTel Ltd": "0.29920",
+          "Trinidad and Tobago - Telecommunications Services of": "0.23590",
+          "Trinidad and Tobago-All Networks": "0.23436",
+          "Trinidad and Tobago-bmobile": "0.23436"
+        }
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": "0.00000",
+        "rental": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "voice": {
+    "add_on_pricing": {
+      "audio_streaming_rate": 0.004,
+      "mpc_rate": 0,
+      "recording_storage_rate": 0.0004,
+      "speech_recognition": 0.02,
+      "transcription_charge": 0.0095,
+      "webrtc_rate": 0.0033
+    },
+    "ip": {
+      "inbound": {
+        "rate": "0.00330",
+        "rental": null
+      },
+      "outbound": {
+        "rates": {
+          "all": "0.00330"
+        }
+      }
+    },
+    "local": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.23100",
+        "rates": [
+          {
+            "destination_prefix": [
+              "1868"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.23100",
+            "voice_network_group": "Trinidad And Tobago",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "1868220",
+              "1868227",
+              "1868228",
+              "1868229",
+              "1868266",
+              "1868267",
+              "1868268",
+              "1868269",
+              "186827",
+              "186828",
+              "186829",
+              "18683",
+              "1868401",
+              "1868402",
+              "1868403",
+              "1868404",
+              "1868405",
+              "1868406",
+              "1868407",
+              "1868408",
+              "1868409",
+              "1868410",
+              "1868412",
+              "1868413",
+              "1868414",
+              "1868415",
+              "1868416",
+              "1868417",
+              "1868418",
+              "1868419",
+              "1868420",
+              "1868421",
+              "186846",
+              "186847",
+              "186848",
+              "186849",
+              "1868620",
+              "1868678",
+              "186868",
+              "18687"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.28100",
+            "voice_network_group": "Trinidad And Tobago - Mobile",
+            "voice_unit": 60
+          }
+        ]
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.00000",
+        "rates": null
+      }
+    }
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "country": "Gabon",
+  "country_iso": "GA",
+  "zentrunk": {
+    "local": {
+      "outbound": {
+        "network_group_rates": {
+          "0.5995": [
+            "Gabon"
+          ],
+          "0.6658": [
+            "Gabon - Mobile",
+            "Gabon Mobile Airtel"
+          ],
+          "0.9693": [
+            "Gabon - Mobile - Others (Azur)"
+          ]
+        },
+        "rate": "0.5995",
+        "rates": {
+          "0.5995": [
+            "241"
+          ],
+          "0.6658": [
+            "2412",
+            "2414",
+            "2415",
+            "2416",
+            "2417",
+            "2414",
+            "2417"
+          ],
+          "0.9693": [
+            "2413"
+          ]
+        },
+        "tollfree_rate": "NA"
+      }
+    },
+    "outbound": {
+      "network_groups": {
+        "Gabon": "0.5995",
+        "Gabon - Mobile": "0.6658",
+        "Gabon - Mobile - Others (Azur)": "0.9693",
+        "Gabon Mobile Airtel": "0.6658"
+      },
+      "rates": {
+        "Fixed": [
+          "0.5995"
+        ],
+        "Mobile": [
+          "0.6658",
+          "0.9693"
+        ]
+      }
+    }
+  }
+}

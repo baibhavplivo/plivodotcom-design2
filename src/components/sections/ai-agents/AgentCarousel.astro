@@ -1,0 +1,323 @@
+---
+// AgentCarousel.astro - Scrolling pre-built agent cards with CSS marquee
+
+const agents = [
+  {
+    title: "Lead capture & qualification agent",
+    description: "Capture inbound leads across chat, SMS, and voice, qualify them in real-time using smart branching logic, and instantly route high-intent prospects to your sales team or CRM.",
+    icon: "funnel",
+    color: "#323dfe",
+  },
+  {
+    title: "Support agent",
+    description: "Connect to Shopify or WooCommerce to automatically manage order status, shipping updates, and product inquiries, directly on call.",
+    icon: "headset",
+    color: "#cd3ef9",
+  },
+  {
+    title: "Appointment booking agent",
+    description: "Let customers schedule appointments via phone or chat, with real-time availability synced to Calendly or your booking system.",
+    icon: "calendar",
+    color: "#323dfe",
+  },
+  {
+    title: "Tech support agent",
+    description: "Troubleshoot common tech queries using your knowledge base, with smart, conversational flows that route only complex cases to humans.",
+    icon: "wrench",
+    color: "#cd3ef9",
+  },
+  {
+    title: "Survey and feedback agent",
+    description: "Gathers timely input from customers through surveys and conversations, so you can improve continuously.",
+    icon: "chart",
+    color: "#323dfe",
+  },
+];
+---
+
+<section class="py-12 lg:py-16 bg-white">
+  <div class="container mx-auto max-w-7xl px-4 mb-10">
+    <h2 class="font-sora text-[2rem] sm:text-[2.5rem] font-normal leading-[1.25] tracking-[-0.02em] text-black text-center">
+      Vibe create your agents for your use case <br class="hidden sm:block" />in plain English
+    </h2>
+    <p class="text-base sm:text-lg text-gray-600 text-center mt-4 max-w-2xl mx-auto leading-relaxed">
+      Explore the top AI agents that streamline operations, boost CSAT, and cut resolution times - no training required.
+    </p>
+  </div>
+
+  <div class="agent-marquee-wrapper relative overflow-hidden">
+    <div class="agent-marquee-content flex gap-6 px-4">
+      {/* First set */}
+      {agents.map((agent) => (
+        <div class="agent-card flex-shrink-0 w-[320px] sm:w-[360px] rounded-xl border border-gray-200 bg-white p-6 hover:shadow-lg transition-shadow duration-300">
+          {/* Icon */}
+          <div class="w-12 h-12 rounded-lg flex items-center justify-center mb-4" style={`background: ${agent.color}10;`}>
+            {agent.icon === "funnel" && (
+              <svg class="w-6 h-6" style={`color: ${agent.color};`} fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 3c2.755 0 5.455.232 8.083.678.533.09.917.556.917 1.096v1.044a2.25 2.25 0 01-.659 1.591l-5.432 5.432a2.25 2.25 0 00-.659 1.591v2.927a2.25 2.25 0 01-1.244 2.013L9.75 21v-6.568a2.25 2.25 0 00-.659-1.591L3.659 7.409A2.25 2.25 0 013 5.818V4.774c0-.54.384-1.006.917-1.096A48.32 48.32 0 0112 3z" />
+              </svg>
+            )}
+            {agent.icon === "headset" && (
+              <svg class="w-6 h-6" style={`color: ${agent.color};`} fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 01-.825-.242m9.345-8.334a2.126 2.126 0 00-.476-.095 48.64 48.64 0 00-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0011.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155" />
+              </svg>
+            )}
+            {agent.icon === "calendar" && (
+              <svg class="w-6 h-6" style={`color: ${agent.color};`} fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5m-9-6h.008v.008H12v-.008zM12 15h.008v.008H12V15zm0 2.25h.008v.008H12v-.008zM9.75 15h.008v.008H9.75V15zm0 2.25h.008v.008H9.75v-.008zM7.5 15h.008v.008H7.5V15zm0 2.25h.008v.008H7.5v-.008zm6.75-4.5h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V15zm0 2.25h.008v.008h-.008v-.008zm2.25-4.5h.008v.008H16.5v-.008zm0 2.25h.008v.008H16.5V15z" />
+              </svg>
+            )}
+            {agent.icon === "wrench" && (
+              <svg class="w-6 h-6" style={`color: ${agent.color};`} fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 11-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 004.486-6.336l-3.276 3.277a3.004 3.004 0 01-2.25-2.25l3.276-3.276a4.5 4.5 0 00-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085m-1.745 1.437L5.909 7.5H4.5L2.25 3.75l1.5-1.5L7.5 4.5v1.409l4.26 4.26m-1.745 1.437l1.745-1.437m6.615 8.206L15.75 15.75M4.867 19.125h.008v.008h-.008v-.008z" />
+              </svg>
+            )}
+            {agent.icon === "chart" && (
+              <svg class="w-6 h-6" style={`color: ${agent.color};`} fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 002.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 00-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15a2.25 2.25 0 012.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25zM6.75 12h.008v.008H6.75V12zm0 3h.008v.008H6.75V15zm0 3h.008v.008H6.75V18z" />
+              </svg>
+            )}
+          </div>
+
+          {/* CSS Mockup illustration */}
+          <div class="rounded-lg bg-gray-50 border border-gray-100 p-3 mb-4 h-[140px] overflow-hidden">
+            {agent.icon === "funnel" && (
+              <div class="space-y-2">
+                <div class="flex items-center gap-2">
+                  <div class="w-6 h-6 rounded-full bg-gradient-to-br from-[#cd3ef9] via-[#323dfe] to-black flex-shrink-0" />
+                  <div class="flex-1 rounded bg-gray-200 h-3" />
+                </div>
+                <div class="flex gap-2 text-[10px]">
+                  <span class="px-2 py-0.5 rounded-full bg-blue-100 text-blue-700">High intent</span>
+                  <span class="px-2 py-0.5 rounded-full bg-green-100 text-green-700">Qualified</span>
+                </div>
+                <div class="space-y-1.5 mt-1">
+                  <div class="flex items-center gap-2">
+                    <div class="w-4 h-4 rounded bg-gray-200 flex-shrink-0" />
+                    <div class="h-2 rounded bg-gray-200 flex-1" />
+                    <span class="text-[9px] text-green-600 font-medium">92%</span>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <div class="w-4 h-4 rounded bg-gray-200 flex-shrink-0" />
+                    <div class="h-2 rounded bg-gray-200 w-3/4" />
+                    <span class="text-[9px] text-yellow-600 font-medium">67%</span>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <div class="w-4 h-4 rounded bg-gray-200 flex-shrink-0" />
+                    <div class="h-2 rounded bg-gray-200 w-1/2" />
+                    <span class="text-[9px] text-gray-400 font-medium">34%</span>
+                  </div>
+                </div>
+              </div>
+            )}
+            {agent.icon === "headset" && (
+              <div class="space-y-2">
+                <div class="flex items-center justify-between text-[10px] text-gray-500">
+                  <span>Active conversation</span>
+                  <span class="flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-green-500" />Live</span>
+                </div>
+                <div class="flex justify-start">
+                  <div class="rounded-lg rounded-bl-sm px-2.5 py-1.5 bg-white border border-gray-200 shadow-sm text-[11px] text-gray-700 max-w-[85%]">Your order #4821 shipped today via FedEx.</div>
+                </div>
+                <div class="flex justify-end">
+                  <div class="rounded-lg rounded-br-sm px-2.5 py-1.5 bg-[#323dfe] text-white text-[11px] max-w-[85%]">Great, when will it arrive?</div>
+                </div>
+                <div class="flex justify-start">
+                  <div class="rounded-lg rounded-bl-sm px-2.5 py-1.5 bg-white border border-gray-200 shadow-sm text-[11px] text-gray-700 max-w-[85%]">Expected delivery: Thursday, Jan 18.</div>
+                </div>
+              </div>
+            )}
+            {agent.icon === "calendar" && (
+              <div class="space-y-2">
+                <div class="text-[10px] text-gray-500 font-medium">January 2025</div>
+                <div class="grid grid-cols-7 gap-1 text-[9px] text-center">
+                  <span class="text-gray-400">M</span><span class="text-gray-400">T</span><span class="text-gray-400">W</span><span class="text-gray-400">T</span><span class="text-gray-400">F</span><span class="text-gray-400">S</span><span class="text-gray-400">S</span>
+                  <span class="text-gray-400">13</span><span class="text-gray-400">14</span><span class="text-gray-400">15</span>
+                  <span class="w-5 h-5 rounded-full bg-[#323dfe] text-white flex items-center justify-center mx-auto">16</span>
+                  <span class="text-gray-400">17</span><span class="text-gray-400">18</span><span class="text-gray-400">19</span>
+                  <span class="text-gray-400">20</span><span class="text-gray-400">21</span><span class="text-gray-400">22</span><span class="text-gray-400">23</span><span class="text-gray-400">24</span><span class="text-gray-400">25</span><span class="text-gray-400">26</span>
+                </div>
+                <div class="flex items-center gap-2 mt-1 px-1">
+                  <div class="w-1 h-6 rounded-full bg-[#323dfe]" />
+                  <div>
+                    <div class="text-[10px] font-medium text-gray-800">Dr. Patel - 10:00 AM</div>
+                    <div class="text-[9px] text-gray-500">Dental Checkup</div>
+                  </div>
+                </div>
+              </div>
+            )}
+            {agent.icon === "wrench" && (
+              <div class="space-y-2">
+                <div class="flex items-center gap-2 text-[10px]">
+                  <span class="px-1.5 py-0.5 rounded bg-orange-100 text-orange-700 font-medium">Troubleshooting</span>
+                </div>
+                <div class="space-y-1.5">
+                  <div class="flex items-center gap-2 text-[11px]">
+                    <svg class="w-3.5 h-3.5 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                    <span class="text-gray-700">Network connectivity verified</span>
+                  </div>
+                  <div class="flex items-center gap-2 text-[11px]">
+                    <svg class="w-3.5 h-3.5 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                    <span class="text-gray-700">DNS resolution: OK</span>
+                  </div>
+                  <div class="flex items-center gap-2 text-[11px]">
+                    <svg class="w-3.5 h-3.5 text-yellow-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" /></svg>
+                    <span class="text-gray-700">SSL cert expiring in 3 days</span>
+                  </div>
+                </div>
+                <div class="text-[10px] text-gray-500 mt-1">Routing to human agent...</div>
+              </div>
+            )}
+            {agent.icon === "chart" && (
+              <div class="space-y-2">
+                <div class="text-[10px] text-gray-500 font-medium">CSAT Survey Results</div>
+                <div class="flex items-end gap-1 h-[50px]">
+                  <div class="flex-1 bg-[#323dfe]/20 rounded-t" style="height: 60%" />
+                  <div class="flex-1 bg-[#323dfe]/30 rounded-t" style="height: 45%" />
+                  <div class="flex-1 bg-[#323dfe]/40 rounded-t" style="height: 75%" />
+                  <div class="flex-1 bg-[#323dfe]/50 rounded-t" style="height: 55%" />
+                  <div class="flex-1 bg-[#323dfe] rounded-t" style="height: 90%" />
+                </div>
+                <div class="flex items-center justify-between text-[9px] text-gray-400">
+                  <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="text-[10px] font-semibold text-gray-800">4.7/5.0</span>
+                  <span class="text-[9px] text-green-600">+12% this week</span>
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* Text */}
+          <h3 class="font-inter text-[1rem] font-semibold text-black mb-2">{agent.title}</h3>
+          <p class="text-[0.875rem] text-gray-600 leading-relaxed">{agent.description}</p>
+        </div>
+      ))}
+
+      {/* Duplicate for seamless loop */}
+      {agents.map((agent) => (
+        <div class="agent-card flex-shrink-0 w-[320px] sm:w-[360px] rounded-xl border border-gray-200 bg-white p-6 hover:shadow-lg transition-shadow duration-300">
+          <div class="w-12 h-12 rounded-lg flex items-center justify-center mb-4" style={`background: ${agent.color}10;`}>
+            {agent.icon === "funnel" && (
+              <svg class="w-6 h-6" style={`color: ${agent.color};`} fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 3c2.755 0 5.455.232 8.083.678.533.09.917.556.917 1.096v1.044a2.25 2.25 0 01-.659 1.591l-5.432 5.432a2.25 2.25 0 00-.659 1.591v2.927a2.25 2.25 0 01-1.244 2.013L9.75 21v-6.568a2.25 2.25 0 00-.659-1.591L3.659 7.409A2.25 2.25 0 013 5.818V4.774c0-.54.384-1.006.917-1.096A48.32 48.32 0 0112 3z" />
+              </svg>
+            )}
+            {agent.icon === "headset" && (
+              <svg class="w-6 h-6" style={`color: ${agent.color};`} fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 01-.825-.242m9.345-8.334a2.126 2.126 0 00-.476-.095 48.64 48.64 0 00-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0011.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155" />
+              </svg>
+            )}
+            {agent.icon === "calendar" && (
+              <svg class="w-6 h-6" style={`color: ${agent.color};`} fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5m-9-6h.008v.008H12v-.008zM12 15h.008v.008H12V15zm0 2.25h.008v.008H12v-.008zM9.75 15h.008v.008H9.75V15zm0 2.25h.008v.008H9.75v-.008zM7.5 15h.008v.008H7.5V15zm0 2.25h.008v.008H7.5v-.008zm6.75-4.5h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V15zm0 2.25h.008v.008h-.008v-.008zm2.25-4.5h.008v.008H16.5v-.008zm0 2.25h.008v.008H16.5V15z" />
+              </svg>
+            )}
+            {agent.icon === "wrench" && (
+              <svg class="w-6 h-6" style={`color: ${agent.color};`} fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 11-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 004.486-6.336l-3.276 3.277a3.004 3.004 0 01-2.25-2.25l3.276-3.276a4.5 4.5 0 00-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085m-1.745 1.437L5.909 7.5H4.5L2.25 3.75l1.5-1.5L7.5 4.5v1.409l4.26 4.26m-1.745 1.437l1.745-1.437m6.615 8.206L15.75 15.75M4.867 19.125h.008v.008h-.008v-.008z" />
+              </svg>
+            )}
+            {agent.icon === "chart" && (
+              <svg class="w-6 h-6" style={`color: ${agent.color};`} fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 002.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 00-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15a2.25 2.25 0 012.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25zM6.75 12h.008v.008H6.75V12zm0 3h.008v.008H6.75V15zm0 3h.008v.008H6.75V18z" />
+              </svg>
+            )}
+          </div>
+
+          <div class="rounded-lg bg-gray-50 border border-gray-100 p-3 mb-4 h-[140px] overflow-hidden">
+            {agent.icon === "funnel" && (
+              <div class="space-y-2">
+                <div class="flex items-center gap-2">
+                  <div class="w-6 h-6 rounded-full bg-gradient-to-br from-[#cd3ef9] via-[#323dfe] to-black flex-shrink-0" />
+                  <div class="flex-1 rounded bg-gray-200 h-3" />
+                </div>
+                <div class="flex gap-2 text-[10px]">
+                  <span class="px-2 py-0.5 rounded-full bg-blue-100 text-blue-700">High intent</span>
+                  <span class="px-2 py-0.5 rounded-full bg-green-100 text-green-700">Qualified</span>
+                </div>
+                <div class="space-y-1.5 mt-1">
+                  <div class="flex items-center gap-2"><div class="w-4 h-4 rounded bg-gray-200 flex-shrink-0" /><div class="h-2 rounded bg-gray-200 flex-1" /><span class="text-[9px] text-green-600 font-medium">92%</span></div>
+                  <div class="flex items-center gap-2"><div class="w-4 h-4 rounded bg-gray-200 flex-shrink-0" /><div class="h-2 rounded bg-gray-200 w-3/4" /><span class="text-[9px] text-yellow-600 font-medium">67%</span></div>
+                  <div class="flex items-center gap-2"><div class="w-4 h-4 rounded bg-gray-200 flex-shrink-0" /><div class="h-2 rounded bg-gray-200 w-1/2" /><span class="text-[9px] text-gray-400 font-medium">34%</span></div>
+                </div>
+              </div>
+            )}
+            {agent.icon === "headset" && (
+              <div class="space-y-2">
+                <div class="flex items-center justify-between text-[10px] text-gray-500"><span>Active conversation</span><span class="flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-green-500" />Live</span></div>
+                <div class="flex justify-start"><div class="rounded-lg rounded-bl-sm px-2.5 py-1.5 bg-white border border-gray-200 shadow-sm text-[11px] text-gray-700 max-w-[85%]">Your order #4821 shipped today via FedEx.</div></div>
+                <div class="flex justify-end"><div class="rounded-lg rounded-br-sm px-2.5 py-1.5 bg-[#323dfe] text-white text-[11px] max-w-[85%]">Great, when will it arrive?</div></div>
+                <div class="flex justify-start"><div class="rounded-lg rounded-bl-sm px-2.5 py-1.5 bg-white border border-gray-200 shadow-sm text-[11px] text-gray-700 max-w-[85%]">Expected delivery: Thursday, Jan 18.</div></div>
+              </div>
+            )}
+            {agent.icon === "calendar" && (
+              <div class="space-y-2">
+                <div class="text-[10px] text-gray-500 font-medium">January 2025</div>
+                <div class="grid grid-cols-7 gap-1 text-[9px] text-center">
+                  <span class="text-gray-400">M</span><span class="text-gray-400">T</span><span class="text-gray-400">W</span><span class="text-gray-400">T</span><span class="text-gray-400">F</span><span class="text-gray-400">S</span><span class="text-gray-400">S</span>
+                  <span class="text-gray-400">13</span><span class="text-gray-400">14</span><span class="text-gray-400">15</span>
+                  <span class="w-5 h-5 rounded-full bg-[#323dfe] text-white flex items-center justify-center mx-auto">16</span>
+                  <span class="text-gray-400">17</span><span class="text-gray-400">18</span><span class="text-gray-400">19</span>
+                  <span class="text-gray-400">20</span><span class="text-gray-400">21</span><span class="text-gray-400">22</span><span class="text-gray-400">23</span><span class="text-gray-400">24</span><span class="text-gray-400">25</span><span class="text-gray-400">26</span>
+                </div>
+                <div class="flex items-center gap-2 mt-1 px-1">
+                  <div class="w-1 h-6 rounded-full bg-[#323dfe]" />
+                  <div><div class="text-[10px] font-medium text-gray-800">Dr. Patel - 10:00 AM</div><div class="text-[9px] text-gray-500">Dental Checkup</div></div>
+                </div>
+              </div>
+            )}
+            {agent.icon === "wrench" && (
+              <div class="space-y-2">
+                <div class="flex items-center gap-2 text-[10px]"><span class="px-1.5 py-0.5 rounded bg-orange-100 text-orange-700 font-medium">Troubleshooting</span></div>
+                <div class="space-y-1.5">
+                  <div class="flex items-center gap-2 text-[11px]"><svg class="w-3.5 h-3.5 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg><span class="text-gray-700">Network connectivity verified</span></div>
+                  <div class="flex items-center gap-2 text-[11px]"><svg class="w-3.5 h-3.5 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg><span class="text-gray-700">DNS resolution: OK</span></div>
+                  <div class="flex items-center gap-2 text-[11px]"><svg class="w-3.5 h-3.5 text-yellow-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" /></svg><span class="text-gray-700">SSL cert expiring in 3 days</span></div>
+                </div>
+                <div class="text-[10px] text-gray-500 mt-1">Routing to human agent...</div>
+              </div>
+            )}
+            {agent.icon === "chart" && (
+              <div class="space-y-2">
+                <div class="text-[10px] text-gray-500 font-medium">CSAT Survey Results</div>
+                <div class="flex items-end gap-1 h-[50px]">
+                  <div class="flex-1 bg-[#323dfe]/20 rounded-t" style="height: 60%" /><div class="flex-1 bg-[#323dfe]/30 rounded-t" style="height: 45%" /><div class="flex-1 bg-[#323dfe]/40 rounded-t" style="height: 75%" /><div class="flex-1 bg-[#323dfe]/50 rounded-t" style="height: 55%" /><div class="flex-1 bg-[#323dfe] rounded-t" style="height: 90%" />
+                </div>
+                <div class="flex items-center justify-between text-[9px] text-gray-400"><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span></div>
+                <div class="flex items-center gap-2"><span class="text-[10px] font-semibold text-gray-800">4.7/5.0</span><span class="text-[9px] text-green-600">+12% this week</span></div>
+              </div>
+            )}
+          </div>
+
+          <h3 class="font-inter text-[1rem] font-semibold text-black mb-2">{agent.title}</h3>
+          <p class="text-[0.875rem] text-gray-600 leading-relaxed">{agent.description}</p>
+        </div>
+      ))}
+    </div>
+
+    {/* Fade edges */}
+    <div class="absolute inset-y-0 left-0 w-12 sm:w-24 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
+    <div class="absolute inset-y-0 right-0 w-12 sm:w-24 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
+  </div>
+</section>
+
+<style>
+  .agent-marquee-content {
+    animation: agent-marquee 40s linear infinite;
+  }
+
+  .agent-marquee-wrapper:hover .agent-marquee-content {
+    animation-play-state: paused;
+  }
+
+  @keyframes agent-marquee {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+</style>

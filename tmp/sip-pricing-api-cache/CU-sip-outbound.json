@@ -1,0 +1,48 @@
+{
+  "country": "Cuba",
+  "country_iso": "CU",
+  "zentrunk": {
+    "local": {
+      "outbound": {
+        "network_group_rates": {
+          "1.0321": [
+            "Cuba",
+            "Cuba - Mobile"
+          ],
+          "1.978": [
+            "Cuba - Fixed - Major Cities (Guantanamo)"
+          ]
+        },
+        "rate": "1.0321",
+        "rates": {
+          "1.0321": [
+            "53",
+            "535",
+            "537264",
+            "53775"
+          ],
+          "1.978": [
+            "5399"
+          ]
+        },
+        "tollfree_rate": "NA"
+      }
+    },
+    "outbound": {
+      "network_groups": {
+        "Cuba": "1.0321",
+        "Cuba - Fixed - Major Cities (Guantanamo)": "1.978",
+        "Cuba - Mobile": "1.0321"
+      },
+      "rates": {
+        "Fixed": [
+          "1.0321",
+          "1.978"
+        ],
+        "Mobile": [
+          "1.0321"
+        ]
+      }
+    }
+  }
+}

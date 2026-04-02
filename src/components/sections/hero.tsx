@@ -93,7 +93,7 @@ export const Hero = () => {
                     <h2 className="font-inter font-semibold">
                       {feature.title}
                     </h2>
-                    <p className="text-muted-foreground text-sm">
+                    <p className="text-sm text-muted-foreground">
                       {feature.description}
                     </p>
                   </div>
@@ -178,7 +178,7 @@ const SlideIndicator = ({
   return (
     <div className={cn("flex flex-col items-center font-medium", className)}>
       <div className="">
-        <span className="text-sand-700">{currentSlide + 1} of 3 — </span>
+        <span className="text-sand-700">{currentSlide + 1} of 3 - </span>
         <span className="text-primary">{slides[currentSlide].label}</span>
       </div>
       <div className="flex gap-2">

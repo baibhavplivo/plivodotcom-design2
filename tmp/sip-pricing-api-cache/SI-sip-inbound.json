@@ -1,0 +1,38 @@
+{
+  "country": "Slovenia",
+  "country_iso": "SI",
+  "zentrunk": {
+    "inbound": {
+      "number_groups": {
+        "Slovenia Local Voice": "0.0063",
+        "Slovenia National Voice": "0.0063",
+        "Slovenia Tollfree Voice": "0.3067"
+      },
+      "rates": {
+        "local": [
+          "0.0063"
+        ],
+        "national": [
+          "0.0063"
+        ],
+        "tollfree": [
+          "0.3067"
+        ]
+      }
+    },
+    "local": {
+      "inbound": {
+        "number_group_rates": {
+          "0.0063": [
+            "Slovenia National Voice"
+          ],
+          "0.3067": [
+            "Slovenia Tollfree Voice"
+          ]
+        },
+        "rate": "0.0063",
+        "tollfree_rate": "0.3067"
+      }
+    }
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "country": "Australia",
+  "country_iso": "AU",
+  "zentrunk": {
+    "inbound": {
+      "number_groups": {
+        "Australia - local - Voice & SMS": "0.0025",
+        "Australia Local Voice": "0.0025",
+        "Australia Mobile Voice & SMS": "0.005",
+        "Australia Tollfree Voice": "0.045"
+      },
+      "rates": {
+        "local": [
+          "0.0025"
+        ],
+        "mobile": [
+          "0.005"
+        ],
+        "tollfree": [
+          "0.045"
+        ]
+      }
+    },
+    "local": {
+      "inbound": {
+        "number_group_rates": {
+          "0.0025": [
+            "Australia - local - Voice & SMS"
+          ],
+          "0.005": [
+            "Australia Mobile Voice & SMS"
+          ],
+          "0.045": [
+            "Australia Tollfree Voice"
+          ]
+        },
+        "rate": "0.0025",
+        "tollfree_rate": "0.045"
+      }
+    }
+  }
+}

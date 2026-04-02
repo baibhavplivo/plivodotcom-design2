@@ -1,0 +1,165 @@
+{
+  "api_id": "447fb950-2e6b-11f1-b3dd-0242ac110007",
+  "country": "Virgin Islands - British",
+  "country_code": 1284,
+  "country_iso": "VG",
+  "mms": {
+    "longcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "phone_numbers": [],
+  "sms": {
+    "longcode": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.25307",
+        "rates": {
+          "Cable & Wireless (British Virgin Island)": "0.25307",
+          "Caribbean Cellular Telephone Ltd (CCT)": "0.62954",
+          "Virgin Islands, British-Others": "0.36393"
+        }
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": "0.00000",
+        "rental": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "voice": {
+    "add_on_pricing": {
+      "audio_streaming_rate": 0.004,
+      "mpc_rate": 0,
+      "recording_storage_rate": 0.0004,
+      "speech_recognition": 0.02,
+      "transcription_charge": 0.0095,
+      "webrtc_rate": 0.0033
+    },
+    "ip": {
+      "inbound": {
+        "rate": "0.00330",
+        "rental": null
+      },
+      "outbound": {
+        "rates": {
+          "all": "0.00330"
+        }
+      }
+    },
+    "local": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.31100",
+        "rates": [
+          {
+            "destination_prefix": [
+              "1284"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.31100",
+            "voice_network_group": "British Virgin Islands",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "1284300",
+              "1284340",
+              "1284341",
+              "1284342",
+              "1284343",
+              "1284344",
+              "1284345",
+              "1284346",
+              "1284347",
+              "1284368",
+              "1284393",
+              "1284394",
+              "1284440",
+              "1284441",
+              "1284442",
+              "1284443",
+              "1284444",
+              "1284445",
+              "1284446",
+              "12844688",
+              "12844689",
+              "12844960",
+              "12844966",
+              "12844967",
+              "12844968",
+              "12844969",
+              "1284499",
+              "1284540",
+              "1284541",
+              "1284542",
+              "1284543",
+              "1284544",
+              "1284545",
+              "1284546",
+              "1284547",
+              "1284596",
+              "1284599",
+              "1284689",
+              "1284960"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.37100",
+            "voice_network_group": "British Virgin Islands - Mobile",
+            "voice_unit": 60
+          }
+        ]
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.00000",
+        "rates": null
+      }
+    }
+  }
+}

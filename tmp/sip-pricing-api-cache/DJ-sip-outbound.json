@@ -1,0 +1,38 @@
+{
+  "country": "Djibouti",
+  "country_iso": "DJ",
+  "zentrunk": {
+    "local": {
+      "outbound": {
+        "network_group_rates": {
+          "0.5483": [
+            "Djibouti",
+            "Djibouti Mobile"
+          ]
+        },
+        "rate": "0.5483",
+        "rates": {
+          "0.5483": [
+            "253",
+            "2537"
+          ]
+        },
+        "tollfree_rate": "NA"
+      }
+    },
+    "outbound": {
+      "network_groups": {
+        "Djibouti": "0.5483",
+        "Djibouti Mobile": "0.5483"
+      },
+      "rates": {
+        "Fixed": [
+          "0.5483"
+        ],
+        "Mobile": [
+          "0.5483"
+        ]
+      }
+    }
+  }
+}

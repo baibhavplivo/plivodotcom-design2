@@ -1,0 +1,172 @@
+{
+  "api_id": "196e77ec-2e6b-11f1-8222-0242ac110003",
+  "country": "Tajikistan",
+  "country_code": 992,
+  "country_iso": "TJ",
+  "mms": {
+    "longcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "phone_numbers": [],
+  "sms": {
+    "longcode": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.42286",
+        "rates": {
+          "Tajikistan - Babilon Mobile": "0.49059",
+          "Tajikistan - INDIGO": "0.42286",
+          "Tajikistan - TCELL (Somoncom)": "0.48526",
+          "Tajikistan - TK Mobile": "0.79570",
+          "Tajikistan - TT-Mobile": "0.51140",
+          "Tajikistan - Tajik Tel or Takom Beeline": "0.44436",
+          "Tajikistan-Others": "0.79570"
+        }
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": "0.00000",
+        "rental": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "voice": {
+    "add_on_pricing": {
+      "audio_streaming_rate": 0.004,
+      "mpc_rate": 0,
+      "recording_storage_rate": 0.0004,
+      "speech_recognition": 0.02,
+      "transcription_charge": 0.0095,
+      "webrtc_rate": 0.0033
+    },
+    "ip": {
+      "inbound": {
+        "rate": "0.00330",
+        "rental": null
+      },
+      "outbound": {
+        "rates": {
+          "all": "0.00330"
+        }
+      }
+    },
+    "local": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.25420",
+        "rates": [
+          {
+            "destination_prefix": [
+              "992"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.25420",
+            "voice_network_group": "Tajikistan",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "99250",
+              "99255",
+              "99277",
+              "99288",
+              "9929",
+              "99290",
+              "992911",
+              "992915",
+              "992917",
+              "992918",
+              "992919",
+              "99292",
+              "99293",
+              "99294",
+              "99295",
+              "99296",
+              "99297",
+              "99298",
+              "99299"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.25420",
+            "voice_network_group": "Tajikistan - Mobile",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "99237230",
+              "992411111",
+              "992601000",
+              "992601002",
+              "992601003",
+              "992601004",
+              "992601005",
+              "992601006",
+              "992601007",
+              "992601008",
+              "992601009",
+              "99260200",
+              "99260300"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "1.18100",
+            "voice_network_group": "Tajikistan - Premium Services",
+            "voice_unit": 60
+          }
+        ]
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.00000",
+        "rates": null
+      }
+    }
+  }
+}

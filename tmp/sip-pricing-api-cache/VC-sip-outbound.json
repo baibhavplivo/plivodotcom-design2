@@ -1,0 +1,69 @@
+{
+  "country": "Saint Vincent and the Grenadines",
+  "country_iso": "VC",
+  "zentrunk": {
+    "local": {
+      "outbound": {
+        "network_group_rates": {
+          "0.308": [
+            "Saint Vincent And The Grenadines"
+          ],
+          "0.378": [
+            "Saint Vincent And The Grenadines - Mobile"
+          ]
+        },
+        "rate": "0.308",
+        "rates": {
+          "0.308": [
+            "1784"
+          ],
+          "0.378": [
+            "1784430",
+            "1784431",
+            "1784432",
+            "1784433",
+            "1784434",
+            "1784435",
+            "1784454",
+            "1784455",
+            "1784491",
+            "1784492",
+            "1784493",
+            "1784494",
+            "1784495",
+            "1784496",
+            "1784497",
+            "1784498",
+            "178451",
+            "1784526",
+            "1784527",
+            "1784528",
+            "1784529",
+            "1784530",
+            "1784531",
+            "1784532",
+            "1784533",
+            "1784534",
+            "1784593",
+            "1784720"
+          ]
+        },
+        "tollfree_rate": "NA"
+      }
+    },
+    "outbound": {
+      "network_groups": {
+        "Saint Vincent And The Grenadines": "0.308",
+        "Saint Vincent And The Grenadines - Mobile": "0.378"
+      },
+      "rates": {
+        "Fixed": [
+          "0.308"
+        ],
+        "Mobile": [
+          "0.378"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "country": "Saudi Arabia",
+  "country_iso": "SA",
+  "zentrunk": {
+    "inbound": {
+      "number_groups": {
+        "Saudi Arabia Tollfree Voice": "0.744"
+      },
+      "rates": {
+        "tollfree": [
+          "0.744"
+        ]
+      }
+    },
+    "local": {
+      "inbound": {
+        "number_group_rates": {
+          "0.744": [
+            "Saudi Arabia Tollfree Voice"
+          ]
+        },
+        "rate": "NA",
+        "tollfree_rate": "0.744"
+      }
+    }
+  }
+}

@@ -7,7 +7,7 @@ export const AboutSection = () => {
     <section className="bg-mint-50 py-24 md:py-32">
       <div className="container">
         <div className="max-w-xl lg:translate-x-24">
-          <h2 className="text-muted-foreground mb-4 text-2xl font-semibold md:text-3xl">
+          <h2 className="mb-4 text-2xl font-semibold text-muted-foreground md:text-3xl">
             About Us
           </h2>
 
@@ -41,9 +41,9 @@ export const AboutSection = () => {
         {/* Text Below Image */}
         <div className="mt-28 max-w-xl lg:mt-10 lg:translate-x-24">
           <p className="text-lg leading-6">
-            Tasks have changed, are changing, and will continue to change — for
+            Tasks have changed, are changing, and will continue to change - for
             the better. Now is the time for productivity to be user-first and
-            internet-first. But in order to do this — it needs a new foundation.
+            internet-first. But in order to do this - it needs a new foundation.
           </p>
         </div>
 
@@ -78,14 +78,14 @@ export const AboutSection = () => {
           {/* Timeline Section */}
           <p className="ml-auto max-w-xl text-lg leading-6 lg:-translate-x-24">
             We started building Streamline in 2019 and launched in 2022. Every
-            single feature has been built from scratch — with no unnecessary
+            single feature has been built from scratch - with no unnecessary
             complexity or outdated tools. We are purpose-built to redefine
             productivity for the next hundred years.
           </p>
 
           {/* Team Section */}
           <h2 className="ml-auto max-w-xl text-2xl font-semibold leading-8 md:text-3xl lg:-translate-x-24">
-            We are a bit of an unusual team — not your standard tech startup.
+            We are a bit of an unusual team - not your standard tech startup.
           </h2>
           <div className="ml-auto max-w-xl text-lg leading-6 lg:-translate-x-24">
             <p>
@@ -99,11 +99,11 @@ export const AboutSection = () => {
             <Button
               variant="outline"
               size="lg"
-              className="border-foreground/20 mt-6 rounded-sm border md:mt-8 lg:mt-10"
+              className="mt-6 rounded-sm border border-foreground/20 md:mt-8 lg:mt-10"
             >
-              <a href="#" className="">
+              <a href="/jobs/" className="">
                 <span className="flex items-center gap-2 whitespace-pre-wrap text-start">
-                  View Open roles
+                  View open roles
                   <ArrowRight className="stroke-3 size-4" />
                 </span>
               </a>

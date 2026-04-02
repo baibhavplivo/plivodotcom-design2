@@ -1,0 +1,50 @@
+{
+  "country": "Syrian Arab Republic",
+  "country_iso": "SY",
+  "zentrunk": {
+    "local": {
+      "outbound": {
+        "network_group_rates": {
+          "0.3482": [
+            "Syria"
+          ],
+          "0.5208": [
+            "Syria Mobile",
+            "Syria Mobile MTN"
+          ]
+        },
+        "rate": "0.3482",
+        "rates": {
+          "0.3482": [
+            "963"
+          ],
+          "0.5208": [
+            "96392",
+            "96393",
+            "96398",
+            "96399",
+            "96394",
+            "96395",
+            "96396"
+          ]
+        },
+        "tollfree_rate": "NA"
+      }
+    },
+    "outbound": {
+      "network_groups": {
+        "Syria": "0.3482",
+        "Syria Mobile": "0.5208",
+        "Syria Mobile MTN": "0.5208"
+      },
+      "rates": {
+        "Fixed": [
+          "0.3482"
+        ],
+        "Mobile": [
+          "0.5208"
+        ]
+      }
+    }
+  }
+}

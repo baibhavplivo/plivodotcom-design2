@@ -1,0 +1,32 @@
+{
+  "country": "Guam",
+  "country_iso": "GU",
+  "zentrunk": {
+    "local": {
+      "outbound": {
+        "network_group_rates": {
+          "0.034": [
+            "Guam"
+          ]
+        },
+        "rate": "0.034",
+        "rates": {
+          "0.034": [
+            "1671"
+          ]
+        },
+        "tollfree_rate": "NA"
+      }
+    },
+    "outbound": {
+      "network_groups": {
+        "Guam": "0.034"
+      },
+      "rates": {
+        "Fixed": [
+          "0.034"
+        ]
+      }
+    }
+  }
+}

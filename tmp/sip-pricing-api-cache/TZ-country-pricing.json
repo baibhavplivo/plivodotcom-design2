@@ -1,0 +1,168 @@
+{
+  "api_id": "3636cf7c-2e6c-11f1-b3dd-0242ac110007",
+  "country": "Tanzania",
+  "country_code": 255,
+  "country_iso": "TZ",
+  "mms": {
+    "longcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "phone_numbers": [],
+  "sms": {
+    "longcode": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.16950",
+        "rates": {
+          "Tanzania - Airtel Tanzania Ltd": "0.27540",
+          "Tanzania - Benson Informatics (T) Ltd.": "0.31390",
+          "Tanzania - Dovetel Tanzania Ltd (Sasatel)": "0.31390",
+          "Tanzania - Halotel": "0.30107",
+          "Tanzania - MIC": "0.63426",
+          "Tanzania - MyCell": "0.31390",
+          "Tanzania - SMILE COMMUNICATIONS (T) LTD": "0.30107",
+          "Tanzania - Tanzania Communications Commission Ltd. (TTCL)": "0.16950",
+          "Tanzania - Vodacom (T) Ltd.": "0.21081",
+          "Tanzania - Zanzibar Telecom Ltd (Zantel)": "0.37920",
+          "Tanzania All": "0.77790",
+          "Tanzania, United Republic Of-tiGO": "0.30107"
+        }
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": "0.00000",
+        "rental": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "voice": {
+    "add_on_pricing": {
+      "audio_streaming_rate": 0.004,
+      "mpc_rate": 0,
+      "recording_storage_rate": 0.0004,
+      "speech_recognition": 0.02,
+      "transcription_charge": 0.0095,
+      "webrtc_rate": 0.0033
+    },
+    "ip": {
+      "inbound": {
+        "rate": "0.00330",
+        "rental": null
+      },
+      "outbound": {
+        "rates": {
+          "all": "0.00330"
+        }
+      }
+    },
+    "local": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.46850",
+        "rates": [
+          {
+            "destination_prefix": [
+              "255"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.46850",
+            "voice_network_group": "Tanzania",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "25561",
+              "25562",
+              "25565",
+              "25566",
+              "25567",
+              "25568",
+              "25569",
+              "25571",
+              "25573",
+              "25574",
+              "25575",
+              "25576",
+              "25577",
+              "25578",
+              "25579"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.51440",
+            "voice_network_group": "Tanzania - Mobile",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "25541147",
+              "25541175",
+              "25541179",
+              "255901135",
+              "255901136",
+              "255901137",
+              "255901138",
+              "255901139"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.70100",
+            "voice_network_group": "Tanzania - Premium Services",
+            "voice_unit": 60
+          }
+        ]
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.00000",
+        "rates": null
+      }
+    }
+  }
+}

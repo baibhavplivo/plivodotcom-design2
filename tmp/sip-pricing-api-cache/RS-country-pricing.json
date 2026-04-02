@@ -1,0 +1,290 @@
+{
+  "api_id": "a9279314-2e6b-11f1-8222-0242ac110003",
+  "country": "Serbia",
+  "country_code": 381,
+  "country_iso": "RS",
+  "mms": {
+    "longcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "phone_numbers": [],
+  "sms": {
+    "longcode": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.13260",
+        "rates": {
+          "Serbia - Telekom Srbija a.d.": "0.64166",
+          "Serbia - Telenor d.o.o.": "0.13260",
+          "Serbia - Vip mobile d.o.o.": "0.15912",
+          "Serbia-All Networks": "0.36242"
+        }
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": "0.00000",
+        "rental": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "voice": {
+    "add_on_pricing": {
+      "audio_streaming_rate": 0.004,
+      "mpc_rate": 0,
+      "recording_storage_rate": 0.0004,
+      "speech_recognition": 0.02,
+      "transcription_charge": 0.0095,
+      "webrtc_rate": 0.0033
+    },
+    "ip": {
+      "inbound": {
+        "rate": "0.00330",
+        "rental": null
+      },
+      "outbound": {
+        "rates": {
+          "all": "0.00330"
+        }
+      }
+    },
+    "local": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.24170",
+        "rates": [
+          {
+            "destination_prefix": [
+              "3812804",
+              "381281",
+              "3812901",
+              "381291",
+              "3813840",
+              "3813841",
+              "381387",
+              "3813901",
+              "381391"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.24170",
+            "voice_network_group": "Serbia - Fixed - Major Cities (Kosovo)",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "3811051",
+              "3811059",
+              "38111410",
+              "38111411",
+              "38111412",
+              "38111413",
+              "38111414",
+              "38111415",
+              "38111421",
+              "3811149",
+              "3811241",
+              "3811249",
+              "3811341",
+              "3811349",
+              "3811451",
+              "3811459",
+              "3811561",
+              "3811569",
+              "3811661",
+              "3811669",
+              "3811731",
+              "3811739",
+              "38118310",
+              "3811839",
+              "3811921",
+              "3811929",
+              "3812061",
+              "3812069",
+              "38121310",
+              "381213810",
+              "38121399",
+              "3812281",
+              "3812289",
+              "38123051",
+              "38123059",
+              "3812361",
+              "3812369",
+              "3812421",
+              "38124230",
+              "38124231",
+              "3812429",
+              "3812531",
+              "3812539",
+              "3812621",
+              "38126220",
+              "3812629",
+              "3812721",
+              "3812729",
+              "38129310",
+              "3813081",
+              "3813089",
+              "3813161",
+              "3813169",
+              "3813189",
+              "3813241",
+              "3813249",
+              "3813331",
+              "3813339",
+              "38134210",
+              "3813429",
+              "3813578",
+              "3813579",
+              "3813621",
+              "3813629",
+              "3813721",
+              "3813729",
+              "38139310"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.62920",
+            "voice_network_group": "Serbia - Fixed - Others (Orion Telekom)",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "381600",
+              "381601",
+              "3816020",
+              "3816021",
+              "38160220",
+              "38160221",
+              "38160222",
+              "38160223",
+              "38160224",
+              "38160225",
+              "38160226",
+              "381602270",
+              "381602271",
+              "381602272",
+              "381602273",
+              "381602274",
+              "381602275",
+              "381602276",
+              "381602277",
+              "381602278",
+              "381602279",
+              "38160228",
+              "38160229",
+              "3816023",
+              "3816024",
+              "3816025",
+              "3816026",
+              "3816027",
+              "3816028",
+              "3816029",
+              "381603",
+              "381604",
+              "381605",
+              "381606",
+              "381607",
+              "381608",
+              "381609",
+              "38161",
+              "38162",
+              "38163",
+              "38164",
+              "38165",
+              "38166",
+              "381677",
+              "381678",
+              "38168",
+              "38169"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.60820",
+            "voice_network_group": "Serbia - Mobile",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "38176540",
+              "38176541",
+              "38176543",
+              "38176655",
+              "38176767"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.69100",
+            "voice_network_group": "Serbia - Premium Services",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "381",
+              "38111",
+              "38128",
+              "38129",
+              "38138",
+              "38139"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.27320",
+            "voice_network_group": "Serbia",
+            "voice_unit": 60
+          }
+        ]
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.00000",
+        "rates": null
+      }
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "country": "Luxembourg",
+  "country_iso": "LU",
+  "zentrunk": {
+    "inbound": {
+      "number_groups": {
+        "Luxembourg Local Voice": "0.003",
+        "Luxembourg National Voice": "0.003",
+        "Luxembourg Tollfree Voice": "0.48"
+      },
+      "rates": {
+        "local": [
+          "0.003"
+        ],
+        "national": [
+          "0.003"
+        ],
+        "tollfree": [
+          "0.48"
+        ]
+      }
+    },
+    "local": {
+      "inbound": {
+        "number_group_rates": {
+          "0.003": [
+            "Luxembourg Local Voice"
+          ],
+          "0.48": [
+            "Luxembourg Tollfree Voice"
+          ]
+        },
+        "rate": "0.003",
+        "tollfree_rate": "0.48"
+      }
+    }
+  }
+}

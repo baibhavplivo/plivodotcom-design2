@@ -1,0 +1,17 @@
+{
+  "country": "Kenya",
+  "country_iso": "KE",
+  "zentrunk": {
+    "inbound": {
+      "number_groups": {},
+      "rates": {}
+    },
+    "local": {
+      "inbound": {
+        "number_group_rates": {},
+        "rate": "NA",
+        "tollfree_rate": "NA"
+      }
+    }
+  }
+}

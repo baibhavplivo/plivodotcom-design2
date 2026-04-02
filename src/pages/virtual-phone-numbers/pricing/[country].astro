@@ -1,0 +1,29 @@
+---
+import PlivoLayout from "@/layouts/PlivoLayout.astro";
+import PhoneNumbersSubNav from "@/components/sections/phone-numbers/PhoneNumbersSubNav.astro";
+import PhoneNumbersPricingPage from "@/components/sections/phone-numbers/PhoneNumbersPricingPage";
+import PhoneNumbersPreFooterCTA from "@/components/sections/phone-numbers/PhoneNumbersPreFooterCTA";
+import {
+  PHONE_NUMBER_PRICING_COUNTRY_CODES,
+  PHONE_NUMBER_PRICING_COUNTRY_NAMES,
+} from "@/data/phone-number-pricing-cache";
+
+export function getStaticPaths() {
+  return PHONE_NUMBER_PRICING_COUNTRY_CODES.map((code) => ({
+    params: { country: code.toLowerCase() },
+    props: { countryCode: code },
+  }));
+}
+
+const { countryCode } = Astro.props;
+const countryName = PHONE_NUMBER_PRICING_COUNTRY_NAMES[countryCode] || countryCode;
+---
+
+<PlivoLayout
+  title={`Phone Number Pricing — Long Code, Toll-Free, Short Code - ${countryName}`}
+  description={`Get long code, toll-free, and short code ${countryName} phone numbers, with volume discounts available for committed spend.`}
+>
+  <PhoneNumbersSubNav currentPage="pricing" />
+  <PhoneNumbersPricingPage client:visible initialCountry={countryCode} />
+  <PhoneNumbersPreFooterCTA client:visible />
+</PlivoLayout>

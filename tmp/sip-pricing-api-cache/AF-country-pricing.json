@@ -1,0 +1,139 @@
+{
+  "api_id": "eb4a6b8c-2e6a-11f1-8222-0242ac110003",
+  "country": "Afghanistan",
+  "country_code": 93,
+  "country_iso": "AF",
+  "mms": {
+    "longcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "phone_numbers": [],
+  "sms": {
+    "longcode": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.23300",
+        "rates": {
+          "Afghanistan - Afghan Telecom": "0.42670",
+          "Afghanistan - Afghan Wireless Communication Company (AWCC)": "0.34670",
+          "Afghanistan - Areeba (MTN)": "0.23300",
+          "Afghanistan - Etisalat": "0.36530",
+          "Afghanistan - Roshan": "0.40890",
+          "Afghanistan-Other": "0.42670"
+        }
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": "0.00000",
+        "rental": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "voice": {
+    "add_on_pricing": {
+      "audio_streaming_rate": 0.004,
+      "mpc_rate": 0,
+      "recording_storage_rate": 0.0004,
+      "speech_recognition": 0.02,
+      "transcription_charge": 0.0095,
+      "webrtc_rate": 0.0033
+    },
+    "ip": {
+      "inbound": {
+        "rate": "0.00330",
+        "rental": null
+      },
+      "outbound": {
+        "rates": {
+          "all": "0.00330"
+        }
+      }
+    },
+    "local": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.38100",
+        "rates": [
+          {
+            "destination_prefix": [
+              "93"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.38100",
+            "voice_network_group": "Afghanistan",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "9370",
+              "9371",
+              "9372",
+              "9373",
+              "9374",
+              "9375",
+              "9376",
+              "9377",
+              "9378",
+              "9379"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.38100",
+            "voice_network_group": "Afghanistan - Mobile",
+            "voice_unit": 60
+          }
+        ]
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.00000",
+        "rates": null
+      }
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "country": "Russian Federation",
+  "country_iso": "RU",
+  "zentrunk": {
+    "inbound": {
+      "number_groups": {
+        "Russian Federation Local Voice": "0.0063",
+        "Russian Federation Mobile Voice & SMS": "0.0063",
+        "Russian Federation Tollfree Voice": "0.214"
+      },
+      "rates": {
+        "local": [
+          "0.0063"
+        ],
+        "mobile": [
+          "0.0063"
+        ],
+        "tollfree": [
+          "0.214"
+        ]
+      }
+    },
+    "local": {
+      "inbound": {
+        "number_group_rates": {
+          "0.0063": [
+            "Russian Federation Local Voice"
+          ],
+          "0.214": [
+            "Russian Federation Tollfree Voice"
+          ]
+        },
+        "rate": "0.0063",
+        "tollfree_rate": "0.214"
+      }
+    }
+  }
+}

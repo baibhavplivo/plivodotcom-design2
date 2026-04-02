@@ -1,0 +1,34 @@
+{
+  "country": "Japan",
+  "country_iso": "JP",
+  "zentrunk": {
+    "inbound": {
+      "number_groups": {
+        "Japan Local Voice": "0.0063",
+        "Japan Tollfree Voice": "0.237"
+      },
+      "rates": {
+        "local": [
+          "0.0063"
+        ],
+        "tollfree": [
+          "0.237"
+        ]
+      }
+    },
+    "local": {
+      "inbound": {
+        "number_group_rates": {
+          "0.0063": [
+            "Japan Local Voice"
+          ],
+          "0.237": [
+            "Japan Tollfree Voice"
+          ]
+        },
+        "rate": "0.0063",
+        "tollfree_rate": "0.237"
+      }
+    }
+  }
+}

@@ -1,0 +1,102 @@
+# Product pages we haven't built → closest existing page
+/api-platform/          /ai/                     301
+/pricing-api-platform/  /pricing/                301
+/phlo/                  /ai/                     301
+/lookup/                /sms/overview/           301
+/mms/                   /sms/overview/           301
+/voice/features/        /voice/overview/         301
+/voice/coverage/        /voice/overview/         301
+/voice/call-insights/   /voice/overview/         301
+/voice/client-sdk/      /voice/overview/         301
+/voice/automatic-speech-recognition/ /voice/overview/ 301
+/virtual-phone-numbers/features/ /virtual-phone-numbers/ 301
+/sms/10dlc/             /sms/overview/           301
+/sms/channel-features/  /sms/overview/           301
+/sms/powerpack/         /sms/overview/           301
+/sms/shortcode/         /sms/overview/           301
+/sms/toll-free/         /sms/overview/           301
+/compare/*             /ai/                     301
+/customers/*           /about/                  301
+/customers/             /about/                  301
+/glossary/*            /blog/                   301
+/guide/*               /blog/                   301
+/integrations/*        /ai/                     301
+/integrations/         /ai/                     301
+/news/*                /about/                  301
+/platform/*            /ai/                     301
+/platform/             /ai/                     301
+/resources/*           /blog/                   301
+/resources/             /blog/                   301
+/guide/                 /blog/                   301
+/glossary/              /blog/                   301
+/changelog/             /blog/                   301
+/news/                  /about/                  301
+/support-plans/*       /contact/sales/          301
+/support-plans/         /contact/sales/          301
+/global-infrastructure/ /about/                  301
+/carriers/              /about/                  301
+/startups/              /build-for-bharat/offer/ 301
+/talk-to-an-expert/     /contact/sales/          301
+/twilio-alternative/    /pricing/                301
+/twilio-alternative/*   /pricing/                301
+/bandwidth-alternative/ /pricing/                301
+/exotel-alternative/    /pricing/                301
+/gupshup-alternative/   /pricing/                301
+/routemobile-alternative/ /pricing/              301
+/telnyx-alternative/    /pricing/                301
+/vonage-alternative/    /pricing/                301
+/search/                /                        301
+/use-case/              /ai/                     301
+/use-case/*             /ai/                     301
+/human-like-ai-agents/  /ai/                     301
+/build-for-bharat/      /build-for-bharat/offer/ 301
+
+# WhatsApp call overview → message overview (unified page)
+/whatsapp-call/overview/ /whatsapp-message/overview/ 301
+/whatsapp-ai-agents/    /whatsapp-message/overview/ 301
+/whatsapp-ai-agents/*   /whatsapp-message/overview/ 301
+/whatsapp/call/         /whatsapp-call/pricing/  301
+/whatsapp/call/*        /whatsapp-call/pricing/  301
+
+# Old Webflow URLs that might still have traffic
+/whatsapp-message/api/  /whatsapp-message/overview/ 301
+
+# Legacy legal URL aliases (live has flat + nested)
+/aup/                              /legal/aup/                    301
+/aup/aup-2024-12-20/              /legal/aup/aup-2024-12-20/     301
+/aup/2021/                        /legal/aup/2021/               301
+/subprocessors/                    /legal/subprocessors/          301
+/reporting-vulnerability/          /legal/responsible-disclosure/ 301
+/reporting-vulnerabilities-2021/   /legal/responsible-disclosure/2021/ 301
+/supplemental-terms-for-whatsapp-business-solutions/ /legal/supplemental/ 301
+/supplemental-terms-for-whatsapp-business-solutions/2023/ /legal/supplemental/2023/ 301
+/ai-ml-terms-of-service/          /legal/ai-addendum/            301
+/legal/enforcement-guidelines/    /legal/law-enforcement/        301
+/legal/copyright-infringement-notification/ /legal/copyright/    301
+/legal/service-level-and-support/ /legal/sla/                    301
+/legal/service-schedule/sst-api/  /legal/additional-terms/       301
+/legal/plivo-security-overview/   /security/                     301
+
+# Trial page variants
+/bb-trial-2/            /request-trial/          301
+/bb-trial-v3/           /request-trial/          301
+/bb-trial-v4/           /request-trial/          301
+/get-a-trial-account/   /request-trial/          301
+
+# Old URL patterns → new URL patterns (our own renames)
+/phone-numbers/         /virtual-phone-numbers/          301
+/phone-numbers/pricing  /virtual-phone-numbers/pricing   301
+/phone-numbers/pricing/ /virtual-phone-numbers/pricing/  301
+/voice/sip-trunking/    /sip-trunking/                   301
+/voice/sip-trunking/pricing  /sip-trunking/pricing       301
+/voice/sip-trunking/pricing/ /sip-trunking/pricing/      301
+/voice/sip-trunking/coverage  /sip-trunking/coverage     301
+/voice/sip-trunking/coverage/ /sip-trunking/coverage/    301
+/whatsapp/overview/     /whatsapp-message/overview/      301
+/whatsapp/chat-pricing/ /whatsapp-message/pricing/       301
+/whatsapp/call-pricing/ /whatsapp-call/pricing/          301
+/platform/ai-agents/    /ai/                             301
+/sms/verify-api/        /verify/                         301
+/sms/rcs/               /rcs/                            301
+
+# Explicitly retire non-production sitemap debris

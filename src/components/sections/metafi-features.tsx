@@ -26,13 +26,13 @@ const FEATURES: Feature[] = [
   {
     title: "Invoicing",
     description:
-      "Create an invoice and send it to your customers in minutes—no-code required—to easily collect payments.",
+      "Create an invoice and send it to your customers in minutes-no-code required-to easily collect payments.",
     image: "/images/homepage/features/invoicing.webp",
   },
   {
     title: "Payment Link",
     description:
-      "Sell online without a website. Create a full payment page in a few clicks and share the link with customers—no code required.",
+      "Sell online without a website. Create a full payment page in a few clicks and share the link with customers-no code required.",
     image: "/images/homepage/features/payment-link.webp",
   },
 ];
@@ -44,11 +44,11 @@ function FeatureCard({ feature }: { feature: Feature }) {
   const isPayment = feature.title === "Payment Link";
 
   return (
-    <div className="bg-card border-border-light relative flex flex-col rounded-[16px] border p-6 text-left shadow-[0_2px_8px_-1px_rgba(13,13,18,0.04)]">
-      <h3 className="text-foreground text-lg font-medium sm:text-xl">
+    <div className="border-border-light relative flex flex-col rounded-[16px] border bg-card p-6 text-left shadow-[0_2px_8px_-1px_rgba(13,13,18,0.04)]">
+      <h3 className="text-lg font-medium text-foreground sm:text-xl">
         {feature.title}
       </h3>
-      <p className="text-muted-foreground mt-2 text-sm sm:text-base">
+      <p className="mt-2 text-sm text-muted-foreground sm:text-base">
         {feature.description}
       </p>
 
@@ -87,12 +87,12 @@ const MetafiFeatures = () => {
           Features
         </p>
 
-        <h2 className="text-foreground mx-auto max-w-3xl text-balance text-center text-3xl font-medium leading-tight tracking-tight sm:text-4xl md:text-5xl">
+        <h2 className="mx-auto max-w-3xl text-balance text-center text-3xl font-medium leading-tight tracking-tight text-foreground sm:text-4xl md:text-5xl">
           Everything You Need to Run & <br className="hidden sm:block" />
           Grow Your Business
         </h2>
 
-        <p className="text-muted-foreground mx-auto mt-4 max-w-2xl text-center text-base sm:text-lg">
+        <p className="mx-auto mt-4 max-w-2xl text-center text-base text-muted-foreground sm:text-lg">
           All the tools and resources necessary for managing and expanding your
           business, conveniently accessible in one place. Take control of your
           journey to success with our comprehensive solutions.

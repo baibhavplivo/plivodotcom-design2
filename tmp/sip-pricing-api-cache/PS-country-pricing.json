@@ -1,0 +1,127 @@
+{
+  "api_id": "15e8c8de-2e6b-11f1-a084-0242ac110003",
+  "country": "Palestinian Authority",
+  "country_code": 970,
+  "country_iso": "PS",
+  "mms": {
+    "longcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "phone_numbers": [],
+  "sms": {
+    "longcode": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.38768",
+        "rates": {
+          "Palestinian Authority - Jawwal": "0.38768",
+          "Palestinian Authority - Wataniya Mobile": "0.41530"
+        }
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": "0.00000",
+        "rental": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "voice": {
+    "add_on_pricing": {
+      "audio_streaming_rate": 0.004,
+      "mpc_rate": 0,
+      "recording_storage_rate": 0.0004,
+      "speech_recognition": 0.02,
+      "transcription_charge": 0.0095,
+      "webrtc_rate": 0.0033
+    },
+    "ip": {
+      "inbound": {
+        "rate": "0.00330",
+        "rental": null
+      },
+      "outbound": {
+        "rates": {
+          "all": "0.00330"
+        }
+      }
+    },
+    "local": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.23990",
+        "rates": [
+          {
+            "destination_prefix": [
+              "970"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.23990",
+            "voice_network_group": "Palestine",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "97056",
+              "97059"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.26870",
+            "voice_network_group": "Palestine - Mobile",
+            "voice_unit": 60
+          }
+        ]
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.00000",
+        "rates": null
+      }
+    }
+  }
+}

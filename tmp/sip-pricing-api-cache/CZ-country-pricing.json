@@ -1,0 +1,349 @@
+{
+  "api_id": "45f39554-2e6b-11f1-b3dd-0242ac110007",
+  "country": "Czech Republic",
+  "country_code": 420,
+  "country_iso": "CZ",
+  "mms": {
+    "longcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "phone_numbers": [
+    {
+      "capabilities": [
+        "voice"
+      ],
+      "cnam_lookup_rate": "0.00000",
+      "country": "Czech Republic",
+      "country_code": 420,
+      "country_iso": "CZ",
+      "effective_date": "2018-05-29",
+      "inbound_mms_rate": "0.00000",
+      "inbound_sms_rate": "0.00000",
+      "inbound_voice_rate": "0.25690",
+      "number_type": "Tollfree",
+      "rental_rate": "29.75000",
+      "setup_rate": "51.67000",
+      "status": "BETA"
+    },
+    {
+      "capabilities": [
+        "voice"
+      ],
+      "cnam_lookup_rate": "0.00000",
+      "country": "Czech Republic",
+      "country_code": 420,
+      "country_iso": "CZ",
+      "effective_date": "2018-04-09",
+      "inbound_mms_rate": "0.00000",
+      "inbound_sms_rate": "0.00000",
+      "inbound_voice_rate": "0.00850",
+      "number_type": "Local",
+      "rental_rate": "1.25000",
+      "setup_rate": "0.00000",
+      "status": "GA"
+    }
+  ],
+  "sms": {
+    "longcode": {
+      "inbound": {
+        "rate": "0.00000",
+        "rental": "10.20000"
+      },
+      "outbound": {
+        "rate": "0.05967",
+        "rates": {
+          "Czech Republic - ASTELNET": "0.06502",
+          "Czech Republic - Air Telecom (MobilKom)": "0.06502",
+          "Czech Republic - Compatel": "0.06502",
+          "Czech Republic - T-Mobile Czech Republic (T-Systems)": "0.06198",
+          "Czech Republic - TRAVEL TELEKOMMUNIKATION": "0.06502",
+          "Czech Republic - Telefonica Czech Republic": "0.07284",
+          "Czech Republic - Vodafone Czech Republic": "0.05967",
+          "Czech Republic-All Networks": "0.06502"
+        }
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": "0.00000",
+        "rental": "10.20000"
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "voice": {
+    "add_on_pricing": {
+      "audio_streaming_rate": 0.004,
+      "mpc_rate": 0,
+      "recording_storage_rate": 0.0004,
+      "speech_recognition": 0.02,
+      "transcription_charge": 0.0095,
+      "webrtc_rate": 0.0033
+    },
+    "ip": {
+      "inbound": {
+        "rate": "0.00330",
+        "rental": null
+      },
+      "outbound": {
+        "rates": {
+          "all": "0.00330"
+        }
+      }
+    },
+    "local": {
+      "inbound": {
+        "rate": "0.00500",
+        "rental": "1.25000"
+      },
+      "outbound": {
+        "rate": "0.03040",
+        "rates": [
+          {
+            "destination_prefix": [
+              "420600",
+              "420601",
+              "420602",
+              "420603",
+              "420604",
+              "420605",
+              "420606",
+              "420607",
+              "420608",
+              "420702",
+              "420703",
+              "42070300",
+              "4207031",
+              "4207032",
+              "4207033",
+              "4207034",
+              "4207035",
+              "4207036",
+              "42070373",
+              "4207038",
+              "4207039",
+              "420704",
+              "4207040",
+              "4207041",
+              "4207042",
+              "4207043",
+              "4207044",
+              "4207045",
+              "4207047",
+              "420705",
+              "4207050",
+              "4207051",
+              "4207052",
+              "4207053",
+              "4207054",
+              "42070570",
+              "420706",
+              "420707",
+              "420708",
+              "420709",
+              "420712",
+              "420713",
+              "42072",
+              "42073",
+              "4207300",
+              "4207301",
+              "4207302",
+              "42073030",
+              "42073033",
+              "42073035",
+              "42073041",
+              "42073042",
+              "42073043",
+              "42073044",
+              "42073045",
+              "42073046",
+              "42073047",
+              "42073048",
+              "4207305",
+              "4207306",
+              "42073070",
+              "42073072",
+              "42073073",
+              "42073077",
+              "4207308",
+              "4207309",
+              "420731",
+              "420732",
+              "420733",
+              "420734",
+              "420735",
+              "420736",
+              "420737",
+              "420738",
+              "420739",
+              "42077",
+              "4207700",
+              "4207701",
+              "4207702",
+              "4207703",
+              "4207704",
+              "42077051",
+              "42077052",
+              "4207706",
+              "42077071",
+              "42077072",
+              "42077073",
+              "42077077",
+              "42077080",
+              "42077081",
+              "42077082",
+              "42077083",
+              "42077084",
+              "42077100",
+              "42077111",
+              "42077177",
+              "42077200",
+              "42077272",
+              "42077273",
+              "42077277",
+              "420773",
+              "420774",
+              "420775",
+              "420776",
+              "420777",
+              "4207780",
+              "4207781",
+              "4207782",
+              "4207783",
+              "4207784",
+              "4207785",
+              "4207786",
+              "4207787",
+              "42077880",
+              "42077881",
+              "42077882",
+              "42077883",
+              "42077884",
+              "42077885",
+              "42077886",
+              "42077887",
+              "42077888",
+              "42077889",
+              "4207789",
+              "42077900",
+              "42077977",
+              "42077997",
+              "42077999",
+              "42079",
+              "42079058",
+              "42079083",
+              "42079191",
+              "42079192",
+              "42079193",
+              "4207920",
+              "4207921",
+              "4207922",
+              "4207923",
+              "4207924",
+              "4207925",
+              "42079260",
+              "42079390",
+              "4207977",
+              "42079797",
+              "42079799",
+              "42079900",
+              "42079920",
+              "42079950",
+              "42079951",
+              "42079952",
+              "42079979",
+              "42079999",
+              "42093",
+              "420962",
+              "420963",
+              "420964",
+              "420965",
+              "420966",
+              "420967"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.09680",
+            "voice_network_group": "Czech Republic - Mobile",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "420840",
+              "420841",
+              "420842",
+              "420847",
+              "420848",
+              "420849",
+              "420900",
+              "420906",
+              "420909",
+              "420910040",
+              "420910041",
+              "420910042",
+              "420910043",
+              "420910044"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.13100",
+            "voice_network_group": "Czech Republic - Premium Services",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "420"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.03040",
+            "voice_network_group": "Czech Republic",
+            "voice_unit": 60
+          }
+        ]
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": "0.25690",
+        "rental": "29.75000"
+      },
+      "outbound": {
+        "rate": "0.00000",
+        "rates": null
+      }
+    }
+  }
+}

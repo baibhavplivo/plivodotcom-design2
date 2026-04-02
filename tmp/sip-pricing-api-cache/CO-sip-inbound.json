@@ -1,0 +1,34 @@
+{
+  "country": "Colombia",
+  "country_iso": "CO",
+  "zentrunk": {
+    "inbound": {
+      "number_groups": {
+        "Colombia Local Voice": "0.0063",
+        "Colombia Tollfree Voice": "0.1421"
+      },
+      "rates": {
+        "local": [
+          "0.0063"
+        ],
+        "tollfree": [
+          "0.1421"
+        ]
+      }
+    },
+    "local": {
+      "inbound": {
+        "number_group_rates": {
+          "0.0063": [
+            "Colombia Local Voice"
+          ],
+          "0.1421": [
+            "Colombia Tollfree Voice"
+          ]
+        },
+        "rate": "0.0063",
+        "tollfree_rate": "0.1421"
+      }
+    }
+  }
+}

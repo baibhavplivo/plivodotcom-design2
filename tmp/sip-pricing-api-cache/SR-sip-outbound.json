@@ -1,0 +1,55 @@
+{
+  "country": "Suriname",
+  "country_iso": "SR",
+  "zentrunk": {
+    "local": {
+      "outbound": {
+        "network_group_rates": {
+          "2.1247": [
+            "Suriname"
+          ],
+          "3.2278": [
+            "Suriname - Mobile"
+          ]
+        },
+        "rate": "2.1247",
+        "rates": {
+          "2.1247": [
+            "597"
+          ],
+          "3.2278": [
+            "59771",
+            "59772",
+            "59773",
+            "59774",
+            "59775",
+            "59776",
+            "59777",
+            "59778",
+            "59779",
+            "5978",
+            "59781",
+            "59782",
+            "59783",
+            "59784"
+          ]
+        },
+        "tollfree_rate": "NA"
+      }
+    },
+    "outbound": {
+      "network_groups": {
+        "Suriname": "2.1247",
+        "Suriname - Mobile": "3.2278"
+      },
+      "rates": {
+        "Fixed": [
+          "2.1247"
+        ],
+        "Mobile": [
+          "3.2278"
+        ]
+      }
+    }
+  }
+}

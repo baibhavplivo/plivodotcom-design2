@@ -1,0 +1,68 @@
+{
+  "country": "Iran, Islamic Republic of",
+  "country_iso": "IR",
+  "zentrunk": {
+    "local": {
+      "outbound": {
+        "network_group_rates": {
+          "0.278": [
+            "Iran",
+            "Iran Mobile",
+            "Iran Mobile Irancell",
+            "Iran Tehran"
+          ]
+        },
+        "rate": "0.278",
+        "rates": {
+          "0.278": [
+            "98",
+            "9891",
+            "98920",
+            "98921",
+            "98922",
+            "9893",
+            "98990",
+            "98991",
+            "989944",
+            "989981",
+            "98999",
+            "98901",
+            "98902",
+            "98903",
+            "989044",
+            "98905",
+            "98930",
+            "98933",
+            "98935",
+            "98936",
+            "98937",
+            "98938",
+            "98939",
+            "989991",
+            "9821"
+          ]
+        },
+        "tollfree_rate": "NA"
+      }
+    },
+    "outbound": {
+      "network_groups": {
+        "Iran": "0.278",
+        "Iran Mobile": "0.278",
+        "Iran Mobile Irancell": "0.278",
+        "Iran Tehran": "0.278"
+      },
+      "rates": {
+        "Fixed": [
+          "0.278"
+        ],
+        "Mobile": [
+          "0.278"
+        ],
+        "Others": [
+          "0.278"
+        ]
+      }
+    }
+  }
+}

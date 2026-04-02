@@ -1,0 +1,46 @@
+{
+  "country": "Bangladesh",
+  "country_iso": "BD",
+  "zentrunk": {
+    "local": {
+      "outbound": {
+        "network_group_rates": {
+          "0.043": [
+            "Bangladesh",
+            "Bangladesh - Mobile"
+          ]
+        },
+        "rate": "0.043",
+        "rates": {
+          "0.043": [
+            "880",
+            "8802",
+            "88031",
+            "880821",
+            "88011",
+            "88015",
+            "88016",
+            "88017",
+            "88018",
+            "88019"
+          ]
+        },
+        "tollfree_rate": "NA"
+      }
+    },
+    "outbound": {
+      "network_groups": {
+        "Bangladesh": "0.043",
+        "Bangladesh - Mobile": "0.043"
+      },
+      "rates": {
+        "Fixed": [
+          "0.043"
+        ],
+        "Mobile": [
+          "0.043"
+        ]
+      }
+    }
+  }
+}

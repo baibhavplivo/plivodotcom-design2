@@ -1,0 +1,61 @@
+{
+  "country": "Equatorial Guinea",
+  "country_iso": "GQ",
+  "zentrunk": {
+    "local": {
+      "outbound": {
+        "network_group_rates": {
+          "0.7148": [
+            "Equatorial Guinea Mobile Getesa"
+          ],
+          "0.8001": [
+            "Equatorial Guinea",
+            "Equatorial Guinea Fixed Getesa",
+            "Equatorial Guinea Mobile"
+          ],
+          "0.8047": [
+            "Equatorial Guinea Fixed Muni",
+            "Equatorial Guinea Mobile Muni"
+          ]
+        },
+        "rate": "0.7148",
+        "rates": {
+          "0.7148": [
+            "240222"
+          ],
+          "0.8001": [
+            "240",
+            "24033",
+            "24066"
+          ],
+          "0.8047": [
+            "24035",
+            "24055"
+          ]
+        },
+        "tollfree_rate": "NA"
+      }
+    },
+    "outbound": {
+      "network_groups": {
+        "Equatorial Guinea": "0.8001",
+        "Equatorial Guinea Fixed Getesa": "0.8001",
+        "Equatorial Guinea Fixed Muni": "0.8047",
+        "Equatorial Guinea Mobile": "0.8001",
+        "Equatorial Guinea Mobile Getesa": "0.7148",
+        "Equatorial Guinea Mobile Muni": "0.8047"
+      },
+      "rates": {
+        "Fixed": [
+          "0.8001",
+          "0.8047"
+        ],
+        "Mobile": [
+          "0.7148",
+          "0.8001",
+          "0.8047"
+        ]
+      }
+    }
+  }
+}

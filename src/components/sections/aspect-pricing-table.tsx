@@ -144,7 +144,7 @@ export default function AspectPricingTable() {
 
   return (
     <section className="bg-obsidian px-2.5 lg:px-0">
-      <div className="container border border-t-0 border-dark-gray px-0">
+      <div className="border-dark-gray container border border-t-0 px-0">
         <Header selectedPlan={selectedPlan} onPlanChange={setSelectedPlan} />
         <div>
           {featureSections.map((sec, i) => (
@@ -170,16 +170,16 @@ function Header({
   return (
     <>
       {/* Mobile view: dropdown plan selector */}
-      <div className="border-b border-b-dark-gray md:hidden">
+      <div className="border-b-dark-gray border-b md:hidden">
         <Collapsible open={open} onOpenChange={setOpen}>
           <div className="flex items-center justify-between px-6 py-6">
             <CollapsibleTrigger className="flex items-center gap-2">
-              <h3 className="text-foreground text-2xl font-medium">
+              <h3 className="text-2xl font-medium text-foreground">
                 {pricingPlans[selectedPlan].name}
               </h3>
               <ChevronsUpDown
                 className={cn(
-                  "text-foreground size-5 transition-transform",
+                  "size-5 text-foreground transition-transform",
                   open && "rotate-180",
                 )}
               />
@@ -211,17 +211,17 @@ function Header({
       </div>
 
       {/* Desktop view: four-column header (blank + three plans) */}
-      <div className="hidden grid-cols-4 border-b border-dark-gray md:grid">
-        <div className="border-r border-r-dark-gray" />
+      <div className="border-dark-gray hidden grid-cols-4 border-b md:grid">
+        <div className="border-r-dark-gray border-r" />
         {pricingPlans.map((p, i) => (
           <div
             key={p.name}
             className={cn(
               "flex flex-col items-start gap-4 p-8",
-              i < 2 && "md:border-r md:border-dark-gray", // right border on first two
+              i < 2 && "md:border-dark-gray md:border-r", // right border on first two
             )}
           >
-            <h3 className="text-foreground text-2xl font-medium">{p.name}</h3>
+            <h3 className="text-2xl font-medium text-foreground">{p.name}</h3>
             <Button variant={i === 1 ? "default" : "ghost"}>{p.cta}</Button>
           </div>
         ))}
@@ -240,9 +240,9 @@ function Section({
   selectedPlan: number;
 }) {
   return (
-    <div className="border-b border-dark-gray last:border-b-0">
-      <div className="flex min-h-20 items-center border-b border-b-dark-gray p-8">
-        <h3 className="max-w-3xs text-foreground text-lg font-medium">
+    <div className="border-dark-gray border-b last:border-b-0">
+      <div className="border-b-dark-gray flex min-h-20 items-center border-b p-8">
+        <h3 className="max-w-3xs text-lg font-medium text-foreground">
           {sec.category}
         </h3>
       </div>
@@ -250,9 +250,9 @@ function Section({
       {sec.rows.map((row, idx) => (
         <div
           key={idx}
-          className="text-foreground/90 grid h-20 grid-cols-2 items-center border-b border-dark-gray px-0 last:border-b-0 md:grid-cols-4"
+          className="border-dark-gray grid h-20 grid-cols-2 items-center border-b px-0 text-foreground/90 last:border-b-0 md:grid-cols-4"
         >
-          <div className="flex h-full items-center border-r-dark-gray py-3 pl-6 md:border-r md:pl-8">
+          <div className="border-r-dark-gray flex h-full items-center py-3 pl-6 md:border-r md:pl-8">
             <span>{row.name}</span>
           </div>
 
@@ -262,7 +262,7 @@ function Section({
           </div>
 
           {/* Desktop view: all three plans side-by-side */}
-          <div className="hidden h-full md:col-span-3 md:flex md:[&>:not(:last-child)]:border-r md:[&>:not(:last-child)]:border-dark-gray">
+          <div className="md:[&>:not(:last-child)]:border-dark-gray hidden h-full md:col-span-3 md:flex md:[&>:not(:last-child)]:border-r">
             {[row.free, row.startup, row.enterprise].map((val, i) => (
               <div
                 key={i}
@@ -282,18 +282,18 @@ function Section({
 
 function Cell({ val }: { val: Cell }) {
   if (val === "unlimited")
-    return <InfinityIcon className="text-foreground size-5" />;
+    return <InfinityIcon className="size-5 text-foreground" />;
 
   if (typeof val === "boolean")
     return val ? (
-      <Check className="text-foreground size-5" />
+      <Check className="size-5 text-foreground" />
     ) : (
-      <XIcon className="text-foreground size-5" />
+      <XIcon className="size-5 text-foreground" />
     );
 
   return (
     <div className="flex h-full items-center gap-1">
-      <Check className="text-foreground size-4" />
+      <Check className="size-4 text-foreground" />
       <span>{val}</span>
     </div>
   );

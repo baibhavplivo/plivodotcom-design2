@@ -1,0 +1,53 @@
+{
+  "country": "Jordan",
+  "country_iso": "JO",
+  "zentrunk": {
+    "local": {
+      "outbound": {
+        "network_group_rates": {
+          "0.298": [
+            "Jordan",
+            "Jordan - Mobile"
+          ]
+        },
+        "rate": "0.298",
+        "rates": {
+          "0.298": [
+            "962",
+            "962745",
+            "962746",
+            "962747",
+            "9627555",
+            "9627556",
+            "9627557",
+            "9627558",
+            "962770",
+            "962772",
+            "962775",
+            "962776",
+            "962777",
+            "962778",
+            "962779",
+            "96278",
+            "96279"
+          ]
+        },
+        "tollfree_rate": "NA"
+      }
+    },
+    "outbound": {
+      "network_groups": {
+        "Jordan": "0.298",
+        "Jordan - Mobile": "0.298"
+      },
+      "rates": {
+        "Fixed": [
+          "0.298"
+        ],
+        "Mobile": [
+          "0.298"
+        ]
+      }
+    }
+  }
+}

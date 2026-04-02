@@ -12,18 +12,18 @@ const BlogPosts = ({ posts }: { posts: any[] }) => {
   return (
     <div className="relative">
       {/* Hero Section with Featured Post */}
-      <div className="bg-muted/30 relative overflow-hidden pt-16 md:pt-20 lg:pt-24">
+      <div className="relative overflow-hidden bg-muted/30 pt-16 md:pt-20 lg:pt-24">
         <div className="bg-grid-pattern absolute inset-0 opacity-5"></div>
         <div className="container relative z-10 max-w-6xl">
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-5 lg:gap-16">
             <div className="flex flex-col justify-center lg:col-span-2">
               <h1 className="text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl">
-                <span className="from-primary to-primary/70 inline bg-gradient-to-r bg-clip-text text-transparent">
+                <span className="inline bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
                   Insights
                 </span>{" "}
                 & Ideas
               </h1>
-              <p className="text-muted-foreground mt-4 text-lg">
+              <p className="mt-4 text-lg text-muted-foreground">
                 Explore our collection of articles, tutorials, and thoughts on
                 software development, design, and industry trends.
               </p>
@@ -82,23 +82,23 @@ const BlogPosts = ({ posts }: { posts: any[] }) => {
             )}
           </div>
         </div>
-        <div className="from-background h-16 w-full bg-gradient-to-t to-transparent"></div>
+        <div className="h-16 w-full bg-gradient-to-t from-background to-transparent"></div>
       </div>
 
       {/* Latest Articles Section */}
       <section id="latest" className="py-16 md:py-24">
         <div className="container max-w-6xl">
           <div className="mb-12">
-            <h2 className="text-foreground/90 mb-4 text-3xl font-bold">
+            <h2 className="mb-4 text-3xl font-bold text-foreground/90">
               Latest Articles
             </h2>
-            <Separator className="bg-primary/30 max-w-[120px]" />
+            <Separator className="max-w-[120px] bg-primary/30" />
           </div>
 
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {restOfPosts.map((post) => (
               <a
-                className="bg-card group flex flex-col overflow-hidden rounded-xl border transition-all hover:shadow-md"
+                className="group flex flex-col overflow-hidden rounded-xl border bg-card transition-all hover:shadow-md"
                 href={`/blog/${post.id}/`}
               >
                 <div className="aspect-video overflow-hidden">
@@ -110,10 +110,10 @@ const BlogPosts = ({ posts }: { posts: any[] }) => {
                 </div>
                 <div className="flex grow flex-col justify-between p-6">
                   <div>
-                    <h3 className="group-hover:text-primary mb-2 text-xl font-semibold leading-tight">
+                    <h3 className="mb-2 text-xl font-semibold leading-tight group-hover:text-primary">
                       {post.data.title}
                     </h3>
-                    <p className="text-muted-foreground mb-4 line-clamp-2 text-sm">
+                    <p className="mb-4 line-clamp-2 text-sm text-muted-foreground">
                       {post.data.description}
                     </p>
                   </div>
@@ -132,7 +132,7 @@ const BlogPosts = ({ posts }: { posts: any[] }) => {
                         {post.data.authorName}
                       </span>
                     </div>
-                    <div className="text-muted-foreground flex items-center gap-1 text-xs">
+                    <div className="flex items-center gap-1 text-xs text-muted-foreground">
                       <Clock className="h-3.5 w-3.5" />
                       <span>10 min</span>
                     </div>

@@ -1,0 +1,43 @@
+{
+  "country": "Denmark",
+  "country_iso": "DK",
+  "zentrunk": {
+    "inbound": {
+      "number_groups": {
+        "Denmark Local Voice": "0.003",
+        "Denmark Mobile Voice & SMS": "0.003",
+        "Denmark Tollfree Voice": "0.3333",
+        "Denmark mobile Voice": "0.003",
+        "Denmark national Voice": "0.003"
+      },
+      "rates": {
+        "local": [
+          "0.003"
+        ],
+        "mobile": [
+          "0.003"
+        ],
+        "national": [
+          "0.003"
+        ],
+        "tollfree": [
+          "0.3333"
+        ]
+      }
+    },
+    "local": {
+      "inbound": {
+        "number_group_rates": {
+          "0.003": [
+            "Denmark national Voice"
+          ],
+          "0.3333": [
+            "Denmark Tollfree Voice"
+          ]
+        },
+        "rate": "0.003",
+        "tollfree_rate": "0.3333"
+      }
+    }
+  }
+}

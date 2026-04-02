@@ -1,0 +1,27 @@
+{
+  "country": "Egypt",
+  "country_iso": "EG",
+  "zentrunk": {
+    "inbound": {
+      "number_groups": {
+        "Egypt Tollfree Voice": "0.55"
+      },
+      "rates": {
+        "tollfree": [
+          "0.55"
+        ]
+      }
+    },
+    "local": {
+      "inbound": {
+        "number_group_rates": {
+          "0.55": [
+            "Egypt Tollfree Voice"
+          ]
+        },
+        "rate": "NA",
+        "tollfree_rate": "0.55"
+      }
+    }
+  }
+}

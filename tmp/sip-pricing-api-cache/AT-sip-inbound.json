@@ -1,0 +1,38 @@
+{
+  "country": "Austria",
+  "country_iso": "AT",
+  "zentrunk": {
+    "inbound": {
+      "number_groups": {
+        "Austria Mobile Voice & SMS": "0.003",
+        "Austria National Voice": "0.003",
+        "Austria Tollfree Voice": "0.1946"
+      },
+      "rates": {
+        "mobile": [
+          "0.003"
+        ],
+        "national": [
+          "0.003"
+        ],
+        "tollfree": [
+          "0.1946"
+        ]
+      }
+    },
+    "local": {
+      "inbound": {
+        "number_group_rates": {
+          "0.003": [
+            "Austria National Voice"
+          ],
+          "0.1946": [
+            "Austria Tollfree Voice"
+          ]
+        },
+        "rate": "0.003",
+        "tollfree_rate": "0.1946"
+      }
+    }
+  }
+}

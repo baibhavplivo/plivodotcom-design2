@@ -1,0 +1,44 @@
+{
+  "country": "Gibraltar",
+  "country_iso": "GI",
+  "zentrunk": {
+    "local": {
+      "outbound": {
+        "network_group_rates": {
+          "0.0462": [
+            "Gibraltar"
+          ],
+          "0.1968": [
+            "Gibraltar - Mobile"
+          ]
+        },
+        "rate": "0.0462",
+        "rates": {
+          "0.0462": [
+            "350"
+          ],
+          "0.1968": [
+            "3505",
+            "3506",
+            "350629"
+          ]
+        },
+        "tollfree_rate": "NA"
+      }
+    },
+    "outbound": {
+      "network_groups": {
+        "Gibraltar": "0.0462",
+        "Gibraltar - Mobile": "0.1968"
+      },
+      "rates": {
+        "Fixed": [
+          "0.0462"
+        ],
+        "Mobile": [
+          "0.1968"
+        ]
+      }
+    }
+  }
+}

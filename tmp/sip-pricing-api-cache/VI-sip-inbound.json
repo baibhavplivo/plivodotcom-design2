@@ -1,0 +1,27 @@
+{
+  "country": "Virgin Islands, U.s.",
+  "country_iso": "VI",
+  "zentrunk": {
+    "inbound": {
+      "number_groups": {
+        "Virgin Islands, U.s. Tollfree Voice": "0.1"
+      },
+      "rates": {
+        "tollfree": [
+          "0.1"
+        ]
+      }
+    },
+    "local": {
+      "inbound": {
+        "number_group_rates": {
+          "0.1": [
+            "Virgin Islands, U.s. Tollfree Voice"
+          ]
+        },
+        "rate": "NA",
+        "tollfree_rate": "0.1"
+      }
+    }
+  }
+}

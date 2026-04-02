@@ -1,0 +1,178 @@
+{
+  "api_id": "ab489a12-2e6b-11f1-b4c6-0242ac110006",
+  "country": "Ukraine",
+  "country_code": 380,
+  "country_iso": "UA",
+  "mms": {
+    "longcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "phone_numbers": [],
+  "sms": {
+    "longcode": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.16600",
+        "rates": {
+          "Ukraine - 3MOB TriMob": "0.20110",
+          "Ukraine - Golden Telecom": "0.17580",
+          "Ukraine - International Telecommunication (CDMA800)": "0.17800",
+          "Ukraine - Kyivstar": "0.17580",
+          "Ukraine - MTS Ukraine (Jeans (UMC)": "0.16600",
+          "Ukraine - Telesystems (CDMA)": "0.18410",
+          "Ukraine - Ukrainian Radio Systems (Beeline)": "0.17580",
+          "Ukraine - life:) - Astelit": "0.17370",
+          "Ukraine-Others": "0.17580",
+          "Ukraine-Phoenix": "0.18000"
+        }
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": "0.00000",
+        "rental": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "voice": {
+    "add_on_pricing": {
+      "audio_streaming_rate": 0.004,
+      "mpc_rate": 0,
+      "recording_storage_rate": 0.0004,
+      "speech_recognition": 0.02,
+      "transcription_charge": 0.0095,
+      "webrtc_rate": 0.0033
+    },
+    "ip": {
+      "inbound": {
+        "rate": "0.00330",
+        "rental": null
+      },
+      "outbound": {
+        "rates": {
+          "all": "0.00330"
+        }
+      }
+    },
+    "local": {
+      "inbound": {
+        "rate": "0.01300",
+        "rental": "7.78000"
+      },
+      "outbound": {
+        "rate": "0.20430",
+        "rates": [
+          {
+            "destination_prefix": [
+              "380",
+              "380322",
+              "38044",
+              "380482",
+              "380487",
+              "380562",
+              "3805637",
+              "380567",
+              "380572",
+              "380573",
+              "380577",
+              "38065",
+              "38069"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.20430",
+            "voice_network_group": "Ukraine",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "38050",
+              "38063",
+              "38066",
+              "38067",
+              "38068",
+              "38071",
+              "38072",
+              "38073",
+              "38091",
+              "38092",
+              "38093",
+              "38094",
+              "38095",
+              "38096",
+              "38097",
+              "38098",
+              "38099"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.39300",
+            "voice_network_group": "Ukraine - Mobile",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "380487374",
+              "380487408",
+              "380623430",
+              "380623431",
+              "3808929",
+              "38090030"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "1.00100",
+            "voice_network_group": "Ukraine - Premium Services",
+            "voice_unit": 60
+          }
+        ]
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.00000",
+        "rates": null
+      }
+    }
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "country": "Palestinian Territory, Occupied",
+  "country_iso": "PS",
+  "zentrunk": {
+    "local": {
+      "outbound": {
+        "network_group_rates": {
+          "0.2369": [
+            "Palestine"
+          ],
+          "0.2657": [
+            "Palestine Mobile"
+          ]
+        },
+        "rate": "0.2369",
+        "rates": {
+          "0.2369": [
+            "970"
+          ],
+          "0.2657": [
+            "97056",
+            "97059"
+          ]
+        },
+        "tollfree_rate": "NA"
+      }
+    },
+    "outbound": {
+      "network_groups": {
+        "Palestine": "0.2369",
+        "Palestine Mobile": "0.2657"
+      },
+      "rates": {
+        "Fixed": [
+          "0.2369"
+        ],
+        "Mobile": [
+          "0.2657"
+        ]
+      }
+    }
+  }
+}

@@ -1,14 +1,12 @@
 ---
-import DefaultLayout from '@/layouts/DefaultLayout.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
-
-import { Pricing1 } from '@/components/sections/pricing1';
-import { Pricing2 } from '@/components/sections/pricing2';
-import { FAQ } from '@/components/sections/faq';
+import PlivoLayout from '@/layouts/PlivoLayout.astro';
+import { PlivoPricing } from '@/components/sections/plivo-pricing';
+import { PlivoPricingFAQ } from '@/components/sections/plivo-pricing-faq';
+import PreFooterCTA from '@/components/sections/voice-homepage/PreFooterCTA';
 ---
 
-<DefaultLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
-    <Pricing1 headerTag="h1" client:only='react' />
-    <Pricing2  />
-    <FAQ client:only='react' />
-</DefaultLayout>
+<PlivoLayout title="Pricing" description="Simple and transparent pay-as-you-go pricing for Voice, SMS, WhatsApp, and AI Agents. Get $10 in free credits to start.">
+    <PlivoPricing client:load />
+    <PlivoPricingFAQ client:visible />
+    <PreFooterCTA client:visible title="Go live in minutes" />
+</PlivoLayout>

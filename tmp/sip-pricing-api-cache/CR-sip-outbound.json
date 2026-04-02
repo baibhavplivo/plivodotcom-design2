@@ -1,0 +1,53 @@
+{
+  "country": "Costa Rica",
+  "country_iso": "CR",
+  "zentrunk": {
+    "local": {
+      "outbound": {
+        "network_group_rates": {
+          "0.0278": [
+            "Costa Rica"
+          ],
+          "0.0768": [
+            "Costa Rica - Mobile - Major Carriers (ICE, Claro)"
+          ],
+          "0.1065": [
+            "Costa Rica - Mobile - Others (Movistar)"
+          ]
+        },
+        "rate": "0.0278",
+        "rates": {
+          "0.0278": [
+            "506"
+          ],
+          "0.0768": [
+            "50650",
+            "50657",
+            "5067",
+            "5068"
+          ],
+          "0.1065": [
+            "5066"
+          ]
+        },
+        "tollfree_rate": "NA"
+      }
+    },
+    "outbound": {
+      "network_groups": {
+        "Costa Rica": "0.0278",
+        "Costa Rica - Mobile - Major Carriers (ICE, Claro)": "0.0768",
+        "Costa Rica - Mobile - Others (Movistar)": "0.1065"
+      },
+      "rates": {
+        "Fixed": [
+          "0.0278"
+        ],
+        "Mobile": [
+          "0.0768",
+          "0.1065"
+        ]
+      }
+    }
+  }
+}

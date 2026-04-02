@@ -1,0 +1,31 @@
+{
+  "country": "Chile",
+  "country_iso": "CL",
+  "zentrunk": {
+    "inbound": {
+      "number_groups": {
+        "Chile Local Voice": "0.0063",
+        "Chile National Voice": "0.0063"
+      },
+      "rates": {
+        "local": [
+          "0.0063"
+        ],
+        "national": [
+          "0.0063"
+        ]
+      }
+    },
+    "local": {
+      "inbound": {
+        "number_group_rates": {
+          "0.0063": [
+            "Chile Local Voice"
+          ]
+        },
+        "rate": "0.0063",
+        "tollfree_rate": "NA"
+      }
+    }
+  }
+}

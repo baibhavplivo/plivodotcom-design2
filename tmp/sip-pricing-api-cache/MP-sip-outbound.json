@@ -1,0 +1,32 @@
+{
+  "country": "Northern Mariana Islands",
+  "country_iso": "MP",
+  "zentrunk": {
+    "local": {
+      "outbound": {
+        "network_group_rates": {
+          "0.108": [
+            "Northern Mariana Islands"
+          ]
+        },
+        "rate": "0.108",
+        "rates": {
+          "0.108": [
+            "1670"
+          ]
+        },
+        "tollfree_rate": "NA"
+      }
+    },
+    "outbound": {
+      "network_groups": {
+        "Northern Mariana Islands": "0.108"
+      },
+      "rates": {
+        "Fixed": [
+          "0.108"
+        ]
+      }
+    }
+  }
+}

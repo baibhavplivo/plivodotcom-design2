@@ -1,0 +1,15 @@
+---
+title: "Introducing Enhanced Destination Number Validation for SMS"
+description: "Plivo's SMS API and Voice API enables businesses to communicate with their customers at global scale. Sign up for free now."
+pubDate: "2018-12-07T00:00:00.000Z"
+updatedDate: "2025-05-19T11:46:54.000Z"
+image: "/images/blog/6582f037d5418706c4c5735c_header-3-.png"
+thumbnail: "/images/blog/6582f037d5418706c4c5735c_header-3-.png"
+authorName: "Team Plivo"
+featured: true
+noindex: true
+categories: ["sms-api"]
+seoTitle: "Introducing Enhanced Destination Number Validation for SMS"
+webflowItemId: "6582f09d7e182dd9018ca30c"
+---
+<p>We’ve added enhanced destination number validation to the Plivo SMS API platform. Plivo can now identify invalid and non-SMS-enabled destination numbers, and also fix incorrect formats of destination numbers.</p><p>This update brings multiple benefits to our customers. Since we won’t accept messages for delivery to invalid destination numbers, we won’t charge for them either, which means cost savings straight away.</p><p><strong>Synchronous handling for invalid numbers</strong></p><p>SMS API requests to invalid and non-SMS-enabled numbers will be rejected with a 400 Bad Request API response, and developers can propagate the invalidation error upstream easily. To see how this works, consider a one-time password use case:</p><ol><li>User requests OTP on an invalid destination number.</li><li>Application initiates a Send SMS API request.</li><li>Plivo returns 400 Bad Request response synchronously.</li><li>Application displays “invalid number” error to user.</li></ol><p><strong>Format correction for phone numbers</strong></p><p>Plivo can also reformat incorrectly formatted phone numbers in an intelligent way. For example:</p><p><strong>Scenario 1:</strong> A user enters the Lithuanian number 370860112345. Plivo reformats it to the E.164 international format +37060112345 before it’s forwarded to downstream carriers. Notice the missing 8 in the formatted number: 8 is only required when dialing a Lithuanian number from inside Lithuania.</p><p><strong>Scenario 2:</strong> A user enters the Mexican number 520455512345678. Plivo reformats it to the E.164 international format +5215512345678. Notice that 045 has been replaced by 1. The prefix 045 is only to be used when dialing a domestic cell phone from a landline; 521 is the prefix for mobile phone numbers in E.164 format.</p><h4>Enabling enhanced destination number validation</h4><p>All new Plivo customers have enhanced destination number validation for SMS enabled by default. Existing customers can enable enhanced destination number validation from the <a href="https://console.plivo.com/sms/settings/destination-number-validation/">SMS settings</a> page of the Plivo console. We recommend all our customers enable it.</p><p><strong>Note:</strong> Landlines in the US, Canada, and the UK can be enabled for SMS, so Plivo will not reject SMS messages to landline numbers in these countries.</p><p></p>

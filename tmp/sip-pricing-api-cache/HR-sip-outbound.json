@@ -1,0 +1,72 @@
+{
+  "country": "Croatia",
+  "country_iso": "HR",
+  "zentrunk": {
+    "local": {
+      "outbound": {
+        "network_group_rates": {
+          "0.2253": [
+            "Croatia"
+          ],
+          "0.668": [
+            "Croatia Mobile",
+            "Croatia Mobile T-Mobile",
+            "Croatia Mobile Vipnet"
+          ],
+          "0.898": [
+            "Croatia Special Services"
+          ]
+        },
+        "rate": "0.2253",
+        "rates": {
+          "0.2253": [
+            "385"
+          ],
+          "0.668": [
+            "385901",
+            "385902",
+            "385903",
+            "385904",
+            "385905",
+            "385906",
+            "385907",
+            "385908",
+            "385909",
+            "38595",
+            "38589098",
+            "38597",
+            "38598",
+            "38599",
+            "38589091",
+            "38591",
+            "38592"
+          ],
+          "0.898": [
+            "38512389"
+          ]
+        },
+        "tollfree_rate": "NA"
+      }
+    },
+    "outbound": {
+      "network_groups": {
+        "Croatia": "0.2253",
+        "Croatia Mobile": "0.668",
+        "Croatia Mobile T-Mobile": "0.668",
+        "Croatia Mobile Vipnet": "0.668",
+        "Croatia Special Services": "0.898"
+      },
+      "rates": {
+        "Fixed": [
+          "0.2253"
+        ],
+        "Mobile": [
+          "0.668"
+        ],
+        "Others": [
+          "0.898"
+        ]
+      }
+    }
+  }
+}

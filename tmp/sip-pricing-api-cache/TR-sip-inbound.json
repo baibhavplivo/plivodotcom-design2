@@ -1,0 +1,38 @@
+{
+  "country": "Turkey",
+  "country_iso": "TR",
+  "zentrunk": {
+    "inbound": {
+      "number_groups": {
+        "Turkey Local Voice": "0.0063",
+        "Turkey National Voice": "0.0063",
+        "Turkey Tollfree Voice": "0.0583"
+      },
+      "rates": {
+        "local": [
+          "0.0063"
+        ],
+        "national": [
+          "0.0063"
+        ],
+        "tollfree": [
+          "0.0583"
+        ]
+      }
+    },
+    "local": {
+      "inbound": {
+        "number_group_rates": {
+          "0.0063": [
+            "Turkey Local Voice"
+          ],
+          "0.0583": [
+            "Turkey Tollfree Voice"
+          ]
+        },
+        "rate": "0.0063",
+        "tollfree_rate": "0.0583"
+      }
+    }
+  }
+}

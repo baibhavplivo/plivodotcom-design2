@@ -1,0 +1,211 @@
+{
+  "api_id": "f32144b6-2e6a-11f1-a084-0242ac110003",
+  "country": "Israel",
+  "country_code": 972,
+  "country_iso": "IL",
+  "mms": {
+    "longcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "phone_numbers": [
+    {
+      "capabilities": [
+        "voice"
+      ],
+      "cnam_lookup_rate": "0.00000",
+      "country": "Israel",
+      "country_code": 972,
+      "country_iso": "IL",
+      "effective_date": "2018-05-29",
+      "inbound_mms_rate": "0.00000",
+      "inbound_sms_rate": "0.00000",
+      "inbound_voice_rate": "0.11420",
+      "number_type": "Tollfree",
+      "rental_rate": "21.25000",
+      "setup_rate": "0.00000",
+      "status": "BETA"
+    },
+    {
+      "capabilities": [
+        "voice"
+      ],
+      "cnam_lookup_rate": "0.00000",
+      "country": "Israel",
+      "country_code": 972,
+      "country_iso": "IL",
+      "effective_date": "2018-04-09",
+      "inbound_mms_rate": "0.00000",
+      "inbound_sms_rate": "0.00000",
+      "inbound_voice_rate": "0.00850",
+      "number_type": "Local",
+      "rental_rate": "3.40000",
+      "setup_rate": "0.00000",
+      "status": "GA"
+    }
+  ],
+  "sms": {
+    "longcode": {
+      "inbound": {
+        "rate": "0.00000",
+        "rental": "11.90000"
+      },
+      "outbound": {
+        "rate": "0.18240",
+        "rates": {
+          "Alon Cellular Ltd (Youphone))": "0.26530",
+          "Home Cellular": "0.26530",
+          "Israel - Cellcom": "0.30090",
+          "Israel - Golan Telecom": "0.29090",
+          "Israel - HOT Telecom": "0.20000",
+          "Israel - Jawwal": "0.49440",
+          "Israel - Partner Communications Co. Ltd (Orange)": "0.19150",
+          "Israel - Pelephone": "0.27330",
+          "Israel - Telzar/AZI": "0.20310",
+          "Israel - Wataniya Palestine": "0.48990",
+          "Israel All": "0.27060",
+          "Rami Levi": "0.18240"
+        }
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": "0.00000",
+        "rental": "11.90000"
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "voice": {
+    "add_on_pricing": {
+      "audio_streaming_rate": 0.004,
+      "mpc_rate": 0,
+      "recording_storage_rate": 0.0004,
+      "speech_recognition": 0.02,
+      "transcription_charge": 0.0095,
+      "webrtc_rate": 0.0033
+    },
+    "ip": {
+      "inbound": {
+        "rate": "0.00330",
+        "rental": null
+      },
+      "outbound": {
+        "rates": {
+          "all": "0.00330"
+        }
+      }
+    },
+    "local": {
+      "inbound": {
+        "rate": "0.00820",
+        "rental": "3.40000"
+      },
+      "outbound": {
+        "rate": "0.01700",
+        "rates": [
+          {
+            "destination_prefix": [
+              "972151",
+              "97215152",
+              "97215154",
+              "972153",
+              "97215352",
+              "97215354",
+              "97250",
+              "97251",
+              "97252",
+              "97253",
+              "97254",
+              "97255",
+              "972552211",
+              "97257",
+              "97258"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.15100",
+            "voice_network_group": "Israel - Mobile",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "97222",
+              "97242",
+              "97282",
+              "97292"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.30100",
+            "voice_network_group": "Israel - Fixed - Others (Palestine)",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "97256",
+              "97259"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.30100",
+            "voice_network_group": "Israel - Mobile - Others (Palestine)",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "972"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.01700",
+            "voice_network_group": "Israel",
+            "voice_unit": 60
+          }
+        ]
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": "0.11420",
+        "rental": "21.25000"
+      },
+      "outbound": {
+        "rate": "0.00000",
+        "rates": null
+      }
+    }
+  }
+}

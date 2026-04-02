@@ -16,65 +16,70 @@ Migrate plivo.com from Webflow to Astro, using Streamline (shadcn/ui) as the str
 ### Complete Page Inventory
 
 #### Header Navigation Pages
-| Section | Page | URL | Priority |
-|---------|------|-----|----------|
-| **Home** | Homepage | `/` | P0 |
-| **AI Agents** | AI Agents Platform | `/platform/ai-agents/` | P0 |
-| **AI Agents** | AI Agents Builder | `/platform/ai-agents-builder/` | P1 |
-| **AI Agents** | Personalized Agents | `/platform/personalized-agents/` | P1 |
-| **AI Agents** | AI Voice Agents | `/ai-voice-agents/` | P1 |
-| **Platform** | Platform Overview | `/platform/` | P1 |
-| **Platform** | Integrations | `/integrations/` | P1 |
-| **Channels** | Voice Overview | `/voice/overview/` | P0 |
-| **Channels** | Voice API | `/voice/` | P1 |
-| **Channels** | Voice Features | `/voice/features/` | P2 |
-| **Channels** | SMS Overview | `/sms/overview/` | P0 |
-| **Channels** | SMS API | `/sms/` | P1 |
-| **Channels** | WhatsApp AI Agents | `/whatsapp-ai-agents/` | P1 |
-| **Channels** | WhatsApp API | `/whatsapp/` | P1 |
-| **Channels** | WhatsApp Call | `/whatsapp/call/` | P2 |
-| **Channels** | Chat Overview | `/chat/overview/` | P1 |
-| **Channels** | RCS | `/rcs/` | P2 |
-| **Other Products** | Verify | `/verify/` | P1 |
-| **Other Products** | Virtual Phone Numbers | `/virtual-phone-numbers/` | P2 |
-| **Other Products** | SIP Trunking (Zentrunk) | `/sip-trunking/` | P2 |
-| **Pricing** | Main Pricing | `/pricing/` | P0 |
+
+| Section            | Page                    | URL                              | Priority |
+| ------------------ | ----------------------- | -------------------------------- | -------- |
+| **Home**           | Homepage                | `/`                              | P0       |
+| **AI Agents**      | AI Agents Platform      | `/platform/ai-agents/`           | P0       |
+| **AI Agents**      | AI Agents Builder       | `/platform/ai-agents-builder/`   | P1       |
+| **AI Agents**      | Personalized Agents     | `/platform/personalized-agents/` | P1       |
+| **AI Agents**      | AI Voice Agents         | `/ai-voice-agents/`              | P1       |
+| **Platform**       | Platform Overview       | `/platform/`                     | P1       |
+| **Platform**       | Integrations            | `/integrations/`                 | P1       |
+| **Channels**       | Voice Overview          | `/voice/overview/`               | P0       |
+| **Channels**       | Voice API               | `/voice/`                        | P1       |
+| **Channels**       | Voice Features          | `/voice/features/`               | P2       |
+| **Channels**       | SMS Overview            | `/sms/overview/`                 | P0       |
+| **Channels**       | SMS API                 | `/sms/`                          | P1       |
+| **Channels**       | WhatsApp AI Agents      | `/whatsapp-ai-agents/`           | P1       |
+| **Channels**       | WhatsApp API            | `/whatsapp/`                     | P1       |
+| **Channels**       | WhatsApp Call           | `/whatsapp/call/`                | P2       |
+| **Channels**       | Chat Overview           | `/chat/overview/`                | P1       |
+| **Channels**       | RCS                     | `/rcs/`                          | P2       |
+| **Other Products** | Verify                  | `/verify/`                       | P1       |
+| **Other Products** | Virtual Phone Numbers   | `/virtual-phone-numbers/`        | P2       |
+| **Other Products** | SIP Trunking (Zentrunk) | `/sip-trunking/`                 | P2       |
+| **Pricing**        | Main Pricing            | `/pricing/`                      | P0       |
 
 #### Pricing Subpages
-| Page | URL | Priority |
-|------|-----|----------|
-| US Voice Pricing | `/voice/pricing/us/` | P1 |
-| US SMS Pricing | `/sms/pricing/us/` | P1 |
-| US WhatsApp Pricing | `/whatsapp/pricing/us/` | P1 |
-| India Voice Pricing | `/voice/pricing/in/` | P2 |
-| India SMS Pricing | `/sms/pricing/in/` | P2 |
-| Verify Pricing | `/verify/pricing/` | P1 |
-| SIP Trunking Pricing | `/sip-trunking/pricing/us/` | P2 |
-| API Platform Pricing | `/pricing-api-platform/` | P2 |
-| Support Plans | `/support-plans/` | P2 |
+
+| Page                 | URL                         | Priority |
+| -------------------- | --------------------------- | -------- |
+| US Voice Pricing     | `/voice/pricing/us/`        | P1       |
+| US SMS Pricing       | `/sms/pricing/us/`          | P1       |
+| US WhatsApp Pricing  | `/whatsapp/pricing/us/`     | P1       |
+| India Voice Pricing  | `/voice/pricing/in/`        | P2       |
+| India SMS Pricing    | `/sms/pricing/in/`          | P2       |
+| Verify Pricing       | `/verify/pricing/`          | P1       |
+| SIP Trunking Pricing | `/sip-trunking/pricing/us/` | P2       |
+| API Platform Pricing | `/pricing-api-platform/`    | P2       |
+| Support Plans        | `/support-plans/`           | P2       |
 
 #### Company Pages
-| Page | URL | Priority |
-|------|-----|----------|
-| About | `/about/` | P1 |
-| Customers | `/customers/` | P1 |
-| Blog | `/blog/` | P1 |
-| Careers/Jobs | `/jobs/` | P2 |
-| Contact Sales | `/contact/sales/` | P1 |
-| Security | `/security/` | P2 |
-| Legal/ToS | `/legal/tos/` | P2 |
+
+| Page          | URL               | Priority |
+| ------------- | ----------------- | -------- |
+| About         | `/about/`         | P1       |
+| Customers     | `/customers/`     | P1       |
+| Blog          | `/blog/`          | P1       |
+| Careers/Jobs  | `/jobs/`          | P2       |
+| Contact Sales | `/contact/sales/` | P1       |
+| Security      | `/security/`      | P2       |
+| Legal/ToS     | `/legal/tos/`     | P2       |
 
 #### Resources
-| Page | URL | Priority |
-|------|-----|----------|
-| Resources Hub | `/resources/` | P2 |
-| Guides | `/guide/` | P2 |
-| Blog Articles | `/blog/[slug]/` | P1 |
+
+| Page          | URL             | Priority |
+| ------------- | --------------- | -------- |
+| Resources Hub | `/resources/`   | P2       |
+| Guides        | `/guide/`       | P2       |
+| Blog Articles | `/blog/[slug]/` | P1       |
 
 #### Comparison Pages
-| Page | URL | Priority |
-|------|-----|----------|
-| Plivo vs Bland AI | `/compare/bland-ai-vs-plivo/` | P2 |
+
+| Page              | URL                           | Priority |
+| ----------------- | ----------------------------- | -------- |
+| Plivo vs Bland AI | `/compare/bland-ai-vs-plivo/` | P2       |
 
 ---
 
@@ -99,8 +104,8 @@ Migrate plivo.com from Webflow to Astro, using Streamline (shadcn/ui) as the str
 --text-light: #ffffff;
 
 /* Accent */
---accent-teal: rgb(17, 120, 102);  /* docs */
---accent-green: #22c55e;  /* success states */
+--accent-teal: rgb(17, 120, 102); /* docs */
+--accent-green: #22c55e; /* success states */
 
 /* Borders */
 --border-dark: #202020;
@@ -153,48 +158,53 @@ animation: barberpole 4s linear infinite reverse;
 ## Component Mapping - Multi-Template Sourcing
 
 ### Component Source Priority
+
 1. **Local Templates** (84 section components) - Already in `/templates/`
 2. **shadcnblocks.com Blocks** (1,110+ blocks) - For anything not in templates
 3. **shadcnblocks.com Components** (1,145 components) - UI primitives
 4. **Custom Code** - LAST RESORT ONLY
 
 ### Local Template Inventory
+
 We have **4 shadcnblocks templates** with **84 total section components**:
 
-| Template | Path | Sections | Best For |
-|----------|------|----------|----------|
-| **Streamline** | `templates/streamline-astro-shadcnblocks/streamline-astro-template-1.0.0/` | 18 | Base structure, FAQ, Metrics |
-| **Lumen** | `templates/lumen-astro-shadcnblocks/lumen-astro-template-1.0.0/` | 17 | Marquee, Testimonials, Carousel |
-| **Metafi** | `templates/metafi-astro-shadcnblocks/metafi-astro-template-1.0.0/` | 25 | Hero, Tabs, CTA, Integrations |
-| **Aspect** | `templates/aspect-astro-shadcnblocks/aspect-astro-template-1.1.0/` | 24 | Navbar, Pricing, FAQ page, Contact |
+| Template       | Path                                                                       | Sections | Best For                           |
+| -------------- | -------------------------------------------------------------------------- | -------- | ---------------------------------- |
+| **Streamline** | `templates/streamline-astro-shadcnblocks/streamline-astro-template-1.0.0/` | 18       | Base structure, FAQ, Metrics       |
+| **Lumen**      | `templates/lumen-astro-shadcnblocks/lumen-astro-template-1.0.0/`           | 17       | Marquee, Testimonials, Carousel    |
+| **Metafi**     | `templates/metafi-astro-shadcnblocks/metafi-astro-template-1.0.0/`         | 25       | Hero, Tabs, CTA, Integrations      |
+| **Aspect**     | `templates/aspect-astro-shadcnblocks/aspect-astro-template-1.1.0/`         | 24       | Navbar, Pricing, FAQ page, Contact |
 
 ### shadcnblocks.com Online Library (Premium Access)
 
 **URL:** https://www.shadcnblocks.com
 
 #### Blocks (1,110+)
-| Category | Count | Best For Plivo |
-|----------|-------|----------------|
-| Hero | 175+ | `hero103` (2-col + logo carousel), `hero201` (animated gradient) |
-| Feature | 272+ | Various grid and showcase layouts |
-| Pricing | 35+ | Plan cards, comparison tables |
-| Testimonial | 28+ | Carousel, grid, marquee variants |
-| Logos | 13+ | Marquee/carousel for customer logos |
-| Stats | 18+ | Metrics display (99.99% uptime, etc.) |
-| FAQ | 16+ | Accordion, tabbed, categorized |
-| CTA | 26+ | Bottom-of-page conversions |
-| Navbar | 18+ | Mega menu, dropdowns |
-| Footer | 25+ | Multi-column layouts |
-| Contact | 17+ | Forms with validation |
-| Blog | 22+ | Grid, featured post layouts |
-| About | 17+ | Company pages |
-| Team | 14+ | Team member displays |
-| Careers | 9+ | Job listings |
+
+| Category    | Count | Best For Plivo                                                   |
+| ----------- | ----- | ---------------------------------------------------------------- |
+| Hero        | 175+  | `hero103` (2-col + logo carousel), `hero201` (animated gradient) |
+| Feature     | 272+  | Various grid and showcase layouts                                |
+| Pricing     | 35+   | Plan cards, comparison tables                                    |
+| Testimonial | 28+   | Carousel, grid, marquee variants                                 |
+| Logos       | 13+   | Marquee/carousel for customer logos                              |
+| Stats       | 18+   | Metrics display (99.99% uptime, etc.)                            |
+| FAQ         | 16+   | Accordion, tabbed, categorized                                   |
+| CTA         | 26+   | Bottom-of-page conversions                                       |
+| Navbar      | 18+   | Mega menu, dropdowns                                             |
+| Footer      | 25+   | Multi-column layouts                                             |
+| Contact     | 17+   | Forms with validation                                            |
+| Blog        | 22+   | Grid, featured post layouts                                      |
+| About       | 17+   | Company pages                                                    |
+| Team        | 14+   | Team member displays                                             |
+| Careers     | 9+    | Job listings                                                     |
 
 #### Components (1,145)
+
 70+ categories: Accordion, Avatar, Badge, Button, Card, Carousel, Chart (70!), Dialog, Dropdown, Form (86!), Input, Navigation Menu, Pagination, Select, Tabs, Toast, Tooltip, etc.
 
 #### How to Use
+
 ```bash
 # Option 1: Copy from website
 # Visit shadcnblocks.com/block/[block-name] and copy code
@@ -206,81 +216,93 @@ npx shadcn@latest add [block-name]
 ### Component Source Mapping
 
 #### Navigation & Layout
-| Plivo Need | Source | File | Notes |
-|------------|--------|------|-------|
-| Main Navbar | **Aspect** | `navbar.tsx` | Best mega-menu structure |
-| Footer | **Streamline** | `footer.tsx` | Multi-column layout |
-| Announcement Banner | **Metafi** | `banner.tsx` | Top banner |
+
+| Plivo Need          | Source         | File         | Notes                    |
+| ------------------- | -------------- | ------------ | ------------------------ |
+| Main Navbar         | **Aspect**     | `navbar.tsx` | Best mega-menu structure |
+| Footer              | **Streamline** | `footer.tsx` | Multi-column layout      |
+| Announcement Banner | **Metafi**     | `banner.tsx` | Top banner               |
 
 #### Hero Sections
-| Plivo Need | Source | File | Notes |
-|------------|--------|------|-------|
-| Homepage Hero | **Metafi** | `metafi-hero.tsx` | Gradient + dashboard preview |
-| Product Page Hero | **Aspect** | `aspect-hero.tsx` | Clean with side image |
-| About Hero | **Metafi** | `metafi-about-hero.tsx` | Company pages |
-| Pricing Hero | **Metafi** | `metafi-pricing-hero.tsx` | With toggle |
+
+| Plivo Need        | Source     | File                      | Notes                        |
+| ----------------- | ---------- | ------------------------- | ---------------------------- |
+| Homepage Hero     | **Metafi** | `metafi-hero.tsx`         | Gradient + dashboard preview |
+| Product Page Hero | **Aspect** | `aspect-hero.tsx`         | Clean with side image        |
+| About Hero        | **Metafi** | `metafi-about-hero.tsx`   | Company pages                |
+| Pricing Hero      | **Metafi** | `metafi-pricing-hero.tsx` | With toggle                  |
 
 #### Features
-| Plivo Need | Source | File | Notes |
-|------------|--------|------|-------|
-| Feature Grid | **Aspect** | `aspect-features.tsx` | Flexible card layouts |
-| Feature Tabs | **Metafi** | `metafi-tabs.tsx` | Auto-rotating tabs |
-| Features Carousel | **Lumen** | `features-carousel.tsx` | Swiper-based |
-| Metrics Display | **Streamline** | `feature1.tsx` | Stats with icons |
+
+| Plivo Need        | Source         | File                    | Notes                 |
+| ----------------- | -------------- | ----------------------- | --------------------- |
+| Feature Grid      | **Aspect**     | `aspect-features.tsx`   | Flexible card layouts |
+| Feature Tabs      | **Metafi**     | `metafi-tabs.tsx`       | Auto-rotating tabs    |
+| Features Carousel | **Lumen**      | `features-carousel.tsx` | Swiper-based          |
+| Metrics Display   | **Streamline** | `feature1.tsx`          | Stats with icons      |
 
 #### Pricing
-| Plivo Need | Source | File | Notes |
-|------------|--------|------|-------|
-| Pricing Cards | **Aspect** | `aspect-pricing.tsx` | 3-tier cards |
-| Comparison Table | **Aspect** | `aspect-pricing-table.tsx` | Feature comparison |
-| Monthly/Annual Toggle | **Streamline** | `pricing1.tsx` | Switch component |
+
+| Plivo Need            | Source         | File                       | Notes              |
+| --------------------- | -------------- | -------------------------- | ------------------ |
+| Pricing Cards         | **Aspect**     | `aspect-pricing.tsx`       | 3-tier cards       |
+| Comparison Table      | **Aspect**     | `aspect-pricing-table.tsx` | Feature comparison |
+| Monthly/Annual Toggle | **Streamline** | `pricing1.tsx`             | Switch component   |
 
 #### Social Proof
-| Plivo Need | Source | File | Notes |
-|------------|--------|------|-------|
-| Logo Marquee | **Lumen** | `magicui/marquee.tsx` + `logos.tsx` | Infinite scroll |
-| Testimonials Grid | **Lumen** | `testimonials.tsx` | Masonry layout |
-| Testimonials Scroll | **Lumen** | `testimonials-marquee.tsx` | Auto-scroll |
+
+| Plivo Need          | Source    | File                                | Notes           |
+| ------------------- | --------- | ----------------------------------- | --------------- |
+| Logo Marquee        | **Lumen** | `magicui/marquee.tsx` + `logos.tsx` | Infinite scroll |
+| Testimonials Grid   | **Lumen** | `testimonials.tsx`                  | Masonry layout  |
+| Testimonials Scroll | **Lumen** | `testimonials-marquee.tsx`          | Auto-scroll     |
 
 #### FAQ
-| Plivo Need | Source | File | Notes |
-|------------|--------|------|-------|
-| FAQ Section | **Streamline** | `faq.tsx` | 2-column accordion |
-| Full FAQ Page | **Aspect** | `aspect-faq-page.tsx` | Multi-section |
+
+| Plivo Need    | Source         | File                  | Notes              |
+| ------------- | -------------- | --------------------- | ------------------ |
+| FAQ Section   | **Streamline** | `faq.tsx`             | 2-column accordion |
+| Full FAQ Page | **Aspect**     | `aspect-faq-page.tsx` | Multi-section      |
 
 #### Blog
-| Plivo Need | Source | File | Notes |
-|------------|--------|------|-------|
-| Blog Grid | **Metafi** | `metafi-blog-grid.tsx` | Card grid |
-| Blog Post | **Lumen** | `blog-post.tsx` | Article layout |
-| Featured Post | **Aspect** | `aspect-featured-post.tsx` | Highlighted |
+
+| Plivo Need    | Source     | File                       | Notes          |
+| ------------- | ---------- | -------------------------- | -------------- |
+| Blog Grid     | **Metafi** | `metafi-blog-grid.tsx`     | Card grid      |
+| Blog Post     | **Lumen**  | `blog-post.tsx`            | Article layout |
+| Featured Post | **Aspect** | `aspect-featured-post.tsx` | Highlighted    |
 
 #### Company Pages
-| Plivo Need | Source | File | Notes |
-|------------|--------|------|-------|
-| About Mission | **Metafi** | `metafi-mission.tsx` | Mission statement |
-| Timeline | **Metafi** | `metafi-trough-years.tsx` | History |
-| Team Grid | **Metafi** | `metafi-team.tsx` | Team members |
-| Job Listings | **Aspect** | `aspect-open-positions.tsx` | Careers |
-| Contact Form | **Aspect** | `aspect-contact-form.tsx` | With validation |
+
+| Plivo Need    | Source     | File                        | Notes             |
+| ------------- | ---------- | --------------------------- | ----------------- |
+| About Mission | **Metafi** | `metafi-mission.tsx`        | Mission statement |
+| Timeline      | **Metafi** | `metafi-trough-years.tsx`   | History           |
+| Team Grid     | **Metafi** | `metafi-team.tsx`           | Team members      |
+| Job Listings  | **Aspect** | `aspect-open-positions.tsx` | Careers           |
+| Contact Form  | **Aspect** | `aspect-contact-form.tsx`   | With validation   |
 
 #### Integrations
-| Plivo Need | Source | File | Notes |
-|------------|--------|------|-------|
-| Integrations Grid | **Metafi** | `metafi-all-integrations.tsx` | Logo grid |
+
+| Plivo Need        | Source     | File                           | Notes       |
+| ----------------- | ---------- | ------------------------------ | ----------- |
+| Integrations Grid | **Metafi** | `metafi-all-integrations.tsx`  | Logo grid   |
 | Integrations Hero | **Metafi** | `metafi-integrations-hero.tsx` | Page header |
 
 #### Special Components
-| Plivo Need | Source | File | Notes |
-|------------|--------|------|-------|
-| World Map | **Aspect** | `aspect-world-map.tsx` | Global coverage |
-| CTA Section | **Metafi** | `matafi-cta.tsx` | Bottom CTA |
+
+| Plivo Need        | Source     | File                   | Notes           |
+| ----------------- | ---------- | ---------------------- | --------------- |
+| World Map         | **Aspect** | `aspect-world-map.tsx` | Global coverage |
+| CTA Section       | **Metafi** | `matafi-cta.tsx`       | Bottom CTA      |
 | Dashboard Preview | **Aspect** | `aspect-dashboard.tsx` | Product preview |
 
 ### Components to Create from Scratch
+
 **ALMOST NONE** - With 84 template components + 1,110 shadcnblocks, custom code should be rare.
 
 Potentially custom (check shadcnblocks first!):
+
 - `PriceCalculator.tsx` - Interactive voice/SMS pricing with volume slider
   → Check: shadcnblocks.com/blocks/pricing for similar
 - `CountrySelector.tsx` - Country dropdown with flags
@@ -291,12 +313,14 @@ Potentially custom (check shadcnblocks first!):
 ### React Islands (client:load / client:visible)
 
 **client:load (immediate interactivity):**
+
 - Mobile navigation menu
 - Price calculator
 - Contact/trial forms
 - Country selector (pricing)
 
 **client:visible (lazy load):**
+
 - Logo marquee
 - Testimonial carousel
 - Tabbed sections
@@ -457,6 +481,7 @@ plivodotcom/
 ## Implementation Phases
 
 ### Phase 1: Foundation (P0)
+
 1. Initialize Astro project with TypeScript
 2. Configure Tailwind with Plivo design tokens
 3. Set up shadcn/ui components
@@ -466,6 +491,7 @@ plivodotcom/
 7. Implement core UI components (Button, Card, etc.)
 
 ### Phase 2: Homepage (P0)
+
 1. Hero section with gradient text
 2. Logo marquee (GSAP)
 3. Three-step onboarding flow
@@ -475,12 +501,14 @@ plivodotcom/
 7. Final CTA section
 
 ### Phase 3: Core Product Pages (P0)
+
 1. `/platform/ai-agents/` - AI Agents platform
 2. `/voice/overview/` - Voice overview
 3. `/sms/overview/` - SMS overview
 4. `/pricing/` - Main pricing page
 
 ### Phase 4: Channel Pages (P1)
+
 1. Voice API and features
 2. SMS API
 3. WhatsApp pages (API, AI Agents, Call)
@@ -488,6 +516,7 @@ plivodotcom/
 5. Verify API
 
 ### Phase 5: Pricing Subpages (P1)
+
 1. Voice pricing (US, India)
 2. SMS pricing (US, India)
 3. WhatsApp pricing
@@ -495,12 +524,14 @@ plivodotcom/
 5. Price calculator component
 
 ### Phase 6: Company Pages (P1)
+
 1. About page
 2. Customers/case studies
 3. Blog listing and posts
 4. Contact sales form
 
 ### Phase 7: Secondary Pages (P2)
+
 1. RCS
 2. Virtual phone numbers
 3. SIP Trunking (Zentrunk)
@@ -512,6 +543,7 @@ plivodotcom/
 9. Comparison pages
 
 ### Phase 8: Polish & Optimization
+
 1. Image optimization (WebP/AVIF)
 2. Font subsetting
 3. Performance audit (Lighthouse)
@@ -603,7 +635,7 @@ Footer (dark background)
 
 ```typescript
 interface PriceCalculatorProps {
-  service: 'voice' | 'sms' | 'whatsapp' | 'verify';
+  service: "voice" | "sms" | "whatsapp" | "verify";
   defaultCountry: string;
   showCompetitorComparison: boolean;
 }
@@ -622,6 +654,7 @@ interface PriceCalculatorProps {
 ## Content Migration
 
 ### From Webflow
+
 1. **Images**: Download from CDN, optimize with Sharp
 2. **Copy**: Extract text, store in content collections
 3. **Blog posts**: Convert to MDX format
@@ -632,16 +665,16 @@ interface PriceCalculatorProps {
 
 ```typescript
 // src/content/config.ts
-import { defineCollection, z } from 'astro:content';
+import { defineCollection, z } from "astro:content";
 
 const blog = defineCollection({
-  type: 'content',
+  type: "content",
   schema: z.object({
     title: z.string(),
     description: z.string(),
     pubDate: z.date(),
     updatedDate: z.date().optional(),
-    author: z.string().default('Team Plivo'),
+    author: z.string().default("Team Plivo"),
     image: z.string().optional(),
     categories: z.array(z.string()),
     readTime: z.string(),
@@ -650,7 +683,7 @@ const blog = defineCollection({
 });
 
 const customers = defineCollection({
-  type: 'content',
+  type: "content",
   schema: z.object({
     name: z.string(),
     logo: z.string(),
@@ -658,10 +691,12 @@ const customers = defineCollection({
     useCase: z.string(),
     products: z.array(z.string()),
     testimonial: z.string().optional(),
-    stats: z.object({
-      metric: z.string(),
-      value: z.string(),
-    }).optional(),
+    stats: z
+      .object({
+        metric: z.string(),
+        value: z.string(),
+      })
+      .optional(),
   }),
 });
 
@@ -698,6 +733,7 @@ export const collections = { blog, customers };
 ```
 
 ### Performance Targets
+
 - Lighthouse Performance: > 90
 - Lighthouse Accessibility: > 95
 - Lighthouse Best Practices: > 95
@@ -714,6 +750,7 @@ export const collections = { blog, customers };
 All major issues have been fixed to match plivo.com:
 
 ### Header/Navbar ✅ (FULLY COMPLETE - Jan 2025)
+
 - [x] **Logo**: Actual Plivo SVG logo downloaded and implemented
 - [x] **Menu Structure**: New structure implemented:
   - **Products**: AI Agents (Programmable AI Agents, No-code AI Agent Studio) + Communications (Voice, Messaging, WhatsApp)
@@ -731,6 +768,7 @@ All major issues have been fixed to match plivo.com:
 - [x] **Sticky Behavior**: Activates on 5px scroll with shadow
 
 ### Hero Section ✅
+
 - [x] **Headline**: "AI Agents that handle your conversations just like humans"
 - [x] **Subheadline**: Exact Plivo copy implemented
 - [x] **Badge**: "Available On" with 4 channel icons (Voice, Chat, WhatsApp, SMS)
@@ -738,31 +776,37 @@ All major issues have been fixed to match plivo.com:
 - [x] **Background**: Light gradient background
 
 ### Feature Sections ✅
+
 - [x] **"Go live with AI agents in minutes"**: 3-step cards
 - [x] **Build agents your way**: Green checkmark icons, features list
 - [x] **Voices that feel real**: Feature list with placeholder mockup
 - [x] **Full-stack platform**: Features with placeholder mockup
 
 ### Compliance/Trust Section ✅
+
 - [x] **Badges**: HIPAA, GDPR, SOC 2, PCI DSS, STAR text badges
 - [x] **Stats**: "99.99% Platform Uptime", "1 Billion+ Conversations"
 - [x] **Copy**: "Trusted by Fortune 500 companies worldwide"
 
 ### Colors ✅
+
 - [x] **Primary Button**: Blue (#323dfe)
 - [x] **Gradient CTA**: `linear-gradient(90deg, #cd3ef9, #323dfe)`
 - [x] **Backgrounds**: White primary, gray-50 for alternating sections
 
 ### Typography ✅
+
 - [x] **Fonts**: Sora (display) + Inter (body) via Google Fonts
 - [x] **Font classes**: font-sora utility for headlines
 
 ### Buttons ✅
+
 - [x] **Primary**: Blue (#323dfe) background, white text
 - [x] **Secondary/Outline**: Border with transparent bg
 - [x] **Hover**: translateY(-0.5rem) elevation + shadow
 
 ### Footer ✅ (FULLY COMPLETE - Jan 2025)
+
 - [x] **Structure**: 6-column grid (Platform, Communications, AI Agents, API Platform, Resources, Company)
 - [x] **Links**: All sections with correct links
 - [x] **Social Icons**: YouTube, X, Facebook, LinkedIn, GitHub
@@ -771,6 +815,7 @@ All major issues have been fixed to match plivo.com:
 - [x] **Centered copyright**: Properly centered at bottom
 
 ### Remaining Tasks
+
 - [ ] Download and add actual customer logos (Meta, Discord, etc.)
 - [ ] Add actual product mockup images
 - [ ] Download and add compliance badge SVGs
@@ -780,6 +825,7 @@ All major issues have been fixed to match plivo.com:
 ## Verification Plan
 
 ### Manual Testing
+
 - [ ] Visual comparison with plivo.com (side-by-side)
 - [ ] All navigation links work
 - [ ] Mobile menu functions correctly
@@ -789,6 +835,7 @@ All major issues have been fixed to match plivo.com:
 - [ ] Responsive at 375px, 768px, 1024px, 1440px
 
 ### Automated Testing
+
 ```bash
 # Lighthouse CI
 npx lhci autorun
@@ -801,6 +848,7 @@ npm run build && npm run preview
 ```
 
 ### SEO Checklist
+
 - [ ] Unique meta titles/descriptions per page
 - [ ] OG images configured
 - [ ] Sitemap at /sitemap.xml

@@ -1,0 +1,43 @@
+{
+  "country": "Netherlands",
+  "country_iso": "NL",
+  "zentrunk": {
+    "inbound": {
+      "number_groups": {
+        "Netherlands Local Voice": "0.003",
+        "Netherlands National Voice": "0.003",
+        "Netherlands Tollfree Voice": "0.3067",
+        "Netherlands mobile Voice": "0.003",
+        "Netherlands mobile Voice & SMS": "0.003"
+      },
+      "rates": {
+        "local": [
+          "0.003"
+        ],
+        "mobile": [
+          "0.003"
+        ],
+        "national": [
+          "0.003"
+        ],
+        "tollfree": [
+          "0.3067"
+        ]
+      }
+    },
+    "local": {
+      "inbound": {
+        "number_group_rates": {
+          "0.003": [
+            "Netherlands mobile Voice & SMS"
+          ],
+          "0.3067": [
+            "Netherlands Tollfree Voice"
+          ]
+        },
+        "rate": "0.003",
+        "tollfree_rate": "0.3067"
+      }
+    }
+  }
+}

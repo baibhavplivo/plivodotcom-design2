@@ -1,0 +1,154 @@
+/* Blog content styles for Webflow-migrated HTML */
+
+/* Hide duplicate H1 tags in blog body (page already has an H1) */
+.blog-content h1 {
+  display: none !important;
+}
+
+/* Figures and images */
+.blog-content figure {
+  margin: 1.5rem 0;
+}
+
+.blog-content figure img {
+  border-radius: 0.5rem;
+  width: 100%;
+  height: auto;
+}
+
+.blog-content figcaption {
+  text-align: center;
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin-top: 0.5rem;
+}
+
+.blog-content figure > div {
+  line-height: 0;
+}
+
+.blog-content img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Tables - matches pricing page style, overrides Tailwind prose */
+.blog-content table {
+  width: 100% !important;
+  border-spacing: 0 !important;
+  border-collapse: separate !important;
+  border-radius: 0.5rem !important;
+  overflow: hidden !important;
+  border: 1px solid #e5e7eb !important;
+  font-size: 0.875rem !important;
+  margin-top: 1.5rem !important;
+  margin-bottom: 1.5rem !important;
+  display: table !important;
+}
+
+.blog-content table thead {
+  border-bottom: none !important;
+}
+
+.blog-content table thead tr {
+  background-color: #f9fafb !important;
+}
+
+.blog-content table thead th {
+  padding: 0.75rem 1rem !important;
+  text-align: left !important;
+  font-size: 0.8125rem !important;
+  font-weight: 600 !important;
+  color: #111827 !important;
+  border: none !important;
+  border-bottom: 1px solid #e5e7eb !important;
+  background-color: transparent !important;
+  vertical-align: bottom !important;
+}
+
+.blog-content table tbody td {
+  padding: 0.75rem 1rem !important;
+  text-align: left !important;
+  vertical-align: top !important;
+  color: #374151 !important;
+  border: none !important;
+  border-bottom: 1px solid #f3f4f6 !important;
+  font-size: 0.875rem !important;
+}
+
+.blog-content table tbody tr:last-child td {
+  border-bottom: none !important;
+}
+
+.blog-content table tbody tr:hover {
+  background-color: #f9fafb;
+}
+
+/* Responsive table wrapper */
+.blog-content div:has(> table),
+.blog-content figure:has(> table) {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Embeds */
+.blog-content iframe {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 0.5rem;
+  margin: 1.5rem 0;
+  border: none;
+}
+
+.blog-content video {
+  width: 100%;
+  border-radius: 0.5rem;
+  margin: 1.5rem 0;
+}
+
+/* Handle Webflow empty paragraphs and nbsp */
+.blog-content p:empty,
+.blog-content p:has(> br:only-child) {
+  display: none;
+}
+
+/* Hide embedded style tags */
+.blog-content style {
+  display: none;
+}
+
+/* Clean up Webflow bold-wrapped headings */
+.blog-content h2 > strong:only-child,
+.blog-content h3 > strong:only-child {
+  font-weight: inherit;
+}
+
+/* Ordered list styling (many Webflow posts use numbered lists) */
+.blog-content ol {
+  list-style-type: decimal;
+  padding-left: 1.25rem;
+}
+
+.blog-content ol li {
+  padding-left: 0.25rem;
+}
+
+/* Smooth scroll target offset for fixed navbar */
+.blog-content h2[id],
+.blog-content h3[id] {
+  scroll-margin-top: 96px;
+}
+
+/* TOC sidebar scrollbar */
+#toc-sidebar nav::-webkit-scrollbar {
+  width: 3px;
+}
+
+#toc-sidebar nav::-webkit-scrollbar-thumb {
+  background-color: #d1d5db;
+  border-radius: 3px;
+}
+
+#toc-sidebar nav::-webkit-scrollbar-track {
+  background: transparent;
+}

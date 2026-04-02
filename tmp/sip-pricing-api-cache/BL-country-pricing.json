@@ -1,0 +1,210 @@
+{
+  "api_id": "e27d939a-2e69-11f1-9396-0242ac110003",
+  "country": "Saint-Barthelemy",
+  "country_code": 590,
+  "country_iso": "BL",
+  "mms": {
+    "longcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "phone_numbers": [],
+  "sms": {
+    "longcode": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": null,
+        "rates": null
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": "0.00000",
+        "rental": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "voice": {
+    "add_on_pricing": {
+      "audio_streaming_rate": 0.004,
+      "mpc_rate": 0,
+      "recording_storage_rate": 0.0004,
+      "speech_recognition": 0.02,
+      "transcription_charge": 0.0095,
+      "webrtc_rate": 0.0033
+    },
+    "ip": {
+      "inbound": {
+        "rate": "0.00330",
+        "rental": null
+      },
+      "outbound": {
+        "rates": {
+          "all": "0.00330"
+        }
+      }
+    },
+    "local": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.01690",
+        "rates": [
+          {
+            "destination_prefix": [
+              "590"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.01690",
+            "voice_network_group": "Guadeloupe",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "590690",
+              "59069000",
+              "59069005",
+              "59069026",
+              "59069027",
+              "59069028",
+              "59069029",
+              "59069030",
+              "59069031",
+              "59069032",
+              "59069033",
+              "59069034",
+              "59069035",
+              "59069037",
+              "59069038",
+              "59069039",
+              "59069040",
+              "59069041",
+              "59069047",
+              "59069048",
+              "59069049",
+              "5906905",
+              "59069060",
+              "59069061",
+              "59069062",
+              "59069063",
+              "59069064",
+              "59069065",
+              "59069067",
+              "59069068",
+              "59069070",
+              "59069071",
+              "59069072",
+              "59069073",
+              "59069074",
+              "59069075",
+              "59069076",
+              "5906909",
+              "59069122",
+              "59069131",
+              "59069132",
+              "59069133",
+              "59069134",
+              "59069135"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.09470",
+            "voice_network_group": "Guadeloupe - Mobile",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "59069006",
+              "59069007",
+              "59069008",
+              "59069009",
+              "59069011",
+              "59069012",
+              "59069013",
+              "59069014",
+              "59069015",
+              "59069016",
+              "59069017",
+              "59069018",
+              "59069019",
+              "59069020",
+              "59069021",
+              "59069023",
+              "59069024",
+              "59069025",
+              "59069036",
+              "59069042",
+              "59069043",
+              "59069044",
+              "59069045",
+              "59069046",
+              "59069069",
+              "59069080",
+              "59069081",
+              "59069082",
+              "59069083",
+              "59069084",
+              "59069085",
+              "59069086",
+              "59069129",
+              "59069130"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.15120",
+            "voice_network_group": "Guadeloupe - Mobile - Major Carriers (Digicel)",
+            "voice_unit": 60
+          }
+        ]
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.00000",
+        "rates": null
+      }
+    }
+  }
+}

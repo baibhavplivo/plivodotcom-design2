@@ -68,15 +68,15 @@ const ITEMS = [
 
 export default function AspectLogos() {
   return (
-    <section className="overflow-hidden bg-obsidian px-2.5 lg:px-0">
-      <div className="bg-jet container overflow-hidden border border-dark-gray py-12 text-center md:py-20">
-        <h2 className="text-foreground text-balance text-2xl tracking-tight md:text-4xl lg:text-5xl">
+    <section className="bg-obsidian overflow-hidden px-2.5 lg:px-0">
+      <div className="bg-jet border-dark-gray container overflow-hidden border py-12 text-center md:py-20">
+        <h2 className="text-balance text-2xl tracking-tight text-foreground md:text-4xl lg:text-5xl">
           Powering the world&apos;s best.
         </h2>
 
         <div className="relative mt-12">
           <div className="flex w-full">
-            <div className="animate-marquee flex shrink-0 items-center gap-12">
+            <div className="flex shrink-0 animate-marquee items-center gap-12">
               {ITEMS.map((logo, i) => (
                 <a
                   href={logo.href}
@@ -95,7 +95,7 @@ export default function AspectLogos() {
               ))}
             </div>
 
-            <div className="animate-marquee flex shrink-0 items-center gap-12">
+            <div className="flex shrink-0 animate-marquee items-center gap-12">
               {ITEMS.map((logo, i) => (
                 <a
                   href={logo.href}

@@ -8,6 +8,7 @@ dist/
 # Environment
 .env
 .env.*
+.dev.vars
 
 # OS
 .DS_Store
@@ -15,6 +16,14 @@ dist/
 # IDE
 .vscode/
 .idea/
+
+# AI/Editor tools
+.agent/
+.agents/
+.claude/
+.cursor/
+.gemini/
+.windsurf/
 
 # Logs
 *.log

@@ -1,0 +1,28 @@
+---
+import PlivoLayout from "@/layouts/PlivoLayout.astro";
+import WhatsAppSubNav from "@/components/sections/whatsapp-channel/WhatsAppSubNav.astro";
+import WhatsAppCallPricing from "@/components/sections/whatsapp-channel/WhatsAppCallPricing";
+import WhatsAppPricingVolumeCTA from "@/components/sections/whatsapp-channel/WhatsAppPricingVolumeCTA";
+import WhatsAppCallPricingFAQ from "@/components/sections/whatsapp-channel/WhatsAppCallPricingFAQ";
+import {
+  WHATSAPP_CALL_COUNTRY_CODES,
+  getWhatsAppCallPricingMeta,
+} from "@/data/whatsapp-call-pricing";
+
+export function getStaticPaths() {
+  return WHATSAPP_CALL_COUNTRY_CODES.map((code) => ({
+    params: { country: code.toLowerCase() },
+    props: { countryCode: code },
+  }));
+}
+
+const { countryCode } = Astro.props;
+const { title, description } = getWhatsAppCallPricingMeta(countryCode);
+---
+
+<PlivoLayout title={title} description={description}>
+  <WhatsAppSubNav currentPage="call-pricing" />
+  <WhatsAppCallPricing client:visible initialCountry={countryCode} />
+  <WhatsAppPricingVolumeCTA />
+  <WhatsAppCallPricingFAQ />
+</PlivoLayout>

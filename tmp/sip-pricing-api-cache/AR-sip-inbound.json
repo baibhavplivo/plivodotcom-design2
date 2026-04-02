@@ -1,0 +1,34 @@
+{
+  "country": "Argentina",
+  "country_iso": "AR",
+  "zentrunk": {
+    "inbound": {
+      "number_groups": {
+        "Argentina Local Voice": "0.0063",
+        "Argentina Tollfree Voice": "0.1965"
+      },
+      "rates": {
+        "local": [
+          "0.0063"
+        ],
+        "tollfree": [
+          "0.1965"
+        ]
+      }
+    },
+    "local": {
+      "inbound": {
+        "number_group_rates": {
+          "0.0063": [
+            "Argentina Local Voice"
+          ],
+          "0.1965": [
+            "Argentina Tollfree Voice"
+          ]
+        },
+        "rate": "0.0063",
+        "tollfree_rate": "0.1965"
+      }
+    }
+  }
+}

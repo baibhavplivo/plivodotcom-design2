@@ -1,0 +1,55 @@
+{
+  "country": "Zimbabwe",
+  "country_iso": "ZW",
+  "zentrunk": {
+    "local": {
+      "outbound": {
+        "network_group_rates": {
+          "0.298": [
+            "Zimbabwe"
+          ],
+          "0.798": [
+            "Zimbabwe - Mobile"
+          ],
+          "0.838": [
+            "Zimbabwe - Premium Services"
+          ]
+        },
+        "rate": "0.298",
+        "rates": {
+          "0.298": [
+            "263"
+          ],
+          "0.798": [
+            "26371",
+            "26373",
+            "26377",
+            "26378"
+          ],
+          "0.838": [
+            "2638630030"
+          ]
+        },
+        "tollfree_rate": "NA"
+      }
+    },
+    "outbound": {
+      "network_groups": {
+        "Zimbabwe": "0.298",
+        "Zimbabwe - Mobile": "0.798",
+        "Zimbabwe - Premium Services": "0.838"
+      },
+      "rates": {
+        "Fixed": [
+          "0.298"
+        ],
+        "Mobile": [
+          "0.798"
+        ],
+        "Others": [
+          "0.838"
+        ]
+      }
+    }
+  }
+}

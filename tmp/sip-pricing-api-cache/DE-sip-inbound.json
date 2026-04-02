@@ -1,0 +1,39 @@
+{
+  "country": "Germany",
+  "country_iso": "DE",
+  "zentrunk": {
+    "inbound": {
+      "number_groups": {
+        "Germany - tollfree - Voice & SMS": "0.25",
+        "Germany Local Voice": "0.003",
+        "Germany National Voice": "0.003",
+        "Germany Tollfree Voice": "0.25"
+      },
+      "rates": {
+        "local": [
+          "0.003"
+        ],
+        "national": [
+          "0.003"
+        ],
+        "tollfree": [
+          "0.25"
+        ]
+      }
+    },
+    "local": {
+      "inbound": {
+        "number_group_rates": {
+          "0.003": [
+            "Germany National Voice"
+          ],
+          "0.25": [
+            "Germany - tollfree - Voice & SMS"
+          ]
+        },
+        "rate": "0.003",
+        "tollfree_rate": "0.25"
+      }
+    }
+  }
+}

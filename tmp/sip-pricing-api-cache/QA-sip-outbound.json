@@ -1,0 +1,55 @@
+{
+  "country": "Qatar",
+  "country_iso": "QA",
+  "zentrunk": {
+    "local": {
+      "outbound": {
+        "network_group_rates": {
+          "0.268": [
+            "Qatar"
+          ],
+          "0.288": [
+            "Qatar Mobile",
+            "Qatar Mobile Vodafone"
+          ]
+        },
+        "rate": "0.268",
+        "rates": {
+          "0.268": [
+            "974"
+          ],
+          "0.288": [
+            "97428",
+            "97433",
+            "974399",
+            "97450",
+            "97455",
+            "974599",
+            "97466",
+            "97430",
+            "97431",
+            "97470",
+            "97474",
+            "97477"
+          ]
+        },
+        "tollfree_rate": "NA"
+      }
+    },
+    "outbound": {
+      "network_groups": {
+        "Qatar": "0.268",
+        "Qatar Mobile": "0.288",
+        "Qatar Mobile Vodafone": "0.288"
+      },
+      "rates": {
+        "Fixed": [
+          "0.268"
+        ],
+        "Mobile": [
+          "0.288"
+        ]
+      }
+    }
+  }
+}

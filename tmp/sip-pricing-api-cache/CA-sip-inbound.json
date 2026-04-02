@@ -1,0 +1,36 @@
+{
+  "country": "Canada",
+  "country_iso": "CA",
+  "zentrunk": {
+    "inbound": {
+      "number_groups": {
+        "Canada Local Voice & SMS": "0.004",
+        "Canada Tollfree Voice & SMS": "0.012",
+        "Canada local Voice": "0.004",
+        "Canada tollfree Voice": "0.012"
+      },
+      "rates": {
+        "local": [
+          "0.004"
+        ],
+        "tollfree": [
+          "0.012"
+        ]
+      }
+    },
+    "local": {
+      "inbound": {
+        "number_group_rates": {
+          "0.004": [
+            "Canada local Voice"
+          ],
+          "0.012": [
+            "Canada tollfree Voice"
+          ]
+        },
+        "rate": "0.004",
+        "tollfree_rate": "0.012"
+      }
+    }
+  }
+}

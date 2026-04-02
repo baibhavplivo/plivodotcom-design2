@@ -1,0 +1,247 @@
+{
+  "api_id": "deb1ec70-2e69-11f1-9396-0242ac110003",
+  "country": "Nicaragua",
+  "country_code": 505,
+  "country_iso": "NI",
+  "mms": {
+    "longcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "phone_numbers": [],
+  "sms": {
+    "longcode": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.08530",
+        "rates": {
+          "Nicaragua - Claro": "0.08530",
+          "Nicaragua - Movistar": "0.15870"
+        }
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": "0.00000",
+        "rental": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "voice": {
+    "add_on_pricing": {
+      "audio_streaming_rate": 0.004,
+      "mpc_rate": 0,
+      "recording_storage_rate": 0.0004,
+      "speech_recognition": 0.02,
+      "transcription_charge": 0.0095,
+      "webrtc_rate": 0.0033
+    },
+    "ip": {
+      "inbound": {
+        "rate": "0.00330",
+        "rental": null
+      },
+      "outbound": {
+        "rates": {
+          "all": "0.00330"
+        }
+      }
+    },
+    "local": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.17950",
+        "rates": [
+          {
+            "destination_prefix": [
+              "505"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.17950",
+            "voice_network_group": "Nicaragua",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "505550",
+              "505551",
+              "505552",
+              "505553",
+              "505554",
+              "505555",
+              "505556",
+              "50555700",
+              "50555701",
+              "50555702",
+              "50555703",
+              "50555704",
+              "50555705",
+              "50555706",
+              "50555707",
+              "505569",
+              "50557",
+              "50558",
+              "505620",
+              "505630",
+              "505633",
+              "505635",
+              "505640",
+              "505644",
+              "505645",
+              "505650",
+              "505655",
+              "505677",
+              "505681",
+              "505682",
+              "505683",
+              "505684",
+              "505685",
+              "505686",
+              "505687",
+              "505688",
+              "505689",
+              "505690",
+              "505695",
+              "505699",
+              "50575",
+              "50576",
+              "50577",
+              "50578",
+              "5058",
+              "50581",
+              "505824",
+              "505825",
+              "505826",
+              "505827",
+              "505828",
+              "505829",
+              "505832",
+              "505837",
+              "505838",
+              "505839",
+              "505845",
+              "505846",
+              "505847",
+              "505848",
+              "505855",
+              "505856",
+              "505857",
+              "505858",
+              "505859",
+              "505867",
+              "505868",
+              "505875",
+              "505876",
+              "505877",
+              "505878",
+              "505879",
+              "5058802",
+              "5058803",
+              "5058804",
+              "5058805",
+              "5058806",
+              "5058807",
+              "5058808",
+              "5058809",
+              "505881",
+              "505886",
+              "505887",
+              "505888",
+              "5058893",
+              "5058894",
+              "5058895",
+              "5058896",
+              "5058897",
+              "5058898",
+              "5058899",
+              "505895",
+              "505896",
+              "505897",
+              "505898",
+              "505899"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.35750",
+            "voice_network_group": "Nicaragua - Mobile",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "50588903",
+              "50588904",
+              "50588905",
+              "50588906",
+              "50588907",
+              "50588908",
+              "50588909",
+              "50588921",
+              "50588922",
+              "50588923",
+              "50588924",
+              "50588925",
+              "50588926",
+              "50588927",
+              "50588928",
+              "50588929"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "2.06100",
+            "voice_network_group": "Nicaragua - Premium Services",
+            "voice_unit": 60
+          }
+        ]
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.00000",
+        "rates": null
+      }
+    }
+  }
+}

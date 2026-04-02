@@ -1,0 +1,48 @@
+{
+  "country": "Samoa",
+  "country_iso": "WS",
+  "zentrunk": {
+    "local": {
+      "outbound": {
+        "network_group_rates": {
+          "1.898": [
+            "Western Samoa Mobile",
+            "Western Samoa Mobile Digicel"
+          ],
+          "1.998": [
+            "Western Samoa"
+          ]
+        },
+        "rate": "1.898",
+        "rates": {
+          "1.898": [
+            "68575",
+            "68576",
+            "68572",
+            "68577",
+            "68584"
+          ],
+          "1.998": [
+            "685"
+          ]
+        },
+        "tollfree_rate": "NA"
+      }
+    },
+    "outbound": {
+      "network_groups": {
+        "Western Samoa": "1.998",
+        "Western Samoa Mobile": "1.898",
+        "Western Samoa Mobile Digicel": "1.898"
+      },
+      "rates": {
+        "Fixed": [
+          "1.998"
+        ],
+        "Mobile": [
+          "1.898"
+        ]
+      }
+    }
+  }
+}

@@ -65,7 +65,7 @@ export default function AspectPricing() {
       <div className="border-b-dark-gray border-l-dark-gray border-r-dark-gray container relative border-l border-r px-0">
         <div className="px-6 py-8 lg:px-8 lg:py-16">
           <div className="flex flex-col items-center gap-4 lg:gap-6">
-            <h1 className="text-foreground text-3xl tracking-tight">Pricing</h1>
+            <h1 className="text-3xl tracking-tight text-foreground">Pricing</h1>
             <p className="text-mid-gray text-base">
               Choose the plan that fits your needs
             </p>
@@ -76,7 +76,7 @@ export default function AspectPricing() {
                 aria-label="Toggle annual vs. monthly billing"
                 className="data-[state=checked]:bg-white data-[state=unchecked]:bg-white [&>span]:bg-black [&>span]:data-[state=checked]:bg-black"
               />
-              <span className="text-foreground text-sm font-medium">
+              <span className="text-sm font-medium text-foreground">
                 {isAnnual ? "Billed annually" : "Billed monthly"}
               </span>
             </div>
@@ -110,10 +110,10 @@ export default function AspectPricing() {
                 )}
               >
                 <CardHeader>
-                  <h3 className="text-foreground text-2xl font-semibold">
+                  <h3 className="text-2xl font-semibold text-foreground">
                     {plan.name}
                   </h3>
-                  <p className="text-foreground mt-2 text-lg font-medium">
+                  <p className="mt-2 text-lg font-medium text-foreground">
                     {isAnnual ? plan.annualPrice : plan.monthlyPrice}{" "}
                     {(plan.monthlyPerUnit || plan.annualPerUnit) &&
                       (isAnnual ? plan.annualPerUnit : plan.monthlyPerUnit)}
@@ -131,8 +131,8 @@ export default function AspectPricing() {
                   <div className="space-y-4">
                     {plan.features.map((f) => (
                       <div key={f} className="flex items-center gap-3">
-                        <Check className="text-foreground size-4" />
-                        <span className="text-foreground text-sm">{f}</span>
+                        <Check className="size-4 text-foreground" />
+                        <span className="text-sm text-foreground">{f}</span>
                       </div>
                     ))}
                   </div>

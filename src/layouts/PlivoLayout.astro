@@ -1,6 +1,7 @@
 ---
 import BaseHead from '@/components/BaseHead.astro';
-import { PlivoNavbar } from '@/components/sections/plivo-navbar';
+import CookieConsentManager from '@/components/CookieConsentManager.astro';
+import { Navbar1 } from '@/components/sections/navbar1';
 import { PlivoFooter } from '@/components/sections/plivo-footer';
 
 interface Props {
@@ -9,17 +10,111 @@ interface Props {
 }
 
 const { title, description = "Plivo enables businesses to communicate with their customers through voice, messaging, and more with APIs that simplify cloud communications." } = Astro.props;
+const isDev = import.meta.env.DEV;
+const gtmContainerId = import.meta.env.PROD
+  ? (import.meta.env.PUBLIC_GTM_CONTAINER_ID || "GTM-MXJNN5")
+  : "";
+const gtmAllowedHosts = (import.meta.env.PUBLIC_GTM_ALLOWED_HOSTS || "www.plivo.com")
+  .split(",")
+  .map((host) => host.trim())
+  .filter(Boolean);
 ---
 
 <html lang="en">
   <head>
     <BaseHead title={`${title} | Plivo`} description={description} />
+    {isDev && (
+      <script type="module" is:inline>
+        import RefreshRuntime from "/@react-refresh";
+
+        RefreshRuntime.injectIntoGlobalHook(window);
+        window.$RefreshReg$ = () => {};
+        window.$RefreshSig$ = () => (type) => type;
+        window.__vite_plugin_react_preamble_installed__ = true;
+      </script>
+    )}
   </head>
-  <body class="min-h-screen antialiased">
-    <PlivoNavbar currentPage={Astro.url.pathname} client:load />
-    <main class="pt-[72px]">
+  <body class="min-h-screen bg-white antialiased">
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:rounded-md focus:bg-black focus:px-4 focus:py-2 focus:text-sm focus:text-white focus:outline-none">
+      Skip to main content
+    </a>
+    <Navbar1 currentPage={Astro.url.pathname} client:load />
+    <main id="main-content" class="flex flex-col bg-white pt-[72px]">
       <slot />
     </main>
     <PlivoFooter client:visible />
+
+    <!-- Geo-gated CTA rewriting for .astro components -->
+    <script is:inline>
+    (function() {
+      var CATEGORY_A = ["US","CA","IN","GB","AU","NZ","SG"];
+      var CATEGORY_B = ["BR","AE","AR","DE","FR","NL","BE","IE","IT","IL","MY","ID","PT"];
+      var SIGNUP_URL = "https://plivo.com/signup";
+      var TRIAL_URL = "/request-trial/";
+      var SALES_URL = "/contact/sales/";
+
+      function getCategory(code) {
+        if (!code) return "";
+        code = code.toUpperCase();
+        if (CATEGORY_A.indexOf(code) >= 0) return "A";
+        if (CATEGORY_B.indexOf(code) >= 0) return "B";
+        return "unsupported";
+      }
+
+      function updateCTAs() {
+        var country = "";
+        try { country = sessionStorage.getItem("plivo_geo_country") || ""; } catch(e) {}
+        if (!country) return false;
+
+        var cat = getCategory(country);
+        var links = document.querySelectorAll('[data-geo-cta="signup"]');
+        for (var i = 0; i < links.length; i++) {
+          var el = links[i];
+          if (cat === "A") {
+            el.setAttribute("href", SIGNUP_URL);
+          } else if (cat === "B") {
+            el.setAttribute("href", TRIAL_URL);
+            el.removeAttribute("target");
+            el.removeAttribute("rel");
+            var text = (el.textContent || "").trim().toLowerCase();
+            if (text === "sign up for free" || text === "start for free" || text === "sign up now" || text === "get started" || text === "get access") {
+              el.textContent = "Request a trial";
+            }
+          } else {
+            el.setAttribute("href", TRIAL_URL);
+            el.removeAttribute("target");
+            el.removeAttribute("rel");
+            var text2 = (el.textContent || "").trim().toLowerCase();
+            if (text2 === "sign up for free" || text2 === "start for free" || text2 === "sign up now" || text2 === "get started" || text2 === "get access") {
+              el.textContent = "Request a trial";
+            }
+          }
+        }
+        return true;
+      }
+
+      // Try immediately
+      if (!updateCTAs()) {
+        // Poll for geo data (up to 4 seconds)
+        var attempts = 0;
+        var poll = setInterval(function() {
+          attempts++;
+          if (updateCTAs() || attempts > 40) {
+            clearInterval(poll);
+          }
+        }, 100);
+      }
+
+      // Handle Astro page transitions
+      document.addEventListener("astro:after-swap", function() {
+        setTimeout(updateCTAs, 50);
+      });
+    })();
+    </script>
+
+    <CookieConsentManager
+      gtmContainerId={gtmContainerId}
+      gtmAllowedHosts={gtmAllowedHosts}
+    />
   </body>
 </html>

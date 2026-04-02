@@ -1,5 +1,5 @@
 /* Google Fonts import for Sora and Inter */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@400;500;600;700;800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@400;500;600;700;800&display=swap");
 
 @import "tailwindcss";
 
@@ -18,7 +18,7 @@
   --color-plivo-blue: #323dfe;
   --color-plivo-dark: rgb(15, 17, 23);
 
-  /* Theme Colors */
+  /* Theme Colors - Main */
   --color-background: hsl(var(--background));
   --color-foreground: hsl(var(--foreground));
 
@@ -47,35 +47,112 @@
   --color-input: hsl(var(--input));
   --color-ring: hsl(var(--ring));
 
+  /* HU Theme Colors (Added) */
+  --color-hu-background: hsl(var(--hu-background));
+  --color-hu-foreground: hsl(var(--hu-foreground));
+  --color-hu-card: hsl(var(--hu-card));
+  --color-hu-card-foreground: hsl(var(--hu-card-foreground));
+  --color-hu-primary: hsl(var(--hu-primary));
+  --color-hu-primary-foreground: hsl(var(--hu-primary-foreground));
+  --color-hu-secondary: hsl(var(--hu-secondary));
+  --color-hu-secondary-foreground: hsl(var(--hu-secondary-foreground));
+  --color-hu-muted: hsl(var(--hu-muted));
+  --color-hu-muted-foreground: hsl(var(--hu-muted-foreground));
+  --color-hu-accent: hsl(var(--hu-accent));
+  --color-hu-accent-foreground: hsl(var(--hu-accent-foreground));
+  --color-hu-destructive: hsl(var(--hu-destructive));
+  --color-hu-destructive-foreground: hsl(var(--hu-destructive-foreground));
+  --color-hu-border: hsl(var(--hu-border));
+  --color-hu-input: hsl(var(--hu-input));
+  --color-hu-ring: hsl(var(--hu-ring));
+
   --spacing-9xl: 100rem;
+
+  --radius: 0.5rem;
+  --radius-ele: var(--radius);
+  --radius-card: var(--card-radius);
 
   /* Animations */
   --animate-accordion-down: accordion-down 0.2s ease-out;
   --animate-accordion-up: accordion-up 0.2s ease-out;
   --animate-marquee: marquee var(--duration, 40s) linear infinite;
-  --animate-marquee-reverse: marquee var(--duration, 40s) linear infinite reverse;
+  --animate-marquee-reverse: marquee var(--duration, 40s) linear infinite
+    reverse;
   --animate-fade-in: fadeIn 0.5s ease-out;
   --animate-slide-up: slideUp 0.5s ease-out;
+  --animate-appear: appear 0.5s ease-out forwards;
+  --animate-appear-zoom: appear-zoom 0.5s ease-out forwards;
+  --animate-grid: grid 15s linear infinite;
 
+  @keyframes grid {
+    0% {
+      transform: translateY(-50%);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
   @keyframes accordion-down {
-    from { height: 0; }
-    to { height: var(--radix-accordion-content-height); }
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+    }
   }
   @keyframes accordion-up {
-    from { height: var(--radix-accordion-content-height); }
-    to { height: 0; }
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+    to {
+      height: 0;
+    }
   }
   @keyframes marquee {
-    from { transform: translateX(0); }
-    to { transform: translateX(calc(-100% - var(--gap, 1rem))); }
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(calc(-100% - var(--gap, 1rem)));
+    }
   }
   @keyframes fadeIn {
-    0% { opacity: 0; }
-    100% { opacity: 1; }
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
   }
   @keyframes slideUp {
-    0% { opacity: 0; transform: translateY(20px); }
-    100% { opacity: 1; transform: translateY(0); }
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes appear {
+    0% {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes appear-zoom {
+    0% {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
   }
 }
 
@@ -118,6 +195,12 @@
   }
 }
 
+@utility cta-hover-gradient {
+  &:hover {
+    background-image: linear-gradient(to left, #000000, #4f46e5, #d946ef);
+  }
+}
+
 @layer base {
   *,
   ::after,
@@ -133,8 +216,35 @@
     font-family: var(--font-inter), sans-serif;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2 {
     font-family: var(--font-sora), sans-serif;
+  }
+
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-inter), sans-serif;
+  }
+
+  /* Animation utilities */
+  .animate-appear {
+    animation: appear 0.5s ease-out forwards;
+  }
+  .animate-appear-zoom {
+    animation: appear-zoom 0.5s ease-out forwards;
+  }
+  .delay-100 {
+    animation-delay: 100ms;
+  }
+  .delay-300 {
+    animation-delay: 300ms;
+  }
+
+  /* Max container width */
+  .max-w-container {
+    max-width: 80rem;
   }
 }
 
@@ -184,8 +294,35 @@
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
     --border: 0 0% 0% / 0.09;
-    --input: 0 0% 90%;
-    --ring: 285 94% 61%; /* Plivo Purple for focus ring */
+    --input: 0 0% 100%; /* White background for inputs */
+    --ring: 238 99% 60%; /* Plivo Blue for focus ring */
+
+    /* Brand colors for glow effect - Plivo purple/blue gradient */
+    --brand: 285 94% 61%;
+    --brand-foreground: 238 99% 60%;
+
+    /* HU Theme Variables */
+    --hu-font-geist: var(--font-geist, sans-serif);
+    --hu-font-jetbrains: var(--font-jetbrains-mono, monospace);
+    --radius: 8px;
+    --card-radius: 10px;
+    --hu-background: 0, 0%, 100%;
+    --hu-foreground: 0, 0%, 14%;
+    --hu-card: 0, 0%, 99%;
+    --hu-card-foreground: 0, 0%, 14%;
+    --hu-primary: 235, 100%, 60%;
+    --hu-primary-foreground: 0, 0%, 98%;
+    --hu-secondary: 0, 0%, 97%;
+    --hu-secondary-foreground: 0, 0%, 20%;
+    --hu-muted: 0, 0%, 97%;
+    --hu-muted-foreground: 0, 0%, 56%;
+    --hu-accent: 0, 0%, 96%;
+    --hu-accent-foreground: 0, 0%, 20%;
+    --hu-destructive: 9, 96%, 47%;
+    --hu-destructive-foreground: 0, 0%, 98%;
+    --hu-border: 0, 0%, 92%;
+    --hu-input: 0, 0%, 100%;
+    --hu-ring: 0, 0%, 71%;
   }
 
   .dark {
@@ -209,6 +346,25 @@
     --border: 0 0% 100% / 0.1;
     --input: 225 21% 12%;
     --ring: 285 94% 61%;
+
+    /* HU Theme Dark Variables */
+    --hu-background: 0, 0%, 7%;
+    --hu-foreground: 0, 0%, 100%;
+    --hu-card: 0, 0%, 9%;
+    --hu-card-foreground: 0, 0%, 100%;
+    --hu-primary: 235, 100%, 60%;
+    --hu-primary-foreground: 0, 0%, 98%;
+    --hu-secondary: 0, 0%, 15%;
+    --hu-secondary-foreground: 0, 0%, 100%;
+    --hu-muted: 0, 0%, 15%;
+    --hu-muted-foreground: 0, 0%, 71%;
+    --hu-accent: 0, 0%, 15%;
+    --hu-accent-foreground: 0, 0%, 100%;
+    --hu-destructive: 0, 84%, 50%;
+    --hu-destructive-foreground: 0, 0%, 98%;
+    --hu-border: 0, 0%, 100%, 10%;
+    --hu-input: 0, 0%, 100%, 5%;
+    --hu-ring: 0, 0%, 56%;
   }
 }
 
@@ -229,4 +385,48 @@ body {
 
 body {
   position: relative;
+}
+
+/* Pulsating glow animation for Self-improving card */
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.15);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Pulsating spark animation for AI icon */
+@keyframes pulse-spark {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.15) rotate(15deg);
+    opacity: 0.9;
+  }
+}
+
+.animate-pulse-spark {
+  animation: pulse-spark 2s ease-in-out infinite;
+}
+
+/* Form error banner (replaces alert()) */
+.form-error-banner {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #991b1b;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  margin-bottom: 12px;
+  animation: fadeIn 0.2s ease;
 }

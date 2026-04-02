@@ -1,0 +1,155 @@
+{
+  "api_id": "ac132296-2e6b-11f1-a084-0242ac110003",
+  "country": "Algeria",
+  "country_code": 213,
+  "country_iso": "DZ",
+  "mms": {
+    "longcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "phone_numbers": [],
+  "sms": {
+    "longcode": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.20766",
+        "rates": {
+          "Algeria - Algerie Telecom": "0.31802",
+          "Algeria - Orascom Telecom": "0.20766",
+          "Algeria - Wataniya Telecom Algerie (Nedjma)": "0.25870",
+          "Algeria-Others": "0.27330"
+        }
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": "0.00000",
+        "rental": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "voice": {
+    "add_on_pricing": {
+      "audio_streaming_rate": 0.004,
+      "mpc_rate": 0,
+      "recording_storage_rate": 0.0004,
+      "speech_recognition": 0.02,
+      "transcription_charge": 0.0095,
+      "webrtc_rate": 0.0033
+    },
+    "ip": {
+      "inbound": {
+        "rate": "0.00330",
+        "rental": null
+      },
+      "outbound": {
+        "rates": {
+          "all": "0.00330"
+        }
+      }
+    },
+    "local": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.15100",
+        "rates": [
+          {
+            "destination_prefix": [
+              "213",
+              "2131"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.15100",
+            "voice_network_group": "Algeria",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "2135",
+              "213655",
+              "213656",
+              "213657",
+              "213658",
+              "213659",
+              "21366",
+              "213670",
+              "213671",
+              "213672",
+              "213673",
+              "213674",
+              "213675",
+              "213676",
+              "213696",
+              "213697",
+              "213698",
+              "213699",
+              "21377",
+              "213780",
+              "213781",
+              "213782",
+              "213783",
+              "21379",
+              "21396190",
+              "21396191",
+              "21396192"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "2.09000",
+            "voice_network_group": "Algeria - Mobile",
+            "voice_unit": 60
+          }
+        ]
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.00000",
+        "rates": null
+      }
+    }
+  }
+}

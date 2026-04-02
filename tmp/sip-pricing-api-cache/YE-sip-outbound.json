@@ -1,0 +1,51 @@
+{
+  "country": "Yemen",
+  "country_iso": "YE",
+  "zentrunk": {
+    "local": {
+      "outbound": {
+        "network_group_rates": {
+          "0.198": [
+            "Yemen",
+            "Yemen - Mobile"
+          ],
+          "1.798": [
+            "Yemen - Premium Services"
+          ]
+        },
+        "rate": "0.198",
+        "rates": {
+          "0.198": [
+            "967",
+            "96770",
+            "96771",
+            "96773",
+            "96777"
+          ],
+          "1.798": [
+            "9677052"
+          ]
+        },
+        "tollfree_rate": "NA"
+      }
+    },
+    "outbound": {
+      "network_groups": {
+        "Yemen": "0.198",
+        "Yemen - Mobile": "0.198",
+        "Yemen - Premium Services": "1.798"
+      },
+      "rates": {
+        "Fixed": [
+          "0.198"
+        ],
+        "Mobile": [
+          "0.198"
+        ],
+        "Others": [
+          "1.798"
+        ]
+      }
+    }
+  }
+}

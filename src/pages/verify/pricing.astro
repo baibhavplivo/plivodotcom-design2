@@ -1,0 +1,33 @@
+---
+import PlivoLayout from "@/layouts/PlivoLayout.astro";
+import SMSSubNav from "@/components/sections/sms-channel/SMSSubNav.astro";
+import VerifyPricingPage from "@/components/sections/sms-channel/VerifyPricingPage";
+import VerifyPriceCalculator from "@/components/sections/sms-channel/VerifyPriceCalculator";
+import VerifyRatesTable from "@/components/sections/sms-channel/VerifyRatesTable";
+import VerifyFAQ from "@/components/sections/sms-channel/VerifyFAQ";
+import SMSPreFooterCTA from "@/components/sections/sms-channel/SMSPreFooterCTA";
+import { VERIFY_PAGE_META } from "@/data/verify-pricing";
+---
+
+<PlivoLayout
+  title={VERIFY_PAGE_META.title}
+  description={VERIFY_PAGE_META.description}
+>
+  <!-- Sub Navigation -->
+  <SMSSubNav currentPage="verify-pricing" />
+
+  <!-- Hero + Highlights + Channel Pricing + No Charges -->
+  <VerifyPricingPage client:load />
+
+  <!-- Cost Comparison Calculator -->
+  <VerifyPriceCalculator client:load />
+
+  <!-- Rates Table -->
+  <VerifyRatesTable client:load />
+
+  <!-- FAQ -->
+  <VerifyFAQ client:visible />
+
+  <!-- Pre-Footer CTA -->
+  <SMSPreFooterCTA client:visible />
+</PlivoLayout>

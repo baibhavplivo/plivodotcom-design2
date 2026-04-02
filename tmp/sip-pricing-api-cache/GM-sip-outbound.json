@@ -1,0 +1,65 @@
+{
+  "country": "Gambia",
+  "country_iso": "GM",
+  "zentrunk": {
+    "local": {
+      "outbound": {
+        "network_group_rates": {
+          "0.9038": [
+            "Gambia"
+          ],
+          "0.9185": [
+            "Gambia - Mobile"
+          ],
+          "2.398": [
+            "Gambia - Premium Services"
+          ]
+        },
+        "rate": "0.9038",
+        "rates": {
+          "0.9038": [
+            "220"
+          ],
+          "0.9185": [
+            "22020",
+            "22021",
+            "22022",
+            "22023",
+            "22024",
+            "22025",
+            "22026",
+            "22027",
+            "22028",
+            "22029",
+            "2203",
+            "2206",
+            "2207",
+            "2209"
+          ],
+          "2.398": [
+            "2203564"
+          ]
+        },
+        "tollfree_rate": "NA"
+      }
+    },
+    "outbound": {
+      "network_groups": {
+        "Gambia": "0.9038",
+        "Gambia - Mobile": "0.9185",
+        "Gambia - Premium Services": "2.398"
+      },
+      "rates": {
+        "Fixed": [
+          "0.9038"
+        ],
+        "Mobile": [
+          "0.9185"
+        ],
+        "Others": [
+          "2.398"
+        ]
+      }
+    }
+  }
+}

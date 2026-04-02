@@ -1,0 +1,31 @@
+{
+  "country": "Poland",
+  "country_iso": "PL",
+  "zentrunk": {
+    "inbound": {
+      "number_groups": {
+        "Poland Local Voice": "0.003",
+        "Poland Mobile Voice & SMS": "0.003"
+      },
+      "rates": {
+        "local": [
+          "0.003"
+        ],
+        "mobile": [
+          "0.003"
+        ]
+      }
+    },
+    "local": {
+      "inbound": {
+        "number_group_rates": {
+          "0.003": [
+            "Poland Local Voice"
+          ]
+        },
+        "rate": "0.003",
+        "tollfree_rate": "NA"
+      }
+    }
+  }
+}

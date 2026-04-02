@@ -1,0 +1,17 @@
+{
+  "country": "Libyan Arab Jamahiriya",
+  "country_iso": "LY",
+  "zentrunk": {
+    "inbound": {
+      "number_groups": {},
+      "rates": {}
+    },
+    "local": {
+      "inbound": {
+        "number_group_rates": {},
+        "rate": "NA",
+        "tollfree_rate": "NA"
+      }
+    }
+  }
+}

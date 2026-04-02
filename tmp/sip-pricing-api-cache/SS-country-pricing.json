@@ -1,0 +1,217 @@
+{
+  "api_id": "1884cd8a-2e6c-11f1-b4c6-0242ac110006",
+  "country": "South Sudan",
+  "country_code": null,
+  "country_iso": "SS",
+  "mms": {
+    "longcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "phone_numbers": [],
+  "sms": {
+    "longcode": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.19159",
+        "rates": {
+          "South Sudan - Gemtel": "0.20800",
+          "South Sudan - MTN South Sudan": "0.20800",
+          "South Sudan - Network of the World (NOW)": "0.19159",
+          "South Sudan - Zain South Sudan": "0.32198",
+          "South Sudan-Others": "0.20800"
+        }
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": "0.00000",
+        "rental": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "voice": {
+    "add_on_pricing": {
+      "audio_streaming_rate": 0.004,
+      "mpc_rate": 0,
+      "recording_storage_rate": 0.0004,
+      "speech_recognition": 0.02,
+      "transcription_charge": 0.0095,
+      "webrtc_rate": 0.0033
+    },
+    "ip": {
+      "inbound": {
+        "rate": "0.00330",
+        "rental": null
+      },
+      "outbound": {
+        "rates": {
+          "all": "0.00330"
+        }
+      }
+    },
+    "local": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.50100",
+        "rates": [
+          {
+            "destination_prefix": [
+              "21117880",
+              "21117881",
+              "21117882",
+              "21117883",
+              "21117884",
+              "211178920001",
+              "211178920002",
+              "211178920003",
+              "211178920004",
+              "211178920005",
+              "211178920006",
+              "211178920007",
+              "211178920008",
+              "211178920009",
+              "21117892001",
+              "21117892002",
+              "21117892003",
+              "21117892004",
+              "21117892005",
+              "21117892006",
+              "21117892007",
+              "21117892008",
+              "21117892009",
+              "2111789201",
+              "2111789202",
+              "2111789203",
+              "2111789204",
+              "2111789205",
+              "2111789206",
+              "2111789207",
+              "2111789208",
+              "2111789209",
+              "211178921",
+              "211178922",
+              "211178923",
+              "211178924",
+              "21197880",
+              "21197881",
+              "21197882",
+              "21197883",
+              "21197884",
+              "211978920001",
+              "211978920002",
+              "211978920003",
+              "211978920004",
+              "211978920005",
+              "211978920006",
+              "211978920007",
+              "211978920008",
+              "211978920009",
+              "21197892001",
+              "21197892002",
+              "21197892003",
+              "21197892004",
+              "21197892005",
+              "21197892006",
+              "21197892007",
+              "21197892008",
+              "21197892009",
+              "2119789201",
+              "2119789202",
+              "2119789203",
+              "2119789204",
+              "2119789205",
+              "2119789206",
+              "2119789207",
+              "2119789208",
+              "2119789209",
+              "211978921",
+              "211978922",
+              "211978923",
+              "211978924"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "1.43100",
+            "voice_network_group": "South Sudan - Premium Services",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "211"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.65100",
+            "voice_network_group": "South Sudan",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "2119",
+              "21190",
+              "21191",
+              "21192",
+              "21195",
+              "21196",
+              "21199"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.50100",
+            "voice_network_group": "South Sudan - Mobile",
+            "voice_unit": 60
+          }
+        ]
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.00000",
+        "rates": null
+      }
+    }
+  }
+}

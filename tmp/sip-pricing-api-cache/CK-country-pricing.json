@@ -1,0 +1,128 @@
+{
+  "api_id": "392ba8d8-2e6c-11f1-b8c1-0242ac110006",
+  "country": "Cook Islands",
+  "country_code": 682,
+  "country_iso": "CK",
+  "mms": {
+    "longcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "phone_numbers": [],
+  "sms": {
+    "longcode": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.12953",
+        "rates": {
+          "Cook Islands - Telecom Cook Islands Ltd": "0.14104",
+          "Cook Islands-Others": "0.12953"
+        }
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": "0.00000",
+        "rental": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "voice": {
+    "add_on_pricing": {
+      "audio_streaming_rate": 0.004,
+      "mpc_rate": 0,
+      "recording_storage_rate": 0.0004,
+      "speech_recognition": 0.02,
+      "transcription_charge": 0.0095,
+      "webrtc_rate": 0.0033
+    },
+    "ip": {
+      "inbound": {
+        "rate": "0.00330",
+        "rental": null
+      },
+      "outbound": {
+        "rates": {
+          "all": "0.00330"
+        }
+      }
+    },
+    "local": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "1.80100",
+        "rates": [
+          {
+            "destination_prefix": [
+              "682"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "1.80100",
+            "voice_network_group": "Cook Islands",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "6825",
+              "6827",
+              "6828"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "1.80100",
+            "voice_network_group": "Cook Islands - Mobile",
+            "voice_unit": 60
+          }
+        ]
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.00000",
+        "rates": null
+      }
+    }
+  }
+}

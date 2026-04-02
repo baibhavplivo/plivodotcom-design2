@@ -1,0 +1,38 @@
+{
+  "country": "Bahrain",
+  "country_iso": "BH",
+  "zentrunk": {
+    "inbound": {
+      "number_groups": {
+        "Bahrain National Voice": "0.0063",
+        "Bahrain Tollfree Voice": "0.2",
+        "Bahrain local Voice": "0.0063"
+      },
+      "rates": {
+        "local": [
+          "0.0063"
+        ],
+        "national": [
+          "0.0063"
+        ],
+        "tollfree": [
+          "0.2"
+        ]
+      }
+    },
+    "local": {
+      "inbound": {
+        "number_group_rates": {
+          "0.0063": [
+            "Bahrain local Voice"
+          ],
+          "0.2": [
+            "Bahrain Tollfree Voice"
+          ]
+        },
+        "rate": "0.0063",
+        "tollfree_rate": "0.2"
+      }
+    }
+  }
+}

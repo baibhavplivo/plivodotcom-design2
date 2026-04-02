@@ -1,0 +1,53 @@
+{
+  "country": "New Caledonia",
+  "country_iso": "NC",
+  "zentrunk": {
+    "local": {
+      "outbound": {
+        "network_group_rates": {
+          "0.348": [
+            "New Caledonia",
+            "New Caledonia - Mobile"
+          ]
+        },
+        "rate": "0.348",
+        "rates": {
+          "0.348": [
+            "687",
+            "68750",
+            "68751",
+            "68752",
+            "68753",
+            "68754",
+            "6877",
+            "68780",
+            "68781",
+            "68782",
+            "68783",
+            "68784",
+            "68785",
+            "68786",
+            "68787",
+            "68789",
+            "6879"
+          ]
+        },
+        "tollfree_rate": "NA"
+      }
+    },
+    "outbound": {
+      "network_groups": {
+        "New Caledonia": "0.348",
+        "New Caledonia - Mobile": "0.348"
+      },
+      "rates": {
+        "Fixed": [
+          "0.348"
+        ],
+        "Mobile": [
+          "0.348"
+        ]
+      }
+    }
+  }
+}

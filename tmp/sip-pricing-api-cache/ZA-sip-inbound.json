@@ -1,0 +1,38 @@
+{
+  "country": "South Africa",
+  "country_iso": "ZA",
+  "zentrunk": {
+    "inbound": {
+      "number_groups": {
+        "South Africa Local Voice": "0.0063",
+        "South Africa National Voice": "0.0063",
+        "South Africa Tollfree Voice": "0.0817"
+      },
+      "rates": {
+        "local": [
+          "0.0063"
+        ],
+        "national": [
+          "0.0063"
+        ],
+        "tollfree": [
+          "0.0817"
+        ]
+      }
+    },
+    "local": {
+      "inbound": {
+        "number_group_rates": {
+          "0.0063": [
+            "South Africa Local Voice"
+          ],
+          "0.0817": [
+            "South Africa Tollfree Voice"
+          ]
+        },
+        "rate": "0.0063",
+        "tollfree_rate": "0.0817"
+      }
+    }
+  }
+}

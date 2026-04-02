@@ -1,0 +1,149 @@
+{
+  "api_id": "98894026-2e6a-11f1-8222-0242ac110003",
+  "country": "Saint Kitts And Nevis",
+  "country_code": 1869,
+  "country_iso": "KN",
+  "mms": {
+    "longcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "phone_numbers": [],
+  "sms": {
+    "longcode": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.16312",
+        "rates": {
+          "Cable & Wireless": "0.21580",
+          "Saint Kitts and Nevis-LIME": "0.16312",
+          "Saint Kitts and Nevis-Others": "0.16312",
+          "UTS CariGlobe": "0.21850"
+        }
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": "0.00000",
+        "rental": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "voice": {
+    "add_on_pricing": {
+      "audio_streaming_rate": 0.004,
+      "mpc_rate": 0,
+      "recording_storage_rate": 0.0004,
+      "speech_recognition": 0.02,
+      "transcription_charge": 0.0095,
+      "webrtc_rate": 0.0033
+    },
+    "ip": {
+      "inbound": {
+        "rate": "0.00330",
+        "rental": null
+      },
+      "outbound": {
+        "rates": {
+          "all": "0.00330"
+        }
+      }
+    },
+    "local": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.28100",
+        "rates": [
+          {
+            "destination_prefix": [
+              "1869556",
+              "1869557",
+              "1869558",
+              "1869565",
+              "1869566",
+              "1869567",
+              "1869660",
+              "1869661",
+              "1869662",
+              "1869663",
+              "1869664",
+              "1869665",
+              "1869667",
+              "1869668",
+              "1869669",
+              "1869760",
+              "1869762",
+              "1869763",
+              "1869764",
+              "1869765",
+              "1869766",
+              "1869767"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.38100",
+            "voice_network_group": "Saint Kitts And Nevis - Mobile",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "1869"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.28100",
+            "voice_network_group": "Saint Kitts And Nevis",
+            "voice_unit": 60
+          }
+        ]
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.00000",
+        "rates": null
+      }
+    }
+  }
+}

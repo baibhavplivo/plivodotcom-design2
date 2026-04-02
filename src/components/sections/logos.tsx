@@ -1,4 +1,4 @@
-import { Marquee } from '@/components/magicui/marquee';
+import { Marquee } from "@/components/magicui/marquee";
 
 const LOGOS = [
   { name: "Meta", src: "/images/logos/meta.svg", className: "h-7" },
@@ -16,17 +16,19 @@ export default function Logos() {
   return (
     <div className="relative py-4 lg:py-6">
       {/* Heading */}
-      <div className="text-center mb-4">
+      <div className="mb-4 text-center">
         <p className="text-[15px] font-normal text-gray-600 lg:text-[16px]">
           Trusted by 10,000+ startups and enterprises worldwide
         </p>
       </div>
 
-      {/* Marquee with fade mask - darker in center, lighter at edges */}
+      {/* Marquee with gradual fade mask on sides */}
       <div
         style={{
-          maskImage: 'linear-gradient(to right, transparent 0%, rgba(0,0,0,0.3) 10%, rgba(0,0,0,0.7) 25%, black 40%, black 60%, rgba(0,0,0,0.7) 75%, rgba(0,0,0,0.3) 90%, transparent 100%)',
-          WebkitMaskImage: 'linear-gradient(to right, transparent 0%, rgba(0,0,0,0.3) 10%, rgba(0,0,0,0.7) 25%, black 40%, black 60%, rgba(0,0,0,0.7) 75%, rgba(0,0,0,0.3) 90%, transparent 100%)',
+          maskImage:
+            "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.15) 5%, rgba(0,0,0,0.4) 10%, rgba(0,0,0,0.7) 18%, rgba(0,0,0,0.9) 25%, black 35%, black 65%, rgba(0,0,0,0.9) 75%, rgba(0,0,0,0.7) 82%, rgba(0,0,0,0.4) 90%, rgba(0,0,0,0.15) 95%, transparent 100%)",
+          WebkitMaskImage:
+            "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.15) 5%, rgba(0,0,0,0.4) 10%, rgba(0,0,0,0.7) 18%, rgba(0,0,0,0.9) 25%, black 35%, black 65%, rgba(0,0,0,0.9) 75%, rgba(0,0,0,0.7) 82%, rgba(0,0,0,0.4) 90%, rgba(0,0,0,0.15) 95%, transparent 100%)",
         }}
       >
         <Marquee
@@ -37,12 +39,12 @@ export default function Logos() {
           {LOGOS.map((logo) => (
             <div
               key={logo.name}
-              className="flex items-center justify-center shrink-0 w-[90px]"
+              className="flex w-[90px] shrink-0 items-center justify-center"
             >
               <img
                 src={logo.src}
                 alt={logo.name}
-                className={`${logo.className} w-auto object-contain grayscale opacity-60 hover:opacity-90 transition-opacity`}
+                className={`${logo.className} w-auto object-contain opacity-60 grayscale transition-opacity hover:opacity-90`}
               />
             </div>
           ))}

@@ -1,0 +1,41 @@
+---
+import PlivoLayout from "@/layouts/PlivoLayout.astro";
+import SIPTrunkingSubNav from "@/components/sections/voice-channel/SIPTrunkingSubNav.astro";
+import SIPTrunkingHero from "@/components/sections/voice-channel/SIPTrunkingHero.astro";
+import ClientLogos from "@/components/sections/voice-homepage/ClientLogos.astro";
+import SIPQualityFeatures from "@/components/sections/voice-channel/SIPQualityFeatures";
+import SIPTrunkingDirections from "@/components/sections/voice-channel/SIPTrunkingDirections";
+import SIPRobustFeatures from "@/components/sections/voice-channel/SIPRobustFeatures";
+import SIPWhyChoosePlivo from "@/components/sections/voice-channel/SIPWhyChoosePlivo";
+import PreFooterCTA from "@/components/sections/voice-homepage/PreFooterCTA";
+---
+
+<PlivoLayout title="SIP trunking | Plivo" description="Cloud-based SIP trunking with global connectivity and unlimited concurrent calls. Flexible pay-as-you-go pricing. Connect your VoIP infrastructure in minutes.">
+  <!-- Sub Navigation -->
+  <SIPTrunkingSubNav currentPage="overview" />
+
+  <!-- Hero Section -->
+  <SIPTrunkingHero />
+
+  <!-- Client Logos Marquee -->
+  <ClientLogos />
+
+  <!-- Quality SIP trunking Features - 3 Cards -->
+  <SIPQualityFeatures client:visible />
+
+  <!-- Outbound & Inbound Directions -->
+  <SIPTrunkingDirections client:visible />
+
+  <!-- Robust Feature Set - 6 Item Grid -->
+  <SIPRobustFeatures client:visible />
+
+  <!-- Why Choose Plivo - 4 Cards -->
+  <SIPWhyChoosePlivo client:visible />
+
+  <!-- Pre-Footer CTA -->
+  <PreFooterCTA
+    client:visible
+    title="It's easy to get started. Sign up for free."
+    subtitle="Create your account and receive trial credits or get in touch with us."
+  />
+</PlivoLayout>

@@ -1,0 +1,89 @@
+{
+  "country": "Niger",
+  "country_iso": "NE",
+  "zentrunk": {
+    "local": {
+      "outbound": {
+        "network_group_rates": {
+          "0.4739": [
+            "Niger Mobile Orange"
+          ],
+          "0.489": [
+            "Niger Mobile Airtel"
+          ],
+          "0.5373": [
+            "Niger",
+            "Niger Mobile",
+            "Niger Mobile Moov"
+          ],
+          "2.258": [
+            "Niger Special Services"
+          ],
+          "2.268": [
+            "Niger Mobility Services"
+          ]
+        },
+        "rate": "0.4739",
+        "rates": {
+          "0.4739": [
+            "22780",
+            "22790",
+            "22791",
+            "22792"
+          ],
+          "0.489": [
+            "22788",
+            "22789",
+            "22796",
+            "22797",
+            "22798",
+            "22799"
+          ],
+          "0.5373": [
+            "227",
+            "2279",
+            "22784",
+            "22785",
+            "22794",
+            "22795"
+          ],
+          "2.258": [
+            "2271",
+            "227201",
+            "2272039",
+            "22739"
+          ],
+          "2.268": [
+            "22793009"
+          ]
+        },
+        "tollfree_rate": "NA"
+      }
+    },
+    "outbound": {
+      "network_groups": {
+        "Niger": "0.5373",
+        "Niger Mobile": "0.5373",
+        "Niger Mobile Airtel": "0.489",
+        "Niger Mobile Moov": "0.5373",
+        "Niger Mobile Orange": "0.4739",
+        "Niger Mobility Services": "2.268",
+        "Niger Special Services": "2.258"
+      },
+      "rates": {
+        "Fixed": [
+          "0.5373"
+        ],
+        "Mobile": [
+          "0.4739",
+          "0.489",
+          "0.5373"
+        ],
+        "Others": [
+          "2.258",
+          "2.268"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "country": "Uruguay",
+  "country_iso": "UY",
+  "zentrunk": {
+    "local": {
+      "outbound": {
+        "network_group_rates": {
+          "0.086": [
+            "Uruguay - Fixed - Major Cities (Montevideo)"
+          ],
+          "0.12": [
+            "Uruguay"
+          ],
+          "0.31": [
+            "Uruguay - Mobile"
+          ]
+        },
+        "rate": "0.086",
+        "rates": {
+          "0.086": [
+            "5981",
+            "5982"
+          ],
+          "0.12": [
+            "598"
+          ],
+          "0.31": [
+            "5989",
+            "59891",
+            "59892",
+            "59893",
+            "59894",
+            "59894003",
+            "59895",
+            "59895991",
+            "59896",
+            "59897",
+            "59898",
+            "59899"
+          ]
+        },
+        "tollfree_rate": "NA"
+      }
+    },
+    "outbound": {
+      "network_groups": {
+        "Uruguay": "0.12",
+        "Uruguay - Fixed - Major Cities (Montevideo)": "0.086",
+        "Uruguay - Mobile": "0.31"
+      },
+      "rates": {
+        "Fixed": [
+          "0.086",
+          "0.12"
+        ],
+        "Mobile": [
+          "0.31"
+        ]
+      }
+    }
+  }
+}

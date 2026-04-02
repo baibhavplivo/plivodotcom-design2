@@ -1,0 +1,34 @@
+{
+  "country": "Mexico",
+  "country_iso": "MX",
+  "zentrunk": {
+    "inbound": {
+      "number_groups": {
+        "Mexico Local Voice": "0.0063",
+        "Mexico Tollfree Voice": "0.1807"
+      },
+      "rates": {
+        "local": [
+          "0.0063"
+        ],
+        "tollfree": [
+          "0.1807"
+        ]
+      }
+    },
+    "local": {
+      "inbound": {
+        "number_group_rates": {
+          "0.0063": [
+            "Mexico Local Voice"
+          ],
+          "0.1807": [
+            "Mexico Tollfree Voice"
+          ]
+        },
+        "rate": "0.0063",
+        "tollfree_rate": "0.1807"
+      }
+    }
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "country": "Sudan",
+  "country_iso": "SD",
+  "zentrunk": {
+    "local": {
+      "outbound": {
+        "network_group_rates": {
+          "0.258": [
+            "Sudan",
+            "Sudan - Mobile"
+          ],
+          "1.238": [
+            "Sudan - Premium Services"
+          ]
+        },
+        "rate": "0.258",
+        "rates": {
+          "0.258": [
+            "249",
+            "24915",
+            "24910",
+            "24911",
+            "24912",
+            "24990",
+            "24991",
+            "24992",
+            "24993",
+            "24995",
+            "24996",
+            "24999"
+          ],
+          "1.238": [
+            "24994"
+          ]
+        },
+        "tollfree_rate": "NA"
+      }
+    },
+    "outbound": {
+      "network_groups": {
+        "Sudan": "0.258",
+        "Sudan - Mobile": "0.258",
+        "Sudan - Premium Services": "1.238"
+      },
+      "rates": {
+        "Fixed": [
+          "0.258"
+        ],
+        "Mobile": [
+          "0.258"
+        ],
+        "Others": [
+          "1.238"
+        ]
+      }
+    }
+  }
+}

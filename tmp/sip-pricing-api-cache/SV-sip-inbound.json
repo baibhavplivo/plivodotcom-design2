@@ -1,0 +1,27 @@
+{
+  "country": "El Salvador",
+  "country_iso": "SV",
+  "zentrunk": {
+    "inbound": {
+      "number_groups": {
+        "El Salvador Local Voice": "0.0063"
+      },
+      "rates": {
+        "local": [
+          "0.0063"
+        ]
+      }
+    },
+    "local": {
+      "inbound": {
+        "number_group_rates": {
+          "0.0063": [
+            "El Salvador Local Voice"
+          ]
+        },
+        "rate": "0.0063",
+        "tollfree_rate": "NA"
+      }
+    }
+  }
+}

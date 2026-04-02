@@ -1,0 +1,155 @@
+{
+  "api_id": "c05113c2-2e6a-11f1-9396-0242ac110003",
+  "country": "Turks and Caicos Islands",
+  "country_code": 1649,
+  "country_iso": "TC",
+  "mms": {
+    "longcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "phone_numbers": [],
+  "sms": {
+    "longcode": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.23330",
+        "rates": {
+          "Turks and Caicos Islands - Cable & Wireless (Turks & Caic": "0.23330",
+          "Turks and Caicos Islands - IslandCom Communication Ltd": "0.45094"
+        }
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": "0.00000",
+        "rental": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "voice": {
+    "add_on_pricing": {
+      "audio_streaming_rate": 0.004,
+      "mpc_rate": 0,
+      "recording_storage_rate": 0.0004,
+      "speech_recognition": 0.02,
+      "transcription_charge": 0.0095,
+      "webrtc_rate": 0.0033
+    },
+    "ip": {
+      "inbound": {
+        "rate": "0.00330",
+        "rental": null
+      },
+      "outbound": {
+        "rates": {
+          "all": "0.00330"
+        }
+      }
+    },
+    "local": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.29100",
+        "rates": [
+          {
+            "destination_prefix": [
+              "1649"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.29100",
+            "voice_network_group": "Turks And Caicos Islands",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "1649231",
+              "1649232",
+              "1649241",
+              "1649242",
+              "1649243",
+              "1649244",
+              "1649245",
+              "1649246",
+              "1649247",
+              "1649249",
+              "1649331",
+              "1649332",
+              "1649333",
+              "1649338",
+              "1649339",
+              "1649341",
+              "1649342",
+              "1649343",
+              "1649344",
+              "1649345",
+              "1649346",
+              "1649347",
+              "1649348",
+              "1649349",
+              "1649431",
+              "1649432",
+              "1649433",
+              "1649441",
+              "1649442",
+              "1649443"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.38100",
+            "voice_network_group": "Turks And Caicos Islands - Mobile",
+            "voice_unit": 60
+          }
+        ]
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.00000",
+        "rates": null
+      }
+    }
+  }
+}

@@ -1,0 +1,134 @@
+{
+  "api_id": "35e581b2-2e6c-11f1-921b-0242ac110007",
+  "country": "Swaziland",
+  "country_code": 268,
+  "country_iso": "SZ",
+  "mms": {
+    "longcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "phone_numbers": [],
+  "sms": {
+    "longcode": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.20800",
+        "rates": {
+          "Swaziland - Swazi MTN": "0.20800",
+          "Swaziland - Swaziland Posts and Telecommunications Corporation (SPTC)": "0.21248",
+          "Swaziland-Others": "0.22710"
+        }
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": "0.00000",
+        "rental": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "voice": {
+    "add_on_pricing": {
+      "audio_streaming_rate": 0.004,
+      "mpc_rate": 0,
+      "recording_storage_rate": 0.0004,
+      "speech_recognition": 0.02,
+      "transcription_charge": 0.0095,
+      "webrtc_rate": 0.0033
+    },
+    "ip": {
+      "inbound": {
+        "rate": "0.00330",
+        "rental": null
+      },
+      "outbound": {
+        "rates": {
+          "all": "0.00330"
+        }
+      }
+    },
+    "local": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.13750",
+        "rates": [
+          {
+            "destination_prefix": [
+              "268"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.13750",
+            "voice_network_group": "Swaziland",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "26832",
+              "26833",
+              "26834",
+              "26835",
+              "26876",
+              "26877",
+              "26878",
+              "26879"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.33730",
+            "voice_network_group": "Swaziland - Mobile",
+            "voice_unit": 60
+          }
+        ]
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.00000",
+        "rates": null
+      }
+    }
+  }
+}

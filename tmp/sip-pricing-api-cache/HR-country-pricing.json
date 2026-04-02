@@ -1,0 +1,190 @@
+{
+  "api_id": "454ab27c-2e6b-11f1-b3dd-0242ac110007",
+  "country": "Croatia",
+  "country_code": 385,
+  "country_iso": "HR",
+  "mms": {
+    "longcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "phone_numbers": [
+    {
+      "capabilities": [
+        "voice"
+      ],
+      "cnam_lookup_rate": "0.00000",
+      "country": "Croatia",
+      "country_code": 385,
+      "country_iso": "HR",
+      "effective_date": "2018-04-09",
+      "inbound_mms_rate": "0.00000",
+      "inbound_sms_rate": "0.00000",
+      "inbound_voice_rate": "0.42670",
+      "number_type": "Tollfree",
+      "rental_rate": "6.50000",
+      "setup_rate": "0.00000",
+      "status": "BETA"
+    },
+    {
+      "capabilities": [
+        "voice"
+      ],
+      "cnam_lookup_rate": "0.00000",
+      "country": "Croatia",
+      "country_code": 385,
+      "country_iso": "HR",
+      "effective_date": "2018-04-09",
+      "inbound_mms_rate": "0.00000",
+      "inbound_sms_rate": "0.00000",
+      "inbound_voice_rate": "0.00850",
+      "number_type": "Local",
+      "rental_rate": "4.25000",
+      "setup_rate": "0.00000",
+      "status": "GA"
+    }
+  ],
+  "sms": {
+    "longcode": {
+      "inbound": {
+        "rate": "0.00000",
+        "rental": "6.67000"
+      },
+      "outbound": {
+        "rate": "0.09560",
+        "rates": {
+          "Croatia - Hrvatski Telekom (HT)": "0.09560",
+          "Croatia - Tele2": "0.21520",
+          "Croatia - VIPNet": "0.11900",
+          "Croatia-Croatia": "0.17440"
+        }
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": "0.00000",
+        "rental": "6.67000"
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "voice": {
+    "add_on_pricing": {
+      "audio_streaming_rate": 0.004,
+      "mpc_rate": 0,
+      "recording_storage_rate": 0.0004,
+      "speech_recognition": 0.02,
+      "transcription_charge": 0.0095,
+      "webrtc_rate": 0.0033
+    },
+    "ip": {
+      "inbound": {
+        "rate": "0.00330",
+        "rental": null
+      },
+      "outbound": {
+        "rates": {
+          "all": "0.00330"
+        }
+      }
+    },
+    "local": {
+      "inbound": {
+        "rate": "0.00500",
+        "rental": "4.25000"
+      },
+      "outbound": {
+        "rate": "0.22830",
+        "rates": [
+          {
+            "destination_prefix": [
+              "385"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.22830",
+            "voice_network_group": "Croatia",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "38589091",
+              "38589098",
+              "385901",
+              "385902",
+              "385903",
+              "385904",
+              "385905",
+              "385906",
+              "385907",
+              "385908",
+              "385909",
+              "38591",
+              "38592",
+              "38595",
+              "38597",
+              "38598",
+              "38599"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.67100",
+            "voice_network_group": "Croatia - Mobile",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "38512389"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.90100",
+            "voice_network_group": "Croatia - Premium Services",
+            "voice_unit": 60
+          }
+        ]
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": "0.42670",
+        "rental": "6.50000"
+      },
+      "outbound": {
+        "rate": "0.00000",
+        "rates": null
+      }
+    }
+  }
+}

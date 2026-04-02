@@ -1,0 +1,60 @@
+{
+  "country": "Liechtenstein",
+  "country_iso": "LI",
+  "zentrunk": {
+    "local": {
+      "outbound": {
+        "network_group_rates": {
+          "0.1132": [
+            "Liechtenstein"
+          ],
+          "0.1823": [
+            "Liechtenstein - Mobile - Others (Mobile Type A, Voicemail)"
+          ],
+          "0.9707": [
+            "Liechtenstein - Mobile"
+          ]
+        },
+        "rate": "0.1132",
+        "rates": {
+          "0.1132": [
+            "423"
+          ],
+          "0.1823": [
+            "42369",
+            "42370"
+          ],
+          "0.9707": [
+            "42360",
+            "42361",
+            "42362",
+            "42363",
+            "42364",
+            "42365",
+            "42366",
+            "42367",
+            "42368",
+            "4237"
+          ]
+        },
+        "tollfree_rate": "NA"
+      }
+    },
+    "outbound": {
+      "network_groups": {
+        "Liechtenstein": "0.1132",
+        "Liechtenstein - Mobile": "0.9707",
+        "Liechtenstein - Mobile - Others (Mobile Type A, Voicemail)": "0.1823"
+      },
+      "rates": {
+        "Fixed": [
+          "0.1132"
+        ],
+        "Mobile": [
+          "0.1823",
+          "0.9707"
+        ]
+      }
+    }
+  }
+}

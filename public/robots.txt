@@ -10,4 +10,4 @@ Disallow: /_astro/
 Disallow: /admin/
 
 # Sitemap location
-Sitemap: https://www.plivo.com/sitemap-index.xml
+Sitemap: https://www.plivo.com/sitemap.xml

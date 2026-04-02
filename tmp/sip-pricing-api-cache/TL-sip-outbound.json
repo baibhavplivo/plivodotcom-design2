@@ -1,0 +1,42 @@
+{
+  "country": "Timor-Leste",
+  "country_iso": "TL",
+  "zentrunk": {
+    "local": {
+      "outbound": {
+        "network_group_rates": {
+          "0.8482": [
+            "East Timor",
+            "East Timor Mobile",
+            "East Timor Mobile Telkomcel"
+          ]
+        },
+        "rate": "0.8482",
+        "rates": {
+          "0.8482": [
+            "670",
+            "6707",
+            "67073",
+            "67074"
+          ]
+        },
+        "tollfree_rate": "NA"
+      }
+    },
+    "outbound": {
+      "network_groups": {
+        "East Timor": "0.8482",
+        "East Timor Mobile": "0.8482",
+        "East Timor Mobile Telkomcel": "0.8482"
+      },
+      "rates": {
+        "Fixed": [
+          "0.8482"
+        ],
+        "Mobile": [
+          "0.8482"
+        ]
+      }
+    }
+  }
+}

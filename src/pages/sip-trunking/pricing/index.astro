@@ -1,0 +1,25 @@
+---
+import PlivoLayout from "@/layouts/PlivoLayout.astro";
+import SIPTrunkingSubNav from "@/components/sections/voice-channel/SIPTrunkingSubNav.astro";
+import SIPTrunkingPricing from "@/components/sections/voice-channel/SIPTrunkingPricing";
+import PreFooterCTA from "@/components/sections/voice-homepage/PreFooterCTA";
+import { SIP_PRICING_HERO } from "@/data/sip-pricing-page";
+---
+
+<PlivoLayout
+  title="SIP Trunking Pricing | Plivo"
+  description={SIP_PRICING_HERO.description}
+>
+  <!-- Sub Navigation -->
+  <SIPTrunkingSubNav currentPage="pricing" />
+
+  <!-- Pricing Component -->
+  <SIPTrunkingPricing client:load />
+
+  <!-- Pre-Footer CTA -->
+  <PreFooterCTA
+    client:visible
+    title="It's easy to get started. Sign up for free."
+    subtitle="Create your account and receive trial credits or get in touch with us."
+  />
+</PlivoLayout>

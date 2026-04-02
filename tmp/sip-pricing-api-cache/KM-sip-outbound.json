@@ -1,0 +1,55 @@
+{
+  "country": "Comoros",
+  "country_iso": "KM",
+  "zentrunk": {
+    "local": {
+      "outbound": {
+        "network_group_rates": {
+          "0.6135": [
+            "Comoros"
+          ],
+          "0.6144": [
+            "Comoros - Mobile"
+          ],
+          "1.838": [
+            "Comoros - Premium Services"
+          ]
+        },
+        "rate": "0.6135",
+        "rates": {
+          "0.6135": [
+            "269"
+          ],
+          "0.6144": [
+            "2693",
+            "2694"
+          ],
+          "1.838": [
+            "2698",
+            "269900",
+            "269910"
+          ]
+        },
+        "tollfree_rate": "NA"
+      }
+    },
+    "outbound": {
+      "network_groups": {
+        "Comoros": "0.6135",
+        "Comoros - Mobile": "0.6144",
+        "Comoros - Premium Services": "1.838"
+      },
+      "rates": {
+        "Fixed": [
+          "0.6135"
+        ],
+        "Mobile": [
+          "0.6144"
+        ],
+        "Others": [
+          "1.838"
+        ]
+      }
+    }
+  }
+}

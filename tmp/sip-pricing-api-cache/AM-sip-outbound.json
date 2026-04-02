@@ -1,0 +1,78 @@
+{
+  "country": "Armenia",
+  "country_iso": "AM",
+  "zentrunk": {
+    "local": {
+      "outbound": {
+        "network_group_rates": {
+          "0.2081": [
+            "Armenia - Mobile - Others (Karabakh Telecom)"
+          ],
+          "0.253": [
+            "Armenia"
+          ],
+          "0.3333": [
+            "Armenia - Fixed - Others (Karabakh)",
+            "Armenia - Mobile - Major Carriers (Orange, VEON)"
+          ],
+          "0.348": [
+            "Armenia - Premium Services"
+          ]
+        },
+        "rate": "0.2081",
+        "rates": {
+          "0.2081": [
+            "37497"
+          ],
+          "0.253": [
+            "374",
+            "37410",
+            "37411",
+            "37412"
+          ],
+          "0.3333": [
+            "37447",
+            "37441",
+            "37443",
+            "37444",
+            "37449",
+            "37455",
+            "37477",
+            "37488",
+            "3749",
+            "37491",
+            "37495",
+            "37496",
+            "37499"
+          ],
+          "0.348": [
+            "37460"
+          ]
+        },
+        "tollfree_rate": "NA"
+      }
+    },
+    "outbound": {
+      "network_groups": {
+        "Armenia": "0.253",
+        "Armenia - Fixed - Others (Karabakh)": "0.3333",
+        "Armenia - Mobile - Major Carriers (Orange, VEON)": "0.3333",
+        "Armenia - Mobile - Others (Karabakh Telecom)": "0.2081",
+        "Armenia - Premium Services": "0.348"
+      },
+      "rates": {
+        "Fixed": [
+          "0.253",
+          "0.3333"
+        ],
+        "Mobile": [
+          "0.2081",
+          "0.3333"
+        ],
+        "Others": [
+          "0.348"
+        ]
+      }
+    }
+  }
+}

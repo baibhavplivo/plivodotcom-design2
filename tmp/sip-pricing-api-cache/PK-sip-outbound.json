@@ -1,0 +1,48 @@
+{
+  "country": "Pakistan",
+  "country_iso": "PK",
+  "zentrunk": {
+    "local": {
+      "outbound": {
+        "network_group_rates": {
+          "0.138": [
+            "Pakistan",
+            "Pakistan - Mobile"
+          ]
+        },
+        "rate": "0.138",
+        "rates": {
+          "0.138": [
+            "92",
+            "9221",
+            "9242",
+            "9251",
+            "9258",
+            "9230",
+            "9231",
+            "9232",
+            "9233",
+            "9234",
+            "9235",
+            "9236"
+          ]
+        },
+        "tollfree_rate": "NA"
+      }
+    },
+    "outbound": {
+      "network_groups": {
+        "Pakistan": "0.138",
+        "Pakistan - Mobile": "0.138"
+      },
+      "rates": {
+        "Fixed": [
+          "0.138"
+        ],
+        "Mobile": [
+          "0.138"
+        ]
+      }
+    }
+  }
+}

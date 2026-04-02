@@ -1,0 +1,27 @@
+{
+  "country": "Ukraine",
+  "country_iso": "UA",
+  "zentrunk": {
+    "inbound": {
+      "number_groups": {
+        "Ukraine local Voice": "0.011"
+      },
+      "rates": {
+        "local": [
+          "0.011"
+        ]
+      }
+    },
+    "local": {
+      "inbound": {
+        "number_group_rates": {
+          "0.011": [
+            "Ukraine local Voice"
+          ]
+        },
+        "rate": "0.011",
+        "tollfree_rate": "NA"
+      }
+    }
+  }
+}

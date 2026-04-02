@@ -1,0 +1,32 @@
+{
+  "country": "American Samoa",
+  "country_iso": "AS",
+  "zentrunk": {
+    "local": {
+      "outbound": {
+        "network_group_rates": {
+          "0.068": [
+            "American Samoa"
+          ]
+        },
+        "rate": "0.068",
+        "rates": {
+          "0.068": [
+            "1684"
+          ]
+        },
+        "tollfree_rate": "NA"
+      }
+    },
+    "outbound": {
+      "network_groups": {
+        "American Samoa": "0.068"
+      },
+      "rates": {
+        "Others": [
+          "0.068"
+        ]
+      }
+    }
+  }
+}

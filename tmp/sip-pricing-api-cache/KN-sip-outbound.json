@@ -1,0 +1,63 @@
+{
+  "country": "Saint Kitts and Nevis",
+  "country_iso": "KN",
+  "zentrunk": {
+    "local": {
+      "outbound": {
+        "network_group_rates": {
+          "0.278": [
+            "Saint Kitts And Nevis"
+          ],
+          "0.378": [
+            "Saint Kitts And Nevis - Mobile"
+          ]
+        },
+        "rate": "0.278",
+        "rates": {
+          "0.278": [
+            "1869"
+          ],
+          "0.378": [
+            "1869556",
+            "1869557",
+            "1869558",
+            "1869565",
+            "1869566",
+            "1869567",
+            "1869660",
+            "1869661",
+            "1869662",
+            "1869663",
+            "1869664",
+            "1869665",
+            "1869667",
+            "1869668",
+            "1869669",
+            "1869760",
+            "1869762",
+            "1869763",
+            "1869764",
+            "1869765",
+            "1869766",
+            "1869767"
+          ]
+        },
+        "tollfree_rate": "NA"
+      }
+    },
+    "outbound": {
+      "network_groups": {
+        "Saint Kitts And Nevis": "0.278",
+        "Saint Kitts And Nevis - Mobile": "0.378"
+      },
+      "rates": {
+        "Fixed": [
+          "0.278"
+        ],
+        "Mobile": [
+          "0.378"
+        ]
+      }
+    }
+  }
+}

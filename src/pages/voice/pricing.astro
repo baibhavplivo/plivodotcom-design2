@@ -1,0 +1,18 @@
+---
+import PlivoLayout from "@/layouts/PlivoLayout.astro";
+import VoiceSubNav from "@/components/sections/voice-channel/VoiceSubNav.astro";
+import VoicePricingTabs from "@/components/sections/voice-channel/VoicePricingTabs";
+import PreFooterCTA from "@/components/sections/voice-homepage/PreFooterCTA";
+---
+
+<PlivoLayout
+  title="Voice Pricing"
+  description="Plivo's pay-as-you-go Voice pricing. Get volume discounts as your usage scales. Integrate voice calling for 190+ countries with your applications. Get started now."
+>
+  <!-- Voice Sub Navigation -->
+  <VoiceSubNav currentPage="pricing" />
+
+  <!-- Voice Pricing Tabs with Country Selection -->
+  <VoicePricingTabs client:visible />
+  <PreFooterCTA client:visible />
+</PlivoLayout>

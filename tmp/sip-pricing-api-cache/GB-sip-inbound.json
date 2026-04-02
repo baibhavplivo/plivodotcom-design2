@@ -1,0 +1,44 @@
+{
+  "country": "United Kingdom",
+  "country_iso": "GB",
+  "zentrunk": {
+    "inbound": {
+      "number_groups": {
+        "United Kingdom Local Voice & SMS": "0.003",
+        "United Kingdom Mobile Voice & SMS": "0.003",
+        "United Kingdom National Voice": "0.003",
+        "United Kingdom Tollfree Voice": "0.047",
+        "United Kingdom local Voice": "0.003",
+        "United Kingdom mobile Voice": "0.003"
+      },
+      "rates": {
+        "local": [
+          "0.003"
+        ],
+        "mobile": [
+          "0.003"
+        ],
+        "national": [
+          "0.003"
+        ],
+        "tollfree": [
+          "0.047"
+        ]
+      }
+    },
+    "local": {
+      "inbound": {
+        "number_group_rates": {
+          "0.003": [
+            "United Kingdom mobile Voice"
+          ],
+          "0.047": [
+            "United Kingdom Tollfree Voice"
+          ]
+        },
+        "rate": "0.003",
+        "tollfree_rate": "0.047"
+      }
+    }
+  }
+}

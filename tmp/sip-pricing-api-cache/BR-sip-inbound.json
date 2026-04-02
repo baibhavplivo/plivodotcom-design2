@@ -1,0 +1,38 @@
+{
+  "country": "Brazil",
+  "country_iso": "BR",
+  "zentrunk": {
+    "inbound": {
+      "number_groups": {
+        "Brazil Local Voice": "0.006",
+        "Brazil Mobile Voice & SMS": "0.006",
+        "Brazil Tollfree Voice": "0.18"
+      },
+      "rates": {
+        "local": [
+          "0.006"
+        ],
+        "mobile": [
+          "0.006"
+        ],
+        "tollfree": [
+          "0.18"
+        ]
+      }
+    },
+    "local": {
+      "inbound": {
+        "number_group_rates": {
+          "0.006": [
+            "Brazil Mobile Voice & SMS"
+          ],
+          "0.18": [
+            "Brazil Tollfree Voice"
+          ]
+        },
+        "rate": "0.006",
+        "tollfree_rate": "0.18"
+      }
+    }
+  }
+}

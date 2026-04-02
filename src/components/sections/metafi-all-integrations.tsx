@@ -22,7 +22,7 @@ const DEFAULT_ITEMS: Integration[] = [
   {
     name: "Zapier integration",
     description:
-      "Connect Apps and Automate Workflows with Zapier — No Coding Required.",
+      "Connect Apps and Automate Workflows with Zapier - No Coding Required.",
     icon: "/images/homepage/integrations/zapier.svg",
     href: "#",
   },
@@ -95,14 +95,14 @@ export default function MetafiAllIntegrations({
       className="bg-background px-6 lg:px-0"
     >
       <div className="container px-0 py-16 sm:py-20 md:px-6 md:py-24">
-        <h2 className="text-foreground text-center text-[40px] font-medium leading-tight tracking-tight md:text-[52px]">
+        <h2 className="text-center text-[40px] font-medium leading-tight tracking-tight text-foreground md:text-[52px]">
           {title}
         </h2>
 
-        <ul className="md:mt-18 mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <ul className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 md:mt-18 lg:grid-cols-3">
           {items.slice(0, visible).map((it) => {
             const CardInner = (
-              <article className="bg-card border-border-light shadow-light h-full rounded-[16px] border p-4">
+              <article className="border-border-light shadow-light h-full rounded-[16px] border bg-card p-4">
                 <div className="bg-accent flex h-[200px] w-full items-center justify-center rounded-[12px]">
                   <img
                     src={it.icon}
@@ -113,10 +113,10 @@ export default function MetafiAllIntegrations({
                   />
                 </div>
 
-                <h3 className="text-foreground mt-4 text-2xl font-medium">
+                <h3 className="mt-4 text-2xl font-medium text-foreground">
                   {it.name.replace(/ integration$/i, "")}
                 </h3>
-                <p className="text-muted-foreground mt-2 text-[18px]">
+                <p className="mt-2 text-[18px] text-muted-foreground">
                   {it.description}
                 </p>
               </article>
@@ -148,7 +148,7 @@ export default function MetafiAllIntegrations({
                 setVisible((v) => Math.min(v + pageSize, items.length))
               }
             >
-              Load More Integrations
+              Load more integrations
             </Button>
           </div>
         )}

@@ -1,0 +1,19 @@
+---
+import PlivoLayout from "@/layouts/PlivoLayout.astro";
+import SIPTrunkingSubNav from "@/components/sections/voice-channel/SIPTrunkingSubNav.astro";
+import SIPTrunkingCoverage from "@/components/sections/voice-channel/SIPTrunkingCoverage";
+import PreFooterCTA from "@/components/sections/voice-homepage/PreFooterCTA";
+---
+
+<PlivoLayout
+  title="SIP trunking coverage"
+  description="Global SIP trunking coverage with outbound termination across 225 countries and inbound origination in 46 countries."
+>
+  <SIPTrunkingSubNav currentPage="coverage" />
+  <SIPTrunkingCoverage client:visible />
+  <PreFooterCTA
+    client:visible
+    title="It's easy to get started. Sign up for free."
+    subtitle="Create your account and receive trial credits or get in touch with us."
+  />
+</PlivoLayout>

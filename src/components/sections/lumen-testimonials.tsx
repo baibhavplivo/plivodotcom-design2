@@ -1,14 +1,14 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
-import Noise from '@/components/elements/noise';
+import Noise from "@/components/elements/noise";
 import {
   Card,
   CardContent,
   CardFooter,
   CardHeader,
-} from '@/components/ui/card';
+} from "@/components/ui/card";
 import {
   Carousel,
   type CarouselApi,
@@ -16,128 +16,128 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from '@/components/ui/carousel';
-import { cn } from '@/lib/utils';
+} from "@/components/ui/carousel";
+import { cn } from "@/lib/utils";
 
 const COMMON_CARDS_CLASSNAMES = {
-  big: 'col-span-4 lg:[&_blockquote]:text-base lg:[&_blockquote]:leading-loose lg:[&_blockquote]:text-foreground',
+  big: "col-span-4 lg:[&_blockquote]:text-base lg:[&_blockquote]:leading-loose lg:[&_blockquote]:text-foreground",
 };
 const testimonials = [
   {
-    id: '1',
-    name: 'Sarah Mitchell',
-    title: 'Head of Product',
-    company: 'Nike',
+    id: "1",
+    name: "Sarah Mitchell",
+    title: "Head of Product",
+    company: "Nike",
     image:
-      'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&h=400&fit=crop&crop=face',
+      "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&h=400&fit=crop&crop=face",
     companyLogo: {
-      src: '/images/logos/nike.png',
+      src: "/images/logos/nike.png",
       width: 67.5,
       height: 24,
     },
     testimonial:
-      'Lumen has completely changed the way we present our project workflows. We can create visual boards, share tasks instantly, and demo progress live. It’s business-focused collaboration without the overhead.',
+      "Lumen has completely changed the way we present our project workflows. We can create visual boards, share tasks instantly, and demo progress live. It’s business-focused collaboration without the overhead.",
     className: COMMON_CARDS_CLASSNAMES.big,
   },
   {
-    id: '2',
-    name: 'Alex Chen',
-    title: 'Senior Designer',
-    company: 'Spotify',
+    id: "2",
+    name: "Alex Chen",
+    title: "Senior Designer",
+    company: "Spotify",
     image:
-      'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face',
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face",
     testimonial:
-      'Lumen was the missing layer between our product and engineering teams. We’ve never had this much clarity in how tasks move through the pipeline.',
-    className: 'col-span-2 ',
+      "Lumen was the missing layer between our product and engineering teams. We’ve never had this much clarity in how tasks move through the pipeline.",
+    className: "col-span-2 ",
   },
   {
-    id: '3',
-    name: 'Marcus Johnson',
-    title: 'VP Product',
-    company: 'T-Mobile',
+    id: "3",
+    name: "Marcus Johnson",
+    title: "VP Product",
+    company: "T-Mobile",
     image:
-      'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face',
+      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face",
     testimonial:
-      'We used to lose track of deliverables every week. With Lumen, task ownership is crystal clear and timelines are actually realistic.',
-    className: 'col-span-2 ',
+      "We used to lose track of deliverables every week. With Lumen, task ownership is crystal clear and timelines are actually realistic.",
+    className: "col-span-2 ",
   },
   {
-    id: '4',
-    name: 'Emily Davis',
-    title: 'Product Manager',
-    company: 'Booking',
+    id: "4",
+    name: "Emily Davis",
+    title: "Product Manager",
+    company: "Booking",
     image:
-      'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop&crop=face',
+      "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop&crop=face",
     testimonial:
-      'Lumen blended perfectly into our design-to-dev process. We organize prototypes, handoffs, and sprints without switching tools.',
-    className: 'col-span-2 ',
+      "Lumen blended perfectly into our design-to-dev process. We organize prototypes, handoffs, and sprints without switching tools.",
+    className: "col-span-2 ",
   },
   {
-    id: '5',
-    name: 'Ben Parker',
-    title: 'Engineering Lead',
-    company: 'IBM',
+    id: "5",
+    name: "Ben Parker",
+    title: "Engineering Lead",
+    company: "IBM",
     image:
-      'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop&crop=face',
+      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop&crop=face",
     testimonial:
       "Since adopting Lumen, our feedback cycles became shorter and much more effective. It's a must-have for any growing product team.",
-    className: 'col-span-2 ',
+    className: "col-span-2 ",
   },
   {
-    id: '6',
-    name: 'Samantha Lee',
-    title: 'Design Director',
-    company: 'Logitech',
+    id: "6",
+    name: "Samantha Lee",
+    title: "Design Director",
+    company: "Logitech",
     image:
-      'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=400&h=400&fit=crop&crop=face',
+      "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=400&h=400&fit=crop&crop=face",
     testimonial:
-      'Lumen makes it incredibly easy to manage cross-functional work. We’ve cut coordination time in half and deliver with better insights.',
-    className: 'col-span-2',
+      "Lumen makes it incredibly easy to manage cross-functional work. We’ve cut coordination time in half and deliver with better insights.",
+    className: "col-span-2",
   },
   {
-    id: '7',
-    name: 'David Kim',
-    title: 'CTO',
-    company: 'Fortinet',
+    id: "7",
+    name: "David Kim",
+    title: "CTO",
+    company: "Fortinet",
     image:
-      'https://images.unsplash.com/photo-1507591064344-4c6ce005b128?w=400&h=400&fit=crop&crop=face',
+      "https://images.unsplash.com/photo-1507591064344-4c6ce005b128?w=400&h=400&fit=crop&crop=face",
     testimonial:
-      'We use Lumen across all departments — from tech to support. Creating shared workflows has drastically improved internal communication.”',
-    className: 'col-span-2',
+      "We use Lumen across all departments - from tech to support. Creating shared workflows has drastically improved internal communication.”",
+    className: "col-span-2",
   },
   {
-    id: '8',
-    name: 'Rachel Green',
-    title: 'Product Designer',
-    company: 'Zapier',
+    id: "8",
+    name: "Rachel Green",
+    title: "Product Designer",
+    company: "Zapier",
     image:
-      'https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?w=400&h=400&fit=crop&crop=face',
+      "https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?w=400&h=400&fit=crop&crop=face",
     companyLogo: {
-      src: '/images/logos/zapiar.png',
+      src: "/images/logos/zapiar.png",
       width: 105,
       height: 28,
     },
     testimonial:
-      'Lumen has completely transformed how we approach daily project planning and execution. Before switching, we constantly missed deadlines due to misalignment. Now, everyone knows what’s happening, who’s responsible, and when things are due. Our productivity skyrocketed, and team communication has never been clearer.',
-    className: cn(COMMON_CARDS_CLASSNAMES.big, ''),
+      "Lumen has completely transformed how we approach daily project planning and execution. Before switching, we constantly missed deadlines due to misalignment. Now, everyone knows what’s happening, who’s responsible, and when things are due. Our productivity skyrocketed, and team communication has never been clearer.",
+    className: cn(COMMON_CARDS_CLASSNAMES.big, ""),
   },
   {
-    id: '9',
-    name: 'Mike Johnson',
-    title: 'Startup Founder',
-    company: 'Tailwind CSS',
+    id: "9",
+    name: "Mike Johnson",
+    title: "Startup Founder",
+    company: "Tailwind CSS",
     image:
-      'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=400&fit=crop&crop=face',
+      "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=400&fit=crop&crop=face",
     companyLogo: {
-      src: '/images/logos/tailwindcss.png',
+      src: "/images/logos/tailwindcss.png",
       width: 130,
       height: 20,
     },
     testimonial:
-      'I created a workspace, invited my co-founder, and started assigning tasks in 45 seconds. That’s how fast Lumen works.',
+      "I created a workspace, invited my co-founder, and started assigning tasks in 45 seconds. That’s how fast Lumen works.",
     className: cn(
       COMMON_CARDS_CLASSNAMES.big,
-      'lg:[&_blockquote]:text-4xl lg:[&_blockquote]:leading-tight lg:shadow-lg',
+      "lg:[&_blockquote]:text-4xl lg:[&_blockquote]:leading-tight lg:shadow-lg",
     ),
   },
 ];
@@ -155,7 +155,7 @@ export default function Testimonials() {
     setCount(api.scrollSnapList().length);
     setCurrent(api.selectedScrollSnap());
 
-    api.on('select', () => {
+    api.on("select", () => {
       setCurrent(api.selectedScrollSnap());
     });
   }, [api]);
@@ -169,7 +169,7 @@ export default function Testimonials() {
           <h2 className="text-4xl tracking-tight lg:text-5xl">
             Trusted by modern teams
           </h2>
-          <p className="text-muted-foreground text-lg leading-snug lg:text-balance">
+          <p className="text-lg leading-snug text-muted-foreground lg:text-balance">
             Join thousands of product managers, designers, and developers who
             rely on Lumen to plan, track, and deliver value without the chaos.
           </p>
@@ -183,10 +183,10 @@ export default function Testimonials() {
         </div>
 
         {/* Mobile Carousel */}
-        <div className="mt-8 -mr-[max(2rem,calc((100vw-80rem)/2+5rem))] lg:hidden">
+        <div className="-mr-[max(2rem,calc((100vw-80rem)/2+5rem))] mt-8 lg:hidden">
           <Carousel
             opts={{
-              align: 'start',
+              align: "start",
               loop: true,
             }}
             className="w-full"
@@ -213,10 +213,10 @@ export default function Testimonials() {
                 key={index}
                 onClick={() => api?.scrollTo(index)}
                 className={cn(
-                  'size-2 rounded-full transition-all duration-200',
+                  "size-2 rounded-full transition-all duration-200",
                   index === current
-                    ? 'bg-foreground scale-110'
-                    : 'bg-muted-foreground/30 hover:bg-muted-foreground/50',
+                    ? "scale-110 bg-foreground"
+                    : "bg-muted-foreground/30 hover:bg-muted-foreground/50",
                 )}
               />
             ))}
@@ -246,12 +246,12 @@ interface TestimonialCardProps {
 }
 
 function TestimonialCard({ testimonial }: TestimonialCardProps) {
-  const isBigCard = testimonial.className?.includes('col-span-4');
-  const withGradientBorder = testimonial.id === '1' || testimonial.id === '9';
+  const isBigCard = testimonial.className?.includes("col-span-4");
+  const withGradientBorder = testimonial.id === "1" || testimonial.id === "9";
   return (
     <Card
       className={cn(
-        'hover:shadow-primary/5 relative h-full transition-all duration-300 hover:shadow-lg',
+        "relative h-full transition-all duration-300 hover:shadow-lg hover:shadow-primary/5",
         withGradientBorder &&
           'lg:before:from-chart-1 lg:before:via-chart-2 lg:before:to-chart-3 lg:border-0 lg:before:absolute lg:before:inset-[-1px] lg:before:z-[-1] lg:before:rounded-xl lg:before:bg-gradient-to-tr lg:before:content-[""]',
         testimonial.className,
@@ -269,10 +269,10 @@ function TestimonialCard({ testimonial }: TestimonialCardProps) {
               className="rounded-full object-cover"
             />
             <div className="min-w-0 flex-1">
-              <div className="text-card-foreground truncate text-sm font-medium">
+              <div className="truncate text-sm font-medium text-card-foreground">
                 {testimonial.name}
               </div>
-              <div className="text-muted-foreground truncate text-xs">
+              <div className="truncate text-xs text-muted-foreground">
                 {testimonial.title} at {testimonial.company}
               </div>
             </div>
@@ -294,7 +294,7 @@ function TestimonialCard({ testimonial }: TestimonialCardProps) {
       <CardContent className="">
         {/* Testimonial Text */}
         <blockquote
-          className={cn('lg:text-muted-foreground leading-relaxed lg:text-sm')}
+          className={cn("leading-relaxed lg:text-sm lg:text-muted-foreground")}
         >
           “{testimonial.testimonial}”
         </blockquote>
@@ -313,10 +313,10 @@ function TestimonialCard({ testimonial }: TestimonialCardProps) {
             />
           </div>
           <div className="min-w-0 flex-1">
-            <div className="text-card-foreground truncate text-sm font-medium">
+            <div className="truncate text-sm font-medium text-card-foreground">
               {testimonial.name}
             </div>
-            <div className="text-muted-foreground truncate text-xs">
+            <div className="truncate text-xs text-muted-foreground">
               {testimonial.title} at {testimonial.company}
             </div>
           </div>

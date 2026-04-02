@@ -1,0 +1,45 @@
+---
+import PlivoLayout from "@/layouts/PlivoLayout.astro";
+import VoiceSubNav from "@/components/sections/voice-channel/VoiceSubNav.astro";
+import VoiceChannelHero from "@/components/sections/voice-channel/VoiceChannelHero.astro";
+import ClientLogos from "@/components/sections/voice-homepage/ClientLogos.astro";
+import AIVoiceAgentsTabs from "@/components/sections/voice-channel/AIVoiceAgentsTabs";
+import GettingStartedSteps from "@/components/sections/voice-channel/GettingStartedSteps";
+import FeatureAccordion from "@/components/sections/voice-channel/FeatureAccordion";
+import VoiceConnectivityGrid from "@/components/sections/voice-channel/VoiceConnectivityGrid";
+import EngagementPlatform from "@/components/sections/voice-channel/EngagementPlatform";
+import Compliance from "@/components/sections/voice-homepage/Compliance.astro";
+import PreFooterCTA from "@/components/sections/voice-homepage/PreFooterCTA";
+---
+
+<PlivoLayout title="Voice AI Agents | Plivo" description="Build, deploy, and scale voice AI agents with sub-500ms latency. Start with our no-code builder or bring your own LLM.">
+  <!-- Voice Sub Navigation -->
+  <VoiceSubNav currentPage="overview" />
+
+  <!-- Hero Section -->
+  <VoiceChannelHero />
+
+  <!-- Client Logos Marquee -->
+  <ClientLogos />
+
+  <!-- AI Voice Agents - Tabbed Categories (Convert/Engage/Delight) -->
+  <AIVoiceAgentsTabs client:visible />
+
+  <!-- Getting Started Steps - 3 Step Process -->
+  <GettingStartedSteps client:visible />
+
+  <!-- Exhaustive AI Features - Accordion with Image -->
+  <FeatureAccordion client:visible />
+
+  <!-- Voice Connectivity - 6 Card Grid -->
+  <VoiceConnectivityGrid client:visible />
+
+  <!-- Next-Gen Engagement Platform -->
+  <EngagementPlatform />
+
+  <!-- Enterprise Security & Compliance -->
+  <Compliance />
+
+  <!-- Pre-Footer CTA -->
+  <PreFooterCTA client:visible />
+</PlivoLayout>

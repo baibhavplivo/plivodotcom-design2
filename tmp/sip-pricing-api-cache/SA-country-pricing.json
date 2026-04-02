@@ -1,0 +1,299 @@
+{
+  "api_id": "1732fcbe-2e6b-11f1-8222-0242ac110003",
+  "country": "Saudi Arabia",
+  "country_code": 966,
+  "country_iso": "SA",
+  "mms": {
+    "longcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "phone_numbers": [
+    {
+      "capabilities": [
+        "voice"
+      ],
+      "cnam_lookup_rate": "0.00000",
+      "country": "Saudi Arabia",
+      "country_code": 966,
+      "country_iso": "SA",
+      "effective_date": "2018-04-09",
+      "inbound_mms_rate": "0.00000",
+      "inbound_sms_rate": "0.00000",
+      "inbound_voice_rate": "0.74700",
+      "number_type": "Tollfree",
+      "rental_rate": "115.00000",
+      "setup_rate": "65.00000",
+      "status": "BETA"
+    }
+  ],
+  "sms": {
+    "longcode": {
+      "inbound": {
+        "rate": null,
+        "rental": null
+      },
+      "outbound": {
+        "rate": "0.13120",
+        "rates": {
+          "Saudi Arabia - Etihad Etisalat Company (Mobily)": "0.22880",
+          "Saudi Arabia - Lebara Mobile": "0.18840",
+          "Saudi Arabia - PTC (iDEN)": "0.13338",
+          "Saudi Arabia - Saudi Telecom Company (STC)": "0.13120",
+          "Saudi Arabia - ZAIN": "0.26930",
+          "Saudi Arabia-All Networks": "0.13338",
+          "Saudi Arabia-bravO!": "0.14300"
+        }
+      }
+    },
+    "shortcode": {
+      "inbound": {
+        "rate": "0.00000",
+        "rental": null
+      },
+      "outbound": {
+        "rates": null
+      }
+    },
+    "tollfree": {
+      "outbound": {
+        "rates": null
+      }
+    }
+  },
+  "voice": {
+    "add_on_pricing": {
+      "audio_streaming_rate": 0.004,
+      "mpc_rate": 0,
+      "recording_storage_rate": 0.0004,
+      "speech_recognition": 0.02,
+      "transcription_charge": 0.0095,
+      "webrtc_rate": 0.0033
+    },
+    "ip": {
+      "inbound": {
+        "rate": "0.00330",
+        "rental": null
+      },
+      "outbound": {
+        "rates": {
+          "all": "0.00330"
+        }
+      }
+    },
+    "local": {
+      "inbound": {
+        "rate": "0.13667",
+        "rental": "500.00000"
+      },
+      "outbound": {
+        "rate": "0.13900",
+        "rates": [
+          {
+            "destination_prefix": [
+              "96611512",
+              "96611513",
+              "96611515",
+              "96611516",
+              "96611517",
+              "96611518",
+              "96611519",
+              "96612578",
+              "96612579",
+              "9661258",
+              "96613512",
+              "96613513",
+              "96613514",
+              "96613515",
+              "96613516",
+              "96613517",
+              "96613518",
+              "96614512",
+              "96614513",
+              "96616512",
+              "96617512",
+              "9665",
+              "96650",
+              "96651",
+              "96653",
+              "96654",
+              "96655",
+              "96656",
+              "96657",
+              "966570",
+              "966571",
+              "966572",
+              "966573",
+              "966576",
+              "966577",
+              "966578",
+              "9665790",
+              "9665791",
+              "96658",
+              "96659",
+              "966730",
+              "966731",
+              "966732",
+              "966733",
+              "966734"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.28000",
+            "voice_network_group": "Saudi Arabia - Mobile",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "966",
+              "96611",
+              "96611512",
+              "96611513",
+              "96611514",
+              "96611515",
+              "96611516",
+              "96611517",
+              "96611518",
+              "96611519",
+              "96612",
+              "96612578",
+              "96612579",
+              "9661258",
+              "96613",
+              "96613512",
+              "96613513",
+              "96613514",
+              "96613515",
+              "96613516",
+              "96613517",
+              "96613518",
+              "96614",
+              "96614512",
+              "96614513",
+              "96615",
+              "96616",
+              "96616512",
+              "96617",
+              "96617512",
+              "96618",
+              "9665",
+              "96650",
+              "96651",
+              "96653",
+              "96654",
+              "96655",
+              "96656",
+              "96657",
+              "966570",
+              "966571",
+              "966572",
+              "966573",
+              "966576",
+              "966577",
+              "966578",
+              "9665790",
+              "9665791",
+              "96658",
+              "96659",
+              "9666510",
+              "9666511",
+              "966730",
+              "966731",
+              "966732",
+              "966733",
+              "966734",
+              "9667510",
+              "9667511",
+              "9668111",
+              "966920030",
+              "966920031",
+              "966920032",
+              "966920033",
+              "966920035",
+              "966920036",
+              "966920037",
+              "966920038",
+              "966920039"
+            ],
+            "origination_prefix": [
+              "212",
+              "213",
+              "216",
+              "218",
+              "222"
+            ],
+            "rate": "2.50000",
+            "voice_network_group": "Saudi Arabia - High Cost Origins",
+            "voice_unit": 60
+          },
+          {
+            "destination_prefix": [
+              "966",
+              "96611",
+              "96611514",
+              "96612",
+              "96613",
+              "96614",
+              "96615",
+              "96616",
+              "96617",
+              "96618",
+              "9666510",
+              "9666511",
+              "9667510",
+              "9667511",
+              "9668111",
+              "966920030",
+              "966920031",
+              "966920032",
+              "966920033",
+              "966920035",
+              "966920036",
+              "966920037",
+              "966920038",
+              "966920039"
+            ],
+            "origination_prefix": [
+              ""
+            ],
+            "rate": "0.18000",
+            "voice_network_group": "Saudi Arabia",
+            "voice_unit": 60
+          }
+        ]
+      }
+    },
+    "tollfree": {
+      "inbound": {
+        "rate": "0.74700",
+        "rental": "115.00000"
+      },
+      "outbound": {
+        "rate": "0.00000",
+        "rates": null
+      }
+    }
+  }
+}

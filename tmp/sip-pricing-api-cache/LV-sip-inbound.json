@@ -1,0 +1,31 @@
+{
+  "country": "Latvia",
+  "country_iso": "LV",
+  "zentrunk": {
+    "inbound": {
+      "number_groups": {
+        "Latvia Local Voice": "0.0063",
+        "Latvia mobile Voice": "0.0063"
+      },
+      "rates": {
+        "local": [
+          "0.0063"
+        ],
+        "mobile": [
+          "0.0063"
+        ]
+      }
+    },
+    "local": {
+      "inbound": {
+        "number_group_rates": {
+          "0.0063": [
+            "Latvia mobile Voice"
+          ]
+        },
+        "rate": "0.0063",
+        "tollfree_rate": "NA"
+      }
+    }
+  }
+}

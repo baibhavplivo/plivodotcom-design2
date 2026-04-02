@@ -21,7 +21,7 @@ export interface NavDropdown {
 export interface CTAProps {
   text: string;
   href: string;
-  variant?: 'primary' | 'secondary' | 'ghost';
+  variant?: "primary" | "secondary" | "ghost";
 }
 
 export interface FeatureItem {

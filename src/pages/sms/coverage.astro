@@ -1,0 +1,18 @@
+---
+import PlivoLayout from "@/layouts/PlivoLayout.astro";
+import SMSSubNav from "@/components/sections/sms-channel/SMSSubNav.astro";
+import CoverageTabs from "@/components/sections/sms-channel/CoverageTabs";
+import CoveragePreFooterCTA from "@/components/sections/sms-channel/CoveragePreFooterCTA";
+import { SMS_COVERAGE_PAGE_META } from "@/data/sms-coverage-cache";
+---
+
+<PlivoLayout title={SMS_COVERAGE_PAGE_META.title} description={SMS_COVERAGE_PAGE_META.description}>
+  <!-- SMS Sub Navigation -->
+  <SMSSubNav currentPage="coverage" />
+
+  <!-- Coverage Tabs with Country Selection -->
+  <CoverageTabs client:visible />
+
+  <!-- Pre-Footer CTA -->
+  <CoveragePreFooterCTA client:visible />
+</PlivoLayout>
