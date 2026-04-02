@@ -43,6 +43,7 @@ type FormSubmitPayload = {
   fields: Record<string, string>;
   context?: {
     hutk?: string;
+    ipAddress?: string;
     pageUri?: string;
     pageName?: string;
   };
@@ -55,7 +56,6 @@ type FormField = {
 
 const HUBSPOT_PASS_THROUGH_FIELDS = [
   "full_name",
-  "company_email",
   "phone_code",
   "phone_country",
   "ip_country",
@@ -237,6 +237,15 @@ function buildHubSpotContext(
     context.hutk = hutk;
   }
 
+  const ipAddress =
+    payload.context?.ipAddress ||
+    payload.fields.ip_address ||
+    request.headers.get("CF-Connecting-IP") ||
+    "";
+  if (ipAddress) {
+    context.ipAddress = ipAddress;
+  }
+
   return context;
 }
 
@@ -279,7 +288,6 @@ function buildHubSpotFields(
     { name: "last_name", value: lastName },
     { name: "full_name", value: fullName },
     { name: "email", value: email },
-    { name: "company_email", value: email },
     { name: "phone", value: normalizedPhone },
     { name: "message", value: message },
     { name: "description", value: description },
