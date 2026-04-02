@@ -126,6 +126,15 @@ function resolveInitialCountry(initialCountry?: string) {
   return countries.find((country) => country.code === initialCountry) || defaultCountry;
 }
 
+function updateSmsCoveragePath(countryCode: string) {
+  if (typeof window === "undefined") return;
+
+  const nextPath = `/sms/coverage/${countryCode.toLowerCase()}/`;
+  if (window.location.pathname !== nextPath) {
+    window.history.replaceState({}, "", nextPath);
+  }
+}
+
 export default function CoverageTabs({ initialCountry }: { initialCountry?: string } = {}) {
   const { country: geoCountry } = useGeoCountry("US", { mode: "exact" });
   const [coverageType, setCoverageType] = useState<CoverageType>("outbound");
@@ -336,51 +345,6 @@ export default function CoverageTabs({ initialCountry }: { initialCountry?: stri
     return () => el.removeEventListener("click", handler);
   }, []);
 
-  // 4. Desktop country dropdown toggle
-  useEffect(() => {
-    const el = desktopDropdownToggleRef.current;
-    if (!el) return;
-    const handler = () => {
-      setIsDesktopCountryOpen((prev) => !prev);
-      setCountrySearchQuery("");
-    };
-    el.addEventListener("click", handler);
-    return () => el.removeEventListener("click", handler);
-  }, []);
-
-  // 5. Desktop country search input
-  useEffect(() => {
-    const el = desktopSearchInputRef.current;
-    if (!el) return;
-    const handler = (e: Event) => {
-      setCountrySearchQuery((e.target as HTMLInputElement).value);
-    };
-    el.addEventListener("input", handler);
-    return () => el.removeEventListener("input", handler);
-  }, []);
-
-  // 6. Desktop country dropdown items — event delegation
-  useEffect(() => {
-    const el = desktopDropdownListRef.current;
-    if (!el) return;
-    const handler = (e: MouseEvent) => {
-      const btn = (e.target as HTMLElement).closest("[data-dropdown-country-code]");
-      if (!btn) return;
-      const code = btn.getAttribute("data-dropdown-country-code");
-      if (code) {
-        const country = searchFilteredCountriesRef.current.find((c) => c.code === code);
-        if (country) {
-          setSelectedCountry(country);
-          setActiveContinent(country.continent);
-          setIsDesktopCountryOpen(false);
-          setCountrySearchQuery("");
-        }
-      }
-    };
-    el.addEventListener("click", handler);
-    return () => el.removeEventListener("click", handler);
-  }, []);
-
   // 7. Feature section nav tabs — event delegation
   useEffect(() => {
     const el = featureNavRef.current;
@@ -394,51 +358,6 @@ export default function CoverageTabs({ initialCountry }: { initialCountry?: stri
     el.addEventListener("click", handler);
     return () => el.removeEventListener("click", handler);
   }, [scrollToFeatureSection]);
-
-  // 8. Mobile country dropdown toggle
-  useEffect(() => {
-    const el = mobileDropdownToggleRef.current;
-    if (!el) return;
-    const handler = () => {
-      setIsMobileCountryOpen((prev) => !prev);
-      setCountrySearchQuery("");
-    };
-    el.addEventListener("click", handler);
-    return () => el.removeEventListener("click", handler);
-  }, []);
-
-  // 9. Mobile country search input
-  useEffect(() => {
-    const el = mobileSearchInputRef.current;
-    if (!el) return;
-    const handler = (e: Event) => {
-      setCountrySearchQuery((e.target as HTMLInputElement).value);
-    };
-    el.addEventListener("input", handler);
-    return () => el.removeEventListener("input", handler);
-  }, []);
-
-  // 10. Mobile country dropdown items — event delegation
-  useEffect(() => {
-    const el = mobileDropdownListRef.current;
-    if (!el) return;
-    const handler = (e: MouseEvent) => {
-      const btn = (e.target as HTMLElement).closest("[data-dropdown-country-code]");
-      if (!btn) return;
-      const code = btn.getAttribute("data-dropdown-country-code");
-      if (code) {
-        const country = searchFilteredCountriesRef.current.find((c) => c.code === code);
-        if (country) {
-          setSelectedCountry(country);
-          setActiveContinent(country.continent);
-          setIsMobileCountryOpen(false);
-          setCountrySearchQuery("");
-        }
-      }
-    };
-    el.addEventListener("click", handler);
-    return () => el.removeEventListener("click", handler);
-  }, []);
 
   // Handle sticky sidebar and scroll spy for feature sections
   useEffect(() => {
@@ -489,6 +408,15 @@ export default function CoverageTabs({ initialCountry }: { initialCountry?: stri
       window.removeEventListener("resize", handleScrollAndResize);
     };
   }, [selectedCountry]);
+
+  const handleSelectCountry = useCallback((country: Country) => {
+    setSelectedCountry(country);
+    setActiveContinent(country.continent);
+    setIsDesktopCountryOpen(false);
+    setIsMobileCountryOpen(false);
+    setCountrySearchQuery("");
+    updateSmsCoveragePath(country.code);
+  }, []);
 
   return (
     <section className="bg-white pt-[56px] sm:pt-[64px] md:pt-[72px] pb-12 lg:pb-20">
@@ -599,6 +527,10 @@ export default function CoverageTabs({ initialCountry }: { initialCountry?: stri
                   <button
                     type="button"
                     ref={desktopDropdownToggleRef}
+                    onClick={() => {
+                      setIsDesktopCountryOpen((prev) => !prev);
+                      setCountrySearchQuery("");
+                    }}
                     className="w-full flex items-center gap-3 px-4 py-2.5 bg-white border border-gray-300 rounded-lg hover:border-gray-400 transition-colors"
                   >
                     <span className="text-xl">{selectedCountry.flag}</span>
@@ -628,12 +560,8 @@ export default function CoverageTabs({ initialCountry }: { initialCountry?: stri
                             <button
                               type="button"
                               data-dropdown-country-code={c.code}
-                              onClick={() => {
-                                setSelectedCountry(c);
-                                setActiveContinent(c.continent);
-                                setIsDesktopCountryOpen(false);
-                                setCountrySearchQuery("");
-                              }}
+                              onMouseDown={(event) => event.preventDefault()}
+                              onClick={() => handleSelectCountry(c)}
                               className={cn(
                                 "w-full flex items-center gap-2.5 px-4 py-2.5 hover:bg-gray-50 transition-colors text-left",
                                 selectedCountry?.code === c.code && "bg-[#323dfe]/5"
@@ -685,6 +613,10 @@ export default function CoverageTabs({ initialCountry }: { initialCountry?: stri
                   <button
                     type="button"
                     ref={mobileDropdownToggleRef}
+                    onClick={() => {
+                      setIsMobileCountryOpen((prev) => !prev);
+                      setCountrySearchQuery("");
+                    }}
                     className="w-full flex items-center gap-3 px-4 py-2.5 bg-white border border-gray-300 rounded-lg hover:border-gray-400 transition-colors"
                   >
                     <span className="text-xl">{selectedCountry.flag}</span>
@@ -714,12 +646,8 @@ export default function CoverageTabs({ initialCountry }: { initialCountry?: stri
                             <button
                               type="button"
                               data-dropdown-country-code={c.code}
-                              onClick={() => {
-                                setSelectedCountry(c);
-                                setActiveContinent(c.continent);
-                                setIsMobileCountryOpen(false);
-                                setCountrySearchQuery("");
-                              }}
+                              onMouseDown={(event) => event.preventDefault()}
+                              onClick={() => handleSelectCountry(c)}
                               className={cn(
                                 "w-full flex items-center gap-2.5 px-4 py-2.5 hover:bg-gray-50 transition-colors text-left",
                                 selectedCountry?.code === c.code && "bg-[#323dfe]/5"
