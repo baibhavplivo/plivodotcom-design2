@@ -597,6 +597,7 @@ export default function CoverageTabs({ initialCountry }: { initialCountry?: stri
                 <div className="relative mb-6" ref={desktopDropdownRef}>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Select Country</label>
                   <button
+                    type="button"
                     ref={desktopDropdownToggleRef}
                     className="w-full flex items-center gap-3 px-4 py-2.5 bg-white border border-gray-300 rounded-lg hover:border-gray-400 transition-colors"
                   >
@@ -613,6 +614,7 @@ export default function CoverageTabs({ initialCountry }: { initialCountry?: stri
                           type="text"
                           placeholder="Search country..."
                           value={countrySearchQuery}
+                          onChange={(event) => setCountrySearchQuery(event.target.value)}
                           className="w-full px-3 py-2 text-sm text-gray-900 bg-white border border-gray-300 rounded-md focus:outline-none focus:border-gray-500 placeholder:text-gray-400"
                           autoFocus
                         />
@@ -624,7 +626,14 @@ export default function CoverageTabs({ initialCountry }: { initialCountry?: stri
                               <div className="border-t border-gray-200 my-1" />
                             )}
                             <button
+                              type="button"
                               data-dropdown-country-code={c.code}
+                              onClick={() => {
+                                setSelectedCountry(c);
+                                setActiveContinent(c.continent);
+                                setIsDesktopCountryOpen(false);
+                                setCountrySearchQuery("");
+                              }}
                               className={cn(
                                 "w-full flex items-center gap-2.5 px-4 py-2.5 hover:bg-gray-50 transition-colors text-left",
                                 selectedCountry?.code === c.code && "bg-[#323dfe]/5"
@@ -674,6 +683,7 @@ export default function CoverageTabs({ initialCountry }: { initialCountry?: stri
                 <label className="block text-sm font-medium text-gray-700 mb-2">Select Country</label>
                 <div className="relative">
                   <button
+                    type="button"
                     ref={mobileDropdownToggleRef}
                     className="w-full flex items-center gap-3 px-4 py-2.5 bg-white border border-gray-300 rounded-lg hover:border-gray-400 transition-colors"
                   >
@@ -690,6 +700,7 @@ export default function CoverageTabs({ initialCountry }: { initialCountry?: stri
                           type="text"
                           placeholder="Search country..."
                           value={countrySearchQuery}
+                          onChange={(event) => setCountrySearchQuery(event.target.value)}
                           className="w-full px-3 py-2 text-sm text-gray-900 bg-white border border-gray-300 rounded-md focus:outline-none focus:border-gray-500 placeholder:text-gray-400"
                           autoFocus
                         />
@@ -701,7 +712,14 @@ export default function CoverageTabs({ initialCountry }: { initialCountry?: stri
                               <div className="border-t border-gray-200 my-1" />
                             )}
                             <button
+                              type="button"
                               data-dropdown-country-code={c.code}
+                              onClick={() => {
+                                setSelectedCountry(c);
+                                setActiveContinent(c.continent);
+                                setIsMobileCountryOpen(false);
+                                setCountrySearchQuery("");
+                              }}
                               className={cn(
                                 "w-full flex items-center gap-2.5 px-4 py-2.5 hover:bg-gray-50 transition-colors text-left",
                                 selectedCountry?.code === c.code && "bg-[#323dfe]/5"
