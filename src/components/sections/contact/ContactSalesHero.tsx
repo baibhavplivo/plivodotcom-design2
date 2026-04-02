@@ -333,13 +333,6 @@ export default function ContactSalesHero() {
         .then((res) => res.json().then((data) => ({ ok: res.ok, data })))
         .then(({ ok, data }) => {
           if (ok && data.status === "Submitted") {
-            // Set emailCookie from response for cross-page personalization
-            if (data.emailCookie) {
-              try {
-                document.cookie = `plivoEmail=${data.emailCookie};path=/;max-age=${60 * 60 * 24 * 30};SameSite=Lax`;
-              } catch { /* cookie set failed */ }
-            }
-
             // Handle leadStatus — redirect small leads to signup
             if (data.leadStatus === "redirectSignup") {
               window.location.href = "https://console.plivo.com/accounts/register/";

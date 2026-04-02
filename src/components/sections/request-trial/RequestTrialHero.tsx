@@ -380,12 +380,6 @@ export default function RequestTrialHero() {
         .then((res) => res.json().then((data) => ({ ok: res.ok, data })))
         .then(({ ok, data }) => {
           if (ok && data.status === "Submitted") {
-            if (data.emailCookie) {
-              try {
-                document.cookie = `plivoEmail=${data.emailCookie};path=/;max-age=${60 * 60 * 24 * 30};SameSite=Lax`;
-              } catch { /* cookie set failed */ }
-            }
-
             if (data.leadStatus === "redirectSignup") {
               window.location.href = "https://console.plivo.com/accounts/register/";
               return;

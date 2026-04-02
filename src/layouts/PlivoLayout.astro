@@ -1,5 +1,6 @@
 ---
 import BaseHead from '@/components/BaseHead.astro';
+import CookieConsentManager from '@/components/CookieConsentManager.astro';
 import { Navbar1 } from '@/components/sections/navbar1';
 import { PlivoFooter } from '@/components/sections/plivo-footer';
 
@@ -111,71 +112,9 @@ const gtmAllowedHosts = (import.meta.env.PUBLIC_GTM_ALLOWED_HOSTS || "www.plivo.
     })();
     </script>
 
-    <!-- Cookie consent banner + analytics loader -->
-    <script
-      is:inline
-      define:vars={{ gtmContainerId, gtmAllowedHosts }}
-    >
-    (function() {
-      var consent = null;
-      try { consent = localStorage.getItem("plivo_cookie_consent"); } catch(e) {}
-
-      function loadGTM() {
-        if (!gtmContainerId || !Array.isArray(gtmAllowedHosts)) return;
-        if (gtmAllowedHosts.indexOf(window.location.hostname) === -1) return;
-        if (window.__plivoGtmLoaded || document.getElementById("plivo-gtm-script")) return;
-
-        window.dataLayer = window.dataLayer || [];
-        window.dataLayer.push({
-          "gtm.start": new Date().getTime(),
-          event: "gtm.js"
-        });
-
-        var gtmScript = document.createElement("script");
-        gtmScript.id = "plivo-gtm-script";
-        gtmScript.async = true;
-        gtmScript.src = "https://www.googletagmanager.com/gtm.js?id=" + encodeURIComponent(gtmContainerId);
-        document.head.appendChild(gtmScript);
-        window.__plivoGtmLoaded = true;
-      }
-
-      function loadAnalytics() {
-        // HubSpot tracking (portal 20451141)
-        if (!document.getElementById("hs-script-loader")) {
-          var hs = document.createElement("script");
-          hs.id = "hs-script-loader";
-          hs.async = true;
-          hs.defer = true;
-          hs.src = "//js.hs-scripts.com/20451141.js";
-          document.body.appendChild(hs);
-        }
-
-        loadGTM();
-      }
-
-      if (consent === "accepted") {
-        loadAnalytics();
-        return;
-      }
-      if (consent === "rejected") return;
-
-      // Show consent banner
-      var banner = document.createElement("div");
-      banner.id = "cookie-consent-banner";
-      banner.style.cssText = "position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#fff;border-top:1px solid #e5e7eb;box-shadow:0 -2px 8px rgba(0,0,0,0.08);padding:14px 20px;display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;font-family:Inter,sans-serif;font-size:13px;color:#374151;";
-      banner.innerHTML = '<span>We use cookies to improve your experience and for analytics. </span><button id="cc-accept" style="background:#000;color:#fff;border:none;border-radius:6px;padding:7px 16px;font-size:13px;font-weight:500;cursor:pointer;">Accept</button><button id="cc-reject" style="background:transparent;color:#374151;border:1px solid #d1d5db;border-radius:6px;padding:7px 16px;font-size:13px;font-weight:500;cursor:pointer;">Reject</button>';
-      document.body.appendChild(banner);
-
-      document.getElementById("cc-accept").addEventListener("click", function() {
-        try { localStorage.setItem("plivo_cookie_consent", "accepted"); } catch(e) {}
-        banner.remove();
-        loadAnalytics();
-      });
-      document.getElementById("cc-reject").addEventListener("click", function() {
-        try { localStorage.setItem("plivo_cookie_consent", "rejected"); } catch(e) {}
-        banner.remove();
-      });
-    })();
-    </script>
+    <CookieConsentManager
+      gtmContainerId={gtmContainerId}
+      gtmAllowedHosts={gtmAllowedHosts}
+    />
   </body>
 </html>

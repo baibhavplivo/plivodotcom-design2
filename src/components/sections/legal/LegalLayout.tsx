@@ -6,6 +6,7 @@ import type { ReactNode } from "react";
 const sidebarLinks = [
   { title: "Terms", href: "/legal/tos/" },
   { title: "Privacy", href: "/legal/privacy/" },
+  { title: "Cookie policy", href: "/cookie-policy/" },
   { title: "Acceptable use policy", href: "/legal/aup/" },
   { title: "Supplemental terms", href: "/legal/supplemental/" },
   { title: "Subprocessors", href: "/legal/subprocessors/" },
