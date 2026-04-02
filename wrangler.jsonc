@@ -1,5 +1,5 @@
 {
-  "name": "plivo-website",
+  "name": "plivo-marketing-website",
   "compatibility_date": "2026-02-12",
   "main": "worker.ts",
   "assets": {
