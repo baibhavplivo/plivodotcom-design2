@@ -193,7 +193,6 @@ export default function CoverageTabs({ initialCountry }: { initialCountry?: stri
   // ── NEW REFS for native event delegation ──
   const coverageToggleRef = useRef<HTMLDivElement>(null);
   const continentTabsRef = useRef<HTMLDivElement>(null);
-  const countryGridRef = useRef<HTMLDivElement>(null);
   const desktopDropdownToggleRef = useRef<HTMLButtonElement>(null);
   const desktopSearchInputRef = useRef<HTMLInputElement>(null);
   const desktopDropdownListRef = useRef<HTMLDivElement>(null);
@@ -204,7 +203,6 @@ export default function CoverageTabs({ initialCountry }: { initialCountry?: stri
 
   // ── State refs so native handlers can read current state ──
   const filteredCountriesRef = useRef<Country[]>([]);
-  const searchFilteredCountriesRef = useRef<Country[]>([]);
   const availableContinentsRef = useRef<Continent[]>([]);
 
   // Filtered countries for dropdown search (priority countries at top)
@@ -261,7 +259,6 @@ export default function CoverageTabs({ initialCountry }: { initialCountry?: stri
 
   // Keep refs in sync with latest data
   filteredCountriesRef.current = filteredCountries;
-  searchFilteredCountriesRef.current = searchFilteredCountries;
   availableContinentsRef.current = availableContinents;
 
   // Get country details for selected country
@@ -328,24 +325,7 @@ export default function CoverageTabs({ initialCountry }: { initialCountry?: stri
     return () => el.removeEventListener("click", handler);
   }, []);
 
-  // 3. Country grid items — event delegation
-  useEffect(() => {
-    const el = countryGridRef.current;
-    if (!el) return;
-    const handler = (e: MouseEvent) => {
-      const btn = (e.target as HTMLElement).closest("[data-country-code]");
-      if (!btn) return;
-      const code = btn.getAttribute("data-country-code");
-      if (code) {
-        const country = filteredCountriesRef.current.find((c) => c.code === code);
-        if (country) setSelectedCountry(country);
-      }
-    };
-    el.addEventListener("click", handler);
-    return () => el.removeEventListener("click", handler);
-  }, []);
-
-  // 7. Feature section nav tabs — event delegation
+  // 3. Feature section nav tabs — event delegation
   useEffect(() => {
     const el = featureNavRef.current;
     if (!el) return;
@@ -485,11 +465,13 @@ export default function CoverageTabs({ initialCountry }: { initialCountry?: stri
               Select to view features and capabilities
             </p>
             {filteredCountries.length > 0 ? (
-              <div ref={countryGridRef} className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-x-4 gap-y-2">
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-x-4 gap-y-2">
                 {filteredCountries.map((country) => (
                   <button
                     key={country.code}
+                    type="button"
                     data-country-code={country.code}
+                    onClick={() => handleSelectCountry(country)}
                     className={cn(
                       "flex items-center gap-2 py-1.5 px-2 rounded text-left transition-all",
                       selectedCountry?.code === country.code
@@ -560,7 +542,6 @@ export default function CoverageTabs({ initialCountry }: { initialCountry?: stri
                             <button
                               type="button"
                               data-dropdown-country-code={c.code}
-                              onMouseDown={(event) => event.preventDefault()}
                               onClick={() => handleSelectCountry(c)}
                               className={cn(
                                 "w-full flex items-center gap-2.5 px-4 py-2.5 hover:bg-gray-50 transition-colors text-left",
@@ -646,7 +627,6 @@ export default function CoverageTabs({ initialCountry }: { initialCountry?: stri
                             <button
                               type="button"
                               data-dropdown-country-code={c.code}
-                              onMouseDown={(event) => event.preventDefault()}
                               onClick={() => handleSelectCountry(c)}
                               className={cn(
                                 "w-full flex items-center gap-2.5 px-4 py-2.5 hover:bg-gray-50 transition-colors text-left",
