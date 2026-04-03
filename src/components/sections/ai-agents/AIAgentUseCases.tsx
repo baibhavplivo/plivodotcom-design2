@@ -13,7 +13,7 @@ interface UseCase {
 
 function IllustrationWrapper({ children, className }: { children: React.ReactNode; className?: string }) {
   return (
-    <div className={cn("relative h-[244px] w-full rounded-xl overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100", className)}>
+    <div className={cn("relative h-[244px] w-full rounded-xl overflow-hidden", className)} style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="relative h-full w-full px-3 py-4 flex flex-col">
         {children}
       </div>
@@ -512,7 +512,7 @@ export default function AIAgentUseCases() {
         <div className="grid gap-x-6 gap-y-14 sm:gap-y-16 sm:grid-cols-2 lg:grid-cols-3">
           {useCases.map((useCase, index) => (
             <div key={index} className="group">
-              <div className="mb-4 overflow-hidden rounded-xl transition-all">
+              <div className="mb-4 overflow-hidden rounded-xl border border-gray-200 transition-all">
                 {useCase.illustration}
               </div>
               <h3 className="mb-2 text-lg font-semibold text-black">
