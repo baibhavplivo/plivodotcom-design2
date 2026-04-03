@@ -47,7 +47,7 @@ const VALUE_PROPS = [
 
 const FORMS_API_BASE = typeof window !== "undefined" && window.location.hostname === "localhost"
   ? ""
-  : "https://www.plivo.com";
+  : "https://plivo-marketing-website.plivo-website.workers.dev";
 const ENRICH_API_URL = `${FORMS_API_BASE}/api/forms/validate-email`;
 
 // Cache enrichment results so we don't re-call for the same email
