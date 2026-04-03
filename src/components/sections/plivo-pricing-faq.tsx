@@ -9,7 +9,7 @@ import {
 import { useGeoCountry } from "@/hooks/useGeoCountry";
 
 function getFaqItems(isIndia: boolean) {
-  const credits = isIndia ? "₹800" : "$10";
+  const credits = isIndia ? "₹1,000" : "$10";
   const limit = isIndia ? "₹2,00,000" : "$2,500";
   return [
     {

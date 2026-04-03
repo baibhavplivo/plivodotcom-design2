@@ -549,7 +549,7 @@ export function PlivoPricing() {
       <section className="bg-white pt-8 pb-10 lg:pt-12 lg:pb-12">
         <div className="container mx-auto max-w-7xl px-4 text-center">
           <h1 className="font-sora text-[2rem] sm:text-[2.5rem] md:text-[3rem] font-normal leading-[1.1] tracking-[-0.02em] text-black">
-            Start now with {selectedCountry === "IN" ? "₹800" : "$10"} free credits
+            Start now with {selectedCountry === "IN" ? "₹1,000" : "$10"} free credits
           </h1>
 
           {/* Country Selector */}
@@ -629,7 +629,7 @@ export function PlivoPricing() {
                       Pay as you go
                     </h2>
                     <p className="text-gray-600 text-sm mt-1">
-                      {selectedCountry === "IN" ? "₹800" : "$10"} in free credits. No credit card required.
+                      {selectedCountry === "IN" ? "₹1,000" : "$10"} in free credits. No credit card required.
                     </p>
                   </div>
                   <a
@@ -685,7 +685,7 @@ export function PlivoPricing() {
                       Enterprise
                     </h2>
                     <p className="text-gray-600 text-sm mt-1">
-                      {selectedCountry === "IN" ? "Starts at ₹75,000 per month" : "Starts at $1,000 per month"}
+                      {selectedCountry === "IN" ? "Starts at ₹1,00,000 per month" : "Starts at $1,000 per month"}
                     </p>
                   </div>
                   <a
