@@ -93,96 +93,6 @@ export default function RequestTrialHero() {
   const logosRow1 = isIndia ? indiaLogosRow1 : intlLogosRow1;
   const logosRow2 = isIndia ? indiaLogosRow2 : intlLogosRow2;
 
-  // Flickering grid canvas
-  const gridContainerRef = useRef<HTMLDivElement>(null);
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-
-  useEffect(() => {
-    const container = gridContainerRef.current;
-    const canvas = canvasRef.current;
-    if (!container || !canvas) return;
-
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
-    const SQUARE_SIZE = 4;
-    const GRID_GAP = 6;
-    const MAX_OPACITY = 0.3;
-    const FLICKER_CHANCE = 0.15;
-    const COLOR = "139, 92, 246";
-
-    let cols = 0;
-    let rows = 0;
-    let squares = new Float32Array(0);
-    let animationFrameId: number;
-
-    const setupCanvas = () => {
-      const w = container.clientWidth;
-      const h = container.clientHeight;
-      if (w <= 0 || h <= 0) return;
-
-      const dpr = window.devicePixelRatio || 1;
-      canvas.width = w * dpr;
-      canvas.height = h * dpr;
-      canvas.style.width = `${w}px`;
-      canvas.style.height = `${h}px`;
-
-      cols = Math.floor(w / (SQUARE_SIZE + GRID_GAP));
-      rows = Math.floor(h / (SQUARE_SIZE + GRID_GAP));
-      squares = new Float32Array(cols * rows);
-      for (let i = 0; i < squares.length; i++) {
-        squares[i] = Math.random() * MAX_OPACITY;
-      }
-    };
-
-    setupCanvas();
-
-    let lastTime = 0;
-    const animate = (time: number) => {
-      if (cols === 0 || rows === 0) {
-        setupCanvas();
-        lastTime = time;
-        animationFrameId = requestAnimationFrame(animate);
-        return;
-      }
-
-      const delta = (time - lastTime) / 1000;
-      lastTime = time;
-
-      const dpr = window.devicePixelRatio || 1;
-
-      for (let i = 0; i < squares.length; i++) {
-        if (Math.random() < FLICKER_CHANCE * delta) {
-          squares[i] = Math.random() * MAX_OPACITY;
-        }
-      }
-
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      for (let i = 0; i < cols; i++) {
-        for (let j = 0; j < rows; j++) {
-          const opacity = squares[i * rows + j];
-          ctx.fillStyle = `rgba(${COLOR}, ${opacity})`;
-          ctx.fillRect(
-            i * (SQUARE_SIZE + GRID_GAP) * dpr,
-            j * (SQUARE_SIZE + GRID_GAP) * dpr,
-            SQUARE_SIZE * dpr,
-            SQUARE_SIZE * dpr
-          );
-        }
-      }
-
-      animationFrameId = requestAnimationFrame(animate);
-    };
-
-    animationFrameId = requestAnimationFrame(animate);
-
-    const resizeObserver = new ResizeObserver(() => { setupCanvas(); });
-    resizeObserver.observe(container);
-
-    return () => {
-      cancelAnimationFrame(animationFrameId);
-      resizeObserver.disconnect();
-    };
   }, []);
 
   // Submit handler: validates client-side, then posts to our Worker for
@@ -785,10 +695,10 @@ export default function RequestTrialHero() {
             </div>
           </div>
 
-          {/* Right Column - Form with flickering grid background */}
-          <div ref={gridContainerRef} className="order-1 lg:order-2 relative rounded-2xl">
+          {/* Right Column - Form with dotted grid background */}
+          <div className="order-1 lg:order-2 relative rounded-2xl">
             <div className="absolute inset-0 overflow-hidden rounded-2xl">
-              <canvas ref={canvasRef} className="absolute top-0 left-0 z-0 pointer-events-none" />
+              <div className="absolute inset-0 z-0 pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }} />
               <div className="absolute inset-y-0 left-0 z-[1] w-6 bg-gradient-to-r from-white to-transparent pointer-events-none" />
               <div className="absolute inset-y-0 right-0 z-[1] w-6 bg-gradient-to-l from-white to-transparent pointer-events-none" />
               <div className="absolute inset-x-0 top-0 z-[1] h-6 bg-gradient-to-b from-white to-transparent pointer-events-none" />
