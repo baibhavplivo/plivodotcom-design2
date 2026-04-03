@@ -93,8 +93,6 @@ export default function RequestTrialHero() {
   const logosRow1 = isIndia ? indiaLogosRow1 : intlLogosRow1;
   const logosRow2 = isIndia ? indiaLogosRow2 : intlLogosRow2;
 
-  }, []);
-
   // Submit handler: validates client-side, then posts to our Worker for
   // server-side validation and HubSpot submission.
   useEffect(() => {
