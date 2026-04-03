@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
-import { FlickeringGrid } from "@/components/magicui/flickering-grid";
 
 interface Message {
   id: number;
@@ -64,26 +63,21 @@ export default function SMSHeroIllustration() {
 
   return (
     <div className="relative flex justify-center">
-      {/* Flickering Grid Background */}
-      <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
-        <div className="relative w-full h-full">
-          <FlickeringGrid
-            className="h-full w-full"
-            squareSize={4}
-            gridGap={6}
-            color="rgb(50, 61, 254)"
-            maxOpacity={0.6}
-            flickerChance={0.1}
-          />
-          {/* Radial fade from all sides */}
-          <div
-            className="absolute inset-0 pointer-events-none"
-            style={{
-              background: "radial-gradient(ellipse at center, transparent 20%, white 70%)"
-            }}
-          />
-        </div>
-      </div>
+      {/* Dotted Grid Background */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.30) 1px, transparent 1px)',
+          backgroundSize: '16px 16px',
+          backgroundPosition: 'center center',
+        }}
+      />
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: "radial-gradient(ellipse at center, transparent 30%, white 70%)"
+        }}
+      />
 
       {/* Phone container - centered */}
       <div className="relative h-[520px] sm:h-[560px] overflow-hidden">

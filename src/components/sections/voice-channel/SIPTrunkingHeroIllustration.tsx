@@ -1,21 +1,12 @@
 "use client";
 
-import { FlickeringGrid } from "@/components/magicui/flickering-grid";
+
 
 export default function SIPTrunkingHeroIllustration() {
   return (
     <div className="relative w-full max-w-[520px] mx-auto overflow-hidden rounded-2xl border border-gray-200 bg-white">
-      {/* FlickeringGrid backdrop - stops above stats section */}
-      <div className="pointer-events-none absolute inset-0 bottom-[20%] z-0">
-        <FlickeringGrid
-          className="h-full w-full"
-          squareSize={3}
-          gridGap={5}
-          color="rgb(139, 92, 246)"
-          maxOpacity={0.104}
-          flickerChance={0.05}
-        />
-      </div>
+      {/* Dotted grid backdrop - stops above stats section */}
+      <div className="pointer-events-none absolute inset-0 bottom-[20%] z-0" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }} />
 
       <style>{`
         @keyframes sip-flow {

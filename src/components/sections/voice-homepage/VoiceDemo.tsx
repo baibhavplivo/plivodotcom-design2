@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback } from "react";
-import { FlickeringGrid } from "@/components/magicui/flickering-grid";
+
 import { useGeoCountry } from "@/hooks/useGeoCountry";
 
 // ── Plivo AI Agent constants ────────────────────────────────────────────────
@@ -395,17 +395,8 @@ export default function VoiceDemo() {
 
   return (
     <section className="voice-demo-section relative z-20 bg-white overflow-hidden pt-2 pb-20">
-      {/* FlickeringGrid Background */}
-      <div className="absolute inset-0 flex items-center justify-center">
-        <FlickeringGrid
-          className="absolute inset-0 z-0 [mask-image:linear-gradient(to_bottom,transparent_0%,rgba(255,255,255,0.3)_15%,rgba(255,255,255,0.7)_30%,white_45%,white_55%,rgba(255,255,255,0.7)_70%,rgba(255,255,255,0.3)_85%,transparent_100%)]"
-          squareSize={4}
-          gridGap={6}
-          color="#8B5CF6"
-          maxOpacity={0.65}
-          flickerChance={0.1}
-        />
-      </div>
+      {/* Dotted Grid Background */}
+      <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center', maskImage: 'linear-gradient(to bottom, transparent 0%, rgba(255,255,255,0.3) 15%, rgba(255,255,255,0.7) 30%, white 45%, white 55%, rgba(255,255,255,0.7) 70%, rgba(255,255,255,0.3) 85%, transparent 100%)', WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, rgba(255,255,255,0.3) 15%, rgba(255,255,255,0.7) 30%, white 45%, white 55%, rgba(255,255,255,0.7) 70%, rgba(255,255,255,0.3) 85%, transparent 100%)' }} />
 
       {/* Fade Edges */}
       <div className="absolute inset-y-0 left-0 z-[5] w-8 sm:w-16 md:w-32 bg-gradient-to-r from-white to-transparent" />

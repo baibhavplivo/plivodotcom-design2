@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
-import { FlickeringGrid } from "@/components/magicui/flickering-grid";
+
 
 type SectionId =
   | "physical-security"
@@ -148,16 +148,7 @@ export default function SecurityPage() {
 
       {/* Security Pillars */}
       <section className="relative py-12 lg:py-16 overflow-hidden bg-white">
-        <div className="pointer-events-none absolute inset-0 z-[1]" style={{ maskImage: "linear-gradient(to right, transparent, black 20%, black 80%, transparent)", WebkitMaskImage: "linear-gradient(to right, transparent, black 20%, black 80%, transparent)" }}>
-          <FlickeringGrid
-            className="h-full w-full"
-            squareSize={4}
-            gridGap={6}
-            color="rgb(139, 92, 246)"
-            maxOpacity={0.225}
-            flickerChance={0.1}
-          />
-        </div>
+        <div className="pointer-events-none absolute inset-0 z-[1]" style={{ maskImage: "linear-gradient(to right, transparent, black 20%, black 80%, transparent)", WebkitMaskImage: "linear-gradient(to right, transparent, black 20%, black 80%, transparent)", backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }} />
         <div className="container mx-auto max-w-7xl px-4 relative z-10">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
             {[

@@ -2,7 +2,7 @@
 import PlivoLayout from "@/layouts/PlivoLayout.astro";
 import PhoneNumbersSubNav from "@/components/sections/phone-numbers/PhoneNumbersSubNav.astro";
 import PhoneNumbersPricingPage from "@/components/sections/phone-numbers/PhoneNumbersPricingPage";
-import PhoneNumbersPreFooterCTA from "@/components/sections/phone-numbers/PhoneNumbersPreFooterCTA";
+import PreFooterCTA from "@/components/sections/voice-homepage/PreFooterCTA";
 import {
   PHONE_NUMBER_PRICING_COUNTRY_CODES,
   PHONE_NUMBER_PRICING_COUNTRY_NAMES,
@@ -25,5 +25,5 @@ const countryName = PHONE_NUMBER_PRICING_COUNTRY_NAMES[countryCode] || countryCo
 >
   <PhoneNumbersSubNav currentPage="pricing" />
   <PhoneNumbersPricingPage client:visible initialCountry={countryCode} />
-  <PhoneNumbersPreFooterCTA client:visible />
+  <PreFooterCTA client:visible title="It's easy to get started. Sign up for free." subtitle="Create your account and receive trial credits or get in touch with us." />
 </PlivoLayout>

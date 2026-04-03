@@ -2,7 +2,7 @@
 
 import { customerLogos } from "@/data/navigation";
 import { Globe } from "@/components/ui/globe";
-import { FlickeringGrid } from "@/components/magicui/flickering-grid";
+
 import {
   Sparkles,
   MessageSquareText,
@@ -103,17 +103,8 @@ export default function AboutPage() {
 
       {/* Stats */}
       <section className="relative overflow-hidden bg-white pb-12 lg:pb-16">
-        {/* Flickering Grid - behind the entire section */}
-        <div className="pointer-events-none absolute inset-0 z-[1]">
-          <FlickeringGrid
-            className="h-full w-full"
-            squareSize={4}
-            gridGap={6}
-            color="rgb(50, 61, 254)"
-            maxOpacity={0.15}
-            flickerChance={0.08}
-          />
-        </div>
+        {/* Dotted Grid - behind the entire section */}
+        <div className="pointer-events-none absolute inset-0 z-[1]" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }} />
 
         {/* Side fades over the grid */}
         <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-32 sm:w-48 md:w-64 z-[2] bg-gradient-to-r from-white to-transparent" />

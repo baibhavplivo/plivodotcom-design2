@@ -43,10 +43,10 @@
   </div>
 
   <!-- CTA area + flickering grid behind it -->
-  <div class="flicker-area relative overflow-hidden" style="height:320px;">
-    <canvas id="hero-flicker-canvas" class="absolute inset-0 z-0 pointer-events-none" style="top:160px;"></canvas>
+  <div class="flicker-area relative overflow-hidden" style="height:400px;">
+    <canvas id="hero-dotted-surface" class="absolute inset-0 z-0 pointer-events-none"></canvas>
     <!-- Gradual top fade -->
-    <div class="absolute inset-x-0 top-0 z-[1] pointer-events-none" style="height:85%;background:linear-gradient(to bottom,white 55%,transparent);"></div>
+    <div class="absolute inset-x-0 top-0 z-[1] pointer-events-none" style="height:70%;background:linear-gradient(to bottom,white 40%,transparent);"></div>
     <!-- Left/right fades -->
     <div class="absolute inset-y-0 left-0 w-20 sm:w-32 bg-gradient-to-r from-white to-transparent z-[1] pointer-events-none"></div>
     <div class="absolute inset-y-0 right-0 w-20 sm:w-32 bg-gradient-to-l from-white to-transparent z-[1] pointer-events-none"></div>
@@ -63,8 +63,7 @@
         </a>
       </div>
       <p class="text-sm text-gray-500 mt-4 leading-relaxed">
-        $10 in free credits.<br />
-        No credit card required.
+        $10 in free credits.
       </p>
     </div>
   </div>
@@ -113,53 +112,126 @@
 </style>
 
 <script>
-  function initHeroFlicker() {
-    const canvas = document.getElementById("hero-flicker-canvas") as HTMLCanvasElement | null;
+  function initDottedSurface() {
+    const canvas = document.getElementById("hero-dotted-surface") as HTMLCanvasElement | null;
     if (!canvas) return;
     const container = canvas.parentElement as HTMLElement | null;
     if (!container) return;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    const SQ = 5, GAP = 5, MAX_OP = 0.55, FLICKER = 0.15;
-    const COLOR = "139, 92, 246";
-    let cols = 0, rows = 0, squares = new Float32Array(0), raf: number;
+    // Grid size
+    let COLS = 50;
+    let ROWS = 80;
+    const SPACING = 100; // world-space gap between dots
+
+    // Perspective
+    const FOCAL = 350;
+    const CAM_HEIGHT = 250;
+
+    // Wave
+    const WAVE_AMP = 35;
+    const WAVE_SPEED = 0.015;
+    const PI2 = Math.PI * 2;
+
+    // Dot style
+    const MAX_R = 3.0;
+    const MIN_R = 0.4;
+
+    let dpr = 1, cw = 0, ch = 0, raf: number, time = 0;
 
     const setup = () => {
       const w = container.clientWidth, h = container.clientHeight;
       if (w <= 0 || h <= 0) return;
-      const dpr = window.devicePixelRatio || 1;
-      canvas.width = w * dpr; canvas.height = h * dpr;
-      canvas.style.width = `${w}px`; canvas.style.height = `${h}px`;
-      cols = Math.floor(w / (SQ + GAP));
-      rows = Math.floor(h / (SQ + GAP));
-      squares = new Float32Array(cols * rows);
-      for (let i = 0; i < squares.length; i++) squares[i] = Math.random() * MAX_OP;
+      dpr = window.devicePixelRatio || 1;
+      canvas.width = w * dpr;
+      canvas.height = h * dpr;
+      canvas.style.width = `${w}px`;
+      canvas.style.height = `${h}px`;
+      cw = canvas.width;
+      ch = canvas.height;
+      COLS = w < 640 ? 30 : 50;
+      ROWS = w < 640 ? 50 : 80;
     };
     setup();
 
-    let last = 0;
-    const draw = (t: number) => {
-      if (!cols || !rows) { setup(); last = t; raf = requestAnimationFrame(draw); return; }
-      const dt = (t - last) / 1000; last = t;
-      const dpr = window.devicePixelRatio || 1;
-      for (let i = 0; i < squares.length; i++) {
-        if (Math.random() < FLICKER * dt) squares[i] = Math.random() * MAX_OP;
-      }
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      for (let i = 0; i < cols; i++) {
-        for (let j = 0; j < rows; j++) {
-          ctx.fillStyle = `rgba(${COLOR}, ${squares[i * rows + j]})`;
-          ctx.fillRect(i * (SQ + GAP) * dpr, j * (SQ + GAP) * dpr, SQ * dpr, SQ * dpr);
+    const draw = () => {
+      raf = requestAnimationFrame(draw);
+      if (!cw || !ch) { setup(); return; }
+      ctx.clearRect(0, 0, cw, ch);
+
+      // Horizon line sits roughly 40% from top of canvas
+      const horizonY = ch * 0.40 - (20 * dpr);
+      const centerX = cw / 2;
+      const focalDpr = FOCAL * dpr;
+
+      // Draw far rows first (small dots at horizon), near rows last (big dots at bottom)
+      for (let j = ROWS - 1; j >= 0; j--) {
+        // z = distance from camera; row 0 is closest, ROWS-1 is farthest
+        const z = (j + 1) * SPACING;
+
+        // Wave displacement for this row (vertical offset in world space)
+        const waveY = (row: number, col: number) =>
+          Math.sin((col * 0.3) + time) * WAVE_AMP +
+          Math.sin((row * 0.5) + time * 0.7) * WAVE_AMP;
+
+        // Perspective scale: how much a unit in world-space maps to screen pixels
+        const scale = focalDpr / z;
+
+        // Screen Y: below horizon, proportional to perspective
+        // Closer rows (small j, small z) → large scale → far below horizon
+        // Far rows (large j, large z) → small scale → near horizon
+        const baseScreenY = horizonY + (CAM_HEIGHT * scale);
+
+        for (let i = 0; i < COLS; i++) {
+          const wx = (i - COLS / 2) * SPACING;
+
+          // Apply wave to Y
+          const wy = waveY(j, i);
+          const screenX = centerX + wx * scale;
+          const screenY = baseScreenY - wy * scale;
+
+          // Cull off-screen
+          if (screenX < -10 || screenX > cw + 10 || screenY < -10 || screenY > ch + 10) continue;
+
+          // Dot radius scales with perspective
+          const r = Math.min(MAX_R * dpr, Math.max(MIN_R * dpr, scale * 3));
+
+          // Color gradient: black (near) → blue (mid) → purple (far/horizon)
+          // t=0 near (bottom), t=1 far (horizon)
+          const t = j / ROWS;
+          let cr: number, cg: number, cb: number;
+          if (t < 0.5) {
+            // black (0,0,0) → blue (50,61,254)
+            const p = t * 2;
+            cr = p * 50;
+            cg = p * 61;
+            cb = p * 254;
+          } else {
+            // blue (50,61,254) → purple (205,62,249)
+            const p = (t - 0.5) * 2;
+            cr = 50 + p * 155;
+            cg = 61 + p * 1;
+            cb = 254 - p * 5;
+          }
+
+          // Opacity: full for near, fades for far
+          const alpha = 1.0 - t * 0.7;
+
+          ctx.beginPath();
+          ctx.arc(screenX, screenY, r, 0, PI2);
+          ctx.fillStyle = `rgba(${cr|0},${cg|0},${cb|0},${alpha})`;
+          ctx.fill();
         }
       }
-      raf = requestAnimationFrame(draw);
+
+      time += WAVE_SPEED;
     };
     raf = requestAnimationFrame(draw);
 
     const ro = new ResizeObserver(() => setup());
     ro.observe(container);
   }
-  initHeroFlicker();
-  document.addEventListener("astro:after-swap", initHeroFlicker);
+  initDottedSurface();
+  document.addEventListener("astro:after-swap", initDottedSurface);
 </script>

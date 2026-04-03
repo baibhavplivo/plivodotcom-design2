@@ -1,6 +1,6 @@
 "use client";
 
-import { FlickeringGrid } from "@/components/magicui/flickering-grid";
+
 import { WHATSAPP_CHAT_PAGE_COPY } from "@/data/whatsapp-chat-pricing";
 
 export default function WhatsAppPricingVolumeCTA() {
@@ -20,16 +20,7 @@ export default function WhatsAppPricingVolumeCTA() {
             </a>
           </div>
 
-          <div className="pointer-events-none absolute inset-y-0 right-0 z-[1] w-1/2">
-            <FlickeringGrid
-              className="h-full w-full"
-              squareSize={4}
-              gridGap={6}
-              color="rgb(139, 92, 246)"
-              maxOpacity={0.2}
-              flickerChance={0.1}
-            />
-          </div>
+          <div className="pointer-events-none absolute inset-y-0 right-0 z-[1] w-1/2" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }} />
         </div>
       </div>
     </section>

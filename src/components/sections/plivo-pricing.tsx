@@ -4,7 +4,7 @@ import { useState, useMemo, useEffect, useRef } from "react";
 import { Phone, MessageSquare, Sparkles, Check, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useGeoCountry } from "@/hooks/useGeoCountry";
-import { FlickeringGrid } from "@/components/magicui/flickering-grid";
+
 import { buildCountryList, COUNTRY_NAMES, TOP_COUNTRIES } from "@/data/pricing-data";
 import { VOICE_PRICING_CACHE, VOICE_PRICING_COUNTRY_NAMES } from "@/data/voice-pricing-cache";
 import {
@@ -613,16 +613,9 @@ export function PlivoPricing() {
 
       {/* Pricing Tiers Section */}
       <section className="relative pb-4 lg:pb-6 overflow-hidden">
-        {/* Flickering Grid Background */}
+        {/* Dotted Grid Background */}
         <div className="absolute inset-0 z-0">
-          <FlickeringGrid
-            className="h-full w-full"
-            squareSize={4}
-            gridGap={6}
-            color="#323dfe"
-            maxOpacity={0.3}
-            flickerChance={0.1}
-          />
+          <div className="h-full w-full" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }} />
           <div className="absolute inset-0 bg-gradient-to-b from-white via-transparent to-white" />
         </div>
 
