@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { FlickeringGrid } from "@/components/magicui/flickering-grid";
+
 
 interface LeverJob {
   id: string;
@@ -275,16 +275,7 @@ export default function JobsPage() {
 
       {/* Pre-Footer CTA */}
       <section className="relative overflow-hidden bg-white py-12 sm:py-16 md:py-20">
-        <div className="pointer-events-none absolute inset-0 z-[1]">
-          <FlickeringGrid
-            className="h-full w-full"
-            squareSize={4}
-            gridGap={6}
-            color="rgb(139, 92, 246)"
-            maxOpacity={0.225}
-            flickerChance={0.1}
-          />
-        </div>
+        <div className="pointer-events-none absolute inset-0 z-[1]" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }} />
         <div className="container relative z-10 mx-auto flex max-w-7xl flex-col items-center px-4 text-center">
           <h2 className="font-sora text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] font-normal leading-[1.25] tracking-[-0.02em] text-black">
             Don't see a role that fits?

@@ -1,6 +1,6 @@
 "use client";
 
-import { FlickeringGrid } from "@/components/magicui/flickering-grid";
+
 
 interface InPageCTAProps {
   title?: string;
@@ -30,17 +30,8 @@ export default function InPageCTA({
         </a>
       </div>
 
-      {/* Flickering grid on the right half */}
-      <div className="pointer-events-none absolute inset-y-0 right-0 w-1/2 z-[1]">
-        <FlickeringGrid
-          className="h-full w-full"
-          squareSize={4}
-          gridGap={6}
-          color="rgb(139, 92, 246)"
-          maxOpacity={0.2}
-          flickerChance={0.1}
-        />
-      </div>
+      {/* Dotted grid on the right half */}
+      <div className="pointer-events-none absolute inset-y-0 right-0 w-1/2 z-[1]" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }} />
     </div>
   );
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { FlickeringGrid } from "@/components/magicui/flickering-grid";
+
 
 const numberTypes = [
   { label: "Local", code: "+1 (415) 555-0142", flag: "🇺🇸", type: "Local" },
@@ -24,17 +24,10 @@ export default function PhoneNumbersHeroIllustration() {
 
   return (
     <div className="relative flex justify-center">
-      {/* Flickering Grid Background */}
+      {/* Dotted Grid Background */}
       <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
         <div className="relative w-full h-full">
-          <FlickeringGrid
-            className="h-full w-full"
-            squareSize={4}
-            gridGap={6}
-            color="rgb(139, 92, 246)"
-            maxOpacity={0.5}
-            flickerChance={0.1}
-          />
+          <div className="h-full w-full" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }} />
           <div
             className="absolute inset-0 pointer-events-none"
             style={{

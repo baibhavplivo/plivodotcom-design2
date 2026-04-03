@@ -1,23 +1,14 @@
 "use client";
 
-import { FlickeringGrid } from "@/components/magicui/flickering-grid";
+
 import { useSignupUrl } from "@/hooks/useSignupUrl";
 
 export default function WhatsAppPreFooterCTA() {
   const { url: signupUrl, label: signupLabel } = useSignupUrl();
   return (
     <section className="relative overflow-hidden bg-white py-12 sm:py-16 md:py-20">
-      {/* Flickering Grid Background */}
-      <div className="pointer-events-none absolute inset-0 z-[1]">
-        <FlickeringGrid
-          className="h-full w-full"
-          squareSize={4}
-          gridGap={6}
-          color="rgb(139, 92, 246)"
-          maxOpacity={0.225}
-          flickerChance={0.1}
-        />
-      </div>
+      {/* Dotted Grid Background */}
+      <div className="pointer-events-none absolute inset-0 z-[1]" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }} />
 
       {/* Content */}
       <div className="container relative z-10 mx-auto flex max-w-7xl flex-col items-center px-4 text-center">

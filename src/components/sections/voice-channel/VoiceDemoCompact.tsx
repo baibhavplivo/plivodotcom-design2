@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { FlickeringGrid } from "@/components/magicui/flickering-grid";
+
 
 export default function VoiceDemoCompact() {
   const [selectedLanguage, setSelectedLanguage] = useState<"hindi" | "english">(
@@ -18,17 +18,8 @@ export default function VoiceDemoCompact() {
       <div className="w-full max-w-[420px] overflow-hidden rounded-lg border border-gray-200 bg-white">
         {/* Main Content Area with Flickering Grid */}
         <div className="relative min-h-[280px] sm:min-h-[320px] flex flex-col items-center justify-center">
-          {/* FlickeringGrid Background - Extends beyond edges to hide grid gaps */}
-          <div className="absolute -inset-2 z-0 overflow-hidden">
-            <FlickeringGrid
-              className="h-full w-full"
-              squareSize={4}
-              gridGap={6}
-              color="#8B5CF6"
-              maxOpacity={0.4}
-              flickerChance={0.1}
-            />
-          </div>
+          {/* Dotted Grid Background - Extends beyond edges to hide grid gaps */}
+          <div className="absolute -inset-2 z-0 overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }} />
 
           {/* Content */}
           <div className="relative z-10 flex flex-col items-center gap-3">

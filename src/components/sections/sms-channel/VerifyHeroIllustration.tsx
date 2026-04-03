@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
-import { FlickeringGrid } from "@/components/magicui/flickering-grid";
+
 
 const OTP_CODE = "4829";
 
@@ -57,17 +57,10 @@ export default function VerifyHeroIllustration() {
 
   return (
     <div className="relative flex justify-center">
-      {/* Flickering Grid Background */}
+      {/* Dotted Grid Background */}
       <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
         <div className="relative w-full h-full">
-          <FlickeringGrid
-            className="h-full w-full"
-            squareSize={4}
-            gridGap={6}
-            color="rgb(50, 61, 254)"
-            maxOpacity={0.6}
-            flickerChance={0.1}
-          />
+          <div className="h-full w-full" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }} />
           {/* Radial fade from all sides */}
           <div
             className="absolute inset-0 pointer-events-none"

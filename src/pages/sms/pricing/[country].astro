@@ -2,7 +2,7 @@
 import PlivoLayout from "@/layouts/PlivoLayout.astro";
 import SMSSubNav from "@/components/sections/sms-channel/SMSSubNav.astro";
 import SMSPricingPage from "@/components/sections/sms-channel/SMSPricingPage";
-import SMSPreFooterCTA from "@/components/sections/sms-channel/SMSPreFooterCTA";
+import PreFooterCTA from "@/components/sections/voice-homepage/PreFooterCTA";
 import {
   SMS_PRICING_COUNTRY_CODES,
   getSMSPricingMeta,
@@ -22,5 +22,5 @@ const { title, description } = getSMSPricingMeta(countryCode);
 <PlivoLayout title={title} description={description}>
   <SMSSubNav currentPage="pricing" />
   <SMSPricingPage client:load initialCountry={countryCode} />
-  <SMSPreFooterCTA client:visible />
+  <PreFooterCTA client:visible title="It's easy to get started. Sign up for free." subtitle="Create your account and receive trial credits or get in touch with us." />
 </PlivoLayout>
