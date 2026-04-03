@@ -45,7 +45,10 @@ const VALUE_PROPS = [
   "Custom AI agents designed for your use case",
 ];
 
-const ENRICH_API_URL = "/api/forms/validate-email";
+const FORMS_API_BASE = typeof window !== "undefined" && window.location.hostname === "localhost"
+  ? ""
+  : "https://www.plivo.com";
+const ENRICH_API_URL = `${FORMS_API_BASE}/api/forms/validate-email`;
 
 // Cache enrichment results so we don't re-call for the same email
 const enrichCache = new Map<string, { isValid: boolean; message: string }>();
@@ -210,7 +213,7 @@ export default function ContactSalesHero() {
         formData.set("page_url", `${window.location.origin}${window.location.pathname}`);
         formData.set("conversion_channel", "contact-sales");
 
-        const response = await fetch("/api/forms/submit", {
+        const response = await fetch(`${FORMS_API_BASE}/api/forms/submit`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({

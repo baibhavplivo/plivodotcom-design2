@@ -160,12 +160,21 @@ function getAllowedOrigins(env: Env): string[] {
     .filter(Boolean);
 }
 
+const BUILT_IN_ALLOWED_ORIGINS = [
+  "https://www.plivo.com",
+  "https://plivo.com",
+  "https://dev-plivo.plivops.com",
+  "https://plivo-marketing-website.plivo-website.workers.dev",
+];
+
 function isAllowedFormRequest(request: Request, env: Env): boolean {
   const origin = request.headers.get("Origin");
   if (!origin) return true;
 
   const requestOrigin = new URL(request.url).origin;
   if (origin === requestOrigin) return true;
+
+  if (BUILT_IN_ALLOWED_ORIGINS.includes(origin)) return true;
 
   return getAllowedOrigins(env).includes(origin);
 }

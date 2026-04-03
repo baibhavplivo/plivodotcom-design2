@@ -46,7 +46,10 @@ const VALUE_PROPS = [
   "Dedicated support during your trial period",
 ];
 
-const ENRICH_API_URL = "/api/forms/validate-email";
+const FORMS_API_BASE = typeof window !== "undefined" && window.location.hostname === "localhost"
+  ? ""
+  : "https://www.plivo.com";
+const ENRICH_API_URL = `${FORMS_API_BASE}/api/forms/validate-email`;
 
 const enrichCache = new Map<string, { isValid: boolean; message: string }>();
 
@@ -241,7 +244,7 @@ export default function RequestTrialHero() {
         formData.set("page_url", `${window.location.origin}${window.location.pathname}`);
         formData.set("conversion_channel", "request-trial");
 
-        const response = await fetch("/api/forms/submit", {
+        const response = await fetch(`${FORMS_API_BASE}/api/forms/submit`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
