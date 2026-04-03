@@ -631,16 +631,8 @@ export default function ContactSalesHero() {
             </div>
           </div>
 
-          {/* Right Column - Form with dotted grid background */}
+          {/* Right Column - Form */}
           <div className="order-1 lg:order-2 relative rounded-2xl">
-            {/* Background layer - overflow-hidden only here so dropdown can escape */}
-            <div className="absolute inset-0 overflow-hidden rounded-2xl">
-              <div className="absolute inset-0 z-0 pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }} />
-              <div className="absolute inset-y-0 left-0 z-[1] w-6 bg-gradient-to-r from-white to-transparent pointer-events-none" />
-              <div className="absolute inset-y-0 right-0 z-[1] w-6 bg-gradient-to-l from-white to-transparent pointer-events-none" />
-              <div className="absolute inset-x-0 top-0 z-[1] h-6 bg-gradient-to-b from-white to-transparent pointer-events-none" />
-              <div className="absolute inset-x-0 bottom-0 z-[1] h-6 bg-gradient-to-t from-white to-transparent pointer-events-none" />
-            </div>
 
             {/* Form Card */}
             <div className="relative z-10 flex items-center justify-center py-6 sm:py-10 md:py-14 px-2 sm:px-6 md:px-10">
