@@ -768,16 +768,19 @@ export function PlivoPricing() {
           <div className="rounded-xl border border-gray-200 bg-white overflow-hidden">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-gray-200">
               {/* Voice */}
-              <div className="p-4 space-y-4">
+              <div className="p-4 space-y-4 flex flex-col">
                 <div className="flex items-center gap-2 py-2">
                   <Phone className="h-5 w-5 text-[#323dfe]" />
                   <h3 className="text-base font-semibold text-black">Voice</h3>
                 </div>
                 <VoicePricingContent selectedCountry={selectedCountry} inline />
+                <a href="/voice/pricing/" className="mt-auto inline-flex items-center gap-1 text-xs font-medium text-[#323dfe] hover:underline pt-2">
+                  View detailed pricing <span aria-hidden="true">&rarr;</span>
+                </a>
               </div>
 
               {/* AI Agents */}
-              <div className="p-4 space-y-4">
+              <div className="p-4 space-y-4 flex flex-col">
                 <div className="flex items-center gap-2 py-2">
                   <Sparkles className="h-5 w-5 text-[#323dfe]" />
                   <h3 className="text-base font-semibold text-black">AI Agents</h3>
@@ -786,21 +789,27 @@ export function PlivoPricing() {
               </div>
 
               {/* SMS & RCS */}
-              <div className="p-4 space-y-4">
+              <div className="p-4 space-y-4 flex flex-col">
                 <div className="flex items-center gap-2 py-2">
                   <MessageSquare className="h-5 w-5 text-[#323dfe]" />
                   <h3 className="text-base font-semibold text-black">SMS & RCS</h3>
                 </div>
                 <SMSPricingContent selectedCountry={selectedCountry} inline />
+                <a href="/sms/pricing/" className="mt-auto inline-flex items-center gap-1 text-xs font-medium text-[#323dfe] hover:underline pt-2">
+                  View detailed pricing <span aria-hidden="true">&rarr;</span>
+                </a>
               </div>
 
               {/* WhatsApp */}
-              <div className="p-4 space-y-4">
+              <div className="p-4 space-y-4 flex flex-col">
                 <div className="flex items-center gap-2 py-2">
                   <WhatsAppIcon className="h-5 w-5 text-[#323dfe]" />
                   <h3 className="text-base font-semibold text-black">WhatsApp</h3>
                 </div>
                 <WhatsAppPricingContent selectedCountry={selectedCountry} inline />
+                <a href="/whatsapp-message/pricing/" className="mt-auto inline-flex items-center gap-1 text-xs font-medium text-[#323dfe] hover:underline pt-2">
+                  View detailed pricing <span aria-hidden="true">&rarr;</span>
+                </a>
               </div>
             </div>
 
