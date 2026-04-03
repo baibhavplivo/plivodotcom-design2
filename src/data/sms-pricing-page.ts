@@ -110,12 +110,12 @@ export const SMS_CARRIER_SURCHARGE: Record<
         {
           carrier: "AT&T",
           values: [
-            "$0.0030/sms",
-            "$0.0030/sms",
-            "$0.0030/sms",
+            "$0.0035/sms",
+            "$0.0035/sms",
+            "$0.0035/sms",
             "NA",
-            "$0.0030/sms",
-            "$0.0030/sms",
+            "$0.0035/sms",
+            "$0.0035/sms",
           ],
         },
         {
@@ -200,12 +200,12 @@ export const SMS_CARRIER_SURCHARGE: Record<
         {
           carrier: "AT&T",
           values: [
-            "$0.0075/mms",
-            "$0.0075/mms",
-            "$0.0075/mms",
+            "$0.0090/mms",
+            "$0.0090/mms",
+            "$0.0090/mms",
             "NA",
-            "$0.0075/mms",
-            "$0.0075/mms",
+            "$0.0090/mms",
+            "$0.0090/mms",
           ],
         },
         {
