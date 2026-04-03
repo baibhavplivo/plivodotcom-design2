@@ -1,10 +1,12 @@
 ---
 import PlivoLayout from "@/layouts/PlivoLayout.astro";
 import RequestTrialHero from "@/components/sections/request-trial/RequestTrialHero";
+import PreFooterCTA from "@/components/sections/voice-homepage/PreFooterCTA";
 ---
 
 <PlivoLayout title="Request a Trial" description="Request trial access to Plivo's AI agents and communication APIs. Try voice, SMS, WhatsApp, and chat with expert guidance.">
   <RequestTrialHero client:only="react" />
+  <PreFooterCTA client:visible title="Ready to make every call count?" />
 
   <!-- intl-tel-input CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/css/intlTelInput.css" />

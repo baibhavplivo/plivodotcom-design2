@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import PreFooterCTA from "@/components/sections/voice-homepage/PreFooterCTA";
 
 
 interface LeverJob {
@@ -274,23 +275,7 @@ export default function JobsPage() {
       </section>
 
       {/* Pre-Footer CTA */}
-      <section className="relative overflow-hidden bg-white py-12 sm:py-16 md:py-20">
-        <div className="pointer-events-none absolute inset-0 z-[1]" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }} />
-        <div className="container relative z-10 mx-auto flex max-w-7xl flex-col items-center px-4 text-center">
-          <h2 className="font-sora text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] font-normal leading-[1.25] tracking-[-0.02em] text-black">
-            Don't see a role that fits?
-          </h2>
-          <p className="mx-auto max-w-2xl text-base sm:text-lg text-gray-600 mt-3">
-            We're always looking for talented individuals. Reach out and tell us how you'd contribute.
-          </p>
-          <a
-            href="/contact/sales/"
-            className="inline-flex items-center justify-center rounded-md bg-black px-8 py-3 text-base font-medium text-white transition-colors cta-hover-gradient mt-6"
-          >
-            Get in touch
-          </a>
-        </div>
-      </section>
+      <PreFooterCTA title="Don't see a role that fits?" subtitle="We're always looking for talented individuals. Reach out and tell us how you'd contribute." />
     </>
   );
 }

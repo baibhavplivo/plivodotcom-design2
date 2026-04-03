@@ -19,6 +19,7 @@ function sanitizeHtml(html: string): string {
   return html.replace(/<\/?(?!a\b|strong\b|em\b|br\b)[a-z][^>]*>/gi, "");
 }
 import { useGeoCountry } from "@/hooks/useGeoCountry";
+import PreFooterCTA from "@/components/sections/voice-homepage/PreFooterCTA";
 
 
 // ── RCS Phone Illustration ──────────────────────────────────────────────────
@@ -286,9 +287,9 @@ function RCSFeatures() {
 // ── Use case illustrations ──────────────────────────────────────────────────
 function RCSIllustrationWrapper({ children, className }: { children: React.ReactNode; className?: string }) {
   return (
-    <div className={`relative h-56 w-full rounded-xl overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100 ${className || ""}`}>
-      <div className="relative h-full w-full px-6 py-5 flex flex-col items-center">
-        <div className="w-full max-w-[220px] flex flex-col flex-1">
+    <div className={`relative h-56 w-full rounded-xl overflow-hidden ${className || ""}`} style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
+      <div className="relative h-full w-full px-6 py-5 flex flex-col items-center justify-center">
+        <div className="w-full max-w-[220px] flex flex-col">
           {children}
         </div>
       </div>
@@ -521,7 +522,7 @@ function RCSUseCases() {
         <div className="grid gap-x-6 gap-y-14 sm:gap-y-16 sm:grid-cols-2 lg:grid-cols-3">
           {USE_CASES.map((useCase, i) => (
             <div key={i} className="group">
-              <div className="mb-4 overflow-hidden rounded-xl transition-all">
+              <div className="mb-4 overflow-hidden rounded-xl border border-gray-200 transition-all">
                 {useCase.illustration}
               </div>
               <h3 className="mb-2 text-lg font-semibold text-black">
@@ -1102,7 +1103,7 @@ export default function RCSPage() {
       <RCSBenefits />
       <RCSEarlyAccess />
       <RCSFAQ />
-      <RCSPreFooter />
+      <PreFooterCTA title="Ready to transform your messaging?" subtitle="Be among the first to unlock the power of RCS messaging with Plivo." />
     </>
   );
 }

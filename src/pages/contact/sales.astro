@@ -1,10 +1,12 @@
 ---
 import PlivoLayout from "@/layouts/PlivoLayout.astro";
 import ContactSalesHero from "@/components/sections/contact/ContactSalesHero";
+import PreFooterCTA from "@/components/sections/voice-homepage/PreFooterCTA";
 ---
 
 <PlivoLayout title="Contact Sales" description="Talk to our sales team for volume pricing, custom AI agent setup, and enterprise solutions.">
   <ContactSalesHero client:only="react" />
+  <PreFooterCTA client:visible title="Ready to make every call count?" />
 
   <!-- intl-tel-input CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/css/intlTelInput.css" />
