@@ -16,7 +16,7 @@ export default function PreFooterCTA({
   const { country } = useGeoCountry();
   const { url: signupUrl, label: signupLabel } = useSignupUrl();
   const isIndia = country === "IN";
-  const resolvedSubtitle = subtitle ?? `Get ${isIndia ? "₹800" : "$10"} in free credits. No credit card required. Deploy your first agent in under 10 minutes.`;
+  const resolvedSubtitle = subtitle ?? `Get ${isIndia ? "₹1,000" : "$10"} in free credits. No credit card required. Deploy your first agent in under 10 minutes.`;
 
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
