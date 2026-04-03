@@ -14,7 +14,7 @@ interface UseCase {
 // Wrapper component for illustrations - simulates phone message screen
 function IllustrationWrapper({ children, className }: { children: React.ReactNode; className?: string }) {
   return (
-    <div className={cn("relative h-56 w-full rounded-xl overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100", className)}>
+    <div className={cn("relative h-56 w-full rounded-xl overflow-hidden", className)} style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       {/* Content */}
       <div className="relative h-full w-full px-3 py-4 flex flex-col">
         {children}
@@ -88,7 +88,7 @@ function AlertsNotificationsIllustration() {
   }, []);
 
   return (
-    <IllustrationWrapper className="bg-gradient-to-br from-gray-100 to-gray-50">
+    <IllustrationWrapper className="">
       {/* Badge with blue dot */}
       <div className="flex justify-center mb-4">
         <span className="inline-flex items-center gap-1.5 rounded-full bg-white/80 border border-gray-200 px-3 py-1 text-[12px] font-medium text-gray-600">
@@ -180,7 +180,7 @@ function VerifyIllustration() {
   }, []);
 
   return (
-    <IllustrationWrapper className="bg-gradient-to-br from-gray-100 to-gray-50">
+    <IllustrationWrapper className="">
       <div className="relative flex-1 px-3 pt-2">
         {/* Top card - OTP Input (right aligned) */}
         <div className="relative z-10 flex justify-end">
@@ -234,7 +234,7 @@ function VerifyIllustration() {
 // Promotional Marketing Illustration - Small square image with text on side
 function PromotionalMarketingIllustration() {
   return (
-    <IllustrationWrapper className="bg-gradient-to-br from-gray-100 to-gray-50">
+    <IllustrationWrapper className="">
       <div className="relative flex-1 px-3 flex items-center justify-center">
         {/* Message card with small image + text layout */}
         <div className="rounded-2xl bg-white shadow-[0_4px_16px_rgba(0,0,0,0.08)] overflow-hidden">
@@ -280,7 +280,7 @@ function PromotionalMarketingIllustration() {
 // Abandoned Cart Illustration - Two card layout like Verify
 function AbandonedCartIllustration() {
   return (
-    <IllustrationWrapper className="bg-gradient-to-br from-gray-100 to-gray-50">
+    <IllustrationWrapper className="">
       <div className="relative flex-1 px-3 pt-2">
         {/* Top card - Shopping Cart preview (right aligned) */}
         <div className="relative z-10 flex justify-end">
@@ -368,7 +368,7 @@ function LoyaltyMarketingIllustration() {
   }, []);
 
   return (
-    <IllustrationWrapper className="bg-gradient-to-br from-gray-100 to-gray-50">
+    <IllustrationWrapper className="">
       <div className="relative flex-1 px-3 pt-2 flex flex-col">
         {/* Message card with rewards content */}
         <div className="rounded-2xl bg-white shadow-[0_4px_16px_rgba(0,0,0,0.08)] overflow-hidden">
@@ -445,7 +445,7 @@ function ConversationalMessagingIllustration() {
   }, []);
 
   return (
-    <IllustrationWrapper className="bg-gradient-to-br from-gray-100 to-gray-50">
+    <IllustrationWrapper className="">
       <div className="relative flex-1 flex items-center justify-center px-6 py-2">
         {/* Phone device - compact */}
         <div className="w-full max-w-[220px]">
@@ -571,7 +571,7 @@ export default function SMSUseCases() {
               className="group"
             >
               {/* Illustration */}
-              <div className="mb-4 overflow-hidden rounded-xl transition-all">
+              <div className="mb-4 overflow-hidden rounded-xl border border-gray-200 transition-all">
                 {useCase.illustration}
               </div>
 

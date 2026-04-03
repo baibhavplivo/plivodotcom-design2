@@ -3,7 +3,7 @@ import WorldMap from "@/components/ui/world-map";
 // Quality Feature Card illustrations
 function GuaranteedQualityIllustration() {
   return (
-    <div className="relative h-48 w-full rounded-lg bg-gray-100/70 overflow-hidden">
+    <div className="relative h-48 w-full rounded-lg overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="absolute inset-0 flex items-center justify-center px-6">
         <div className="w-full flex items-center justify-between gap-4">
           {/* Source Phone */}
@@ -85,7 +85,7 @@ function GuaranteedQualityIllustration() {
 
 function GlobalInfrastructureIllustration() {
   return (
-    <div className="relative h-48 w-full rounded-lg bg-gray-100/70 overflow-hidden">
+    <div className="relative h-48 w-full rounded-lg overflow-hidden bg-white">
       <WorldMap
         lineColor="#323dfe"
         dots={[
@@ -141,7 +141,7 @@ function GlobalInfrastructureIllustration() {
 
 function HighAvailabilityIllustration() {
   return (
-    <div className="relative h-48 w-full rounded-lg bg-gray-100/70 overflow-hidden">
+    <div className="relative h-48 w-full rounded-lg overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <style>{`
         @keyframes ha-pulse {
           0%, 100% { opacity: 0.5; }

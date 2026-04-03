@@ -402,20 +402,27 @@ export default function ContactSalesHero() {
 
           // 1. Server-injected CF-IPCountry (instant, no network call)
           const cfCountry = (window as any).__CF_COUNTRY;
-          if (cfCountry) {
+          if (cfCountry && cfCountry !== "XX") {
             sessionStorage.setItem("plivo_ip_info", JSON.stringify({ country: cfCountry }));
             syncHiddenGeo(cfCountry);
             return callback(cfCountry);
           }
 
-          // 2. Check sessionStorage cache
+          // 2. Check sessionStorage caches (plivo_ip_info or plivo_geo_country from useGeoCountry hook)
           const cached = sessionStorage.getItem("plivo_ip_info");
           if (cached) {
             try {
               const { country, ip } = JSON.parse(cached);
-              syncHiddenGeo(country, ip);
-              return callback(country);
+              if (country) {
+                syncHiddenGeo(country, ip);
+                return callback(country);
+              }
             } catch { /* fall through */ }
+          }
+          const geoCountry = sessionStorage.getItem("plivo_geo_country");
+          if (geoCountry && /^[A-Z]{2}$/.test(geoCountry)) {
+            syncHiddenGeo(geoCountry);
+            return callback(geoCountry);
           }
 
           // 3. Fallback: ipinfo.io (for localhost / non-CF environments)

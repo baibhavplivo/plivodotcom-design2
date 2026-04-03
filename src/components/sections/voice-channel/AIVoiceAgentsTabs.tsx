@@ -39,15 +39,15 @@ function AIAvatar({ size = 8 }: { size?: number }) {
       <svg viewBox="0 0 32 32" className="w-full h-full">
         <defs>
           <linearGradient id={id} x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#000000" />
-            <stop offset="40%" stopColor="#323dfe" />
-            <stop offset="100%" stopColor="#8b5cf6" />
+            <stop offset="0%" stopColor="#cd3ef9" />
+            <stop offset="50%" stopColor="#323dfe" />
+            <stop offset="100%" stopColor="#000000" />
           </linearGradient>
         </defs>
         <circle cx="16" cy="16" r="16" fill={`url(#${id})`} />
-        {/* 4-pointed star/spark icon */}
+        {/* Curved 4-point star sparkle (matches Self-improving avatar) */}
         <path
-          d="M16 9 L17.2 14 L22 16 L17.2 18 L16 23 L14.8 18 L10 16 L14.8 14 Z"
+          d="M16 7C16.9 10.4 21.6 15.1 25 16C21.6 16.9 16.9 21.6 16 25C15.1 21.6 10.4 16.9 7 16C10.4 15.1 15.1 10.4 16 7Z"
           fill="white"
         />
       </svg>
@@ -58,11 +58,11 @@ function AIAvatar({ size = 8 }: { size?: number }) {
 // Agent card illustrations - voice conversations with clean UI
 function LeadQualificationIllustration() {
   return (
-    <div className="relative h-56 w-full rounded-xl overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100">
+    <div className="relative h-56 w-full rounded-xl overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="relative h-full w-full p-4 flex flex-col gap-2.5">
         {/* Customer message */}
         <div className="flex items-start gap-2 justify-end">
-          <div className="bg-white rounded-xl px-3 py-2 max-w-[75%]">
+          <div className="bg-white rounded-xl px-3 py-2 border border-gray-200 max-w-[75%]">
             <div className="flex items-center gap-1.5 mb-1">
               <VoiceWaveform color="gray" size="sm" />
             </div>
@@ -74,7 +74,7 @@ function LeadQualificationIllustration() {
         {/* AI Response */}
         <div className="flex items-start gap-2">
           <AIAvatar size={8} />
-          <div className="bg-white rounded-xl px-3 py-2 max-w-[75%]">
+          <div className="bg-white rounded-xl px-3 py-2 border border-gray-200 max-w-[75%]">
             <div className="flex items-center gap-1.5 mb-1">
               <VoiceWaveform color="gradient" size="sm" />
             </div>
@@ -83,7 +83,7 @@ function LeadQualificationIllustration() {
         </div>
 
         {/* Lead score widget */}
-        <div className="mt-auto bg-white rounded-lg px-3 py-2">
+        <div className="mt-auto bg-white rounded-lg px-3 py-2 border border-gray-200">
           <div className="flex items-center justify-between">
             <span className="text-[10px] text-gray-500">Lead Score</span>
             <div className="flex items-center gap-1.5">
@@ -103,12 +103,12 @@ function LeadQualificationIllustration() {
 
 function AppointmentSchedulerIllustration() {
   return (
-    <div className="relative h-56 w-full rounded-xl overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100">
+    <div className="relative h-56 w-full rounded-xl overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="relative h-full w-full p-4 flex flex-col gap-2.5">
         {/* AI message with calendar */}
         <div className="flex items-start gap-2">
           <AIAvatar size={8} />
-          <div className="bg-white rounded-xl p-2.5 flex-1">
+          <div className="bg-white rounded-xl p-2.5 flex-1 border border-gray-200">
             <div className="flex items-center gap-1.5 mb-1">
               <VoiceWaveform color="gradient" size="sm" />
             </div>
@@ -129,7 +129,7 @@ function AppointmentSchedulerIllustration() {
 
         {/* Customer response - Indian woman */}
         <div className="flex items-start gap-2 justify-end">
-          <div className="bg-white rounded-xl px-3 py-2">
+          <div className="bg-white rounded-xl px-3 py-2 border border-gray-200">
             <div className="flex items-center gap-1.5 mb-1">
               <VoiceWaveform color="gray" size="sm" />
             </div>
@@ -139,7 +139,7 @@ function AppointmentSchedulerIllustration() {
         </div>
 
         {/* Confirmation */}
-        <div className="mt-auto bg-white rounded-lg px-3 py-2">
+        <div className="mt-auto bg-white rounded-lg px-3 py-2 border border-gray-200">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <span className="w-5 h-5 rounded-full bg-emerald-100 flex items-center justify-center">
@@ -159,12 +159,12 @@ function AppointmentSchedulerIllustration() {
 
 function BookingReservationIllustration() {
   return (
-    <div className="relative h-56 w-full rounded-xl overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100">
+    <div className="relative h-56 w-full rounded-xl overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="relative h-full w-full p-4 flex flex-col gap-2.5">
         {/* AI message with booking card */}
         <div className="flex items-start gap-2">
           <AIAvatar size={8} />
-          <div className="bg-white rounded-xl p-2.5 flex-1">
+          <div className="bg-white rounded-xl p-2.5 flex-1 border border-gray-200">
             <div className="flex items-center gap-1.5 mb-1">
               <VoiceWaveform color="gradient" size="sm" />
             </div>
@@ -185,7 +185,7 @@ function BookingReservationIllustration() {
 
         {/* Customer response - African man */}
         <div className="flex items-start gap-2 justify-end">
-          <div className="bg-white rounded-xl px-3 py-2">
+          <div className="bg-white rounded-xl px-3 py-2 border border-gray-200">
             <div className="flex items-center gap-1.5 mb-1">
               <VoiceWaveform color="gray" size="sm" />
             </div>
@@ -200,10 +200,10 @@ function BookingReservationIllustration() {
 
 function VoiceAlertsIllustration() {
   return (
-    <div className="relative h-56 w-full rounded-xl overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100">
+    <div className="relative h-56 w-full rounded-xl overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="relative h-full w-full p-4 flex flex-col gap-2.5">
         {/* Alert card with user info */}
-        <div className="bg-white rounded-xl p-3">
+        <div className="bg-white rounded-xl p-3 border border-gray-200">
           <div className="flex items-center gap-2.5 mb-2.5">
             <img src="/images/avatars/woman-44.jpg" alt="User" className="w-10 h-10 rounded-full object-cover flex-shrink-0" />
             <div className="flex-1">
@@ -231,7 +231,7 @@ function VoiceAlertsIllustration() {
         {/* AI message */}
         <div className="flex items-start gap-2">
           <AIAvatar size={8} />
-          <div className="bg-white rounded-xl px-3 py-2">
+          <div className="bg-white rounded-xl px-3 py-2 border border-gray-200">
             <div className="flex items-center gap-1.5 mb-1">
               <VoiceWaveform color="gradient" size="sm" />
             </div>
@@ -245,12 +245,12 @@ function VoiceAlertsIllustration() {
 
 function PaymentReminderIllustration() {
   return (
-    <div className="relative h-56 w-full rounded-xl overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100">
+    <div className="relative h-56 w-full rounded-xl overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="relative h-full w-full p-4 flex flex-col gap-2.5">
         {/* AI message with payment info */}
         <div className="flex items-start gap-2">
           <AIAvatar size={8} />
-          <div className="bg-white rounded-xl p-2.5 flex-1">
+          <div className="bg-white rounded-xl p-2.5 flex-1 border border-gray-200">
             <div className="flex items-center gap-1.5 mb-1">
               <VoiceWaveform color="gradient" size="sm" />
             </div>
@@ -270,7 +270,7 @@ function PaymentReminderIllustration() {
 
         {/* Customer response - Indian man */}
         <div className="flex items-start gap-2 justify-end">
-          <div className="bg-white rounded-xl px-3 py-2">
+          <div className="bg-white rounded-xl px-3 py-2 border border-gray-200">
             <div className="flex items-center gap-1.5 mb-1">
               <VoiceWaveform color="gray" size="sm" />
             </div>
@@ -285,11 +285,11 @@ function PaymentReminderIllustration() {
 
 function AppointmentReminderIllustration() {
   return (
-    <div className="relative h-56 w-full rounded-xl overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100">
+    <div className="relative h-56 w-full rounded-xl overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="relative h-full w-full p-4 flex flex-col gap-2.5">
         {/* Customer request */}
         <div className="flex items-start gap-2 justify-end">
-          <div className="bg-white rounded-xl px-3 py-2">
+          <div className="bg-white rounded-xl px-3 py-2 border border-gray-200">
             <div className="flex items-center gap-1.5 mb-1">
               <VoiceWaveform color="gray" size="sm" />
             </div>
@@ -301,7 +301,7 @@ function AppointmentReminderIllustration() {
         {/* AI response with calendar */}
         <div className="flex items-start gap-2">
           <AIAvatar size={8} />
-          <div className="bg-white rounded-xl p-2.5 flex-1">
+          <div className="bg-white rounded-xl p-2.5 flex-1 border border-gray-200">
             <div className="flex items-center gap-1.5 mb-1">
               <VoiceWaveform color="gradient" size="sm" />
             </div>
@@ -318,7 +318,7 @@ function AppointmentReminderIllustration() {
         </div>
 
         {/* Confirmation */}
-        <div className="mt-auto bg-white rounded-lg px-3 py-2">
+        <div className="mt-auto bg-white rounded-lg px-3 py-2 border border-gray-200">
           <div className="flex items-center justify-between">
             <span className="text-[10px] text-gray-500">Rescheduled to:</span>
             <span className="text-[11px] font-medium text-[#6366f1]">Tue, 4 PM</span>
@@ -331,11 +331,11 @@ function AppointmentReminderIllustration() {
 
 function CustomerSupportIllustration() {
   return (
-    <div className="relative h-56 w-full rounded-xl overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100">
+    <div className="relative h-56 w-full rounded-xl overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="relative h-full w-full p-4 flex flex-col gap-2.5">
         {/* Customer issue - Indian man */}
         <div className="flex items-start gap-2 justify-end">
-          <div className="bg-white rounded-xl px-3 py-2">
+          <div className="bg-white rounded-xl px-3 py-2 border border-gray-200">
             <div className="flex items-center gap-1.5 mb-1">
               <VoiceWaveform color="gray" size="sm" />
             </div>
@@ -347,7 +347,7 @@ function CustomerSupportIllustration() {
         {/* AI response with steps */}
         <div className="flex items-start gap-2">
           <AIAvatar size={8} />
-          <div className="bg-white rounded-xl p-2.5 flex-1">
+          <div className="bg-white rounded-xl p-2.5 flex-1 border border-gray-200">
             <div className="flex items-center gap-1.5 mb-1">
               <VoiceWaveform color="gradient" size="sm" />
             </div>
@@ -369,7 +369,7 @@ function CustomerSupportIllustration() {
         </div>
 
         {/* Status */}
-        <div className="mt-auto bg-white rounded-lg px-3 py-2">
+        <div className="mt-auto bg-white rounded-lg px-3 py-2 border border-gray-200">
           <div className="flex items-center justify-between">
             <span className="text-[10px] text-gray-500">Issue Status</span>
             <span className="text-[10px] font-medium text-emerald-600">Resolving...</span>
@@ -382,11 +382,11 @@ function CustomerSupportIllustration() {
 
 function ComplaintResolutionIllustration() {
   return (
-    <div className="relative h-56 w-full rounded-xl overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100">
+    <div className="relative h-56 w-full rounded-xl overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="relative h-full w-full p-4 flex flex-col gap-2.5">
         {/* Customer complaint - Indian woman */}
         <div className="flex items-start gap-2 justify-end">
-          <div className="bg-white rounded-xl px-3 py-2">
+          <div className="bg-white rounded-xl px-3 py-2 border border-gray-200">
             <div className="flex items-center gap-1.5 mb-1">
               <VoiceWaveform color="gray" size="sm" />
             </div>
@@ -398,7 +398,7 @@ function ComplaintResolutionIllustration() {
         {/* AI response with options */}
         <div className="flex items-start gap-2">
           <AIAvatar size={8} />
-          <div className="bg-white rounded-xl p-2.5 flex-1">
+          <div className="bg-white rounded-xl p-2.5 flex-1 border border-gray-200">
             <div className="flex items-center gap-1.5 mb-1">
               <VoiceWaveform color="gradient" size="sm" />
             </div>
@@ -411,7 +411,7 @@ function ComplaintResolutionIllustration() {
         </div>
 
         {/* Status */}
-        <div className="mt-auto bg-white rounded-lg px-3 py-2">
+        <div className="mt-auto bg-white rounded-lg px-3 py-2 border border-gray-200">
           <div className="flex items-center justify-between">
             <span className="text-[10px] text-gray-500">Resolution</span>
             <span className="text-[10px] font-medium text-emerald-600">Replacement Selected</span>
@@ -424,12 +424,12 @@ function ComplaintResolutionIllustration() {
 
 function FeedbackSurveyIllustration() {
   return (
-    <div className="relative h-56 w-full rounded-xl overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100">
+    <div className="relative h-56 w-full rounded-xl overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="relative h-full w-full p-4 flex flex-col gap-2.5">
         {/* AI asking for rating */}
         <div className="flex items-start gap-2">
           <AIAvatar size={8} />
-          <div className="bg-white rounded-xl p-2.5 flex-1">
+          <div className="bg-white rounded-xl p-2.5 flex-1 border border-gray-200">
             <div className="flex items-center gap-1.5 mb-1">
               <VoiceWaveform color="gradient" size="sm" />
             </div>
@@ -454,7 +454,7 @@ function FeedbackSurveyIllustration() {
 
         {/* Customer response */}
         <div className="flex items-start gap-2 justify-end">
-          <div className="bg-white rounded-xl px-3 py-2">
+          <div className="bg-white rounded-xl px-3 py-2 border border-gray-200">
             <div className="flex items-center gap-1.5 mb-1">
               <VoiceWaveform color="gray" size="sm" />
             </div>
@@ -667,7 +667,7 @@ export default function AIVoiceAgentsTabs() {
                       className="group"
                     >
                       {/* Illustration */}
-                      <div className="mb-4 overflow-hidden rounded-lg bg-gray-50 transition-all group-hover:bg-gray-100">
+                      <div className="mb-4 overflow-hidden rounded-lg border border-gray-200 transition-all">
                         {agent.illustration}
                       </div>
 

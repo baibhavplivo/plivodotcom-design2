@@ -21,6 +21,11 @@ export default function WhyHumanLike() {
           0% { background-position: 200% 0; }
           100% { background-position: -200% 0; }
         }
+        .humanlike-dotgrid {
+          background-image: radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px);
+          background-size: 16px 16px;
+          background-position: center center;
+        }
       `}</style>
       <div className="container mx-auto max-w-7xl px-4">
         <h2 className="font-sora mb-6 text-center text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] font-normal leading-[1.25] tracking-[-0.02em] text-black">
@@ -43,9 +48,9 @@ export default function WhyHumanLike() {
 
 function LatencyCard() {
   return (
-    <div className="overflow-hidden rounded-lg bg-gray-50">
+    <div className="overflow-hidden rounded-lg border border-gray-200 bg-white">
       {/* Visual - Top */}
-      <div className="relative h-48 sm:h-64 overflow-hidden">
+      <div className="relative h-48 sm:h-64 overflow-hidden bg-white">
         <WorldMap
           lineColor="#323dfe"
           dots={[
@@ -177,7 +182,7 @@ function AudioPlayer({
   const isGray = variant === "gray";
 
   return (
-    <div className={`relative overflow-hidden rounded-lg bg-white ${!isGray ? "shine-border" : ""}`}>
+    <div className={`relative overflow-hidden rounded-lg bg-white ${isGray ? "border border-gray-200" : "shine-border"}`}>
       {/* Shine border effect for ON state */}
       {!isGray && (
         <div className="absolute inset-0 rounded-lg opacity-60" style={{
@@ -258,9 +263,9 @@ function AudioPlayer({
 
 function QualityCard() {
   return (
-    <div className="overflow-hidden rounded-lg bg-gray-50">
+    <div className="overflow-hidden rounded-lg border border-gray-200 bg-white">
       {/* Visual - Top: Audio cards side by side */}
-      <div className="relative h-64 flex items-center justify-center px-4 py-6">
+      <div className="relative h-64 flex items-center justify-center px-4 py-6 humanlike-dotgrid">
         {/* Cards container */}
         <div className="flex h-full w-full items-center justify-center gap-3">
           {/* Left card */}
@@ -300,9 +305,9 @@ function QualityCard() {
 
 function TurnTakingCard() {
   return (
-    <div className="overflow-hidden rounded-lg bg-gray-50">
+    <div className="overflow-hidden rounded-lg border border-gray-200 bg-white">
       {/* Visual - Top: Audio cards side by side */}
-      <div className="relative h-64 flex items-center justify-center px-4 py-6">
+      <div className="relative h-64 flex items-center justify-center px-4 py-6 humanlike-dotgrid">
         {/* Cards container */}
         <div className="flex h-full w-full items-center justify-center gap-3">
           {/* Left card */}
@@ -353,10 +358,10 @@ function SelfImprovingCard() {
   const div7Ref = useRef<HTMLDivElement>(null);
 
   return (
-    <div className="overflow-hidden rounded-lg bg-gray-50">
+    <div className="overflow-hidden rounded-lg border border-gray-200 bg-white">
       {/* Visual - Top */}
       <div
-        className="relative flex h-64 items-center justify-center overflow-hidden p-6"
+        className="relative flex h-64 items-center justify-center overflow-hidden p-6 humanlike-dotgrid"
         ref={containerRef}
       >
         <div className="flex size-full max-h-[180px] max-w-md flex-col items-stretch justify-between gap-4">

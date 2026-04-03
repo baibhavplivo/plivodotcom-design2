@@ -9,7 +9,7 @@ interface Feature {
 // Illustration: Global Reach
 function GlobalReachIllustration() {
   return (
-    <div className="relative h-48 w-full rounded-lg bg-gray-100/70 overflow-hidden">
+    <div className="relative h-48 w-full rounded-lg overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="relative h-full w-full">
         {/* Rotating Globe */}
         <div
@@ -53,7 +53,7 @@ function GlobalReachIllustration() {
 // Illustration: Conversion Rate
 function ConversionRateIllustration() {
   return (
-    <div className="relative h-48 w-full rounded-lg bg-gray-100/70 overflow-hidden">
+    <div className="relative h-48 w-full rounded-lg overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="relative h-full w-full p-4">
         {/* Conversion rate pill */}
         <div className="absolute right-4 top-4 z-10">
@@ -157,7 +157,7 @@ function MultiChannelIllustration() {
   };
 
   return (
-    <div className="relative h-48 w-full rounded-lg bg-gray-100/70 overflow-hidden">
+    <div className="relative h-48 w-full rounded-lg overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="relative h-full w-full p-3 flex items-center justify-center">
         <div className="bg-white rounded-lg border border-gray-200 h-full w-full max-w-[280px] flex flex-col p-3">
           {/* Header */}
@@ -197,7 +197,7 @@ function FraudPreventionIllustration() {
   ];
 
   return (
-    <div className="relative h-48 w-full rounded-lg bg-gray-100/70 overflow-hidden">
+    <div className="relative h-48 w-full rounded-lg overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="relative h-full w-full p-3 flex items-center justify-center">
         <div className="bg-white rounded-lg border border-gray-200 h-full w-full max-w-[260px] flex flex-col">
           {/* Header */}
@@ -262,7 +262,7 @@ function FraudPreventionIllustration() {
 // Illustration: Transparent Pricing
 function TransparentPricingIllustration() {
   return (
-    <div className="relative h-48 w-full rounded-lg bg-gray-100/70 overflow-hidden">
+    <div className="relative h-48 w-full rounded-lg overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="relative h-full w-full p-3 flex items-center justify-center">
         <div className="bg-white rounded-lg border border-gray-200 h-full w-full max-w-[260px] flex flex-col p-3">
           {/* Header */}
@@ -305,7 +305,7 @@ function TransparentPricingIllustration() {
 // Illustration: Premium Support
 function PremiumSupportIllustration() {
   return (
-    <div className="relative h-48 w-full rounded-lg bg-gray-100/70 overflow-hidden">
+    <div className="relative h-48 w-full rounded-lg overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="relative h-full w-full p-3 flex items-center justify-center">
         <div className="bg-white rounded-lg border border-gray-200 h-full w-full max-w-[280px] flex flex-col overflow-hidden">
           {/* Chat Header */}

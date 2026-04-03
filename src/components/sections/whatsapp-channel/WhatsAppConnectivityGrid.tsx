@@ -9,7 +9,7 @@ interface Feature {
 // Illustration: Official WhatsApp Business API
 function OfficialAPIIllustration() {
   return (
-    <div className="relative h-48 w-full rounded-lg bg-gray-100/70 overflow-hidden">
+    <div className="relative h-48 w-full rounded-lg overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="relative h-full w-full p-3 flex items-center justify-center">
         <div className="flex flex-col items-center">
           {/* WhatsApp Business badge */}
@@ -96,7 +96,7 @@ function RichMediaIllustration() {
   ];
 
   return (
-    <div className="relative h-48 w-full rounded-lg bg-gray-100/70 overflow-hidden">
+    <div className="relative h-48 w-full rounded-lg overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       {/* Shared SVG gradient definition */}
       <svg className="absolute w-0 h-0">
         <defs>
@@ -127,7 +127,7 @@ function RichMediaIllustration() {
 // Illustration: Quick Reply Buttons
 function QuickReplyIllustration() {
   return (
-    <div className="relative h-48 w-full rounded-lg bg-gray-100/70 overflow-hidden">
+    <div className="relative h-48 w-full rounded-lg overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="relative h-full w-full p-3 flex items-center justify-center">
         {/* WhatsApp message with buttons */}
         <div className="bg-white rounded-xl shadow-sm border border-gray-200 w-full max-w-[200px]">
@@ -181,7 +181,7 @@ function MultiLanguageIllustration() {
   ];
 
   return (
-    <div className="relative h-48 w-full rounded-lg bg-gray-100/70 overflow-hidden">
+    <div className="relative h-48 w-full rounded-lg overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       {/* Marquee rows */}
       <div className="flex flex-col gap-1 h-full justify-center">
         <Marquee className="[--duration:25s] [--gap:0.5rem] px-0 py-1.5" pauseOnHover>
@@ -231,7 +231,7 @@ function MessageTemplatesIllustration() {
   );
 
   return (
-    <div className="relative h-48 w-full rounded-lg bg-gray-100/70 overflow-hidden">
+    <div className="relative h-48 w-full rounded-lg overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="relative h-full w-full p-3 flex items-center justify-center">
         <div className="relative w-full max-w-[240px]">
           {/* Stacked cards behind (3rd and 4th) */}
@@ -272,7 +272,7 @@ function BroadcastIllustration() {
   ];
 
   return (
-    <div className="relative h-48 w-full rounded-lg bg-gray-100/70 overflow-hidden">
+    <div className="relative h-48 w-full rounded-lg overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="relative h-full w-full p-3 flex items-center justify-center">
         <div className="w-full max-w-[250px]">
           {/* Broadcast header */}
@@ -325,7 +325,7 @@ function BroadcastIllustration() {
 // Illustration: WhatsApp Calling
 function WhatsAppCallingIllustration() {
   return (
-    <div className="relative h-48 w-full rounded-lg bg-gray-100/70 overflow-hidden">
+    <div className="relative h-48 w-full rounded-lg overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="relative h-full w-full p-3 flex items-center justify-center">
         <div className="w-full max-w-[220px]">
           {/* Chat to call escalation */}
@@ -379,7 +379,7 @@ function WhatsAppCallingIllustration() {
 // Illustration: Real-time Call Transcripts
 function CallTranscriptsIllustration() {
   return (
-    <div className="relative h-48 w-full rounded-lg bg-gray-100/70 overflow-hidden">
+    <div className="relative h-48 w-full rounded-lg overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="relative h-full w-full p-3 flex items-center justify-center">
         <div className="w-full max-w-[230px]">
           <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
@@ -414,7 +414,7 @@ function CallTranscriptsIllustration() {
 // Illustration: Smarter Call Handling
 function SmarterCallHandlingIllustration() {
   return (
-    <div className="relative h-48 w-full rounded-lg bg-gray-100/70 overflow-hidden">
+    <div className="relative h-48 w-full rounded-lg overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="relative h-full w-full p-3 flex items-center justify-center">
         <div className="w-full max-w-[230px]">
           {/* Call routing panel */}

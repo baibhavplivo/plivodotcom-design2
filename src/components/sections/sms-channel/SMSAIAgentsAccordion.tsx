@@ -77,7 +77,7 @@ const knowledgeFeatures: Feature[] = [
 // Brand Personality Configuration Illustration
 function BrandPersonalityIllustration() {
   return (
-    <div className="relative h-full w-full rounded-xl overflow-hidden">
+    <div className="relative h-full w-full rounded-xl overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="relative h-full w-full p-3 sm:p-4">
         {/* Configuration Panel */}
         <div className="bg-white rounded-lg border border-gray-200 shadow-sm h-full flex flex-col">
@@ -171,7 +171,7 @@ function TwoWayConversationIllustration() {
   }, []);
 
   return (
-    <div className="relative h-full w-full rounded-xl overflow-hidden">
+    <div className="relative h-full w-full rounded-xl overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="relative h-full w-full pt-3 sm:pt-4 flex justify-center overflow-hidden">
         {/* Phone device - larger and extends beyond container */}
         <div className="w-[280px] sm:w-[320px] h-[500px]">
@@ -312,7 +312,7 @@ function TwoWayConversationIllustration() {
 // High-Performance AI Content Illustration
 function HighPerformanceContentIllustration() {
   return (
-    <div className="relative h-full w-full rounded-xl overflow-hidden">
+    <div className="relative h-full w-full rounded-xl overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="relative h-full w-full p-3 sm:p-4">
         {/* Main card */}
         <div className="bg-white rounded-lg border border-gray-200 shadow-sm h-full flex flex-col">
@@ -411,7 +411,7 @@ function HighPerformanceContentIllustration() {
 // Personalized Recommendations Illustration - AI-powered product suggestions
 function PersonalizedRecommendationsIllustration() {
   return (
-    <div className="relative h-full w-full rounded-xl overflow-hidden">
+    <div className="relative h-full w-full rounded-xl overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="relative h-full w-full p-3 sm:p-4">
         {/* Recommendations Panel */}
         <div className="bg-white rounded-lg border border-gray-200 shadow-sm h-full flex flex-col">
@@ -493,7 +493,7 @@ function KnowledgeIntegrationIllustration() {
   ];
 
   return (
-    <div className="relative h-full w-full rounded-xl overflow-hidden">
+    <div className="relative h-full w-full rounded-xl overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="relative h-full w-full p-3 sm:p-4">
         {/* Main card */}
         <div className="bg-white rounded-lg border border-gray-200 shadow-sm h-full flex flex-col">
@@ -589,7 +589,7 @@ function Availability247Illustration() {
   ];
 
   return (
-    <div className="relative h-full w-full rounded-xl overflow-hidden">
+    <div className="relative h-full w-full rounded-xl overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="relative h-full w-full p-3 sm:p-4">
         {/* Main card */}
         <div className="bg-white rounded-xl border border-gray-200 shadow-sm h-full flex flex-col">

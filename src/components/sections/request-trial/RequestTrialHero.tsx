@@ -46,16 +46,6 @@ const VALUE_PROPS = [
   "Dedicated support during your trial period",
 ];
 
-const USE_CASE_OPTIONS = [
-  "AI Agents",
-  "Reseller/Solutions Provider",
-  "Alerts and Notifications",
-  "Marketing",
-  "Customer Service",
-  "2FA/OTP",
-  "Other",
-];
-
 const ENRICH_API_URL = "/api/forms/validate-email";
 
 const enrichCache = new Map<string, { isValid: boolean; message: string }>();
@@ -239,8 +229,6 @@ export default function RequestTrialHero() {
       const emailFeedback = emailInput?.closest(".form-field")?.querySelector(".invalid-feedback") as HTMLElement | null;
       const fullNameInput = form.querySelector("#full_name") as HTMLInputElement | null;
       const fullNameFeedback = fullNameInput?.closest(".form-field")?.querySelector(".invalid-feedback") as HTMLElement | null;
-      const useCaseSelect = form.querySelector("#use_case") as HTMLSelectElement | null;
-      const useCaseFeedback = useCaseSelect?.closest(".form-field")?.querySelector(".invalid-feedback") as HTMLElement | null;
       const reqInput = form.querySelector("#detailed_requirement") as HTMLTextAreaElement | null;
       const reqFeedback = reqInput?.closest(".form-field")?.querySelector(".invalid-feedback") as HTMLElement | null;
       const termsCheckbox = form.querySelector("#terms_accepted") as HTMLInputElement | null;
@@ -251,8 +239,7 @@ export default function RequestTrialHero() {
 
       if (existingBanner) existingBanner.remove();
       [fullNameInput, emailInput, phoneInput, reqInput].forEach(el => el?.classList.remove("input-error"));
-      if (useCaseSelect) useCaseSelect.classList.remove("input-error");
-      [fullNameFeedback, emailFeedback, phoneFeedback, useCaseFeedback, reqFeedback, termsFeedback].forEach(el => { if (el) el.textContent = ""; });
+      [fullNameFeedback, emailFeedback, phoneFeedback, reqFeedback, termsFeedback].forEach(el => { if (el) el.textContent = ""; });
       if (invalidIcon) invalidIcon.style.display = "none";
       if (validIcon) validIcon.style.display = "none";
 
@@ -296,13 +283,6 @@ export default function RequestTrialHero() {
         return;
       }
 
-      if (!useCaseSelect?.value) {
-        useCaseSelect?.classList.add("input-error");
-        if (useCaseFeedback) useCaseFeedback.textContent = "Please select a use case.";
-        useCaseSelect?.focus();
-        return;
-      }
-
       const reqValue = reqInput?.value.trim() || "";
       if (!reqValue) {
         reqInput?.classList.add("input-error");
@@ -329,15 +309,12 @@ export default function RequestTrialHero() {
       }
 
       try {
-        syncFormAttribution(form, {
-          currentUseCase: useCaseSelect?.value || "",
-        });
+        syncFormAttribution(form);
 
         const fullName = fullNameInput?.value || "";
         const { firstName, lastName } = splitFullName(fullName);
         const phone = phoneInput?.value || "";
         const phoneCode = (form.querySelector("#phone-code") as HTMLInputElement)?.value || "";
-        const useCase = useCaseSelect?.value || "";
         const formattedPhone =
           phoneIti && typeof phoneIti.getNumber === "function"
             ? phoneIti.getNumber()
@@ -351,8 +328,6 @@ export default function RequestTrialHero() {
         formData.set("full_name", fullName);
         formData.set("company_email", emailValue);
         formData.set("phone", formattedPhone);
-        formData.set("use_case", useCase);
-        formData.set("latest_use_case", useCase);
         formData.set("description", reqValue);
         formData.set("detailed_requirement", reqValue);
         formData.set("page_url", `${window.location.origin}${window.location.pathname}`);
@@ -395,10 +370,6 @@ export default function RequestTrialHero() {
           if (data?.fieldErrors?.phone) {
             phoneInput?.classList.add("input-error");
             if (phoneFeedback) phoneFeedback.textContent = data.fieldErrors.phone;
-          }
-          if (data?.fieldErrors?.use_case) {
-            useCaseSelect?.classList.add("input-error");
-            if (useCaseFeedback) useCaseFeedback.textContent = data.fieldErrors.use_case;
           }
           if (data?.fieldErrors?.detailed_requirement) {
             reqInput?.classList.add("input-error");
@@ -464,7 +435,7 @@ export default function RequestTrialHero() {
           };
 
           const cfCountry = (window as any).__CF_COUNTRY;
-          if (cfCountry) {
+          if (cfCountry && cfCountry !== "XX") {
             sessionStorage.setItem("plivo_ip_info", JSON.stringify({ country: cfCountry }));
             syncHiddenGeo(cfCountry);
             return callback(cfCountry);
@@ -474,9 +445,16 @@ export default function RequestTrialHero() {
           if (cached) {
             try {
               const { country, ip } = JSON.parse(cached);
-              syncHiddenGeo(country, ip);
-              return callback(country);
+              if (country) {
+                syncHiddenGeo(country, ip);
+                return callback(country);
+              }
             } catch { /* fall through */ }
+          }
+          const geoCountry = sessionStorage.getItem("plivo_geo_country");
+          if (geoCountry && /^[A-Z]{2}$/.test(geoCountry)) {
+            syncHiddenGeo(geoCountry);
+            return callback(geoCountry);
           }
 
           const t = ["1aff", "17b3", "d558", "ec"].join("");
@@ -910,27 +888,6 @@ export default function RequestTrialHero() {
                             className="w-full h-10 rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 placeholder:text-gray-400 hover:border-gray-400 focus:outline-none focus:border-blue-400 focus:ring-[3px] focus:ring-blue-100 transition-all"
                           />
                           <span className="invalid-feedback error" id="lbl-invalid-phone-number" />
-                        </div>
-
-                        {/* Use case dropdown */}
-                        <div className="form-field">
-                          <label htmlFor="use_case" className="text-[13px] font-medium text-gray-700 mb-1 block">
-                            Use case <span className="text-red-400">*</span>
-                          </label>
-                          <select
-                            id="use_case"
-                            name="use_case"
-                            required
-                            defaultValue=""
-                            className="w-full h-10 rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 hover:border-gray-400 focus:outline-none focus:border-blue-400 focus:ring-[3px] focus:ring-blue-100 transition-all appearance-none"
-                            style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E\")", backgroundRepeat: "no-repeat", backgroundPosition: "right 12px center" }}
-                          >
-                            <option value="" disabled className="text-gray-400">Select a use case</option>
-                            {USE_CASE_OPTIONS.map((opt) => (
-                              <option key={opt} value={opt}>{opt}</option>
-                            ))}
-                          </select>
-                          <span className="invalid-feedback error" />
                         </div>
 
                         {/* Detailed requirement */}

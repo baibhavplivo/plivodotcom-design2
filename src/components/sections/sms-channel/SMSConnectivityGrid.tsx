@@ -9,7 +9,7 @@ interface Feature {
 // Illustration: High-Performance SMS
 function HighPerformanceSMSIllustration() {
   return (
-    <div className="relative h-48 w-full rounded-lg bg-gray-100/70 overflow-hidden">
+    <div className="relative h-48 w-full rounded-lg overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="relative h-full w-full p-3 flex items-center justify-center">
         {/* Two-column layout */}
         <div className="flex gap-2.5 h-full w-full max-w-[320px]">
@@ -99,7 +99,7 @@ function FraudPreventionIllustration() {
   ];
 
   return (
-    <div className="relative h-48 w-full rounded-lg bg-gray-100/70 overflow-hidden">
+    <div className="relative h-48 w-full rounded-lg overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="relative h-full w-full p-3 flex items-center justify-center">
         {/* Fraud Detection Panel */}
         <div className="bg-white rounded-lg border border-gray-200 h-full w-full max-w-[260px] flex flex-col">
@@ -169,7 +169,7 @@ function FraudPreventionIllustration() {
 // Illustration: Owns the Messaging Infrastructure
 function InfrastructureIllustration() {
   return (
-    <div className="relative h-48 w-full rounded-lg bg-gray-100/70 overflow-hidden">
+    <div className="relative h-48 w-full rounded-lg overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="relative h-full w-full flex items-center justify-center">
         {/* Stacked cards - using absolute positioning for precise control */}
         <div className="relative w-[280px] h-[150px]">
@@ -256,7 +256,7 @@ function InfrastructureIllustration() {
 // Illustration: Smart Routing
 function SmartRoutingIllustration() {
   return (
-    <div className="relative h-48 w-full rounded-lg bg-gray-100/70 overflow-hidden">
+    <div className="relative h-48 w-full rounded-lg overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="relative h-full w-full flex items-center justify-center p-3">
         {/* SVG Routing Diagram - Technical style */}
         <svg className="w-full h-full" viewBox="0 0 280 160" preserveAspectRatio="xMidYMid meet">
@@ -352,7 +352,7 @@ function SmartRoutingIllustration() {
 // Illustration: Global Scale & Local Compliance
 function GlobalScaleIllustration() {
   return (
-    <div className="relative h-48 w-full rounded-lg bg-gray-100/70 overflow-hidden">
+    <div className="relative h-48 w-full rounded-lg overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="relative h-full w-full">
         {/* Rotating Globe - positioned to show top hemisphere */}
         <div
@@ -396,7 +396,7 @@ function GlobalScaleIllustration() {
 // Illustration: Enterprise-Grade Reliability
 function EnterpriseReliabilityIllustration() {
   return (
-    <div className="relative h-48 w-full rounded-lg bg-gray-100/70 overflow-hidden">
+    <div className="relative h-48 w-full rounded-lg overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="relative h-full w-full p-4">
         {/* Minimal status pill - top right */}
         <div className="absolute right-4 top-4 z-10">
