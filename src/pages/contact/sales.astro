@@ -1,12 +1,77 @@
 ---
 import PlivoLayout from "@/layouts/PlivoLayout.astro";
 import ContactSalesHero from "@/components/sections/contact/ContactSalesHero";
-import PreFooterCTA from "@/components/sections/voice-homepage/PreFooterCTA";
 ---
 
 <PlivoLayout title="Contact Sales" description="Talk to our sales team for volume pricing, custom AI agent setup, and enterprise solutions.">
   <ContactSalesHero client:only="react" />
-  <PreFooterCTA client:visible title="Ready to make every call count?" />
+
+  <!-- Dots surface animation (same as homepage hero) -->
+  <div class="relative overflow-hidden bg-white -mt-[132px]" style="height:400px; z-index:0;">
+    <canvas id="contact-dotted-surface" class="absolute inset-0 z-0 pointer-events-none"></canvas>
+    <div class="absolute inset-x-0 top-0 z-[1] pointer-events-none" style="height:30%;background:linear-gradient(to bottom,white 0%,transparent);"></div>
+    <div class="absolute inset-y-0 left-0 w-20 sm:w-32 bg-gradient-to-r from-white to-transparent z-[1] pointer-events-none"></div>
+    <div class="absolute inset-y-0 right-0 w-20 sm:w-32 bg-gradient-to-l from-white to-transparent z-[1] pointer-events-none"></div>
+  </div>
+
+  <script is:inline>
+  (function initContactDots() {
+    var canvas = document.getElementById("contact-dotted-surface");
+    if (!canvas) return;
+    var container = canvas.parentElement;
+    if (!container) return;
+    var ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    var SPACING = 100, COLS = 50, ROWS = 80, FOCAL = 350, CAM_HEIGHT = 250;
+    var WAVE_AMP = 35, WAVE_SPEED = 0.015, MAX_R = 3, MIN_R = 0.4, PI2 = Math.PI * 2;
+    var dpr = 1, cw = 0, ch = 0, raf, time = 0;
+
+    function setup() {
+      var w = container.clientWidth, h = container.clientHeight;
+      if (w <= 0 || h <= 0) return;
+      dpr = window.devicePixelRatio || 1;
+      canvas.width = w * dpr; canvas.height = h * dpr;
+      canvas.style.width = w + "px"; canvas.style.height = h + "px";
+      cw = canvas.width; ch = canvas.height;
+      COLS = w < 640 ? 30 : 50; ROWS = w < 640 ? 50 : 80;
+    }
+    setup();
+
+    function draw() {
+      raf = requestAnimationFrame(draw);
+      if (!cw || !ch) { setup(); return; }
+      ctx.clearRect(0, 0, cw, ch);
+      var horizonY = ch * 0.20;
+      var centerX = cw / 2, focalDpr = FOCAL * dpr;
+
+      for (var j = ROWS - 1; j >= 0; j--) {
+        var z = (j + 1) * SPACING;
+        var scale = focalDpr / z;
+        var baseScreenY = horizonY + (CAM_HEIGHT * scale);
+        for (var i = 0; i < COLS; i++) {
+          var wx = (i - COLS / 2) * SPACING;
+          var wy = Math.sin((i * 0.3) + time) * WAVE_AMP + Math.sin((j * 0.5) + time * 0.7) * WAVE_AMP;
+          var screenX = centerX + wx * scale;
+          var screenY = baseScreenY - wy * scale;
+          if (screenX < -10 || screenX > cw + 10 || screenY < -10 || screenY > ch + 10) continue;
+          var r = Math.min(MAX_R * dpr, Math.max(MIN_R * dpr, scale * 3));
+          var t = j / ROWS;
+          var cr, cg, cb;
+          if (t < 0.5) { var p = t * 2; cr = p * 50; cg = p * 61; cb = p * 254; }
+          else { var p2 = (t - 0.5) * 2; cr = 50 + p2 * 155; cg = 61 + p2 * 1; cb = 254 - p2 * 5; }
+          var alpha = 1.0 - t * 0.7;
+          ctx.beginPath(); ctx.arc(screenX, screenY, r, 0, PI2);
+          ctx.fillStyle = "rgba(" + (cr|0) + "," + (cg|0) + "," + (cb|0) + "," + alpha + ")";
+          ctx.fill();
+        }
+      }
+      time += WAVE_SPEED;
+    }
+    raf = requestAnimationFrame(draw);
+    new ResizeObserver(function() { setup(); }).observe(container);
+  })();
+  </script>
 
   <!-- intl-tel-input CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/css/intlTelInput.css" />

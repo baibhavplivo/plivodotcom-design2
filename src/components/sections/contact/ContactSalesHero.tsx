@@ -545,7 +545,7 @@ export default function ContactSalesHero() {
   }, []);
 
   return (
-    <section className="bg-white pt-6 sm:pt-8 md:pt-12 pb-12 sm:pb-16 md:pb-24">
+    <section className="relative z-[1] bg-white pt-2 sm:pt-3 md:pt-4 pb-0">
       <div className="container mx-auto max-w-7xl px-4">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
           {/* Left Column - Content */}
