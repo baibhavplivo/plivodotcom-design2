@@ -971,12 +971,12 @@ function CarrierFeesSection({ countryCode }: { countryCode: string }) {
                 <>
                   <tr>
                     <td className="py-3 pr-4 text-gray-900">AT&T</td>
-                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0030/sms</td>
-                    <td className="py-3 px-2 text-center text-black">$0.0030/sms</td>
-                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0030/sms</td>
+                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0035/sms</td>
+                    <td className="py-3 px-2 text-center text-black">$0.0035/sms</td>
+                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0035/sms</td>
                     <td className="py-3 px-2 text-center text-gray-400">NA</td>
-                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0030/sms</td>
-                    <td className="py-3 px-2 text-center text-black">$0.0030/sms</td>
+                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0035/sms</td>
+                    <td className="py-3 px-2 text-center text-black">$0.0035/sms</td>
                   </tr>
                   <tr>
                     <td className="py-3 pr-4 text-gray-900">T-Mobile</td>
@@ -1088,12 +1088,12 @@ function CarrierFeesSection({ countryCode }: { countryCode: string }) {
                 <>
                   <tr>
                     <td className="py-3 pr-4 text-gray-900">AT&T</td>
-                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0075/mms</td>
-                    <td className="py-3 px-2 text-center text-black">$0.0075/mms</td>
-                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0075/mms</td>
+                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0090/mms</td>
+                    <td className="py-3 px-2 text-center text-black">$0.0090/mms</td>
+                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0090/mms</td>
                     <td className="py-3 px-2 text-center text-gray-400">NA</td>
-                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0075/mms</td>
-                    <td className="py-3 px-2 text-center text-black">$0.0075/mms</td>
+                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0090/mms</td>
+                    <td className="py-3 px-2 text-center text-black">$0.0090/mms</td>
                   </tr>
                   <tr>
                     <td className="py-3 pr-4 text-gray-900">T-Mobile</td>
