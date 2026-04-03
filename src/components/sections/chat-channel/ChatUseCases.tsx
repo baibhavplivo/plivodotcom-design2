@@ -13,7 +13,7 @@ interface UseCase {
 // Chat bubble wrapper for all illustrations
 function ChatWrapper({ children, className }: { children: React.ReactNode; className?: string }) {
   return (
-    <div className={cn("relative h-56 w-full rounded-xl overflow-hidden bg-gray-100/70", className)}>
+    <div className={cn("relative h-56 w-full rounded-xl overflow-hidden", className)} style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="h-full px-5 py-3 flex flex-col justify-center gap-1.5">
         {children}
       </div>
@@ -332,7 +332,7 @@ export default function ChatUseCases() {
         <div className="grid gap-x-6 gap-y-14 sm:gap-y-16 sm:grid-cols-2 lg:grid-cols-3">
           {useCases.map((useCase, index) => (
             <div key={index} className="group">
-              <div className="mb-4 overflow-hidden rounded-xl transition-all">
+              <div className="mb-4 overflow-hidden rounded-xl border border-gray-200 transition-all">
                 {useCase.illustration}
               </div>
               <h3 className="mb-2 text-lg font-semibold text-black">

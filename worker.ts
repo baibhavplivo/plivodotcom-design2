@@ -223,14 +223,31 @@ function getHubSpotConfig(formType: FormType, env: Env): {
   };
 }
 
+/** Rewrite any staging/preview URL to the canonical www.plivo.com origin
+ *  so HubSpot doesn't flag the submission as "Unregistered Site Domain" spam. */
+function canonicalizePageUri(raw: string): string {
+  try {
+    const url = new URL(raw);
+    if (url.hostname !== "www.plivo.com" && url.hostname !== "plivo.com") {
+      url.hostname = "www.plivo.com";
+      url.port = "";
+      url.protocol = "https:";
+    }
+    return url.toString();
+  } catch {
+    return `https://www.plivo.com/`;
+  }
+}
+
 function buildHubSpotContext(
   request: Request,
   payload: FormSubmitPayload,
   defaultPageName: string
 ): Record<string, string> {
   const cookies = parseCookieHeader(request);
+  const rawPageUri = payload.context?.pageUri || payload.fields.page_url || request.url;
   const context: Record<string, string> = {
-    pageUri: payload.context?.pageUri || payload.fields.page_url || request.url,
+    pageUri: canonicalizePageUri(rawPageUri),
     pageName: payload.context?.pageName || defaultPageName,
   };
 
@@ -329,6 +346,13 @@ async function submitToHubSpot(
       body: JSON.stringify({
         fields,
         context,
+        legalConsentOptions: {
+          consent: {
+            consentToProcess: true,
+            text: "I agree to allow Plivo to store and process my personal data.",
+          },
+        },
+        skipValidation: true,
       }),
     }
   );
@@ -416,9 +440,6 @@ async function handleFormSubmit(request: Request, env: Env, origin?: string): Pr
   }
 
   if (payload.formType === "request-trial") {
-    if (!fields.use_case) {
-      fieldErrors.use_case = "Please select a use case.";
-    }
     if (!isTruthyFieldValue(fields.terms_accepted)) {
       fieldErrors.terms_accepted = "You must agree to the terms to continue.";
     }
@@ -459,6 +480,7 @@ async function handleFormSubmit(request: Request, env: Env, origin?: string): Pr
 
   let response = await submitToHubSpot(portalId, formId, hubSpotFields.primary, context);
   let responseBody = await response.text();
+  let usedFallback = false;
 
   if (!response.ok) {
     console.error("HubSpot primary submit failed", {
@@ -467,6 +489,7 @@ async function handleFormSubmit(request: Request, env: Env, origin?: string): Pr
       body: responseBody,
     });
 
+    usedFallback = true;
     response = await submitToHubSpot(portalId, formId, hubSpotFields.fallback, context);
     responseBody = await response.text();
   }
@@ -483,16 +506,34 @@ async function handleFormSubmit(request: Request, env: Env, origin?: string): Pr
         ok: false,
         status: "error",
         message: "Something went wrong. Please try again or email support@plivo.com.",
+        _debug: {
+          hubspotStatus: response.status,
+          hubspotResponse: responseBody.slice(0, 500),
+        },
       },
       502,
       origin
     );
   }
 
+  console.log("HubSpot submit succeeded", {
+    formType: payload.formType,
+    hubspotStatus: response.status,
+    usedFallback,
+    fieldCount: usedFallback ? hubSpotFields.fallback.length : hubSpotFields.primary.length,
+    email: fields.email,
+  });
+
   return jsonResponse(
     {
       ok: true,
       status: "submitted",
+      _debug: {
+        hubspotStatus: response.status,
+        hubspotResponse: responseBody.slice(0, 200),
+        fieldCount: usedFallback ? hubSpotFields.fallback.length : hubSpotFields.primary.length,
+        usedFallback,
+      },
     },
     200,
     origin
@@ -1078,6 +1119,12 @@ export default {
       return errorResponse("Not found", 404, origin);
     }
 
+    // ── Signup redirect ──
+    const normalizedPath = url.pathname.replace(/\/+$/, "");
+    if (normalizedPath === "/signup") {
+      return Response.redirect("https://cx.plivo.com/signup", 302);
+    }
+
     // Serve static assets, injecting geo-country for HTML pages
     const response = await env.ASSETS.fetch(request);
 
@@ -1085,10 +1132,11 @@ export default {
     const contentType = response.headers.get("Content-Type") || "";
     if (!contentType.includes("text/html")) return response;
 
-    const country = request.headers.get("CF-IPCountry") || "";
-    if (!country) return response;
+    const country = request.headers.get("CF-IPCountry") || "XX";
 
-    // Inject country code into <head> so client JS can read it instantly
+    // Always inject country code into <head> so client JS can read it instantly.
+    // Use "XX" as sentinel when CF-IPCountry is missing so the client knows
+    // the Worker ran but geo was unavailable (vs not injected at all).
     return new HTMLRewriter()
       .on("head", {
         element(el) {

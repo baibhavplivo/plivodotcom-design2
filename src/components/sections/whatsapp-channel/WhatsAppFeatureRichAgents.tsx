@@ -153,7 +153,7 @@ function IllustrationCard({
   children: React.ReactNode;
 }) {
   return (
-    <div className="relative h-full w-full rounded-xl overflow-hidden bg-gray-100/70">
+    <div className="relative h-full w-full rounded-xl overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="relative h-full w-full p-3 sm:p-4">
         <div className="bg-white rounded-lg border border-gray-200 shadow-sm h-full flex flex-col">
           <div className="px-4 py-3 border-b border-gray-100 flex items-center gap-3">
@@ -176,7 +176,7 @@ function IllustrationCard({
 
 function CustomizeBrandIllustration() {
   return (
-    <div className="relative h-full w-full rounded-xl overflow-hidden">
+    <div className="relative h-full w-full rounded-xl overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="relative h-full w-full p-2.5 sm:p-3 md:p-4">
         <div className="bg-white rounded-xl shadow-lg border border-gray-200 h-full flex flex-col overflow-hidden">
           {/* Header */}
@@ -289,7 +289,7 @@ function Availability247Illustration() {
   ];
   const maxVal = Math.max(...hours.map(h => h.val));
   return (
-    <div className="relative h-full w-full rounded-xl overflow-hidden">
+    <div className="relative h-full w-full rounded-xl overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="relative h-full w-full p-3 sm:p-4">
         <div className="bg-white rounded-lg border border-gray-200 shadow-sm h-full flex flex-col">
           {/* Header */}
@@ -396,7 +396,7 @@ function NaturalConversationIllustration() {
   }, []);
 
   return (
-    <div className="relative h-full w-full flex items-start justify-center rounded-xl overflow-hidden pt-4 sm:pt-6 bg-gray-100/70">
+    <div className="relative h-full w-full flex items-start justify-center rounded-xl overflow-hidden pt-4 sm:pt-6" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       {/* Phone device */}
       <div className="relative w-[280px] sm:w-[310px] h-[480px] sm:h-[520px]">
         {/* Phone outer frame */}
@@ -560,7 +560,7 @@ function UnifiedProfilesIllustration() {
 
 function KnowledgeSourcesIllustration() {
   return (
-    <div className="relative h-full w-full rounded-xl overflow-hidden">
+    <div className="relative h-full w-full rounded-xl overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="relative h-full w-full p-3 sm:p-4">
         <div className="bg-white rounded-lg border border-gray-200 shadow-sm h-full flex flex-col">
           {/* Header bar */}
@@ -669,7 +669,7 @@ function KnowledgeSourcesIllustration() {
 
 function NoCodeStudioIllustration() {
   return (
-    <div className="relative h-full w-full rounded-xl overflow-hidden">
+    <div className="relative h-full w-full rounded-xl overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="relative h-full w-full p-3 sm:p-4">
         <div className="bg-white rounded-lg border border-gray-200 shadow-sm h-full flex flex-col">
           <div className="px-4 py-3 border-b border-gray-100 flex items-center gap-3">
@@ -687,7 +687,7 @@ function NoCodeStudioIllustration() {
 
 function HumanInLoopIllustration() {
   return (
-    <div className="relative h-full w-full rounded-xl overflow-hidden">
+    <div className="relative h-full w-full rounded-xl overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="relative h-full w-full p-3 sm:p-4">
         <div className="bg-white rounded-lg border border-gray-200 shadow-sm h-full flex flex-col">
           {/* Header */}
@@ -889,7 +889,7 @@ function SeamlessIntegrationsIllustration() {
     )},
   ];
   return (
-    <div className="relative h-full w-full rounded-xl overflow-hidden">
+    <div className="relative h-full w-full rounded-xl overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="relative h-full w-full p-3 sm:p-4">
         <div className="bg-white rounded-lg border border-gray-200 shadow-sm h-full flex flex-col">
           <div className="px-4 py-3 border-b border-gray-100 flex items-center gap-3">
@@ -952,7 +952,7 @@ function RichMediaIllustration() {
 
 function VerifiedProfileIllustration() {
   return (
-    <div className="relative h-full w-full rounded-xl overflow-hidden bg-gray-100/70">
+    <div className="relative h-full w-full rounded-xl overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="relative h-full w-full p-3 sm:p-4 flex items-center justify-center">
         <div className="flex flex-col items-center gap-4">
           {/* Verified badge */}
@@ -984,7 +984,7 @@ function VerifiedProfileIllustration() {
 
 function QuickReplyIllustration() {
   return (
-    <div className="relative h-full w-full rounded-xl overflow-hidden bg-gray-100/70">
+    <div className="relative h-full w-full rounded-xl overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="relative h-full w-full p-3 sm:p-4 flex items-center justify-center">
         <div className="space-y-3 w-full max-w-[260px]">
           {/* Message with CTA buttons */}
@@ -1088,7 +1088,7 @@ function MultiLanguageIllustration() {
     { code: "CS", name: "Čeština", flag: "🇨🇿" },
   ];
   return (
-    <div className="relative h-full w-full rounded-xl overflow-hidden bg-gray-50/50">
+    <div className="relative h-full w-full rounded-xl overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="flex flex-col gap-2 h-full justify-center py-4">
         <Marquee className="[--duration:25s] [--gap:0.6rem] px-0 py-1.5" pauseOnHover>
           {row1.map((lang, i) => (

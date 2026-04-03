@@ -32,7 +32,7 @@ function MessageTypesIllustration() {
   ];
 
   return (
-    <div className="relative h-48 w-full rounded-lg bg-gray-100/70 overflow-hidden">
+    <div className="relative h-48 w-full rounded-lg overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <svg className="absolute w-0 h-0">
         <defs>
           <linearGradient id="chatIconGrad" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -59,7 +59,7 @@ function MessageTypesIllustration() {
 // Illustration: Conversational Forms
 function ConversationalFormsIllustration() {
   return (
-    <div className="relative h-48 w-full rounded-lg bg-gray-100/70 overflow-hidden">
+    <div className="relative h-48 w-full rounded-lg overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="relative h-full w-full p-3 flex items-center justify-center">
         <div className="w-full max-w-[220px] bg-white rounded-xl shadow-sm border border-gray-200 p-3">
           <p className="text-[10px] font-semibold text-gray-800 mb-2">Collect Information</p>
@@ -96,7 +96,7 @@ function ConversationalFormsIllustration() {
 // Illustration: Custom Interactive Messages
 function CustomInteractiveIllustration() {
   return (
-    <div className="relative h-48 w-full rounded-lg bg-gray-100/70 overflow-hidden">
+    <div className="relative h-48 w-full rounded-lg overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="relative h-full w-full p-3 flex items-center justify-center">
         <div className="w-full max-w-[220px]">
           {/* Calendar picker mini */}
@@ -125,7 +125,7 @@ function CustomInteractiveIllustration() {
 // Illustration: Custom Branded Chat
 function BrandedChatIllustration() {
   return (
-    <div className="relative h-48 w-full rounded-lg bg-gray-100/70 overflow-hidden">
+    <div className="relative h-48 w-full rounded-lg overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="relative h-full w-full p-3 flex items-start justify-center pt-4">
         <div className="w-full max-w-[220px]">
           <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
@@ -164,7 +164,7 @@ function BrandedChatIllustration() {
 // Illustration: Web Chat
 function WebChatIllustration() {
   return (
-    <div className="relative h-48 w-full rounded-lg bg-gray-100/70 overflow-hidden">
+    <div className="relative h-48 w-full rounded-lg overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="relative h-full w-full p-3 flex items-center justify-center">
         {/* Browser mockup */}
         <div className="w-full max-w-[240px] bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
@@ -202,7 +202,7 @@ function WebChatIllustration() {
 // Illustration: Mobile App Chat
 function MobileAppIllustration() {
   return (
-    <div className="relative h-48 w-full rounded-lg bg-gray-100/70 overflow-hidden">
+    <div className="relative h-48 w-full rounded-lg overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="relative h-full w-full flex items-start justify-center">
         {/* Centered layout wrapper */}
         <div className="flex items-start gap-3 mt-3">
@@ -266,7 +266,7 @@ function SnippetsIllustration() {
   ];
 
   return (
-    <div className="relative h-48 w-full rounded-lg bg-gray-100/70 overflow-hidden">
+    <div className="relative h-48 w-full rounded-lg overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="relative h-full w-full p-3 flex items-center justify-center">
         <div className="relative w-full max-w-[240px]">
           <div className="absolute left-3 right-3 top-1 h-8 bg-white rounded-lg border border-gray-200/60 opacity-30" />
@@ -328,7 +328,7 @@ function MultiLanguageIllustration() {
   ];
 
   return (
-    <div className="relative h-48 w-full rounded-lg bg-gray-100/70 overflow-hidden">
+    <div className="relative h-48 w-full rounded-lg overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="flex flex-col gap-1 h-full justify-center">
         <Marquee className="[--duration:25s] [--gap:0.5rem] px-0 py-1.5" pauseOnHover>
           {row1.map((lang, i) => (
@@ -357,7 +357,7 @@ function MultiLanguageIllustration() {
 // Illustration: Persistent Conversations
 function PersistentConversationsIllustration() {
   return (
-    <div className="relative h-48 w-full rounded-lg bg-gray-100/70 overflow-hidden">
+    <div className="relative h-48 w-full rounded-lg overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="relative h-full w-full p-3 flex items-center justify-center">
         <div className="w-full max-w-[230px]">
           <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">

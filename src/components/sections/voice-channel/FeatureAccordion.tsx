@@ -101,7 +101,7 @@ function HumanLikeVoicesIllustration() {
   ];
 
   return (
-    <div className="relative h-full w-full rounded-xl overflow-hidden">
+    <div className="relative h-full w-full rounded-xl overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="relative h-full w-full p-2.5 sm:p-3 md:p-4">
         {/* Main card - light theme with grey accents */}
         <div className="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden h-full flex flex-col">
@@ -211,7 +211,7 @@ function HumanLikeVoicesIllustration() {
 // Illustration for Brand-Aligned section
 function BrandAlignedIllustration() {
   return (
-    <div className="relative h-full w-full rounded-xl overflow-hidden">
+    <div className="relative h-full w-full rounded-xl overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="relative h-full w-full p-2.5 sm:p-3 md:p-4">
         {/* Main card - light theme with grey accents */}
         <div className="bg-white rounded-xl shadow-lg border border-gray-200 h-full flex flex-col overflow-hidden">
@@ -325,7 +325,7 @@ function SpeechRecognitionIllustration() {
   ];
 
   return (
-    <div className="relative h-full w-full rounded-xl overflow-hidden">
+    <div className="relative h-full w-full rounded-xl overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       {/* CSS for natural wave animation */}
       <style>{`
         @keyframes wave {
@@ -479,7 +479,7 @@ function ContextAwareIllustration() {
   ];
 
   return (
-    <div className="relative h-full w-full rounded-xl overflow-hidden">
+    <div className="relative h-full w-full rounded-xl overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="relative h-full w-full p-3 sm:p-4 md:p-6 flex flex-col justify-center gap-3 sm:gap-4">
 
         {/* Top Card - Order Context */}
@@ -560,7 +560,7 @@ function ContextAwareIllustration() {
 // Illustration for AI Guardrails
 function GuardrailsIllustration() {
   return (
-    <div className="relative h-full w-full rounded-xl overflow-hidden">
+    <div className="relative h-full w-full rounded-xl overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="relative h-full w-full p-2.5 sm:p-3 md:p-4">
         {/* Main card - light theme with grey accents */}
         <div className="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden h-full flex flex-col p-3 sm:p-4">
@@ -678,7 +678,7 @@ function AvailabilityIllustration() {
   };
 
   return (
-    <div className="relative h-full w-full rounded-xl overflow-hidden">
+    <div className="relative h-full w-full rounded-xl overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="relative h-full w-full p-2.5 sm:p-3 md:p-4">
         {/* Main Dashboard Card */}
         <div className="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden h-full flex flex-col p-3 sm:p-4">

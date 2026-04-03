@@ -20,7 +20,7 @@ interface UseCaseCategory {
 // Consistent card frame for all illustrations
 function ChatWrapper({ children, className }: { children: React.ReactNode; className?: string }) {
   return (
-    <div className={cn("relative h-56 w-full rounded-xl overflow-hidden bg-gray-100/70", className)}>
+    <div className={cn("relative h-56 w-full rounded-xl overflow-hidden", className)} style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="h-full px-5 py-3 flex flex-col justify-center gap-1.5">
         {children}
       </div>
@@ -209,7 +209,7 @@ function OrderTrackingIllustration() {
 // Phone frame - oversized so bottom half crops outside the container
 function PhoneFrame({ children }: { children: React.ReactNode }) {
   return (
-    <div className="relative h-56 w-full rounded-xl overflow-hidden bg-gray-100/70">
+    <div className="relative h-56 w-full rounded-xl overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="absolute inset-x-0 top-3 flex justify-center">
         {/* Phone device - taller than container so bottom crops */}
         <div className="relative w-[180px] h-[320px] rounded-[22px] border-[3px] border-gray-400 bg-gray-300 overflow-hidden shadow-xl">
@@ -537,7 +537,7 @@ export default function WhatsAppUseCases() {
                   {category.useCases.map((useCase, index) => (
                     <div key={index} className="group">
                       {/* Illustration */}
-                      <div className="mb-4 overflow-hidden rounded-lg transition-all">
+                      <div className="mb-4 overflow-hidden rounded-lg border border-gray-200 transition-all">
                         {useCase.illustration}
                       </div>
 

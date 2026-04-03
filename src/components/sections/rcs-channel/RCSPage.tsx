@@ -704,6 +704,13 @@ function RCSEarlyAccess() {
                 pageUri: window.location.href,
                 pageName: "RCS Early Access",
               },
+              legalConsentOptions: {
+                consent: {
+                  consentToProcess: true,
+                  text: "I agree to allow Plivo to store and process my personal data.",
+                },
+              },
+              skipValidation: true,
             }),
           }).then((res) => {
             if (res.ok) {

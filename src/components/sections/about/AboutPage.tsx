@@ -43,14 +43,21 @@ const stackLayers = [
       {
         name: "Messaging API",
         icon: MessageSquareText,
-        href: "/sms/overview/",
-        sub: ["SMS", "WhatsApp Message", "RCS"],
+        href: "",
+        sub: [
+          { label: "SMS", href: "/sms/overview/" },
+          { label: "WhatsApp Message", href: "/whatsapp-message/overview/" },
+          { label: "RCS", href: "/rcs/" },
+        ],
       },
       {
         name: "Voice API",
         icon: Phone,
-        href: "/voice/overview/",
-        sub: ["Voice Call", "WhatsApp Call"],
+        href: "",
+        sub: [
+          { label: "Voice Call", href: "/voice/overview/" },
+          { label: "WhatsApp Call", href: "/whatsapp-call/pricing/" },
+        ],
       },
     ],
   },
@@ -208,11 +215,13 @@ export default function AboutPage() {
                 <div className="space-y-2">
                   {layer.products.map((product) => {
                     const Icon = product.icon;
+                    const hasSub = "sub" in product && product.sub;
+                    const Wrapper = hasSub ? "div" : "a";
                     return (
-                      <a
+                      <Wrapper
                         key={product.name}
-                        href={product.href}
-                        className="group flex items-center gap-2.5 rounded-md bg-gray-50 px-3 py-2.5 transition-colors hover:bg-gray-100"
+                        {...(!hasSub ? { href: product.href } : {})}
+                        className={`flex items-center gap-2.5 rounded-md bg-gray-50 px-3 py-2.5 transition-colors ${!hasSub ? "group hover:bg-gray-100" : ""}`}
                       >
                         <div className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-md bg-white border border-gray-200">
                           <Icon className="h-3.5 w-3.5 text-[#323dfe]" />
@@ -220,17 +229,19 @@ export default function AboutPage() {
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center gap-1.5">
                             <span className="text-sm font-medium text-black">{product.name}</span>
-                            <ArrowRight className="h-3 w-3 text-gray-400 transition-transform group-hover:translate-x-0.5" />
+                            {!hasSub && <ArrowRight className="h-3 w-3 text-gray-400 transition-transform group-hover:translate-x-0.5" />}
                           </div>
-                          {"sub" in product && product.sub && (
+                          {hasSub && (
                             <div className="flex flex-wrap gap-x-2.5 gap-y-0.5 mt-0.5">
-                              {product.sub.map((s) => (
-                                <span key={s} className="text-xs text-gray-400">{s}</span>
+                              {(product.sub as { label: string; href: string }[]).map((s) => (
+                                <a key={s.label} href={s.href} className="text-xs text-gray-400 hover:text-[#323dfe] transition-colors">
+                                  {s.label}
+                                </a>
                               ))}
                             </div>
                           )}
                         </div>
-                      </a>
+                      </Wrapper>
                     );
                   })}
                 </div>

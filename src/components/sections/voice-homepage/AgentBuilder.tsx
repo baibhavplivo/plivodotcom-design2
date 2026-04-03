@@ -142,10 +142,8 @@ export default function AgentBuilder() {
           border-color: rgba(0,0,0,0.06);
         }
         .agent-card-lines {
-          background-image:
-            repeating-linear-gradient(0deg, rgba(0,0,0,0.06), rgba(0,0,0,0.06) 1px, transparent 1px, transparent 40px),
-            repeating-linear-gradient(90deg, rgba(0,0,0,0.06), rgba(0,0,0,0.06) 1px, transparent 1px, transparent 40px);
-          background-size: 40px 40px;
+          background-image: radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px);
+          background-size: 16px 16px;
           background-position: center center;
         }
         .agent-card-content {

@@ -66,6 +66,13 @@ export const ContactPage = () => {
                 pageUri: window.location.href,
                 pageName: "Contact Us",
               },
+              legalConsentOptions: {
+                consent: {
+                  consentToProcess: true,
+                  text: "I agree to allow Plivo to store and process my personal data.",
+                },
+              },
+              skipValidation: true,
             }),
           }
         );

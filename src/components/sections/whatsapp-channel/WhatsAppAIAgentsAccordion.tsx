@@ -85,7 +85,7 @@ const knowledgeFeatures: Feature[] = [
 // Brand Personality Configuration Illustration
 function BrandPersonalityIllustration() {
   return (
-    <div className="relative h-full w-full rounded-xl overflow-hidden bg-gray-100/70">
+    <div className="relative h-full w-full rounded-xl overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="relative h-full w-full p-3 sm:p-4">
         {/* Configuration Panel */}
         <div className="bg-white rounded-lg border border-gray-200 shadow-sm h-full flex flex-col">
@@ -170,7 +170,7 @@ function TwoWayConversationIllustration() {
   }, []);
 
   return (
-    <div className="relative h-full w-full rounded-xl overflow-hidden bg-gray-100/70">
+    <div className="relative h-full w-full rounded-xl overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="relative h-full w-full pt-3 sm:pt-4 flex justify-center overflow-hidden">
         {/* Phone device */}
         <div className="w-[280px] sm:w-[320px] h-[500px]">
@@ -274,7 +274,7 @@ function TwoWayConversationIllustration() {
 // High-Performance AI Content Illustration
 function HighPerformanceContentIllustration() {
   return (
-    <div className="relative h-full w-full rounded-xl overflow-hidden bg-gray-100/70">
+    <div className="relative h-full w-full rounded-xl overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="relative h-full w-full p-3 sm:p-4">
         <div className="bg-white rounded-lg border border-gray-200 shadow-sm h-full flex flex-col">
           {/* Header */}
@@ -360,7 +360,7 @@ function HighPerformanceContentIllustration() {
 // Personalized Recommendations Illustration
 function PersonalizedRecommendationsIllustration() {
   return (
-    <div className="relative h-full w-full rounded-xl overflow-hidden bg-gray-100/70">
+    <div className="relative h-full w-full rounded-xl overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="relative h-full w-full p-3 sm:p-4">
         <div className="bg-white rounded-lg border border-gray-200 shadow-sm h-full flex flex-col">
           <div className="px-4 py-3 border-b border-gray-100 flex items-center gap-3">
@@ -428,7 +428,7 @@ function KnowledgeIntegrationIllustration() {
   ];
 
   return (
-    <div className="relative h-full w-full rounded-xl overflow-hidden bg-gray-100/70">
+    <div className="relative h-full w-full rounded-xl overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="relative h-full w-full p-3 sm:p-4">
         <div className="bg-white rounded-lg border border-gray-200 shadow-sm h-full flex flex-col">
           <div className="px-4 py-3 border-b border-gray-100 flex items-center gap-3">
@@ -507,7 +507,7 @@ function Availability247Illustration() {
   ];
 
   return (
-    <div className="relative h-full w-full rounded-xl overflow-hidden bg-gray-100/70">
+    <div className="relative h-full w-full rounded-xl overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="relative h-full w-full p-3 sm:p-4">
         <div className="bg-white rounded-xl border border-gray-200 shadow-sm h-full flex flex-col">
           <div className="px-4 py-3.5 border-b border-gray-100 flex items-center gap-3">
@@ -596,7 +596,7 @@ function Availability247Illustration() {
 // Voices that Feel Real Illustration
 function VoicesFeelRealIllustration() {
   return (
-    <div className="relative h-full w-full rounded-xl overflow-hidden bg-gray-100/70">
+    <div className="relative h-full w-full rounded-xl overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="relative h-full w-full p-3 sm:p-4">
         <div className="bg-white rounded-lg border border-gray-200 shadow-sm h-full flex flex-col">
           {/* Header */}

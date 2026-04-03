@@ -47,7 +47,7 @@ function GlobalCoverageIllustration() {
   const row2 = phoneNumbers.slice(6, 12);
 
   return (
-    <div className="relative h-48 w-full rounded-lg bg-gray-100/70 overflow-hidden">
+    <div className="relative h-48 w-full rounded-lg overflow-hidden voice-dotgrid">
       {/* CSS for marquee animation */}
       <style>{`
         @keyframes marquee-left {
@@ -99,7 +99,7 @@ function GlobalCoverageIllustration() {
 // Illustration for Crystal Clear Quality
 function CrystalClearIllustration() {
   return (
-    <div className="relative h-48 w-full rounded-lg bg-gray-100/70 overflow-hidden">
+    <div className="relative h-48 w-full rounded-lg overflow-hidden bg-white">
       {/* World Map with animated routes */}
       <WorldMap
         lineColor="#323dfe"
@@ -149,7 +149,7 @@ function CrystalClearIllustration() {
 // Illustration for Intelligent Routing
 function IntelligentRoutingIllustration() {
   return (
-    <div className="relative h-48 w-full rounded-lg bg-gray-100/70 overflow-hidden">
+    <div className="relative h-48 w-full rounded-lg overflow-hidden voice-dotgrid">
       <div className="absolute inset-0 flex items-center px-6">
         <div className="w-full flex items-center justify-between">
           {/* Source */}
@@ -214,7 +214,7 @@ function IntelligentRoutingIllustration() {
 // Illustration for Verified Calls
 function VerifiedCallsIllustration() {
   return (
-    <div className="relative h-48 w-full rounded-lg bg-gray-100/70 overflow-hidden">
+    <div className="relative h-48 w-full rounded-lg overflow-hidden voice-dotgrid">
       <div className="absolute inset-0 flex items-start pt-3 px-6">
         <div className="w-full flex items-start justify-center gap-5">
           {/* Phone Device Mock - Incoming Call Screen (Light Version) */}
@@ -260,8 +260,8 @@ function VerifiedCallsIllustration() {
           {/* Verification Features - Tighter spacing */}
           <div className="flex flex-col gap-2">
             <div className="flex items-center gap-2.5 bg-white rounded-lg border border-gray-200 px-3 py-2 shadow-sm">
-              <div className="w-7 h-7 rounded-md bg-amber-100 flex items-center justify-center">
-                <svg className="w-3.5 h-3.5 text-amber-600" fill="currentColor" viewBox="0 0 20 20">
+              <div className="w-7 h-7 rounded-md bg-gray-100 flex items-center justify-center">
+                <svg className="w-3.5 h-3.5 text-gray-600" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                 </svg>
               </div>
@@ -271,8 +271,8 @@ function VerifiedCallsIllustration() {
               </div>
             </div>
             <div className="flex items-center gap-2.5 bg-white rounded-lg border border-gray-200 px-3 py-2 shadow-sm">
-              <div className="w-7 h-7 rounded-md bg-blue-100 flex items-center justify-center">
-                <svg className="w-3.5 h-3.5 text-[#323dfe]" fill="currentColor" viewBox="0 0 20 20">
+              <div className="w-7 h-7 rounded-md bg-gray-100 flex items-center justify-center">
+                <svg className="w-3.5 h-3.5 text-gray-600" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
                 </svg>
               </div>
@@ -282,8 +282,8 @@ function VerifiedCallsIllustration() {
               </div>
             </div>
             <div className="flex items-center gap-2.5 bg-white rounded-lg border border-gray-200 px-3 py-2 shadow-sm">
-              <div className="w-7 h-7 rounded-md bg-[#323dfe]/10 flex items-center justify-center">
-                <svg className="w-3.5 h-3.5 text-[#323dfe]" fill="currentColor" viewBox="0 0 20 20">
+              <div className="w-7 h-7 rounded-md bg-gray-100 flex items-center justify-center">
+                <svg className="w-3.5 h-3.5 text-gray-600" fill="currentColor" viewBox="0 0 20 20">
                   <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                 </svg>
               </div>
@@ -304,7 +304,7 @@ function VerifiedCallsIllustration() {
 // Illustration for Audio Streaming
 function AudioStreamingIllustration() {
   return (
-    <div className="relative h-48 w-full rounded-lg bg-gray-100/70 overflow-hidden">
+    <div className="relative h-48 w-full rounded-lg overflow-hidden voice-dotgrid">
       {/* CSS for natural wave animation */}
       <style>{`
         @keyframes stream-wave {
@@ -387,7 +387,7 @@ function AudioStreamingIllustration() {
 // Illustration for SIP trunking
 function SIPTrunkingIllustration() {
   return (
-    <div className="relative h-48 w-full rounded-lg bg-gray-100/70 overflow-hidden">
+    <div className="relative h-48 w-full rounded-lg overflow-hidden voice-dotgrid">
       <style>{`
         @keyframes sip-pulse {
           0%, 100% { opacity: 0.4; }
@@ -530,6 +530,7 @@ const features: Feature[] = [
 export default function VoiceConnectivityGrid() {
   return (
     <section className="bg-white py-12 sm:py-16 md:py-20">
+      <style>{`.voice-dotgrid { background-image: radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px); background-size: 16px 16px; background-position: center center; }`}</style>
       <div className="container mx-auto max-w-7xl px-4">
         {/* Section Header */}
         <h2 className="font-sora text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] font-normal leading-[1.25] tracking-[-0.02em] text-black text-center mb-4 max-w-3xl mx-auto">
