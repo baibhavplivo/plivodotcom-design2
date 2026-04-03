@@ -755,6 +755,7 @@ export function PlivoPricing() {
       {/* 4-Column Inline Pricing — single box with separator lines */}
       <section className="bg-white pb-12 lg:pb-20">
         <div className="container mx-auto max-w-7xl px-4">
+          <h2 className="font-sans text-2xl font-semibold text-black mb-4">Channel Pricing</h2>
           <div className="rounded-xl border border-gray-200 bg-white overflow-hidden">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-gray-200">
               {/* Voice */}
