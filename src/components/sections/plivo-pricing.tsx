@@ -627,11 +627,9 @@ export function PlivoPricing() {
         </div>
 
         <div className="container relative z-10 mx-auto max-w-7xl px-4">
-          <div className="rounded-xl border border-gray-200 bg-white overflow-hidden">
-            {/* Two Tier Cards Side by Side */}
-            <div className="grid md:grid-cols-2">
+          <div className="grid md:grid-cols-2 gap-4">
               {/* Pay as you go */}
-              <div className="p-6 md:p-8 md:border-r border-gray-200">
+              <div className="rounded-xl border border-gray-200 bg-white p-6 md:p-8">
                 <div className="flex items-start justify-between gap-4">
                   <div>
                     <h2 className="font-sans text-2xl font-semibold text-black">
@@ -687,7 +685,7 @@ export function PlivoPricing() {
               </div>
 
               {/* Enterprise */}
-              <div className="p-6 md:p-8 border-t md:border-t-0 border-gray-200">
+              <div className="rounded-xl border border-gray-200 bg-white p-6 md:p-8">
                 <div className="flex items-start justify-between gap-4">
                   <div>
                     <h2 className="font-sans text-2xl font-semibold text-black">
@@ -757,7 +755,6 @@ export function PlivoPricing() {
                   </div>
                 )}
               </div>
-            </div>
           </div>
         </div>
       </section>
