@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { Play, Pause, MessageCircle, Check } from "lucide-react";
 import { AnimatedBeam, Circle } from "@/components/ui/animated-beam";
 import WorldMap from "@/components/ui/world-map";
+import { useGeoCountry } from "@/hooks/useGeoCountry";
 
 // Reusable CheckItem component
 function CheckItem({ children }: { children: React.ReactNode }) {
@@ -14,6 +15,8 @@ function CheckItem({ children }: { children: React.ReactNode }) {
 }
 
 export default function WhyHumanLike() {
+  const { rawCountry } = useGeoCountry();
+  const isIndia = rawCountry === "IN";
   return (
     <section className="why-humanlike-section bg-white py-12 sm:py-16 md:py-20">
       <style>{`
@@ -37,8 +40,8 @@ export default function WhyHumanLike() {
         {/* 2x2 Grid */}
         <div className="grid gap-5 md:grid-cols-2">
           <LatencyCard />
-          <QualityCard />
-          <TurnTakingCard />
+          <QualityCard isIndia={isIndia} />
+          <TurnTakingCard isIndia={isIndia} />
           <SelfImprovingCard />
         </div>
       </div>
@@ -216,7 +219,7 @@ function AudioPlayer({
         {/* Tags */}
         <div className="mt-4 flex flex-wrap gap-1.5">
           <span className="rounded-full border border-gray-200 bg-gray-50 px-2 py-0.5 text-[10px] text-gray-600">
-            🇮🇳 {language}
+            {language === "Hindi" ? "🇮🇳" : "🇺🇸"} {language}
           </span>
           <span className="rounded-full border border-gray-200 bg-gray-50 px-2 py-0.5 text-[10px] text-gray-600">
             Customer Support
@@ -261,7 +264,7 @@ function AudioPlayer({
   );
 }
 
-function QualityCard() {
+function QualityCard({ isIndia }: { isIndia: boolean }) {
   return (
     <div className="overflow-hidden rounded-lg border border-gray-200 bg-white">
       {/* Visual - Top: Audio cards side by side */}
@@ -274,6 +277,7 @@ function QualityCard() {
               audioSrc="/audio/without-noise-cancellation.mp3"
               title="Noise Cancellation"
               variant="gray"
+              language={isIndia ? "Hindi" : "English"}
             />
           </div>
           {/* Right card */}
@@ -282,6 +286,7 @@ function QualityCard() {
               audioSrc="/audio/with-noise-cancellation.mp3"
               title="Noise Cancellation"
               variant="purple"
+              language={isIndia ? "Hindi" : "English"}
             />
           </div>
         </div>
@@ -303,7 +308,7 @@ function QualityCard() {
   );
 }
 
-function TurnTakingCard() {
+function TurnTakingCard({ isIndia }: { isIndia: boolean }) {
   return (
     <div className="overflow-hidden rounded-lg border border-gray-200 bg-white">
       {/* Visual - Top: Audio cards side by side */}
@@ -313,19 +318,19 @@ function TurnTakingCard() {
           {/* Left card */}
           <div className="w-full max-w-[240px]">
             <AudioPlayer
-              audioSrc="/audio/without-turn-detection.mp3"
+              audioSrc={isIndia ? "/audio/without-turn-detection.mp3" : "/audio/without-turn-detection-us.mp3"}
               title="Turn Detection"
               variant="gray"
-              language="Hindi"
+              language={isIndia ? "Hindi" : "English"}
             />
           </div>
           {/* Right card */}
           <div className="w-full max-w-[240px]">
             <AudioPlayer
-              audioSrc="/audio/with-turn-detection.mp3"
+              audioSrc={isIndia ? "/audio/with-turn-detection.mp3" : "/audio/with-turn-detection-us.mp3"}
               title="Turn Detection"
               variant="purple"
-              language="Hindi"
+              language={isIndia ? "Hindi" : "English"}
             />
           </div>
         </div>

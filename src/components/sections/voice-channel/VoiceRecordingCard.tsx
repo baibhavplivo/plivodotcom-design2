@@ -101,7 +101,7 @@ export default function VoiceRecordingCard() {
 
           {/* Title */}
           <h4 className="text-lg font-semibold text-black mb-5">
-            Inbound support call &ndash; Order status
+            {isIndia ? "Inbound" : "Outbound"} support call &ndash; Order status
           </h4>
 
           {/* Audio Player */}
