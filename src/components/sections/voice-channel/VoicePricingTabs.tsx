@@ -612,13 +612,13 @@ function VoiceCallRatesSection({
             </tr>
             <tr>
               <td className="py-3 pr-4 text-sm text-gray-900">
-                Audio streaming (per stream/min)
+                Audio streaming & noise cancellation
               </td>
               <td className="py-3 pr-4">
-                {renderRate(undefined, { forceFree: true })}
+                <span className="text-sm font-medium text-black">Included</span>
               </td>
               <td className="py-3">
-                {renderRate(undefined, { forceFree: true })}
+                <span className="text-sm font-medium text-black">Included</span>
               </td>
             </tr>
           </tbody>
