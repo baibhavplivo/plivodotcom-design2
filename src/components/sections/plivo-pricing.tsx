@@ -185,7 +185,7 @@ function VoicePricingContent({ selectedCountry, inline }: { selectedCountry: str
       ? [["Toll-Free Calls", rateCell(rates.tollfreeOutbound), rateCell(rates.tollfreeInbound)]]
       : []),
     ["Browser SDK and SIP Calls", rateCell(rates.ipOutbound), rateCell(rates.ipInbound)],
-    ["Audio streaming (per stream/min)", rateCell(undefined, true), rateCell(undefined, true)],
+    ["Audio streaming & noise cancellation", "Included", "Included"],
   ];
 
   const addOnRows =
@@ -401,8 +401,8 @@ function WhatsAppPricingContent({ selectedCountry, inline }: { selectedCountry: 
                 <td className="py-2.5 text-gray-600">{formatWhatsAppCallRate(callRates.outbound)}</td>
               </tr>
               <tr className="border-t border-dashed border-gray-200">
-                <td className="py-2.5 font-medium text-black">Audio streaming (per stream)</td>
-                <td className="py-2.5 text-gray-600">Free</td>
+                <td className="py-2.5 font-medium text-black">Audio streaming & noise cancellation</td>
+                <td className="py-2.5 text-gray-600">Included</td>
               </tr>
             </tbody>
           </table>
