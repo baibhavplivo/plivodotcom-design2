@@ -62,7 +62,7 @@
           <span class="relative z-10">Start for free</span>
         </a>
       </div>
-      <p class="text-sm text-gray-500 mt-4 leading-relaxed">
+      <p id="hero-credits-text" class="text-sm text-gray-500 mt-4 leading-relaxed">
         $10 in free credits.
       </p>
     </div>
@@ -110,6 +110,31 @@
     to { transform: rotate(360deg); }
   }
 </style>
+
+<script is:inline>
+  // Geo-swap hero credits text for India visitors
+  (function() {
+    function swapCredits(country) {
+      if (country === "IN") {
+        var el = document.getElementById("hero-credits-text");
+        if (el) el.textContent = "\u20B91,000 in free credits.";
+      }
+    }
+    var cf = window.__CF_COUNTRY;
+    if (cf && cf !== "XX") { swapCredits(cf); return; }
+    try { var gc = sessionStorage.getItem("plivo_geo_country"); if (gc) { swapCredits(gc); return; } } catch(e) {}
+    try { var ip = sessionStorage.getItem("plivo_ip_info"); if (ip) { swapCredits(JSON.parse(ip).country); return; } } catch(e) {}
+    var attempts = 0;
+    var poll = setInterval(function() {
+      attempts++;
+      try {
+        var gc2 = sessionStorage.getItem("plivo_geo_country");
+        if (gc2) { swapCredits(gc2); clearInterval(poll); return; }
+      } catch(e) {}
+      if (attempts > 30) clearInterval(poll);
+    }, 100);
+  })();
+</script>
 
 <script>
   function initDottedSurface() {
