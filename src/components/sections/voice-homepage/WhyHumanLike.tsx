@@ -296,11 +296,11 @@ function VoiceDemoCard() {
     <div className="relative overflow-hidden rounded-lg bg-white border border-gray-200 shadow-sm">
       {/* Title */}
       <div className="px-4 pt-3 pb-1">
-        <h4 className="text-sm font-semibold text-black">Outbound support call &ndash; Order status</h4>
+        <h4 className="text-sm font-semibold text-black">Inbound support call</h4>
       </div>
       {/* Pills */}
       <div className="px-4 pt-1 pb-1 flex items-center gap-2">
-        <span className="rounded-full border border-gray-200 bg-gray-50 px-2.5 py-0.5 text-[10px] text-gray-600">E-commerce &amp; Retail</span>
+        <span className="rounded-full border border-gray-200 bg-gray-50 px-2.5 py-0.5 text-[10px] text-gray-600">Travel &amp; Hospitality</span>
         <span className="rounded-full border border-gray-200 bg-gray-50 px-2.5 py-0.5 text-[10px] text-gray-600">🇺🇸 English</span>
       </div>
       {/* Audio player */}
@@ -321,7 +321,7 @@ function VoiceDemoCard() {
           {duration > 0 ? `${Math.floor(currentTime)}s/${Math.floor(duration)}s` : "0s/0s"}
         </span>
       </div>
-      <audio ref={audioRef} src="/audio/us-voice-demo.mp3" preload="metadata" />
+      <audio ref={audioRef} src="/audio/no-latency-us.mp3" preload="metadata" />
     </div>
   );
 }
