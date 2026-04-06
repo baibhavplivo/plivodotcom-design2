@@ -81,28 +81,16 @@ import StartupsHero from "@/components/sections/startups/StartupsHero";
 
   <!-- Override: skip chat widget, show thank-you on successful form submit -->
   <script is:inline>
-  (function() {
-    // Poll every 300ms: if step1 (form) is hidden by the Netlify script, show thank-you
-    var done = false;
+  $(function() {
     var poll = setInterval(function() {
-      if (done) return;
-      var step1 = document.querySelector('[vpf="1"]');
-      var step2 = document.querySelector('[vpf="2"]');
-      var step4 = document.querySelector('[vpf="4"]');
-      if (!step1 || !step4) return;
-
-      // Netlify script hides step1 on success — that's our signal
-      if (step1.style.display === "none") {
-        done = true;
+      if ($('[vpf="2"]').is(':visible')) {
         clearInterval(poll);
-        if (step2) step2.style.display = "none";
-        step4.style.display = "block";
+        $('[vpf="2"]').hide();
+        $('[vpf="1"]').hide();
+        $('[vpf="4"]').show();
       }
-    }, 300);
-
-    // Stop after 5 minutes
-    setTimeout(function() { clearInterval(poll); }, 300000);
-  })();
+    }, 200);
+  });
   </script>
 
   <!-- Cal.com embed -->
