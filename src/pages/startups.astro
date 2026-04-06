@@ -79,36 +79,29 @@ import StartupsHero from "@/components/sections/startups/StartupsHero";
   <!-- Netlify form submission script (handles validation, enrichment, HubSpot, analytics) -->
   <script is:inline src="https://plivo-static-forms.netlify.app/plivo/form-submission.js"></script>
 
-  <!-- After Netlify script submits successfully, show thank-you instead of chat -->
+  <!-- Intercept fetch to Netlify submit endpoint — show thank-you on success -->
   <script is:inline>
-  document.addEventListener("DOMContentLoaded", function() {
-    // Watch the original XMLHttpRequest to detect successful form submission
-    var origOpen = XMLHttpRequest.prototype.open;
-    var origSend = XMLHttpRequest.prototype.send;
-    XMLHttpRequest.prototype.open = function(method, url) {
-      this._url = url;
-      return origOpen.apply(this, arguments);
-    };
-    XMLHttpRequest.prototype.send = function() {
-      var xhr = this;
-      if (xhr._url && xhr._url.indexOf("netlify") !== -1 && xhr._url.indexOf("submit") !== -1) {
-        xhr.addEventListener("load", function() {
-          if (xhr.status >= 200 && xhr.status < 300) {
-            // Successful submission — show thank-you after a brief delay for analytics to fire
+  (function() {
+    var origFetch = window.fetch;
+    window.fetch = function(url, opts) {
+      var result = origFetch.apply(this, arguments);
+      if (typeof url === "string" && url.indexOf("netlify") !== -1 && url.indexOf("submit") !== -1) {
+        result.then(function(response) {
+          if (response.ok) {
             setTimeout(function() {
-              var step1 = document.querySelector('[vpf="1"]');
-              var step2 = document.querySelector('[vpf="2"]');
-              var step4 = document.querySelector('[vpf="4"]');
-              if (step1) step1.style.display = "none";
-              if (step2) step2.style.display = "none";
-              if (step4) step4.style.display = "block";
-            }, 500);
+              var s1 = document.querySelector('[vpf="1"]');
+              var s2 = document.querySelector('[vpf="2"]');
+              var s4 = document.querySelector('[vpf="4"]');
+              if (s1) s1.style.display = "none";
+              if (s2) s2.style.display = "none";
+              if (s4) s4.style.display = "block";
+            }, 800);
           }
         });
       }
-      return origSend.apply(this, arguments);
+      return result;
     };
-  });
+  })();
   </script>
 
   <!-- Cal.com embed -->
