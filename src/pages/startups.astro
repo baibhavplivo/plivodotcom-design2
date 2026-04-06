@@ -79,17 +79,35 @@ import StartupsHero from "@/components/sections/startups/StartupsHero";
   <!-- Netlify form submission script (handles validation, enrichment, HubSpot, analytics) -->
   <script is:inline src="https://plivo-static-forms.netlify.app/plivo/form-submission.js"></script>
 
-  <!-- Override: skip chat widget, show thank-you on successful form submit -->
+  <!-- After Netlify script submits successfully, show thank-you instead of chat -->
   <script is:inline>
-  $(function() {
-    var poll = setInterval(function() {
-      if ($('[vpf="2"]').is(':visible')) {
-        clearInterval(poll);
-        $('[vpf="2"]').hide();
-        $('[vpf="1"]').hide();
-        $('[vpf="4"]').show();
+  document.addEventListener("DOMContentLoaded", function() {
+    // Watch the original XMLHttpRequest to detect successful form submission
+    var origOpen = XMLHttpRequest.prototype.open;
+    var origSend = XMLHttpRequest.prototype.send;
+    XMLHttpRequest.prototype.open = function(method, url) {
+      this._url = url;
+      return origOpen.apply(this, arguments);
+    };
+    XMLHttpRequest.prototype.send = function() {
+      var xhr = this;
+      if (xhr._url && xhr._url.indexOf("netlify") !== -1 && xhr._url.indexOf("submit") !== -1) {
+        xhr.addEventListener("load", function() {
+          if (xhr.status >= 200 && xhr.status < 300) {
+            // Successful submission — show thank-you after a brief delay for analytics to fire
+            setTimeout(function() {
+              var step1 = document.querySelector('[vpf="1"]');
+              var step2 = document.querySelector('[vpf="2"]');
+              var step4 = document.querySelector('[vpf="4"]');
+              if (step1) step1.style.display = "none";
+              if (step2) step2.style.display = "none";
+              if (step4) step4.style.display = "block";
+            }, 500);
+          }
+        });
       }
-    }, 200);
+      return origSend.apply(this, arguments);
+    };
   });
   </script>
 
