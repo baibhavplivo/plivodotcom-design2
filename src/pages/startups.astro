@@ -79,33 +79,21 @@ import StartupsHero from "@/components/sections/startups/StartupsHero";
   <!-- Netlify form submission script (handles validation, enrichment, HubSpot, analytics) -->
   <script is:inline src="https://plivo-static-forms.netlify.app/plivo/form-submission.js"></script>
 
-  <!-- Fallback: if form-submission.js shows chat (vpf=2) but it fails to load,
-       show the thank-you (vpf=4) after a timeout -->
+  <!-- Override: skip chat widget, show thank-you immediately on form submit -->
   <script is:inline>
   (function() {
-    var checkInterval = setInterval(function() {
+    var observer = new MutationObserver(function() {
       var step2 = document.querySelector('[vpf="2"]');
-      var step4 = document.querySelector('[vpf="4"]');
-      var step1 = document.querySelector('[vpf="1"]');
-      if (!step2 || !step4) return;
-
-      // If step 2 (chat) is visible but chat-widget is empty, show thank-you after 5s
-      if (step2.style.display !== "none" && step2.offsetParent !== null) {
-        var chatWidget = document.getElementById("chat-widget");
-        setTimeout(function() {
-          // If chat widget still has no content, fall back to thank-you
-          if (chatWidget && chatWidget.children.length === 0) {
-            step2.style.display = "none";
-            step4.style.display = "block";
-            if (step1) step1.style.display = "none";
-          }
-        }, 5000);
-        clearInterval(checkInterval);
+      if (step2 && step2.style.display !== "none" && step2.offsetParent !== null) {
+        step2.style.display = "none";
+        var step1 = document.querySelector('[vpf="1"]');
+        var step4 = document.querySelector('[vpf="4"]');
+        if (step1) step1.style.display = "none";
+        if (step4) step4.style.display = "block";
+        observer.disconnect();
       }
-    }, 500);
-
-    // Stop checking after 60s
-    setTimeout(function() { clearInterval(checkInterval); }, 60000);
+    });
+    observer.observe(document.body, { attributes: true, subtree: true, attributeFilter: ["style"] });
   })();
   </script>
 
