@@ -79,9 +79,18 @@ import StartupsHero from "@/components/sections/startups/StartupsHero";
   <!-- Netlify form submission script (handles validation, enrichment, HubSpot, analytics) -->
   <script is:inline src="https://plivo-static-forms.netlify.app/plivo/form-submission.js"></script>
 
-  <!-- Intercept fetch to Netlify submit endpoint — show thank-you on success -->
+  <!-- 1. Prevent native form GET submission (Netlify script handles via fetch) -->
+  <!-- 2. Intercept fetch to show thank-you on success -->
   <script is:inline>
   (function() {
+    // Prevent native form submission (causes 414 URI Too Long)
+    document.addEventListener("submit", function(e) {
+      if (e.target && e.target.id === "contact-form") {
+        e.preventDefault();
+      }
+    }, true);
+
+    // Intercept fetch to Netlify submit — show thank-you on success
     var origFetch = window.fetch;
     window.fetch = function(url, opts) {
       var result = origFetch.apply(this, arguments);
