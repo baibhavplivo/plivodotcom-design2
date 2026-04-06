@@ -74,6 +74,41 @@ export const WA_CALL_PRIORITY_COUNTRIES: CountryOption[] = [
   { code: "FR", name: "France", flag: "🇫🇷" },
 ];
 
+// Phone number coverage — source: "Plivo Phone Number Coverage" spreadsheet
+// Only these 9 countries have phone number support (and thus inbound calling)
+export const NUMBER_COVERAGE_COUNTRIES = new Set([
+  "US", "CA", "IN", "AE", "BR", "AU", "NZ", "GB", "SG",
+]);
+
+// Which number types each coverage country supports
+export interface NumberTypeCoverage {
+  local: boolean;
+  mobile: boolean;
+  tollfree: boolean;
+}
+
+export const NUMBER_TYPE_COVERAGE: Record<string, NumberTypeCoverage> = {
+  US: { local: true, mobile: false, tollfree: true },
+  CA: { local: true, mobile: false, tollfree: true },
+  IN: { local: true, mobile: false, tollfree: true },
+  AE: { local: true, mobile: false, tollfree: true },
+  BR: { local: true, mobile: false, tollfree: true },
+  AU: { local: true, mobile: true, tollfree: true },
+  NZ: { local: true, mobile: false, tollfree: true },
+  GB: { local: true, mobile: true, tollfree: false },
+  SG: { local: true, mobile: false, tollfree: false },
+};
+
+// Helper: does this country have inbound number coverage?
+export function hasNumberCoverage(countryCode: string): boolean {
+  return NUMBER_COVERAGE_COUNTRIES.has(countryCode);
+}
+
+// Helper: does this country support toll-free numbers?
+export function hasTollfreeSupport(countryCode: string): boolean {
+  return NUMBER_TYPE_COVERAGE[countryCode]?.tollfree ?? false;
+}
+
 // Phone number rental rates - shared between Voice and WhatsApp Call pages
 export const PHONE_RENTAL_RATES: Record<string, PhoneRentalRates> = {
   IN: { local: { rate: 2.94, currency: "$" } },

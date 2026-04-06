@@ -1,0 +1,256 @@
+---
+import PlivoLayout from "@/layouts/PlivoLayout.astro";
+import StartupsHero from "@/components/sections/startups/StartupsHero";
+---
+
+<PlivoLayout title="Startups | Plivo" description="Build on Plivo's full-stack Voice AI platform. Get your startup partner grant with enterprise telephony, unified channels, and dedicated support.">
+  <StartupsHero client:only="react" />
+
+  <!-- Dots surface animation (same as contact page) -->
+  <div class="relative overflow-hidden bg-white -mt-[132px]" style="height:400px; z-index:0;">
+    <canvas id="contact-dotted-surface" class="absolute inset-0 z-0 pointer-events-none"></canvas>
+    <div class="absolute inset-x-0 top-0 z-[1] pointer-events-none" style="height:30%;background:linear-gradient(to bottom,white 0%,transparent);"></div>
+    <div class="absolute inset-y-0 left-0 w-20 sm:w-32 bg-gradient-to-r from-white to-transparent z-[1] pointer-events-none"></div>
+    <div class="absolute inset-y-0 right-0 w-20 sm:w-32 bg-gradient-to-l from-white to-transparent z-[1] pointer-events-none"></div>
+  </div>
+
+  <script is:inline>
+  (function initContactDots() {
+    var canvas = document.getElementById("contact-dotted-surface");
+    if (!canvas) return;
+    var container = canvas.parentElement;
+    if (!container) return;
+    var ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    var SPACING = 100, COLS = 50, ROWS = 80, FOCAL = 350, CAM_HEIGHT = 250;
+    var WAVE_AMP = 35, WAVE_SPEED = 0.015, MAX_R = 3, MIN_R = 0.4, PI2 = Math.PI * 2;
+    var dpr = 1, cw = 0, ch = 0, raf, time = 0;
+
+    function setup() {
+      var w = container.clientWidth, h = container.clientHeight;
+      if (w <= 0 || h <= 0) return;
+      dpr = window.devicePixelRatio || 1;
+      canvas.width = w * dpr; canvas.height = h * dpr;
+      canvas.style.width = w + "px"; canvas.style.height = h + "px";
+      cw = canvas.width; ch = canvas.height;
+      COLS = w < 640 ? 30 : 50; ROWS = w < 640 ? 50 : 80;
+    }
+    setup();
+
+    function draw() {
+      raf = requestAnimationFrame(draw);
+      if (!cw || !ch) { setup(); return; }
+      ctx.clearRect(0, 0, cw, ch);
+      var horizonY = ch * 0.20;
+      var centerX = cw / 2, focalDpr = FOCAL * dpr;
+
+      for (var j = ROWS - 1; j >= 0; j--) {
+        var z = (j + 1) * SPACING;
+        var scale = focalDpr / z;
+        var baseScreenY = horizonY + (CAM_HEIGHT * scale);
+        for (var i = 0; i < COLS; i++) {
+          var wx = (i - COLS / 2) * SPACING;
+          var wy = Math.sin((i * 0.3) + time) * WAVE_AMP + Math.sin((j * 0.5) + time * 0.7) * WAVE_AMP;
+          var screenX = centerX + wx * scale;
+          var screenY = baseScreenY - wy * scale;
+          if (screenX < -10 || screenX > cw + 10 || screenY < -10 || screenY > ch + 10) continue;
+          var r = Math.min(MAX_R * dpr, Math.max(MIN_R * dpr, scale * 3));
+          var t = j / ROWS;
+          var cr, cg, cb;
+          if (t < 0.5) { var p = t * 2; cr = p * 50; cg = p * 61; cb = p * 254; }
+          else { var p2 = (t - 0.5) * 2; cr = 50 + p2 * 155; cg = 61 + p2 * 1; cb = 254 - p2 * 5; }
+          var alpha = 1.0 - t * 0.7;
+          ctx.beginPath(); ctx.arc(screenX, screenY, r, 0, PI2);
+          ctx.fillStyle = "rgba(" + (cr|0) + "," + (cg|0) + "," + (cb|0) + "," + alpha + ")";
+          ctx.fill();
+        }
+      }
+      time += WAVE_SPEED;
+    }
+    raf = requestAnimationFrame(draw);
+    new ResizeObserver(function() { setup(); }).observe(container);
+  })();
+  </script>
+
+  <!-- Netlify form submission script (handles validation, enrichment, HubSpot, analytics) -->
+  <script is:inline src="https://plivo-static-forms.netlify.app/plivo/form-submission.js"></script>
+
+  <!-- Cal.com embed -->
+  <script is:inline>
+  (function (C, A, L) {
+    var p = function (a, ar) { a.q.push(ar); };
+    var d = C.document;
+    C.Cal = C.Cal || function () {
+      var cal = C.Cal;
+      var ar = arguments;
+      if (!cal.loaded) {
+        cal.ns = {};
+        cal.q = cal.q || [];
+        d.head.appendChild(d.createElement("script")).src = A;
+        cal.loaded = true;
+      }
+      if (ar[0] === L) {
+        var api = function () { p(api, arguments); };
+        var namespace = ar[1];
+        api.q = api.q || [];
+        if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]); }
+        else p(cal, ar);
+        return;
+      }
+      p(cal, ar);
+    };
+  })(window, "https://app.cal.com/embed/embed.js", "init");
+  Cal("init", "routi", { origin: "https://plivo.cal.com" });
+  </script>
+
+  <!-- Cal.com close handler (native DOM, no jQuery) -->
+  <script is:inline>
+  document.addEventListener("click", function(e) {
+    var target = e.target;
+    if (!target) return;
+    // Close on clicking the cross button
+    if (target.classList && target.classList.contains("cal-cross")) {
+      var wrapper = target.closest(".cal-embed-wrapper");
+      if (wrapper) wrapper.style.display = "none";
+      return;
+    }
+    // Close on clicking outside the embed
+    if (target.classList && target.classList.contains("cal-embed-wrapper")) {
+      var inner = target.querySelector("#cal-div-embed");
+      if (inner && !inner.contains(e.target)) {
+        target.style.display = "none";
+      }
+    }
+  });
+  </script>
+
+  <!-- intl-tel-input CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/css/intlTelInput.css" />
+
+  <!-- intl-tel-input JS -->
+  <script is:inline src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/intlTelInput.min.js"></script>
+</PlivoLayout>
+
+<!-- CSS overrides to match intl-tel-input to our design -->
+<style is:global>
+  /* intl-tel-input container */
+  .iti { width: 100%; }
+  /* Selected country dial code text (next to flag) */
+  .iti .iti__selected-dial-code {
+    color: #111827;
+  }
+  .iti .iti__tel-input {
+    width: 100%;
+    height: 2.5rem;
+    border-radius: 0.5rem;
+    border: 1px solid #d1d5db;
+    padding: 0.5rem 0.75rem 0.5rem 52px;
+    font-size: 0.875rem;
+    background: white;
+    color: #111827;
+    transition: all 0.15s;
+  }
+  .iti .iti__tel-input:hover { border-color: #9ca3af; }
+  .iti .iti__tel-input:focus {
+    border-color: #60a5fa;
+    outline: none;
+    box-shadow: 0 0 0 3px #dbeafe;
+  }
+  .iti .iti__tel-input.input-error {
+    border-color: #f87171;
+  }
+  .iti .iti__tel-input.input-error:focus {
+    box-shadow: 0 0 0 3px #fee2e2;
+  }
+
+  /* Form validation feedback */
+  .invalid-feedback {
+    font-size: 0.75rem;
+    color: #ef4444;
+    margin-top: 0.25rem;
+    display: block;
+    min-height: 0;
+  }
+  .input-error {
+    border-color: #f87171 !important;
+  }
+
+  /* VPF steps (hidden by default, script toggles display) */
+  .steps_progress_wrapper { display: none; }
+
+  /* Email validation indicators */
+  .mail-valid {
+    width: 14px;
+    height: 14px;
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .mail-invalid {
+    width: 14px;
+    height: 14px;
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .lottie-animation[vpf="email-loader"] {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  /* intl-tel-input country dropdown */
+  .iti__country-list {
+    z-index: 100;
+    max-height: 200px;
+    border-radius: 0.5rem;
+    border: 1px solid #d1d5db;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+    background: white;
+  }
+  .iti__country-list .iti__country {
+    color: #111827;
+    font-size: 0.875rem;
+    padding: 6px 10px;
+  }
+  .iti__country-list .iti__country--highlight {
+    background-color: #f3f4f6;
+  }
+  .iti__country-list .iti__country-name,
+  .iti__country-list .iti__dial-code {
+    color: #111827;
+  }
+  .iti {
+    position: relative;
+  }
+  .iti .iti__country-list {
+    left: 0;
+    width: 100%;
+    min-width: 280px;
+  }
+
+  /* Chat widget container */
+  .chat-agent-cx {
+    min-height: 400px;
+  }
+
+  /* Force all intl-tel-input text to be dark */
+  .iti,
+  .iti *,
+  .iti__selected-dial-code,
+  .iti__country-list *,
+  .iti__search-input {
+    color: #111827;
+  }
+
+  /* Mobile fix for intl-tel-input dropdown */
+  @media only screen and (max-width: 480px) {
+    .iti { z-index: 99999; }
+  }
+</style>

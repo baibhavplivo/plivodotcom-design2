@@ -14,6 +14,8 @@ import {
   TOP_COUNTRIES,
   VOICE_CALCULATOR_DATA,
   getFlagEmoji,
+  hasNumberCoverage,
+  hasTollfreeSupport,
 } from "@/data/pricing-data";
 import type {
   CountryListItem,
@@ -52,18 +54,20 @@ type PhoneRentalRow = {
   type: PhoneRentalType;
 };
 
+// Rental rates must match the Numbers pricing page (phone-number-pricing-cache.ts)
+// Coverage source: "Plivo Phone Number Coverage" spreadsheet
 const VOICE_PHONE_RENTAL_RATES: Partial<
   Record<string, Partial<Record<PhoneRentalType, string>>>
 > = {
   AE: { tollfree: "$50.00/month" },
   AU: {
-    local: "$1.50/month",
-    mobile: "$3.00/month",
+    local: "$2.50/month",
+    mobile: "$5.00/month",
     tollfree: "$12.00/month",
   },
   BR: { local: "$6.17/month", tollfree: "$30.00/month" },
   CA: { local: "$0.75/month", tollfree: "$1.00/month" },
-  GB: { local: "$0.55/month", mobile: "$0.85/month" },
+  GB: { local: "$0.85/month", mobile: "$0.90/month" },
   IN: { local: "₹250/month" },
   NZ: { local: "$2.55/month", tollfree: "$34.00/month" },
   SG: { local: "$16.00/month" },
@@ -182,7 +186,10 @@ export default function VoicePricingTabs({
   const pricingData = VOICE_PRICING_CACHE[selectedCountry.code] || null;
   const loading = false;
   const rates = pricingData?.voiceRates || null;
-  const destinationRates = pricingData?.voiceDestinationRates || [];
+  // Filter out "from Plivo-XX numbers" entries (origination-specific rates not for public display)
+  const destinationRates = (pricingData?.voiceDestinationRates || []).filter(
+    (r) => !r.networkGroup.includes("from Plivo-"),
+  );
   const phoneRentalRows = useMemo(
     () => getPhoneRentalRows(selectedCountry.code),
     [selectedCountry.code],
@@ -531,12 +538,21 @@ function VoiceCallRatesSection({
     );
   }
 
+  const hasCoverage = hasNumberCoverage(countryCode);
+  const hasTF = hasTollfreeSupport(countryCode);
+
+  // Mask inbound rates for countries without number coverage
+  const effectiveLocalInbound = hasCoverage ? rates?.localInbound : "Not Supported";
+  const effectiveMobileInbound = hasCoverage ? rates?.mobileInbound : "Not Supported";
+  const effectiveTollfreeInbound = hasCoverage && hasTF ? rates?.tollfreeInbound : "Not Supported";
+  const effectiveTollfreeOutbound = hasTF ? rates?.tollfreeOutbound : "Not Supported";
+
   const showMobile =
     rates?.mobileOutbound !== "Not Supported" ||
-    rates?.mobileInbound !== "Not Supported";
+    effectiveMobileInbound !== "Not Supported";
   const showTollfree =
-    rates?.tollfreeOutbound !== "Not Supported" ||
-    rates?.tollfreeInbound !== "Not Supported";
+    effectiveTollfreeOutbound !== "Not Supported" ||
+    effectiveTollfreeInbound !== "Not Supported";
 
   return (
     <div>
@@ -579,7 +595,7 @@ function VoiceCallRatesSection({
                   linkToDetails: !isIndia && hasDestinationRates,
                 })}
               </td>
-              <td className="py-3">{renderRate(rates?.localInbound)}</td>
+              <td className="py-3">{renderRate(effectiveLocalInbound)}</td>
             </tr>
             {showMobile && (
               <tr>
@@ -589,7 +605,7 @@ function VoiceCallRatesSection({
                 <td className="py-3 pr-4">
                   {renderRate(rates?.mobileOutbound)}
                 </td>
-                <td className="py-3">{renderRate(rates?.mobileInbound)}</td>
+                <td className="py-3">{renderRate(effectiveMobileInbound)}</td>
               </tr>
             )}
             {showTollfree && (
@@ -598,9 +614,9 @@ function VoiceCallRatesSection({
                   Toll-Free Calls
                 </td>
                 <td className="py-3 pr-4">
-                  {renderRate(rates?.tollfreeOutbound)}
+                  {renderRate(effectiveTollfreeOutbound)}
                 </td>
-                <td className="py-3">{renderRate(rates?.tollfreeInbound)}</td>
+                <td className="py-3">{renderRate(effectiveTollfreeInbound)}</td>
               </tr>
             )}
             <tr>
@@ -608,7 +624,7 @@ function VoiceCallRatesSection({
                 Browser SDK and SIP Calls
               </td>
               <td className="py-3 pr-4">{renderRate(rates?.ipOutbound)}</td>
-              <td className="py-3">{renderRate(rates?.ipInbound)}</td>
+              <td className="py-3">{renderRate(hasCoverage ? rates?.ipInbound : "Not Supported")}</td>
             </tr>
             <tr>
               <td className="py-3 pr-4 text-sm text-gray-900">

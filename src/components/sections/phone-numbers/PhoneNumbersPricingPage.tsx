@@ -6,6 +6,7 @@ import { ChevronDown } from "lucide-react";
 import {
   TOP_COUNTRIES,
   getFlagEmoji,
+  NUMBER_COVERAGE_COUNTRIES,
 } from "@/data/pricing-data";
 import type { CountryListItem } from "@/data/pricing-data";
 import {
@@ -26,9 +27,11 @@ const PHONE_NUMBER_COUNTRY_PRIORITY_INDEX = new Map(
   TOP_COUNTRIES.map((country, index) => [country.code, index]),
 );
 
+// Only show countries with actual phone number coverage (9 countries)
 const PHONE_NUMBER_COUNTRIES: CountryListItem[] = Object.entries(
   PHONE_NUMBER_PRICING_COUNTRY_NAMES,
 )
+  .filter(([code]) => NUMBER_COVERAGE_COUNTRIES.has(code))
   .map(([code, name]) => ({
     code,
     name,
