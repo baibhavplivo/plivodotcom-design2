@@ -79,21 +79,29 @@ import StartupsHero from "@/components/sections/startups/StartupsHero";
   <!-- Netlify form submission script (handles validation, enrichment, HubSpot, analytics) -->
   <script is:inline src="https://plivo-static-forms.netlify.app/plivo/form-submission.js"></script>
 
-  <!-- Override: skip chat widget, show thank-you immediately on form submit -->
+  <!-- Override: skip chat widget, show thank-you on successful form submit -->
   <script is:inline>
   (function() {
-    var observer = new MutationObserver(function() {
+    // Poll every 300ms: if step1 (form) is hidden by the Netlify script, show thank-you
+    var done = false;
+    var poll = setInterval(function() {
+      if (done) return;
+      var step1 = document.querySelector('[vpf="1"]');
       var step2 = document.querySelector('[vpf="2"]');
-      if (step2 && step2.style.display !== "none" && step2.offsetParent !== null) {
-        step2.style.display = "none";
-        var step1 = document.querySelector('[vpf="1"]');
-        var step4 = document.querySelector('[vpf="4"]');
-        if (step1) step1.style.display = "none";
-        if (step4) step4.style.display = "block";
-        observer.disconnect();
+      var step4 = document.querySelector('[vpf="4"]');
+      if (!step1 || !step4) return;
+
+      // Netlify script hides step1 on success — that's our signal
+      if (step1.style.display === "none") {
+        done = true;
+        clearInterval(poll);
+        if (step2) step2.style.display = "none";
+        step4.style.display = "block";
       }
-    });
-    observer.observe(document.body, { attributes: true, subtree: true, attributeFilter: ["style"] });
+    }, 300);
+
+    // Stop after 5 minutes
+    setTimeout(function() { clearInterval(poll); }, 300000);
   })();
   </script>
 
