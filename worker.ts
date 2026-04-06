@@ -34,6 +34,7 @@ interface Env {
   HUBSPOT_REQUEST_TRIAL_FORM_ID?: string;
   HUBSPOT_PRIVATE_APP_TOKEN?: string;
   FORM_ALLOWED_ORIGINS?: string;
+  IPINFO_TOKEN?: string;
 }
 
 type FormType = "contact-sales" | "request-trial";
@@ -620,9 +621,15 @@ async function verifyJWT(token: string, secret: string): Promise<boolean> {
 
 // ─── CORS helpers ───────────────────────────────────────────────
 
+function isAllowedOrigin(origin?: string): boolean {
+  if (!origin) return false;
+  return BUILT_IN_ALLOWED_ORIGINS.includes(origin);
+}
+
 function corsHeaders(origin?: string): Record<string, string> {
+  const allowedOrigin = origin && isAllowedOrigin(origin) ? origin : BUILT_IN_ALLOWED_ORIGINS[0];
   return {
-    "Access-Control-Allow-Origin": origin || "*",
+    "Access-Control-Allow-Origin": allowedOrigin,
     "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
     "Access-Control-Allow-Headers": "Content-Type, Authorization",
     "Access-Control-Max-Age": "86400",
@@ -1068,9 +1075,27 @@ export default {
           headers: {
             "Content-Type":
               upstream.headers.get("Content-Type") || "application/json",
-            "Access-Control-Allow-Origin": "*",
+            ...corsHeaders(origin),
           },
         });
+      }
+    }
+
+    // ── Geo-location proxy (keeps IPinfo token server-side) ──
+    if (url.pathname === "/api/geo" && request.method === "GET") {
+      try {
+        const cfCountry = request.headers.get("CF-IPCountry");
+        const cfIp = request.headers.get("CF-Connecting-IP");
+        if (cfCountry && cfCountry !== "XX") {
+          return jsonResponse({ country: cfCountry, ip: cfIp || "" }, 200, origin);
+        }
+        // Fallback to IPinfo if CF headers not available (e.g. local dev)
+        const token = env.IPINFO_TOKEN || "";
+        const ipRes = await fetch(`https://ipinfo.io/json${token ? `?token=${token}` : ""}`);
+        const ipData = await ipRes.json() as { country?: string; ip?: string };
+        return jsonResponse({ country: ipData.country || "US", ip: ipData.ip || "" }, 200, origin);
+      } catch {
+        return jsonResponse({ country: "US", ip: "" }, 200, origin);
       }
     }
 
@@ -1146,7 +1171,7 @@ export default {
     // Always inject country code into <head> so client JS can read it instantly.
     // Use "XX" as sentinel when CF-IPCountry is missing so the client knows
     // the Worker ran but geo was unavailable (vs not injected at all).
-    return new HTMLRewriter()
+    const secureResponse = new HTMLRewriter()
       .on("head", {
         element(el) {
           el.prepend(
@@ -1156,5 +1181,17 @@ export default {
         },
       })
       .transform(response);
+
+    // Add security headers to all HTML responses
+    const headers = new Headers(secureResponse.headers);
+    headers.set("X-Frame-Options", "SAMEORIGIN");
+    headers.set("X-Content-Type-Options", "nosniff");
+    headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
+    headers.set("Permissions-Policy", "camera=(), microphone=(self), geolocation=()");
+
+    return new Response(secureResponse.body, {
+      status: secureResponse.status,
+      headers,
+    });
   },
 };

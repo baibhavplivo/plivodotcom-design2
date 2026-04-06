@@ -334,9 +334,8 @@ export default function ContactSalesHero() {
             return callback(geoCountry);
           }
 
-          // 3. Fallback: ipinfo.io (for localhost / non-CF environments)
-          const t = ["1aff", "17b3", "d558", "ec"].join("");
-          fetch(`https://ipinfo.io/json?token=${t}`)
+          // 3. Fallback: server-side geo lookup
+          fetch("/api/geo")
             .then((r) => r.json())
             .then((r) => {
               const country = (r && r.country) || "US";

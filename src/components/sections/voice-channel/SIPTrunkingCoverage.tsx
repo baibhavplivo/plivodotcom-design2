@@ -11,8 +11,19 @@ import {
   type SIPCoverageCountry,
   type SIPCoveragePricingRow,
 } from "@/data/sip-coverage-data";
-import { SIP_RATES, VOICE_RATES } from "@/data/pricing-data";
+import { SIP_RATES, VOICE_RATES, NUMBER_COVERAGE_COUNTRIES } from "@/data/pricing-data";
 import { useGeoCountry } from "@/hooks/useGeoCountry";
+
+// Override inbound flags: only countries with actual number coverage support inbound
+const EFFECTIVE_SIP_COUNTRIES = SIP_COVERAGE_COUNTRIES.map((country) => ({
+  ...country,
+  inbound: NUMBER_COVERAGE_COUNTRIES.has(country.code),
+  deliveryType: NUMBER_COVERAGE_COUNTRIES.has(country.code)
+    ? "Inbound & Outbound"
+    : country.outbound
+      ? "Outbound only"
+      : country.deliveryType,
+}));
 import { useSignupUrl } from "@/hooks/useSignupUrl";
 
 type CoverageType = "outbound" | "inbound";
@@ -200,19 +211,19 @@ export default function SIPTrunkingCoverage({
   }, [geoCountry, initialCountry]);
 
   const outboundCount = useMemo(
-    () => SIP_COVERAGE_COUNTRIES.filter((country) => country.outbound).length,
+    () => EFFECTIVE_SIP_COUNTRIES.filter((country) => country.outbound).length,
     [],
   );
 
   const inboundCount = useMemo(
-    () => SIP_COVERAGE_COUNTRIES.filter((country) => country.inbound).length,
+    () => EFFECTIVE_SIP_COUNTRIES.filter((country) => country.inbound).length,
     [],
   );
 
   const availableContinents = useMemo(
     () =>
       continentOrder.filter((continent) =>
-        SIP_COVERAGE_COUNTRIES.some(
+        EFFECTIVE_SIP_COUNTRIES.some(
           (country) =>
             country.continent === continent &&
             (coverageType === "outbound" ? country.outbound : country.inbound),
@@ -223,7 +234,7 @@ export default function SIPTrunkingCoverage({
 
   const filteredCountries = useMemo(
     () =>
-      SIP_COVERAGE_COUNTRIES.filter(
+      EFFECTIVE_SIP_COUNTRIES.filter(
         (country) =>
           country.continent === activeContinent &&
           (coverageType === "outbound" ? country.outbound : country.inbound),

@@ -76656,10 +76656,10 @@ export const VOICE_PRICING_CACHE: Record<string, VoicePricingCountryData> = {
     "name": "Saudi Arabia",
     "voiceRates": {
       "localInbound": "Not Supported",
-      "localOutbound": "Starts at $0.1390/min",
+      "localOutbound": "Starts at $0.1800/min",
       "mobileInbound": "Not Supported",
       "mobileOutbound": "$0.2800/min",
-      "tollfreeInbound": "$0.7470/min",
+      "tollfreeInbound": "Not Supported",
       "tollfreeOutbound": "Not Supported",
       "ipInbound": "$0.0033/min",
       "ipOutbound": "$0.0033/min",

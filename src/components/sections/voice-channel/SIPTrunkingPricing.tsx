@@ -19,6 +19,7 @@ import {
   type SIPPricingPhoneRow,
 } from "@/data/sip-pricing-page";
 import type { CountryListItem } from "@/data/pricing-data";
+import { hasNumberCoverage, hasTollfreeSupport } from "@/data/pricing-data";
 import { useGeoCountry } from "@/hooks/useGeoCountry";
 import { useSignupUrl } from "@/hooks/useSignupUrl";
 import { cn } from "@/lib/utils";
@@ -543,8 +544,34 @@ export default function SIPTrunkingPricing({
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const countryData =
+  const rawCountryData =
     SIP_PRICING_DATA[selectedCountry.code] || SIP_PRICING_DATA[DEFAULT_COUNTRY_CODE];
+
+  // Apply number coverage rules: mask inbound for non-coverage countries,
+  // hide TF rows for non-TF countries, filter "from Plivo-XX" network rows
+  const countryData = useMemo(() => {
+    const code = selectedCountry.code;
+    const hasCoverage = hasNumberCoverage(code);
+    const hasTF = hasTollfreeSupport(code);
+
+    const callRows = rawCountryData.callRows
+      .filter((row) => {
+        // Hide toll-free rows entirely for countries without TF support
+        if (row.label.toLowerCase().includes("toll-free") && !hasTF) return false;
+        return true;
+      })
+      .map((row) => ({
+        ...row,
+        // Mask inbound for countries without number coverage
+        inbound: hasCoverage ? row.inbound : "Not Supported",
+      }));
+
+    const networkRows = rawCountryData.networkRows.filter(
+      (row) => !row.label.includes("from Plivo-"),
+    );
+
+    return { ...rawCountryData, callRows, networkRows };
+  }, [rawCountryData, selectedCountry.code]);
 
   const sections = useMemo(() => getSections(countryData), [countryData]);
 

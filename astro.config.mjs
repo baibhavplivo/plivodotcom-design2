@@ -8,6 +8,14 @@ import tailwindcss from "@tailwindcss/vite";
 
 const DOCS_SITEMAP_URL = "https://www.plivo.com/docs/sitemap.xml";
 const EXCLUDED_SITEMAP_PATHS = new Set(["/cms/", "/design-system/"]);
+const EXCLUDED_SITEMAP_PREFIXES = [
+  "/draft/",
+  "/dev-pages/",
+  "/dev-pages-and-components/",
+  "/bb-trial-",
+  "/home-old-",
+  "/pricing-old/",
+];
 
 // https://astro.build/config
 export default defineConfig({
@@ -17,7 +25,10 @@ export default defineConfig({
     sitemap({
       customSitemaps: [DOCS_SITEMAP_URL],
       filter(page) {
-        return !EXCLUDED_SITEMAP_PATHS.has(new URL(page).pathname);
+        const path = new URL(page).pathname;
+        if (EXCLUDED_SITEMAP_PATHS.has(path)) return false;
+        if (EXCLUDED_SITEMAP_PREFIXES.some((prefix) => path.startsWith(prefix))) return false;
+        return true;
       },
     }),
     react(),

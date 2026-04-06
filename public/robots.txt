@@ -8,6 +8,9 @@ Disallow: /api/
 Disallow: /console/
 Disallow: /_astro/
 Disallow: /admin/
+Disallow: /dev-pages-and-components/
+Disallow: /draft/
+Disallow: /cms/
 
 # Sitemap location
 Sitemap: https://www.plivo.com/sitemap.xml
