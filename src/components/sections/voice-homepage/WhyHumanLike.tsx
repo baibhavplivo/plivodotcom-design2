@@ -264,32 +264,101 @@ function AudioPlayer({
   );
 }
 
+function VoiceDemoCard() {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [duration, setDuration] = useState(0);
+  const [currentTime, setCurrentTime] = useState(0);
+  const audioRef = useRef<HTMLAudioElement>(null);
+
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
+    const onMeta = () => { if (audio.duration && !isNaN(audio.duration)) setDuration(audio.duration); };
+    const onTime = () => { if (audio.duration && !isNaN(audio.duration)) { setProgress((audio.currentTime / audio.duration) * 100); setCurrentTime(audio.currentTime); } };
+    const onEnd = () => { setIsPlaying(false); setProgress(0); setCurrentTime(0); };
+    if (audio.duration && !isNaN(audio.duration)) setDuration(audio.duration);
+    audio.addEventListener("loadedmetadata", onMeta);
+    audio.addEventListener("timeupdate", onTime);
+    audio.addEventListener("ended", onEnd);
+    audio.load();
+    return () => { audio.removeEventListener("loadedmetadata", onMeta); audio.removeEventListener("timeupdate", onTime); audio.removeEventListener("ended", onEnd); };
+  }, []);
+
+  const togglePlay = () => {
+    const audio = audioRef.current;
+    if (!audio) return;
+    if (isPlaying) audio.pause(); else audio.play();
+    setIsPlaying(!isPlaying);
+  };
+
+  return (
+    <div className="relative overflow-hidden rounded-lg bg-white border border-gray-200 shadow-sm">
+      {/* Title */}
+      <div className="px-4 pt-3 pb-1">
+        <h4 className="text-sm font-semibold text-black">Outbound support call &ndash; Order status</h4>
+      </div>
+      {/* Pills */}
+      <div className="px-4 pt-1 pb-1 flex items-center gap-2">
+        <span className="rounded-full border border-gray-200 bg-gray-50 px-2.5 py-0.5 text-[10px] text-gray-600">E-commerce &amp; Retail</span>
+        <span className="rounded-full border border-gray-200 bg-gray-50 px-2.5 py-0.5 text-[10px] text-gray-600">🇺🇸 English</span>
+      </div>
+      {/* Audio player */}
+      <div className="flex items-center gap-3 px-4 py-3">
+        <button
+          onClick={togglePlay}
+          className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full text-white transition-transform hover:scale-105"
+          style={{ background: "linear-gradient(135deg, #000 0%, #323dfe 40%, #8b5cf6 70%, #cd3ef9 100%)" }}
+        >
+          {isPlaying ? <Pause className="h-3.5 w-3.5" fill="currentColor" /> : <Play className="ml-0.5 h-3.5 w-3.5" fill="currentColor" />}
+        </button>
+        <div className="flex-1 min-w-0">
+          <div className="h-1 w-full overflow-hidden rounded-full bg-gray-200">
+            <div className="h-full rounded-full bg-[#8b7cf6] transition-all" style={{ width: `${progress}%` }} />
+          </div>
+        </div>
+        <span className="flex-shrink-0 text-[10px] text-gray-400">
+          {duration > 0 ? `${Math.floor(currentTime)}s/${Math.floor(duration)}s` : "0s/0s"}
+        </span>
+      </div>
+      <audio ref={audioRef} src="/audio/us-voice-demo.mp3" preload="metadata" />
+    </div>
+  );
+}
+
 function QualityCard({ isIndia }: { isIndia: boolean }) {
   return (
     <div className="overflow-hidden rounded-lg border border-gray-200 bg-white">
-      {/* Visual - Top: Audio cards side by side */}
+      {/* Visual - Top */}
       <div className="relative h-64 flex items-center justify-center px-4 py-6 humanlike-dotgrid">
-        {/* Cards container */}
-        <div className="flex h-full w-full items-center justify-center gap-3">
-          {/* Left card */}
-          <div className="w-full max-w-[240px]">
-            <AudioPlayer
-              audioSrc="/audio/without-noise-cancellation.mp3"
-              title="Noise Cancellation"
-              variant="gray"
-              language={isIndia ? "Hindi" : "English"}
-            />
-          </div>
-          {/* Right card */}
-          <div className="w-full max-w-[240px]">
+        {isIndia ? (
+          /* India: side-by-side noise cancellation comparison */
+          <div className="flex h-full w-full items-center justify-center gap-3">
+            <div className="w-full max-w-[240px]">
               <AudioPlayer
-              audioSrc="/audio/with-noise-cancellation.mp3"
-              title="Noise Cancellation"
-              variant="purple"
-              language={isIndia ? "Hindi" : "English"}
-            />
+                audioSrc="/audio/without-noise-cancellation.mp3"
+                title="Noise Cancellation"
+                variant="gray"
+                language="Hindi"
+              />
+            </div>
+            <div className="w-full max-w-[240px]">
+              <AudioPlayer
+                audioSrc="/audio/with-noise-cancellation.mp3"
+                title="Noise Cancellation"
+                variant="purple"
+                language="Hindi"
+              />
+            </div>
           </div>
-        </div>
+        ) : (
+          /* US/RoW: single voice demo card with call details */
+          <div className="flex h-full w-full items-center justify-center">
+            <div className="w-full max-w-[340px]">
+              <VoiceDemoCard />
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Content - Bottom */}
