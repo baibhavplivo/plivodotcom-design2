@@ -2,9 +2,11 @@
 interface Props {
   gtmContainerId: string;
   gtmAllowedHosts: string[];
+  posthogKey?: string;
+  posthogHost?: string;
 }
 
-const { gtmContainerId, gtmAllowedHosts } = Astro.props;
+const { gtmContainerId, gtmAllowedHosts, posthogKey = "", posthogHost = "https://us.i.posthog.com" } = Astro.props;
 const consentVersion = "2026-04-02";
 const hubspotScriptSrc = "//js.hs-scripts.com/20451141.js";
 ---
@@ -14,6 +16,8 @@ const hubspotScriptSrc = "//js.hs-scripts.com/20451141.js";
   data-gtm-container-id={gtmContainerId}
   data-gtm-allowed-hosts={JSON.stringify(gtmAllowedHosts)}
   data-hubspot-script-src={hubspotScriptSrc}
+  data-posthog-key={posthogKey}
+  data-posthog-host={posthogHost}
   data-consent-version={consentVersion}
 >
   <div
@@ -202,6 +206,8 @@ const hubspotScriptSrc = "//js.hs-scripts.com/20451141.js";
     var gtmContainerId = root.getAttribute("data-gtm-container-id") || "";
     var allowedHosts = [];
     var hubspotScriptSrc = root.getAttribute("data-hubspot-script-src") || "";
+    var posthogKey = root.getAttribute("data-posthog-key") || "";
+    var posthogHost = root.getAttribute("data-posthog-host") || "https://us.i.posthog.com";
 
     try {
       allowedHosts = JSON.parse(root.getAttribute("data-gtm-allowed-hosts") || "[]");
@@ -338,7 +344,15 @@ const hubspotScriptSrc = "//js.hs-scripts.com/20451141.js";
     }
 
     function clearAnalyticsCookies() {
-      clearCookiesByPrefix(["_ga", "_gid", "_gat", "_gcl_"]);
+      clearCookiesByPrefix(["_ga", "_gid", "_gat", "_gcl_", "ph_"]);
+      try {
+        var keys = Object.keys(localStorage);
+        for (var i = 0; i < keys.length; i++) {
+          if (keys[i].indexOf("ph_") === 0) {
+            localStorage.removeItem(keys[i]);
+          }
+        }
+      } catch (e) {}
     }
 
     function clearMarketingCookies() {
@@ -396,6 +410,22 @@ const hubspotScriptSrc = "//js.hs-scripts.com/20451141.js";
       window.__plivoHubSpotLoaded = true;
     }
 
+    function loadPostHogIfAllowed(preferences) {
+      if (!preferences.analytics) return;
+      if (!posthogKey || !hostAllowed()) return;
+      if (window.__plivoPostHogLoaded) return;
+
+      !function(t,e){var o,n,p,r;e.__SV||(window.posthog && window.posthog.__loaded)||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="Ii init Di qi Sr Bi Zi Pi capture calculateEventProperties Yi register register_once register_for_session unregister unregister_for_session Xi getFeatureFlag getFeatureFlagPayload getFeatureFlagResult isFeatureEnabled reloadFeatureFlags updateFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys renderSurvey displaySurvey cancelPendingSurvey canRenderSurvey canRenderSurveyAsync Ji identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException startExceptionAutocapture stopExceptionAutocapture loadToolbar get_property getSessionProperty Wi Vi createPersonProfile setInternalOrTestUser Gi Fi Ki opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing get_explicit_consent_status is_capturing clear_opt_in_out_capturing $i debug Tr Ui getPageViewId captureTraceFeedback captureTraceMetric Ri".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+
+      posthog.init(posthogKey, {
+        api_host: posthogHost,
+        defaults: "2026-01-30",
+        person_profiles: "identified_only",
+      });
+
+      window.__plivoPostHogLoaded = true;
+    }
+
     function applyPreferences(preferences, options) {
       var nextPreferences = normalisePreferences(preferences);
       var previousPreferences = currentPreferences;
@@ -413,6 +443,11 @@ const hubspotScriptSrc = "//js.hs-scripts.com/20451141.js";
 
       loadGtmIfAllowed(nextPreferences);
       loadHubSpotIfAllowed(nextPreferences);
+      loadPostHogIfAllowed(nextPreferences);
+
+      if (revokingAnalytics && window.posthog && typeof window.posthog.opt_out_capturing === "function") {
+        window.posthog.opt_out_capturing();
+      }
 
       if (options && options.forceReloadOnRevoke && (revokingAnalytics || revokingMarketing)) {
         window.location.reload();
@@ -455,6 +490,7 @@ const hubspotScriptSrc = "//js.hs-scripts.com/20451141.js";
       if (!currentPreferences.marketing) clearMarketingCookies();
       loadGtmIfAllowed(currentPreferences);
       loadHubSpotIfAllowed(currentPreferences);
+      loadPostHogIfAllowed(currentPreferences);
     } else {
       showBanner();
       syncInputs(getDefaultPreferences());
