@@ -1,9 +1,8 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect } from "react";
 import { useGeoCountry } from "@/hooks/useGeoCountry";
-import { getCookie, syncFormAttribution } from "@/lib/form-attribution";
-import { splitFullName, validateBusinessEmail } from "@/lib/form-shared";
+import { syncFormAttribution } from "@/lib/form-attribution";
 
 // International logos (default)
 const intlLogosRow1 = [
@@ -45,14 +44,6 @@ const VALUE_PROPS = [
   "Custom AI agents designed for your use case",
 ];
 
-const FORMS_API_BASE = typeof window !== "undefined" && window.location.hostname === "localhost"
-  ? ""
-  : "https://plivo-marketing-website.plivo-website.workers.dev";
-const ENRICH_API_URL = `${FORMS_API_BASE}/api/forms/validate-email`;
-
-// Cache enrichment results so we don't re-call for the same email
-const enrichCache = new Map<string, { isValid: boolean; message: string }>();
-
 const COMPLIANCE_BADGES = [
   { src: "/images/compliance/HIPAA black.svg", alt: "HIPAA", label: "HIPAA" },
   { src: "/images/compliance/GDPR black.svg", alt: "GDPR", label: "GDPR" },
@@ -68,222 +59,14 @@ export default function ContactSalesHero() {
   const logosRow1 = isIndia ? indiaLogosRow1 : intlLogosRow1;
   const logosRow2 = isIndia ? indiaLogosRow2 : intlLogosRow2;
 
-  // Submit handler: validates client-side, then posts to our Worker for
-  // server-side validation and HubSpot submission.
-  useEffect(() => {
-    const form = document.getElementById("contact-form") as HTMLFormElement | null;
-    if (!form) return;
-
-    const showThankYou = () => {
-      const step1 = form.closest('[vpf="1"]');
-      const step4 = document.querySelector('[vpf="4"]');
-      if (step1) (step1 as HTMLElement).style.display = "none";
-      if (step4) (step4 as HTMLElement).style.display = "block";
-    };
-
-    const resetSubmitButton = (btn: HTMLButtonElement | null) => {
-      if (!btn) return;
-      btn.disabled = false;
-      btn.textContent = "Submit";
-    };
-
-    const showFormErrorBanner = (message: string, btn: HTMLButtonElement | null) => {
-      const existing = document.getElementById("form-error-banner");
-      if (existing) existing.remove();
-
-      const banner = document.createElement("div");
-      banner.id = "form-error-banner";
-      banner.className = "form-error-banner";
-      banner.textContent = message;
-      form.insertAdjacentElement("beforebegin", banner);
-      setTimeout(() => banner.remove(), 8000);
-      resetSubmitButton(btn);
-    };
-
-    const handler = async (e: Event) => {
-      e.preventDefault();
-
-      const phoneInput = form.querySelector("#phone") as HTMLInputElement | null;
-      const phoneIti = phoneInput ? (phoneInput as any)._iti : null;
-      const phoneFeedback = document.getElementById("lbl-invalid-phone-number");
-      const emailInput = form.querySelector("#company_email") as HTMLInputElement | null;
-      const emailFeedback = emailInput?.closest(".form-field")?.querySelector(".invalid-feedback") as HTMLElement | null;
-      const fullNameInput = form.querySelector("#full_name") as HTMLInputElement | null;
-      const fullNameFeedback = fullNameInput?.closest(".form-field")?.querySelector(".invalid-feedback") as HTMLElement | null;
-      const reqInput = form.querySelector("#detailed_requirement") as HTMLTextAreaElement | null;
-      const reqFeedback = reqInput?.closest(".form-field")?.querySelector(".invalid-feedback") as HTMLElement | null;
-      const invalidIcon = emailInput?.parentElement?.querySelector('[vpf="invalid-wrong"]') as HTMLElement | null;
-      const validIcon = emailInput?.parentElement?.querySelector('[vpf="valid-tick"]') as HTMLElement | null;
-      const existingBanner = document.getElementById("form-error-banner");
-
-      if (existingBanner) existingBanner.remove();
-      if (fullNameInput) fullNameInput.classList.remove("input-error");
-      if (fullNameFeedback) fullNameFeedback.textContent = "";
-      if (emailInput) emailInput.classList.remove("input-error");
-      if (emailFeedback) emailFeedback.textContent = "";
-      if (phoneInput) phoneInput.classList.remove("input-error");
-      if (phoneFeedback) phoneFeedback.textContent = "";
-      if (reqInput) reqInput.classList.remove("input-error");
-      if (reqFeedback) reqFeedback.textContent = "";
-      if (invalidIcon) invalidIcon.style.display = "none";
-      if (validIcon) validIcon.style.display = "none";
-
-      if (!fullNameInput?.value.trim()) {
-        fullNameInput?.classList.add("input-error");
-        if (fullNameFeedback) fullNameFeedback.textContent = "Full name is required.";
-        fullNameInput?.focus();
-        return;
-      }
-
-      const emailValue = emailInput?.value.trim() || "";
-      if (!emailValue) {
-        emailInput?.classList.add("input-error");
-        if (emailFeedback) emailFeedback.textContent = "Work email is required.";
-        emailInput?.focus();
-        return;
-      }
-      const emailValidation = validateBusinessEmail(emailValue);
-      if (!emailValidation.isValid) {
-        emailInput?.classList.add("input-error");
-        if (emailFeedback) emailFeedback.textContent = emailValidation.message;
-        if (invalidIcon) invalidIcon.style.display = "block";
-        emailInput?.focus();
-        return;
-      }
-
-      if (!phoneInput?.value.trim()) {
-        phoneInput?.classList.add("input-error");
-        if (phoneFeedback) phoneFeedback.textContent = "Phone number is required.";
-        phoneInput?.focus();
-        return;
-      }
-      if (phoneIti && typeof phoneIti.isValidNumber === "function" && !phoneIti.isValidNumber()) {
-        phoneInput?.classList.add("input-error");
-        if (phoneFeedback) {
-          const countryData = phoneIti.getSelectedCountryData();
-          const countryName = countryData?.name || "the selected country";
-          phoneFeedback.textContent = `Please enter a valid phone number for ${countryName}.`;
-        }
-        phoneInput?.focus();
-        return;
-      }
-
-      const reqValue = reqInput?.value.trim() || "";
-      if (!reqValue) {
-        reqInput?.classList.add("input-error");
-        if (reqFeedback) reqFeedback.textContent = "Please describe your requirement.";
-        reqInput?.focus();
-        return;
-      }
-      if (reqValue.length < 100) {
-        reqInput?.classList.add("input-error");
-        if (reqFeedback) reqFeedback.textContent = `Please provide at least 100 characters (${reqValue.length}/100).`;
-        reqInput?.focus();
-        return;
-      }
-
-      const btn = form.querySelector('[type="submit"]') as HTMLButtonElement | null;
-      if (btn) {
-        btn.disabled = true;
-        btn.textContent = "Submitting...";
-      }
-
-      try {
-        syncFormAttribution(form);
-
-        const fullName = fullNameInput?.value || "";
-        const { firstName, lastName } = splitFullName(fullName);
-        const phone = phoneInput?.value || "";
-        const phoneCode = (form.querySelector("#phone-code") as HTMLInputElement)?.value || "";
-        const formattedPhone =
-          phoneIti && typeof phoneIti.getNumber === "function"
-            ? phoneIti.getNumber()
-            : phoneCode
-              ? `+${phoneCode}${phone.replace(/\D/g, "")}`
-              : phone;
-
-        const formData = new FormData(form);
-        formData.set("first_name", firstName);
-        formData.set("last_name", lastName);
-        formData.set("full_name", fullName);
-        formData.set("company_email", emailValue);
-        formData.set("phone", formattedPhone);
-        formData.set("description", reqValue);
-        formData.set("detailed_requirement", reqValue);
-        formData.set("page_url", `${window.location.origin}${window.location.pathname}`);
-        formData.set("conversion_channel", "contact-sales");
-
-        const response = await fetch(`${FORMS_API_BASE}/api/forms/submit`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            formType: "contact-sales",
-            fields: Object.fromEntries(
-              Array.from(formData.entries()).map(([key, value]) => [key, String(value)])
-            ),
-            context: {
-              hutk: getCookie("hubspotutk"),
-              pageUri: window.location.href,
-              pageName: "Contact Sales",
-            },
-          }),
-        });
-
-        const data = (await response.json().catch(() => null)) as
-          | {
-              ok?: boolean;
-              fieldErrors?: Record<string, string>;
-              message?: string;
-            }
-          | null;
-
-        if (!response.ok || !data?.ok) {
-          if (data?.fieldErrors?.full_name) {
-            fullNameInput?.classList.add("input-error");
-            if (fullNameFeedback) fullNameFeedback.textContent = data.fieldErrors.full_name;
-          }
-          if (data?.fieldErrors?.company_email) {
-            emailInput?.classList.add("input-error");
-            if (emailFeedback) emailFeedback.textContent = data.fieldErrors.company_email;
-            if (invalidIcon) invalidIcon.style.display = "block";
-          }
-          if (data?.fieldErrors?.phone) {
-            phoneInput?.classList.add("input-error");
-            if (phoneFeedback) phoneFeedback.textContent = data.fieldErrors.phone;
-          }
-          if (data?.fieldErrors?.detailed_requirement) {
-            reqInput?.classList.add("input-error");
-            if (reqFeedback) reqFeedback.textContent = data.fieldErrors.detailed_requirement;
-          }
-
-          if (!data?.fieldErrors || Object.keys(data.fieldErrors).length === 0) {
-            showFormErrorBanner(
-              data?.message || "Something went wrong. Please try again or email support@plivo.com.",
-              btn
-            );
-          } else {
-            resetSubmitButton(btn);
-          }
-          return;
-        }
-
-        showThankYou();
-      } catch {
-        showFormErrorBanner("Network error. Please try again or email support@plivo.com.", btn);
-      }
-    };
-
-    form.addEventListener("submit", handler, true);
-    return () => form.removeEventListener("submit", handler, true);
-  }, []);
-
+  // Sync UTM attribution fields from cookies into hidden form fields
   useEffect(() => {
     const form = document.getElementById("contact-form") as HTMLFormElement | null;
     if (!form) return;
     syncFormAttribution(form);
   }, []);
 
-  // Initialize intl-tel-input on #phone immediately (don't wait for form-submission.js)
+  // Initialize intl-tel-input on #phone
   useEffect(() => {
     let cancelled = false;
     let pollTimer: ReturnType<typeof setInterval>;
@@ -401,123 +184,6 @@ export default function ContactSalesHero() {
     };
   }, []);
 
-  // Email: blur validation — client-side checks + server-side enrichment API
-  useEffect(() => {
-    const emailInput = document.getElementById("company_email") as HTMLInputElement | null;
-    if (!emailInput) return;
-
-    let enrichAbort: AbortController | null = null;
-
-    const getEmailFeedback = () =>
-      emailInput.closest(".form-field")?.querySelector(".invalid-feedback") as HTMLElement | null;
-
-    const getLoader = () =>
-      emailInput.parentElement?.querySelector('[vpf="email-loader"]') as HTMLElement | null;
-
-    const clearEmailError = () => {
-      emailInput.classList.remove("input-error");
-      const fb = getEmailFeedback();
-      if (fb) fb.textContent = "";
-      const invalidIcon = emailInput.parentElement?.querySelector('[vpf="invalid-wrong"]') as HTMLElement | null;
-      if (invalidIcon) invalidIcon.style.display = "none";
-      const validIcon = emailInput.parentElement?.querySelector('[vpf="valid-tick"]') as HTMLElement | null;
-      if (validIcon) validIcon.style.display = "none";
-      const loader = getLoader();
-      if (loader) loader.style.display = "none";
-    };
-
-    const showEmailError = (message: string) => {
-      emailInput.classList.add("input-error");
-      const fb = getEmailFeedback();
-      if (fb) fb.textContent = message;
-      const invalidIcon = emailInput.parentElement?.querySelector('[vpf="invalid-wrong"]') as HTMLElement | null;
-      if (invalidIcon) invalidIcon.style.display = "block";
-      const validIcon = emailInput.parentElement?.querySelector('[vpf="valid-tick"]') as HTMLElement | null;
-      if (validIcon) validIcon.style.display = "none";
-      const loader = getLoader();
-      if (loader) loader.style.display = "none";
-    };
-
-    const showEmailValid = () => {
-      emailInput.classList.remove("input-error");
-      const fb = getEmailFeedback();
-      if (fb) fb.textContent = "";
-      const invalidIcon = emailInput.parentElement?.querySelector('[vpf="invalid-wrong"]') as HTMLElement | null;
-      if (invalidIcon) invalidIcon.style.display = "none";
-      const validIcon = emailInput.parentElement?.querySelector('[vpf="valid-tick"]') as HTMLElement | null;
-      if (validIcon) validIcon.style.display = "block";
-      const loader = getLoader();
-      if (loader) loader.style.display = "none";
-    };
-
-    const handleBlur = () => {
-      const value = emailInput.value.trim();
-      if (!value) { clearEmailError(); return; }
-      const localValidation = validateBusinessEmail(value);
-      if (!localValidation.isValid) {
-        showEmailError(localValidation.message);
-        return;
-      }
-
-      // Check cache first
-      const cached = enrichCache.get(value.toLowerCase());
-      if (cached?.isValid) { showEmailValid(); return; }
-      if (cached && !cached.isValid) {
-        showEmailError(cached.message);
-        return;
-      }
-
-      if (enrichAbort) enrichAbort.abort();
-      enrichAbort = new AbortController();
-
-      const loader = getLoader();
-      if (loader) loader.style.display = "block";
-      const validIcon = emailInput.parentElement?.querySelector('[vpf="valid-tick"]') as HTMLElement | null;
-      if (validIcon) validIcon.style.display = "none";
-      const invalidIcon = emailInput.parentElement?.querySelector('[vpf="invalid-wrong"]') as HTMLElement | null;
-      if (invalidIcon) invalidIcon.style.display = "none";
-
-      fetch(ENRICH_API_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        signal: enrichAbort.signal,
-        body: JSON.stringify({
-          formType: "contact-sales",
-          email: value,
-        }),
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          const isValid = data?.ok === true;
-          const message = typeof data?.message === "string" ? data.message : "Please use your work email address.";
-          enrichCache.set(value.toLowerCase(), { isValid, message });
-          if (isValid) {
-            showEmailValid();
-          } else {
-            showEmailError(message);
-          }
-        })
-        .catch((err) => {
-          if (err.name === "AbortError") return;
-          clearEmailError();
-        });
-    };
-
-    const handleInput = () => {
-      if (enrichAbort) { enrichAbort.abort(); enrichAbort = null; }
-      if (emailInput.classList.contains("input-error")) clearEmailError();
-      const validIcon = emailInput.parentElement?.querySelector('[vpf="valid-tick"]') as HTMLElement | null;
-      if (validIcon) validIcon.style.display = "none";
-    };
-
-    emailInput.addEventListener("blur", handleBlur);
-    emailInput.addEventListener("input", handleInput);
-    return () => {
-      emailInput.removeEventListener("blur", handleBlur);
-      emailInput.removeEventListener("input", handleInput);
-      if (enrichAbort) enrichAbort.abort();
-    };
-  }, []);
 
   // Detailed requirement: live character counter
   useEffect(() => {

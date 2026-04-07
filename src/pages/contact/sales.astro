@@ -78,6 +78,88 @@ import ContactSalesHero from "@/components/sections/contact/ContactSalesHero";
 
   <!-- intl-tel-input JS -->
   <script is:inline src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/intlTelInput.min.js"></script>
+
+  <!-- jQuery (required by Netlify form-submission.js) -->
+  <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+  <!-- Prevent native form submit + intercept fetch to show thank-you on success -->
+  <script is:inline>
+  (function() {
+    document.addEventListener("submit", function(e) {
+      if (e.target && e.target.id === "contact-form") e.preventDefault();
+    }, true);
+
+    var origFetch = window.fetch;
+    window.fetch = function(url, opts) {
+      var result = origFetch.apply(this, arguments);
+      if (typeof url === "string" && url.indexOf("netlify") !== -1 && url.indexOf("submit") !== -1) {
+        result.then(function(response) {
+          if (response.ok) {
+            setTimeout(function() {
+              var s1 = document.querySelector('[vpf="1"]');
+              var s2 = document.querySelector('[vpf="2"]');
+              var s4 = document.querySelector('[vpf="4"]');
+              if (s1) s1.style.display = "none";
+              if (s2) s2.style.display = "none";
+              if (s4) s4.style.display = "block";
+            }, 800);
+          }
+        });
+      }
+      return result;
+    };
+  })();
+  </script>
+
+  <!-- Netlify form submission script (handles validation, enrichment, HubSpot, analytics) -->
+  <script is:inline src="https://plivo-static-forms.netlify.app/plivo/form-submission.js"></script>
+
+  <!-- Cal.com embed -->
+  <script is:inline>
+  (function (C, A, L) {
+    var p = function (a, ar) { a.q.push(ar); };
+    var d = C.document;
+    C.Cal = C.Cal || function () {
+      var cal = C.Cal;
+      var ar = arguments;
+      if (!cal.loaded) {
+        cal.ns = {};
+        cal.q = cal.q || [];
+        d.head.appendChild(d.createElement("script")).src = A;
+        cal.loaded = true;
+      }
+      if (ar[0] === L) {
+        var api = function () { p(api, arguments); };
+        var namespace = ar[1];
+        api.q = api.q || [];
+        if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]); }
+        else p(cal, ar);
+        return;
+      }
+      p(cal, ar);
+    };
+  })(window, "https://app.cal.com/embed/embed.js", "init");
+  Cal("init", "routi", { origin: "https://plivo.cal.com" });
+  </script>
+
+  <!-- Cal.com close handler -->
+  <script is:inline>
+  document.addEventListener("click", function(e) {
+    var target = e.target;
+    if (!target) return;
+    if (target.classList && target.classList.contains("cal-cross")) {
+      var wrapper = target.closest(".cal-embed-wrapper");
+      if (wrapper) wrapper.style.display = "none";
+      return;
+    }
+    if (target.classList && target.classList.contains("cal-embed-wrapper")) {
+      var inner = target.querySelector("#cal-div-embed");
+      if (inner && !inner.contains(e.target)) {
+        target.style.display = "none";
+      }
+    }
+  });
+  </script>
 </PlivoLayout>
 
 <!-- CSS overrides to match intl-tel-input to our design -->
