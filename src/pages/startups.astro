@@ -90,7 +90,13 @@ import StartupsHero from "@/components/sections/startups/StartupsHero";
       }
     }, true);
 
-    // Intercept fetch to Netlify submit — show thank-you on success
+    function alertFormFailure(formName, status, error) {
+      var email = document.getElementById("company_email");
+      var payload = { form: formName, status: String(status), error: error, email: email ? email.value : "unknown", page: window.location.href, time: new Date().toISOString() };
+      try { navigator.sendBeacon("/api/alerts/form-failure", JSON.stringify(payload)); } catch(e) {}
+    }
+
+    // Intercept fetch to Netlify submit — show thank-you on success, alert on failure
     var origFetch = window.fetch;
     window.fetch = function(url, opts) {
       var result = origFetch.apply(this, arguments);
@@ -105,7 +111,11 @@ import StartupsHero from "@/components/sections/startups/StartupsHero";
               if (s2) s2.style.display = "none";
               if (s4) s4.style.display = "block";
             }, 800);
+          } else {
+            alertFormFailure("startups", response.status, response.statusText);
           }
+        }).catch(function(err) {
+          alertFormFailure("startups", 0, err.message || "Network error");
         });
       }
       return result;

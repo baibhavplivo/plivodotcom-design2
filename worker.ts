@@ -35,6 +35,7 @@ interface Env {
   HUBSPOT_PRIVATE_APP_TOKEN?: string;
   FORM_ALLOWED_ORIGINS?: string;
   IPINFO_TOKEN?: string;
+  SLACK_FORM_ALERT_WEBHOOK?: string;
 }
 
 type FormType = "contact-sales" | "request-trial";
@@ -166,6 +167,8 @@ const BUILT_IN_ALLOWED_ORIGINS = [
   "https://plivo.com",
   "https://dev-plivo.plivops.com",
   "https://plivo-marketing-website.plivo-website.workers.dev",
+  "http://localhost:4321",
+  "http://localhost:8787",
 ];
 
 function isAllowedFormRequest(request: Request, env: Env): boolean {
@@ -1003,7 +1006,12 @@ async function handleImageUpload(request: Request, env: Env, origin?: string): P
   const filename = `${safeName}-${timestamp}.${ext}`;
 
   const buffer = await file.arrayBuffer();
-  const encoded = btoa(String.fromCharCode(...new Uint8Array(buffer)));
+  const bytes = new Uint8Array(buffer);
+  let binary = "";
+  for (let i = 0; i < bytes.length; i++) {
+    binary += String.fromCharCode(bytes[i]);
+  }
+  const encoded = btoa(binary);
 
   const branch = env.GITHUB_BRANCH || "staging";
   const res = await githubFetch(
@@ -1096,6 +1104,26 @@ export default {
         return jsonResponse({ country: ipData.country || "US", ip: ipData.ip || "" }, 200, origin);
       } catch {
         return jsonResponse({ country: "US", ip: "" }, 200, origin);
+      }
+    }
+
+    // ── Slack alert proxy for form submission failures ──
+    if (url.pathname === "/api/alerts/form-failure" && request.method === "POST") {
+      const webhookUrl = env.SLACK_FORM_ALERT_WEBHOOK;
+      if (!webhookUrl) return jsonResponse({ ok: false, message: "Alert webhook not configured" }, 200, origin);
+      try {
+        const body = await request.json() as Record<string, string>;
+        const slackPayload = {
+          text: `:rotating_light: *Form Submission Failed*\n*Form:* ${body.form || "unknown"}\n*Status:* ${body.status || "unknown"}\n*Error:* ${body.error || "unknown"}\n*Email:* ${body.email || "unknown"}\n*Page:* ${body.page || "unknown"}\n*Time:* ${body.time || new Date().toISOString()}`,
+        };
+        await fetch(webhookUrl, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(slackPayload),
+        });
+        return jsonResponse({ ok: true }, 200, origin);
+      } catch {
+        return jsonResponse({ ok: false }, 200, origin);
       }
     }
 
