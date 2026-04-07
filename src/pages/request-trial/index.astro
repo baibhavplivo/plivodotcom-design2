@@ -89,6 +89,12 @@ import RequestTrialHero from "@/components/sections/request-trial/RequestTrialHe
       if (e.target && e.target.id === "contact-form") e.preventDefault();
     }, true);
 
+    function alertFormFailure(formName, status, error) {
+      var email = document.getElementById("company_email");
+      var payload = { form: formName, status: String(status), error: error, email: email ? email.value : "unknown", page: window.location.href, time: new Date().toISOString() };
+      try { navigator.sendBeacon("/api/alerts/form-failure", JSON.stringify(payload)); } catch(e) {}
+    }
+
     var origFetch = window.fetch;
     window.fetch = function(url, opts) {
       var result = origFetch.apply(this, arguments);
@@ -103,7 +109,11 @@ import RequestTrialHero from "@/components/sections/request-trial/RequestTrialHe
               if (s2) s2.style.display = "none";
               if (s4) s4.style.display = "block";
             }, 800);
+          } else {
+            alertFormFailure("request-trial", response.status, response.statusText);
           }
+        }).catch(function(err) {
+          alertFormFailure("request-trial", 0, err.message || "Network error");
         });
       }
       return result;
