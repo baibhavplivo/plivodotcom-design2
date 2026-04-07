@@ -4,9 +4,15 @@ import StarterKit from "@tiptap/starter-kit";
 import Link from "@tiptap/extension-link";
 import Image from "@tiptap/extension-image";
 import Placeholder from "@tiptap/extension-placeholder";
+import { Table } from "@tiptap/extension-table";
+import { TableRow } from "@tiptap/extension-table-row";
+import { TableCell } from "@tiptap/extension-table-cell";
+import { TableHeader } from "@tiptap/extension-table-header";
 import { getPost, createPost, updatePost } from "./cms-api";
 import type { BlogPost } from "./cms-types";
 import CmsImageUpload from "./CmsImageUpload";
+import CmsDocImport from "./CmsDocImport";
+import CmsBannerGenerator from "./CmsBannerGenerator";
 import {
   ArrowLeft,
   Save,
@@ -14,12 +20,15 @@ import {
   Loader2,
   Bold,
   Italic,
+  Strikethrough,
   Heading2,
   Heading3,
+  Heading4,
   LinkIcon,
   ImageIcon,
   Quote,
   Code,
+  Braces,
   List,
   ListOrdered,
   Minus,
@@ -27,12 +36,39 @@ import {
   Redo2,
   Plus,
   X,
+  CodeXml,
+  Table2,
+  TableCellsMerge,
+  Columns3,
+  Rows3,
+  Trash2,
+  Wand2,
+  ChevronRight,
+  ChevronLeft,
+  Search,
+  FileText,
+  Image as ImageLucide,
+  CheckCircle2,
 } from "lucide-react";
 
 interface CmsEditorProps {
   slug?: string; // undefined = new post
   onBack: () => void;
 }
+
+const EXISTING_CATEGORIES = [
+  "how-to", "sms-api", "voice-api", "customer-service", "ai", "sms-marketing",
+  "sms", "company", "compare", "ai-agents", "phlo", "customer-experience",
+  "voice", "industry-insights", "e-commerce-marketing", "phone-numbers-2",
+  "mms", "ivr", "whatsapp-business-api", "node-js-sdk", "migration",
+  "python-sdk", "net-sdk", "2fa", "use-cases", "security", "ruby-sdk",
+  "php-sdk", "integration", "contact-center", "sip-trunking", "java-sdk",
+  "go-sdk", "zentrunk", "cpaas", "chatbots", "verify-api",
+  "fraud-prevention-2", "customer-satisfaction", "call-tracking",
+  "customer-engagement", "compliance", "healthcare", "fintech",
+  "retail", "education", "real-estate", "travel", "logistics",
+  "rcs", "whatsapp", "conversational-ai", "cx-automation",
+];
 
 const INITIAL_FRONTMATTER = {
   title: "",
@@ -49,6 +85,7 @@ const INITIAL_FRONTMATTER = {
   seoTitle: "",
   seoDescription: "",
   keyTakeaways: "",
+  imageAlt: "",
 };
 
 export default function CmsEditor({ slug, onBack }: CmsEditorProps) {
@@ -59,8 +96,16 @@ export default function CmsEditor({ slug, onBack }: CmsEditorProps) {
   const [sha, setSha] = useState("");
   const [postSlug, setPostSlug] = useState(slug || "");
   const [showImageUpload, setShowImageUpload] = useState(false);
+  const [showBannerGenerator, setShowBannerGenerator] = useState(false);
+  const [imagePreview, setImagePreview] = useState("");
   const [imageTarget, setImageTarget] = useState<"editor" | "featured" | "thumbnail">("editor");
   const [newCategory, setNewCategory] = useState("");
+  const [showCatSuggestions, setShowCatSuggestions] = useState(false);
+  const [sourceMode, setSourceMode] = useState(false);
+  const [sourceHtml, setSourceHtml] = useState("");
+  const [lastEditMode, setLastEditMode] = useState<"wysiwyg" | "source">("wysiwyg");
+  const [step, setStep] = useState<1 | 2 | 3>(1);
+  const [wordCount, setWordCount] = useState(0);
 
   // Frontmatter fields
   const [fm, setFm] = useState({ ...INITIAL_FRONTMATTER });
@@ -80,9 +125,17 @@ export default function CmsEditor({ slug, onBack }: CmsEditorProps) {
         HTMLAttributes: { target: "_blank", rel: "noopener noreferrer" },
       }),
       Image.configure({ inline: false }),
+      Table.configure({ resizable: false }),
+      TableRow,
+      TableCell,
+      TableHeader,
       Placeholder.configure({ placeholder: "Start writing your blog post..." }),
     ],
     content: "",
+    onUpdate: ({ editor: e }) => {
+      const text = e.getText().trim();
+      setWordCount(text ? text.split(/\s+/).filter(Boolean).length : 0);
+    },
     editorProps: {
       attributes: {
         class:
@@ -112,6 +165,7 @@ export default function CmsEditor({ slug, onBack }: CmsEditorProps) {
           seoTitle: post.seoTitle || "",
           seoDescription: post.seoDescription || "",
           keyTakeaways: post.keyTakeaways || "",
+          imageAlt: (post as any).imageAlt || "",
         });
         setSha(post.sha);
         setPostSlug(slug);
@@ -172,8 +226,10 @@ export default function CmsEditor({ slug, onBack }: CmsEditorProps) {
       if (fm.seoTitle) frontmatter.seoTitle = fm.seoTitle;
       if (fm.seoDescription) frontmatter.seoDescription = fm.seoDescription;
       if (fm.keyTakeaways) frontmatter.keyTakeaways = fm.keyTakeaways;
+      if (fm.imageAlt) frontmatter.imageAlt = fm.imageAlt;
 
-      const body = editor?.getHTML() || "";
+      // If user last edited in source mode, use raw HTML directly to preserve custom markup
+      const body = lastEditMode === "source" ? sourceHtml : (editor?.getHTML() || "");
 
       try {
         if (sha) {
@@ -242,11 +298,20 @@ export default function CmsEditor({ slug, onBack }: CmsEditorProps) {
         case "italic":
           editor.chain().focus().toggleItalic().run();
           break;
+        case "strikethrough":
+          editor.chain().focus().toggleStrike().run();
+          break;
+        case "inline-code":
+          editor.chain().focus().toggleCode().run();
+          break;
         case "h2":
           editor.chain().focus().toggleHeading({ level: 2 }).run();
           break;
         case "h3":
           editor.chain().focus().toggleHeading({ level: 3 }).run();
+          break;
+        case "h4":
+          editor.chain().focus().toggleHeading({ level: 4 }).run();
           break;
         case "link": {
           const url = prompt("Enter URL:");
@@ -263,6 +328,7 @@ export default function CmsEditor({ slug, onBack }: CmsEditorProps) {
           editor.chain().focus().toggleBlockquote().run();
           break;
         case "code":
+        case "inline-code-block":
           editor.chain().focus().toggleCodeBlock().run();
           break;
         case "bullet-list":
@@ -274,18 +340,93 @@ export default function CmsEditor({ slug, onBack }: CmsEditorProps) {
         case "hr":
           editor.chain().focus().setHorizontalRule().run();
           break;
+        case "insert-table":
+          editor.chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: true }).run();
+          break;
+        case "add-col":
+          editor.chain().focus().addColumnAfter().run();
+          break;
+        case "add-row":
+          editor.chain().focus().addRowAfter().run();
+          break;
+        case "delete-col":
+          editor.chain().focus().deleteColumn().run();
+          break;
+        case "delete-row":
+          editor.chain().focus().deleteRow().run();
+          break;
+        case "delete-table":
+          editor.chain().focus().deleteTable().run();
+          break;
         case "undo":
           editor.chain().focus().undo().run();
           break;
         case "redo":
           editor.chain().focus().redo().run();
           break;
+        case "source": {
+          if (!sourceMode) {
+            // Entering source mode — capture current HTML
+            const html = editor.getHTML();
+            setSourceHtml(html);
+            setSourceMode(true);
+          } else {
+            // Leaving source mode — load HTML back into editor
+            const proceed = confirm(
+              "Switching to visual mode may alter custom HTML (iframes, inline styles, etc). Continue?"
+            );
+            if (proceed) {
+              editor.commands.setContent(sourceHtml);
+              setSourceMode(false);
+              setLastEditMode("wysiwyg");
+            }
+          }
+          break;
+        }
       }
     };
 
     toolbar.addEventListener("click", handleToolbar);
     return () => toolbar.removeEventListener("click", handleToolbar);
-  }, [editor]);
+  }, [editor, sourceMode, sourceHtml]);
+
+  // Step navigation handlers
+  useEffect(() => {
+    const handleStepNav = (e: MouseEvent) => {
+      const btn = (e.target as HTMLElement).closest("[data-nav]") as HTMLElement | null;
+      if (btn) {
+        const nav = btn.getAttribute("data-nav");
+        if (nav === "next" && step < 3) setStep((s) => (s + 1) as 1 | 2 | 3);
+        if (nav === "prev" && step > 1) setStep((s) => (s - 1) as 1 | 2 | 3);
+      }
+      const stepBtn = (e.target as HTMLElement).closest("[data-step]") as HTMLElement | null;
+      if (stepBtn) {
+        const num = Number(stepBtn.getAttribute("data-step")) as 1 | 2 | 3;
+        if (num >= 1 && num <= 3) setStep(num);
+      }
+    };
+
+    document.addEventListener("click", handleStepNav);
+    return () => document.removeEventListener("click", handleStepNav);
+  }, [step]);
+
+  // Source mode textarea listener
+  const sourceTextareaRef = useRef<HTMLTextAreaElement>(null);
+
+  useEffect(() => {
+    const textarea = sourceTextareaRef.current;
+    if (!textarea || !sourceMode) return;
+
+    const handleInput = () => {
+      setSourceHtml(textarea.value);
+      setLastEditMode("source");
+      const text = textarea.value.replace(/<[^>]*>/g, "").trim();
+      setWordCount(text ? text.split(/\s+/).filter(Boolean).length : 0);
+    };
+
+    textarea.addEventListener("input", handleInput);
+    return () => textarea.removeEventListener("input", handleInput);
+  }, [sourceMode]);
 
   // Category management
   const catInputRef = useRef<HTMLInputElement>(null);
@@ -341,7 +482,8 @@ export default function CmsEditor({ slug, onBack }: CmsEditorProps) {
     } else if (imageTarget === "thumbnail") {
       updateFm("thumbnail", url);
     } else if (editor) {
-      editor.chain().focus().setImage({ src: url }).run();
+      const altText = prompt("Image alt text (for accessibility):", "") || "";
+      editor.chain().focus().setImage({ src: url, alt: altText }).run();
     }
     setShowImageUpload(false);
   };
@@ -403,167 +545,79 @@ export default function CmsEditor({ slug, onBack }: CmsEditorProps) {
         </div>
       </header>
 
-      <main className="mx-auto max-w-7xl px-4 py-6 sm:px-6">
-        <div className="flex flex-col gap-6 lg:flex-row">
-          {/* Left sidebar - Frontmatter fields */}
-          <div className="w-full shrink-0 lg:w-80">
-            <div className="sticky top-20 space-y-4 rounded-lg border border-gray-200 bg-white p-4">
-              <h3 className="font-sora text-sm font-semibold text-gray-900">
-                Post Settings
-              </h3>
+      <main className="mx-auto max-w-5xl px-4 py-6 sm:px-6">
+        {/* Step indicators */}
+        <div className="mb-6 flex items-center justify-center gap-2">
+          {[
+            { num: 1, label: "Content", icon: <FileText className="h-4 w-4" /> },
+            { num: 2, label: "SEO & Settings", icon: <Search className="h-4 w-4" /> },
+            { num: 3, label: "Cover Image", icon: <ImageLucide className="h-4 w-4" /> },
+          ].map((s, i) => (
+            <div key={s.num} className="flex items-center gap-2">
+              {i > 0 && <div className={`h-px w-8 ${step >= s.num ? "bg-blue-400" : "bg-gray-200"}`} />}
+              <button
+                data-step={s.num}
+                className={`flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-medium transition-colors ${
+                  step === s.num
+                    ? "bg-black text-white"
+                    : step > s.num
+                      ? "bg-green-50 text-green-700 border border-green-200"
+                      : "bg-gray-100 text-gray-400"
+                }`}
+              >
+                {step > s.num ? <CheckCircle2 className="h-3.5 w-3.5" /> : s.icon}
+                {s.label}
+              </button>
+            </div>
+          ))}
+        </div>
 
-              {/* Title */}
+        {/* ──── STEP 1: Content ──── */}
+        {step === 1 && (
+          <div className="space-y-4">
+            <div className="rounded-lg border border-gray-200 bg-white p-5 space-y-4">
               <FieldInput
                 label="Title"
                 value={fm.title}
                 onChange={(v) => updateFm("title", v)}
                 required
               />
-
-              {/* Slug */}
               <FieldInput
                 label="Slug"
                 value={postSlug}
                 onChange={setPostSlug}
-                disabled={!!slug}
-                hint={slug ? "Cannot change slug for existing posts" : "Auto-generated from title"}
+                hint={slug ? "Changing slug creates a new post at the new URL" : "Auto-generated from title — edit to customize"}
               />
-
-              {/* Description */}
-              <FieldTextarea
-                label="Description"
-                value={fm.description}
-                onChange={(v) => updateFm("description", v)}
-                rows={3}
-              />
-
-              {/* Author */}
-              <FieldInput
-                label="Author"
-                value={fm.authorName}
-                onChange={(v) => updateFm("authorName", v)}
-              />
-
-              {/* Publish Date */}
-              <FieldInput
-                label="Publish Date"
-                type="date"
-                value={fm.pubDate}
-                onChange={(v) => updateFm("pubDate", v)}
-              />
-
-              {/* Categories */}
-              <div>
-                <label className="mb-1 block text-xs font-medium text-gray-700">
-                  Categories
-                </label>
-                <div className="mb-2 flex flex-wrap gap-1">
-                  {fm.categories.map((cat) => (
-                    <span
-                      key={cat}
-                      className="flex items-center gap-1 rounded-full bg-gray-100 px-2 py-0.5 text-xs text-gray-700"
-                    >
-                      {cat}
-                      <button
-                        data-remove-cat={cat}
-                        className="ml-0.5 rounded-full p-0.5 text-gray-400 hover:bg-gray-200 hover:text-gray-600"
-                      >
-                        <X className="h-3 w-3" />
-                      </button>
-                    </span>
-                  ))}
-                </div>
-                <div className="flex gap-1">
-                  <input
-                    ref={catInputRef}
-                    type="text"
-                    value={newCategory}
-                    placeholder="Add category"
-                    className="flex-1 rounded-md border border-gray-300 bg-white px-2 py-1 text-xs text-gray-900 placeholder-gray-400 outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-100"
-                    onChange={(e) => setNewCategory(e.target.value)}
-                  />
-                  <button
-                    ref={addCatBtnRef}
-                    className="rounded-md border border-gray-300 p-1 text-gray-500 hover:bg-gray-50"
-                  >
-                    <Plus className="h-3.5 w-3.5" />
-                  </button>
-                </div>
-              </div>
-
-              {/* Featured Image */}
-              <div>
-                <label className="mb-1 block text-xs font-medium text-gray-700">
-                  Featured Image URL
-                </label>
-                <div className="flex gap-1">
-                  <input
-                    type="text"
-                    value={fm.image}
-                    className="flex-1 rounded-md border border-gray-300 bg-white px-2 py-1 text-xs text-gray-900 placeholder-gray-400 outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-100"
-                    onChange={(e) => updateFm("image", e.target.value)}
-                    placeholder="URL or upload"
-                  />
-                  <button
-                    className="rounded-md border border-gray-300 p-1 text-gray-500 hover:bg-gray-50"
-                    data-upload-target="featured"
-                  >
-                    <ImageIcon className="h-3.5 w-3.5" />
-                  </button>
-                </div>
-              </div>
-
-              {/* Toggles */}
-              <div className="space-y-2 border-t border-gray-100 pt-3">
-                <FieldToggle
-                  label="Draft"
-                  checked={fm.draft}
-                  onChange={(v) => updateFm("draft", v)}
+              <div className="flex items-center gap-3 pt-1">
+                <FieldInput
+                  label="Author"
+                  value={fm.authorName}
+                  onChange={(v) => updateFm("authorName", v)}
                 />
-                <FieldToggle
-                  label="Featured"
-                  checked={fm.featured}
-                  onChange={(v) => updateFm("featured", v)}
+                <FieldInput
+                  label="Publish Date"
+                  type="date"
+                  value={fm.pubDate}
+                  onChange={(v) => updateFm("pubDate", v)}
                 />
-                <FieldToggle
-                  label="No-index"
-                  checked={fm.noindex}
-                  onChange={(v) => updateFm("noindex", v)}
-                />
-              </div>
-
-              {/* SEO */}
-              <div className="border-t border-gray-100 pt-3">
-                <h4 className="mb-2 text-xs font-semibold text-gray-500 uppercase">
-                  SEO
-                </h4>
-                <div className="space-y-3">
-                  <FieldInput
-                    label="SEO Title"
-                    value={fm.seoTitle}
-                    onChange={(v) => updateFm("seoTitle", v)}
-                    placeholder="Override page title"
-                  />
-                  <FieldTextarea
-                    label="SEO Description"
-                    value={fm.seoDescription}
-                    onChange={(v) => updateFm("seoDescription", v)}
-                    rows={2}
-                    placeholder="Override meta description"
-                  />
-                  <FieldTextarea
-                    label="Key Takeaways"
-                    value={fm.keyTakeaways}
-                    onChange={(v) => updateFm("keyTakeaways", v)}
-                    rows={3}
-                  />
-                </div>
               </div>
             </div>
-          </div>
 
-          {/* Main editor */}
-          <div className="flex-1">
+            {/* Import Doc + Editor */}
+            <div className="flex items-center justify-between">
+              <CmsDocImport
+                onImport={(html, title) => {
+                  const proceed = !editor?.getText().trim() || confirm("This will replace current editor content. Continue?");
+                  if (proceed && editor) {
+                    editor.commands.setContent(html);
+                    setLastEditMode("wysiwyg");
+                    if (title && !fm.title) {
+                      updateFm("title", title);
+                    }
+                  }
+                }}
+              />
+            </div>
             <div className="overflow-hidden rounded-lg border border-gray-200 bg-white">
               {/* Toolbar */}
               <div
@@ -572,27 +626,305 @@ export default function CmsEditor({ slug, onBack }: CmsEditorProps) {
               >
                 <ToolbarButton tool="bold" icon={<Bold className="h-4 w-4" />} title="Bold" active={editor?.isActive("bold")} />
                 <ToolbarButton tool="italic" icon={<Italic className="h-4 w-4" />} title="Italic" active={editor?.isActive("italic")} />
+                <ToolbarButton tool="strikethrough" icon={<Strikethrough className="h-4 w-4" />} title="Strikethrough" active={editor?.isActive("strike")} />
+                <ToolbarButton tool="inline-code" icon={<Braces className="h-4 w-4" />} title="Inline Code" active={editor?.isActive("code")} />
                 <ToolbarDivider />
                 <ToolbarButton tool="h2" icon={<Heading2 className="h-4 w-4" />} title="Heading 2" active={editor?.isActive("heading", { level: 2 })} />
                 <ToolbarButton tool="h3" icon={<Heading3 className="h-4 w-4" />} title="Heading 3" active={editor?.isActive("heading", { level: 3 })} />
+                <ToolbarButton tool="h4" icon={<Heading4 className="h-4 w-4" />} title="Heading 4" active={editor?.isActive("heading", { level: 4 })} />
                 <ToolbarDivider />
                 <ToolbarButton tool="link" icon={<LinkIcon className="h-4 w-4" />} title="Link" active={editor?.isActive("link")} />
                 <ToolbarButton tool="image" icon={<ImageIcon className="h-4 w-4" />} title="Image" />
                 <ToolbarDivider />
                 <ToolbarButton tool="blockquote" icon={<Quote className="h-4 w-4" />} title="Blockquote" active={editor?.isActive("blockquote")} />
-                <ToolbarButton tool="code" icon={<Code className="h-4 w-4" />} title="Code Block" active={editor?.isActive("codeBlock")} />
+                <ToolbarButton tool="inline-code-block" icon={<CodeXml className="h-4 w-4" />} title="Code Block" active={editor?.isActive("codeBlock")} />
                 <ToolbarDivider />
                 <ToolbarButton tool="bullet-list" icon={<List className="h-4 w-4" />} title="Bullet List" active={editor?.isActive("bulletList")} />
                 <ToolbarButton tool="ordered-list" icon={<ListOrdered className="h-4 w-4" />} title="Ordered List" active={editor?.isActive("orderedList")} />
                 <ToolbarButton tool="hr" icon={<Minus className="h-4 w-4" />} title="Horizontal Rule" />
                 <ToolbarDivider />
+                <ToolbarButton tool="insert-table" icon={<Table2 className="h-4 w-4" />} title="Insert Table" />
+                {editor?.isActive("table") && (
+                  <>
+                    <ToolbarButton tool="add-col" icon={<Columns3 className="h-4 w-4" />} title="Add Column" />
+                    <ToolbarButton tool="add-row" icon={<Rows3 className="h-4 w-4" />} title="Add Row" />
+                    <ToolbarButton tool="delete-col" icon={<TableCellsMerge className="h-4 w-4" />} title="Delete Column" />
+                    <ToolbarButton tool="delete-row" icon={<Minus className="h-4 w-4" />} title="Delete Row" />
+                    <ToolbarButton tool="delete-table" icon={<Trash2 className="h-4 w-4" />} title="Delete Table" />
+                  </>
+                )}
+                <ToolbarDivider />
                 <ToolbarButton tool="undo" icon={<Undo2 className="h-4 w-4" />} title="Undo" />
                 <ToolbarButton tool="redo" icon={<Redo2 className="h-4 w-4" />} title="Redo" />
+                <ToolbarDivider />
+                <ToolbarButton tool="source" icon={<Code className="h-4 w-4" />} title="Toggle HTML Source" active={sourceMode} />
               </div>
 
+              {/* Table editing styles */}
+              <style>{`
+                .ProseMirror table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+                .ProseMirror th, .ProseMirror td { border: 1px solid #d1d5db; padding: 0.5rem; min-width: 80px; }
+                .ProseMirror th { background: #f9fafb; font-weight: 600; }
+                .ProseMirror .selectedCell { background: #dbeafe; }
+              `}</style>
+
               {/* Editor content */}
-              <EditorContent editor={editor} />
+              {sourceMode ? (
+                <textarea
+                  ref={sourceTextareaRef}
+                  defaultValue={sourceHtml}
+                  className="w-full min-h-[400px] px-4 py-3 font-mono text-sm text-gray-800 bg-gray-50 outline-none focus:outline-none resize-y"
+                  spellCheck={false}
+                />
+              ) : (
+                <EditorContent editor={editor} />
+              )}
+
+              {/* Word counter */}
+              <div className="flex items-center justify-end border-t border-gray-100 px-3 py-1.5 text-[11px] text-gray-400">
+                {wordCount.toLocaleString()} words · {Math.max(1, Math.round(wordCount / 238))} min read
+              </div>
             </div>
+          </div>
+        )}
+
+        {/* ──── STEP 2: SEO & Settings ──── */}
+        {step === 2 && (
+          <div className="mx-auto max-w-2xl space-y-6">
+            {/* Description */}
+            <div className="rounded-lg border border-gray-200 bg-white p-5 space-y-4">
+              <h3 className="font-sora text-sm font-semibold text-gray-900">Description & Meta</h3>
+              <FieldTextareaWithCount
+                label="Description"
+                value={fm.description}
+                onChange={(v) => updateFm("description", v)}
+                rows={3}
+                idealMin={120}
+                idealMax={160}
+              />
+              <FieldInput
+                label="SEO Title"
+                value={fm.seoTitle}
+                onChange={(v) => updateFm("seoTitle", v)}
+                placeholder="Override page title (leave empty to use post title)"
+              />
+              <FieldTextareaWithCount
+                label="SEO Description"
+                value={fm.seoDescription}
+                onChange={(v) => updateFm("seoDescription", v)}
+                rows={2}
+                placeholder="Override meta description"
+                idealMin={120}
+                idealMax={160}
+              />
+              <FieldTextarea
+                label="Key Takeaways"
+                value={fm.keyTakeaways}
+                onChange={(v) => updateFm("keyTakeaways", v)}
+                rows={3}
+              />
+            </div>
+
+            {/* Categories */}
+            <div className="rounded-lg border border-gray-200 bg-white p-5 space-y-3">
+              <h3 className="font-sora text-sm font-semibold text-gray-900">Categories</h3>
+              <div className="flex flex-wrap gap-1.5">
+                {fm.categories.map((cat) => (
+                  <span
+                    key={cat}
+                    className="flex items-center gap-1 rounded-full bg-gray-100 px-2.5 py-1 text-xs text-gray-700"
+                  >
+                    {cat}
+                    <button
+                      data-remove-cat={cat}
+                      className="ml-0.5 rounded-full p-0.5 text-gray-400 hover:bg-gray-200 hover:text-gray-600"
+                    >
+                      <X className="h-3 w-3" />
+                    </button>
+                  </span>
+                ))}
+              </div>
+              <div className="relative">
+                <div className="flex gap-1">
+                  <input
+                    ref={catInputRef}
+                    type="text"
+                    value={newCategory}
+                    placeholder="Search or add category"
+                    className="flex-1 rounded-md border border-gray-300 bg-white px-2.5 py-1.5 text-sm text-gray-900 placeholder-gray-400 outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-100"
+                    onChange={(e) => {
+                      setNewCategory(e.target.value);
+                      setShowCatSuggestions(true);
+                    }}
+                    onFocus={() => setShowCatSuggestions(true)}
+                    onBlur={() => {
+                      setTimeout(() => setShowCatSuggestions(false), 150);
+                    }}
+                  />
+                  <button
+                    ref={addCatBtnRef}
+                    className="rounded-md border border-gray-300 px-2.5 py-1.5 text-gray-500 hover:bg-gray-50"
+                  >
+                    <Plus className="h-4 w-4" />
+                  </button>
+                </div>
+                {showCatSuggestions && (
+                  <div className="absolute left-0 right-12 top-full z-20 mt-1 max-h-48 overflow-y-auto rounded-md border border-gray-200 bg-white shadow-lg">
+                    {EXISTING_CATEGORIES
+                      .filter(
+                        (cat) =>
+                          !fm.categories.includes(cat) &&
+                          (newCategory === "" || cat.includes(newCategory.toLowerCase()))
+                      )
+                      .slice(0, 20)
+                      .map((cat) => (
+                        <button
+                          key={cat}
+                          type="button"
+                          className="block w-full px-3 py-2 text-left text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700"
+                          onMouseDown={(e) => {
+                            e.preventDefault();
+                            updateFm("categories", [...fm.categories, cat]);
+                            setNewCategory("");
+                            setShowCatSuggestions(false);
+                          }}
+                        >
+                          {cat}
+                        </button>
+                      ))}
+                    {newCategory.trim() &&
+                      !EXISTING_CATEGORIES.includes(newCategory.trim().toLowerCase()) &&
+                      !fm.categories.includes(newCategory.trim().toLowerCase()) && (
+                        <button
+                          type="button"
+                          className="block w-full border-t border-gray-100 px-3 py-2 text-left text-sm font-medium text-blue-600 hover:bg-blue-50"
+                          onMouseDown={(e) => {
+                            e.preventDefault();
+                            updateFm("categories", [...fm.categories, newCategory.trim().toLowerCase()]);
+                            setNewCategory("");
+                            setShowCatSuggestions(false);
+                          }}
+                        >
+                          + Create "{newCategory.trim().toLowerCase()}"
+                        </button>
+                      )}
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* Publishing Options */}
+            <div className="rounded-lg border border-gray-200 bg-white p-5 space-y-3">
+              <h3 className="font-sora text-sm font-semibold text-gray-900">Publishing Options</h3>
+              <FieldToggle
+                label="Draft"
+                checked={fm.draft}
+                onChange={(v) => updateFm("draft", v)}
+              />
+              <FieldToggle
+                label="Featured"
+                checked={fm.featured}
+                onChange={(v) => updateFm("featured", v)}
+              />
+              <FieldToggle
+                label="No-index (hide from search engines)"
+                checked={fm.noindex}
+                onChange={(v) => updateFm("noindex", v)}
+              />
+            </div>
+          </div>
+        )}
+
+        {/* ──── STEP 3: Cover Image ──── */}
+        {step === 3 && (
+          <div className="mx-auto max-w-3xl space-y-6">
+            {/* Current cover preview */}
+            {fm.image && (
+              <div className="rounded-lg border border-green-200 bg-green-50 p-4 space-y-3">
+                <div className="flex items-center justify-between">
+                  <h3 className="flex items-center gap-2 font-sora text-sm font-semibold text-green-800">
+                    <CheckCircle2 className="h-4 w-4" />
+                    Cover Image Set
+                  </h3>
+                  <button
+                    className="text-xs text-green-600 hover:text-red-500"
+                    onMouseDown={(e) => { e.preventDefault(); updateFm("image", ""); setImagePreview(""); }}
+                  >
+                    Remove
+                  </button>
+                </div>
+                <div className="overflow-hidden rounded-lg border border-green-100">
+                  <img src={imagePreview || fm.image} alt={fm.imageAlt || "Cover preview"} className="w-full object-cover" />
+                </div>
+                <FieldInput
+                  label="Image Alt Text"
+                  value={fm.imageAlt}
+                  onChange={(v) => updateFm("imageAlt", v)}
+                  placeholder="Describe the image (for SEO & accessibility)"
+                />
+              </div>
+            )}
+
+            {/* Banner Generator — inline, primary */}
+            <div className="rounded-lg border border-gray-200 bg-white p-5">
+              <CmsBannerGenerator
+                initialTitle={fm.title}
+                initialSubtitle={fm.description}
+                onGenerated={(url, previewDataUrl) => {
+                  updateFm("image", url);
+                  setImagePreview(previewDataUrl);
+                }}
+              />
+            </div>
+
+            {/* Upload manually — secondary, collapsed */}
+            <details className="group rounded-lg border border-gray-200 bg-white">
+              <summary className="flex cursor-pointer items-center justify-between px-5 py-3 text-sm text-gray-400 hover:text-gray-600">
+                <span>Or upload your own image instead</span>
+                <ChevronRight className="h-4 w-4 transition-transform group-open:rotate-90" />
+              </summary>
+              <div className="border-t border-gray-100 px-5 py-4 space-y-3">
+                <FieldInput
+                  label="Image URL"
+                  value={fm.image}
+                  onChange={(v) => updateFm("image", v)}
+                  placeholder="Paste image URL"
+                />
+                <button
+                  data-upload-target="featured"
+                  className="flex w-full items-center justify-center gap-2 rounded-md border border-dashed border-gray-200 py-2.5 text-xs font-medium text-gray-400 transition-colors hover:border-blue-400 hover:bg-blue-50 hover:text-blue-600"
+                >
+                  <ImageIcon className="h-3.5 w-3.5" />
+                  Upload from computer
+                </button>
+              </div>
+            </details>
+          </div>
+        )}
+
+        {/* ──── Step Navigation ──── */}
+        <div className="mt-6 flex items-center justify-between">
+          <div>
+            {step > 1 && (
+              <button
+                data-nav="prev"
+                className="flex items-center gap-1.5 rounded-md border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50"
+              >
+                <ChevronLeft className="h-4 w-4" />
+                Back
+              </button>
+            )}
+          </div>
+          <div>
+            {step < 3 ? (
+              <button
+                data-nav="next"
+                className="flex items-center gap-1.5 rounded-md bg-black px-4 py-2 text-sm font-medium text-white transition-colors cta-hover-gradient"
+              >
+                Next
+                <ChevronRight className="h-4 w-4" />
+              </button>
+            ) : null}
           </div>
         </div>
       </main>
@@ -673,6 +1005,52 @@ function FieldTextarea({
       <label className="mb-1 block text-xs font-medium text-gray-700">
         {label}
       </label>
+      <textarea
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        rows={rows}
+        placeholder={placeholder}
+        className="w-full rounded-md border border-gray-300 bg-white px-2 py-1.5 text-sm text-gray-900 placeholder-gray-400 outline-none transition-colors hover:border-gray-400 focus:border-blue-500 focus:ring-1 focus:ring-blue-100"
+      />
+    </div>
+  );
+}
+
+function FieldTextareaWithCount({
+  label,
+  value,
+  onChange,
+  rows = 3,
+  placeholder,
+  idealMin = 120,
+  idealMax = 160,
+}: {
+  label: string;
+  value: string;
+  onChange: (v: string) => void;
+  rows?: number;
+  placeholder?: string;
+  idealMin?: number;
+  idealMax?: number;
+}) {
+  const len = value.length;
+  const color =
+    len === 0
+      ? "text-gray-400"
+      : len >= idealMin && len <= idealMax
+        ? "text-green-600"
+        : len >= idealMin - 20 && len <= idealMax + 20
+          ? "text-yellow-600"
+          : "text-red-500";
+
+  return (
+    <div>
+      <div className="mb-1 flex items-center justify-between">
+        <label className="text-xs font-medium text-gray-700">{label}</label>
+        <span className={`text-[10px] ${color}`}>
+          {len}/{idealMax}
+        </span>
+      </div>
       <textarea
         value={value}
         onChange={(e) => onChange(e.target.value)}

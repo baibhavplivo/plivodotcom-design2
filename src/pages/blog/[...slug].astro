@@ -86,10 +86,22 @@ function formatDate(date: Date): string {
 }
 ---
 
-<PlivoLayout title={pageTitle} description={pageDescription}>
+<PlivoLayout title={pageTitle} description={pageDescription} image={image} ogType="article">
 	{noindex && (
 		<meta slot="head" name="robots" content="noindex, nofollow" />
 	)}
+	<meta slot="head" property="article:published_time" content={post.data.pubDate.toISOString()} />
+	<meta slot="head" property="article:modified_time" content={(post.data.updatedDate || post.data.pubDate).toISOString()} />
+	<meta slot="head" property="article:author" content="Plivo" />
+	<script slot="head" type="application/ld+json" set:html={JSON.stringify({
+		"@context": "https://schema.org",
+		"@type": "BreadcrumbList",
+		"itemListElement": [
+			{ "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.plivo.com/" },
+			{ "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.plivo.com/blog/" },
+			{ "@type": "ListItem", "position": 3, "name": title }
+		]
+	})} />
 
 	<!-- Breadcrumb -->
 	<div class="bg-white border-b border-gray-100">

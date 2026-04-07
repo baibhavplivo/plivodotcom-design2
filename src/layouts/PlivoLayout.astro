@@ -7,9 +7,11 @@ import { PlivoFooter } from '@/components/sections/plivo-footer';
 interface Props {
   title: string;
   description?: string;
+  image?: string;
+  ogType?: string;
 }
 
-const { title, description = "Plivo enables businesses to communicate with their customers through voice, messaging, and more with APIs that simplify cloud communications." } = Astro.props;
+const { title, description = "Plivo enables businesses to communicate with their customers through voice, messaging, and more with APIs that simplify cloud communications.", image, ogType } = Astro.props;
 const isDev = import.meta.env.DEV;
 const gtmContainerId = import.meta.env.PROD
   ? (import.meta.env.PUBLIC_GTM_CONTAINER_ID || "GTM-MXJNN5")
@@ -18,11 +20,14 @@ const gtmAllowedHosts = (import.meta.env.PUBLIC_GTM_ALLOWED_HOSTS || "www.plivo.
   .split(",")
   .map((host) => host.trim())
   .filter(Boolean);
+const posthogKey = import.meta.env.PUBLIC_POSTHOG_KEY || "phc_L7KN2rQgiafKZeW8nz4orh2cGcBxn8CJjsPfpkDEBQj";
+const posthogHost = import.meta.env.PUBLIC_POSTHOG_HOST || "https://us.i.posthog.com";
 ---
 
 <html lang="en">
   <head>
-    <BaseHead title={`${title} | Plivo`} description={description} />
+    <BaseHead title={`${title} | Plivo`} description={description} image={image} ogType={ogType} />
+    <slot name="head" />
     {isDev && (
       <script type="module" is:inline>
         import RefreshRuntime from "/@react-refresh";
@@ -115,6 +120,8 @@ const gtmAllowedHosts = (import.meta.env.PUBLIC_GTM_ALLOWED_HOSTS || "www.plivo.
     <CookieConsentManager
       gtmContainerId={gtmContainerId}
       gtmAllowedHosts={gtmAllowedHosts}
+      posthogKey={posthogKey}
+      posthogHost={posthogHost}
     />
   </body>
 </html>
