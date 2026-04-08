@@ -5,7 +5,7 @@ import { Loader2, Check } from "lucide-react";
 const CANVAS_W = 1200;
 const CANVAS_H = 630;
 
-type TemplateId = "gradient" | "dark" | "minimal" | "overlay" | "split";
+type TemplateId = "gradient" | "minimal" | "grid-light" | "grid-dark" | "hex-light" | "hex-dark" | "rings-light" | "rings-dark";
 
 interface Template {
   id: TemplateId;
@@ -13,11 +13,14 @@ interface Template {
 }
 
 const TEMPLATES: Template[] = [
-  { id: "gradient", name: "Gradient" },
-  { id: "dark", name: "Dark" },
-  { id: "minimal", name: "Minimal" },
-  { id: "overlay", name: "Overlay" },
-  { id: "split", name: "Split" },
+  { id: "gradient", name: "Dark Dots" },
+  { id: "minimal", name: "Light Dots" },
+  { id: "grid-dark", name: "Dark Grid" },
+  { id: "grid-light", name: "Light Grid" },
+  { id: "hex-dark", name: "Dark Wave" },
+  { id: "hex-light", name: "Light Wave" },
+  { id: "rings-dark", name: "Dark Rings" },
+  { id: "rings-light", name: "Light Rings" },
 ];
 
 interface CmsBannerGeneratorProps {
@@ -109,7 +112,7 @@ export default function CmsBannerGenerator({
     setError("");
 
     try {
-      await document.fonts.load("bold 64px Sora");
+      await document.fonts.load("500 64px Sora");
       await document.fonts.load("30px Inter");
 
       const canvas = canvasRef.current;
@@ -244,20 +247,19 @@ const TITLE_SIZE = 64;
 const TITLE_LH = 80;
 const SUB_SIZE = 30;
 const SUB_LH = 40;
-const SPLIT_TITLE_SIZE = 52;
-const SPLIT_TITLE_LH = 66;
-const SPLIT_SUB_SIZE = 26;
-const SPLIT_SUB_LH = 34;
 
 function renderTemplate(ctx: CanvasRenderingContext2D, template: TemplateId, title: string, subtitle: string) {
   ctx.clearRect(0, 0, CANVAS_W, CANVAS_H);
 
   switch (template) {
     case "gradient": renderGradient(ctx, title, subtitle); break;
-    case "dark": renderDark(ctx, title, subtitle); break;
     case "minimal": renderMinimal(ctx, title, subtitle); break;
-    case "overlay": renderOverlay(ctx, title, subtitle); break;
-    case "split": renderSplit(ctx, title, subtitle); break;
+    case "grid-light": renderWithPattern(ctx, title, subtitle, "light", drawPerspectiveGrid); break;
+    case "grid-dark": renderWithPattern(ctx, title, subtitle, "dark", drawPerspectiveGridDark); break;
+    case "hex-light": renderWithPattern(ctx, title, subtitle, "light", drawHexPattern); break;
+    case "hex-dark": renderWithPattern(ctx, title, subtitle, "dark", drawHexPatternDark); break;
+    case "rings-light": renderWithPattern(ctx, title, subtitle, "light", drawRingsPattern); break;
+    case "rings-dark": renderWithPattern(ctx, title, subtitle, "dark", drawRingsPatternDark); break;
   }
 
   drawPlivoLogo(ctx, template);
@@ -267,170 +269,382 @@ function renderTemplate(ctx: CanvasRenderingContext2D, template: TemplateId, tit
 function renderGradient(ctx: CanvasRenderingContext2D, title: string, subtitle: string) {
   // Diagonal gradient: top-left → bottom-right
   const grad = ctx.createLinearGradient(0, 0, CANVAS_W, CANVAS_H);
-  grad.addColorStop(0, "#1a1a2e");
-  grad.addColorStop(0.3, "#0f0f1a");
-  grad.addColorStop(0.6, "#1e1b4b");
-  grad.addColorStop(0.85, "#4f46e5");
-  grad.addColorStop(1, "#7c3aed");
+  grad.addColorStop(0, "#141428");
+  grad.addColorStop(0.2, "#1a1a3e");
+  grad.addColorStop(0.4, "#252560");
+  grad.addColorStop(0.6, "#3730a3");
+  grad.addColorStop(0.75, "#4f46e5");
+  grad.addColorStop(0.88, "#7c3aed");
+  grad.addColorStop(1, "#a855f7");
   ctx.fillStyle = grad;
   ctx.fillRect(0, 0, CANVAS_W, CANVAS_H);
 
-  // Subtle decorative circles
-  ctx.globalAlpha = 0.04;
-  ctx.fillStyle = "#818cf8";
-  ctx.beginPath(); ctx.arc(900, 500, 280, 0, Math.PI * 2); ctx.fill();
-  ctx.fillStyle = "#7c3aed";
-  ctx.beginPath(); ctx.arc(1100, 200, 180, 0, Math.PI * 2); ctx.fill();
-  ctx.globalAlpha = 1;
+  // Dots wave pattern (static, like pre-footer)
+  drawDotsWave(ctx);
 
   // Logo at top-left
   drawPlivoLogoAt(ctx, 50, 40, "white");
 
+  const titleFont = `500 ${TITLE_SIZE}px Sora, sans-serif`;
+  const subFont = `400 ${SUB_SIZE}px Inter, sans-serif`;
+  const { titleY, subtitleY } = getCenteredStartY(ctx, title, subtitle, titleFont, subFont, TITLE_LH, SUB_LH, 1000, 16, 0);
+
   ctx.fillStyle = "#ffffff";
   ctx.textAlign = "center";
-  ctx.font = `bold ${TITLE_SIZE}px Sora, sans-serif`;
-  wrapText(ctx, title, CANVAS_W / 2, 280, 1000, TITLE_LH);
+  ctx.font = titleFont;
+  wrapText(ctx, title, CANVAS_W / 2, titleY, 1000, TITLE_LH);
 
   if (subtitle) {
-    ctx.fillStyle = "rgba(255,255,255,0.7)";
-    ctx.font = `400 ${SUB_SIZE}px Inter, sans-serif`;
-    wrapText(ctx, subtitle, CANVAS_W / 2, getSubtitleY(ctx, title, 280, 1000, TITLE_LH, TITLE_SIZE), 900, SUB_LH);
+    ctx.fillStyle = "rgba(255,255,255,0.8)";
+    ctx.font = subFont;
+    wrapText(ctx, subtitle, CANVAS_W / 2, subtitleY, 900, SUB_LH);
   }
 }
 
-// Template 2: Dark with gradient accent text
-function renderDark(ctx: CanvasRenderingContext2D, title: string, subtitle: string) {
-  ctx.fillStyle = "#0f1117";
-  ctx.fillRect(0, 0, CANVAS_W, CANVAS_H);
-
-  ctx.strokeStyle = "rgba(255,255,255,0.03)";
-  ctx.lineWidth = 1;
-  for (let x = 0; x < CANVAS_W; x += 40) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, CANVAS_H); ctx.stroke(); }
-  for (let y = 0; y < CANVAS_H; y += 40) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(CANVAS_W, y); ctx.stroke(); }
-
-  const lineGrad = ctx.createLinearGradient(100, 0, CANVAS_W - 100, 0);
-  lineGrad.addColorStop(0, "#d946ef");
-  lineGrad.addColorStop(1, "#4f46e5");
-  ctx.fillStyle = lineGrad;
-  ctx.fillRect(100, 80, CANVAS_W - 200, 4);
-
-  ctx.textAlign = "center";
-  const titleGrad = ctx.createLinearGradient(200, 0, 1000, 0);
-  titleGrad.addColorStop(0, "#d946ef");
-  titleGrad.addColorStop(1, "#818cf8");
-  ctx.fillStyle = titleGrad;
-  ctx.font = `bold ${TITLE_SIZE}px Sora, sans-serif`;
-  wrapText(ctx, title, CANVAS_W / 2, 270, 1000, TITLE_LH);
-
-  if (subtitle) {
-    ctx.fillStyle = "rgba(255,255,255,0.5)";
-    ctx.font = `400 ${SUB_SIZE}px Inter, sans-serif`;
-    wrapText(ctx, subtitle, CANVAS_W / 2, getSubtitleY(ctx, title, 270, 1000, TITLE_LH, TITLE_SIZE), 900, SUB_LH);
-  }
-}
-
-// Template 3: Minimal white
+// Template 2: Light — grey-to-blue gradient with dots
 function renderMinimal(ctx: CanvasRenderingContext2D, title: string, subtitle: string) {
-  ctx.fillStyle = "#ffffff";
-  ctx.fillRect(0, 0, CANVAS_W, CANVAS_H);
-
-  const barGrad = ctx.createLinearGradient(0, 0, CANVAS_W, 0);
-  barGrad.addColorStop(0, "#d946ef");
-  barGrad.addColorStop(1, "#4f46e5");
-  ctx.fillStyle = barGrad;
-  ctx.fillRect(0, 0, CANVAS_W, 8);
-
-  ctx.fillStyle = "#111111";
-  ctx.textAlign = "center";
-  ctx.font = `bold ${TITLE_SIZE}px Sora, sans-serif`;
-  wrapText(ctx, title, CANVAS_W / 2, 260, 1000, TITLE_LH);
-
-  if (subtitle) {
-    ctx.fillStyle = "#6b7280";
-    ctx.font = `400 ${SUB_SIZE}px Inter, sans-serif`;
-    wrapText(ctx, subtitle, CANVAS_W / 2, getSubtitleY(ctx, title, 260, 1000, TITLE_LH, TITLE_SIZE), 900, SUB_LH);
-  }
-
-  ctx.fillStyle = barGrad;
-  ctx.fillRect(0, CANVAS_H - 8, CANVAS_W, 8);
-}
-
-// Template 4: Mesh overlay
-function renderOverlay(ctx: CanvasRenderingContext2D, title: string, subtitle: string) {
-  ctx.fillStyle = "#0f1117";
-  ctx.fillRect(0, 0, CANVAS_W, CANVAS_H);
-
-  ctx.globalAlpha = 0.15;
-  const colors = ["#d946ef", "#4f46e5", "#00d4ff", "#d946ef"];
-  const positions = [
-    { x: 150, y: 150, r: 250 }, { x: 900, y: 100, r: 200 },
-    { x: 600, y: 500, r: 300 }, { x: 1050, y: 450, r: 180 },
-  ];
-  positions.forEach((p, i) => {
-    const radGrad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r);
-    radGrad.addColorStop(0, colors[i]);
-    radGrad.addColorStop(1, "transparent");
-    ctx.fillStyle = radGrad;
-    ctx.fillRect(0, 0, CANVAS_W, CANVAS_H);
-  });
-  ctx.globalAlpha = 1;
-
-  ctx.fillStyle = "rgba(15, 17, 23, 0.5)";
-  ctx.fillRect(0, 0, CANVAS_W, CANVAS_H);
-
-  ctx.fillStyle = "#ffffff";
-  ctx.textAlign = "center";
-  ctx.font = `bold ${TITLE_SIZE}px Sora, sans-serif`;
-  wrapText(ctx, title, CANVAS_W / 2, 250, 1000, TITLE_LH);
-
-  if (subtitle) {
-    ctx.fillStyle = "rgba(255,255,255,0.7)";
-    ctx.font = `400 ${SUB_SIZE}px Inter, sans-serif`;
-    wrapText(ctx, subtitle, CANVAS_W / 2, getSubtitleY(ctx, title, 250, 1000, TITLE_LH, TITLE_SIZE), 900, SUB_LH);
-  }
-}
-
-// Template 5: Split layout
-function renderSplit(ctx: CanvasRenderingContext2D, title: string, subtitle: string) {
-  ctx.fillStyle = "#0f1117";
-  ctx.fillRect(0, 0, CANVAS_W / 2, CANVAS_H);
-
-  const grad = ctx.createLinearGradient(CANVAS_W / 2, 0, CANVAS_W, CANVAS_H);
-  grad.addColorStop(0, "#d946ef");
-  grad.addColorStop(0.5, "#4f46e5");
-  grad.addColorStop(1, "#000000");
+  // Light gradient: top-left to bottom-right (light grey → light blue)
+  const grad = ctx.createLinearGradient(0, 0, CANVAS_W, CANVAS_H);
+  grad.addColorStop(0, "#f9fafb");
+  grad.addColorStop(0.3, "#f3f4f8");
+  grad.addColorStop(0.6, "#eef0f8");
+  grad.addColorStop(0.8, "#e0e7ff");
+  grad.addColorStop(1, "#c7d2fe");
   ctx.fillStyle = grad;
-  ctx.fillRect(CANVAS_W / 2, 0, CANVAS_W / 2, CANVAS_H);
+  ctx.fillRect(0, 0, CANVAS_W, CANVAS_H);
 
-  ctx.fillStyle = "#0f1117";
-  ctx.beginPath();
-  ctx.moveTo(CANVAS_W / 2 - 30, 0);
-  ctx.lineTo(CANVAS_W / 2 + 30, 0);
-  ctx.lineTo(CANVAS_W / 2 - 30, CANVAS_H);
-  ctx.lineTo(CANVAS_W / 2 - 90, CANVAS_H);
-  ctx.closePath();
-  ctx.fill();
+  // Dots wave (light mode version)
+  drawDotsWaveLight(ctx);
 
-  ctx.fillStyle = "#ffffff";
-  ctx.textAlign = "left";
-  ctx.font = `bold ${SPLIT_TITLE_SIZE}px Sora, sans-serif`;
-  wrapText(ctx, title, 60, 230, 480, SPLIT_TITLE_LH, "left");
+  // Logo at top-left
+  drawPlivoLogoAt(ctx, 50, 40, "black");
+
+  const titleFont = `500 ${TITLE_SIZE}px Sora, sans-serif`;
+  const subFont = `400 ${SUB_SIZE}px Inter, sans-serif`;
+  const { titleY, subtitleY } = getCenteredStartY(ctx, title, subtitle, titleFont, subFont, TITLE_LH, SUB_LH, 1000, 16, 0);
+
+  ctx.fillStyle = "#111827";
+  ctx.textAlign = "center";
+  ctx.font = titleFont;
+  wrapText(ctx, title, CANVAS_W / 2, titleY, 1000, TITLE_LH);
 
   if (subtitle) {
-    ctx.fillStyle = "rgba(255,255,255,0.6)";
-    ctx.font = `400 ${SPLIT_SUB_SIZE}px Inter, sans-serif`;
-    wrapText(ctx, subtitle, 60, getSubtitleY(ctx, title, 230, 480, SPLIT_TITLE_LH, SPLIT_TITLE_SIZE, "left"), 480, SPLIT_SUB_LH, "left");
+    ctx.fillStyle = "rgba(17,24,39,0.8)";
+    ctx.font = subFont;
+    wrapText(ctx, subtitle, CANVAS_W / 2, subtitleY, 900, SUB_LH);
+  }
+}
+
+// Generic pattern template renderer
+function renderWithPattern(
+  ctx: CanvasRenderingContext2D, title: string, subtitle: string,
+  mode: "light" | "dark", patternFn: (ctx: CanvasRenderingContext2D) => void
+) {
+  if (mode === "dark") {
+    const grad = ctx.createLinearGradient(0, 0, CANVAS_W, CANVAS_H);
+    grad.addColorStop(0, "#141428");
+    grad.addColorStop(0.2, "#1a1a3e");
+    grad.addColorStop(0.4, "#252560");
+    grad.addColorStop(0.6, "#3730a3");
+    grad.addColorStop(0.75, "#4f46e5");
+    grad.addColorStop(0.88, "#7c3aed");
+    grad.addColorStop(1, "#a855f7");
+    ctx.fillStyle = grad;
+  } else {
+    const grad = ctx.createLinearGradient(0, 0, CANVAS_W, CANVAS_H);
+    grad.addColorStop(0, "#f9fafb");
+    grad.addColorStop(0.3, "#f3f4f8");
+    grad.addColorStop(0.6, "#eef0f8");
+    grad.addColorStop(0.8, "#e0e7ff");
+    grad.addColorStop(1, "#c7d2fe");
+    ctx.fillStyle = grad;
+  }
+  ctx.fillRect(0, 0, CANVAS_W, CANVAS_H);
+
+  patternFn(ctx);
+
+  drawPlivoLogoAt(ctx, 50, 40, mode === "dark" ? "white" : "black");
+
+  const titleFont = `500 ${TITLE_SIZE}px Sora, sans-serif`;
+  const subFont = `400 ${SUB_SIZE}px Inter, sans-serif`;
+  const { titleY, subtitleY } = getCenteredStartY(ctx, title, subtitle, titleFont, subFont, TITLE_LH, SUB_LH, 1000, 16, 0);
+
+  ctx.fillStyle = mode === "dark" ? "#ffffff" : "#111827";
+  ctx.textAlign = "center";
+  ctx.font = titleFont;
+  wrapText(ctx, title, CANVAS_W / 2, titleY, 1000, TITLE_LH);
+
+  if (subtitle) {
+    ctx.fillStyle = mode === "dark" ? "rgba(255,255,255,0.8)" : "rgba(17,24,39,0.8)";
+    ctx.font = subFont;
+    wrapText(ctx, subtitle, CANVAS_W / 2, subtitleY, 900, SUB_LH);
+  }
+}
+
+// ─── Pattern: Perspective Grid ──────────────────────────────────
+
+function drawPerspectiveGrid(ctx: CanvasRenderingContext2D) {
+  _drawGrid(ctx, "rgba(139, 143, 186, 0.3)", "light");
+}
+
+function drawPerspectiveGridDark(ctx: CanvasRenderingContext2D) {
+  _drawGrid(ctx, "rgba(165, 180, 252, 0.2)", "dark");
+}
+
+function _drawGrid(ctx: CanvasRenderingContext2D, color: string, mode: "light" | "dark") {
+  const vanishX = CANVAS_W / 2;
+  const vanishY = CANVAS_H * 0.28;
+  const gridLines = 22;
+  const horizLines = 16;
+
+  ctx.strokeStyle = color;
+  ctx.lineWidth = 1;
+
+  const spreadAngle = Math.PI * 0.8;
+  const startAngle = Math.PI / 2 - spreadAngle / 2;
+  for (let i = 0; i <= gridLines; i++) {
+    const angle = startAngle + (spreadAngle * i) / gridLines;
+    const endX = vanishX + Math.cos(angle) * CANVAS_H * 2.5;
+    const endY = vanishY + Math.sin(angle) * CANVAS_H * 2.5;
+    ctx.beginPath();
+    ctx.moveTo(vanishX, vanishY);
+    ctx.lineTo(endX, endY);
+    ctx.stroke();
+  }
+
+  for (let i = 1; i <= horizLines; i++) {
+    const t = i / horizLines;
+    const y = vanishY + (CANVAS_H - vanishY + 40) * (t * t);
+    const progress = (y - vanishY) / (CANVAS_H * 2.5);
+    const halfWidth = progress * CANVAS_W * 1.8;
+    ctx.beginPath();
+    ctx.moveTo(vanishX - halfWidth, y);
+    ctx.lineTo(vanishX + halfWidth, y);
+    ctx.stroke();
+  }
+
+  // Radial fade at vanishing point
+  const fadeR = 120;
+  const fadeGrad = ctx.createRadialGradient(vanishX, vanishY, 0, vanishX, vanishY, fadeR);
+  if (mode === "light") {
+    fadeGrad.addColorStop(0, "rgba(243,244,248,1)");
+    fadeGrad.addColorStop(0.6, "rgba(243,244,248,0.7)");
+    fadeGrad.addColorStop(1, "rgba(243,244,248,0)");
+  } else {
+    fadeGrad.addColorStop(0, "rgba(26,26,62,0.6)");
+    fadeGrad.addColorStop(0.4, "rgba(26,26,62,0.3)");
+    fadeGrad.addColorStop(1, "rgba(26,26,62,0)");
+  }
+  ctx.fillStyle = fadeGrad;
+  ctx.fillRect(vanishX - fadeR, vanishY - fadeR, fadeR * 2, fadeR * 2);
+}
+
+// ─── Pattern: Sound Wave ────────────────────────────────────────
+
+function drawHexPattern(ctx: CanvasRenderingContext2D) {
+  _drawSoundWave(ctx, "rgba(139, 143, 186, 0.25)", "light");
+}
+
+function drawHexPatternDark(ctx: CanvasRenderingContext2D) {
+  _drawSoundWave(ctx, "rgba(165, 180, 252, 0.2)", "dark");
+}
+
+function _drawSoundWave(ctx: CanvasRenderingContext2D, color: string, _mode: "light" | "dark") {
+  const waves = 7;
+  const centerY = CANVAS_H * 0.5;
+
+  for (let w = 0; w < waves; w++) {
+    const offset = (w - waves / 2) * 28;
+    const amplitude = 30 + Math.abs(w - waves / 2) * 15;
+
+    // Fade based on distance from center wave
+    const distFromCenter = Math.abs(w - waves / 2) / (waves / 2);
+    const alpha = 1 - distFromCenter * 0.6;
+
+    // Vary line thickness: center wave thickest, outer ones thinner
+    ctx.lineWidth = w % 2 === 0 ? 2.5 : 1;
+    ctx.strokeStyle = color;
+    ctx.globalAlpha = alpha;
+    ctx.beginPath();
+
+    for (let x = 0; x <= CANVAS_W; x += 2) {
+      const normalX = x / CANVAS_W;
+      // Envelope: wave is strongest in center, fades at edges
+      const envelope = Math.sin(normalX * Math.PI);
+      // Multiple frequencies for organic feel
+      const y = centerY + offset +
+        Math.sin(normalX * Math.PI * 6 + w * 0.8) * amplitude * envelope * 0.5 +
+        Math.sin(normalX * Math.PI * 10 + w * 1.2) * amplitude * envelope * 0.25 +
+        Math.sin(normalX * Math.PI * 3 + w * 0.3) * amplitude * envelope * 0.35;
+
+      if (x === 0) ctx.moveTo(x, y);
+      else ctx.lineTo(x, y);
+    }
+    ctx.stroke();
+  }
+  ctx.globalAlpha = 1;
+}
+
+// ─── Pattern: Concentric Rings ──────────────────────────────────
+
+function drawRingsPattern(ctx: CanvasRenderingContext2D) {
+  _drawRings(ctx, "rgba(139, 143, 186, 0.18)");
+}
+
+function drawRingsPatternDark(ctx: CanvasRenderingContext2D) {
+  _drawRings(ctx, "rgba(165, 180, 252, 0.14)");
+}
+
+function _drawRings(ctx: CanvasRenderingContext2D, color: string) {
+  ctx.strokeStyle = color;
+
+  // Main rings from center-right
+  const cx1 = CANVAS_W * 0.65;
+  const cy1 = CANVAS_H * 0.5;
+  for (let i = 1; i <= 12; i++) {
+    ctx.lineWidth = i % 3 === 0 ? 2.5 : 1;
+    const r = i * 55;
+    ctx.beginPath();
+    ctx.arc(cx1, cy1, r, 0, Math.PI * 2);
+    ctx.stroke();
+  }
+
+  // Secondary rings from bottom-left
+  const cx2 = CANVAS_W * 0.15;
+  const cy2 = CANVAS_H * 0.85;
+  for (let i = 1; i <= 8; i++) {
+    ctx.lineWidth = i % 2 === 0 ? 2 : 0.8;
+    const r = i * 50;
+    ctx.beginPath();
+    ctx.arc(cx2, cy2, r, 0, Math.PI * 2);
+    ctx.stroke();
+  }
+
+  // Small accent rings top-left
+  const cx3 = CANVAS_W * 0.25;
+  const cy3 = CANVAS_H * 0.15;
+  for (let i = 1; i <= 5; i++) {
+    ctx.lineWidth = i % 2 === 0 ? 2 : 0.8;
+    const r = i * 35;
+    ctx.beginPath();
+    ctx.arc(cx3, cy3, r, 0, Math.PI * 2);
+    ctx.stroke();
+  }
+}
+
+// ─── Dots Wave (static version of pre-footer pattern) ───────────
+
+function drawDotsWave(ctx: CanvasRenderingContext2D) {
+  const COLS = 40;
+  const ROWS = 30;
+  const SPACING = 80;
+  const FOCAL = 350;
+  const CAM_HEIGHT = 250;
+  const WAVE_AMP = 35;
+  const TIME = 1.5; // frozen time value for static wave shape
+
+  const centerX = CANVAS_W / 2;
+  const horizonY = CANVAS_H * 0.35 + 80;
+
+  for (let j = 0; j < ROWS; j++) {
+    const z = (j + 1) * SPACING;
+    const scale = FOCAL / z;
+    const t = j / ROWS; // depth ratio 0→1
+
+    // Color: white → blue → purple based on depth
+    let r: number, g: number, b: number;
+    if (t < 0.5) {
+      const f = t / 0.5;
+      r = Math.round(255 - f * 155); // 255 → 100
+      g = Math.round(255 - f * 135); // 255 → 120
+      b = 255;
+    } else {
+      const f = (t - 0.5) / 0.5;
+      r = Math.round(100 + f * 105); // 100 → 205
+      g = Math.round(120 - f * 58);  // 120 → 62
+      b = Math.round(255 - f * 6);   // 255 → 249
+    }
+
+    const alpha = Math.min(1.0, (1.0 - t * 0.5) * 1.2) * 0.8; // doubled opacity
+
+    for (let i = 0; i < COLS; i++) {
+      const x = (i - COLS / 2) * SPACING;
+
+      // Dual sine wave displacement (frozen at TIME)
+      const wy = Math.sin(i * 0.3 + TIME) * WAVE_AMP + Math.sin(j * 0.5 + TIME * 0.7) * WAVE_AMP;
+
+      const screenX = centerX + x * scale;
+      const screenY = horizonY + CAM_HEIGHT * scale - wy * scale;
+
+      // Cull off-screen dots
+      if (screenX < -5 || screenX > CANVAS_W + 5 || screenY < -5 || screenY > CANVAS_H + 5) continue;
+
+      const radius = Math.max(0.4, Math.min(3.0, scale * 3));
+
+      ctx.fillStyle = `rgba(${r},${g},${b},${alpha})`;
+      ctx.beginPath();
+      ctx.arc(screenX, screenY, radius, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+}
+
+function drawDotsWaveLight(ctx: CanvasRenderingContext2D) {
+  const COLS = 40;
+  const ROWS = 30;
+  const SPACING = 80;
+  const FOCAL = 350;
+  const CAM_HEIGHT = 250;
+  const WAVE_AMP = 35;
+  const TIME = 1.5;
+
+  const centerX = CANVAS_W / 2;
+  const horizonY = CANVAS_H * 0.35 + 80;
+
+  for (let j = 0; j < ROWS; j++) {
+    const z = (j + 1) * SPACING;
+    const scale = FOCAL / z;
+    const t = j / ROWS;
+
+    // Color: dark grey → indigo → purple based on depth
+    let r: number, g: number, b: number;
+    if (t < 0.5) {
+      const f = t / 0.5;
+      r = Math.round(120 - f * 50);  // 120 → 70
+      g = Math.round(130 - f * 60);  // 130 → 70
+      b = Math.round(160 + f * 95);  // 160 → 255
+    } else {
+      const f = (t - 0.5) / 0.5;
+      r = Math.round(70 + f * 90);   // 70 → 160
+      g = Math.round(70 - f * 20);   // 70 → 50
+      b = Math.round(255 - f * 30);  // 255 → 225
+    }
+
+    const alpha = Math.min(1.0, (1.0 - t * 0.5) * 1.2) * 0.5;
+
+    for (let i = 0; i < COLS; i++) {
+      const x = (i - COLS / 2) * SPACING;
+      const wy = Math.sin(i * 0.3 + TIME) * WAVE_AMP + Math.sin(j * 0.5 + TIME * 0.7) * WAVE_AMP;
+
+      const screenX = centerX + x * scale;
+      const screenY = horizonY + CAM_HEIGHT * scale - wy * scale;
+
+      if (screenX < -5 || screenX > CANVAS_W + 5 || screenY < -5 || screenY > CANVAS_H + 5) continue;
+
+      const radius = Math.max(0.4, Math.min(3.0, scale * 3));
+
+      ctx.fillStyle = `rgba(${r},${g},${b},${alpha})`;
+      ctx.beginPath();
+      ctx.arc(screenX, screenY, radius, 0, Math.PI * 2);
+      ctx.fill();
+    }
   }
 }
 
 // ─── Drawing Helpers ────────────────────────────────────────────
 
-function drawPlivoLogo(ctx: CanvasRenderingContext2D, template: TemplateId) {
-  // Gradient template handles its own logo at top-left
-  if (template === "gradient") return;
-
-  const isLight = template === "minimal";
-  drawPlivoLogoAt(ctx, 50, CANVAS_H - 70, isLight ? "black" : "white");
+function drawPlivoLogo(_ctx: CanvasRenderingContext2D, _template: TemplateId) {
+  // Both templates draw their own logo at top-left inside their render function
 }
 
 function drawPlivoLogoAt(ctx: CanvasRenderingContext2D, x: number, y: number, variant: "white" | "black") {
@@ -471,17 +685,12 @@ function wrapText(
   ctx.fillText(line, x, currentY);
 }
 
-function getSubtitleY(
-  ctx: CanvasRenderingContext2D, title: string,
-  titleY: number, maxWidth: number, lineHeight: number,
-  fontSize: number, _align: "center" | "left" = "center"
-): number {
-  const words = title.split(" ");
+function countLines(ctx: CanvasRenderingContext2D, text: string, font: string, maxWidth: number): number {
+  ctx.save();
+  ctx.font = font;
+  const words = text.split(" ");
   let line = "";
   let lines = 1;
-
-  ctx.save();
-  ctx.font = `bold ${fontSize}px Sora, sans-serif`;
   for (const word of words) {
     const testLine = line ? `${line} ${word}` : word;
     if (ctx.measureText(testLine).width > maxWidth && line) {
@@ -492,5 +701,41 @@ function getSubtitleY(
     }
   }
   ctx.restore();
-  return titleY + lines * lineHeight + 36;
+  return lines;
+}
+
+function getCenteredStartY(
+  ctx: CanvasRenderingContext2D,
+  title: string, subtitle: string,
+  titleFont: string, subtitleFont: string,
+  titleLH: number, subLH: number,
+  maxWidth: number, gap: number,
+  logoOffset: number // extra top offset for logo area
+): { titleY: number; subtitleY: number } {
+  const titleLines = countLines(ctx, title, titleFont, maxWidth);
+  const titleBlockH = titleLines * titleLH;
+
+  let subLines = 0;
+  let subBlockH = 0;
+  if (subtitle) {
+    subLines = countLines(ctx, subtitle, subtitleFont, maxWidth - 100);
+    subBlockH = subLines * subLH;
+  }
+
+  const totalH = titleBlockH + (subtitle ? gap + subBlockH : 0);
+  const startY = (CANVAS_H - totalH) / 2 + titleLH * 0.35;
+
+  return {
+    titleY: startY,
+    subtitleY: startY + titleBlockH + gap,
+  };
+}
+
+function getSubtitleY(
+  ctx: CanvasRenderingContext2D, title: string,
+  titleY: number, maxWidth: number, lineHeight: number,
+  fontSize: number, _align: "center" | "left" = "center"
+): number {
+  const titleLines = countLines(ctx, title, `500 ${fontSize}px Sora, sans-serif`, maxWidth);
+  return titleY + titleLines * lineHeight + 16;
 }

@@ -162,18 +162,6 @@ export default function CmsDashboard({ onEdit, onNew, onLogout }: CmsDashboardPr
 
           <div className="flex items-center gap-2">
             <button
-              ref={deployBtnRef}
-              disabled={deploying}
-              className="flex items-center gap-1.5 rounded-md border border-gray-300 px-3 py-1.5 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 disabled:opacity-50"
-            >
-              {deploying ? (
-                <Loader2 className="h-4 w-4 animate-spin" />
-              ) : (
-                <Rocket className="h-4 w-4" />
-              )}
-              Deploy
-            </button>
-            <button
               ref={newBtnRef}
               className="flex items-center gap-1.5 rounded-md bg-black px-3 py-1.5 text-sm font-medium text-white transition-colors cta-hover-gradient"
             >

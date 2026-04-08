@@ -41,7 +41,7 @@ type Props = {
 };
 
 const { post, relatedPosts } = Astro.props;
-const { title, description, seoTitle, seoDescription, noindex, image, authorName = 'Team Plivo', pubDate, keyTakeaways, categories: postCategories = [] } = post.data;
+const { title, description, seoTitle, seoDescription, noindex, image, authorName = 'Team Plivo', authorBio, authorImage, pubDate, keyTakeaways, categories: postCategories = [] } = post.data;
 const { Content } = await render(post);
 
 const pageTitle = seoTitle || title;
@@ -207,13 +207,21 @@ function formatDate(date: Date): string {
 
 			<!-- Separator + Author -->
 			<div class="border-t border-gray-200 mt-10 pt-8">
-				<div class="flex items-center gap-3">
-					<div class="flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-r from-[#cd3ef9] via-[#323dfe] to-black text-white font-semibold text-base">
-						P
-					</div>
+				<div class="flex items-start gap-3">
+					{authorImage ? (
+						<img src={authorImage} alt={authorName} class="h-11 w-11 rounded-full object-cover border border-gray-200 shrink-0" />
+					) : (
+						<div class="flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-r from-[#cd3ef9] via-[#323dfe] to-black text-white font-semibold text-base shrink-0">
+							{(authorName || 'T').charAt(0).toUpperCase()}
+						</div>
+					)}
 					<div>
 						<div class="font-semibold text-sm text-black">{authorName}</div>
-						<div class="text-xs text-gray-500">Plivo Blog</div>
+						{authorBio ? (
+							<p class="text-xs text-gray-500 mt-0.5 leading-relaxed">{authorBio}</p>
+						) : (
+							<div class="text-xs text-gray-500">Plivo Blog</div>
+						)}
 					</div>
 				</div>
 			</div>

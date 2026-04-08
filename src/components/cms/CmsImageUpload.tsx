@@ -3,7 +3,7 @@ import { uploadImage } from "./cms-api";
 import { Upload, Loader2, X, Image as ImageIcon } from "lucide-react";
 
 interface CmsImageUploadProps {
-  onUpload: (url: string) => void;
+  onUpload: (url: string, previewDataUrl?: string) => void;
   onClose: () => void;
 }
 
@@ -29,8 +29,14 @@ export default function CmsImageUpload({ onUpload, onClose }: CmsImageUploadProp
     setUploading(true);
     setError("");
     try {
+      // Create local preview data URL before uploading
+      const previewDataUrl = await new Promise<string>((resolve) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result as string);
+        reader.readAsDataURL(file);
+      });
       const { url } = await uploadImage(file);
-      onUpload(url);
+      onUpload(url, previewDataUrl);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Upload failed");
     } finally {
