@@ -824,28 +824,67 @@ async function handleListPosts(env: Env, origin?: string): Promise<Response> {
   if (!treeRes.ok) return errorResponse("Failed to fetch tree", 500, origin);
   const treeData: { tree: Array<{ path: string; type: string; sha: string }> } = await treeRes.json();
 
-  // Filter to blog .md files — return instantly from tree (no blob fetches)
-  const posts = treeData.tree
-    .filter((f) => f.type === "blob" && f.path.startsWith(`${BLOG_PATH}/`) && f.path.endsWith(".md"))
-    .map((f) => {
-      const slug = f.path.replace(`${BLOG_PATH}/`, "").replace(".md", "");
-      return {
-        slug,
-        sha: f.sha,
-        title: slug.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase()),
-        description: "",
-        pubDate: "",
-        authorName: "Team Plivo",
-        draft: false,
-        featured: false,
-        noindex: false,
-        categories: [] as string[],
-        image: "",
-      };
-    });
+  // Filter to blog .md files
+  const blogFiles = treeData.tree
+    .filter((f) => f.type === "blob" && f.path.startsWith(`${BLOG_PATH}/`) && f.path.endsWith(".md"));
 
-  // Sort alphabetically
-  posts.sort((a, b) => a.title.localeCompare(b.title));
+  // Fetch blob content in parallel batches to extract frontmatter
+  const BATCH_SIZE = 50;
+  const posts: Array<Record<string, unknown>> = [];
+
+  for (let i = 0; i < blogFiles.length; i += BATCH_SIZE) {
+    const batch = blogFiles.slice(i, i + BATCH_SIZE);
+    const results = await Promise.all(
+      batch.map(async (f) => {
+        const slug = f.path.replace(`${BLOG_PATH}/`, "").replace(".md", "");
+        try {
+          const blobRes = await githubFetch(`/repos/${env.GITHUB_REPO}/git/blobs/${f.sha}`, env);
+          if (!blobRes.ok) throw new Error("blob fetch failed");
+          const blobData: { content: string } = await blobRes.json();
+          const content = atob(blobData.content.replace(/\n/g, ""));
+          const { frontmatter } = parseFrontmatter(content);
+          return {
+            slug,
+            sha: f.sha,
+            title: (frontmatter.title as string) || slug.replace(/-/g, " ").replace(/\b\w/g, (c: string) => c.toUpperCase()),
+            description: (frontmatter.description as string) || "",
+            pubDate: (frontmatter.pubDate as string) || "",
+            authorName: (frontmatter.authorName as string) || "Team Plivo",
+            draft: frontmatter.draft === true,
+            featured: frontmatter.featured === true,
+            noindex: frontmatter.noindex === true,
+            categories: Array.isArray(frontmatter.categories) ? frontmatter.categories : [],
+            image: (frontmatter.image as string) || "",
+          };
+        } catch {
+          return {
+            slug,
+            sha: f.sha,
+            title: slug.replace(/-/g, " ").replace(/\b\w/g, (c: string) => c.toUpperCase()),
+            description: "",
+            pubDate: "",
+            authorName: "Team Plivo",
+            draft: false,
+            featured: false,
+            noindex: false,
+            categories: [] as string[],
+            image: "",
+          };
+        }
+      })
+    );
+    posts.push(...results);
+  }
+
+  // Sort by pubDate descending (newest first), posts without dates go to end
+  posts.sort((a, b) => {
+    const dateA = a.pubDate as string;
+    const dateB = b.pubDate as string;
+    if (!dateA && !dateB) return (a.title as string).localeCompare(b.title as string);
+    if (!dateA) return 1;
+    if (!dateB) return -1;
+    return new Date(dateB).getTime() - new Date(dateA).getTime();
+  });
 
   return jsonResponse({ posts, total: posts.length }, 200, origin);
 }
