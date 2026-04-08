@@ -810,9 +810,9 @@ async function handleAuth(request: Request, env: Env, origin?: string): Promise<
 }
 
 async function handleListPosts(env: Env, origin?: string): Promise<Response> {
-  const branch = env.GITHUB_BRANCH || "staging";
+  const branch = env.GITHUB_BRANCH || "main";
 
-  // Get the tree for the blog directory
+  // Get the tree (single API call) — contains all file paths + blob SHAs
   const refRes = await githubFetch(`/repos/${env.GITHUB_REPO}/git/ref/heads/${branch}`, env);
   if (!refRes.ok) return errorResponse("Failed to fetch branch ref", 500, origin);
   const refData: { object: { sha: string } } = await refRes.json();
@@ -822,53 +822,30 @@ async function handleListPosts(env: Env, origin?: string): Promise<Response> {
     env
   );
   if (!treeRes.ok) return errorResponse("Failed to fetch tree", 500, origin);
-  const treeData: { tree: Array<{ path: string; type: string }> } = await treeRes.json();
+  const treeData: { tree: Array<{ path: string; type: string; sha: string }> } = await treeRes.json();
 
-  // Filter to blog .md files
-  const blogFiles = treeData.tree
+  // Filter to blog .md files — return instantly from tree (no blob fetches)
+  const posts = treeData.tree
     .filter((f) => f.type === "blob" && f.path.startsWith(`${BLOG_PATH}/`) && f.path.endsWith(".md"))
-    .map((f) => f.path.replace(`${BLOG_PATH}/`, "").replace(".md", ""));
+    .map((f) => {
+      const slug = f.path.replace(`${BLOG_PATH}/`, "").replace(".md", "");
+      return {
+        slug,
+        sha: f.sha,
+        title: slug.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase()),
+        description: "",
+        pubDate: "",
+        authorName: "Team Plivo",
+        draft: false,
+        featured: false,
+        noindex: false,
+        categories: [] as string[],
+        image: "",
+      };
+    });
 
-  // Fetch frontmatter for each file (in batches of 20 to avoid rate limits)
-  const posts: Array<Record<string, unknown>> = [];
-  const batchSize = 20;
-
-  for (let i = 0; i < blogFiles.length; i += batchSize) {
-    const batch = blogFiles.slice(i, i + batchSize);
-    const results = await Promise.all(
-      batch.map(async (slug) => {
-        const res = await githubFetch(
-          `/repos/${env.GITHUB_REPO}/contents/${BLOG_PATH}/${slug}.md?ref=${branch}`,
-          env
-        );
-        if (!res.ok) return null;
-        const data: { content: string; sha: string } = await res.json();
-        const content = atob(data.content.replace(/\n/g, ""));
-        const { frontmatter } = parseFrontmatter(content);
-        return {
-          slug,
-          sha: data.sha,
-          title: frontmatter.title || slug,
-          description: frontmatter.description || "",
-          pubDate: frontmatter.pubDate || "",
-          authorName: frontmatter.authorName || "",
-          draft: frontmatter.draft === true,
-          featured: frontmatter.featured === true,
-          noindex: frontmatter.noindex === true,
-          categories: Array.isArray(frontmatter.categories) ? frontmatter.categories : [],
-          image: frontmatter.image || "",
-        };
-      })
-    );
-    posts.push(...results.filter(Boolean) as Array<Record<string, unknown>>);
-  }
-
-  // Sort by date descending
-  posts.sort((a, b) => {
-    const da = new Date(a.pubDate as string).getTime() || 0;
-    const db = new Date(b.pubDate as string).getTime() || 0;
-    return db - da;
-  });
+  // Sort alphabetically
+  posts.sort((a, b) => a.title.localeCompare(b.title));
 
   return jsonResponse({ posts, total: posts.length }, 200, origin);
 }
