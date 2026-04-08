@@ -1048,6 +1048,159 @@ async function handleDeploy(env: Env, origin?: string): Promise<Response> {
   return jsonResponse({ ok: true }, 200, origin);
 }
 
+// ─── Google Docs import ─────────────────────────────────────────
+
+async function handleFetchGDoc(request: Request, env: Env, origin?: string): Promise<Response> {
+  const body = await parseJsonBody<{ url?: string }>(request);
+  if (!body?.url) return errorResponse("URL is required", 400, origin);
+
+  // Extract doc ID from various Google Docs URL formats
+  const match = body.url.match(/\/document\/d\/([a-zA-Z0-9_-]+)/);
+  if (!match) return errorResponse("Invalid Google Docs URL", 400, origin);
+
+  const docId = match[1];
+  const exportUrl = `https://docs.google.com/document/d/${docId}/export?format=html`;
+
+  try {
+    const res = await fetch(exportUrl, {
+      headers: { "Accept": "text/html" },
+    });
+
+    if (!res.ok) {
+      if (res.status === 404) return errorResponse("Document not found. Check the URL.", 404, origin);
+      if (res.status === 401 || res.status === 403) {
+        return errorResponse("Cannot access this document. Make sure it's shared as 'Anyone with the link can view'.", 403, origin);
+      }
+      return errorResponse(`Google returned ${res.status}`, 500, origin);
+    }
+
+    let html = await res.text();
+
+    // Clean Google Docs HTML
+    html = cleanGoogleDocsHtml(html);
+
+    // Extract title from first h1/h2 or <title>
+    let title = "";
+    const titleMatch = html.match(/<h[12][^>]*>(.*?)<\/h[12]>/i) ||
+                        html.match(/<title>(.*?)<\/title>/i);
+    if (titleMatch) {
+      title = titleMatch[1].replace(/<[^>]*>/g, "").trim();
+    }
+
+    return jsonResponse({ html, title }, 200, origin);
+  } catch (err) {
+    return errorResponse("Failed to fetch document", 500, origin);
+  }
+}
+
+function cleanGoogleDocsHtml(html: string): string {
+  // Remove everything before <body> and after </body>
+  const bodyMatch = html.match(/<body[^>]*>([\s\S]*)<\/body>/i);
+  if (bodyMatch) html = bodyMatch[1];
+
+  // Remove all style attributes
+  html = html.replace(/\s+style="[^"]*"/gi, "");
+
+  // Remove all class attributes
+  html = html.replace(/\s+class="[^"]*"/gi, "");
+
+  // Remove all id attributes
+  html = html.replace(/\s+id="[^"]*"/gi, "");
+
+  // Remove <style> blocks
+  html = html.replace(/<style[^>]*>[\s\S]*?<\/style>/gi, "");
+
+  // Remove empty spans: <span>text</span> → text
+  html = html.replace(/<span[^>]*>([\s\S]*?)<\/span>/gi, "$1");
+
+  // Remove Google's wrapper divs but keep content
+  html = html.replace(/<div[^>]*>([\s\S]*?)<\/div>/gi, "$1");
+
+  // Clean up excessive whitespace and newlines
+  html = html.replace(/\n{3,}/g, "\n\n");
+
+  // Remove empty paragraphs
+  html = html.replace(/<p>\s*<\/p>/gi, "");
+  html = html.replace(/<p><br\s*\/?>\s*<\/p>/gi, "");
+
+  // Fix Google's heading structure (they use <h1> for title, rest as <h2>+)
+  // Keep as-is, user can adjust in editor
+
+  // Clean up <a> tags — keep href, remove Google redirect wrapper
+  html = html.replace(
+    /href="https:\/\/www\.google\.com\/url\?q=([^&"]+)[^"]*"/gi,
+    (_, url) => `href="${decodeURIComponent(url)}"`
+  );
+
+  // Remove empty tags
+  html = html.replace(/<(b|i|strong|em|u)>\s*<\/\1>/gi, "");
+
+  return html.trim();
+}
+
+// ─── Author profiles (stored as JSON in GitHub) ─────────────────
+
+const AUTHORS_PATH = "src/data/authors.json";
+
+async function handleListAuthors(env: Env, origin?: string): Promise<Response> {
+  const branch = env.GITHUB_BRANCH || "staging";
+  const res = await githubFetch(
+    `/repos/${env.GITHUB_REPO}/contents/${AUTHORS_PATH}?ref=${branch}`,
+    env
+  );
+
+  if (!res.ok) {
+    // File doesn't exist yet — return empty array
+    return jsonResponse({ authors: [] }, 200, origin);
+  }
+
+  const data: { content: string; sha: string } = await res.json();
+  const content = atob(data.content.replace(/\n/g, ""));
+  let authors: unknown[] = [];
+  try {
+    authors = JSON.parse(content);
+  } catch {
+    authors = [];
+  }
+
+  return jsonResponse({ authors, sha: data.sha }, 200, origin);
+}
+
+async function handleSaveAuthors(request: Request, env: Env, origin?: string): Promise<Response> {
+  const body = await parseJsonBody<{ authors: unknown[]; sha?: string }>(request);
+  if (!body?.authors) return errorResponse("Authors data is required", 400, origin);
+
+  const branch = env.GITHUB_BRANCH || "staging";
+  const content = JSON.stringify(body.authors, null, 2);
+  const bytes = new TextEncoder().encode(content);
+  let binary = "";
+  for (let i = 0; i < bytes.length; i++) {
+    binary += String.fromCharCode(bytes[i]);
+  }
+  const encoded = btoa(binary);
+
+  const payload: Record<string, unknown> = {
+    message: "Update author profiles",
+    content: encoded,
+    branch,
+  };
+  if (body.sha) payload.sha = body.sha;
+
+  const res = await githubFetch(
+    `/repos/${env.GITHUB_REPO}/contents/${AUTHORS_PATH}`,
+    env,
+    { method: "PUT", body: JSON.stringify(payload) }
+  );
+
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({}));
+    return errorResponse(`Failed to save authors: ${JSON.stringify(err)}`, 500, origin);
+  }
+
+  const result: { content: { sha: string } } = await res.json();
+  return jsonResponse({ ok: true, sha: result.content.sha }, 200, origin);
+}
+
 // ─── Main fetch handler ────────────────────────────────────────
 
 export default {
@@ -1161,6 +1314,19 @@ export default {
       // POST /api/cms/upload
       if (url.pathname === "/api/cms/upload" && request.method === "POST") {
         return handleImageUpload(request, env, origin);
+      }
+
+      // POST /api/cms/fetch-gdoc
+      if (url.pathname === "/api/cms/fetch-gdoc" && request.method === "POST") {
+        return handleFetchGDoc(request, env, origin);
+      }
+
+      // GET/POST /api/cms/authors
+      if (url.pathname === "/api/cms/authors" && request.method === "GET") {
+        return handleListAuthors(env, origin);
+      }
+      if (url.pathname === "/api/cms/authors" && request.method === "POST") {
+        return handleSaveAuthors(request, env, origin);
       }
 
       // POST /api/cms/deploy

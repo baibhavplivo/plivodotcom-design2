@@ -1,6 +1,6 @@
 import { useRef, useEffect, useState } from "react";
-import { uploadImage } from "./cms-api";
-import { FileUp, Loader2, CheckCircle2, AlertCircle, X } from "lucide-react";
+import { uploadImage, fetchGoogleDoc } from "./cms-api";
+import { FileUp, Loader2, CheckCircle2, AlertCircle, X, Link2 } from "lucide-react";
 
 interface CmsDocImportProps {
   onImport: (html: string, title?: string) => void;
@@ -13,6 +13,11 @@ export default function CmsDocImport({ onImport }: CmsDocImportProps) {
   const [progress, setProgress] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+  const [gdocUrl, setGdocUrl] = useState("");
+  const [showGdocInput, setShowGdocInput] = useState(false);
+  const gdocInputRef = useRef<HTMLInputElement>(null);
+  const gdocBtnRef = useRef<HTMLButtonElement>(null);
+  const gdocToggleRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     const btn = btnRef.current;
@@ -94,55 +99,148 @@ export default function CmsDocImport({ onImport }: CmsDocImportProps) {
     return () => input.removeEventListener("change", handleChange);
   }, [onImport]);
 
+  // Google Docs toggle
+  useEffect(() => {
+    const btn = gdocToggleRef.current;
+    if (!btn) return;
+    const handle = () => setShowGdocInput((v) => !v);
+    btn.addEventListener("click", handle);
+    return () => btn.removeEventListener("click", handle);
+  }, []);
+
+  // Google Docs fetch
+  useEffect(() => {
+    const btn = gdocBtnRef.current;
+    if (!btn) return;
+
+    const handleGdocFetch = async () => {
+      if (!gdocUrl.trim()) return;
+      if (!gdocUrl.includes("docs.google.com/document")) {
+        setError("Please enter a valid Google Docs URL");
+        return;
+      }
+
+      setImporting(true);
+      setError("");
+      setSuccess("");
+      setProgress("Fetching Google Doc...");
+
+      try {
+        setProgress("Downloading and cleaning content...");
+        const result = await fetchGoogleDoc(gdocUrl.trim());
+
+        if (!result.html.trim()) {
+          setError("No content could be extracted from the document");
+          setImporting(false);
+          return;
+        }
+
+        setProgress("Loading content into editor...");
+        onImport(result.html, result.title);
+
+        const wordCount = result.html.replace(/<[^>]*>/g, "").split(/\s+/).filter(Boolean).length;
+        setSuccess(`Imported Google Doc — ${wordCount.toLocaleString()} words`);
+        setGdocUrl("");
+        setShowGdocInput(false);
+        setTimeout(() => setSuccess(""), 8000);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : "Failed to import Google Doc");
+      } finally {
+        setImporting(false);
+        setProgress("");
+      }
+    };
+
+    btn.addEventListener("click", handleGdocFetch);
+    return () => btn.removeEventListener("click", handleGdocFetch);
+  }, [gdocUrl, onImport]);
+
   return (
-    <div className="flex flex-wrap items-center gap-2">
-      <input
-        ref={fileInputRef}
-        type="file"
-        accept=".docx,.pdf"
-        className="hidden"
-      />
-      <button
-        ref={btnRef}
-        disabled={importing}
-        className="flex items-center gap-1.5 rounded-md border border-gray-300 px-3 py-1.5 text-xs font-medium text-gray-600 transition-colors hover:bg-gray-50 disabled:opacity-50"
-      >
-        {importing ? (
-          <Loader2 className="h-3.5 w-3.5 animate-spin" />
-        ) : (
-          <FileUp className="h-3.5 w-3.5" />
+    <div className="space-y-2">
+      <div className="flex flex-wrap items-center gap-2">
+        <input
+          ref={fileInputRef}
+          type="file"
+          accept=".docx,.pdf"
+          className="hidden"
+        />
+        <button
+          ref={btnRef}
+          disabled={importing}
+          className="flex items-center gap-1.5 rounded-md border border-gray-300 px-3 py-1.5 text-xs font-medium text-gray-600 transition-colors hover:bg-gray-50 disabled:opacity-50"
+        >
+          {importing ? (
+            <Loader2 className="h-3.5 w-3.5 animate-spin" />
+          ) : (
+            <FileUp className="h-3.5 w-3.5" />
+          )}
+          {importing ? "Importing..." : "Import Doc / PDF"}
+        </button>
+
+        <button
+          ref={gdocToggleRef}
+          disabled={importing}
+          className={`flex items-center gap-1.5 rounded-md border px-3 py-1.5 text-xs font-medium transition-colors disabled:opacity-50 ${
+            showGdocInput
+              ? "border-blue-300 bg-blue-50 text-blue-700"
+              : "border-gray-300 text-gray-600 hover:bg-gray-50"
+          }`}
+        >
+          <Link2 className="h-3.5 w-3.5" />
+          Google Docs
+        </button>
+
+        {/* Processing state */}
+        {importing && progress && (
+          <span className="flex items-center gap-1 text-xs text-blue-600">
+            <Loader2 className="h-3 w-3 animate-spin" />
+            {progress}
+          </span>
         )}
-        {importing ? "Importing..." : "Import Doc / PDF"}
-      </button>
 
-      {/* Processing state */}
-      {importing && progress && (
-        <span className="flex items-center gap-1 text-xs text-blue-600">
-          <Loader2 className="h-3 w-3 animate-spin" />
-          {progress}
-        </span>
-      )}
+        {/* Success state */}
+        {!importing && success && (
+          <span className="flex items-center gap-1 rounded-md bg-green-50 px-2 py-1 text-xs text-green-700">
+            <CheckCircle2 className="h-3.5 w-3.5" />
+            {success}
+          </span>
+        )}
 
-      {/* Success state */}
-      {!importing && success && (
-        <span className="flex items-center gap-1 rounded-md bg-green-50 px-2 py-1 text-xs text-green-700">
-          <CheckCircle2 className="h-3.5 w-3.5" />
-          {success}
-        </span>
-      )}
+        {/* Error state */}
+        {!importing && error && (
+          <span className="flex items-center gap-1 rounded-md bg-red-50 px-2 py-1 text-xs text-red-600">
+            <AlertCircle className="h-3.5 w-3.5" />
+            {error}
+            <button
+              className="ml-1 rounded-full p-0.5 text-red-400 hover:bg-red-100 hover:text-red-600"
+              onMouseDown={(e) => { e.preventDefault(); setError(""); }}
+            >
+              <X className="h-3 w-3" />
+            </button>
+          </span>
+        )}
+      </div>
 
-      {/* Error state */}
-      {!importing && error && (
-        <span className="flex items-center gap-1 rounded-md bg-red-50 px-2 py-1 text-xs text-red-600">
-          <AlertCircle className="h-3.5 w-3.5" />
-          {error}
+      {/* Google Docs URL input */}
+      {showGdocInput && (
+        <div className="flex items-center gap-2 rounded-md border border-blue-200 bg-blue-50/50 p-2">
+          <input
+            ref={gdocInputRef}
+            type="text"
+            value={gdocUrl}
+            onChange={(e) => setGdocUrl(e.target.value)}
+            placeholder="Paste Google Docs link (must be shared as 'Anyone with the link')"
+            className="flex-1 rounded-md border border-gray-300 bg-white px-2.5 py-1.5 text-xs text-gray-900 placeholder-gray-400 outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-100"
+          />
           <button
-            className="ml-1 rounded-full p-0.5 text-red-400 hover:bg-red-100 hover:text-red-600"
-            onMouseDown={(e) => { e.preventDefault(); setError(""); }}
+            ref={gdocBtnRef}
+            disabled={importing || !gdocUrl.trim()}
+            className="flex items-center gap-1 rounded-md bg-blue-600 px-3 py-1.5 text-xs font-medium text-white transition-colors hover:bg-blue-700 disabled:opacity-50"
           >
-            <X className="h-3 w-3" />
+            {importing ? <Loader2 className="h-3 w-3 animate-spin" /> : <FileUp className="h-3 w-3" />}
+            Fetch
           </button>
-        </span>
+        </div>
       )}
     </div>
   );

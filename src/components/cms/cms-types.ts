@@ -5,6 +5,8 @@ export interface BlogPostMeta {
   pubDate: string;
   updatedDate?: string;
   authorName?: string;
+  authorBio?: string;
+  authorImage?: string;
   image?: string;
   thumbnail?: string;
   draft: boolean;

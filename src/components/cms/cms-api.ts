@@ -142,3 +142,31 @@ export async function uploadImage(file: File): Promise<{ url: string }> {
 export async function triggerDeploy(): Promise<{ ok: boolean }> {
   return apiFetch<{ ok: boolean }>("/api/cms/deploy", { method: "POST" });
 }
+
+export async function fetchGoogleDoc(url: string): Promise<{ html: string; title: string }> {
+  return apiFetch<{ html: string; title: string }>("/api/cms/fetch-gdoc", {
+    method: "POST",
+    body: JSON.stringify({ url }),
+  });
+}
+
+export interface AuthorProfile {
+  id: string;
+  name: string;
+  bio: string;
+  image: string;
+}
+
+export async function listAuthors(): Promise<{ authors: AuthorProfile[]; sha?: string }> {
+  return apiFetch<{ authors: AuthorProfile[]; sha?: string }>("/api/cms/authors");
+}
+
+export async function saveAuthors(
+  authors: AuthorProfile[],
+  sha?: string
+): Promise<{ ok: boolean; sha: string }> {
+  return apiFetch<{ ok: boolean; sha: string }>("/api/cms/authors", {
+    method: "POST",
+    body: JSON.stringify({ authors, sha }),
+  });
+}

@@ -8,7 +8,8 @@ import { Table } from "@tiptap/extension-table";
 import { TableRow } from "@tiptap/extension-table-row";
 import { TableCell } from "@tiptap/extension-table-cell";
 import { TableHeader } from "@tiptap/extension-table-header";
-import { getPost, createPost, updatePost } from "./cms-api";
+import { getPost, createPost, updatePost, listAuthors, saveAuthors } from "./cms-api";
+import type { AuthorProfile } from "./cms-api";
 import type { BlogPost } from "./cms-types";
 import CmsImageUpload from "./CmsImageUpload";
 import CmsDocImport from "./CmsDocImport";
@@ -86,6 +87,8 @@ const INITIAL_FRONTMATTER = {
   seoDescription: "",
   keyTakeaways: "",
   imageAlt: "",
+  authorBio: "",
+  authorImage: "",
 };
 
 export default function CmsEditor({ slug, onBack }: CmsEditorProps) {
@@ -98,6 +101,7 @@ export default function CmsEditor({ slug, onBack }: CmsEditorProps) {
   const [showImageUpload, setShowImageUpload] = useState(false);
   const [showBannerGenerator, setShowBannerGenerator] = useState(false);
   const [imagePreview, setImagePreview] = useState("");
+  const [authorImagePreview, setAuthorImagePreview] = useState("");
   const [imageTarget, setImageTarget] = useState<"editor" | "featured" | "thumbnail">("editor");
   const [newCategory, setNewCategory] = useState("");
   const [showCatSuggestions, setShowCatSuggestions] = useState(false);
@@ -106,6 +110,9 @@ export default function CmsEditor({ slug, onBack }: CmsEditorProps) {
   const [lastEditMode, setLastEditMode] = useState<"wysiwyg" | "source">("wysiwyg");
   const [step, setStep] = useState<1 | 2 | 3>(1);
   const [wordCount, setWordCount] = useState(0);
+  const [authorProfiles, setAuthorProfiles] = useState<AuthorProfile[]>([]);
+  const [authorsSha, setAuthorsSha] = useState("");
+  const [authorMode, setAuthorMode] = useState<"select" | "create">("select");
 
   // Frontmatter fields
   const [fm, setFm] = useState({ ...INITIAL_FRONTMATTER });
@@ -139,10 +146,23 @@ export default function CmsEditor({ slug, onBack }: CmsEditorProps) {
     editorProps: {
       attributes: {
         class:
-          "prose prose-sm sm:prose max-w-none min-h-[400px] px-4 py-3 outline-none focus:outline-none",
+          "prose prose-sm sm:prose max-w-none w-full min-h-full px-4 py-3 outline-none focus:outline-none [&>*]:max-w-none",
       },
     },
   });
+
+  // Load author profiles
+  useEffect(() => {
+    (async () => {
+      try {
+        const data = await listAuthors();
+        setAuthorProfiles(data.authors || []);
+        if (data.sha) setAuthorsSha(data.sha);
+      } catch {
+        // Authors file doesn't exist yet — that's ok
+      }
+    })();
+  }, []);
 
   // Load post data
   useEffect(() => {
@@ -166,6 +186,8 @@ export default function CmsEditor({ slug, onBack }: CmsEditorProps) {
           seoDescription: post.seoDescription || "",
           keyTakeaways: post.keyTakeaways || "",
           imageAlt: (post as any).imageAlt || "",
+          authorBio: (post as any).authorBio || "",
+          authorImage: (post as any).authorImage || "",
         });
         setSha(post.sha);
         setPostSlug(slug);
@@ -195,12 +217,40 @@ export default function CmsEditor({ slug, onBack }: CmsEditorProps) {
 
   const handleSave = useCallback(
     async (asDraft: boolean) => {
-      if (!postSlug) {
-        setError("Slug is required");
-        return;
+      // Validate required fields
+      const errors: string[] = [];
+
+      if (!fm.title.trim()) {
+        errors.push("Title is required (Step 1)");
       }
-      if (!fm.title) {
-        setError("Title is required");
+      if (!postSlug.trim()) {
+        errors.push("Slug is required (Step 1)");
+      }
+
+      // Only enforce these for publish, not draft
+      if (!asDraft) {
+        const body = lastEditMode === "source" ? sourceHtml : (editor?.getText() || "");
+        if (!body.trim()) {
+          errors.push("Blog content is empty (Step 1)");
+        }
+        if (!fm.description.trim()) {
+          errors.push("Description is required for publishing (Step 2)");
+        }
+        if (fm.categories.length === 0) {
+          errors.push("At least one category is required (Step 2)");
+        }
+        if (!fm.image) {
+          errors.push("Cover image is required for publishing (Step 3)");
+        }
+      }
+
+      if (errors.length > 0) {
+        setError(errors.join(" · "));
+        // Navigate to the step with the first error
+        const firstError = errors[0];
+        if (firstError.includes("Step 1")) setStep(1);
+        else if (firstError.includes("Step 2")) setStep(2);
+        else if (firstError.includes("Step 3")) setStep(3);
         return;
       }
 
@@ -227,6 +277,8 @@ export default function CmsEditor({ slug, onBack }: CmsEditorProps) {
       if (fm.seoDescription) frontmatter.seoDescription = fm.seoDescription;
       if (fm.keyTakeaways) frontmatter.keyTakeaways = fm.keyTakeaways;
       if (fm.imageAlt) frontmatter.imageAlt = fm.imageAlt;
+      if (fm.authorBio) frontmatter.authorBio = fm.authorBio;
+      if (fm.authorImage) frontmatter.authorImage = fm.authorImage;
 
       // If user last edited in source mode, use raw HTML directly to preserve custom markup
       const body = lastEditMode === "source" ? sourceHtml : (editor?.getHTML() || "");
@@ -240,11 +292,8 @@ export default function CmsEditor({ slug, onBack }: CmsEditorProps) {
         setSuccess(asDraft ? "Saved as draft" : "Published!");
         updateFm("draft", asDraft);
 
-        // Refetch to get new SHA
-        if (sha || !slug) {
-          const updated = await getPost(postSlug);
-          setSha(updated.sha);
-        }
+        // Navigate back to dashboard after a brief delay
+        setTimeout(() => onBack(), 1500);
       } catch (err) {
         setError(err instanceof Error ? err.message : "Failed to save");
       } finally {
@@ -289,6 +338,7 @@ export default function CmsEditor({ slug, onBack }: CmsEditorProps) {
     const handleToolbar = (e: MouseEvent) => {
       const btn = (e.target as HTMLElement).closest("[data-tool]") as HTMLElement | null;
       if (!btn) return;
+      e.preventDefault(); // Prevent losing editor selection
 
       const tool = btn.getAttribute("data-tool");
       switch (tool) {
@@ -386,8 +436,13 @@ export default function CmsEditor({ slug, onBack }: CmsEditorProps) {
       }
     };
 
+    const preventBlur = (e: MouseEvent) => e.preventDefault();
     toolbar.addEventListener("click", handleToolbar);
-    return () => toolbar.removeEventListener("click", handleToolbar);
+    toolbar.addEventListener("mousedown", preventBlur);
+    return () => {
+      toolbar.removeEventListener("click", handleToolbar);
+      toolbar.removeEventListener("mousedown", preventBlur);
+    };
   }, [editor, sourceMode, sourceHtml]);
 
   // Step navigation handlers
@@ -396,19 +451,25 @@ export default function CmsEditor({ slug, onBack }: CmsEditorProps) {
       const btn = (e.target as HTMLElement).closest("[data-nav]") as HTMLElement | null;
       if (btn) {
         const nav = btn.getAttribute("data-nav");
-        if (nav === "next" && step < 3) setStep((s) => (s + 1) as 1 | 2 | 3);
-        if (nav === "prev" && step > 1) setStep((s) => (s - 1) as 1 | 2 | 3);
+        if (nav === "next" && step < 3) { setStep((s) => (s + 1) as 1 | 2 | 3); setError(""); }
+        if (nav === "prev" && step > 1) { setStep((s) => (s - 1) as 1 | 2 | 3); setError(""); }
       }
       const stepBtn = (e.target as HTMLElement).closest("[data-step]") as HTMLElement | null;
       if (stepBtn) {
         const num = Number(stepBtn.getAttribute("data-step")) as 1 | 2 | 3;
-        if (num >= 1 && num <= 3) setStep(num);
+        if (num >= 1 && num <= 3) { setStep(num); setError(""); }
+      }
+      const actionBtn = (e.target as HTMLElement).closest("[data-action]") as HTMLElement | null;
+      if (actionBtn) {
+        const action = actionBtn.getAttribute("data-action");
+        if (action === "publish-blog") handleSave(false);
+        if (action === "save-draft-blog") handleSave(true);
       }
     };
 
     document.addEventListener("click", handleStepNav);
     return () => document.removeEventListener("click", handleStepNav);
-  }, [step]);
+  }, [step, handleSave]);
 
   // Source mode textarea listener
   const sourceTextareaRef = useRef<HTMLTextAreaElement>(null);
@@ -476,14 +537,19 @@ export default function CmsEditor({ slug, onBack }: CmsEditorProps) {
   }, [fm.categories, updateFm]);
 
   // Image upload callback
-  const handleImageUpload = (url: string) => {
+  const handleImageUpload = (url: string, previewDataUrl?: string) => {
+    const displayUrl = previewDataUrl || url;
     if (imageTarget === "featured") {
       updateFm("image", url);
+      setImagePreview(displayUrl);
     } else if (imageTarget === "thumbnail") {
       updateFm("thumbnail", url);
+    } else if ((imageTarget as string) === "author-photo") {
+      updateFm("authorImage", url);
+      if (previewDataUrl) setAuthorImagePreview(previewDataUrl);
     } else if (editor) {
       const altText = prompt("Image alt text (for accessibility):", "") || "";
-      editor.chain().focus().setImage({ src: url, alt: altText }).run();
+      editor.chain().focus().setImage({ src: displayUrl, alt: altText }).run();
     }
     setShowImageUpload(false);
   };
@@ -545,7 +611,7 @@ export default function CmsEditor({ slug, onBack }: CmsEditorProps) {
         </div>
       </header>
 
-      <main className="mx-auto max-w-5xl px-4 py-6 sm:px-6">
+      <main className="mx-auto max-w-5xl px-4 py-6 pb-20 sm:px-6">
         {/* Step indicators */}
         <div className="mb-6 flex items-center justify-center gap-2">
           {[
@@ -588,19 +654,12 @@ export default function CmsEditor({ slug, onBack }: CmsEditorProps) {
                 onChange={setPostSlug}
                 hint={slug ? "Changing slug creates a new post at the new URL" : "Auto-generated from title — edit to customize"}
               />
-              <div className="flex items-center gap-3 pt-1">
-                <FieldInput
-                  label="Author"
-                  value={fm.authorName}
-                  onChange={(v) => updateFm("authorName", v)}
-                />
-                <FieldInput
-                  label="Publish Date"
-                  type="date"
-                  value={fm.pubDate}
-                  onChange={(v) => updateFm("pubDate", v)}
-                />
-              </div>
+              <FieldInput
+                label="Publish Date"
+                type="date"
+                value={fm.pubDate}
+                onChange={(v) => updateFm("pubDate", v)}
+              />
             </div>
 
             {/* Import Doc + Editor */}
@@ -660,12 +719,16 @@ export default function CmsEditor({ slug, onBack }: CmsEditorProps) {
                 <ToolbarButton tool="source" icon={<Code className="h-4 w-4" />} title="Toggle HTML Source" active={sourceMode} />
               </div>
 
-              {/* Table editing styles */}
+              {/* Editor styles */}
               <style>{`
+                .ProseMirror { width: 100%; max-width: 100% !important; }
+                .ProseMirror > * { max-width: 100% !important; }
+                .ProseMirror p, .ProseMirror h1, .ProseMirror h2, .ProseMirror h3, .ProseMirror h4, .ProseMirror ul, .ProseMirror ol, .ProseMirror blockquote, .ProseMirror pre { max-width: 100% !important; }
                 .ProseMirror table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
                 .ProseMirror th, .ProseMirror td { border: 1px solid #d1d5db; padding: 0.5rem; min-width: 80px; }
                 .ProseMirror th { background: #f9fafb; font-weight: 600; }
                 .ProseMirror .selectedCell { background: #dbeafe; }
+                .tiptap { width: 100%; }
               `}</style>
 
               {/* Editor content */}
@@ -673,11 +736,13 @@ export default function CmsEditor({ slug, onBack }: CmsEditorProps) {
                 <textarea
                   ref={sourceTextareaRef}
                   defaultValue={sourceHtml}
-                  className="w-full min-h-[400px] px-4 py-3 font-mono text-sm text-gray-800 bg-gray-50 outline-none focus:outline-none resize-y"
+                  className="w-full h-[500px] px-4 py-3 font-mono text-sm text-gray-800 bg-gray-50 outline-none focus:outline-none resize-none overflow-y-auto"
                   spellCheck={false}
                 />
               ) : (
-                <EditorContent editor={editor} />
+                <div className="h-[500px] overflow-y-auto">
+                  <EditorContent editor={editor} className="w-full" />
+                </div>
               )}
 
               {/* Word counter */}
@@ -813,6 +878,165 @@ export default function CmsEditor({ slug, onBack }: CmsEditorProps) {
               </div>
             </div>
 
+            {/* Author Profile */}
+            <div className="rounded-lg border border-gray-200 bg-white p-5 space-y-4">
+              <h3 className="font-sora text-sm font-semibold text-gray-900">Author</h3>
+
+              {/* Toggle: Select existing / Create new */}
+              <div className="flex rounded-md border border-gray-200 overflow-hidden text-xs font-medium">
+                <button
+                  type="button"
+                  className={`flex-1 px-3 py-2 transition-colors ${
+                    authorMode === "select" ? "bg-black text-white" : "bg-white text-gray-600 hover:bg-gray-50"
+                  }`}
+                  onMouseDown={(e) => { e.preventDefault(); setAuthorMode("select"); }}
+                >
+                  Select Existing
+                </button>
+                <button
+                  type="button"
+                  className={`flex-1 px-3 py-2 transition-colors ${
+                    authorMode === "create" ? "bg-black text-white" : "bg-white text-gray-600 hover:bg-gray-50"
+                  }`}
+                  onMouseDown={(e) => { e.preventDefault(); setAuthorMode("create"); }}
+                >
+                  Create New
+                </button>
+              </div>
+
+              {/* SELECT mode: show saved profiles */}
+              {authorMode === "select" && (
+                <div className="space-y-2">
+                  {authorProfiles.length === 0 ? (
+                    <p className="text-xs text-gray-400 text-center py-4">
+                      No saved authors yet.{" "}
+                      <button
+                        type="button"
+                        className="text-blue-600 hover:text-blue-800"
+                        onMouseDown={(e) => { e.preventDefault(); setAuthorMode("create"); }}
+                      >
+                        Create one
+                      </button>
+                    </p>
+                  ) : (
+                    authorProfiles.map((author) => {
+                      const isSelected = fm.authorName === author.name;
+                      return (
+                        <button
+                          key={author.id}
+                          type="button"
+                          className={`flex w-full items-center gap-3 rounded-md border px-3 py-2.5 text-left transition-colors ${
+                            isSelected
+                              ? "border-blue-400 bg-blue-50 ring-1 ring-blue-200"
+                              : "border-gray-200 bg-white hover:border-gray-300 hover:bg-gray-50"
+                          }`}
+                          onMouseDown={(e) => {
+                            e.preventDefault();
+                            updateFm("authorName", author.name);
+                            updateFm("authorBio", author.bio);
+                            updateFm("authorImage", author.image);
+                          }}
+                        >
+                          {author.image ? (
+                            <img src={author.image} alt={author.name} className="h-10 w-10 rounded-full object-cover border border-gray-200 shrink-0" />
+                          ) : (
+                            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-r from-[#cd3ef9] via-[#323dfe] to-black text-white font-semibold text-sm shrink-0">
+                              {author.name.charAt(0).toUpperCase()}
+                            </div>
+                          )}
+                          <div className="min-w-0 flex-1">
+                            <div className="text-sm font-medium text-gray-900 truncate">{author.name}</div>
+                            {author.bio && <div className="text-xs text-gray-500 truncate">{author.bio}</div>}
+                          </div>
+                          {isSelected && <CheckCircle2 className="h-4 w-4 text-blue-600 shrink-0" />}
+                        </button>
+                      );
+                    })
+                  )}
+                </div>
+              )}
+
+              {/* CREATE mode: author form */}
+              {authorMode === "create" && (
+                <div className="space-y-4">
+                  <div className="flex items-start gap-4">
+                    <div className="shrink-0">
+                      {fm.authorImage ? (
+                        <img src={authorImagePreview || fm.authorImage} alt={fm.authorName} className="h-14 w-14 rounded-full object-cover border border-gray-200" />
+                      ) : (
+                        <div className="flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-r from-[#cd3ef9] via-[#323dfe] to-black text-white font-semibold text-lg">
+                          {(fm.authorName || "T").charAt(0).toUpperCase()}
+                        </div>
+                      )}
+                    </div>
+                    <div className="flex-1 space-y-3">
+                      <FieldInput
+                        label="Name"
+                        value={fm.authorName}
+                        onChange={(v) => updateFm("authorName", v)}
+                        placeholder="e.g. John Doe"
+                      />
+                      <FieldTextarea
+                        label="Bio"
+                        value={fm.authorBio}
+                        onChange={(v) => updateFm("authorBio", v)}
+                        rows={2}
+                        placeholder="Short author description"
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <label className="mb-1 block text-xs font-medium text-gray-700">Profile Photo</label>
+                    <div className="flex gap-1">
+                      <input
+                        type="text"
+                        value={fm.authorImage}
+                        className="flex-1 rounded-md border border-gray-300 bg-white px-2.5 py-1.5 text-sm text-gray-900 placeholder-gray-400 outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-100"
+                        onChange={(e) => updateFm("authorImage", e.target.value)}
+                        placeholder="URL or upload"
+                      />
+                      <button
+                        data-upload-target="author-photo"
+                        className="rounded-md border border-gray-300 px-2.5 py-1.5 text-gray-500 hover:bg-gray-50"
+                      >
+                        <ImageIcon className="h-4 w-4" />
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Save as reusable profile */}
+                  {fm.authorName && !authorProfiles.some((a) => a.name === fm.authorName) && (
+                    <button
+                      type="button"
+                      className="flex w-full items-center justify-center gap-1.5 rounded-md bg-gray-100 py-2 text-xs font-medium text-gray-700 transition-colors hover:bg-gray-200"
+                      onMouseDown={async (e) => {
+                        e.preventDefault();
+                        const newAuthor: AuthorProfile = {
+                          id: fm.authorName.toLowerCase().replace(/[^a-z0-9]/g, "-").replace(/-+/g, "-"),
+                          name: fm.authorName,
+                          bio: fm.authorBio,
+                          image: fm.authorImage,
+                        };
+                        const updated = [...authorProfiles, newAuthor];
+                        try {
+                          const result = await saveAuthors(updated, authorsSha);
+                          setAuthorProfiles(updated);
+                          setAuthorsSha(result.sha);
+                          setSuccess("Author profile saved!");
+                          setTimeout(() => setSuccess(""), 4000);
+                        } catch {
+                          setError("Failed to save author profile");
+                        }
+                      }}
+                    >
+                      <Plus className="h-3.5 w-3.5" />
+                      Save as reusable author profile
+                    </button>
+                  )}
+                </div>
+              )}
+            </div>
+
             {/* Publishing Options */}
             <div className="rounded-lg border border-gray-200 bg-white p-5 space-y-3">
               <h3 className="font-sora text-sm font-semibold text-gray-900">Publishing Options</h3>
@@ -899,11 +1123,15 @@ export default function CmsEditor({ slug, onBack }: CmsEditorProps) {
                 </button>
               </div>
             </details>
+
           </div>
         )}
 
-        {/* ──── Step Navigation ──── */}
-        <div className="mt-6 flex items-center justify-between">
+      </main>
+
+      {/* ──── Step Navigation (fixed bottom) ──── */}
+      <div className="fixed bottom-0 left-0 right-0 z-10 border-t border-gray-200 bg-white shadow-[0_-2px_8px_rgba(0,0,0,0.06)]">
+        <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3 sm:px-6">
           <div>
             {step > 1 && (
               <button
@@ -915,7 +1143,9 @@ export default function CmsEditor({ slug, onBack }: CmsEditorProps) {
               </button>
             )}
           </div>
-          <div>
+          <div className="flex items-center gap-2">
+            {error && <span className="text-xs text-red-500 max-w-md truncate" title={error}>{error}</span>}
+            {success && <span className="text-xs text-green-600">{success}</span>}
             {step < 3 ? (
               <button
                 data-nav="next"
@@ -924,10 +1154,27 @@ export default function CmsEditor({ slug, onBack }: CmsEditorProps) {
                 Next
                 <ChevronRight className="h-4 w-4" />
               </button>
-            ) : null}
+            ) : (
+              <>
+                <button
+                  data-action="save-draft-blog"
+                  className="flex items-center gap-1.5 rounded-md border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 disabled:opacity-50"
+                >
+                  <Save className="h-4 w-4" />
+                  Save Draft
+                </button>
+                <button
+                  data-action="publish-blog"
+                  className="flex items-center gap-1.5 rounded-md bg-black px-4 py-2 text-sm font-medium text-white transition-colors cta-hover-gradient disabled:opacity-50"
+                >
+                  {saving ? <Loader2 className="h-4 w-4 animate-spin" /> : <Send className="h-4 w-4" />}
+                  {saving ? "Publishing..." : "Publish Blog"}
+                </button>
+              </>
+            )}
           </div>
         </div>
-      </main>
+      </div>
 
       {/* Image Upload Modal */}
       {showImageUpload && (
@@ -940,7 +1187,11 @@ export default function CmsEditor({ slug, onBack }: CmsEditorProps) {
       {/* Featured/thumbnail image upload handler */}
       <UploadTargetHandler
         onTargetClick={(target) => {
-          setImageTarget(target as "featured" | "thumbnail");
+          if (target === "author-photo") {
+            setImageTarget("author-photo" as any);
+          } else {
+            setImageTarget(target as "featured" | "thumbnail");
+          }
           setShowImageUpload(true);
         }}
       />
