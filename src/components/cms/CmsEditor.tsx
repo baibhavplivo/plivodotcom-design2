@@ -14,6 +14,7 @@ import type { BlogPost } from "./cms-types";
 import CmsImageUpload from "./CmsImageUpload";
 import CmsDocImport from "./CmsDocImport";
 import CmsBannerGenerator from "./CmsBannerGenerator";
+import CmsPreview from "./CmsPreview";
 import {
   ArrowLeft,
   Save,
@@ -50,6 +51,7 @@ import {
   FileText,
   Image as ImageLucide,
   CheckCircle2,
+  Eye,
 } from "lucide-react";
 
 interface CmsEditorProps {
@@ -108,7 +110,7 @@ export default function CmsEditor({ slug, onBack }: CmsEditorProps) {
   const [sourceMode, setSourceMode] = useState(false);
   const [sourceHtml, setSourceHtml] = useState("");
   const [lastEditMode, setLastEditMode] = useState<"wysiwyg" | "source">("wysiwyg");
-  const [step, setStep] = useState<1 | 2 | 3>(1);
+  const [step, setStep] = useState<1 | 2 | 3 | 4>(1);
   const [wordCount, setWordCount] = useState(0);
   const [authorProfiles, setAuthorProfiles] = useState<AuthorProfile[]>([]);
   const [authorsSha, setAuthorsSha] = useState("");
@@ -451,13 +453,13 @@ export default function CmsEditor({ slug, onBack }: CmsEditorProps) {
       const btn = (e.target as HTMLElement).closest("[data-nav]") as HTMLElement | null;
       if (btn) {
         const nav = btn.getAttribute("data-nav");
-        if (nav === "next" && step < 3) { setStep((s) => (s + 1) as 1 | 2 | 3); setError(""); }
-        if (nav === "prev" && step > 1) { setStep((s) => (s - 1) as 1 | 2 | 3); setError(""); }
+        if (nav === "next" && step < 4) { setStep((s) => (s + 1) as 1 | 2 | 3 | 4); setError(""); }
+        if (nav === "prev" && step > 1) { setStep((s) => (s - 1) as 1 | 2 | 3 | 4); setError(""); }
       }
       const stepBtn = (e.target as HTMLElement).closest("[data-step]") as HTMLElement | null;
       if (stepBtn) {
-        const num = Number(stepBtn.getAttribute("data-step")) as 1 | 2 | 3;
-        if (num >= 1 && num <= 3) { setStep(num); setError(""); }
+        const num = Number(stepBtn.getAttribute("data-step")) as 1 | 2 | 3 | 4;
+        if (num >= 1 && num <= 4) { setStep(num); setError(""); }
       }
       const actionBtn = (e.target as HTMLElement).closest("[data-action]") as HTMLElement | null;
       if (actionBtn) {
@@ -618,6 +620,7 @@ export default function CmsEditor({ slug, onBack }: CmsEditorProps) {
             { num: 1, label: "Content", icon: <FileText className="h-4 w-4" /> },
             { num: 2, label: "SEO & Settings", icon: <Search className="h-4 w-4" /> },
             { num: 3, label: "Cover Image", icon: <ImageLucide className="h-4 w-4" /> },
+            { num: 4, label: "Preview", icon: <Eye className="h-4 w-4" /> },
           ].map((s, i) => (
             <div key={s.num} className="flex items-center gap-2">
               {i > 0 && <div className={`h-px w-8 ${step >= s.num ? "bg-blue-400" : "bg-gray-200"}`} />}
@@ -1127,6 +1130,23 @@ export default function CmsEditor({ slug, onBack }: CmsEditorProps) {
           </div>
         )}
 
+        {/* ──── STEP 4: Preview ──── */}
+        {step === 4 && (
+          <CmsPreview
+            title={fm.title}
+            description={fm.description}
+            pubDate={fm.pubDate}
+            authorName={fm.authorName}
+            authorBio={fm.authorBio}
+            authorImage={fm.authorImage || authorImagePreview}
+            image={imagePreview || fm.image}
+            imageAlt={fm.imageAlt}
+            categories={fm.categories}
+            keyTakeaways={fm.keyTakeaways}
+            bodyHtml={lastEditMode === "source" ? sourceHtml : (editor?.getHTML() || "")}
+          />
+        )}
+
       </main>
 
       {/* ──── Step Navigation (fixed bottom) ──── */}
@@ -1146,7 +1166,7 @@ export default function CmsEditor({ slug, onBack }: CmsEditorProps) {
           <div className="flex items-center gap-2">
             {error && <span className="text-xs text-red-500 max-w-md truncate" title={error}>{error}</span>}
             {success && <span className="text-xs text-green-600">{success}</span>}
-            {step < 3 ? (
+            {step < 4 ? (
               <button
                 data-nav="next"
                 className="flex items-center gap-1.5 rounded-md bg-black px-4 py-2 text-sm font-medium text-white transition-colors cta-hover-gradient"
