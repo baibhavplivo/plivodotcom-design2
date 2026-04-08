@@ -3,8 +3,8 @@
 import { Download } from "lucide-react";
 
 const LOGO_VARIANTS = [
-  { name: "Primary Logo", desc: "Full-color logo on white", bg: "bg-white", file: "plivo-logo-primary.svg" },
-  { name: "Logo on Dark", desc: "White logo for dark backgrounds", bg: "bg-[#0f1117]", file: "plivo-logo-white.svg", dark: true },
+  { name: "Primary Logo", desc: "Full-color logo on white", bg: "bg-white", file: "plivo-logo-primary.svg", full: true },
+  { name: "Logo on Dark", desc: "White logo for dark backgrounds", bg: "bg-[#0f1117]", file: "plivo-logo-white.svg", dark: true, full: true },
   { name: "Logo Symbol", desc: "Icon mark on white", bg: "bg-white", file: "plivo-symbol.svg" },
   { name: "Symbol on Dark", desc: "Icon mark for dark backgrounds", bg: "bg-[#0f1117]", file: "plivo-symbol-white.svg", dark: true },
 ];
@@ -12,7 +12,6 @@ const LOGO_VARIANTS = [
 const BRAND_COLORS = [
   { name: "Plivo Purple", hex: "#cd3ef9", text: "text-white" },
   { name: "Plivo Blue", hex: "#323dfe", text: "text-white" },
-  { name: "Plivo Green", hex: "#03a94a", text: "text-white" },
   { name: "Dark", hex: "#0f1117", text: "text-white" },
   { name: "White", hex: "#ffffff", text: "text-gray-900", border: true },
   { name: "Gray 50", hex: "#f9fafb", text: "text-gray-900", border: true },
@@ -58,11 +57,11 @@ export default function BrandPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
             {LOGO_VARIANTS.map((v) => (
               <div key={v.name} className="rounded-lg border border-gray-200 overflow-hidden">
-                <div className={`${v.bg} flex items-center justify-center h-32 p-6`}>
+                <div className={`${v.bg} flex items-center justify-center h-44 p-6`}>
                   <img
                     src={`/images/brand/${v.file}`}
                     alt={v.name}
-                    className="max-h-10 w-auto"
+                    className={`${v.full ? "max-h-16" : "max-h-10"} w-auto`}
                     loading="lazy"
                   />
                 </div>
@@ -127,14 +126,16 @@ export default function BrandPage() {
 
           {/* Gradient bar */}
           <div className="rounded-lg overflow-hidden mb-6 h-16" style={{ background: "linear-gradient(90deg, #cd3ef9, #323dfe)" }}>
-            <div className="h-full flex items-center justify-center">
+            <div className="h-full flex items-center justify-between px-6">
+              <span className="text-white text-sm font-medium tracking-wide">#cd3ef9</span>
               <span className="text-white text-sm font-medium tracking-wide">Plivo Gradient</span>
+              <span className="text-white text-sm font-medium tracking-wide">#323dfe</span>
             </div>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
             {BRAND_COLORS.map((c) => (
-              <div key={c.name} className={`rounded-lg overflow-hidden ${c.border ? "border border-gray-200" : ""}`}>
+              <div key={c.name} className="rounded-lg overflow-hidden border border-gray-200">
                 <div
                   className={`h-20 flex items-end p-3 ${c.text}`}
                   style={{ backgroundColor: c.hex }}
