@@ -697,16 +697,15 @@ function PhoneNumbersSection({ phoneNumbers, countryCode }: { phoneNumbers: NonN
               row.children ? (
                 <tr key={row.type}>
                   <td colSpan={2} className="py-0">
+                    <div className="py-3 text-sm text-gray-900 font-medium border-b border-gray-100">
+                      {row.type}
+                      {row.note && <span className="ml-2 text-gray-400 font-normal text-xs">Plus one-time setup fee**</span>}
+                    </div>
                     <table className="w-full">
-                      <tbody>
-                        <tr>
-                          <td className="py-3 pr-4 text-sm text-gray-900 font-medium" colSpan={2}>
-                            {row.type} {row.note && <span className="text-gray-500 font-normal">Plus one-time setup fee**</span>}
-                          </td>
-                        </tr>
+                      <tbody className="divide-y divide-gray-100">
                         {row.children.map((child) => (
-                          <tr key={child.type} className="border-t border-gray-100">
-                            <td className="py-3 pr-4 text-sm text-gray-900 pl-4 w-[65%]">{child.type}</td>
+                          <tr key={child.type}>
+                            <td className="py-3 pr-4 text-sm text-gray-900 pl-6 w-[65%]">{child.type}</td>
                             <td className="py-3 text-sm font-medium text-black">{convertPriceString(child.price, countryCode)}</td>
                           </tr>
                         ))}
@@ -716,7 +715,7 @@ function PhoneNumbersSection({ phoneNumbers, countryCode }: { phoneNumbers: NonN
                 </tr>
               ) : (
                 <tr key={row.type}>
-                  <td className="py-3 pr-4 text-sm text-gray-900">{row.type}</td>
+                  <td className="py-3 pr-4 text-sm text-gray-900 w-[65%]">{row.type}</td>
                   <td className="py-3 text-sm font-medium text-black">{convertPriceString(row.price, countryCode)}</td>
                 </tr>
               )
@@ -1010,11 +1009,6 @@ function CarrierFeesSection({ countryCode }: { countryCode: string }) {
             </tbody>
           </table>
         </div>
-        {!isCA && (
-          <p className="mt-3 text-xs text-gray-500">
-            Rates are for long codes that are successfully linked to 10DLC campaigns (i.e. registered traffic). Starting June 1, 2023, unregistered traffic toward AT&T, T-Mobile, Sprint, and Verizon will incur a surcharge of $0.0100, $0.0080, $0.0080, and $0.0100 respectively.
-          </p>
-        )}
       </div>
 
       {/* MMS Carrier Surcharge Fee */}
