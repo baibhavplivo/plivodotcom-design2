@@ -3,8 +3,8 @@ title: "CNAM Mapping Made Simple"
 description: "CNAM Support: Learn how to specify a caller ID name for your business using the Plivo console."
 pubDate: "2022-06-10T00:00:00.000Z"
 updatedDate: "2024-07-08T09:05:31.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657fdb459bd169732324ebe6_banner-1024x512-4-1.svg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657fdb459bd169732324ebe6_banner-1024x512-4-1.svg"
+image: "/images/blog/657fdb459bd169732324ebe6_banner-1024x512-4-1.svg"
+thumbnail: "/images/blog/657fdb459bd169732324ebe6_banner-1024x512-4-1.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

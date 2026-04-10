@@ -3,8 +3,8 @@ title: "Announcing SOC 2 Type 2 Certification: Reinforcing Our Commitment to Sec
 description: "SOC 2 compliance: Plivo has obtained a SOC 2 Type 2 report certifying that we employ the highest level of security when it comes to customer data."
 pubDate: "2022-03-16T00:00:00.000Z"
 updatedDate: "2024-07-13T10:33:37.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657ff5f7145e6b58c966b444_soc2-blog-graphic.svg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657ff5f7145e6b58c966b444_soc2-blog-graphic.svg"
+image: "/images/blog/657ff5f7145e6b58c966b444_soc2-blog-graphic.svg"
+thumbnail: "/images/blog/657ff5f7145e6b58c966b444_soc2-blog-graphic.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

@@ -3,8 +3,8 @@ title: "Verified Caller IDs: Trusted, Secure Outbound Calling with Plivo"
 description: "Take your business communication to the next level with Plivo’s Verified Caller IDs. Authenticate outbound calls and build trust effortlessly."
 pubDate: "2024-05-15T00:00:00.000Z"
 updatedDate: "2024-07-17T10:12:37.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/668cf19ca9714fffd4a7ad28_Plivo-verified-caller_ID_blog-graphic.svg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/668cf19ca9714fffd4a7ad28_Plivo-verified-caller_ID_blog-graphic.svg"
+image: "/images/blog/668cf19ca9714fffd4a7ad28_Plivo-verified-caller_ID_blog-graphic.svg"
+thumbnail: "/images/blog/668cf19ca9714fffd4a7ad28_Plivo-verified-caller_ID_blog-graphic.svg"
 authorName: "Team Plivo"
 featured: false
 noindex: false

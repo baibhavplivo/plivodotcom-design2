@@ -3,8 +3,8 @@ title: "How to Handle SMS and Voice Communications Using Python"
 description: "Send and receive SMS text messages and make and receive voice calls with Python, the Plivo Python SDK, and Plivo APIs."
 pubDate: "2022-06-08T00:00:00.000Z"
 updatedDate: "2024-07-08T10:55:47.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657fdc57f2660f26a242a285_how-to-handle-sms-and-voice-communications-using-python.svg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657fdc57f2660f26a242a285_how-to-handle-sms-and-voice-communications-using-python.svg"
+image: "/images/blog/657fdc57f2660f26a242a285_how-to-handle-sms-and-voice-communications-using-python.svg"
+thumbnail: "/images/blog/657fdc57f2660f26a242a285_how-to-handle-sms-and-voice-communications-using-python.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

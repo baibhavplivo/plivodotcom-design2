@@ -3,8 +3,8 @@ title: "The Four Content Types for Texting in India"
 description: "Implicit SMS Service: Service Implicit SMS helps automate processes, deliver personalized messages, and foster stronger customer relationships. Here are four content types to leverage bulk implicit texting in India."
 pubDate: "2023-06-09T00:00:00.000Z"
 updatedDate: "2024-03-13T07:07:38.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657d4dcbb584f5e4411af505_Blog_four_content_types_text_india.svg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657d4dcbb584f5e4411af505_Blog_four_content_types_text_india.svg"
+image: "/images/blog/657d4dcbb584f5e4411af505_Blog_four_content_types_text_india.svg"
+thumbnail: "/images/blog/657d4dcbb584f5e4411af505_Blog_four_content_types_text_india.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

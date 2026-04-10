@@ -3,8 +3,8 @@ title: "Push Notifications: An Energy-Efficient Way to Receive Incoming Calls Us
 description: "Plivo's SMS API and Voice API enables businesses to communicate with their customers at global scale. Sign up for free now."
 pubDate: "2019-09-30T00:00:00.000Z"
 updatedDate: "2024-07-08T10:51:35.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/65828e0f3553da3150333f4c_push-notification-energy-efficient-way-to-receive-voip-incoming-calls-in-your-mobile-app.png"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/65828e0f3553da3150333f4c_push-notification-energy-efficient-way-to-receive-voip-incoming-calls-in-your-mobile-app.png"
+image: "/images/blog/65828e0f3553da3150333f4c_push-notification-energy-efficient-way-to-receive-voip-incoming-calls-in-your-mobile-app.png"
+thumbnail: "/images/blog/65828e0f3553da3150333f4c_push-notification-energy-efficient-way-to-receive-voip-incoming-calls-in-your-mobile-app.png"
 authorName: "Team Plivo"
 featured: true
 noindex: false

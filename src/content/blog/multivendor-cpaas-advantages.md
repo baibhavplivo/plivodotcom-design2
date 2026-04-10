@@ -3,8 +3,8 @@ title: "Two CPaaS Platforms Are Better than One"
 description: "You can use a second cloud communications platform to ensure uptime, balance traffic loads, and reduce your total cost of ownership (TCO)."
 pubDate: "2021-03-11T00:00:00.000Z"
 updatedDate: "2024-05-23T09:41:41.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/65824ea92005d7240b032ebc_two-cpaas-platforms-1.svg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/65824ea92005d7240b032ebc_two-cpaas-platforms-1.svg"
+image: "/images/blog/65824ea92005d7240b032ebc_two-cpaas-platforms-1.svg"
+thumbnail: "/images/blog/65824ea92005d7240b032ebc_two-cpaas-platforms-1.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

@@ -3,8 +3,8 @@ title: "Plivo Repeats as Appealie Overall SaaS Award Winner for Development and 
 description: "Plivo Repeats as Appealie Overall SaaS Award Winner for Development and DevOps"
 pubDate: "2022-10-25T00:00:00.000Z"
 updatedDate: "2023-12-21T10:19:07.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657d8c7874351fdd7ecd1213_appealie.jpg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657d8c7874351fdd7ecd1213_appealie.jpg"
+image: "/images/blog/657d8c7874351fdd7ecd1213_appealie.jpg"
+thumbnail: "/images/blog/657d8c7874351fdd7ecd1213_appealie.jpg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

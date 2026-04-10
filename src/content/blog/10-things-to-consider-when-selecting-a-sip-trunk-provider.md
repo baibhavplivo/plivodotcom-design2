@@ -3,8 +3,8 @@ title: "10 Things to Consider When Selecting a SIP Trunk Provider"
 description: "Plivo's SMS API and Voice API enables businesses to communicate with their customers at global scale. Sign up for free now."
 pubDate: "2019-04-12T00:00:00.000Z"
 updatedDate: "2024-06-20T08:07:00.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/6582eabd4ace43b1a817b578_10-things-sip-trunk.png"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/6582eabd4ace43b1a817b578_10-things-sip-trunk.png"
+image: "/images/blog/6582eabd4ace43b1a817b578_10-things-sip-trunk.png"
+thumbnail: "/images/blog/6582eabd4ace43b1a817b578_10-things-sip-trunk.png"
 authorName: "Team Plivo"
 featured: true
 noindex: false

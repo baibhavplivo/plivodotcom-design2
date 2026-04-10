@@ -3,8 +3,8 @@ title: "How to Write a Bank IVR Menu"
 description: "Tips on how to write a banking IVR menu. Read more about IVR phone banking services and best practices at Plivo."
 pubDate: "2023-07-17T00:00:00.000Z"
 updatedDate: "2024-07-08T08:01:37.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657d43cb728c9a6088f6d50c_blog_bank_IVR_menu.svg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657d43cb728c9a6088f6d50c_blog_bank_IVR_menu.svg"
+image: "/images/blog/657d43cb728c9a6088f6d50c_blog_bank_IVR_menu.svg"
+thumbnail: "/images/blog/657d43cb728c9a6088f6d50c_blog_bank_IVR_menu.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

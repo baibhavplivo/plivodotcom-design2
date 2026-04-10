@@ -3,8 +3,8 @@ title: "13 Best Practices For Using Interactive Voice Response (IVR)"
 description: "IVR Menu Best Practices: Tips on how to create IVR menus that satisfy callers’ needs. Learn about IVR and create IVR phone trees with Plivo. Sign up today!"
 pubDate: "2023-03-28T00:00:00.000Z"
 updatedDate: "2024-07-09T13:49:44.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657d5ff45bf5a83f4fa3f89a_Blog_great_IVR_menu.svg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657d5ff45bf5a83f4fa3f89a_Blog_great_IVR_menu.svg"
+image: "/images/blog/657d5ff45bf5a83f4fa3f89a_Blog_great_IVR_menu.svg"
+thumbnail: "/images/blog/657d5ff45bf5a83f4fa3f89a_Blog_great_IVR_menu.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

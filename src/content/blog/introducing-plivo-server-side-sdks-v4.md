@@ -3,8 +3,8 @@ title: "Introducing Plivo Server SDKs 4.0"
 description: "Plivo's SMS API and Voice API enables businesses to communicate with their customers at global scale. Sign up for free now."
 pubDate: "2018-01-18T00:00:00.000Z"
 updatedDate: "2023-12-21T12:41:48.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/6583d3fdc0c50a8ad424c194_Introducing-Plivo-Server-side-SDKs-4.0.png"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/6583d3fdc0c50a8ad424c194_Introducing-Plivo-Server-side-SDKs-4.0.png"
+image: "/images/blog/6583d3fdc0c50a8ad424c194_Introducing-Plivo-Server-side-SDKs-4.0.png"
+thumbnail: "/images/blog/6583d3fdc0c50a8ad424c194_Introducing-Plivo-Server-side-SDKs-4.0.png"
 authorName: "Team Plivo"
 featured: true
 noindex: false

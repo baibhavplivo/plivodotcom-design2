@@ -3,8 +3,8 @@ title: "How SIP Trunking Improves Video Conferencing as COVID-19 Makes Remote Wo
 description: "SIP trunking helps Video Conferencing companies to offer an option to join conferences via a dial-in VoIP number. This is a guide to pick the right SIP Trunking partner."
 pubDate: "2020-03-28T00:00:00.000Z"
 updatedDate: "2023-12-21T12:24:13.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/658289d9958b462bb5043cd1_ic-sip-video-blog.jpg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/658289d9958b462bb5043cd1_ic-sip-video-blog.jpg"
+image: "/images/blog/658289d9958b462bb5043cd1_ic-sip-video-blog.jpg"
+thumbnail: "/images/blog/658289d9958b462bb5043cd1_ic-sip-video-blog.jpg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

@@ -3,8 +3,8 @@ title: "How to Handle SMS and Voice Communications Using Java"
 description: "Send and receive SMS text messages and make and receive voice calls with Java, the Plivo Java SDK, and Plivo APIs."
 pubDate: "2022-06-13T00:00:00.000Z"
 updatedDate: "2023-12-21T10:28:50.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657fdab61650bb250fb6d60c_java-developer-blog-graphic.svg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657fdab61650bb250fb6d60c_java-developer-blog-graphic.svg"
+image: "/images/blog/657fdab61650bb250fb6d60c_java-developer-blog-graphic.svg"
+thumbnail: "/images/blog/657fdab61650bb250fb6d60c_java-developer-blog-graphic.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

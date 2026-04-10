@@ -3,8 +3,8 @@ title: "SMS Service Provider: How to Choose the Right One (2024)"
 description: "Looking for a reliable SMS provider? Discover how to choose the best SMS provider in 2024 and evaluate their performance here."
 pubDate: "2020-04-29T00:00:00.000Z"
 updatedDate: "2024-07-26T14:48:29.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/658288bab7d0b2211172e714_ic-blog-sms-api-evaluation-1.jpg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/658288bab7d0b2211172e714_ic-blog-sms-api-evaluation-1.jpg"
+image: "/images/blog/658288bab7d0b2211172e714_ic-blog-sms-api-evaluation-1.jpg"
+thumbnail: "/images/blog/658288bab7d0b2211172e714_ic-blog-sms-api-evaluation-1.jpg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

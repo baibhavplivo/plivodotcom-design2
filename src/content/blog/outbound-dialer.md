@@ -3,8 +3,8 @@ title: "Why You Might Want an Outbound Dialer"
 description: "Outbound Dialer - Read to know about the benefits of an Outbound Dialer. Automate and optimize your outbound calling processes with Outbound dialer services from Plivo."
 pubDate: "2023-05-24T00:00:00.000Z"
 updatedDate: "2024-02-17T09:32:59.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657d5468eac136d96d05ce2d_Blog_outbound_dialer.svg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657d5468eac136d96d05ce2d_Blog_outbound_dialer.svg"
+image: "/images/blog/657d5468eac136d96d05ce2d_Blog_outbound_dialer.svg"
+thumbnail: "/images/blog/657d5468eac136d96d05ce2d_Blog_outbound_dialer.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

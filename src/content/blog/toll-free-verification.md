@@ -3,8 +3,8 @@ title: "Latest Verification Requirements for Toll-Free Messaging in North Americ
 description: "Toll-Free Verification: To protect consumers from spam and malicious messages that might originate from toll-free numbers, North American businesses have to verify their numbers."
 pubDate: "2023-05-18T00:00:00.000Z"
 updatedDate: "2024-08-01T12:14:30.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657d550eb8e1715fecae717f_Blog_toll_free_verification_101.svg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657d550eb8e1715fecae717f_Blog_toll_free_verification_101.svg"
+image: "/images/blog/657d550eb8e1715fecae717f_Blog_toll_free_verification_101.svg"
+thumbnail: "/images/blog/657d550eb8e1715fecae717f_Blog_toll_free_verification_101.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

@@ -3,8 +3,8 @@ title: "Introducing MMS Support on Toll-Free Numbers in the US and Canada"
 description: "Twilio may be the best known name for SMS and voice API’s, but there are very strong alternatives that offer better quality, reach, pricing, and support."
 pubDate: "2020-07-24T00:00:00.000Z"
 updatedDate: "2024-07-08T09:25:29.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/658272343ec76f4d5e0d8c74_mms-toll-free.svg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/658272343ec76f4d5e0d8c74_mms-toll-free.svg"
+image: "/images/blog/658272343ec76f4d5e0d8c74_mms-toll-free.svg"
+thumbnail: "/images/blog/658272343ec76f4d5e0d8c74_mms-toll-free.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

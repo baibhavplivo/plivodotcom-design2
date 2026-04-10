@@ -3,8 +3,8 @@ title: "3 Key Lessons on How We Became Profitable in Just 3 Years"
 description: "Plivo's SMS API and Voice API enables businesses to communicate with their customers at global scale. Sign up for free now."
 pubDate: "2014-09-10T00:00:00.000Z"
 updatedDate: "2024-07-14T09:01:20.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/658509bff4acae46f5faa2cc_blog-pattern-design-6-thumbnail.svg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/658509bff4acae46f5faa2cc_blog-pattern-design-6-thumbnail.svg"
+image: "/images/blog/658509bff4acae46f5faa2cc_blog-pattern-design-6-thumbnail.svg"
+thumbnail: "/images/blog/658509bff4acae46f5faa2cc_blog-pattern-design-6-thumbnail.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

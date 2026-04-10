@@ -3,8 +3,8 @@ title: "Announcing Secure Trunking on Outbound Trunks"
 description: "Secure SIP trunking enables outbound trunks to use TLS to encrypt signaling and SRTP to encrypt media during the time a call is traveling through the public internet."
 pubDate: "2020-12-06T00:00:00.000Z"
 updatedDate: "2023-12-21T12:14:46.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/65825d503553da315014c841_robust-authentication-and-encryption-to-protect-your-business-from-cyber-attacks.svg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/65825d503553da315014c841_robust-authentication-and-encryption-to-protect-your-business-from-cyber-attacks.svg"
+image: "/images/blog/65825d503553da315014c841_robust-authentication-and-encryption-to-protect-your-business-from-cyber-attacks.svg"
+thumbnail: "/images/blog/65825d503553da315014c841_robust-authentication-and-encryption-to-protect-your-business-from-cyber-attacks.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

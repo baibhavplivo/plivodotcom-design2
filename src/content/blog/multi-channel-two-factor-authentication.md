@@ -3,8 +3,8 @@ title: "Improve Conversions with Multichannel 2FA"
 description: "Multichannel two-factor authentication offers superior reliability and seamless customer experience, and guarantees high delivery rates across the globe."
 pubDate: "2020-12-22T00:00:00.000Z"
 updatedDate: "2023-12-21T12:15:34.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/65825e8ca27d41a4a6a1d8d4_multichannel-2fa-s.svg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/65825e8ca27d41a4a6a1d8d4_multichannel-2fa-s.svg"
+image: "/images/blog/65825e8ca27d41a4a6a1d8d4_multichannel-2fa-s.svg"
+thumbnail: "/images/blog/65825e8ca27d41a4a6a1d8d4_multichannel-2fa-s.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

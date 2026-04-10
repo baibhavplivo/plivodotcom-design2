@@ -3,8 +3,8 @@ title: "STIR/SHAKEN in Canada"
 description: "STIR/SHAKEN Canada: Like the US, Canada has implemented STIR/SHAKEN — two technical frameworks for authenticating calling numbers and measuring trust in displayed caller names."
 pubDate: "2023-05-15T00:00:00.000Z"
 updatedDate: "2024-07-08T09:35:13.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657d55a1e263ba3262ec76f3_Blog_stir_shaken_canada.svg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657d55a1e263ba3262ec76f3_Blog_stir_shaken_canada.svg"
+image: "/images/blog/657d55a1e263ba3262ec76f3_Blog_stir_shaken_canada.svg"
+thumbnail: "/images/blog/657d55a1e263ba3262ec76f3_Blog_stir_shaken_canada.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

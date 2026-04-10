@@ -3,8 +3,8 @@ title: "Pitfalls of Least-Cost Routing for SIP Trunking"
 description: "Plivo's SMS API and Voice API enables businesses to communicate with their customers at global scale. Sign up for free now."
 pubDate: "2019-08-16T00:00:00.000Z"
 updatedDate: "2024-07-14T11:01:04.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/65828edb88c080e6f492bd1e_pitfalls-of-least-cost-routing-for-sip-trunking.jpg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/65828edb88c080e6f492bd1e_pitfalls-of-least-cost-routing-for-sip-trunking.jpg"
+image: "/images/blog/65828edb88c080e6f492bd1e_pitfalls-of-least-cost-routing-for-sip-trunking.jpg"
+thumbnail: "/images/blog/65828edb88c080e6f492bd1e_pitfalls-of-least-cost-routing-for-sip-trunking.jpg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

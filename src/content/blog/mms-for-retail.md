@@ -3,8 +3,8 @@ title: "4 Ways Retailers Can Leverage MMS for a Better Customer Experience"
 description: "Four ways retailers can leverage MMS for a better customer experience: coupons and promotions, personal shopping, product registration, branded messaging"
 pubDate: "2021-05-24T00:00:00.000Z"
 updatedDate: "2024-05-23T09:14:09.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/65814370422e8347c5cb1566_blog-graphic-01-newsletter-7.png"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/65814370422e8347c5cb1566_blog-graphic-01-newsletter-7.png"
+image: "/images/blog/65814370422e8347c5cb1566_blog-graphic-01-newsletter-7.png"
+thumbnail: "/images/blog/65814370422e8347c5cb1566_blog-graphic-01-newsletter-7.png"
 authorName: "Team Plivo"
 featured: true
 noindex: false

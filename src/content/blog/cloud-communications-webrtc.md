@@ -3,8 +3,8 @@ title: "Cloud Communications, Brought to You by WebRTC"
 description: "Plivo's SMS API and Voice API enables businesses to communicate with their customers at global scale. Sign up for free now."
 pubDate: "2012-12-18T00:00:00.000Z"
 updatedDate: "2023-12-22T05:39:45.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/658509bff4acae46f5faa2cc_blog-pattern-design-6-thumbnail.svg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/658509bff4acae46f5faa2cc_blog-pattern-design-6-thumbnail.svg"
+image: "/images/blog/658509bff4acae46f5faa2cc_blog-pattern-design-6-thumbnail.svg"
+thumbnail: "/images/blog/658509bff4acae46f5faa2cc_blog-pattern-design-6-thumbnail.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

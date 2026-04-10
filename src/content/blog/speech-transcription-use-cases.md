@@ -3,8 +3,8 @@ title: "Getting the Most Out of Speech Transcription"
 description: "Speech to text API: Accurately convert voice to text with Plivo’s voice API. Get the highest accuracy at the Lowest cost in the industry. Sign up today!"
 pubDate: "2023-03-21T00:00:00.000Z"
 updatedDate: "2024-07-14T11:16:52.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657d6419728c9a608808cf98_blog_speech_transcription.svg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657d6419728c9a608808cf98_blog_speech_transcription.svg"
+image: "/images/blog/657d6419728c9a608808cf98_blog_speech_transcription.svg"
+thumbnail: "/images/blog/657d6419728c9a608808cf98_blog_speech_transcription.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

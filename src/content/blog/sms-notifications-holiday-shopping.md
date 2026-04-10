@@ -3,8 +3,8 @@ title: "Happy holiday shopping with SMS from Plivo"
 description: "A new Harris Poll shows that holiday shoppers are open to receiving SMS text messages from retailers."
 pubDate: "2021-10-11T00:00:00.000Z"
 updatedDate: "2024-06-22T13:58:16.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/658101c6632d5c1509f43e84_pr-post-holiday1x-1.svg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/658101c6632d5c1509f43e84_pr-post-holiday1x-1.svg"
+image: "/images/blog/658101c6632d5c1509f43e84_pr-post-holiday1x-1.svg"
+thumbnail: "/images/blog/658101c6632d5c1509f43e84_pr-post-holiday1x-1.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

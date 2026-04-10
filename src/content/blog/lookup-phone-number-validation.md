@@ -3,8 +3,8 @@ title: "New Lookup API Provides Real-Time Phone Number Validation"
 description: "Plivo’s Lookup API can determine number format, type, country, and carrier for any phone number worldwide."
 pubDate: "2020-11-11T00:00:00.000Z"
 updatedDate: "2024-07-08T09:26:36.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/65826144348e5c81ca21da86_lookup-api-blog-1.png"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/65826144348e5c81ca21da86_lookup-api-blog-1.png"
+image: "/images/blog/65826144348e5c81ca21da86_lookup-api-blog-1.png"
+thumbnail: "/images/blog/65826144348e5c81ca21da86_lookup-api-blog-1.png"
 authorName: "Team Plivo"
 featured: true
 noindex: false
@@ -12,7 +12,7 @@ categories: ["phone-numbers-2", "lookup-api"]
 seoTitle: "New Lookup API Provides Real-Time Phone Number Validation"
 webflowItemId: "658261cdd777a7f9c77196e2"
 ---
-<p>Plivo’s new <a href="https://www.plivo.com/lookup/" target="_blank">Lookup API</a> can programmatically determine number format, type, country, and carrier for any phone number worldwide. With this detailed information about a phone number, you can assess risk, prevent fraud, block fake accounts, and increase acquisition — all without relying on customer input.</p><figure><div><img src="https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/6582616cee02ab5724d0a1b1_lookup-api.gif" alt="Compliance GIF" width="auto" height="auto" loading="auto"></div></figure><p>Lookup can provide several tiers of information depending on the level of detail you require: phone number country and format, phone number type, carrier, and network.</p><p>Pricing for Lookup starts at $0.004 per request. We also offer bundle packages, where customers can pay a monthly fee for a set number of API requests for a lower total cost than standalone requests:</p><style type="text/css">.tftable {
+<p>Plivo’s new <a href="https://www.plivo.com/lookup/" target="_blank">Lookup API</a> can programmatically determine number format, type, country, and carrier for any phone number worldwide. With this detailed information about a phone number, you can assess risk, prevent fraud, block fake accounts, and increase acquisition — all without relying on customer input.</p><figure><div><img src="/images/blog/6582616cee02ab5724d0a1b1_lookup-api.gif" alt="Compliance GIF" width="auto" height="auto" loading="auto"></div></figure><p>Lookup can provide several tiers of information depending on the level of detail you require: phone number country and format, phone number type, carrier, and network.</p><p>Pricing for Lookup starts at $0.004 per request. We also offer bundle packages, where customers can pay a monthly fee for a set number of API requests for a lower total cost than standalone requests:</p><style type="text/css">.tftable {
 		width: 100%;
     	text-align: center;
 	}</style>

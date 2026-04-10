@@ -3,8 +3,8 @@ title: "Why You Should Transcribe Your Calls"
 description: "Phone call transcription is the process of converting recorded phone conversations into written words. Learn how to transcribe calls with Plivo."
 pubDate: "2023-04-10T00:00:00.000Z"
 updatedDate: "2024-07-14T09:10:19.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657d5f58ffd0b1429fc7de6c_Blog_why_transcribe_calls.svg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657d5f58ffd0b1429fc7de6c_Blog_why_transcribe_calls.svg"
+image: "/images/blog/657d5f58ffd0b1429fc7de6c_Blog_why_transcribe_calls.svg"
+thumbnail: "/images/blog/657d5f58ffd0b1429fc7de6c_Blog_why_transcribe_calls.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

@@ -3,8 +3,8 @@ title: "2016 Year in Review: 100+ Team Members and 3 Years Profitable"
 description: "Plivo's SMS API and Voice API enables businesses to communicate with their customers at global scale. Sign up for free now."
 pubDate: "2017-01-17T00:00:00.000Z"
 updatedDate: "2023-12-22T03:03:11.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/6584fbc7b2255f4754c18b6d_plivo-2016-year-in-review.png"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/6584fbc7b2255f4754c18b6d_plivo-2016-year-in-review.png"
+image: "/images/blog/6584fbc7b2255f4754c18b6d_plivo-2016-year-in-review.png"
+thumbnail: "/images/blog/6584fbc7b2255f4754c18b6d_plivo-2016-year-in-review.png"
 authorName: "Team Plivo"
 featured: true
 noindex: false

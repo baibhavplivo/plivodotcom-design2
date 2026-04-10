@@ -3,8 +3,8 @@ title: "5 Reasons Your SMS Messages Don’t Reach Your Customers"
 description: "Improve delivery of your business SMS messages with a strong API platform and awareness of what affects deliverability."
 pubDate: "2020-08-20T00:00:00.000Z"
 updatedDate: "2024-07-08T09:04:12.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/65826f573ec76f4d5e0bde41_5-reasons-sms.svg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/65826f573ec76f4d5e0bde41_5-reasons-sms.svg"
+image: "/images/blog/65826f573ec76f4d5e0bde41_5-reasons-sms.svg"
+thumbnail: "/images/blog/65826f573ec76f4d5e0bde41_5-reasons-sms.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

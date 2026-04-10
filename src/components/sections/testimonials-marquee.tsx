@@ -46,7 +46,7 @@ const testimonials = [
     title: "Head of Product",
     company: "Nike",
     image:
-      "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&h=400&fit=crop&crop=face",
+      "/images/avatars/testimonial-4.jpg",
     companyLogo: {
       src: "/images/logos/nike.png",
       width: 67.5,
@@ -61,7 +61,7 @@ const testimonials = [
     title: "Senior Designer",
     company: "Spotify",
     image:
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face",
+      "/images/avatars/testimonial-5.jpg",
     testimonial:
       "Lumen was the missing layer between our product and engineering teams. We've never had this much clarity in how tasks move through the pipeline and deliver results.",
   },
@@ -71,7 +71,7 @@ const testimonials = [
     title: "VP Product",
     company: "T-Mobile",
     image:
-      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face",
+      "/images/avatars/testimonial-6.jpg",
     testimonial:
       "We used to lose track of deliverables every week. With Lumen, task ownership is crystal clear and timelines are actually realistic for our team.",
   },
@@ -81,7 +81,7 @@ const testimonials = [
     title: "Product Manager",
     company: "Booking",
     image:
-      "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop&crop=face",
+      "/images/avatars/testimonial-7.jpg",
     testimonial:
       "Lumen blended perfectly into our design-to-dev process. We organize prototypes, handoffs, and sprints without switching tools constantly.",
   },
@@ -91,7 +91,7 @@ const testimonials = [
     title: "Engineering Lead",
     company: "IBM",
     image:
-      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop&crop=face",
+      "/images/avatars/testimonial-8.jpg",
     testimonial:
       "Since adopting Lumen, our feedback cycles became shorter and much more effective. It's a must-have for any growing product team today.",
   },
@@ -101,7 +101,7 @@ const testimonials = [
     title: "Design Director",
     company: "Logitech",
     image:
-      "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=400&h=400&fit=crop&crop=face",
+      "/images/avatars/testimonial-9.jpg",
     testimonial:
       "Lumen makes it incredibly easy to manage cross-functional work. We've cut coordination time in half and deliver with better insights.",
   },
@@ -111,7 +111,7 @@ const testimonials = [
     title: "CTO",
     company: "Fortinet",
     image:
-      "https://images.unsplash.com/photo-1507591064344-4c6ce005b128?w=400&h=400&fit=crop&crop=face",
+      "/images/avatars/testimonial-10.jpg",
     testimonial:
       "We use Lumen across all departments - from tech to support. Creating shared workflows has drastically improved internal communication.",
   },
@@ -121,7 +121,7 @@ const testimonials = [
     title: "Product Designer",
     company: "Zapier",
     image:
-      "https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?w=400&h=400&fit=crop&crop=face",
+      "/images/avatars/testimonial-11.jpg",
     companyLogo: {
       src: "/images/logos/zapiar.png",
       width: 105,
@@ -136,7 +136,7 @@ const testimonials = [
     title: "Startup Founder",
     company: "Tailwind CSS",
     image:
-      "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=400&fit=crop&crop=face",
+      "/images/avatars/testimonial-12.jpg",
     companyLogo: {
       src: "/images/logos/tailwindcss.png",
       width: 130,

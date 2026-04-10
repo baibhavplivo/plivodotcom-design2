@@ -3,8 +3,8 @@ title: "Build Brand Loyalty with Retail SMS"
 description: "Build brand loyalty, boost engagement and business communication with retail sms api by Plivo. Enhance your retail marketing with Plivo’s SMS API, Sign up today"
 pubDate: "2023-02-15T00:00:00.000Z"
 updatedDate: "2023-12-21T10:13:58.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657d6c1eb5510e0d5207b7bd_SMS_brand_loyalty.svg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657d6c1eb5510e0d5207b7bd_SMS_brand_loyalty.svg"
+image: "/images/blog/657d6c1eb5510e0d5207b7bd_SMS_brand_loyalty.svg"
+thumbnail: "/images/blog/657d6c1eb5510e0d5207b7bd_SMS_brand_loyalty.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

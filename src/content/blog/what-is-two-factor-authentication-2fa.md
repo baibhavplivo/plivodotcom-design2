@@ -3,8 +3,8 @@ title: "What is Two-Factor Authentication (2FA)?"
 description: "Plivo’s two-factor authentication offering is a reliable, scalable phone number authentication solution in a single API."
 pubDate: "2020-12-08T00:00:00.000Z"
 updatedDate: "2024-05-31T07:54:59.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/65825f0d366593bc3c4f5f46_what-is-two-factor-authentication-2fa.png"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/65825f0d366593bc3c4f5f46_what-is-two-factor-authentication-2fa.png"
+image: "/images/blog/65825f0d366593bc3c4f5f46_what-is-two-factor-authentication-2fa.png"
+thumbnail: "/images/blog/65825f0d366593bc3c4f5f46_what-is-two-factor-authentication-2fa.png"
 authorName: "Team Plivo"
 featured: true
 noindex: false

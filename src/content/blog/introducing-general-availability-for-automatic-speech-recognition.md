@@ -3,8 +3,8 @@ title: "Introducing Automatic Speech Recognition"
 description: "Configure engaging, voice-driven user experiences on Plivo with Speech Recognition (ASR) to text API"
 pubDate: "2020-08-10T00:00:00.000Z"
 updatedDate: "2024-07-14T11:10:31.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/65826ff2882bc1ceaa6cf284_automated-speech-recognition-hero.svg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/65826ff2882bc1ceaa6cf284_automated-speech-recognition-hero.svg"
+image: "/images/blog/65826ff2882bc1ceaa6cf284_automated-speech-recognition-hero.svg"
+thumbnail: "/images/blog/65826ff2882bc1ceaa6cf284_automated-speech-recognition-hero.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

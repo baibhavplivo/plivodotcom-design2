@@ -3,8 +3,8 @@ title: "Introducing Plivo Python SDK 4.0 Beta"
 description: "Plivo's SMS API and Voice API enables businesses to communicate with their customers at global scale. Sign up for free now."
 pubDate: "2017-10-23T00:00:00.000Z"
 updatedDate: "2023-12-21T06:33:33.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/6583db7f0c010c5de0aa2d97_introducing-plivo-python-sdk-4-0-beta.png"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/6583db7f0c010c5de0aa2d97_introducing-plivo-python-sdk-4-0-beta.png"
+image: "/images/blog/6583db7f0c010c5de0aa2d97_introducing-plivo-python-sdk-4-0-beta.png"
+thumbnail: "/images/blog/6583db7f0c010c5de0aa2d97_introducing-plivo-python-sdk-4-0-beta.png"
 authorName: "Team Plivo"
 featured: true
 noindex: false

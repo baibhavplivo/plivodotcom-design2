@@ -3,8 +3,8 @@ title: "SMS Best Practices for Today’s Mobile-First World"
 description: "Use these SMS best practices so you can focus on message content that captures your recipients’ attention and not on debugging delivery failures."
 pubDate: "2021-01-29T00:00:00.000Z"
 updatedDate: "2024-06-22T13:49:36.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/658255bb2f3ddd52078820de_sms-best-practices-blog.png"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/658255bb2f3ddd52078820de_sms-best-practices-blog.png"
+image: "/images/blog/658255bb2f3ddd52078820de_sms-best-practices-blog.png"
+thumbnail: "/images/blog/658255bb2f3ddd52078820de_sms-best-practices-blog.png"
 authorName: "Team Plivo"
 featured: true
 noindex: false

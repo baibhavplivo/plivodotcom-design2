@@ -3,8 +3,8 @@ title: "Introducing Plivo Browser SDK for Mobile Browsers"
 description: "We now support the Plivo Browser SDK in mobile browsers: Safari on iOS, Chrome and Firefox on Android."
 pubDate: "2020-11-18T00:00:00.000Z"
 updatedDate: "2024-01-12T00:50:07.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/65825f815c7922dcc3417124_browser-sdk-blog-2.svg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/65825f815c7922dcc3417124_browser-sdk-blog-2.svg"
+image: "/images/blog/65825f815c7922dcc3417124_browser-sdk-blog-2.svg"
+thumbnail: "/images/blog/65825f815c7922dcc3417124_browser-sdk-blog-2.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

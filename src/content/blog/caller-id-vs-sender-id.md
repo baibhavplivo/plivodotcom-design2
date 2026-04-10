@@ -3,8 +3,8 @@ title: "Caller ID vs. Sender ID"
 description: "Learn the difference between caller ID and sender ID — what they are and how they’re used."
 pubDate: "2022-08-24T00:00:00.000Z"
 updatedDate: "2023-12-21T10:24:00.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657d9c12b5510e0d5222e2b6_banner-1024x512-3-3.svg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657d9c12b5510e0d5222e2b6_banner-1024x512-3-3.svg"
+image: "/images/blog/657d9c12b5510e0d5222e2b6_banner-1024x512-3-3.svg"
+thumbnail: "/images/blog/657d9c12b5510e0d5222e2b6_banner-1024x512-3-3.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

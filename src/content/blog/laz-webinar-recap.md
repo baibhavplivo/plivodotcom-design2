@@ -3,8 +3,8 @@ title: "Webinar Recap: LAZ Parking Sends More than a Million SMS Messages"
 description: "Summary of Plivo’s webinar on how LAZ Parking created a Text to Park revenue stream with SMS API. View the recording on demand and tune in today!"
 pubDate: "2022-09-06T00:00:00.000Z"
 updatedDate: "2023-12-21T10:22:33.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657d96ecb8e1715fecd2e490_banner-1024x512-10-2.svg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657d96ecb8e1715fecd2e490_banner-1024x512-10-2.svg"
+image: "/images/blog/657d96ecb8e1715fecd2e490_banner-1024x512-10-2.svg"
+thumbnail: "/images/blog/657d96ecb8e1715fecd2e490_banner-1024x512-10-2.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

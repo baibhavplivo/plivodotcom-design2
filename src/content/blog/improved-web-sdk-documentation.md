@@ -3,8 +3,8 @@ title: "Improved Browser SDK Documentation"
 description: "Plivo's SMS API and Voice API enables businesses to communicate with their customers at global scale. Sign up for free now."
 pubDate: "2015-03-31T00:00:00.000Z"
 updatedDate: "2023-12-22T03:40:53.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/658504abf4acae46f5f7addd_banner-webrtc-docs.png"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/658504abf4acae46f5f7addd_banner-webrtc-docs.png"
+image: "/images/blog/658504abf4acae46f5f7addd_banner-webrtc-docs.png"
+thumbnail: "/images/blog/658504abf4acae46f5f7addd_banner-webrtc-docs.png"
 authorName: "Team Plivo"
 featured: true
 noindex: false

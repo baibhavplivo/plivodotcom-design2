@@ -3,8 +3,8 @@ title: "Introducing Plivo Rate Limiting and Message Queueing"
 description: "Plivo's SMS API and Voice API enables businesses to communicate with their customers at global scale. Sign up for free now."
 pubDate: "2018-02-06T00:00:00.000Z"
 updatedDate: "2024-07-14T08:59:46.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/6583d19fffa1efff52880915_introducing-smart-message-queueing%20(1).gif"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/6583d19fffa1efff52880915_introducing-smart-message-queueing%20(1).gif"
+image: "/images/blog/6583d19fffa1efff52880915_introducing-smart-message-queueing--1).gif"
+thumbnail: "/images/blog/6583d19fffa1efff52880915_introducing-smart-message-queueing--1).gif"
 authorName: "Team Plivo"
 featured: true
 noindex: false

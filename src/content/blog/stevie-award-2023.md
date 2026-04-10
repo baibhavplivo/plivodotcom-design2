@@ -3,8 +3,8 @@ title: "Plivo Wins 2023 Stevie Award"
 description: "Plivo Wins 2023 Stevie Award in the Platform as a Service Category | Plivo"
 pubDate: "2023-05-02T00:00:00.000Z"
 updatedDate: "2023-12-21T09:56:30.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657d5b0eb8e1715fecb1af47_2023_Awards.svg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657d5b0eb8e1715fecb1af47_2023_Awards.svg"
+image: "/images/blog/657d5b0eb8e1715fecb1af47_2023_Awards.svg"
+thumbnail: "/images/blog/657d5b0eb8e1715fecb1af47_2023_Awards.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

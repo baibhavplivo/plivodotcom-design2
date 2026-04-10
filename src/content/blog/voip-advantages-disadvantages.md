@@ -3,8 +3,8 @@ title: "VoIP Calling: The Advantages Outweigh the Disadvantages"
 description: "VOIP advantages and disadvantages: Discover the pros and cons of voice over ip to choose the best service for business communication."
 pubDate: "2023-07-26T00:00:00.000Z"
 updatedDate: "2024-02-17T06:18:30.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657d3a0254838aafd2025b79_Blog_voip_advantages.svg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657d3a0254838aafd2025b79_Blog_voip_advantages.svg"
+image: "/images/blog/657d3a0254838aafd2025b79_Blog_voip_advantages.svg"
+thumbnail: "/images/blog/657d3a0254838aafd2025b79_Blog_voip_advantages.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

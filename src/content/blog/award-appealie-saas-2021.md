@@ -3,8 +3,8 @@ title: "Plivo wins the Appealie Overall SaaS Award for Development and DevOps"
 description: "Plivo recognized by Appealie with an Overall SaaS Award in the Development and DevOps category."
 pubDate: "2021-11-02T00:00:00.000Z"
 updatedDate: "2023-12-21T11:03:44.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/658039681ca2c616c39254be_appealie%20(1).jpg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/658039681ca2c616c39254be_appealie%20(1).jpg"
+image: "/images/blog/658039681ca2c616c39254be_appealie--1).jpg"
+thumbnail: "/images/blog/658039681ca2c616c39254be_appealie--1).jpg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

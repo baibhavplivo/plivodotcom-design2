@@ -3,8 +3,8 @@ title: "Dos and Don’ts for Promotional Text Messaging"
 description: "Compliance dos and don’ts of promotional text messaging."
 pubDate: "2022-10-03T00:00:00.000Z"
 updatedDate: "2023-12-21T10:20:47.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657d900be263ba32620bda4e_banner-1024x512-13-1.svg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657d900be263ba32620bda4e_banner-1024x512-13-1.svg"
+image: "/images/blog/657d900be263ba32620bda4e_banner-1024x512-13-1.svg"
+thumbnail: "/images/blog/657d900be263ba32620bda4e_banner-1024x512-13-1.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

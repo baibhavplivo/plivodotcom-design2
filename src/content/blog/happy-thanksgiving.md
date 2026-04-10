@@ -3,8 +3,8 @@ title: "Happy Thanksgiving"
 description: "Plivo's SMS API and Voice API enables businesses to communicate with their customers at global scale. Sign up for free now."
 pubDate: "2012-11-21T00:00:00.000Z"
 updatedDate: "2023-12-22T05:56:05.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/65850bc691de75a688310e27_blog-pattern-design-9-thumbnail.svg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/65850bc691de75a688310e27_blog-pattern-design-9-thumbnail.svg"
+image: "/images/blog/65850bc691de75a688310e27_blog-pattern-design-9-thumbnail.svg"
+thumbnail: "/images/blog/65850bc691de75a688310e27_blog-pattern-design-9-thumbnail.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

@@ -3,8 +3,8 @@ title: "Embed Voice Calls into Mobile Apps with Plivo iOS SDK"
 description: "Plivo's SMS API and Voice API enables businesses to communicate with their customers at global scale. Sign up for free now."
 pubDate: "2019-03-20T00:00:00.000Z"
 updatedDate: "2023-12-21T12:31:21.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/6582ee3c9631ba64ee15ee5f_header.png"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/6582ee3c9631ba64ee15ee5f_header.png"
+image: "/images/blog/6582ee3c9631ba64ee15ee5f_header.png"
+thumbnail: "/images/blog/6582ee3c9631ba64ee15ee5f_header.png"
 authorName: "Team Plivo"
 featured: true
 noindex: false

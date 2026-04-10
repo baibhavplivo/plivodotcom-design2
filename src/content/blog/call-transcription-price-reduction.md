@@ -3,8 +3,8 @@ title: "Plivo Call Transcription Price Reduced by 37%"
 description: "We’ve reduced the price for our call transcription service."
 pubDate: "2022-09-20T00:00:00.000Z"
 updatedDate: "2024-07-13T10:30:35.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657d90c8ffd0b1429fe339d0_bloggraphic-Calltranscriptionprice-09.png"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657d90c8ffd0b1429fe339d0_bloggraphic-Calltranscriptionprice-09.png"
+image: "/images/blog/657d90c8ffd0b1429fe339d0_bloggraphic-Calltranscriptionprice-09.png"
+thumbnail: "/images/blog/657d90c8ffd0b1429fe339d0_bloggraphic-Calltranscriptionprice-09.png"
 authorName: "Team Plivo"
 featured: true
 noindex: false

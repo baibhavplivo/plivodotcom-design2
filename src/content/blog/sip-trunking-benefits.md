@@ -3,8 +3,8 @@ title: "Practical Benefits of SIP Trunking"
 description: "SIP trunk benefits you didn’t know about. Get detailed information on advantages of SIP trunking at Plivo."
 pubDate: "2022-06-28T00:00:00.000Z"
 updatedDate: "2024-07-28T06:19:12.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657fd83b145e6b58c9563da1_practical-benefits-of-sip-trunking.svg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657fd83b145e6b58c9563da1_practical-benefits-of-sip-trunking.svg"
+image: "/images/blog/657fd83b145e6b58c9563da1_practical-benefits-of-sip-trunking.svg"
+thumbnail: "/images/blog/657fd83b145e6b58c9563da1_practical-benefits-of-sip-trunking.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

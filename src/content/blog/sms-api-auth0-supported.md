@@ -3,8 +3,8 @@ title: "Plivo Adds Integration with Auth0"
 description: "Plivo’s SMS API now supports multifactor authentication via SMS text messages using Auth0"
 pubDate: "2021-12-14T00:00:00.000Z"
 updatedDate: "2023-12-21T10:57:16.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/658031af1776d77198745ef7_Auth0-blog-1.png"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/658031af1776d77198745ef7_Auth0-blog-1.png"
+image: "/images/blog/658031af1776d77198745ef7_Auth0-blog-1.png"
+thumbnail: "/images/blog/658031af1776d77198745ef7_Auth0-blog-1.png"
 authorName: "Team Plivo"
 featured: true
 noindex: false

@@ -3,8 +3,8 @@ title: "Complying with TRAI Regulations for Sending SMS"
 description: "TRAI DLT Regulations: Learn all about the TRAI Regulations on Commercial SMS Communications in India."
 pubDate: "2023-05-09T00:00:00.000Z"
 updatedDate: "2024-02-17T10:06:01.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657d56bcffd0b1429fc33597_Blog_TRAI_Regulations.svg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657d56bcffd0b1429fc33597_Blog_TRAI_Regulations.svg"
+image: "/images/blog/657d56bcffd0b1429fc33597_Blog_TRAI_Regulations.svg"
+thumbnail: "/images/blog/657d56bcffd0b1429fc33597_Blog_TRAI_Regulations.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

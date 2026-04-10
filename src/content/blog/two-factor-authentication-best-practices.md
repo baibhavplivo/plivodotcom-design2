@@ -3,8 +3,8 @@ title: "Best Practices for SMS and Voice-Based Two-Factor Authentication"
 description: "Best practices for SMS and voice-based two-factor authentication to ensure that every 2FA OTP message gets delivered quickly."
 pubDate: "2020-11-16T00:00:00.000Z"
 updatedDate: "2024-07-14T09:27:33.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/658260af5a052adfdf8aa44f_2fa-blog-v4blog-small.svg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/658260af5a052adfdf8aa44f_2fa-blog-v4blog-small.svg"
+image: "/images/blog/658260af5a052adfdf8aa44f_2fa-blog-v4blog-small.svg"
+thumbnail: "/images/blog/658260af5a052adfdf8aa44f_2fa-blog-v4blog-small.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

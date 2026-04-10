@@ -3,8 +3,8 @@ title: "Users Love Plivo"
 description: "Plivo is the highest-ranked cloud communications platform for ease of setup, ease of administration, customer service and support, and user satisfaction."
 pubDate: "2022-05-07T00:00:00.000Z"
 updatedDate: "2023-12-21T10:41:09.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657fec00787e20793ddd2a91_users-love-us-blog-c-opt2.svg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657fec00787e20793ddd2a91_users-love-us-blog-c-opt2.svg"
+image: "/images/blog/657fec00787e20793ddd2a91_users-love-us-blog-c-opt2.svg"
+thumbnail: "/images/blog/657fec00787e20793ddd2a91_users-love-us-blog-c-opt2.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

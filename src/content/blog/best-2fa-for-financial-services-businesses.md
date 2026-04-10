@@ -3,8 +3,8 @@ title: "The Best 2FA for Financial Services Businesses"
 description: "Best 2FA for banking, finance, fintech, and financial services: Implement Two factor authentication into your application seamlessly using Plivo’s 2FA API. Sign up today!"
 pubDate: "2023-01-18T00:00:00.000Z"
 updatedDate: "2024-07-14T09:12:32.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657d85ac3b5153896ebfe354_2FA_financial_blog.svg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657d85ac3b5153896ebfe354_2FA_financial_blog.svg"
+image: "/images/blog/657d85ac3b5153896ebfe354_2FA_financial_blog.svg"
+thumbnail: "/images/blog/657d85ac3b5153896ebfe354_2FA_financial_blog.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

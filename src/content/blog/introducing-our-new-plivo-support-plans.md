@@ -3,8 +3,8 @@ title: "Introducing New Plivo Support Plans"
 description: "Our redesigned support plans ensure you get the help you need from Plivo, whenever you need it."
 pubDate: "2020-09-16T00:00:00.000Z"
 updatedDate: "2024-07-08T10:50:15.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/6582649123658a2738802b30_New_Support_plans_blog.svg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/6582649123658a2738802b30_New_Support_plans_blog.svg"
+image: "/images/blog/6582649123658a2738802b30_New_Support_plans_blog.svg"
+thumbnail: "/images/blog/6582649123658a2738802b30_New_Support_plans_blog.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

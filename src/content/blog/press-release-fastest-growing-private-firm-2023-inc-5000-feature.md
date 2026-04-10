@@ -3,8 +3,8 @@ title: "Plivo Named to 2023 Inc. 5000 List of America’s Fastest-Growing Privat
 description: "Plivo secures its spot on the prestigious 2023 Inc. 5000 list of America's Fastest-Growing Private Companies."
 pubDate: "2023-08-18T00:00:00.000Z"
 updatedDate: "2024-07-17T03:49:12.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657c549572e7050a07bbd7f0_blog_inc5000_2023.svg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657c549572e7050a07bbd7f0_blog_inc5000_2023.svg"
+image: "/images/blog/657c549572e7050a07bbd7f0_blog_inc5000_2023.svg"
+thumbnail: "/images/blog/657c549572e7050a07bbd7f0_blog_inc5000_2023.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

@@ -3,8 +3,8 @@ title: "How to Handle SMS and Voice Communications Using PHP"
 description: "Send and receive SMS text messages and make and receive voice calls with PHP, the Plivo PHP SDK, and Plivo APIs."
 pubDate: "2022-06-09T00:00:00.000Z"
 updatedDate: "2023-12-21T10:29:28.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657fdbc31650bb250fb796c7_HowtoHandleSMSandVoiceCommunicationsUsingPHP.svg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657fdbc31650bb250fb796c7_HowtoHandleSMSandVoiceCommunicationsUsingPHP.svg"
+image: "/images/blog/657fdbc31650bb250fb796c7_HowtoHandleSMSandVoiceCommunicationsUsingPHP.svg"
+thumbnail: "/images/blog/657fdbc31650bb250fb796c7_HowtoHandleSMSandVoiceCommunicationsUsingPHP.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

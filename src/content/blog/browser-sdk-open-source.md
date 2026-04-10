@@ -3,8 +3,8 @@ title: "Announcing Open Source Licensing for Plivo’s Browser SDK"
 description: "Plivo’s Browser SDK is available to developers under an open source Apache 2.0 license (APLv2)."
 pubDate: "2021-02-11T00:00:00.000Z"
 updatedDate: "2023-12-21T12:11:14.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/6582538a2739452b56ba320a_ic_BrowserSDK_open_source.svg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/6582538a2739452b56ba320a_ic_BrowserSDK_open_source.svg"
+image: "/images/blog/6582538a2739452b56ba320a_ic_BrowserSDK_open_source.svg"
+thumbnail: "/images/blog/6582538a2739452b56ba320a_ic_BrowserSDK_open_source.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

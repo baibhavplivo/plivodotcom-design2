@@ -3,8 +3,8 @@ title: "Get ready to be STIRred and SHAKEN"
 description: "STIR/SHAKEN goes into effect June 30. Here’s how Plivo will handle attestation and sign outbound calls as either Verified or Not Verified."
 pubDate: "2021-05-31T00:00:00.000Z"
 updatedDate: "2024-07-14T09:23:05.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/65813f76a70717a189cb22db_stir-shaken-2.svg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/65813f76a70717a189cb22db_stir-shaken-2.svg"
+image: "/images/blog/65813f76a70717a189cb22db_stir-shaken-2.svg"
+thumbnail: "/images/blog/65813f76a70717a189cb22db_stir-shaken-2.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

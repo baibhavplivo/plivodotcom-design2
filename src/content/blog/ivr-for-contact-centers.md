@@ -3,8 +3,8 @@ title: "How IVR Systems Can Enhance Your Contact Center Customer Service"
 description: "IVR systems helps contact centers by providing increased operational efficiency, stronger brand image, and better customer insights."
 pubDate: "2021-05-25T00:00:00.000Z"
 updatedDate: "2024-07-08T18:24:59.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/658141e605e429fc35776a03_blog-graphic-ivr-systems.png"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/658141e605e429fc35776a03_blog-graphic-ivr-systems.png"
+image: "/images/blog/658141e605e429fc35776a03_blog-graphic-ivr-systems.png"
+thumbnail: "/images/blog/658141e605e429fc35776a03_blog-graphic-ivr-systems.png"
 authorName: "Team Plivo"
 featured: true
 noindex: false

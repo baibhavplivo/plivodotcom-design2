@@ -3,8 +3,8 @@ title: "Go back to school with SMS from Plivo"
 description: "A new Harris Poll shows that back-to-school shoppers are open to receiving SMS text messages from retailers."
 pubDate: "2021-09-03T00:00:00.000Z"
 updatedDate: "2024-06-22T14:01:02.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/658111fca229aefed9668518_go-back-to-school-with-sms-from-plivo%20(1).svg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/658111fca229aefed9668518_go-back-to-school-with-sms-from-plivo%20(1).svg"
+image: "/images/blog/658111fca229aefed9668518_go-back-to-school-with-sms-from-plivo--1).svg"
+thumbnail: "/images/blog/658111fca229aefed9668518_go-back-to-school-with-sms-from-plivo--1).svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

@@ -3,8 +3,8 @@ title: "A Guide to Sender IDs: Why They’re Important and How to Use Them"
 description: "Sender ID Number: Sender ID is the name or number of the sender of an SMS message. Here’s everything you need to know to get started with your SMS campaigns."
 pubDate: "2021-04-09T00:00:00.000Z"
 updatedDate: "2023-12-21T11:36:21.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/65819a81ed9400c5d08cc1b9_senderid.svg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/65819a81ed9400c5d08cc1b9_senderid.svg"
+image: "/images/blog/65819a81ed9400c5d08cc1b9_senderid.svg"
+thumbnail: "/images/blog/65819a81ed9400c5d08cc1b9_senderid.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

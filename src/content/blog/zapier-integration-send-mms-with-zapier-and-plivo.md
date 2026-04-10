@@ -3,8 +3,8 @@ title: "Zapier Integration — Send MMS Messages Using Plivo and Zapier"
 description: "Zapier Integration Learn how to send MMS messages using Plivo and Zapier via a Google Forms example."
 pubDate: "2022-06-22T00:00:00.000Z"
 updatedDate: "2024-01-15T03:40:46.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657fd8d2e9e3267618a4dc4c_zapier-mms.png"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657fd8d2e9e3267618a4dc4c_zapier-mms.png"
+image: "/images/blog/657fd8d2e9e3267618a4dc4c_zapier-mms.png"
+thumbnail: "/images/blog/657fd8d2e9e3267618a4dc4c_zapier-mms.png"
 authorName: "Team Plivo"
 featured: true
 noindex: false

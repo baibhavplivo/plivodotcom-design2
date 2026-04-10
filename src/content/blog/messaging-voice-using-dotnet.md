@@ -3,8 +3,8 @@ title: "How to Handle SMS and Voice Communications Using .NET"
 description: "Send and receive SMS text messages and make and receive voice calls with .NET, the Plivo .NET SDK, and Plivo APIs."
 pubDate: "2022-06-06T00:00:00.000Z"
 updatedDate: "2023-12-21T10:31:30.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657fdec8c69448fefa1d0a18_how-to-handle-sms-and-voice-communications-using--net.svg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657fdec8c69448fefa1d0a18_how-to-handle-sms-and-voice-communications-using--net.svg"
+image: "/images/blog/657fdec8c69448fefa1d0a18_how-to-handle-sms-and-voice-communications-using--net.svg"
+thumbnail: "/images/blog/657fdec8c69448fefa1d0a18_how-to-handle-sms-and-voice-communications-using--net.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

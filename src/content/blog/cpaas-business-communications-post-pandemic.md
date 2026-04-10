@@ -3,8 +3,8 @@ title: "How to Prepare for Post-Pandemic Changes in Business Communications"
 description: "Get tips on how a CPaaS can help your business meet today’s customers’ changing communication expectations."
 pubDate: "2021-04-12T00:00:00.000Z"
 updatedDate: "2023-12-21T11:35:56.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/658199f706af86f025d67034_post-pandemic-blog.svg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/658199f706af86f025d67034_post-pandemic-blog.svg"
+image: "/images/blog/658199f706af86f025d67034_post-pandemic-blog.svg"
+thumbnail: "/images/blog/658199f706af86f025d67034_post-pandemic-blog.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

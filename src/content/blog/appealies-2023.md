@@ -3,8 +3,8 @@ title: "An APPEALIE Award Trifecta"
 description: "Plivo has won three 2023 APPEALIE SaaS + Software Awards. Read to know more."
 pubDate: "2023-05-03T00:00:00.000Z"
 updatedDate: "2024-02-17T10:11:02.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657d577b74351fdd7eb03e5c_Blog_appealies_2023.svg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657d577b74351fdd7eb03e5c_Blog_appealies_2023.svg"
+image: "/images/blog/657d577b74351fdd7eb03e5c_Blog_appealies_2023.svg"
+thumbnail: "/images/blog/657d577b74351fdd7eb03e5c_Blog_appealies_2023.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

@@ -3,8 +3,8 @@ title: "13 SMS Marketing Tips for Ecommerce Businesses"
 description: "13 SMS marketing tips to boost your ecommerce business with effective SMS marketing strategies. Leverage SMS marketing for your ecommerce business with Plivo."
 pubDate: "2023-07-19T00:00:00.000Z"
 updatedDate: "2024-08-16T04:09:27.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657d3f085cf3ed49eb239f0e_13_sms_marketing_tips.svg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657d3f085cf3ed49eb239f0e_13_sms_marketing_tips.svg"
+image: "/images/blog/657d3f085cf3ed49eb239f0e_13_sms_marketing_tips.svg"
+thumbnail: "/images/blog/657d3f085cf3ed49eb239f0e_13_sms_marketing_tips.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

@@ -3,8 +3,8 @@ title: "Introducing Plivo iOS SDK v2"
 description: "Plivo's SMS API and Voice API enables businesses to communicate with their customers at global scale. Sign up for free now."
 pubDate: "2017-09-01T00:00:00.000Z"
 updatedDate: "2023-12-21T12:45:44.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/6583dcf413c9647a2c44f8a6_new-plivo-ios-sdk.png"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/6583dcf413c9647a2c44f8a6_new-plivo-ios-sdk.png"
+image: "/images/blog/6583dcf413c9647a2c44f8a6_new-plivo-ios-sdk.png"
+thumbnail: "/images/blog/6583dcf413c9647a2c44f8a6_new-plivo-ios-sdk.png"
 authorName: "Team Plivo"
 featured: true
 noindex: false

@@ -3,8 +3,8 @@ title: "Plivo to Take Part in Enterprise Connect Innovation Showcase"
 description: "Plivo's SMS API and Voice API enables businesses to communicate with their customers at global scale. Sign up for free now."
 pubDate: "2013-03-05T00:00:00.000Z"
 updatedDate: "2023-12-22T05:19:44.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/65850b13b9bbaa96a162f6fa_blog-pattern-design-4-thumbnail.svg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/65850b13b9bbaa96a162f6fa_blog-pattern-design-4-thumbnail.svg"
+image: "/images/blog/65850b13b9bbaa96a162f6fa_blog-pattern-design-4-thumbnail.svg"
+thumbnail: "/images/blog/65850b13b9bbaa96a162f6fa_blog-pattern-design-4-thumbnail.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

@@ -3,8 +3,8 @@ title: "Use IVR to improve customer experience"
 description: "Interactive voice response (IVR) systems can help you provide customers and callers with great customer service."
 pubDate: "2021-08-18T00:00:00.000Z"
 updatedDate: "2023-12-21T11:18:42.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/658118250201cdf8b828bc9c_ivr-improves-customer-experience.svg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/658118250201cdf8b828bc9c_ivr-improves-customer-experience.svg"
+image: "/images/blog/658118250201cdf8b828bc9c_ivr-improves-customer-experience.svg"
+thumbnail: "/images/blog/658118250201cdf8b828bc9c_ivr-improves-customer-experience.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

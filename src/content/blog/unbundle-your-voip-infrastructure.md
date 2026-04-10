@@ -3,8 +3,8 @@ title: "Unbundle Your VoIP Infrastructure to Save Money and Gain Control"
 description: "Unbundle the components of your VoIP infrastructure - SIP trunking, PBX, hardware phones, softphonse - to save money and gain control."
 pubDate: "2020-04-08T00:00:00.000Z"
 updatedDate: "2023-12-21T12:23:53.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/65828955287ef46a00d50271_get-voip.jpg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/65828955287ef46a00d50271_get-voip.jpg"
+image: "/images/blog/65828955287ef46a00d50271_get-voip.jpg"
+thumbnail: "/images/blog/65828955287ef46a00d50271_get-voip.jpg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

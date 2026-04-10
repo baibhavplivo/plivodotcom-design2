@@ -3,8 +3,8 @@ title: "99 Reasons Why People Love Plivo"
 description: "Uncover the powerful features, seamless integrations, exceptional customer support, and innovative solutions that make Plivo a popular choice for businesses worldwide. Sign up today!"
 pubDate: "2023-06-14T00:00:00.000Z"
 updatedDate: "2023-12-21T09:50:42.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657d4b9362d48bffd48e2368_Blog_99_reasons_plivo.svg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657d4b9362d48bffd48e2368_Blog_99_reasons_plivo.svg"
+image: "/images/blog/657d4b9362d48bffd48e2368_Blog_99_reasons_plivo.svg"
+thumbnail: "/images/blog/657d4b9362d48bffd48e2368_Blog_99_reasons_plivo.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

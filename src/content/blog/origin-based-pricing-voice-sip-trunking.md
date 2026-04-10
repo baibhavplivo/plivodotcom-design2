@@ -3,8 +3,8 @@ title: "Origin-Based Pricing for Outbound Calls on Plivo’s Voice API and SIP T
 description: "Introducing origin-based pricing for our Voice API and SIP Trunking. Get lower rates on select calls originating from Europe."
 pubDate: "2021-01-11T00:00:00.000Z"
 updatedDate: "2024-07-14T09:24:32.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/65825acd4fdd27262d7d46db_origin-based-pricing-v2-opt1-small.svg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/65825acd4fdd27262d7d46db_origin-based-pricing-v2-opt1-small.svg"
+image: "/images/blog/65825acd4fdd27262d7d46db_origin-based-pricing-v2-opt1-small.svg"
+thumbnail: "/images/blog/65825acd4fdd27262d7d46db_origin-based-pricing-v2-opt1-small.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

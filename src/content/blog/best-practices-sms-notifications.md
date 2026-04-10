@@ -3,8 +3,8 @@ title: "Best Practices for SMS Notifications"
 description: "Tips and best practices for SMS notifications that can help your business use text messaging more effectively."
 pubDate: "2021-07-21T00:00:00.000Z"
 updatedDate: "2023-12-21T11:21:35.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/658120e29bc86c0ec2c93abc_sms-notifications.svg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/658120e29bc86c0ec2c93abc_sms-notifications.svg"
+image: "/images/blog/658120e29bc86c0ec2c93abc_sms-notifications.svg"
+thumbnail: "/images/blog/658120e29bc86c0ec2c93abc_sms-notifications.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

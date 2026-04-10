@@ -3,8 +3,8 @@ title: "New Status Page Showcases Plivo Reliability"
 description: "Reliability is a key component of our service offering. Our updated status page offers customers transparency into our uptime promises."
 pubDate: "2020-10-27T00:00:00.000Z"
 updatedDate: "2023-12-21T12:18:16.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/6582627ff0d0281fc937ec98_Status-page-blog_ver1.svg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/6582627ff0d0281fc937ec98_Status-page-blog_ver1.svg"
+image: "/images/blog/6582627ff0d0281fc937ec98_Status-page-blog_ver1.svg"
+thumbnail: "/images/blog/6582627ff0d0281fc937ec98_Status-page-blog_ver1.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

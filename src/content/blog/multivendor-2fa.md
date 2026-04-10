@@ -3,8 +3,8 @@ title: "Take A Multivendor Approach To 2FA"
 description: "Why and how you should take a multivendor approach to two-factor authentication. Use a second vendor to add fault tolerance to your critical 2FA process."
 pubDate: "2021-03-16T00:00:00.000Z"
 updatedDate: "2024-05-23T09:40:43.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/6581a0b4fbf626c8cdfa531f_multi-vendor-2fa-1.svg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/6581a0b4fbf626c8cdfa531f_multi-vendor-2fa-1.svg"
+image: "/images/blog/6581a0b4fbf626c8cdfa531f_multi-vendor-2fa-1.svg"
+thumbnail: "/images/blog/6581a0b4fbf626c8cdfa531f_multi-vendor-2fa-1.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

@@ -3,8 +3,8 @@ title: "New Plivo Voice Pricing Based on Network Group Levels"
 description: "By moving to a “network group level” pricing structure for voice outbound to all countries Plivo has simplified our Voice API pricing."
 pubDate: "2021-07-01T00:00:00.000Z"
 updatedDate: "2024-01-12T07:39:35.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/658128877c23cf918d9f16b9_blog-graphic-voice-price-changes-14.svg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/658128877c23cf918d9f16b9_blog-graphic-voice-price-changes-14.svg"
+image: "/images/blog/658128877c23cf918d9f16b9_blog-graphic-voice-price-changes-14.svg"
+thumbnail: "/images/blog/658128877c23cf918d9f16b9_blog-graphic-voice-price-changes-14.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false
@@ -12,7 +12,7 @@ categories: ["pricing", "voice-api"]
 seoTitle: "New Plivo Voice Pricing Based on Network Group Levels"
 webflowItemId: "658129437c23cf918d9f72b0"
 ---
-<p>Today we’re announcing two updates to our Voice API pricing.</p><h3>Network group pricing</h3><p>Today, call pricing can vary depending on the prefix of the phone numbers customers call. This makes it challenging to estimate spend, and customers tend to simply take an average, which may give an inaccurate value.</p><figure style="max-width:2236px" data-rt-max-width="2236px"><div><img src="https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/658128bea70717a189bd851d_better-q-1-1.png" width="auto" height="auto" alt="" loading="auto"></div></figure><p>Going forward, we’ve simplified the pricing into broader groups, which will help customers plan spend by estimating at a group level.</p><figure style="max-width:2284px" data-rt-max-width="2284px"><div><img src="https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/658128ca931c16a277d2d972_better-q-2.png" width="auto" height="auto" alt="" loading="auto"></div></figure><p>Some common network groups you could see include:</p><style>
+<p>Today we’re announcing two updates to our Voice API pricing.</p><h3>Network group pricing</h3><p>Today, call pricing can vary depending on the prefix of the phone numbers customers call. This makes it challenging to estimate spend, and customers tend to simply take an average, which may give an inaccurate value.</p><figure style="max-width:2236px" data-rt-max-width="2236px"><div><img src="/images/blog/658128bea70717a189bd851d_better-q-1-1.png" width="auto" height="auto" alt="" loading="auto"></div></figure><p>Going forward, we’ve simplified the pricing into broader groups, which will help customers plan spend by estimating at a group level.</p><figure style="max-width:2284px" data-rt-max-width="2284px"><div><img src="/images/blog/658128ca931c16a277d2d972_better-q-2.png" width="auto" height="auto" alt="" loading="auto"></div></figure><p>Some common network groups you could see include:</p><style>
 table.support-table{
     font-size: 16px;
 }

@@ -3,8 +3,8 @@ title: "How Government Agencies Can Use SMS for the Public Good"
 description: "Governments can use high-volume outbound SMS services to communicate effectively with a large volume of people at once. Know all about the benefits, use cases and best practices of community text messaging at Plivo."
 pubDate: "2023-02-06T00:00:00.000Z"
 updatedDate: "2024-08-10T09:25:18.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657d830ee7ea1b09465424e0_Government_SMS_CPaaS.svg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657d830ee7ea1b09465424e0_Government_SMS_CPaaS.svg"
+image: "/images/blog/657d830ee7ea1b09465424e0_Government_SMS_CPaaS.svg"
+thumbnail: "/images/blog/657d830ee7ea1b09465424e0_Government_SMS_CPaaS.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

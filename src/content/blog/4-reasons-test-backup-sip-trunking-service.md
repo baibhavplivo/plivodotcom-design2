@@ -3,8 +3,8 @@ title: "4 Reasons to Test a Backup SIP Trunking Service Now"
 description: "Plivo's SMS API and Voice API enables businesses to communicate with their customers at global scale. Sign up for free now."
 pubDate: "2019-05-14T00:00:00.000Z"
 updatedDate: "2024-07-14T11:11:37.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/658290d8da9a5896123e78da_4-reasons-to-test-a-backup-sip-trunking-service-now.png"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/658290d8da9a5896123e78da_4-reasons-to-test-a-backup-sip-trunking-service-now.png"
+image: "/images/blog/658290d8da9a5896123e78da_4-reasons-to-test-a-backup-sip-trunking-service-now.png"
+thumbnail: "/images/blog/658290d8da9a5896123e78da_4-reasons-to-test-a-backup-sip-trunking-service-now.png"
 authorName: "Team Plivo"
 featured: true
 noindex: false

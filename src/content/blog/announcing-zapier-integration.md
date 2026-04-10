@@ -3,8 +3,8 @@ title: "Announcing Zapier Integration"
 description: "Plivo's SMS API and Voice API enables businesses to communicate with their customers at global scale. Sign up for free now."
 pubDate: "2017-12-15T00:00:00.000Z"
 updatedDate: "2024-01-11T09:41:37.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/6583d4de0811f7701cb19be0_announcing-zapier-integration.png"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/6583d4de0811f7701cb19be0_announcing-zapier-integration.png"
+image: "/images/blog/6583d4de0811f7701cb19be0_announcing-zapier-integration.png"
+thumbnail: "/images/blog/6583d4de0811f7701cb19be0_announcing-zapier-integration.png"
 authorName: "Team Plivo"
 featured: true
 noindex: false

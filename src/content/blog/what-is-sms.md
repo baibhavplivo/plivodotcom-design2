@@ -3,8 +3,8 @@ title: "What is SMS? A Complete Guide to Building Better Customer Relationships 
 description: "Learn about the different types of SMS and what they mean for your business, including how to engage customers through text messaging."
 pubDate: "2021-09-23T00:00:00.000Z"
 updatedDate: "2023-12-21T11:07:47.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/658108e1e707ad13a17cb74a_why-sms.svg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/658108e1e707ad13a17cb74a_why-sms.svg"
+image: "/images/blog/658108e1e707ad13a17cb74a_why-sms.svg"
+thumbnail: "/images/blog/658108e1e707ad13a17cb74a_why-sms.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

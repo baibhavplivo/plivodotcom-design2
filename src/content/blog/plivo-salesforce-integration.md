@@ -3,8 +3,8 @@ title: "Announcing the Plivo Helper Library for Salesforce"
 description: "Plivo's SMS API and Voice API enables businesses to communicate with their customers at global scale. Sign up for free now."
 pubDate: "2015-09-14T00:00:00.000Z"
 updatedDate: "2023-12-22T03:35:08.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/6585031c3a0e8566e24c9ead_plivo-salesforce-integration-banner.png"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/6585031c3a0e8566e24c9ead_plivo-salesforce-integration-banner.png"
+image: "/images/blog/6585031c3a0e8566e24c9ead_plivo-salesforce-integration-banner.png"
+thumbnail: "/images/blog/6585031c3a0e8566e24c9ead_plivo-salesforce-integration-banner.png"
 authorName: "Team Plivo"
 featured: true
 noindex: false

@@ -3,8 +3,8 @@ title: "What is Google Verified SMS?"
 description: "Google Verified SMS adds sender verification and branding to business SMS messages so recipients can trust incoming messages at a glance."
 pubDate: "2021-02-01T00:00:00.000Z"
 updatedDate: "2024-07-08T09:14:09.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/6582550de117e088d9fbe37b_google-verified-messages-blog-sm.svg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/6582550de117e088d9fbe37b_google-verified-messages-blog-sm.svg"
+image: "/images/blog/6582550de117e088d9fbe37b_google-verified-messages-blog-sm.svg"
+thumbnail: "/images/blog/6582550de117e088d9fbe37b_google-verified-messages-blog-sm.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

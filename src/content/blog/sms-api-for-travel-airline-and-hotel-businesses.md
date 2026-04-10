@@ -3,8 +3,8 @@ title: "Take the Trauma Out of Travel with a Touch of Timely Texting"
 description: "SMS API for travel, airline, and hotel businesses: Send, track, and analyze text messages seamlessly with Plivo. Integrate Plivo’s SMS API with your existing applications. Alt text: SMS API for travel, airline and hotel businesses | Plivo"
 pubDate: "2023-01-09T00:00:00.000Z"
 updatedDate: "2024-05-23T09:35:34.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657d869afc6fa186be21eddd_travel-trauma-texting.svg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657d869afc6fa186be21eddd_travel-trauma-texting.svg"
+image: "/images/blog/657d869afc6fa186be21eddd_travel-trauma-texting.svg"
+thumbnail: "/images/blog/657d869afc6fa186be21eddd_travel-trauma-texting.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

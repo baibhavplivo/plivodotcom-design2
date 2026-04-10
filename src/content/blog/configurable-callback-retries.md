@@ -3,8 +3,8 @@ title: "Announcing Configurable Callback Retries for Voice"
 description: "Override default connection settings for Plivo’s Voice API to fit your needs with the configurable callback retries feature."
 pubDate: "2021-02-24T00:00:00.000Z"
 updatedDate: "2024-05-23T07:45:25.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/6582507c5c492d2a08db8355_configurable-callback.png"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/6582507c5c492d2a08db8355_configurable-callback.png"
+image: "/images/blog/6582507c5c492d2a08db8355_configurable-callback.png"
+thumbnail: "/images/blog/6582507c5c492d2a08db8355_configurable-callback.png"
 authorName: "Team Plivo"
 featured: true
 noindex: false

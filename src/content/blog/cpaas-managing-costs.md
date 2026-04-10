@@ -3,8 +3,8 @@ title: "Lessons in CPaaS Leadership: Managing Costs at Scale"
 description: "Manage costs at scale with Plivo. Lower unit costs than Twilio for voice calls and SMS text messaging."
 pubDate: "2021-12-02T00:00:00.000Z"
 updatedDate: "2023-12-21T10:59:03.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/6580349090246e46224d772e_cost-to-scale-blog.svg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/6580349090246e46224d772e_cost-to-scale-blog.svg"
+image: "/images/blog/6580349090246e46224d772e_cost-to-scale-blog.svg"
+thumbnail: "/images/blog/6580349090246e46224d772e_cost-to-scale-blog.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

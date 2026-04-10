@@ -3,8 +3,8 @@ title: "Why Businesses Should Employ Multiple Cloud Communications Platforms"
 description: "3 reasons why businesses should employ a multicloud approach to CPaaS. Know more about the benefits of multicloud communications with Plivo. Sign up today"
 pubDate: "2023-01-24T00:00:00.000Z"
 updatedDate: "2023-12-21T10:15:42.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657d850993f8ba3d5606b439_multiple_cpaas.svg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657d850993f8ba3d5606b439_multiple_cpaas.svg"
+image: "/images/blog/657d850993f8ba3d5606b439_multiple_cpaas.svg"
+thumbnail: "/images/blog/657d850993f8ba3d5606b439_multiple_cpaas.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

@@ -12,7 +12,7 @@ categories: ["case-studies"]
 seoTitle: "Plivo Ensures Quality and Security for Imprezzio, Inc."
 webflowItemId: "6585220b3a0e8566e25f55a3"
 ---
-<figure style="max-width:500px" data-rt-max-width="500px"><div><img alt="Imprezzio, Inc." src="https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/65852166a824e13cb9d117d4_tumblr_meu9xgG5cY1r369ch.png" width="auto" height="auto" loading="auto"></div></figure><p>Plivo helps Imprezzio, Inc., a leading software company, provide their customers with a high-quality, secure solution to manage client relationships.</p><h2>Challenge</h2><ul class="bulleted copy"><li>Needed a scalable, secure, and reliable solution</li>
+<figure style="max-width:500px" data-rt-max-width="500px"><div><img alt="Imprezzio, Inc." src="/images/blog/65852166a824e13cb9d117d4_tumblr_meu9xgG5cY1r369ch.png" width="auto" height="auto" loading="auto"></div></figure><p>Plivo helps Imprezzio, Inc., a leading software company, provide their customers with a high-quality, secure solution to manage client relationships.</p><h2>Challenge</h2><ul class="bulleted copy"><li>Needed a scalable, secure, and reliable solution</li>
 <li>Targeting high-profile Fortune 100 financial and insurance customers</li>
 <li>Required a powerful, open platform with a quick, responsive support team for a smooth integration</li>
 

@@ -3,8 +3,8 @@ title: "Plivo’s Latest Safeguards Against Telecom Fraud and Spam"
 description: "Plivo is taking new measures to let our customers improve the trust their customers have in them, via STIR/SHAKEN, Google Verified services, and 10DLC."
 pubDate: "2021-04-26T00:00:00.000Z"
 updatedDate: "2024-07-08T09:41:16.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/658198f3c58271ffd4aac4b8_fighting-telecom-fraud-and-spam.png"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/658198f3c58271ffd4aac4b8_fighting-telecom-fraud-and-spam.png"
+image: "/images/blog/658198f3c58271ffd4aac4b8_fighting-telecom-fraud-and-spam.png"
+thumbnail: "/images/blog/658198f3c58271ffd4aac4b8_fighting-telecom-fraud-and-spam.png"
 authorName: "Team Plivo"
 featured: true
 noindex: false

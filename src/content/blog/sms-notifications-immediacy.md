@@ -3,8 +3,8 @@ title: "Infrastructure Ensures Fastest Delivery for Time-Sensitive Notifications
 description: "SMS notifications let you put important information in front of customers and prospects more quickly and more reliably than other communications channels."
 pubDate: "2021-05-05T00:00:00.000Z"
 updatedDate: "2023-12-21T11:33:28.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/6581953f6a9f0351e1bd92d2_blog-2.png"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/6581953f6a9f0351e1bd92d2_blog-2.png"
+image: "/images/blog/6581953f6a9f0351e1bd92d2_blog-2.png"
+thumbnail: "/images/blog/6581953f6a9f0351e1bd92d2_blog-2.png"
 authorName: "Team Plivo"
 featured: true
 noindex: false

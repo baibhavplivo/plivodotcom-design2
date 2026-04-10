@@ -3,8 +3,8 @@ title: "SIP Trunking Wins TMC 2023 Communications Solutions Products of the Year
 description: "Plivo’s SIP Trunking won the prestigious TMC 2023 Communications Solutions Products of the Year Award with innovative features and exceptional customer experience."
 pubDate: "2023-06-10T00:00:00.000Z"
 updatedDate: "2024-02-17T08:45:37.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657d457b96389eee4e3de37c_Award_TMC_Zentrunk_2023.svg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657d457b96389eee4e3de37c_Award_TMC_Zentrunk_2023.svg"
+image: "/images/blog/657d457b96389eee4e3de37c_Award_TMC_Zentrunk_2023.svg"
+thumbnail: "/images/blog/657d457b96389eee4e3de37c_Award_TMC_Zentrunk_2023.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

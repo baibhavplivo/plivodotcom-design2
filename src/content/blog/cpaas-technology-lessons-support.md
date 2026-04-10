@@ -3,8 +3,8 @@ title: "Lessons in CPaaS Technology Leadership — How Plivo Takes Care of Our C
 description: "Support you can count on from one of the few CPaaS providers offering technical support on a one-on-one, per-customer basis."
 pubDate: "2021-01-13T00:00:00.000Z"
 updatedDate: "2023-12-21T12:13:41.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/65825a331b0ad0e8072e1c76_cpaas-support-opt22x.jpg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/65825a331b0ad0e8072e1c76_cpaas-support-opt22x.jpg"
+image: "/images/blog/65825a331b0ad0e8072e1c76_cpaas-support-opt22x.jpg"
+thumbnail: "/images/blog/65825a331b0ad0e8072e1c76_cpaas-support-opt22x.jpg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

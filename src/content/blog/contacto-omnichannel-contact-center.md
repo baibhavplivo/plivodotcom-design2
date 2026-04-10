@@ -3,8 +3,8 @@ title: "Introducing Contacto: Omnichannel Customer Service with a Human Touch"
 description: "Contacto is a new omnichannel contact center application that businesses can embed directly into an application or website"
 pubDate: "2021-10-06T00:00:00.000Z"
 updatedDate: "2024-07-08T07:42:45.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/65810273fe202571efe29fde_contacto-intro-blog-post-on-plivo-b.jpg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/65810273fe202571efe29fde_contacto-intro-blog-post-on-plivo-b.jpg"
+image: "/images/blog/65810273fe202571efe29fde_contacto-intro-blog-post-on-plivo-b.jpg"
+thumbnail: "/images/blog/65810273fe202571efe29fde_contacto-intro-blog-post-on-plivo-b.jpg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

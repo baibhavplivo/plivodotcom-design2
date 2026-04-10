@@ -3,8 +3,8 @@ title: "SMS Marketing 101"
 description: "Text Message Marketing: Detailed guide on SMS marketing. Learn all about mass texting services and SMS marketing platforms and pricing at Plivo."
 pubDate: "2022-05-16T00:00:00.000Z"
 updatedDate: "2023-12-21T10:39:48.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657fe7d5e7ea1b0946a1c060_Blog-Graphic_sms.svg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657fe7d5e7ea1b0946a1c060_Blog-Graphic_sms.svg"
+image: "/images/blog/657fe7d5e7ea1b0946a1c060_Blog-Graphic_sms.svg"
+thumbnail: "/images/blog/657fe7d5e7ea1b0946a1c060_Blog-Graphic_sms.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

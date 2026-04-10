@@ -3,8 +3,8 @@ title: "How to Handle SMS and Voice Communications Using Ruby"
 description: "Send and receive SMS text messages and make and receive voice calls with Ruby, the Plivo Ruby SDK, and Plivo APIs."
 pubDate: "2022-04-23T00:00:00.000Z"
 updatedDate: "2023-12-21T10:43:20.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657fef94b452e23ec94cd09b_how-to-handle-sms-and-voice-communications-using-ruby.svg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657fef94b452e23ec94cd09b_how-to-handle-sms-and-voice-communications-using-ruby.svg"
+image: "/images/blog/657fef94b452e23ec94cd09b_how-to-handle-sms-and-voice-communications-using-ruby.svg"
+thumbnail: "/images/blog/657fef94b452e23ec94cd09b_how-to-handle-sms-and-voice-communications-using-ruby.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

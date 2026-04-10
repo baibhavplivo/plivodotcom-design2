@@ -3,8 +3,8 @@ title: "Plivo Is Simple By Design"
 description: "Plivo’s cloud communications platform is simple to use, well documented, and fully supported. Our APIs make it easy to build complex applications."
 pubDate: "2021-04-29T00:00:00.000Z"
 updatedDate: "2023-12-21T11:34:55.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/65819757fdbe9ae996953fee_blog-graphic-plivo-is-simple-6.png"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/65819757fdbe9ae996953fee_blog-graphic-plivo-is-simple-6.png"
+image: "/images/blog/65819757fdbe9ae996953fee_blog-graphic-plivo-is-simple-6.png"
+thumbnail: "/images/blog/65819757fdbe9ae996953fee_blog-graphic-plivo-is-simple-6.png"
 authorName: "Team Plivo"
 featured: true
 noindex: false

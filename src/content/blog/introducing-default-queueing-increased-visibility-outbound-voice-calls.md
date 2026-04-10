@@ -3,8 +3,8 @@ title: "Introducing Default Call Queuing, Plus Increased Visibility into Outboun
 description: "Plivo's SMS API and Voice API enables businesses to communicate with their customers at global scale. Sign up for free now."
 pubDate: "2018-10-24T00:00:00.000Z"
 updatedDate: "2023-12-21T12:34:07.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/6582f28979f0f58283f72cda_queuing_for_outbound.png"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/6582f28979f0f58283f72cda_queuing_for_outbound.png"
+image: "/images/blog/6582f28979f0f58283f72cda_queuing_for_outbound.png"
+thumbnail: "/images/blog/6582f28979f0f58283f72cda_queuing_for_outbound.png"
 authorName: "Team Plivo"
 featured: true
 noindex: false

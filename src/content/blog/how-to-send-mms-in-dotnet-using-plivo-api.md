@@ -3,8 +3,8 @@ title: "How to Send MMS in .NET using Plivo’s Messaging API"
 description: "Plivo's SMS API and Voice API enables businesses to communicate with their customers at global scale. Sign up for free now."
 pubDate: "2022-04-27T00:00:00.000Z"
 updatedDate: "2024-07-14T09:19:48.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657feecae9e3267618b14f55_mms-dotnet.png"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657feecae9e3267618b14f55_mms-dotnet.png"
+image: "/images/blog/657feecae9e3267618b14f55_mms-dotnet.png"
+thumbnail: "/images/blog/657feecae9e3267618b14f55_mms-dotnet.png"
 authorName: "Team Plivo"
 featured: true
 noindex: false
@@ -12,7 +12,7 @@ categories: ["net-sdk", "sms-api", "mms", "how-to"]
 seoTitle: "How to Send MMS in .NET using Plivo’s Messaging API"
 webflowItemId: "657fef6e327757ab84ee78cf"
 ---
-<p>You can use Plivo’s <a href="https://www.plivo.com/sms/">SMS API</a> to <a href="https://www.plivo.com/docs/sms/use-cases/send-an-mms/dotnet/">send an MMS</a> message to any phone number. Businesses can make messages more meaningful by using <a href="https://www.plivo.com/blog/what-is-mms-messaging/">MMS</a> instead of SMS and including images, audio, and video to provide context.</p><h2>How it works</h2><figure><div><img src="https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657fe98384117f80c25088ab_send-mms-api.jpg" loading="lazy" width="auto" height="auto" alt=""></div></figure><h2>Prerequisites</h2><p>To get started, you need a Plivo account — <a href="https://console.plivo.com/accounts/register/">sign up</a> with your work email address if you don’t have one already. If this is your first time using Plivo APIs, follow our instructions to <a href="https://www.plivo.com/docs/sdk/server/set-up-dotnet-dev-environment-api-messaging/">set up a .NET development environment</a>.</p><h2>Create the send MMS application</h2><p>In Visual Studio, in the CS project, open the file Program.cs and paste into it this code.</p><style>
+<p>You can use Plivo’s <a href="https://www.plivo.com/sms/">SMS API</a> to <a href="https://www.plivo.com/docs/sms/use-cases/send-an-mms/dotnet/">send an MMS</a> message to any phone number. Businesses can make messages more meaningful by using <a href="https://www.plivo.com/blog/what-is-mms-messaging/">MMS</a> instead of SMS and including images, audio, and video to provide context.</p><h2>How it works</h2><figure><div><img src="/images/blog/657fe98384117f80c25088ab_send-mms-api.jpg" loading="lazy" width="auto" height="auto" alt=""></div></figure><h2>Prerequisites</h2><p>To get started, you need a Plivo account — <a href="https://console.plivo.com/accounts/register/">sign up</a> with your work email address if you don’t have one already. If this is your first time using Plivo APIs, follow our instructions to <a href="https://www.plivo.com/docs/sdk/server/set-up-dotnet-dev-environment-api-messaging/">set up a .NET development environment</a>.</p><h2>Create the send MMS application</h2><p>In Visual Studio, in the CS project, open the file Program.cs and paste into it this code.</p><style>
 .highlight .hll { background-color: #ffffcc }
 .highlight .c { color: #008800; font-style: italic } /* Comment */
 .highlight .err { color: #a61717; /* background-color: #e3d2d2 */ } /* Error */

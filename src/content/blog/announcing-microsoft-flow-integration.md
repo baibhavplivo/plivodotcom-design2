@@ -3,8 +3,8 @@ title: "Announcing Microsoft Flow Integration"
 description: "Plivo's SMS API and Voice API enables businesses to communicate with their customers at global scale. Sign up for free now."
 pubDate: "2017-12-13T00:00:00.000Z"
 updatedDate: "2024-01-11T09:42:21.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/6583d57e41a163a020e8485b_announcing-microsoft-flow-integration.png"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/6583d57e41a163a020e8485b_announcing-microsoft-flow-integration.png"
+image: "/images/blog/6583d57e41a163a020e8485b_announcing-microsoft-flow-integration.png"
+thumbnail: "/images/blog/6583d57e41a163a020e8485b_announcing-microsoft-flow-integration.png"
 authorName: "Team Plivo"
 featured: true
 noindex: false

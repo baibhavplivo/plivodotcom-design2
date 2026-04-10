@@ -3,8 +3,8 @@ title: "5 Reasons to Switch From Your Legacy PRI to SIP Trunking"
 description: "Plivo's SMS API and Voice API enables businesses to communicate with their customers at global scale. Sign up for free now."
 pubDate: "2019-04-29T00:00:00.000Z"
 updatedDate: "2024-07-13T10:53:24.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/6582e91c372420389ef582cd_switch-from-legacy-pri-to-sip-trunking.png"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/6582e91c372420389ef582cd_switch-from-legacy-pri-to-sip-trunking.png"
+image: "/images/blog/6582e91c372420389ef582cd_switch-from-legacy-pri-to-sip-trunking.png"
+thumbnail: "/images/blog/6582e91c372420389ef582cd_switch-from-legacy-pri-to-sip-trunking.png"
 authorName: "Team Plivo"
 featured: true
 noindex: false

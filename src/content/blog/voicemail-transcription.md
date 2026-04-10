@@ -3,8 +3,8 @@ title: "Announcing Voicemail Transcription"
 description: "Plivo's SMS API and Voice API enables businesses to communicate with their customers at global scale. Sign up for free now."
 pubDate: "2013-02-27T00:00:00.000Z"
 updatedDate: "2024-05-23T07:18:36.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/65851d31077f89ff84ec8240_blog-pattern-design-1-thumbnail.svg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/65851d31077f89ff84ec8240_blog-pattern-design-1-thumbnail.svg"
+image: "/images/blog/65851d31077f89ff84ec8240_blog-pattern-design-1-thumbnail.svg"
+thumbnail: "/images/blog/65851d31077f89ff84ec8240_blog-pattern-design-1-thumbnail.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

@@ -3,8 +3,8 @@ title: "How I Built Our Internal /askplivo AI-Powered Chatbot for Slack"
 description: "Slack AI chatbot: Step by step process on how to successfully build an AI-powered Slack chatbot. Read more to gain valuable insights and inspiration for building your own AI chatbot."
 pubDate: "2023-07-20T00:00:00.000Z"
 updatedDate: "2024-07-08T09:58:27.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657d3ca742a3aaa0353f9378_askplivo_chatbot.svg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657d3ca742a3aaa0353f9378_askplivo_chatbot.svg"
+image: "/images/blog/657d3ca742a3aaa0353f9378_askplivo_chatbot.svg"
+thumbnail: "/images/blog/657d3ca742a3aaa0353f9378_askplivo_chatbot.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

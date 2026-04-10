@@ -3,8 +3,8 @@ title: "How to Forward Plivo Voicemail to Email Using Pipedream"
 description: "Step by step guide on how to forward voicemail to email using Pipedream without any coding. Sign up with Plivo today!"
 pubDate: "2022-09-02T00:00:00.000Z"
 updatedDate: "2024-01-15T04:57:39.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657d978c8f2e0b9960ee092f_pipedream.png"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657d978c8f2e0b9960ee092f_pipedream.png"
+image: "/images/blog/657d978c8f2e0b9960ee092f_pipedream.png"
+thumbnail: "/images/blog/657d978c8f2e0b9960ee092f_pipedream.png"
 authorName: "Team Plivo"
 featured: true
 noindex: false

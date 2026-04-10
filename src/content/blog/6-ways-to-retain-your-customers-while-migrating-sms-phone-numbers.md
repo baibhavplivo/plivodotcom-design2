@@ -3,8 +3,8 @@ title: "6 Ways to Retain Your Customers While Migrating SMS Phone Numbers"
 description: "Plivo's SMS API and Voice API enables businesses to communicate with their customers at global scale. Sign up for free now."
 pubDate: "2017-01-25T00:00:00.000Z"
 updatedDate: "2024-05-23T07:59:39.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/6584f9b7077f89ff84d67690_how-to-retain-subscribers-when-migrating-short-codes.png"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/6584f9b7077f89ff84d67690_how-to-retain-subscribers-when-migrating-short-codes.png"
+image: "/images/blog/6584f9b7077f89ff84d67690_how-to-retain-subscribers-when-migrating-short-codes.png"
+thumbnail: "/images/blog/6584f9b7077f89ff84d67690_how-to-retain-subscribers-when-migrating-short-codes.png"
 authorName: "Team Plivo"
 featured: true
 noindex: false

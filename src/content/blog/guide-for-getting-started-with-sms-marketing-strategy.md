@@ -3,8 +3,8 @@ title: "Your Guide to Getting Started with SMS Marketing"
 description: "You’re probably wondering how to reach your customers, no matter where they are. Enter SMS marketing. Here’s how to build a Grade A SMS marketing strategy."
 pubDate: "2021-05-13T00:00:00.000Z"
 updatedDate: "2024-08-16T04:12:35.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/6581926fa2ce38dc25c37091_your-guide-to-getting-started-with-sms-marketing.svg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/6581926fa2ce38dc25c37091_your-guide-to-getting-started-with-sms-marketing.svg"
+image: "/images/blog/6581926fa2ce38dc25c37091_your-guide-to-getting-started-with-sms-marketing.svg"
+thumbnail: "/images/blog/6581926fa2ce38dc25c37091_your-guide-to-getting-started-with-sms-marketing.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

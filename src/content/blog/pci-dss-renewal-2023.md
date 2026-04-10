@@ -3,8 +3,8 @@ title: "Plivo Renews PCI DSS Certification to Keep Your Cardholder Data Secure"
 description: "PCI certification: Plivo renews PCI DSS compliance certification, which means your payments to Plivo are secured and protected."
 pubDate: "2023-08-24T00:00:00.000Z"
 updatedDate: "2024-05-23T09:39:21.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657c51681a4a98c1c8d57e28_PCI_DSS_blog.svg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657c51681a4a98c1c8d57e28_PCI_DSS_blog.svg"
+image: "/images/blog/657c51681a4a98c1c8d57e28_PCI_DSS_blog.svg"
+thumbnail: "/images/blog/657c51681a4a98c1c8d57e28_PCI_DSS_blog.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

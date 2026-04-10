@@ -25,6 +25,7 @@ interface Env {
   ASSETS: { fetch: (request: Request) => Promise<Response> };
   CMS_PASSWORD: string;
   CMS_JWT_SECRET: string;
+  TURNSTILE_SECRET_KEY: string;
   GITHUB_TOKEN: string;
   GITHUB_REPO: string; // e.g. "org/repo"
   GITHUB_BRANCH?: string; // defaults to "staging"
@@ -36,6 +37,7 @@ interface Env {
   FORM_ALLOWED_ORIGINS?: string;
   IPINFO_TOKEN?: string;
   SLACK_FORM_ALERT_WEBHOOK?: string;
+  BLOG_IMAGES: R2Bucket;
 }
 
 type FormType = "contact-sales" | "request-trial";
@@ -519,10 +521,6 @@ async function handleFormSubmit(request: Request, env: Env, origin?: string): Pr
         ok: false,
         status: "error",
         message: "Something went wrong. Please try again or email support@plivo.com.",
-        _debug: {
-          hubspotStatus: response.status,
-          hubspotResponse: responseBody.slice(0, 500),
-        },
       },
       502,
       origin
@@ -534,19 +532,12 @@ async function handleFormSubmit(request: Request, env: Env, origin?: string): Pr
     hubspotStatus: response.status,
     usedFallback,
     fieldCount: usedFallback ? hubSpotFields.fallback.length : hubSpotFields.primary.length,
-    email: fields.email,
   });
 
   return jsonResponse(
     {
       ok: true,
       status: "submitted",
-      _debug: {
-        hubspotStatus: response.status,
-        hubspotResponse: responseBody.slice(0, 200),
-        fieldCount: usedFallback ? hubSpotFields.fallback.length : hubSpotFields.primary.length,
-        usedFallback,
-      },
     },
     200,
     origin
@@ -658,7 +649,12 @@ async function proxyDocsRequest(request: Request): Promise<Response> {
   upstreamUrl.protocol = "https:";
   upstreamUrl.host = new URL(DOCS_UPSTREAM).host;
 
-  const upstreamResponse = await fetch(new Request(upstreamUrl.toString(), request));
+  let upstreamResponse: Response;
+  try {
+    upstreamResponse = await fetch(new Request(upstreamUrl.toString(), request));
+  } catch {
+    return new Response("Documentation service unavailable", { status: 502 });
+  }
   const headers = new Headers(upstreamResponse.headers);
   const location = headers.get("Location");
   const contentType = headers.get("Content-Type") || "";
@@ -792,16 +788,85 @@ async function getFileSha(slug: string, env: Env): Promise<string | null> {
   return data.sha;
 }
 
+// ─── CMS Rate Limiting ────────────────────────────────────────
+
+const RATE_LIMIT_MAX = 5;
+const RATE_LIMIT_WINDOW_MS = 15 * 60 * 1000; // 15 minutes
+const loginAttempts = new Map<string, { count: number; resetAt: number }>();
+
+function checkRateLimit(ip: string): boolean {
+  const now = Date.now();
+  const entry = loginAttempts.get(ip);
+  if (!entry || now > entry.resetAt) {
+    return true; // allowed
+  }
+  return entry.count < RATE_LIMIT_MAX;
+}
+
+function recordFailedAttempt(ip: string): void {
+  const now = Date.now();
+  const entry = loginAttempts.get(ip);
+  if (!entry || now > entry.resetAt) {
+    loginAttempts.set(ip, { count: 1, resetAt: now + RATE_LIMIT_WINDOW_MS });
+  } else {
+    entry.count++;
+  }
+}
+
+function clearAttempts(ip: string): void {
+  loginAttempts.delete(ip);
+}
+
+async function verifyTurnstile(token: string, secretKey: string, ip?: string): Promise<boolean> {
+  const formData = new URLSearchParams();
+  formData.append("secret", secretKey);
+  formData.append("response", token);
+  if (ip) formData.append("remoteip", ip);
+
+  const res = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: formData.toString(),
+  });
+
+  const data: { success: boolean } = await res.json();
+  return data.success;
+}
+
 // ─── CMS Route Handlers ────────────────────────────────────────
 
 async function handleAuth(request: Request, env: Env, origin?: string): Promise<Response> {
   if (request.method !== "POST") return errorResponse("Method not allowed", 405, origin);
 
-  const { password } = await request.json() as { password: string };
+  const ip = request.headers.get("CF-Connecting-IP") || "unknown";
+
+  // Rate limit check
+  if (!checkRateLimit(ip)) {
+    return errorResponse("Too many login attempts. Please try again later.", 429, origin);
+  }
+
+  const { password, turnstileToken } = await request.json() as {
+    password: string;
+    turnstileToken?: string;
+  };
+
+  // Verify Turnstile token (skip if secret not configured, e.g. local dev)
+  if (env.TURNSTILE_SECRET_KEY) {
+    if (!turnstileToken) {
+      return errorResponse("CAPTCHA verification required", 400, origin);
+    }
+    const turnstileOk = await verifyTurnstile(turnstileToken, env.TURNSTILE_SECRET_KEY, ip);
+    if (!turnstileOk) {
+      return errorResponse("CAPTCHA verification failed", 400, origin);
+    }
+  }
+
   if (password !== env.CMS_PASSWORD) {
+    recordFailedAttempt(ip);
     return errorResponse("Invalid password", 401, origin);
   }
 
+  clearAttempts(ip);
   const token = await createJWT(env.CMS_JWT_SECRET);
   return jsonResponse({
     token,
@@ -1020,33 +1085,17 @@ async function handleImageUpload(request: Request, env: Env, origin?: string): P
   const timestamp = Date.now();
   const safeName = file.name.replace(/[^a-zA-Z0-9.-]/g, "-").replace(/\.[^.]+$/, "");
   const filename = `${safeName}-${timestamp}.${ext}`;
+  const key = `images/blog/${filename}`;
 
-  const buffer = await file.arrayBuffer();
-  const bytes = new Uint8Array(buffer);
-  let binary = "";
-  for (let i = 0; i < bytes.length; i++) {
-    binary += String.fromCharCode(bytes[i]);
-  }
-  const encoded = btoa(binary);
+  // Determine content type
+  const contentType = file.type || `image/${ext === "svg" ? "svg+xml" : ext}`;
 
-  const branch = env.GITHUB_BRANCH || "staging";
-  const res = await githubFetch(
-    `/repos/${env.GITHUB_REPO}/contents/${IMAGE_PATH}/${filename}`,
-    env,
-    {
-      method: "PUT",
-      body: JSON.stringify({
-        message: `Upload blog image: ${filename}`,
-        content: encoded,
-        branch,
-      }),
-    }
-  );
-
-  if (!res.ok) {
-    const err = await res.json().catch(() => ({}));
-    return errorResponse(`Upload failed: ${JSON.stringify(err)}`, 500, origin);
-  }
+  await env.BLOG_IMAGES.put(key, file.stream(), {
+    httpMetadata: {
+      contentType,
+      cacheControl: "public, max-age=31536000, immutable",
+    },
+  });
 
   return jsonResponse({ url: `/images/blog/${filename}` }, 201, origin);
 }
@@ -1237,24 +1286,28 @@ export default {
     // ── Voice agent proxy (existing) ──
     if (url.pathname === "/api/voice-agent") {
       if (request.method === "POST") {
-        const body = await request.text();
-        const upstream = await fetch(VOICE_AGENT_UPSTREAM, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Origin: "https://www.plivo.com",
-          },
-          body,
-        });
+        try {
+          const body = await request.text();
+          const upstream = await fetch(VOICE_AGENT_UPSTREAM, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Origin: "https://www.plivo.com",
+            },
+            body,
+          });
 
-        return new Response(upstream.body, {
-          status: upstream.status,
-          headers: {
-            "Content-Type":
-              upstream.headers.get("Content-Type") || "application/json",
-            ...corsHeaders(origin),
-          },
-        });
+          return new Response(upstream.body, {
+            status: upstream.status,
+            headers: {
+              "Content-Type":
+                upstream.headers.get("Content-Type") || "application/json",
+              ...corsHeaders(origin),
+            },
+          });
+        } catch {
+          return errorResponse("Voice agent service unavailable", 502, origin);
+        }
       }
     }
 
@@ -1268,7 +1321,9 @@ export default {
         }
         // Fallback to IPinfo if CF headers not available (e.g. local dev)
         const token = env.IPINFO_TOKEN || "";
-        const ipRes = await fetch(`https://ipinfo.io/json${token ? `?token=${token}` : ""}`);
+        const ipRes = await fetch("https://ipinfo.io/json", {
+          headers: token ? { Authorization: `Bearer ${token}` } : {},
+        });
         const ipData = await ipRes.json() as { country?: string; ip?: string };
         return jsonResponse({ country: ipData.country || "US", ip: ipData.ip || "" }, 200, origin);
       } catch {
@@ -1367,6 +1422,30 @@ export default {
     const normalizedPath = url.pathname.replace(/\/+$/, "");
     if (normalizedPath === "/signup") {
       return Response.redirect("https://cx.plivo.com/signup", 302);
+    }
+
+    // ── Serve blog images from R2 ──
+    if (url.pathname.startsWith("/images/blog/")) {
+      const key = url.pathname.slice(1); // "images/blog/filename.ext"
+      const object = await env.BLOG_IMAGES.get(key);
+
+      if (!object) {
+        // Fallback to static assets during migration
+        return env.ASSETS.fetch(request);
+      }
+
+      const headers = new Headers();
+      object.writeHttpMetadata(headers);
+      headers.set("etag", object.httpEtag);
+      headers.set("Cache-Control", "public, max-age=31536000, immutable");
+
+      // Handle conditional requests (If-None-Match)
+      const ifNoneMatch = request.headers.get("If-None-Match");
+      if (ifNoneMatch === object.httpEtag) {
+        return new Response(null, { status: 304, headers });
+      }
+
+      return new Response(object.body, { headers });
     }
 
     // Serve static assets, injecting geo-country for HTML pages

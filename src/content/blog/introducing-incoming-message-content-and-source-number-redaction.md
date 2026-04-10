@@ -3,8 +3,8 @@ title: "Introducing Incoming Message Content and Source Number Redaction"
 description: "Plivo's SMS API and Voice API enables businesses to communicate with their customers at global scale. Sign up for free now."
 pubDate: "2018-05-17T00:00:00.000Z"
 updatedDate: "2023-12-21T05:26:47.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/6583cb6f6b59a97631f8de6c_introducing-incoming-message.png"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/6583cb6f6b59a97631f8de6c_introducing-incoming-message.png"
+image: "/images/blog/6583cb6f6b59a97631f8de6c_introducing-incoming-message.png"
+thumbnail: "/images/blog/6583cb6f6b59a97631f8de6c_introducing-incoming-message.png"
 authorName: "Team Plivo"
 featured: true
 noindex: false

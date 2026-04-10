@@ -3,8 +3,8 @@ title: "Text Subscriptions: A Valuable Tool for Marketers"
 description: "Know all about what are text subscriptions and how to use them. Read more about the benefits and use cases of text subscription at Plivo"
 pubDate: "2023-07-28T00:00:00.000Z"
 updatedDate: "2024-07-17T03:51:07.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657d37dd728c9a6088ef9347_Blog_text_subscriptions.svg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657d37dd728c9a6088ef9347_Blog_text_subscriptions.svg"
+image: "/images/blog/657d37dd728c9a6088ef9347_Blog_text_subscriptions.svg"
+thumbnail: "/images/blog/657d37dd728c9a6088ef9347_Blog_text_subscriptions.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

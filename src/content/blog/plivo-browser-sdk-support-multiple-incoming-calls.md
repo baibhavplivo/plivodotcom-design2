@@ -3,8 +3,8 @@ title: "Plivo Browser SDK Adds Support for Multiple Incoming Calls"
 description: "Plivo's SMS API and Voice API enables businesses to communicate with their customers at global scale. Sign up for free now."
 pubDate: "2018-10-10T00:00:00.000Z"
 updatedDate: "2024-01-09T12:14:49.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/6582f31af3004dd166480dcd_MultipleIncomingCalls.png"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/6582f31af3004dd166480dcd_MultipleIncomingCalls.png"
+image: "/images/blog/6582f31af3004dd166480dcd_MultipleIncomingCalls.png"
+thumbnail: "/images/blog/6582f31af3004dd166480dcd_MultipleIncomingCalls.png"
 authorName: "Team Plivo"
 featured: true
 noindex: false
@@ -23,7 +23,7 @@ div.language-plaintext.highlighter-rouge > div.highlight {
 
 </style>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>const options = { allowMultipleIncomingCalls: true };
-</code></pre></div></div><p>Call center agents may face two scenarios when the multiple incoming call feature is set to true, and a couple of things can happen:</p><p><strong>Scenario 1</strong>: Agent is already on a call</p><figure><div><img src="https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/6582f33fd008e60a94bbb9bf_scenario1.png" alt="Scenario1" width="auto" height="auto" loading="auto"></div></figure><p><strong>Scenario 2</strong>: Agent is available, but multiple calls are ringing simultaneously</p><figure><div><img src="https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/6582f33ffb08776e95d0f550_scenario2.png" alt="Scenario2" width="auto" height="auto" loading="auto"></div></figure><p>To accept one incoming call and handle others coming in, your application can use this code:</p><div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>plivoWebSdk.client.on('onIncomingCall', (callerId, extraHeaders, callInfo) =&gt;
+</code></pre></div></div><p>Call center agents may face two scenarios when the multiple incoming call feature is set to true, and a couple of things can happen:</p><p><strong>Scenario 1</strong>: Agent is already on a call</p><figure><div><img src="/images/blog/6582f33fd008e60a94bbb9bf_scenario1.png" alt="Scenario1" width="auto" height="auto" loading="auto"></div></figure><p><strong>Scenario 2</strong>: Agent is available, but multiple calls are ringing simultaneously</p><figure><div><img src="/images/blog/6582f33ffb08776e95d0f550_scenario2.png" alt="Scenario2" width="auto" height="auto" loading="auto"></div></figure><p>To accept one incoming call and handle others coming in, your application can use this code:</p><div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>plivoWebSdk.client.on('onIncomingCall', (callerId, extraHeaders, callInfo) =&gt;
 
 // To accept a call and reject other incoming calls -
 plivoWebSdk.client.answer(callInfo.callUUID, 'reject')

@@ -3,8 +3,8 @@ title: "How SMS Supports Every Stage of the Customer Lifecycle"
 description: "Read to know how SMS can be a useful tool for every stage of the customer lifecycle."
 pubDate: "2023-06-06T00:00:00.000Z"
 updatedDate: "2023-12-21T09:53:14.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657d4f616276ea8bd1137926_Blog_SMS_customer_lifecycle.svg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657d4f616276ea8bd1137926_Blog_SMS_customer_lifecycle.svg"
+image: "/images/blog/657d4f616276ea8bd1137926_Blog_SMS_customer_lifecycle.svg"
+thumbnail: "/images/blog/657d4f616276ea8bd1137926_Blog_SMS_customer_lifecycle.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

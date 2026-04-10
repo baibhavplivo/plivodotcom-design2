@@ -3,8 +3,8 @@ title: "Enhancing Data Privacy: Advanced Message Data Storage Options"
 description: "Discover Plivo's new data storage options for SMS, MMS, and WhatsApp messaging, designed to ensure compliance with GDPR and HIPAA while meeting your unique business needs"
 pubDate: "2024-06-17T00:00:00.000Z"
 updatedDate: "2024-06-19T14:00:14.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/666fe44dcc40b6fa1c2ac9d8_content-log-readaction-blog-hero.svg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/666fe44dcc40b6fa1c2ac9d8_content-log-readaction-blog-hero.svg"
+image: "/images/blog/666fe44dcc40b6fa1c2ac9d8_content-log-readaction-blog-hero.svg"
+thumbnail: "/images/blog/666fe44dcc40b6fa1c2ac9d8_content-log-readaction-blog-hero.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

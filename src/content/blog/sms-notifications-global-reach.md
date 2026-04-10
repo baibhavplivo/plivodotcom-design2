@@ -3,8 +3,8 @@ title: "Reach Customers in 190+ Countries with Plivo Alerts and Notifications"
 description: "SMS notifications have the best reach of all the channels businesses have available to communicate with customers and prospects."
 pubDate: "2021-05-04T00:00:00.000Z"
 updatedDate: "2023-12-21T11:33:52.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/658195c14aa7c5d4660807d9_ReachCustomersin190%2BCountries.svg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/658195c14aa7c5d4660807d9_ReachCustomersin190%2BCountries.svg"
+image: "/images/blog/658195c14aa7c5d4660807d9_ReachCustomersin190-Countries.svg"
+thumbnail: "/images/blog/658195c14aa7c5d4660807d9_ReachCustomersin190-Countries.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

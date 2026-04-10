@@ -3,8 +3,8 @@ title: "SMS Long Codes vs. Short Codes: The Definitive 2024 Guide"
 description: "Learn what’s better for your business: short code or long code phone numbers. Read to explore both options' differences, use cases, pricing, and benefits."
 pubDate: "2024-05-30T00:00:00.000Z"
 updatedDate: "2024-06-19T14:03:56.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/6582709e3ec76f4d5e0c929b_short-code-best-practices-hero.svg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/6582709e3ec76f4d5e0c929b_short-code-best-practices-hero.svg"
+image: "/images/blog/6582709e3ec76f4d5e0c929b_short-code-best-practices-hero.svg"
+thumbnail: "/images/blog/6582709e3ec76f4d5e0c929b_short-code-best-practices-hero.svg"
 authorName: "Team Plivo"
 featured: false
 noindex: false

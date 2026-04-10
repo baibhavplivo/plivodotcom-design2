@@ -3,8 +3,8 @@ title: "Plivo Survey Reveals Holiday Shoppers Want to Receive Communications fro
 description: "Press release on Plivo Holiday Shopping Communications Survey reveals consumer preferences for communications with retailers: SMS text messages, email, and more"
 pubDate: "2021-10-12T00:00:00.000Z"
 updatedDate: "2023-12-21T11:05:39.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/65803f0830cef4d1661a4ed0_pr-post1x.svg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/65803f0830cef4d1661a4ed0_pr-post1x.svg"
+image: "/images/blog/65803f0830cef4d1661a4ed0_pr-post1x.svg"
+thumbnail: "/images/blog/65803f0830cef4d1661a4ed0_pr-post1x.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

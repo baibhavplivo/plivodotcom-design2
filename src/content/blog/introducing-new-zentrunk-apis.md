@@ -3,8 +3,8 @@ title: "Announcing Two New SIP Trunking APIs"
 description: "New SIP Trunking APIs: Introducing the launch of two new exciting SIP Trunking APIs, Trunk Properties API and Call Object API. Check out the documentation for our new APIs and consider how they could help your business."
 pubDate: "2023-06-27T00:00:00.000Z"
 updatedDate: "2024-02-17T08:49:23.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657d45f352c94f05d5bb514f_blog_zentrunk_APIs.svg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657d45f352c94f05d5bb514f_blog_zentrunk_APIs.svg"
+image: "/images/blog/657d45f352c94f05d5bb514f_blog_zentrunk_APIs.svg"
+thumbnail: "/images/blog/657d45f352c94f05d5bb514f_blog_zentrunk_APIs.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

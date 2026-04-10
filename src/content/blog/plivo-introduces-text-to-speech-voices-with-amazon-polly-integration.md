@@ -3,8 +3,8 @@ title: "With Amazon Polly, Plivo Supports 27 Languages and 40+ Text-to-Speech Vo
 description: "Plivo's SMS API and Voice API enables businesses to communicate with their customers at global scale. Sign up for free now."
 pubDate: "2018-11-26T00:00:00.000Z"
 updatedDate: "2024-07-13T10:28:51.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/6582f14e95b6b85d2335fcc9_SSMLSpeakSupportBlog.png"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/6582f14e95b6b85d2335fcc9_SSMLSpeakSupportBlog.png"
+image: "/images/blog/6582f14e95b6b85d2335fcc9_SSMLSpeakSupportBlog.png"
+thumbnail: "/images/blog/6582f14e95b6b85d2335fcc9_SSMLSpeakSupportBlog.png"
 authorName: "Team Plivo"
 featured: true
 noindex: false

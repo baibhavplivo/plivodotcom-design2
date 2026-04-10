@@ -3,8 +3,8 @@ title: "Contending with Consent for Marketing Messaging and Calls"
 description: "Before you send marketing text messages or voice calls, you must gain consent from recipients. Here’s an overview of regulations, guidelines, and best practices."
 pubDate: "2023-04-28T00:00:00.000Z"
 updatedDate: "2024-07-08T10:40:18.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657d5b9274351fdd7eb28f18_Blog_consent_marketing_messages_calls.svg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657d5b9274351fdd7eb28f18_Blog_consent_marketing_messages_calls.svg"
+image: "/images/blog/657d5b9274351fdd7eb28f18_Blog_consent_marketing_messages_calls.svg"
+thumbnail: "/images/blog/657d5b9274351fdd7eb28f18_Blog_consent_marketing_messages_calls.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

@@ -3,8 +3,8 @@ title: "Transparent pay-as-you-go pricing puts Plivo on top"
 description: "Pay-as-you-go pricing is a key Plivo advantage. Compare our pricing page and Twilio’s and see how much you can save."
 pubDate: "2021-09-14T00:00:00.000Z"
 updatedDate: "2023-12-21T11:08:55.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/65810cd379f8f1f21b55da12_transparent-pay-as-you-go-pricing-puts-plivo-on-top.svg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/65810cd379f8f1f21b55da12_transparent-pay-as-you-go-pricing-puts-plivo-on-top.svg"
+image: "/images/blog/65810cd379f8f1f21b55da12_transparent-pay-as-you-go-pricing-puts-plivo-on-top.svg"
+thumbnail: "/images/blog/65810cd379f8f1f21b55da12_transparent-pay-as-you-go-pricing-puts-plivo-on-top.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

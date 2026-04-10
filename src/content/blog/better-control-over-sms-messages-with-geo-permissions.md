@@ -3,8 +3,8 @@ title: "Better Control over SMS Messages with Geo Permissions"
 description: "Plivo's SMS API and Voice API enables businesses to communicate with their customers at global scale. Sign up for free now."
 pubDate: "2019-06-17T00:00:00.000Z"
 updatedDate: "2023-12-20T06:55:56.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/65828f7eda9a5896123d973f_geo-permissions-for-outbound-sms.png"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/65828f7eda9a5896123d973f_geo-permissions-for-outbound-sms.png"
+image: "/images/blog/65828f7eda9a5896123d973f_geo-permissions-for-outbound-sms.png"
+thumbnail: "/images/blog/65828f7eda9a5896123d973f_geo-permissions-for-outbound-sms.png"
 authorName: "Team Plivo"
 featured: true
 noindex: false

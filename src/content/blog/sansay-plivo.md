@@ -3,8 +3,8 @@ title: "Sansay and Plivo"
 description: "Plivo's SMS API and Voice API enables businesses to communicate with their customers at global scale. Sign up for free now."
 pubDate: "2013-02-28T00:00:00.000Z"
 updatedDate: "2023-12-22T05:22:37.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/65850a7c39ee9e4368161dd0_blog-pattern-design-7-thumbnail.svg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/65850a7c39ee9e4368161dd0_blog-pattern-design-7-thumbnail.svg"
+image: "/images/blog/65850a7c39ee9e4368161dd0_blog-pattern-design-7-thumbnail.svg"
+thumbnail: "/images/blog/65850a7c39ee9e4368161dd0_blog-pattern-design-7-thumbnail.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

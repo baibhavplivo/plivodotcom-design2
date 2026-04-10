@@ -3,8 +3,8 @@ title: "How IP Phones Use SIP Registration to Stay in Touch"
 description: "All about SIP registration, the SIP registration process, and how IP phones use SIP."
 pubDate: "2022-11-20T00:00:00.000Z"
 updatedDate: "2024-08-04T11:44:59.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657d88e089d3663accfa2b9b_sip-registration.svg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657d88e089d3663accfa2b9b_sip-registration.svg"
+image: "/images/blog/657d88e089d3663accfa2b9b_sip-registration.svg"
+thumbnail: "/images/blog/657d88e089d3663accfa2b9b_sip-registration.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

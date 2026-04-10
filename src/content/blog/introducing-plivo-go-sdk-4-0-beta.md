@@ -3,8 +3,8 @@ title: "Introducing Plivo Go SDK 4.0 Beta"
 description: "Plivo's SMS API and Voice API enables businesses to communicate with their customers at global scale. Sign up for free now."
 pubDate: "2017-10-25T00:00:00.000Z"
 updatedDate: "2023-12-21T06:22:00.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/6583d928108d42fc5fd02e94_introducing-plivo-go-sdk-4-0-beta.png"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/6583d928108d42fc5fd02e94_introducing-plivo-go-sdk-4-0-beta.png"
+image: "/images/blog/6583d928108d42fc5fd02e94_introducing-plivo-go-sdk-4-0-beta.png"
+thumbnail: "/images/blog/6583d928108d42fc5fd02e94_introducing-plivo-go-sdk-4-0-beta.png"
 authorName: "Team Plivo"
 featured: true
 noindex: false

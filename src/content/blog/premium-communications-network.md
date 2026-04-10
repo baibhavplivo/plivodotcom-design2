@@ -3,8 +3,8 @@ title: "Guide to Plivo’s Premium Communications Network"
 description: "Plivo’s Premium Communications Network comprises 1,600+ telecom provider networks and connectivity in 190+ countries. Learn more about Plivo’s infrastructure."
 pubDate: "2022-01-05T00:00:00.000Z"
 updatedDate: "2024-06-22T13:47:34.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/65802cb52736ba720e59be78_pcn-blog-graphic.svg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/65802cb52736ba720e59be78_pcn-blog-graphic.svg"
+image: "/images/blog/65802cb52736ba720e59be78_pcn-blog-graphic.svg"
+thumbnail: "/images/blog/65802cb52736ba720e59be78_pcn-blog-graphic.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

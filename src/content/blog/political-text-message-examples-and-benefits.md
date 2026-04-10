@@ -3,8 +3,8 @@ title: "Drive Engagement with Political Texting: Examples, Benefits, and Best Pr
 description: "Political text messaging examples: Boost engagement through political texting. Explore real-world political text message examples, highlighting their benefits and proven best practices."
 pubDate: "2023-09-13T00:00:00.000Z"
 updatedDate: "2024-07-08T09:18:13.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657c3c725bd0d9bcf49b7471_blog_political_texting.svg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657c3c725bd0d9bcf49b7471_blog_political_texting.svg"
+image: "/images/blog/657c3c725bd0d9bcf49b7471_blog_political_texting.svg"
+thumbnail: "/images/blog/657c3c725bd0d9bcf49b7471_blog_political_texting.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

@@ -3,8 +3,8 @@ title: "How to Handle SMS and Voice Communications Using Go"
 description: "Send and receive SMS text messages and make and receive voice calls with Go, the Plivo Go SDK, and Plivo APIs."
 pubDate: "2022-06-14T00:00:00.000Z"
 updatedDate: "2023-12-21T10:28:19.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657fda1339f61b597a8ad6a7_go-developer-blog-graphics.svg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657fda1339f61b597a8ad6a7_go-developer-blog-graphics.svg"
+image: "/images/blog/657fda1339f61b597a8ad6a7_go-developer-blog-graphics.svg"
+thumbnail: "/images/blog/657fda1339f61b597a8ad6a7_go-developer-blog-graphics.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

@@ -3,8 +3,8 @@ title: "Get Extra Value from Your IVR Menu with PreAnswer"
 description: "Maximize the efficiency of your IVR menu with the powerful PreAnswer feature. Discover how PreAnswer can enhance customer experience, reduce wait times, and provide valuable information upfront."
 pubDate: "2023-09-11T00:00:00.000Z"
 updatedDate: "2024-02-16T10:50:14.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657c3d6e96d98f625b10e755_blog_preanswer.svg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657c3d6e96d98f625b10e755_blog_preanswer.svg"
+image: "/images/blog/657c3d6e96d98f625b10e755_blog_preanswer.svg"
+thumbnail: "/images/blog/657c3d6e96d98f625b10e755_blog_preanswer.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

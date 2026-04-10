@@ -3,8 +3,8 @@ title: "Benefits and Use Cases for Bulk SMS Marketing in India"
 description: "Market to a large audience through bulk sms marketing with Plivo. Read to know more about the benefits and use cases of bulk sms marketing in India."
 pubDate: "2023-07-25T00:00:00.000Z"
 updatedDate: "2024-07-14T10:59:53.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657d3aecf9ca94a81c5d4085_Blog_bulk_sms_marketing_india.svg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657d3aecf9ca94a81c5d4085_Blog_bulk_sms_marketing_india.svg"
+image: "/images/blog/657d3aecf9ca94a81c5d4085_Blog_bulk_sms_marketing_india.svg"
+thumbnail: "/images/blog/657d3aecf9ca94a81c5d4085_Blog_bulk_sms_marketing_india.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

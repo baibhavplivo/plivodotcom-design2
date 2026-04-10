@@ -3,8 +3,8 @@ title: "Plivo GDPR Update: CDR and MDR Compliance"
 description: "Plivo's SMS API and Voice API enables businesses to communicate with their customers at global scale. Sign up for free now."
 pubDate: "2018-04-20T00:00:00.000Z"
 updatedDate: "2024-07-08T10:58:35.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/6583cca3f31288d455a52c4c_Plivo-GDPR-Update.gif"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/6583cca3f31288d455a52c4c_Plivo-GDPR-Update.gif"
+image: "/images/blog/6583cca3f31288d455a52c4c_Plivo-GDPR-Update.gif"
+thumbnail: "/images/blog/6583cca3f31288d455a52c4c_Plivo-GDPR-Update.gif"
 authorName: "Team Plivo"
 featured: true
 noindex: false

@@ -3,8 +3,8 @@ title: "How to Send MMS in Ruby using Plivo’s Messaging API"
 description: "Plivo's SMS API and Voice API enables businesses to communicate with their customers at global scale. Sign up for free now."
 pubDate: "2022-05-06T00:00:00.000Z"
 updatedDate: "2024-01-15T09:18:11.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657fec85e4e11e1e96bb3cc5_mms-ruby.png"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657fec85e4e11e1e96bb3cc5_mms-ruby.png"
+image: "/images/blog/657fec85e4e11e1e96bb3cc5_mms-ruby.png"
+thumbnail: "/images/blog/657fec85e4e11e1e96bb3cc5_mms-ruby.png"
 authorName: "Team Plivo"
 featured: true
 noindex: false
@@ -12,7 +12,7 @@ categories: ["ruby-sdk", "sms-api", "mms", "how-to"]
 seoTitle: "How to Send MMS in Ruby using Plivo’s Messaging API"
 webflowItemId: "657fed6f2fbe16800cac70d8"
 ---
-<h2>Overview</h2><p>This guide shows how to <a href="https://www.plivo.com/docs/sms/use-cases/send-an-mms/java/">send an MMS</a> message to any phone number. Businesses can make messages more meaningful by using <a href="https://www.plivo.com/blog/what-is-mms-messaging/">MMS</a> instead of SMS and including images, audio, and video to provide context.</p><p>Here’s how to use Plivo’s <a href="https://www.plivo.com/sms/">SMS APIs</a> to send outbound MMS text messages.</p><h2>How it works</h2><figure><div><img src="https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657fe98384117f80c25088ab_send-mms-api.jpg" loading="lazy" width="auto" height="auto" alt=""></div></figure><h2>Prerequisites</h2><p>To get started, you need a Plivo account — <a href="https://console.plivo.com/accounts/register/">sign up</a> with your work email address if you don’t have one already. If this is your first time using Plivo APIs, follow our instructions to <a href="https://www.plivo.com/docs/sdk/server/set-up-ruby-dev-environment-api-messaging/">set up a Ruby development environment</a>.</p><h2>Create the send MMS application</h2><p>Create a file called send_mms.rb and paste into it this code.</p><style>
+<h2>Overview</h2><p>This guide shows how to <a href="https://www.plivo.com/docs/sms/use-cases/send-an-mms/java/">send an MMS</a> message to any phone number. Businesses can make messages more meaningful by using <a href="https://www.plivo.com/blog/what-is-mms-messaging/">MMS</a> instead of SMS and including images, audio, and video to provide context.</p><p>Here’s how to use Plivo’s <a href="https://www.plivo.com/sms/">SMS APIs</a> to send outbound MMS text messages.</p><h2>How it works</h2><figure><div><img src="/images/blog/657fe98384117f80c25088ab_send-mms-api.jpg" loading="lazy" width="auto" height="auto" alt=""></div></figure><h2>Prerequisites</h2><p>To get started, you need a Plivo account — <a href="https://console.plivo.com/accounts/register/">sign up</a> with your work email address if you don’t have one already. If this is your first time using Plivo APIs, follow our instructions to <a href="https://www.plivo.com/docs/sdk/server/set-up-ruby-dev-environment-api-messaging/">set up a Ruby development environment</a>.</p><h2>Create the send MMS application</h2><p>Create a file called send_mms.rb and paste into it this code.</p><style>
 .highlight .hll { background-color: #ffffcc }
 .highlight .c { color: #008800; font-style: italic } /* Comment */
 .highlight .err { color: #a61717; /* background-color: #e3d2d2 */ } /* Error */

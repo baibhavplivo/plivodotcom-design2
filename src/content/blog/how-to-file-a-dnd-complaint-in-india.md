@@ -3,8 +3,8 @@ title: "What is DND? How to File a DND Complaint in India?"
 description: "DND Complaint- How to register a dnd complaint in India. Don’t let DND filters come between you and your customers. Sign up with Plivo today!"
 pubDate: "2023-07-24T00:00:00.000Z"
 updatedDate: "2024-07-17T03:35:13.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657d3bd754838aafd2038474_Blog_file_dnd_complaint_india.svg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657d3bd754838aafd2038474_Blog_file_dnd_complaint_india.svg"
+image: "/images/blog/657d3bd754838aafd2038474_Blog_file_dnd_complaint_india.svg"
+thumbnail: "/images/blog/657d3bd754838aafd2038474_Blog_file_dnd_complaint_india.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

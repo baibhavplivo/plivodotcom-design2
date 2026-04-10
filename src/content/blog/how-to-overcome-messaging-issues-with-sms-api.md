@@ -3,8 +3,8 @@ title: "Overcome SMS Messaging Roadblocks with an SMS API Platform"
 description: "If you’re not using an SMS API provider, delivering messages to your customers is like a bad game of telephone. Here’s how to overcome your comms roadblocks."
 pubDate: "2021-04-06T00:00:00.000Z"
 updatedDate: "2024-08-16T04:14:49.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/65819bf8eafd781a6ae5cdc0_roadblocks-sms-messaging.png"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/65819bf8eafd781a6ae5cdc0_roadblocks-sms-messaging.png"
+image: "/images/blog/65819bf8eafd781a6ae5cdc0_roadblocks-sms-messaging.png"
+thumbnail: "/images/blog/65819bf8eafd781a6ae5cdc0_roadblocks-sms-messaging.png"
 authorName: "Team Plivo"
 featured: true
 noindex: false

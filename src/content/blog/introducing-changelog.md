@@ -3,8 +3,8 @@ title: "Introducing the Plivo Changelog"
 description: "Introducing the Plivo Changelog - Stay updated with the latest news from Plivo. Subscribe for announcements on new products, features and preview of upcoming launches."
 pubDate: "2023-03-13T00:00:00.000Z"
 updatedDate: "2023-12-21T10:11:52.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657d649b3e44cc3168dc881e_blog_changelog.svg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657d649b3e44cc3168dc881e_blog_changelog.svg"
+image: "/images/blog/657d649b3e44cc3168dc881e_blog_changelog.svg"
+thumbnail: "/images/blog/657d649b3e44cc3168dc881e_blog_changelog.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

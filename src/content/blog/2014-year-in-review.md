@@ -3,8 +3,8 @@ title: "2014 Year in Review"
 description: "Plivo's SMS API and Voice API enables businesses to communicate with their customers at global scale. Sign up for free now."
 pubDate: "2015-01-07T00:00:00.000Z"
 updatedDate: "2023-12-22T03:59:36.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/658509282b9c762a8eac4516_2014YIR-banner.png"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/658509282b9c762a8eac4516_2014YIR-banner.png"
+image: "/images/blog/658509282b9c762a8eac4516_2014YIR-banner.png"
+thumbnail: "/images/blog/658509282b9c762a8eac4516_2014YIR-banner.png"
 authorName: "Team Plivo"
 featured: true
 noindex: false

@@ -3,8 +3,8 @@ title: "Plivo Recognized as Best CPaaS Platform of 2022 by UC Today"
 description: "Plivo has won UC Today’s Innovation Award for Best CPaaS Platform thanks to our innovation around 10DLC management."
 pubDate: "2022-07-29T00:00:00.000Z"
 updatedDate: "2023-12-21T10:25:50.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657d9f85e4daac8653bb452d_plivo-850x425-cpaas.jpg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657d9f85e4daac8653bb452d_plivo-850x425-cpaas.jpg"
+image: "/images/blog/657d9f85e4daac8653bb452d_plivo-850x425-cpaas.jpg"
+thumbnail: "/images/blog/657d9f85e4daac8653bb452d_plivo-850x425-cpaas.jpg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

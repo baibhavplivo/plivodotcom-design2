@@ -3,8 +3,8 @@ title: "Introducing Multiparty Calls with Plivo"
 description: "Plivo introduces a new multiparty call component, now available in public beta."
 pubDate: "2021-04-20T00:00:00.000Z"
 updatedDate: "2023-12-21T11:35:42.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/658199767dc6d6b4866e4a60_ic-multi-part-call.png"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/658199767dc6d6b4866e4a60_ic-multi-part-call.png"
+image: "/images/blog/658199767dc6d6b4866e4a60_ic-multi-part-call.png"
+thumbnail: "/images/blog/658199767dc6d6b4866e4a60_ic-multi-part-call.png"
 authorName: "Team Plivo"
 featured: true
 noindex: false

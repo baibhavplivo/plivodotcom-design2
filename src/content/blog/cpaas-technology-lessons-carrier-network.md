@@ -3,8 +3,8 @@ title: "Lessons in CPaaS Technology Leadership: Having Our Own Carrier Network M
 description: "As a CPaaS technology leader, Plivo has learned that if you want to create great customer experiences, you can’t take carrier network quality for granted."
 pubDate: "2020-10-13T00:00:00.000Z"
 updatedDate: "2023-12-21T12:19:03.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/658263fd3553da3150190f8b_Our_Own_Carrier_Network_Matters_new_v2_final.png"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/658263fd3553da3150190f8b_Our_Own_Carrier_Network_Matters_new_v2_final.png"
+image: "/images/blog/658263fd3553da3150190f8b_Our_Own_Carrier_Network_Matters_new_v2_final.png"
+thumbnail: "/images/blog/658263fd3553da3150190f8b_Our_Own_Carrier_Network_Matters_new_v2_final.png"
 authorName: "Team Plivo"
 featured: true
 noindex: false

@@ -3,8 +3,8 @@ title: "Lessons in CPaaS Leadership: Reliability Rules"
 description: "CPaaS Lessons: How Plivo builds reliability into its cloud communication platform."
 pubDate: "2021-02-26T00:00:00.000Z"
 updatedDate: "2024-08-16T03:47:17.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/65824ffc229c2d9c9e04a166_configurable-callback-v1.svg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/65824ffc229c2d9c9e04a166_configurable-callback-v1.svg"
+image: "/images/blog/65824ffc229c2d9c9e04a166_configurable-callback-v1.svg"
+thumbnail: "/images/blog/65824ffc229c2d9c9e04a166_configurable-callback-v1.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

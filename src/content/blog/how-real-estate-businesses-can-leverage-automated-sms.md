@@ -3,8 +3,8 @@ title: "How Automated Text Messaging Can Help Real Estate Businesses"
 description: "Automated SMS for real estate: Learn how your real estate business can leverage the power of sms marketing. Know all about the benefits, use cases and best practices of real estate text marketing at Plivo. Sign up today!"
 pubDate: "2023-03-23T00:00:00.000Z"
 updatedDate: "2024-05-23T09:18:12.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657d625a42a3aaa03556220f_Automated_Text_Messaging_Real_Estate.svg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657d625a42a3aaa03556220f_Automated_Text_Messaging_Real_Estate.svg"
+image: "/images/blog/657d625a42a3aaa03556220f_Automated_Text_Messaging_Real_Estate.svg"
+thumbnail: "/images/blog/657d625a42a3aaa03556220f_Automated_Text_Messaging_Real_Estate.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

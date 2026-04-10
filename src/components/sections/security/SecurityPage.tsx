@@ -33,7 +33,7 @@ const complianceCerts = [
     logo: "/images/compliance/AICPA black.svg",
     description:
       "Plivo is SOC 2 certified. Our SOC 3 report provides more details.",
-    link: "https://cdn.prod.website-files.com/6565737286e587567248583f/6870a880e30171876a93db9f_Plivo_SOC3_Report.pdf",
+    link: "/docs/Plivo_SOC3_Report.pdf",
     linkText: "Read report",
   },
   {
@@ -53,7 +53,7 @@ const complianceCerts = [
     logo: "/images/compliance/Star Black.svg",
     description:
       "Plivo has completed the CSA STAR Level 1 self-assessment, demonstrating transparency and adherence to cloud security controls.",
-    link: "https://cdn.prod.website-files.com/6565737286e587567248583f/6870a880e30171876a93db9f_Plivo_SOC3_Report.pdf",
+    link: "/docs/Plivo_SOC3_Report.pdf",
     linkText: "View listing",
   },
   {

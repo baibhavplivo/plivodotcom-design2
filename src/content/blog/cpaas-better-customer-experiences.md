@@ -3,8 +3,8 @@ title: "Connectivity and Communications for Better Customer Experience in 2021"
 description: "A CPaaS can help businesses create better experiences and drive loyalty in the upcoming year."
 pubDate: "2020-12-23T00:00:00.000Z"
 updatedDate: "2024-05-23T09:45:47.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/65825df790c9528107f61aa4_3-ways-to-meet-new-and-constantly-changing-customer-expectations-ogi.png"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/65825df790c9528107f61aa4_3-ways-to-meet-new-and-constantly-changing-customer-expectations-ogi.png"
+image: "/images/blog/65825df790c9528107f61aa4_3-ways-to-meet-new-and-constantly-changing-customer-expectations-ogi.png"
+thumbnail: "/images/blog/65825df790c9528107f61aa4_3-ways-to-meet-new-and-constantly-changing-customer-expectations-ogi.png"
 authorName: "Team Plivo"
 featured: true
 noindex: false

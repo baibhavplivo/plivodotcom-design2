@@ -3,8 +3,8 @@ title: "3 SMS and Voice Use Cases You Can Build with Minimal Dev Time"
 description: "Create and deploy new SMS and voice integration services with minimal development time using PHLO from Plivo."
 pubDate: "2020-09-02T00:00:00.000Z"
 updatedDate: "2024-08-16T04:11:16.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/65826eb62753674233fbd56b_use-cases.svg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/65826eb62753674233fbd56b_use-cases.svg"
+image: "/images/blog/65826eb62753674233fbd56b_use-cases.svg"
+thumbnail: "/images/blog/65826eb62753674233fbd56b_use-cases.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false

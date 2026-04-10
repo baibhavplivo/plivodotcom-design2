@@ -3,8 +3,8 @@ title: "How to Handle SMS and Voice Communications Using Node"
 description: "Send and receive SMS text messages and make and receive voice calls with Node, the Plivo Node SDK, and Plivo APIs."
 pubDate: "2022-06-07T00:00:00.000Z"
 updatedDate: "2024-07-14T10:56:24.000Z"
-image: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657fdce3c7fb29abbebd88e4_handling-sms-and-voice-communications-using-node.svg"
-thumbnail: "https://uploads-ssl.webflow.com/656ac26f3a3f6e1cc08ba7a5/657fdce3c7fb29abbebd88e4_handling-sms-and-voice-communications-using-node.svg"
+image: "/images/blog/657fdce3c7fb29abbebd88e4_handling-sms-and-voice-communications-using-node.svg"
+thumbnail: "/images/blog/657fdce3c7fb29abbebd88e4_handling-sms-and-voice-communications-using-node.svg"
 authorName: "Team Plivo"
 featured: true
 noindex: false
