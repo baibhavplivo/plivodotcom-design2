@@ -129,12 +129,14 @@ export default function CmsEditor({ slug, onBack }: CmsEditorProps) {
   const postSlugRef = useRef(postSlug);
   const lastEditModeRef = useRef(lastEditMode);
   const sourceHtmlRef = useRef(sourceHtml);
+  const sourceModeRef = useRef(sourceMode);
   const stepRef = useRef(step);
   useEffect(() => { fmRef.current = fm; }, [fm]);
   useEffect(() => { shaRef.current = sha; }, [sha]);
   useEffect(() => { postSlugRef.current = postSlug; }, [postSlug]);
   useEffect(() => { lastEditModeRef.current = lastEditMode; }, [lastEditMode]);
   useEffect(() => { sourceHtmlRef.current = sourceHtml; }, [sourceHtml]);
+  useEffect(() => { sourceModeRef.current = sourceMode; }, [sourceMode]);
   useEffect(() => { stepRef.current = step; }, [step]);
 
   // TipTap editor
@@ -437,7 +439,7 @@ export default function CmsEditor({ slug, onBack }: CmsEditorProps) {
           editor.chain().focus().redo().run();
           break;
         case "source": {
-          if (!sourceMode) {
+          if (!sourceModeRef.current) {
             // Entering source mode — capture current HTML
             const html = editor.getHTML();
             setSourceHtml(html);
@@ -448,7 +450,7 @@ export default function CmsEditor({ slug, onBack }: CmsEditorProps) {
               "Switching to visual mode may alter custom HTML (iframes, inline styles, etc). Continue?"
             );
             if (proceed) {
-              editor.commands.setContent(sourceHtml);
+              editor.commands.setContent(sourceHtmlRef.current);
               setSourceMode(false);
               setLastEditMode("wysiwyg");
             }
@@ -465,7 +467,7 @@ export default function CmsEditor({ slug, onBack }: CmsEditorProps) {
       toolbar.removeEventListener("click", handleToolbar);
       toolbar.removeEventListener("mousedown", preventBlur);
     };
-  }, [editor, sourceMode, sourceHtml]);
+  }, [editor]);
 
   // Step navigation handlers — uses refs so this effect only attaches once
   useEffect(() => {
