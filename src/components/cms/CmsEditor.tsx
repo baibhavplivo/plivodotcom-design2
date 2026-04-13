@@ -467,7 +467,7 @@ export default function CmsEditor({ slug, onBack }: CmsEditorProps) {
       toolbar.removeEventListener("click", handleToolbar);
       toolbar.removeEventListener("mousedown", preventBlur);
     };
-  }, [editor]);
+  }, [editor, loading]);
 
   // Step navigation handlers — uses refs so this effect only attaches once
   useEffect(() => {
