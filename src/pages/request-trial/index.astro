@@ -85,7 +85,7 @@ import RequestTrialHero from "@/components/sections/request-trial/RequestTrialHe
   <!-- jQuery (required by Netlify form-submission.js) -->
   <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
-  <!-- Prevent native form submit + show thank-you when chat widget appears (proves submission succeeded) -->
+  <!-- Prevent native form submit + show thank-you on successful submission -->
   <script is:inline>
   (function() {
     document.addEventListener("submit", function(e) {
@@ -105,55 +105,18 @@ import RequestTrialHero from "@/components/sections/request-trial/RequestTrialHe
       if (calWrapper) calWrapper.style.display = "none";
     }
 
-    var chatWidget = document.getElementById("chat-widget");
-    if (chatWidget) {
-      var observer = new MutationObserver(function(mutations) {
-        for (var i = 0; i < mutations.length; i++) {
-          var m = mutations[i];
-          if (m.type === "attributes" && m.attributeName === "style") {
-            var display = chatWidget.style.display;
-            if (display === "block" || display === "") {
-              observer.disconnect();
-              setTimeout(showThankYou, 1200);
-              return;
-            }
-          }
-        }
-      });
-      observer.observe(chatWidget, { attributes: true, attributeFilter: ["style"] });
-
-      var vpf2 = document.querySelector('[vpf="2"]');
-      if (vpf2) {
-        var observer2 = new MutationObserver(function(mutations) {
-          for (var i = 0; i < mutations.length; i++) {
-            var m = mutations[i];
-            if (m.type === "attributes" && m.attributeName === "style") {
-              var display = vpf2.style.display;
-              if (display === "block" || display === "") {
-                observer2.disconnect();
-                setTimeout(showThankYou, 1200);
-                return;
-              }
-            }
-          }
-        });
-        observer2.observe(vpf2, { attributes: true, attributeFilter: ["style"] });
-      }
-    }
-
     var submitBtn = document.getElementById("vpf-submit-btn");
     if (submitBtn) {
-      var submitObserver = new MutationObserver(function() {
+      var wasSubmitting = false;
+      var checkInterval = setInterval(function() {
         var text = (submitBtn.innerText || submitBtn.textContent || "").trim();
-        if (text !== "Submitting..." && submitBtn.classList.contains("is-pressed") === false && submitBtn._wasSubmitting) {
-          submitObserver.disconnect();
-          setTimeout(showThankYou, 800);
-        }
         if (text === "Submitting...") {
-          submitBtn._wasSubmitting = true;
+          wasSubmitting = true;
+        } else if (wasSubmitting) {
+          clearInterval(checkInterval);
+          setTimeout(showThankYou, 500);
         }
-      });
-      submitObserver.observe(submitBtn, { characterData: true, childList: true, subtree: true, attributes: true });
+      }, 200);
     }
   })();
   </script>

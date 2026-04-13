@@ -85,7 +85,7 @@ import ContactSalesHero from "@/components/sections/contact/ContactSalesHero";
   <!-- jQuery (required by Netlify form-submission.js) -->
   <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
-  <!-- Prevent native form submit + show thank-you when chat widget appears (proves submission succeeded) -->
+  <!-- Prevent native form submit + show thank-you on successful submission -->
   <script is:inline>
   (function() {
     document.addEventListener("submit", function(e) {
@@ -105,58 +105,20 @@ import ContactSalesHero from "@/components/sections/contact/ContactSalesHero";
       if (calWrapper) calWrapper.style.display = "none";
     }
 
-    // Watch for chat widget becoming visible — form-submission.js shows it on success
-    var chatWidget = document.getElementById("chat-widget");
-    if (chatWidget) {
-      var observer = new MutationObserver(function(mutations) {
-        for (var i = 0; i < mutations.length; i++) {
-          var m = mutations[i];
-          if (m.type === "attributes" && m.attributeName === "style") {
-            var display = chatWidget.style.display;
-            if (display === "block" || display === "") {
-              observer.disconnect();
-              setTimeout(showThankYou, 1200);
-              return;
-            }
-          }
-        }
-      });
-      observer.observe(chatWidget, { attributes: true, attributeFilter: ["style"] });
-
-      // Also watch parent [vpf="2"] in case jQuery sets display there
-      var vpf2 = document.querySelector('[vpf="2"]');
-      if (vpf2) {
-        var observer2 = new MutationObserver(function(mutations) {
-          for (var i = 0; i < mutations.length; i++) {
-            var m = mutations[i];
-            if (m.type === "attributes" && m.attributeName === "style") {
-              var display = vpf2.style.display;
-              if (display === "block" || display === "") {
-                observer2.disconnect();
-                setTimeout(showThankYou, 1200);
-                return;
-              }
-            }
-          }
-        });
-        observer2.observe(vpf2, { attributes: true, attributeFilter: ["style"] });
-      }
-    }
-
-    // Fallback: watch submit button text change to "Submitting..." then back
+    // Intercept the external script's onFormSuccess by watching the submit button.
+    // form-submission.js sets text to "Submitting..." on submit, then resets on success.
     var submitBtn = document.getElementById("vpf-submit-btn");
     if (submitBtn) {
-      var submitObserver = new MutationObserver(function() {
+      var wasSubmitting = false;
+      var checkInterval = setInterval(function() {
         var text = (submitBtn.innerText || submitBtn.textContent || "").trim();
-        if (text !== "Submitting..." && submitBtn.classList.contains("is-pressed") === false && submitBtn._wasSubmitting) {
-          submitObserver.disconnect();
-          setTimeout(showThankYou, 800);
-        }
         if (text === "Submitting...") {
-          submitBtn._wasSubmitting = true;
+          wasSubmitting = true;
+        } else if (wasSubmitting) {
+          clearInterval(checkInterval);
+          setTimeout(showThankYou, 500);
         }
-      });
-      submitObserver.observe(submitBtn, { characterData: true, childList: true, subtree: true, attributes: true });
+      }, 200);
     }
   })();
   </script>
