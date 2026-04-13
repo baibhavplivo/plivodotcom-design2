@@ -58,16 +58,28 @@ const posthogHost = import.meta.env.PUBLIC_POSTHOG_HOST || "https://us.i.posthog
     (function() {
       var SUPPORTED = ["US","CA","BR","AR","GB","DE","FR","NL","BE","IE","ES","PT","IT","IL","AE","SA","QA","BH","IN","SG","MY","ID","VN","AU","NZ"];
       var SIGNUP_URL = "https://plivo.com/signup";
+      var TRIAL_URL = "/request-trial/";
 
       function updateCTAs() {
         var country = "";
         try { country = sessionStorage.getItem("plivo_geo_country") || ""; } catch(e) {}
         if (!country) return false;
 
+        var isSupported = SUPPORTED.indexOf(country.toUpperCase()) >= 0;
         var links = document.querySelectorAll('[data-geo-cta="signup"]');
         for (var i = 0; i < links.length; i++) {
           var el = links[i];
-          el.setAttribute("href", SIGNUP_URL);
+          if (isSupported) {
+            el.setAttribute("href", SIGNUP_URL);
+          } else {
+            el.setAttribute("href", TRIAL_URL);
+            el.removeAttribute("target");
+            el.removeAttribute("rel");
+            var text = (el.textContent || "").trim().toLowerCase();
+            if (text === "sign up for free" || text === "start for free" || text === "sign up now" || text === "get started" || text === "get access") {
+              el.textContent = "Request a trial";
+            }
+          }
         }
         return true;
       }

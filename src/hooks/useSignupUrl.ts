@@ -15,5 +15,8 @@ export function useSignupUrl(): SignupUrlResult {
   const { rawCountry } = useGeoCountry();
   const category = getGeoCategory(rawCountry);
 
-  return { url: SIGNUP_URL, label: "Sign up for free", category };
+  if (category === "supported") {
+    return { url: SIGNUP_URL, label: "Sign up for free", category };
+  }
+  return { url: "/request-trial/", label: "Request a trial", category };
 }
