@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useGeoCountry } from "@/hooks/useGeoCountry";
+import { getGeoCategory } from "@/data/geo-categories";
 import { syncFormAttribution } from "@/lib/form-attribution";
 
 // International logos (default)
@@ -54,17 +55,38 @@ const COMPLIANCE_BADGES = [
 
 export default function ContactSalesHero() {
   const { rawCountry } = useGeoCountry();
+  const category = getGeoCategory(rawCountry);
   const isIndia = rawCountry === "IN";
+
+  const [geoReady, setGeoReady] = useState(() => {
+    if (typeof window === "undefined") return false;
+    try { return !!sessionStorage.getItem("plivo_geo_country"); } catch { return false; }
+  });
+
+  useEffect(() => {
+    if (geoReady) return;
+    const poll = setInterval(() => {
+      try {
+        if (sessionStorage.getItem("plivo_geo_country")) {
+          setGeoReady(true);
+          clearInterval(poll);
+        }
+      } catch { /* ignore */ }
+    }, 200);
+    const timeout = setTimeout(() => { setGeoReady(true); clearInterval(poll); }, 4000);
+    return () => { clearInterval(poll); clearTimeout(timeout); };
+  }, [geoReady]);
 
   const logosRow1 = isIndia ? indiaLogosRow1 : intlLogosRow1;
   const logosRow2 = isIndia ? indiaLogosRow2 : intlLogosRow2;
 
   // Sync UTM attribution fields from cookies into hidden form fields
   useEffect(() => {
+    if (!geoReady || category === "unsupported") return;
     const form = document.getElementById("contact-form") as HTMLFormElement | null;
     if (!form) return;
     syncFormAttribution(form);
-  }, []);
+  }, [geoReady, category]);
 
   // Initialize intl-tel-input on #phone
   useEffect(() => {
@@ -211,6 +233,39 @@ export default function ContactSalesHero() {
     textarea.addEventListener("input", update);
     return () => textarea.removeEventListener("input", update);
   }, []);
+
+  // Loading state while waiting for geo data
+  if (!geoReady) {
+    return (
+      <section className="bg-white pt-24 pb-24 flex items-center justify-center min-h-[60vh]">
+        <div className="text-center">
+          <div className="w-8 h-8 border-2 border-gray-300 border-t-black rounded-full animate-spin mx-auto" />
+          <p className="mt-4 text-sm text-gray-500">Loading...</p>
+        </div>
+      </section>
+    );
+  }
+
+  // Unsupported: show "not available in your region" message
+  if (category === "unsupported") {
+    return (
+      <section className="bg-white pt-12 sm:pt-16 md:pt-24 pb-12 sm:pb-16 md:pb-24">
+        <div className="container mx-auto max-w-2xl px-4 text-center">
+          <div className="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center mx-auto mb-6">
+            <svg className="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" />
+            </svg>
+          </div>
+          <h1 className="font-sora text-[2rem] sm:text-[2.5rem] font-normal leading-[1.1] tracking-[-0.02em] text-black">
+            We're not available in your region yet
+          </h1>
+          <p className="text-base text-gray-600 mt-4 max-w-lg mx-auto leading-relaxed">
+            Plivo services are currently available in select countries. Please check back later for updates on availability in your area.
+          </p>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="relative z-[1] bg-white pt-2 sm:pt-3 md:pt-4 pb-0">

@@ -56,48 +56,18 @@ const posthogHost = import.meta.env.PUBLIC_POSTHOG_HOST || "https://us.i.posthog
     <!-- Geo-gated CTA rewriting for .astro components -->
     <script is:inline>
     (function() {
-      var CATEGORY_A = ["US","CA","IN","GB","AU","NZ","SG"];
-      var CATEGORY_B = ["BR","AE","AR","DE","FR","NL","BE","IE","IT","IL","MY","ID","PT"];
+      var SUPPORTED = ["US","CA","BR","AR","GB","DE","FR","NL","BE","IE","ES","PT","IT","IL","AE","SA","QA","BH","IN","SG","MY","ID","VN","AU","NZ"];
       var SIGNUP_URL = "https://plivo.com/signup";
-      var TRIAL_URL = "/request-trial/";
-      var SALES_URL = "/contact/sales/";
-
-      function getCategory(code) {
-        if (!code) return "";
-        code = code.toUpperCase();
-        if (CATEGORY_A.indexOf(code) >= 0) return "A";
-        if (CATEGORY_B.indexOf(code) >= 0) return "B";
-        return "unsupported";
-      }
 
       function updateCTAs() {
         var country = "";
         try { country = sessionStorage.getItem("plivo_geo_country") || ""; } catch(e) {}
         if (!country) return false;
 
-        var cat = getCategory(country);
         var links = document.querySelectorAll('[data-geo-cta="signup"]');
         for (var i = 0; i < links.length; i++) {
           var el = links[i];
-          if (cat === "A") {
-            el.setAttribute("href", SIGNUP_URL);
-          } else if (cat === "B") {
-            el.setAttribute("href", TRIAL_URL);
-            el.removeAttribute("target");
-            el.removeAttribute("rel");
-            var text = (el.textContent || "").trim().toLowerCase();
-            if (text === "sign up for free" || text === "start for free" || text === "sign up now" || text === "get started" || text === "get access") {
-              el.textContent = "Request a trial";
-            }
-          } else {
-            el.setAttribute("href", TRIAL_URL);
-            el.removeAttribute("target");
-            el.removeAttribute("rel");
-            var text2 = (el.textContent || "").trim().toLowerCase();
-            if (text2 === "sign up for free" || text2 === "start for free" || text2 === "sign up now" || text2 === "get started" || text2 === "get access") {
-              el.textContent = "Request a trial";
-            }
-          }
+          el.setAttribute("href", SIGNUP_URL);
         }
         return true;
       }

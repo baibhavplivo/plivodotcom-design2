@@ -78,9 +78,9 @@ export default function RequestTrialHero() {
     return () => { clearInterval(poll); clearTimeout(timeout); };
   }, [geoReady]);
 
-  // Redirect Cat A users to signup
+  // Redirect supported users to signup
   useEffect(() => {
-    if (geoReady && category === "A") {
+    if (geoReady && category === "supported") {
       window.location.href = SIGNUP_URL;
     }
   }, [geoReady, category]);
@@ -90,7 +90,7 @@ export default function RequestTrialHero() {
 
   // Sync UTM attribution on mount
   useEffect(() => {
-    if (!geoReady || category === "A" || category === "unsupported") return;
+    if (!geoReady || category === "supported" || category === "unsupported") return;
     const form = document.getElementById("contact-form") as HTMLFormElement | null;
     if (!form) return;
     syncFormAttribution(form);
@@ -98,7 +98,7 @@ export default function RequestTrialHero() {
 
   // Initialize intl-tel-input on #phone
   useEffect(() => {
-    if (!geoReady || category === "A" || category === "unsupported") return;
+    if (!geoReady || category === "supported" || category === "unsupported") return;
 
     let cancelled = false;
     let pollTimer: ReturnType<typeof setInterval>;
@@ -210,7 +210,7 @@ export default function RequestTrialHero() {
 
   // Detailed requirement: live character counter
   useEffect(() => {
-    if (!geoReady || category === "A" || category === "unsupported") return;
+    if (!geoReady || category === "supported" || category === "unsupported") return;
 
     const textarea = document.getElementById("detailed_requirement") as HTMLTextAreaElement | null;
     const counter = document.getElementById("req-char-count");
@@ -248,8 +248,8 @@ export default function RequestTrialHero() {
     );
   }
 
-  // Cat A: show redirect spinner (useEffect above handles the actual redirect)
-  if (category === "A") {
+  // Supported: show redirect spinner (useEffect above handles the actual redirect)
+  if (category === "supported") {
     return (
       <section className="bg-white pt-24 pb-24 flex items-center justify-center min-h-[60vh]">
         <div className="text-center">

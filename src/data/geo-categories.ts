@@ -1,26 +1,23 @@
 // Country categories for signup CTA routing
-// Category A: direct signup, Category B: request trial form, Unsupported: request trial page (blocked)
+// Supported: direct signup, Unsupported: blocked with "not available in your region"
 
-export const CATEGORY_A: ReadonlySet<string> = new Set([
-  "US", "CA", "IN", "GB", "AU", "NZ", "SG",
+export const SUPPORTED_COUNTRIES: ReadonlySet<string> = new Set([
+  "US", "CA", "BR", "AR",
+  "GB", "DE", "FR", "NL", "BE", "IE", "ES", "PT", "IT", "IL",
+  "AE", "SA", "QA", "BH",
+  "IN", "SG", "MY", "ID", "VN",
+  "AU", "NZ",
 ]);
 
-export const CATEGORY_B: ReadonlySet<string> = new Set([
-  "BR", "AE", "AR", "DE", "FR", "NL", "BE", "IE", "IT",
-  "IL", "MY", "ID", "PT",
-]);
-
-export type GeoCategory = "A" | "B" | "unsupported";
+export type GeoCategory = "supported" | "unsupported";
 
 export function getGeoCategory(countryCode: string): GeoCategory {
   const code = countryCode.toUpperCase();
-  if (CATEGORY_A.has(code)) return "A";
-  if (CATEGORY_B.has(code)) return "B";
+  if (SUPPORTED_COUNTRIES.has(code)) return "supported";
   return "unsupported";
 }
 
 export const SIGNUP_URL = "https://plivo.com/signup";
-export const REQUEST_TRIAL_URL = "/request-trial/";
 export const CONTACT_SALES_URL = "/contact/sales/";
 
 /** Countries where cookie consent banners are legally required */
