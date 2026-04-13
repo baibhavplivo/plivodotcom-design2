@@ -99,38 +99,31 @@ import StartupsHero from "@/components/sections/startups/StartupsHero";
       try { navigator.sendBeacon("/api/alerts/form-failure", JSON.stringify(payload)); } catch(e) {}
     }
 
-    // Intercept fetch to Netlify submit — show thank-you on success, alert on failure
     var origFetch = window.fetch;
     window.fetch = function(url, opts) {
       var args = arguments;
-      if (typeof url === "string" && url.indexOf("netlify") !== -1 && url.indexOf("submit") !== -1) {
+      if (typeof url === "string" && url.indexOf("netlify") !== -1 && url.indexOf("/submit") !== -1 && url.indexOf("chat-state") === -1) {
         return origFetch.apply(this, args).then(function(response) {
-          var cloned = response.clone();
-          cloned.json().then(function(data) {
-            if (response.ok || (data && data.status === "submitted")) {
-              setTimeout(function() {
-                var s1 = document.querySelector('[vpf="1"]');
-                var s2 = document.querySelector('[vpf="2"]');
-                var s4 = document.querySelector('[vpf="4"]');
-                if (s1) s1.style.display = "none";
-                if (s2) s2.style.display = "none";
-                if (s4) s4.style.display = "block";
-              }, 800);
-            } else {
-              alertFormFailure("startups", response.status, JSON.stringify(data).slice(0, 200));
-            }
-          }).catch(function() {
-            if (response.ok) {
-              setTimeout(function() {
-                var s1 = document.querySelector('[vpf="1"]');
-                var s2 = document.querySelector('[vpf="2"]');
-                var s4 = document.querySelector('[vpf="4"]');
-                if (s1) s1.style.display = "none";
-                if (s2) s2.style.display = "none";
-                if (s4) s4.style.display = "block";
-              }, 800);
-            }
-          });
+          if (response.ok) {
+            setTimeout(function() {
+              var s1 = document.querySelector('[vpf="1"]');
+              var s2 = document.querySelector('[vpf="2"]');
+              var s4 = document.querySelector('[vpf="4"]');
+              var chatWidget = document.getElementById("chat-widget");
+              var calWrapper = document.querySelector(".cal-embed-wrapper");
+              if (s1) s1.style.display = "none";
+              if (s2) s2.style.display = "none";
+              if (s4) s4.style.display = "block";
+              if (chatWidget) chatWidget.style.display = "none";
+              if (calWrapper) calWrapper.style.display = "none";
+            }, 1500);
+          } else {
+            response.clone().text().then(function(body) {
+              alertFormFailure("startups", response.status, body.slice(0, 200));
+            }).catch(function() {
+              alertFormFailure("startups", response.status, response.statusText);
+            });
+          }
           return response;
         }).catch(function(err) {
           alertFormFailure("startups", 0, err.message || "Network error");
