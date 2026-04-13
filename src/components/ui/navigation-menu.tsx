@@ -55,10 +55,18 @@ const NavigationMenuTrigger = React.forwardRef<
     {...props}
   >
     {children}{' '}
-    <ChevronDown
+    <svg
       className="relative top-px ml-1 size-3 transition duration-300 group-data-[state=open]:rotate-180"
       aria-hidden="true"
-    />
+      viewBox="0 0 20 20"
+      fill="currentColor"
+    >
+      <circle cx="3" cy="8" r="1.4" />
+      <circle cx="6.5" cy="11.5" r="1.4" />
+      <circle cx="10" cy="15" r="1.4" />
+      <circle cx="13.5" cy="11.5" r="1.4" />
+      <circle cx="17" cy="8" r="1.4" />
+    </svg>
   </NavigationMenuPrimitive.Trigger>
 ));
 NavigationMenuTrigger.displayName = NavigationMenuPrimitive.Trigger.displayName;

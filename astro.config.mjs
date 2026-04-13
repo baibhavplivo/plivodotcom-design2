@@ -34,6 +34,7 @@ export default defineConfig({
     react(),
   ],
   output: "static",
+  trailingSlash: "always",
 
   vite: {
     plugins: [tailwindcss()],

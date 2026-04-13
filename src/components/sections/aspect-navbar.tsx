@@ -141,7 +141,7 @@ export default function Navbar({ currentPath }: NavbarProps) {
             {/* Auth Buttons */}
             <div className="flex items-center gap-2.5">
               <a
-                href="/login"
+                href="/login/"
                 className={`transition-opacity duration-300 ${isMenuOpen ? "max-lg:pointer-events-none max-lg:opacity-0" : "opacity-100"}`}
               >
                 <Button size="sm">Login</Button>

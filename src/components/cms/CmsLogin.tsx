@@ -1,16 +1,96 @@
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState, useCallback } from "react";
 import { login } from "./cms-api";
+
+// Turnstile site key — replace with your actual key from Cloudflare Dashboard
+const TURNSTILE_SITE_KEY = "0x4AAAAAAC5MIQRQhUfMm71t";
 
 interface CmsLoginProps {
   onSuccess: () => void;
 }
 
+declare global {
+  interface Window {
+    turnstile?: {
+      render: (
+        container: string | HTMLElement,
+        options: {
+          sitekey: string;
+          callback: (token: string) => void;
+          "error-callback"?: () => void;
+          "expired-callback"?: () => void;
+          theme?: "light" | "dark" | "auto";
+          size?: "normal" | "compact";
+        }
+      ) => string;
+      reset: (widgetId: string) => void;
+      remove: (widgetId: string) => void;
+    };
+  }
+}
+
 export default function CmsLogin({ onSuccess }: CmsLoginProps) {
   const passwordRef = useRef<HTMLInputElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
+  const turnstileRef = useRef<HTMLDivElement>(null);
+  const widgetIdRef = useRef<string | null>(null);
+  const turnstileTokenRef = useRef<string | null>(null);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
+  const resetTurnstile = useCallback(() => {
+    turnstileTokenRef.current = null;
+    if (widgetIdRef.current && window.turnstile) {
+      window.turnstile.reset(widgetIdRef.current);
+    }
+  }, []);
+
+  // Load Turnstile script and render widget
+  useEffect(() => {
+    const container = turnstileRef.current;
+    if (!container) return;
+
+    function renderWidget() {
+      if (!window.turnstile || !container) return;
+      if (widgetIdRef.current) return; // already rendered
+      widgetIdRef.current = window.turnstile.render(container, {
+        sitekey: TURNSTILE_SITE_KEY,
+        callback: (token: string) => {
+          turnstileTokenRef.current = token;
+        },
+        "error-callback": () => {
+          turnstileTokenRef.current = null;
+        },
+        "expired-callback": () => {
+          turnstileTokenRef.current = null;
+        },
+        theme: "light",
+        size: "normal",
+      });
+    }
+
+    // If script already loaded
+    if (window.turnstile) {
+      renderWidget();
+      return;
+    }
+
+    // Load script
+    const script = document.createElement("script");
+    script.src =
+      "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
+    script.async = true;
+    script.onload = () => renderWidget();
+    document.head.appendChild(script);
+
+    return () => {
+      if (widgetIdRef.current && window.turnstile) {
+        window.turnstile.remove(widgetIdRef.current);
+        widgetIdRef.current = null;
+      }
+    };
+  }, []);
+
+  // Login handler
   useEffect(() => {
     const input = passwordRef.current;
     const button = buttonRef.current;
@@ -23,15 +103,24 @@ export default function CmsLogin({ onSuccess }: CmsLoginProps) {
         return;
       }
 
+      const turnstileToken = turnstileTokenRef.current;
+      if (!turnstileToken) {
+        setError("Please complete the CAPTCHA verification");
+        return;
+      }
+
       setLoading(true);
       setError("");
 
       try {
-        await login(password);
+        await login(password, turnstileToken);
         onSuccess();
-      } catch {
-        setError("Invalid password");
+      } catch (e) {
+        const msg =
+          e instanceof Error ? e.message : "Invalid password";
+        setError(msg);
         setLoading(false);
+        resetTurnstile();
       }
     };
 
@@ -47,7 +136,7 @@ export default function CmsLogin({ onSuccess }: CmsLoginProps) {
       button.removeEventListener("click", handleClick);
       input.removeEventListener("keydown", handleKeydown);
     };
-  }, [onSuccess]);
+  }, [onSuccess, resetTurnstile]);
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-gray-50 px-4">
@@ -77,6 +166,11 @@ export default function CmsLogin({ onSuccess }: CmsLoginProps) {
               placeholder="Enter CMS password"
               className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 placeholder-gray-400 outline-none transition-colors hover:border-gray-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
             />
+          </div>
+
+          {/* Turnstile CAPTCHA */}
+          <div className="mb-4 flex justify-center">
+            <div ref={turnstileRef} />
           </div>
 
           {error && (

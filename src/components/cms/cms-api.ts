@@ -66,10 +66,10 @@ async function apiFetch<T>(
   return res.json();
 }
 
-export async function login(password: string): Promise<void> {
+export async function login(password: string, turnstileToken?: string): Promise<void> {
   const data = await apiFetch<AuthResponse>("/api/cms/auth", {
     method: "POST",
-    body: JSON.stringify({ password }),
+    body: JSON.stringify({ password, turnstileToken }),
   });
   localStorage.setItem(TOKEN_KEY, data.token);
   localStorage.setItem(EXPIRES_KEY, String(data.expiresAt));

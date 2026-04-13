@@ -171,7 +171,7 @@ function VoicePricingContent({ selectedCountry, inline }: { selectedCountry: str
     return (
       <div className="text-center py-8">
         <p className="text-sm text-gray-500">Detailed voice pricing for {countryName} is available on request.</p>
-        <a href="/contact/sales" className="mt-3 inline-block text-sm font-medium text-[#323dfe] hover:underline">Contact sales for rates</a>
+        <a href="/contact/sales/" className="mt-3 inline-block text-sm font-medium text-[#323dfe] hover:underline">Contact sales for rates</a>
       </div>
     );
   }
@@ -257,7 +257,7 @@ function SMSPricingContent({ selectedCountry, inline }: { selectedCountry: strin
     return (
       <div className="text-center py-8">
         <p className="text-sm text-gray-500">Detailed SMS pricing for {countryName} is available on request.</p>
-        <a href="/contact/sales" className="mt-3 inline-block text-sm font-medium text-[#323dfe] hover:underline">Contact sales for rates</a>
+        <a href="/contact/sales/" className="mt-3 inline-block text-sm font-medium text-[#323dfe] hover:underline">Contact sales for rates</a>
       </div>
     );
   }
@@ -336,7 +336,7 @@ function WhatsAppPricingContent({ selectedCountry, inline }: { selectedCountry: 
     return (
       <div className="text-center py-8">
         <p className="text-sm text-gray-500">Detailed WhatsApp pricing for {countryName} is available on request.</p>
-        <a href="/contact/sales" className="mt-3 inline-block text-sm font-medium text-[#323dfe] hover:underline">Contact sales for rates</a>
+        <a href="/contact/sales/" className="mt-3 inline-block text-sm font-medium text-[#323dfe] hover:underline">Contact sales for rates</a>
       </div>
     );
   }
@@ -681,7 +681,7 @@ export function PlivoPricing() {
                     </p>
                   </div>
                   <a
-                    href="/contact/sales"
+                    href="/contact/sales/"
                     className="flex-shrink-0 rounded-md border border-gray-300 bg-white px-5 py-2.5 text-center text-sm font-medium text-black transition-colors hover:bg-gray-50"
                   >
                     Talk to sales

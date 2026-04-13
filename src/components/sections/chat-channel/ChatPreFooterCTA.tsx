@@ -20,7 +20,7 @@ export default function ChatPreFooterCTA() {
         </p>
         <div className="flex flex-col sm:flex-row gap-3 mt-6">
           <a
-            href="/contact/sales"
+            href="/contact/sales/"
             className="inline-flex items-center justify-center rounded-md border border-gray-300 bg-white px-6 py-3 text-base font-medium text-black transition-colors hover:bg-gray-50"
           >
             Contact Sales

@@ -44,6 +44,8 @@ export default function Logos() {
               <img
                 src={logo.src}
                 alt={logo.name}
+                width={90}
+                height={32}
                 className={`${logo.className} w-auto object-contain opacity-60 grayscale transition-opacity hover:opacity-90`}
               />
             </div>

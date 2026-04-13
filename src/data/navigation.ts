@@ -38,28 +38,28 @@ export const mainNavigation: NavDropdown[] = [
           {
             title: "Voice",
             description:
-              "Enable your AI agents with voice call connectivity in 100+ countries",
+              "AI-ready voice call connectivity in 100+ countries",
             href: "/voice/overview/",
             icon: "phone-call",
           },
           {
             title: "SMS",
             description:
-              "Multi-channel messaging APIs built for global connectivity & scale",
+              "Global messaging APIs built for scale",
             href: "/sms/overview/",
             icon: "message-square",
           },
           {
             title: "WhatsApp",
             description:
-              "Build AI agents with messaging and calling for 2B+ WhatsApp users",
+              "Messaging & calling for 2B+ WhatsApp users",
             href: "/whatsapp-message/overview/",
             icon: "whatsapp",
           },
           {
             title: "Chat",
             description:
-              "AI chat agents that resolve customer queries instantly, 24/7",
+              "AI chat agents that resolve queries 24/7",
             href: "/chat/overview/",
             icon: "message-circle",
           },

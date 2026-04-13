@@ -2,10 +2,10 @@ import { format } from "date-fns";
 import { Badge } from "@/components/ui/badge";
 import { Clock, ChevronRight } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
+import DOMPurify from "isomorphic-dompurify";
 
-/** Strip all HTML tags except safe inline elements (a, strong, em, br, li, ul, ol, p) */
 function sanitizeHtml(html: string): string {
-  return html.replace(/<\/?(?!a\b|strong\b|em\b|br\b|li\b|ul\b|ol\b|p\b)[a-z][^>]*>/gi, "");
+  return DOMPurify.sanitize(html, { ALLOWED_TAGS: ["a", "strong", "em", "br", "li", "ul", "ol", "p"], ALLOWED_ATTR: ["href", "target", "rel"] });
 }
 
 interface RelatedPost {

@@ -1,4 +1,6 @@
 ---
+import { CONSENT_REQUIRED_COUNTRIES } from "@/data/geo-categories";
+
 interface Props {
   gtmContainerId: string;
   gtmAllowedHosts: string[];
@@ -9,6 +11,7 @@ interface Props {
 const { gtmContainerId, gtmAllowedHosts, posthogKey = "", posthogHost = "https://us.i.posthog.com" } = Astro.props;
 const consentVersion = "2026-04-02";
 const hubspotScriptSrc = "//js.hs-scripts.com/20451141.js";
+const consentCountries = JSON.stringify([...CONSENT_REQUIRED_COUNTRIES]);
 ---
 
 <div
@@ -19,71 +22,60 @@ const hubspotScriptSrc = "//js.hs-scripts.com/20451141.js";
   data-posthog-key={posthogKey}
   data-posthog-host={posthogHost}
   data-consent-version={consentVersion}
+  data-consent-countries={consentCountries}
 >
+  <!-- Compact bottom-right cookie banner -->
   <div
     id="plivo-cookie-banner"
     hidden
-    class="fixed inset-x-0 bottom-0 z-[120] px-4 pb-4"
+    class="fixed bottom-4 right-4 z-[120] w-[340px] max-w-[calc(100vw-2rem)]"
     aria-live="polite"
   >
-    <div class="mx-auto max-w-6xl rounded-2xl border border-gray-200 bg-white p-4 shadow-[0_-12px_40px_rgba(15,17,23,0.12)] md:p-6">
-      <div class="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
-        <div class="max-w-3xl">
-          <p class="font-sora text-lg font-medium text-black">Your cookie choices</p>
-          <p class="mt-2 text-sm leading-6 text-gray-600">
-            We use cookies and similar technologies to keep the site working,
-            measure performance, and support marketing attribution. Non-essential
-            storage stays off until you choose. You can change your mind at any time.
-          </p>
-          <div class="mt-3 flex flex-wrap gap-4 text-sm">
-            <a href="/cookie-policy/" class="font-medium text-[#323dfe] hover:underline">
-              View cookie policy
-            </a>
-            <button
-              id="plivo-cookie-open-preferences"
-              type="button"
-              class="font-medium text-gray-700 hover:text-black"
-            >
-              Manage preferences
-            </button>
-          </div>
-        </div>
-
-        <div class="flex flex-col gap-2 sm:flex-row sm:items-center">
-          <button
-            id="plivo-cookie-reject-all"
-            type="button"
-            class="rounded-md border border-gray-300 px-4 py-2.5 text-sm font-medium text-black transition-colors hover:bg-gray-50"
-          >
-            Reject non-essential
-          </button>
-          <button
-            id="plivo-cookie-accept-all"
-            type="button"
-            class="rounded-md bg-black px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-gray-800"
-          >
-            Accept all
-          </button>
-        </div>
+    <div class="rounded-xl border border-gray-200 bg-white p-4 shadow-lg">
+      <p class="text-[13px] leading-5 text-gray-600">
+        We use cookies for analytics and marketing.
+        <a href="/cookie-policy/" class="font-medium text-[#323dfe] hover:underline">Learn more</a>
+      </p>
+      <div class="mt-3 flex items-center gap-2">
+        <button
+          id="plivo-cookie-reject-all"
+          type="button"
+          class="flex-1 rounded-md border border-gray-300 px-3 py-1.5 text-xs font-medium text-black transition-colors hover:bg-gray-50"
+        >
+          Reject
+        </button>
+        <button
+          id="plivo-cookie-open-preferences"
+          type="button"
+          class="flex-1 rounded-md border border-gray-300 px-3 py-1.5 text-xs font-medium text-black transition-colors hover:bg-gray-50"
+        >
+          Manage
+        </button>
+        <button
+          id="plivo-cookie-accept-all"
+          type="button"
+          class="flex-1 rounded-md bg-black px-3 py-1.5 text-xs font-medium text-white transition-colors hover:bg-gray-800"
+        >
+          Accept
+        </button>
       </div>
     </div>
   </div>
 
+  <!-- Small cookie icon (shown after decision, only in consent-required countries) -->
   <button
     id="plivo-cookie-settings-button"
     type="button"
     hidden
     aria-label="Cookie settings"
-    class="fixed bottom-4 left-4 z-[110] flex h-10 w-10 items-center justify-center rounded-full border border-gray-200 bg-white shadow-[0_8px_24px_rgba(15,17,23,0.10)] transition-colors hover:bg-gray-50"
+    class="fixed bottom-4 right-4 z-[110] flex h-8 w-8 items-center justify-center rounded-full border border-gray-200 bg-white shadow-md transition-colors hover:bg-gray-50"
   >
-    <svg class="h-[18px] w-[18px] text-gray-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <svg class="h-4 w-4 text-gray-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
       <circle cx="12" cy="12" r="10" />
       <circle cx="8" cy="9" r="1.5" fill="currentColor" stroke="none" />
       <circle cx="14" cy="7.5" r="1" fill="currentColor" stroke="none" />
       <circle cx="16" cy="13" r="1.5" fill="currentColor" stroke="none" />
       <circle cx="10" cy="15" r="1" fill="currentColor" stroke="none" />
-      <circle cx="13" cy="17" r="1" fill="currentColor" stroke="none" />
-      <circle cx="6.5" cy="13" r="1" fill="currentColor" stroke="none" />
     </svg>
   </button>
 
@@ -208,11 +200,27 @@ const hubspotScriptSrc = "//js.hs-scripts.com/20451141.js";
     var hubspotScriptSrc = root.getAttribute("data-hubspot-script-src") || "";
     var posthogKey = root.getAttribute("data-posthog-key") || "";
     var posthogHost = root.getAttribute("data-posthog-host") || "https://us.i.posthog.com";
+    var consentCountries = [];
 
     try {
       allowedHosts = JSON.parse(root.getAttribute("data-gtm-allowed-hosts") || "[]");
     } catch (error) {
       allowedHosts = [];
+    }
+
+    try {
+      consentCountries = JSON.parse(root.getAttribute("data-consent-countries") || "[]");
+    } catch (error) {
+      consentCountries = [];
+    }
+
+    /** Check if the user's country requires cookie consent */
+    function isConsentRequired() {
+      var country = "";
+      try { country = sessionStorage.getItem("plivo_geo_country") || ""; } catch(e) {}
+      if (!country && window.__CF_COUNTRY) country = window.__CF_COUNTRY;
+      if (!country) return null; // unknown yet
+      return consentCountries.indexOf(country.toUpperCase()) >= 0;
     }
 
     function hostAllowed() {
@@ -307,7 +315,8 @@ const hubspotScriptSrc = "//js.hs-scripts.com/20451141.js";
 
     function hideBanner() {
       if (banner) banner.hidden = true;
-      if (settingsButton) settingsButton.hidden = false;
+      // Only show settings icon in consent-required countries
+      if (settingsButton) settingsButton.hidden = isConsentRequired() === false;
     }
 
     function clearCookie(name, options) {
@@ -483,17 +492,56 @@ const hubspotScriptSrc = "//js.hs-scripts.com/20451141.js";
       storePreferences(currentPreferences);
     }
 
-    if (currentPreferences) {
-      hideBanner();
-      syncInputs(currentPreferences);
-      if (!currentPreferences.analytics) clearAnalyticsCookies();
-      if (!currentPreferences.marketing) clearMarketingCookies();
-      loadGtmIfAllowed(currentPreferences);
-      loadHubSpotIfAllowed(currentPreferences);
-      loadPostHogIfAllowed(currentPreferences);
+    /** Auto-allow all cookies for countries that don't require consent */
+    function autoAllowAll() {
+      var allAllowed = createPreferences({ analytics: true, marketing: true });
+      currentPreferences = allAllowed;
+      storePreferences(allAllowed);
+      if (banner) banner.hidden = true;
+      if (settingsButton) settingsButton.hidden = true;
+      loadGtmIfAllowed(allAllowed);
+      loadHubSpotIfAllowed(allAllowed);
+      loadPostHogIfAllowed(allAllowed);
+    }
+
+    function initConsent() {
+      var required = isConsentRequired();
+
+      // Country not requiring consent → auto-allow, hide banner & settings icon
+      if (required === false) {
+        autoAllowAll();
+        return;
+      }
+
+      // Consent required (or country unknown — treat as required to be safe)
+      if (currentPreferences) {
+        hideBanner();
+        syncInputs(currentPreferences);
+        if (!currentPreferences.analytics) clearAnalyticsCookies();
+        if (!currentPreferences.marketing) clearMarketingCookies();
+        loadGtmIfAllowed(currentPreferences);
+        loadHubSpotIfAllowed(currentPreferences);
+        loadPostHogIfAllowed(currentPreferences);
+      } else {
+        showBanner();
+        syncInputs(getDefaultPreferences());
+      }
+    }
+
+    // Try init immediately; if geo not ready yet, poll briefly then init
+    var geoReady = isConsentRequired();
+    if (geoReady !== null) {
+      initConsent();
     } else {
-      showBanner();
-      syncInputs(getDefaultPreferences());
+      // Geo data may not be in sessionStorage yet — poll up to 3s
+      var geoAttempts = 0;
+      var geoPoll = setInterval(function() {
+        geoAttempts++;
+        if (isConsentRequired() !== null || geoAttempts > 30) {
+          clearInterval(geoPoll);
+          initConsent();
+        }
+      }, 100);
     }
 
     var acceptAllButtons = [

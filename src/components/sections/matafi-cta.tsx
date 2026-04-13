@@ -28,7 +28,7 @@ const MetafiCta = () => {
             asChild
             className="text-tagline h-12 w-full rounded-[12px] bg-primary-foreground hover:bg-primary-foreground/90 sm:w-auto"
           >
-            <a href="/pricing">Get started</a>
+            <a href="/pricing/">Get started</a>
           </Button>
 
           {/* Transparent button */}

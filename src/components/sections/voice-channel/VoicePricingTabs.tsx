@@ -560,7 +560,7 @@ function VoiceCallRatesSection({
       {!isIndia && (
         <p className={SECTION_DESCRIPTION_CLASS}>
           We also support WhatsApp Calls. Check detailed pricing{" "}
-          <a href="/whatsapp-message/pricing" className={INLINE_LINK_CLASS}>
+          <a href="/whatsapp-message/pricing/" className={INLINE_LINK_CLASS}>
             here
           </a>
         </p>

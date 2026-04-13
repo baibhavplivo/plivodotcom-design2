@@ -141,6 +141,8 @@ export default function Logos() {
               <img
                 src={company.logo}
                 alt={`${company.name} logo`}
+                width={96}
+                height={32}
                 className={cn("object-contai size-full", company.className)}
               />
             </a>

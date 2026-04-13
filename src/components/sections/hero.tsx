@@ -143,6 +143,8 @@ export const Hero = () => {
                     <img
                       src={slide.image}
                       alt={`Streamline product interface showing ${slide.label}`}
+                      width={1200}
+                      height={480}
                       className="size-full object-cover object-left-top"
                     />
                   </div>

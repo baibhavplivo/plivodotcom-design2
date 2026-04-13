@@ -15,6 +15,8 @@ const MetafiHero = () => {
           <img
             src="/images/homepage/hero/Gradient.webp"
             alt="background gradient"
+            width={1920}
+            height={686}
             className="absolute inset-0 h-full w-full object-cover opacity-30"
             loading="eager"
             decoding="async"
@@ -44,7 +46,7 @@ const MetafiHero = () => {
               className="w-full sm:w-auto"
               asChild
             >
-              <a href="/pricing">Get started</a>
+              <a href="/pricing/">Get started</a>
             </Button>
 
             <Button

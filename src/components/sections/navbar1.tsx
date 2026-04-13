@@ -174,12 +174,14 @@ const Navbar1 = ({ currentPage = "/" }: Navbar1Props) => {
       )}
     >
       <div className="mx-auto max-w-7xl px-4">
-        <nav className="flex h-[72px] items-center justify-between">
+        <nav aria-label="Main navigation" className="flex h-[72px] items-center justify-between">
           {/* Logo */}
           <a href="/" className="flex shrink-0 items-center">
             <img
               src="/images/plivo-logo.svg"
               alt="Plivo"
+              width={72}
+              height={24}
               className="h-6 w-auto"
             />
           </a>
@@ -193,98 +195,61 @@ const Navbar1 = ({ currentPage = "/" }: Navbar1Props) => {
                     <NavigationMenuTrigger className="bg-transparent text-[15px] font-normal text-black hover:bg-gray-50 hover:text-black data-[state=open]:bg-gray-50">
                       {navItem.title}
                     </NavigationMenuTrigger>
-                    <NavigationMenuContent>
-                      <div className="w-[700px] p-6">
+                    <NavigationMenuContent className="p-1.5">
+                      <div className="w-[480px]">
                         {navItem.sections && (
                           <div>
                             {navItem.sections.map((section) => (
                               <div key={section.title}>
-                                <h3 className="mb-4 text-[13px] font-semibold uppercase tracking-wider text-[#323DFE]">
-                                  {section.title}
-                                </h3>
-                                <div
-                                  className={
-                                    navItem.title === "Solutions"
-                                      ? "space-y-0"
-                                      : "grid grid-cols-2 gap-x-6 gap-y-1"
-                                  }
-                                >
+                                <ul className="grid grid-cols-2 gap-2 rounded-lg border border-gray-100 bg-white p-2">
                                   {section.items.map((item) => (
-                                    <NavigationMenuLink
-                                      key={item.title}
-                                      asChild
-                                    >
-                                      <a
-                                        href={item.href}
-                                        className={cn(
-                                          "group flex gap-3 rounded-lg transition-colors hover:bg-gray-50",
-                                          navItem.title === "Solutions"
-                                            ? "items-center p-2"
-                                            : "items-start p-3",
-                                        )}
-                                      >
-                                        {item.icon && iconMap[item.icon] && (
-                                          <span
-                                            className={
-                                              navItem.title === "Solutions"
-                                                ? "text-[#323DFE]"
-                                                : "mt-0.5 text-[#323DFE]"
-                                            }
-                                          >
-                                            {iconMap[item.icon]}
-                                          </span>
-                                        )}
-                                        <div className="flex-1">
-                                          <div className="text-[14px] font-semibold text-gray-900 group-hover:text-[#323DFE]">
-                                            {item.title}
-                                          </div>
-                                          {item.description &&
-                                            navItem.title !== "Solutions" && (
-                                              <p className="mt-1 text-[13px] leading-relaxed text-gray-500">
+                                    <li key={item.title}>
+                                      <NavigationMenuLink asChild>
+                                        <a
+                                          href={item.href}
+                                          className="group flex items-center gap-2.5 rounded-md p-2 transition-colors hover:bg-gray-50"
+                                        >
+                                          {item.icon && iconMap[item.icon] && (
+                                            <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md border border-gray-200 bg-white shadow-sm">
+                                              <span className="text-gray-800 [&>svg]:h-3.5 [&>svg]:w-3.5">
+                                                {iconMap[item.icon]}
+                                              </span>
+                                            </div>
+                                          )}
+                                          <div className="flex flex-col">
+                                            <span className="text-[13px] font-semibold text-gray-900 group-hover:text-[#323DFE]">
+                                              {item.title}
+                                            </span>
+                                            {item.description && (
+                                              <span className="text-[11px] leading-snug text-gray-500">
                                                 {item.description}
-                                              </p>
+                                              </span>
                                             )}
-                                          {item.subLinks &&
-                                            item.subLinks.length > 0 && (
-                                              <div className="mt-2 flex flex-wrap gap-3">
-                                                {item.subLinks.map((link) => (
-                                                  <a
-                                                    key={link.title}
-                                                    href={link.href}
-                                                    className="text-[13px] text-[#323DFE] hover:underline"
-                                                    onClick={(e) =>
-                                                      e.stopPropagation()
-                                                    }
-                                                  >
-                                                    {link.title}
-                                                  </a>
-                                                ))}
-                                              </div>
-                                            )}
-                                        </div>
-                                      </a>
-                                    </NavigationMenuLink>
+                                          </div>
+                                        </a>
+                                      </NavigationMenuLink>
+                                    </li>
                                   ))}
-                                </div>
+                                </ul>
                               </div>
                             ))}
                           </div>
                         )}
                         {navItem.bottomItems &&
                           navItem.bottomItems.length > 0 && (
-                            <div className="mt-6 border-t border-gray-100 pt-4">
-                              <div className="flex items-center gap-6">
-                                <span className="text-[13px] font-medium text-gray-500">
-                                  More
-                                </span>
+                            <div className="px-2 py-2.5">
+                              <p className="mb-1.5 text-[11px] font-medium uppercase tracking-wider text-gray-400">
+                                More products
+                              </p>
+                              <div className="flex items-center gap-4">
                                 {navItem.bottomItems.map((item) => (
                                   <a
                                     key={item.title}
                                     href={item.href}
-                                    className="flex items-center gap-2 text-[14px] font-medium text-gray-900 hover:text-[#323DFE]"
+                                    className="flex items-center gap-1.5 text-[13px] font-medium text-gray-700 hover:text-[#323DFE]"
                                   >
                                     {item.icon && iconMap[item.icon] && (
-                                      <span className="text-[#323DFE]">
+                                      <span className="text-gray-500 [&>svg]:h-3.5 [&>svg]:w-3.5">
                                         {iconMap[item.icon]}
                                       </span>
                                     )}
@@ -326,10 +291,22 @@ const Navbar1 = ({ currentPage = "/" }: Navbar1Props) => {
               </a>
             ))}
 
-            {/* Primary CTA */}
+            {/* Primary CTA - Desktop */}
             <a
               href={signupUrl}
-              className="hidden items-center rounded-md bg-black px-3.5 py-1.5 text-[13px] font-normal text-white transition-all cta-hover-gradient sm:inline-flex"
+              className="hidden items-center rounded-md bg-black px-3.5 py-1.5 text-[13px] font-normal text-white transition-all cta-hover-gradient lg:inline-flex"
+              {...(isExternalCta && {
+                target: "_blank",
+                rel: "noopener noreferrer",
+              })}
+            >
+              {signupLabel}
+            </a>
+
+            {/* Primary CTA - Mobile (left of hamburger) */}
+            <a
+              href={signupUrl}
+              className="inline-flex items-center rounded-md bg-black px-3 py-1.5 text-[12px] font-medium text-white transition-all cta-hover-gradient lg:hidden"
               {...(isExternalCta && {
                 target: "_blank",
                 rel: "noopener noreferrer",
@@ -341,10 +318,25 @@ const Navbar1 = ({ currentPage = "/" }: Navbar1Props) => {
             {/* Mobile Menu */}
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
               <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" className="lg:hidden">
-                  <Menu className="h-6 w-6" />
-                  <span className="sr-only">Open menu</span>
-                </Button>
+                <button
+                  className="relative flex h-9 w-9 items-center justify-center rounded-md transition-colors hover:bg-gray-100 lg:hidden"
+                  aria-label="Open menu"
+                >
+                  <div className="flex flex-col items-center justify-center gap-[5px]">
+                    <span className={cn(
+                      "block h-[1.5px] w-5 rounded-full bg-gray-800 transition-all duration-300",
+                      isOpen && "translate-y-[6.5px] rotate-45"
+                    )} />
+                    <span className={cn(
+                      "block h-[1.5px] w-5 rounded-full bg-gray-800 transition-all duration-300",
+                      isOpen && "opacity-0"
+                    )} />
+                    <span className={cn(
+                      "block h-[1.5px] w-5 rounded-full bg-gray-800 transition-all duration-300",
+                      isOpen && "-translate-y-[6.5px] -rotate-45"
+                    )} />
+                  </div>
+                </button>
               </SheetTrigger>
               <SheetContent
                 side="right"
@@ -358,6 +350,8 @@ const Navbar1 = ({ currentPage = "/" }: Navbar1Props) => {
                         <img
                           src="/images/plivo-logo.svg"
                           alt="Plivo"
+                          width={60}
+                          height={20}
                           className="h-5 w-auto"
                         />
                       </a>
@@ -375,34 +369,45 @@ const Navbar1 = ({ currentPage = "/" }: Navbar1Props) => {
                           value={`item-${idx}`}
                           className="border-b border-gray-100"
                         >
-                          <AccordionTrigger className="py-3.5 text-[15px] font-medium text-gray-900 hover:no-underline">
+                          <AccordionTrigger className="py-3.5 text-[15px] font-normal text-black hover:no-underline [&>svg:last-child]:hidden">
                             {navItem.title}
+                            <svg
+                              className="relative top-px ml-1 size-3 shrink-0 transition duration-300 [[data-state=open]>&]:rotate-180"
+                              aria-hidden="true"
+                              viewBox="0 0 20 20"
+                              fill="currentColor"
+                            >
+                              <circle cx="3" cy="8" r="1.4" />
+                              <circle cx="6.5" cy="11.5" r="1.4" />
+                              <circle cx="10" cy="15" r="1.4" />
+                              <circle cx="13.5" cy="11.5" r="1.4" />
+                              <circle cx="17" cy="8" r="1.4" />
+                            </svg>
                           </AccordionTrigger>
                           <AccordionContent className="pb-3">
                             {navItem.sections?.map((section) => (
                               <div key={section.title} className="mb-3 last:mb-0">
-                                <h4 className="mb-1.5 text-[11px] font-semibold uppercase tracking-wider text-[#323DFE]">
-                                  {section.title}
-                                </h4>
-                                <div className="space-y-0.5">
+                                <div className="space-y-1 rounded-lg border border-gray-100 bg-white p-2">
                                   {section.items.map((item) => (
                                     <a
                                       key={item.title}
                                       href={item.href}
-                                      className="flex items-start gap-2.5 rounded-md px-2 py-2 transition-colors hover:bg-gray-50"
+                                      className="group flex items-center gap-2.5 rounded-md p-2 transition-colors hover:bg-gray-50"
                                       onClick={() => setIsOpen(false)}
                                     >
                                       {item.icon && iconMap[item.icon] && (
-                                        <span className="mt-0.5 flex-shrink-0 text-[#323DFE]">
-                                          {iconMap[item.icon]}
-                                        </span>
+                                        <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md border border-gray-200 bg-white shadow-sm">
+                                          <span className="text-gray-800 [&>svg]:h-3.5 [&>svg]:w-3.5">
+                                            {iconMap[item.icon]}
+                                          </span>
+                                        </div>
                                       )}
-                                      <div className="min-w-0">
-                                        <span className="block text-[14px] font-medium text-gray-900">
+                                      <div className="flex flex-col min-w-0">
+                                        <span className="text-[13px] font-semibold text-gray-900 group-hover:text-[#323DFE]">
                                           {item.title}
                                         </span>
                                         {item.description && (
-                                          <span className="mt-0.5 block text-[12px] leading-relaxed text-gray-500 line-clamp-2">
+                                          <span className="text-[11px] leading-snug text-gray-500">
                                             {item.description}
                                           </span>
                                         )}
@@ -413,8 +418,11 @@ const Navbar1 = ({ currentPage = "/" }: Navbar1Props) => {
                               </div>
                             ))}
                             {navItem.bottomItems && navItem.bottomItems.length > 0 && (
-                              <div className="mt-2 border-t border-gray-100 pt-3">
-                                <div className="flex flex-wrap gap-x-4 gap-y-2 px-2">
+                              <div className="mt-2 pt-2.5 px-2">
+                                <p className="mb-1.5 text-[11px] font-medium uppercase tracking-wider text-gray-400">
+                                  More products
+                                </p>
+                                <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
                                   {navItem.bottomItems.map((item) => (
                                     <a
                                       key={item.title}
@@ -423,8 +431,8 @@ const Navbar1 = ({ currentPage = "/" }: Navbar1Props) => {
                                       onClick={() => setIsOpen(false)}
                                     >
                                       {item.icon && iconMap[item.icon] && (
-                                        <span className="text-[#323DFE]">
-                                          {React.cloneElement(iconMap[item.icon] as React.ReactElement, { className: "h-4 w-4" })}
+                                        <span className="text-gray-500 [&>svg]:h-3.5 [&>svg]:w-3.5">
+                                          {iconMap[item.icon]}
                                         </span>
                                       )}
                                       {item.title}
@@ -439,7 +447,7 @@ const Navbar1 = ({ currentPage = "/" }: Navbar1Props) => {
                         <a
                           key={navItem.title}
                           href={navItem.href}
-                          className="flex items-center border-b border-gray-100 py-3.5 text-[15px] font-medium text-gray-900 hover:text-[#323DFE] transition-colors"
+                          className="flex items-center border-b border-gray-100 py-3.5 text-[15px] font-normal text-black hover:text-[#323DFE] transition-colors"
                           onClick={() => setIsOpen(false)}
                         >
                           {navItem.title}

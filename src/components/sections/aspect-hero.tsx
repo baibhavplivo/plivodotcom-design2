@@ -29,12 +29,12 @@ const AspectHero = () => (
 
           <div className="flex flex-wrap gap-4">
             <Button asChild>
-              <a href="/pricing" aria-label="Try for free">
+              <a href="/pricing/" aria-label="Try for free">
                 Try for free
               </a>
             </Button>
             <Button variant="secondary" asChild>
-              <a href="/pricing" aria-label="Book a demo">
+              <a href="/pricing/" aria-label="Book a demo">
                 Book a demo
               </a>
             </Button>

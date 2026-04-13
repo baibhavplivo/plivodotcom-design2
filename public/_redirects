@@ -1,3 +1,7 @@
+# Top-level product → overview
+/sms/                   /sms/overview/           301
+/voice/                 /voice/overview/         301
+
 # Product pages we haven't built → closest existing page
 /api-platform/          /ai/                     301
 /pricing-api-platform/  /pricing/                301

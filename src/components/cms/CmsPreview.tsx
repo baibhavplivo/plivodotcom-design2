@@ -1,6 +1,7 @@
 import { useRef, useEffect } from "react";
 import { Eye } from "lucide-react";
 import { BLOG_CATEGORIES } from "@/data/blog-categories";
+import DOMPurify from "isomorphic-dompurify";
 import "@/styles/blog-content.css";
 
 interface CmsPreviewProps {
@@ -260,7 +261,7 @@ export default function CmsPreview({
                 </h3>
                 <div
                   className="prose prose-sm max-w-none text-gray-600 [&_ul]:list-disc [&_ul]:pl-5 [&_li]:mb-1.5"
-                  dangerouslySetInnerHTML={{ __html: keyTakeaways }}
+                  dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(keyTakeaways) }}
                 />
               </div>
             )}
@@ -278,7 +279,7 @@ export default function CmsPreview({
                 prose-blockquote:border-l-[#323dfe] prose-blockquote:bg-gray-50 prose-blockquote:py-1 prose-blockquote:not-italic prose-blockquote:my-8
                 prose-strong:text-black prose-li:text-gray-700 prose-li:leading-relaxed
                 prose-ul:my-5 prose-ol:my-5 prose-hr:my-10"
-              dangerouslySetInnerHTML={{ __html: processedHtml }}
+              dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(processedHtml) }}
             />
 
             {/* Author Byline */}

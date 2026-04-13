@@ -14,11 +14,10 @@ import {
   ChevronDown,
 } from "lucide-react";
 
-/** Strip all HTML tags except safe inline elements (a, strong, em, br).
- *  Also strips dangerous href protocols (javascript:, data:, vbscript:). */
+import DOMPurify from "isomorphic-dompurify";
+
 function sanitizeHtml(html: string): string {
-  const stripped = html.replace(/<\/?(?!a\b|strong\b|em\b|br\b)[a-z][^>]*>/gi, "");
-  return stripped.replace(/href\s*=\s*["']?\s*(javascript|data|vbscript)\s*:/gi, 'href="');
+  return DOMPurify.sanitize(html, { ALLOWED_TAGS: ["a", "strong", "em", "br"], ALLOWED_ATTR: ["href", "target", "rel"] });
 }
 import { useGeoCountry } from "@/hooks/useGeoCountry";
 import PreFooterCTA from "@/components/sections/voice-homepage/PreFooterCTA";

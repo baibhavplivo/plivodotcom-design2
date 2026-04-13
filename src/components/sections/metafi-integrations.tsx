@@ -105,7 +105,7 @@ const MetafiIntegrations = () => {
 
         <div className="mt-6 flex justify-center">
           <Button className="w-full sm:w-auto" asChild>
-            <a href="/integrations">See all integrations</a>
+            <a href="/integrations/">See all integrations</a>
           </Button>
         </div>
       </div>
