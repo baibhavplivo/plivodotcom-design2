@@ -52,6 +52,7 @@ import {
   Image as ImageLucide,
   CheckCircle2,
   Eye,
+  RemoveFormatting,
 } from "lucide-react";
 
 interface CmsEditorProps {
@@ -432,6 +433,9 @@ export default function CmsEditor({ slug, onBack }: CmsEditorProps) {
         case "delete-table":
           editor.chain().focus().deleteTable().run();
           break;
+        case "clear-formatting":
+          editor.chain().focus().clearNodes().unsetAllMarks().run();
+          break;
         case "undo":
           editor.chain().focus().undo().run();
           break;
@@ -737,6 +741,8 @@ export default function CmsEditor({ slug, onBack }: CmsEditorProps) {
                     <ToolbarButton tool="delete-table" icon={<Trash2 className="h-4 w-4" />} title="Delete Table" />
                   </>
                 )}
+                <ToolbarDivider />
+                <ToolbarButton tool="clear-formatting" icon={<RemoveFormatting className="h-4 w-4" />} title="Remove Formatting" />
                 <ToolbarDivider />
                 <ToolbarButton tool="undo" icon={<Undo2 className="h-4 w-4" />} title="Undo" />
                 <ToolbarButton tool="redo" icon={<Redo2 className="h-4 w-4" />} title="Redo" />
