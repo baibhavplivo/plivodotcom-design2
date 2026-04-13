@@ -79,6 +79,9 @@ import ContactSalesHero from "@/components/sections/contact/ContactSalesHero";
   <!-- intl-tel-input JS -->
   <script is:inline src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/intlTelInput.min.js"></script>
 
+  <!-- Cloudflare Turnstile CAPTCHA -->
+  <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
   <!-- jQuery (required by Netlify form-submission.js) -->
   <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
@@ -97,26 +100,42 @@ import ContactSalesHero from "@/components/sections/contact/ContactSalesHero";
 
     var origFetch = window.fetch;
     window.fetch = function(url, opts) {
-      var result = origFetch.apply(this, arguments);
+      var args = arguments;
       if (typeof url === "string" && url.indexOf("netlify") !== -1 && url.indexOf("submit") !== -1) {
-        result.then(function(response) {
-          if (response.ok) {
-            setTimeout(function() {
-              var s1 = document.querySelector('[vpf="1"]');
-              var s2 = document.querySelector('[vpf="2"]');
-              var s4 = document.querySelector('[vpf="4"]');
-              if (s1) s1.style.display = "none";
-              if (s2) s2.style.display = "none";
-              if (s4) s4.style.display = "block";
-            }, 800);
-          } else {
-            alertFormFailure("contact-sales", response.status, response.statusText);
-          }
+        return origFetch.apply(this, args).then(function(response) {
+          var cloned = response.clone();
+          cloned.json().then(function(data) {
+            if (response.ok || (data && data.status === "submitted")) {
+              setTimeout(function() {
+                var s1 = document.querySelector('[vpf="1"]');
+                var s2 = document.querySelector('[vpf="2"]');
+                var s4 = document.querySelector('[vpf="4"]');
+                if (s1) s1.style.display = "none";
+                if (s2) s2.style.display = "none";
+                if (s4) s4.style.display = "block";
+              }, 800);
+            } else {
+              alertFormFailure("contact-sales", response.status, JSON.stringify(data).slice(0, 200));
+            }
+          }).catch(function() {
+            if (response.ok) {
+              setTimeout(function() {
+                var s1 = document.querySelector('[vpf="1"]');
+                var s2 = document.querySelector('[vpf="2"]');
+                var s4 = document.querySelector('[vpf="4"]');
+                if (s1) s1.style.display = "none";
+                if (s2) s2.style.display = "none";
+                if (s4) s4.style.display = "block";
+              }, 800);
+            }
+          });
+          return response;
         }).catch(function(err) {
           alertFormFailure("contact-sales", 0, err.message || "Network error");
+          throw err;
         });
       }
-      return result;
+      return origFetch.apply(this, args);
     };
   })();
   </script>

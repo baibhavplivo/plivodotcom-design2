@@ -175,6 +175,11 @@ const BUILT_IN_ALLOWED_ORIGINS = [
 
 function isAllowedFormRequest(request: Request, env: Env): boolean {
   const origin = request.headers.get("Origin");
+
+  // Reject POST requests with no Origin header (CORS tightening)
+  if (!origin && request.method === "POST") return false;
+
+  // Allow same-origin requests
   if (!origin) return true;
 
   const requestOrigin = new URL(request.url).origin;
@@ -423,6 +428,19 @@ async function handleFormSubmit(request: Request, env: Env, origin?: string): Pr
   const payload = await parseJsonBody<FormSubmitPayload>(request);
   if (!payload || (payload.formType !== "contact-sales" && payload.formType !== "request-trial")) {
     return errorResponse("Invalid form submission payload", 400, origin);
+  }
+
+  // Verify Turnstile CAPTCHA (skip if secret not configured, e.g. local dev)
+  if (env.TURNSTILE_SECRET_KEY) {
+    const turnstileToken = payload.fields?.["cf-turnstile-response"] || "";
+    if (!turnstileToken) {
+      return errorResponse("CAPTCHA verification required", 400, origin);
+    }
+    const ip = request.headers.get("CF-Connecting-IP") || undefined;
+    const turnstileOk = await verifyTurnstile(turnstileToken, env.TURNSTILE_SECRET_KEY, ip);
+    if (!turnstileOk) {
+      return errorResponse("CAPTCHA verification failed", 403, origin);
+    }
   }
 
   const fields = sanitizeFields(payload.fields);
@@ -788,17 +806,43 @@ async function getFileSha(slug: string, env: Env): Promise<string | null> {
   return data.sha;
 }
 
-// ─── CMS Rate Limiting ────────────────────────────────────────
+// ─── Rate Limiting ────────────────────────────────────────────
 
+// Generic in-memory rate limiter (per-IP, per-bucket)
+const rateLimitBuckets = new Map<string, Map<string, { count: number; resetAt: number }>>();
+
+function getRateLimitBucket(bucket: string): Map<string, { count: number; resetAt: number }> {
+  let map = rateLimitBuckets.get(bucket);
+  if (!map) {
+    map = new Map();
+    rateLimitBuckets.set(bucket, map);
+  }
+  return map;
+}
+
+function checkRateLimitGeneric(ip: string, bucket: string, maxRequests: number, windowMs: number): boolean {
+  const map = getRateLimitBucket(bucket);
+  const now = Date.now();
+  const entry = map.get(ip);
+  if (!entry || now > entry.resetAt) {
+    map.set(ip, { count: 1, resetAt: now + windowMs });
+    return true;
+  }
+  if (entry.count >= maxRequests) return false;
+  entry.count++;
+  return true;
+}
+
+// CMS login: 5 attempts per 15 minutes
 const RATE_LIMIT_MAX = 5;
-const RATE_LIMIT_WINDOW_MS = 15 * 60 * 1000; // 15 minutes
+const RATE_LIMIT_WINDOW_MS = 15 * 60 * 1000;
 const loginAttempts = new Map<string, { count: number; resetAt: number }>();
 
 function checkRateLimit(ip: string): boolean {
   const now = Date.now();
   const entry = loginAttempts.get(ip);
   if (!entry || now > entry.resetAt) {
-    return true; // allowed
+    return true;
   }
   return entry.count < RATE_LIMIT_MAX;
 }
@@ -816,6 +860,15 @@ function recordFailedAttempt(ip: string): void {
 function clearAttempts(ip: string): void {
   loginAttempts.delete(ip);
 }
+
+// API rate limits
+const API_RATE_LIMITS: Record<string, { max: number; windowMs: number }> = {
+  "form-submit":    { max: 5,  windowMs: 60 * 1000 },      // 5 submissions/min
+  "form-validate":  { max: 20, windowMs: 60 * 1000 },      // 20 validations/min
+  "cms-api":        { max: 60, windowMs: 60 * 1000 },      // 60 CMS requests/min
+  "voice-agent":    { max: 10, windowMs: 60 * 1000 },      // 10 voice agent calls/min
+  "alert":          { max: 10, windowMs: 60 * 1000 },      // 10 alerts/min
+};
 
 async function verifyTurnstile(token: string, secretKey: string, ip?: string): Promise<boolean> {
   const formData = new URLSearchParams();
@@ -1283,9 +1336,15 @@ export default {
       return proxyDocsRequest(request);
     }
 
+    // ── Rate limiting for API endpoints ──
+    const clientIp = request.headers.get("CF-Connecting-IP") || "unknown";
+
     // ── Voice agent proxy (existing) ──
     if (url.pathname === "/api/voice-agent") {
       if (request.method === "POST") {
+        if (!checkRateLimitGeneric(clientIp, "voice-agent", API_RATE_LIMITS["voice-agent"].max, API_RATE_LIMITS["voice-agent"].windowMs)) {
+          return errorResponse("Too many requests. Please try again later.", 429, origin);
+        }
         try {
           const body = await request.text();
           const upstream = await fetch(VOICE_AGENT_UPSTREAM, {
@@ -1333,6 +1392,9 @@ export default {
 
     // ── Slack alert proxy for form submission failures ──
     if (url.pathname === "/api/alerts/form-failure" && request.method === "POST") {
+      if (!checkRateLimitGeneric(clientIp, "alert", API_RATE_LIMITS["alert"].max, API_RATE_LIMITS["alert"].windowMs)) {
+        return jsonResponse({ ok: false }, 429, origin);
+      }
       const webhookUrl = env.SLACK_FORM_ALERT_WEBHOOK;
       if (!webhookUrl) return jsonResponse({ ok: false, message: "Alert webhook not configured" }, 200, origin);
       try {
@@ -1352,10 +1414,16 @@ export default {
     }
 
     if (url.pathname === "/api/forms/validate-email") {
+      if (!checkRateLimitGeneric(clientIp, "form-validate", API_RATE_LIMITS["form-validate"].max, API_RATE_LIMITS["form-validate"].windowMs)) {
+        return errorResponse("Too many requests. Please try again later.", 429, origin);
+      }
       return handleValidateEmail(request, env, getFormOrigin(request));
     }
 
     if (url.pathname === "/api/forms/submit") {
+      if (!checkRateLimitGeneric(clientIp, "form-submit", API_RATE_LIMITS["form-submit"].max, API_RATE_LIMITS["form-submit"].windowMs)) {
+        return errorResponse("Too many requests. Please try again later.", 429, origin);
+      }
       return handleFormSubmit(request, env, getFormOrigin(request));
     }
 
@@ -1366,6 +1434,9 @@ export default {
 
     // ── CMS: All other routes require JWT ──
     if (url.pathname.startsWith("/api/cms/")) {
+      if (!checkRateLimitGeneric(clientIp, "cms-api", API_RATE_LIMITS["cms-api"].max, API_RATE_LIMITS["cms-api"].windowMs)) {
+        return errorResponse("Too many requests. Please try again later.", 429, origin);
+      }
       const authHeader = request.headers.get("Authorization");
       const token = authHeader?.replace("Bearer ", "");
       if (!token || !(await verifyJWT(token, env.CMS_JWT_SECRET))) {
@@ -1477,6 +1548,8 @@ export default {
     headers.set("X-Content-Type-Options", "nosniff");
     headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
     headers.set("Permissions-Policy", "camera=(), microphone=(self), geolocation=()");
+    headers.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
+    headers.set("X-XSS-Protection", "1; mode=block");
 
     return new Response(secureResponse.body, {
       status: secureResponse.status,

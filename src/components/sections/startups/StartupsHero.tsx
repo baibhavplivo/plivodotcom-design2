@@ -399,6 +399,14 @@ export default function StartupsHero() {
                           </div>
                         </div>
 
+                        {/* Turnstile CAPTCHA */}
+                        <div
+                          className="cf-turnstile"
+                          data-sitekey="0x4AAAAAAC5MIQRQhUfMm71t"
+                          data-theme="light"
+                          data-size="normal"
+                        />
+
                         {/* Submit button */}
                         <button
                           id="vpf-submit-btn"
