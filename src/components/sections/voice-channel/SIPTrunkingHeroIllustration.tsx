@@ -130,7 +130,7 @@ export default function SIPTrunkingHeroIllustration() {
         {/* Gradient definitions */}
         <defs>
           <linearGradient id="plivo-stroke" x1="196" y1="74" x2="314" y2="158" gradientUnits="userSpaceOnUse">
-            <stop stopColor="#cd3ef9" />
+            <stop stopColor="#323dfe" />
             <stop offset="1" stopColor="#323dfe" />
           </linearGradient>
         </defs>

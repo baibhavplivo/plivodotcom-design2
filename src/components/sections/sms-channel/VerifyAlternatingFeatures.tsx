@@ -10,7 +10,7 @@ function FraudShieldIllustration() {
   ];
 
   return (
-    <div className="relative w-full aspect-[4/3] rounded-2xl bg-gradient-to-br from-[#cd3ef9]/10 via-[#cd3ef9]/5 to-[#323dfe]/10 overflow-hidden p-4 sm:p-6">
+    <div className="relative w-full aspect-[4/3] rounded-2xl bg-gradient-to-br from-[#323dfe]/10 via-[#323dfe]/5 to-black/10 overflow-hidden p-4 sm:p-6">
       {/* Main Card */}
       <div className="bg-white rounded-xl border border-gray-200 h-full flex flex-col overflow-hidden">
         {/* Header */}
@@ -20,7 +20,7 @@ function FraudShieldIllustration() {
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="url(#shieldGradient)">
                 <defs>
                   <linearGradient id="shieldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#cd3ef9" />
+                    <stop offset="0%" stopColor="#323dfe" />
                     <stop offset="100%" stopColor="#323dfe" />
                   </linearGradient>
                 </defs>
@@ -99,7 +99,7 @@ function FraudShieldIllustration() {
 // Illustration: Cost comparison - Clean modern design
 function CostComparisonIllustration() {
   return (
-    <div className="relative w-full aspect-[4/3] rounded-2xl bg-gradient-to-br from-[#cd3ef9]/10 via-[#cd3ef9]/5 to-[#323dfe]/10 overflow-hidden p-4 sm:p-6">
+    <div className="relative w-full aspect-[4/3] rounded-2xl bg-gradient-to-br from-[#323dfe]/10 via-[#323dfe]/5 to-black/10 overflow-hidden p-4 sm:p-6">
       {/* Single unified comparison card */}
       <div className="bg-white rounded-xl border border-gray-200 h-full flex flex-col overflow-hidden">
         {/* Header */}
@@ -130,10 +130,10 @@ function CostComparisonIllustration() {
           <div>
             <div className="flex items-center justify-between mb-3">
               <span className="text-xs font-semibold text-[#323dfe] uppercase tracking-wide">Plivo</span>
-              <span className="text-xl font-bold bg-gradient-to-r from-[#cd3ef9] to-[#323dfe] bg-clip-text text-transparent">$2,760</span>
+              <span className="text-xl font-bold bg-gradient-to-r from-[#323dfe] to-black bg-clip-text text-transparent">$2,760</span>
             </div>
             <div className="h-3 bg-gray-100 rounded-full overflow-hidden">
-              <div className="h-full w-[12%] bg-gradient-to-r from-[#cd3ef9] to-[#323dfe] rounded-full" />
+              <div className="h-full w-[12%] bg-gradient-to-r from-[#323dfe] to-black rounded-full" />
             </div>
             <div className="flex items-center gap-4 mt-2">
               <span className="text-[10px] text-gray-600">SMS $2,760</span>
@@ -184,7 +184,7 @@ export default function VerifyAlternatingFeatures() {
         <div className="grid gap-8 lg:grid-cols-2 lg:gap-16 items-center">
           {/* Left - Content */}
           <div className="order-1">
-            <span className="inline-block bg-gradient-to-r from-[#cd3ef9] to-[#323dfe] bg-clip-text text-transparent text-sm font-medium mb-3">
+            <span className="inline-block bg-gradient-to-r from-[#323dfe] to-black bg-clip-text text-transparent text-sm font-medium mb-3">
               No Hidden Charges
             </span>
             <h2 className="font-sora text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] font-normal leading-[1.2] tracking-[-0.02em] text-black mb-4">

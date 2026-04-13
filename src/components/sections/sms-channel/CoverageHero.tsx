@@ -22,13 +22,13 @@ export default function CoverageHero() {
             {/* Stats */}
             <div className="flex flex-wrap gap-8 mb-8">
               <div>
-                <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-[#cd3ef9] to-[#323dfe] bg-clip-text text-transparent">
+                <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-[#323dfe] to-black bg-clip-text text-transparent">
                   220+
                 </div>
                 <div className="text-gray-600 text-sm mt-1">Countries Covered</div>
               </div>
               <div>
-                <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-[#cd3ef9] to-[#323dfe] bg-clip-text text-transparent">
+                <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-[#323dfe] to-black bg-clip-text text-transparent">
                   900+
                 </div>
                 <div className="text-gray-600 text-sm mt-1">Networks Supported</div>

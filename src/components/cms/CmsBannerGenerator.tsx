@@ -273,9 +273,9 @@ function renderGradient(ctx: CanvasRenderingContext2D, title: string, subtitle: 
   grad.addColorStop(0.2, "#1a1a3e");
   grad.addColorStop(0.4, "#252560");
   grad.addColorStop(0.6, "#3730a3");
-  grad.addColorStop(0.75, "#4f46e5");
-  grad.addColorStop(0.88, "#7c3aed");
-  grad.addColorStop(1, "#a855f7");
+  grad.addColorStop(0.75, "#323dfe");
+  grad.addColorStop(0.88, "#323dfe");
+  grad.addColorStop(1, "#323dfe");
   ctx.fillStyle = grad;
   ctx.fillRect(0, 0, CANVAS_W, CANVAS_H);
 
@@ -346,9 +346,9 @@ function renderWithPattern(
     grad.addColorStop(0.2, "#1a1a3e");
     grad.addColorStop(0.4, "#252560");
     grad.addColorStop(0.6, "#3730a3");
-    grad.addColorStop(0.75, "#4f46e5");
-    grad.addColorStop(0.88, "#7c3aed");
-    grad.addColorStop(1, "#a855f7");
+    grad.addColorStop(0.75, "#323dfe");
+    grad.addColorStop(0.88, "#323dfe");
+    grad.addColorStop(1, "#323dfe");
     ctx.fillStyle = grad;
   } else {
     const grad = ctx.createLinearGradient(0, 0, CANVAS_W, CANVAS_H);

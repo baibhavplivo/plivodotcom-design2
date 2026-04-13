@@ -20,9 +20,9 @@ interface Category {
 // SMS Waveform component for visual interest
 function SMSIcon({ variant = "default" }: { variant?: "default" | "success" | "promo" }) {
   const colors = {
-    default: "from-[#323dfe] to-[#8b5cf6]",
+    default: "from-[#323dfe] to-black",
     success: "from-emerald-500 to-emerald-600",
-    promo: "from-[#cd3ef9] to-[#323dfe]",
+    promo: "from-[#323dfe] to-black",
   };
 
   return (
@@ -153,7 +153,7 @@ function PromoIllustration() {
         <div className="flex items-start gap-2">
           <SMSIcon variant="promo" />
           <div className="bg-white rounded-xl px-3 py-2.5 max-w-[85%] shadow-sm">
-            <p className="text-[11px] text-gray-700 mb-2">Flash Sale! 25% off everything with code <span className="font-bold text-[#cd3ef9]">FLASH25</span>. Ends midnight!</p>
+            <p className="text-[11px] text-gray-700 mb-2">Flash Sale! 25% off everything with code <span className="font-bold text-[#323dfe]">FLASH25</span>. Ends midnight!</p>
             <div className="flex items-center gap-2 text-[10px] text-gray-500">
               <span>acme.com/sale</span>
               <span>•</span>
@@ -240,7 +240,7 @@ function LoyaltyIllustration() {
             <span className="text-xs font-semibold text-[#323dfe]">500 pts</span>
           </div>
           <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
-            <div className="h-full w-3/4 bg-gradient-to-r from-[#cd3ef9] to-[#323dfe] rounded-full" />
+            <div className="h-full w-3/4 bg-gradient-to-r from-[#323dfe] to-black rounded-full" />
           </div>
           <p className="text-[9px] text-gray-400 mt-1.5">250 more points to Gold status</p>
         </div>
@@ -350,7 +350,7 @@ function FeedbackIllustration() {
                   className={cn(
                     "w-7 h-7 rounded-full flex items-center justify-center text-[11px] font-medium",
                     num === 5
-                      ? "bg-gradient-to-br from-[#323dfe] to-[#8b5cf6] text-white"
+                      ? "bg-gradient-to-br from-[#323dfe] to-black text-white"
                       : "bg-gray-100 text-gray-400"
                   )}
                 >

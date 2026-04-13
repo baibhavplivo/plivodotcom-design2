@@ -191,7 +191,7 @@ function VerifyIllustration() {
               {digits.map((digit, i) => (
                 <div
                   key={i}
-                  className="w-10 h-11 rounded-lg p-[1.5px] bg-gradient-to-br from-[#cd3ef9] to-[#323dfe]"
+                  className="w-10 h-11 rounded-lg p-[1.5px] bg-gradient-to-br from-[#323dfe] to-black"
                 >
                   <div className="w-full h-full rounded-[6px] bg-gray-50 flex items-center justify-center text-[18px] font-semibold text-gray-900">
                     <span
@@ -289,7 +289,7 @@ function AbandonedCartIllustration() {
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24">
                 <defs>
                   <linearGradient id="cartGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#cd3ef9" />
+                    <stop offset="0%" stopColor="#323dfe" />
                     <stop offset="100%" stopColor="#323dfe" />
                   </linearGradient>
                 </defs>
@@ -408,7 +408,7 @@ function LoyaltyMarketingIllustration() {
               </div>
               <div className="w-full h-1 rounded-full bg-gray-300 overflow-hidden">
                 <div
-                  className="h-full rounded-full bg-gradient-to-r from-[#cd3ef9] to-[#323dfe] transition-all duration-100"
+                  className="h-full rounded-full bg-gradient-to-r from-[#323dfe] to-black transition-all duration-100"
                   style={{ width: `${progress}%` }}
                 />
               </div>

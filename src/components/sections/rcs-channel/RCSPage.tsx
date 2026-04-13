@@ -76,7 +76,7 @@ function RCSPhoneIllustration() {
                   <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="url(#cartGradient)" strokeWidth={1.5}>
                     <defs>
                       <linearGradient id="cartGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stopColor="#cd3ef9" />
+                        <stop offset="0%" stopColor="#323dfe" />
                         <stop offset="100%" stopColor="#323dfe" />
                       </linearGradient>
                     </defs>
@@ -303,7 +303,7 @@ function ProductShowcaseIllustration() {
     <RCSIllustrationWrapper>
       <div className="bg-white rounded-lg overflow-hidden shadow-sm border border-gray-100 flex-1 flex flex-col">
         <div className="h-20 bg-gradient-to-br from-blue-50 to-indigo-50 relative overflow-hidden">
-          <div className="absolute top-1.5 left-1.5 z-10 text-white text-[8px] font-bold px-1.5 py-0.5 rounded" style={{ background: "linear-gradient(135deg, #cd3ef9, #323dfe)" }}>NEW</div>
+          <div className="absolute top-1.5 left-1.5 z-10 text-white text-[8px] font-bold px-1.5 py-0.5 rounded" style={{ background: "linear-gradient(135deg, #323dfe, #000000)" }}>NEW</div>
           <img src="/images/shoe-product.jpg" alt="Product" className="w-full h-full object-cover" />
         </div>
         <div className="p-2.5 flex-1">
@@ -333,7 +333,7 @@ function AppointmentReminderIllustration() {
             <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="url(#apptGradient)" strokeWidth={1.5}>
               <defs>
                 <linearGradient id="apptGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#cd3ef9" />
+                  <stop offset="0%" stopColor="#323dfe" />
                   <stop offset="100%" stopColor="#323dfe" />
                 </linearGradient>
               </defs>

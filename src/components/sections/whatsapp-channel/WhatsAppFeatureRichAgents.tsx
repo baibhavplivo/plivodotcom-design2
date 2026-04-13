@@ -322,7 +322,7 @@ function Availability247Illustration() {
                         style={{
                           height: `${pxHeight}px`,
                           background: h.val > 70
-                            ? 'linear-gradient(to top, #323dfe, #6366f1)'
+                            ? 'linear-gradient(to top, #000000, #323dfe)'
                             : h.val > 40
                               ? 'linear-gradient(to top, #818cf8, #a5b4fc)'
                               : '#c7d2fe',
@@ -830,9 +830,9 @@ function EngagementAnalyticsIllustration() {
           <p className="text-[10px] text-gray-500 font-medium mb-1.5">Campaign Performance</p>
           <div className="space-y-1.5">
             {[
-              { name: "Welcome Series", rate: 82, color: "from-[#323dfe] to-[#cd3ef9]" },
-              { name: "Cart Recovery", rate: 67, color: "from-[#323dfe] to-[#cd3ef9]" },
-              { name: "Re-engagement", rate: 54, color: "from-[#323dfe] to-[#cd3ef9]" },
+              { name: "Welcome Series", rate: 82, color: "from-[#323dfe] to-black" },
+              { name: "Cart Recovery", rate: 67, color: "from-[#323dfe] to-black" },
+              { name: "Re-engagement", rate: 54, color: "from-[#323dfe] to-black" },
             ].map((campaign, i) => (
               <div key={i} className="flex items-center gap-2">
                 <span className="text-[9px] text-gray-600 w-20 truncate">{campaign.name}</span>
@@ -1150,7 +1150,7 @@ function BroadcastIllustration() {
           </div>
         </div>
         <div className="h-1.5 bg-gray-100 rounded-full">
-          <div className="h-1.5 rounded-full bg-gradient-to-r from-[#cd3ef9] to-[#323dfe] transition-all" style={{ width: "73%" }} />
+          <div className="h-1.5 rounded-full bg-gradient-to-r from-[#323dfe] to-black transition-all" style={{ width: "73%" }} />
         </div>
         <p className="text-[9px] text-gray-500 text-center">9,110 of 12,480 delivered</p>
       </div>

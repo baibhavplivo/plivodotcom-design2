@@ -83,7 +83,7 @@ export default function VerifyPricingComparison() {
                   <img src="/images/plivo-logo.svg" alt="Plivo" className="h-5" />
                   <span className="font-medium text-black">Plivo</span>
                 </div>
-                <span className="text-xl font-bold bg-gradient-to-r from-[#cd3ef9] to-[#323dfe] bg-clip-text text-transparent">$530</span>
+                <span className="text-xl font-bold bg-gradient-to-r from-[#323dfe] to-black bg-clip-text text-transparent">$530</span>
               </div>
               <div className="flex items-center justify-between p-4 bg-gray-100 rounded-lg">
                 <span className="text-gray-600">Other Platforms</span>
@@ -93,8 +93,8 @@ export default function VerifyPricingComparison() {
                 <div className="flex items-center justify-between">
                   <span className="text-gray-600">Your savings with Plivo</span>
                   <div className="text-right">
-                    <span className="text-2xl font-bold bg-gradient-to-r from-[#cd3ef9] to-[#323dfe] bg-clip-text text-transparent">$5,190</span>
-                    <span className="block text-sm bg-gradient-to-r from-[#cd3ef9] to-[#323dfe] bg-clip-text text-transparent font-medium">91% reduction</span>
+                    <span className="text-2xl font-bold bg-gradient-to-r from-[#323dfe] to-black bg-clip-text text-transparent">$5,190</span>
+                    <span className="block text-sm bg-gradient-to-r from-[#323dfe] to-black bg-clip-text text-transparent font-medium">91% reduction</span>
                   </div>
                 </div>
               </div>

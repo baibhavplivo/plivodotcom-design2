@@ -100,8 +100,8 @@ export default function GettingStartedSteps() {
               />
 
               {/* Decorative Elements */}
-              <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-gradient-to-br from-[#323dfe]/20 to-[#cd3ef9]/20 rounded-full blur-2xl pointer-events-none" />
-              <div className="absolute -top-4 -left-4 w-32 h-32 bg-gradient-to-br from-[#cd3ef9]/20 to-[#323dfe]/20 rounded-full blur-2xl pointer-events-none" />
+              <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-gradient-to-br from-[#323dfe]/20 to-black/20 rounded-full blur-2xl pointer-events-none" />
+              <div className="absolute -top-4 -left-4 w-32 h-32 bg-gradient-to-br from-[#323dfe]/20 to-black/20 rounded-full blur-2xl pointer-events-none" />
             </div>
           </div>
         </div>

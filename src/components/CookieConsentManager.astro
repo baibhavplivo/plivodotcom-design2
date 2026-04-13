@@ -376,6 +376,36 @@ const consentCountries = JSON.stringify([...CONSENT_REQUIRED_COUNTRIES]);
       ]);
     }
 
+    // ── Google Consent Mode v2 ──
+    function gtag() {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push(arguments);
+    }
+
+    // Set consent defaults BEFORE GTM loads (denied by default for consent-required regions)
+    gtag("consent", "default", {
+      ad_storage: "denied",
+      ad_user_data: "denied",
+      ad_personalization: "denied",
+      analytics_storage: "denied",
+      functionality_storage: "granted",
+      personalization_storage: "denied",
+      security_storage: "granted",
+      wait_for_update: 500,
+    });
+
+    function updateConsentMode(preferences) {
+      var analyticsState = preferences.analytics ? "granted" : "denied";
+      var marketingState = preferences.marketing ? "granted" : "denied";
+      gtag("consent", "update", {
+        ad_storage: marketingState,
+        ad_user_data: marketingState,
+        ad_personalization: marketingState,
+        analytics_storage: analyticsState,
+        personalization_storage: analyticsState,
+      });
+    }
+
     function pushConsentEvent(preferences) {
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({
@@ -386,6 +416,9 @@ const consentCountries = JSON.stringify([...CONSENT_REQUIRED_COUNTRIES]);
     }
 
     function loadGtmIfAllowed(preferences) {
+      // Update consent mode regardless of whether GTM is loading for the first time
+      updateConsentMode(preferences);
+
       if (!preferences.analytics) return;
       if (!gtmContainerId || !hostAllowed()) return;
       if (window.__plivoGtmLoaded || document.getElementById("plivo-gtm-script")) return;

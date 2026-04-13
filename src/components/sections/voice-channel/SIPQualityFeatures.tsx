@@ -60,7 +60,7 @@ function GuaranteedQualityIllustration() {
               >
                 <defs>
                   <linearGradient id="carrier-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#cd3ef9" />
+                    <stop offset="0%" stopColor="#323dfe" />
                     <stop offset="100%" stopColor="#323dfe" />
                   </linearGradient>
                 </defs>
@@ -164,7 +164,7 @@ function HighAvailabilityIllustration() {
                 >
                   <defs>
                     <linearGradient id="shield-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="#cd3ef9" />
+                      <stop offset="0%" stopColor="#323dfe" />
                       <stop offset="100%" stopColor="#323dfe" />
                     </linearGradient>
                   </defs>

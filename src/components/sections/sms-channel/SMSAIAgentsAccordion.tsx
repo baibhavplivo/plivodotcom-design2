@@ -503,7 +503,7 @@ function KnowledgeIntegrationIllustration() {
             <div className="flex-1">
               <p className="text-sm font-semibold text-gray-900">Knowledge Sources</p>
               <div className="flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full" style={{ background: 'linear-gradient(135deg, #cd3ef9, #323dfe)' }} />
+                <span className="w-2 h-2 rounded-full" style={{ background: 'linear-gradient(135deg, #323dfe, #000000)' }} />
                 <p className="text-[10px] text-gray-500">8 integrations connected</p>
               </div>
             </div>

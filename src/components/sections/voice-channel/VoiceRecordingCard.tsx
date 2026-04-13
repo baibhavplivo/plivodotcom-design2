@@ -111,7 +111,7 @@ export default function VoiceRecordingCard() {
               className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full text-white transition-transform hover:scale-105"
               style={{
                 background:
-                  "linear-gradient(135deg, #000000 0%, #323dfe 40%, #8b5cf6 70%, #cd3ef9 100%)",
+                  "linear-gradient(135deg, #000000 0%, #323dfe 100%)",
               }}
             >
               {isPlaying ? (
@@ -134,7 +134,7 @@ export default function VoiceRecordingCard() {
                       height: `${height * 100}%`,
                       minWidth: "2px",
                       maxWidth: "3px",
-                      backgroundColor: isPlayed ? "#8b5cf6" : "#e5e7eb",
+                      backgroundColor: isPlayed ? "#323dfe" : "#e5e7eb",
                     }}
                   />
                 );

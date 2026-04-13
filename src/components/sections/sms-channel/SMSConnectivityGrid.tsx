@@ -23,7 +23,7 @@ function HighPerformanceSMSIllustration() {
                 </svg>
                 <span className="text-[11px] text-gray-500 font-medium">Throughput</span>
               </div>
-              <p className="text-[20px] font-semibold bg-gradient-to-r from-[#cd3ef9] to-[#323dfe] bg-clip-text text-transparent leading-none">10K</p>
+              <p className="text-[20px] font-semibold bg-gradient-to-r from-[#323dfe] to-black bg-clip-text text-transparent leading-none">10K</p>
               <p className="text-[11px] text-gray-500 mt-0.5">msgs/sec</p>
             </div>
 
@@ -35,7 +35,7 @@ function HighPerformanceSMSIllustration() {
                 </svg>
                 <span className="text-[11px] text-gray-500 font-medium">Latency</span>
               </div>
-              <p className="text-[20px] font-semibold bg-gradient-to-r from-[#cd3ef9] to-[#323dfe] bg-clip-text text-transparent leading-none">&lt;3s</p>
+              <p className="text-[20px] font-semibold bg-gradient-to-r from-[#323dfe] to-black bg-clip-text text-transparent leading-none">&lt;3s</p>
               <p className="text-[11px] text-gray-500 mt-0.5">avg delivery</p>
             </div>
           </div>
@@ -63,7 +63,7 @@ function HighPerformanceSMSIllustration() {
                   <svg className="w-3 h-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" strokeWidth={3} stroke="currentColor">
                     <defs>
                       <linearGradient id={`checkGradient${i}`} x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stopColor="#cd3ef9" />
+                        <stop offset="0%" stopColor="#323dfe" />
                         <stop offset="100%" stopColor="#323dfe" />
                       </linearGradient>
                     </defs>
@@ -183,7 +183,7 @@ function InfrastructureIllustration() {
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" strokeWidth={1.5}>
                   <defs>
                     <linearGradient id="iconGradient1" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="#cd3ef9" />
+                      <stop offset="0%" stopColor="#323dfe" />
                       <stop offset="100%" stopColor="#323dfe" />
                     </linearGradient>
                   </defs>
@@ -207,7 +207,7 @@ function InfrastructureIllustration() {
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" strokeWidth={1.5}>
                   <defs>
                     <linearGradient id="iconGradient2" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="#cd3ef9" />
+                      <stop offset="0%" stopColor="#323dfe" />
                       <stop offset="100%" stopColor="#323dfe" />
                     </linearGradient>
                   </defs>
@@ -231,7 +231,7 @@ function InfrastructureIllustration() {
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" strokeWidth={1.5}>
                   <defs>
                     <linearGradient id="iconGradient3" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="#cd3ef9" />
+                      <stop offset="0%" stopColor="#323dfe" />
                       <stop offset="100%" stopColor="#323dfe" />
                     </linearGradient>
                   </defs>
@@ -266,7 +266,7 @@ function SmartRoutingIllustration() {
               <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#e5e7eb" strokeWidth="0.5" opacity="0.5" />
             </pattern>
             <linearGradient id="optimalGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#cd3ef9" />
+              <stop offset="0%" stopColor="#323dfe" />
               <stop offset="100%" stopColor="#323dfe" />
             </linearGradient>
           </defs>
@@ -337,7 +337,7 @@ function SmartRoutingIllustration() {
         {/* Delivery rate pill - top left */}
         <div className="absolute left-4 top-4 z-10">
           <div className="bg-white/95 backdrop-blur-sm rounded-full px-3 py-1.5 shadow-sm border border-gray-200/60 flex items-center gap-1.5">
-            <span className="text-[16px] font-semibold bg-gradient-to-r from-[#cd3ef9] to-[#323dfe] bg-clip-text text-transparent leading-none">&gt;99%</span>
+            <span className="text-[16px] font-semibold bg-gradient-to-r from-[#323dfe] to-black bg-clip-text text-transparent leading-none">&gt;99%</span>
             <span className="text-[10px] text-gray-500 font-medium">delivery</span>
           </div>
         </div>
@@ -380,7 +380,7 @@ function GlobalScaleIllustration() {
         <div className="absolute right-4 top-1/2 -translate-y-1/2 z-10">
           <div className="bg-white/95 backdrop-blur-sm rounded-full px-4 py-2 shadow-lg border border-gray-200/60">
             <div className="flex items-center gap-1.5">
-              <span className="text-[22px] font-semibold bg-gradient-to-r from-[#cd3ef9] to-[#323dfe] bg-clip-text text-transparent leading-none">190+</span>
+              <span className="text-[22px] font-semibold bg-gradient-to-r from-[#323dfe] to-black bg-clip-text text-transparent leading-none">190+</span>
               <span className="text-[11px] text-gray-600 font-medium">Countries</span>
             </div>
           </div>
@@ -402,7 +402,7 @@ function EnterpriseReliabilityIllustration() {
         <div className="absolute right-4 top-4 z-10">
           <div className="bg-white/95 backdrop-blur-sm rounded-full pl-2.5 pr-3 py-1.5 shadow-sm border border-gray-200/60 flex items-center gap-2">
             <div className="w-1.5 h-1.5 rounded-full bg-green-500" />
-            <span className="text-[18px] font-semibold bg-gradient-to-r from-[#cd3ef9] to-[#323dfe] bg-clip-text text-transparent leading-none">99.99%</span>
+            <span className="text-[18px] font-semibold bg-gradient-to-r from-[#323dfe] to-black bg-clip-text text-transparent leading-none">99.99%</span>
           </div>
         </div>
 
@@ -420,7 +420,7 @@ function EnterpriseReliabilityIllustration() {
                 <stop offset="100%" stopColor="#323dfe" stopOpacity="0" />
               </linearGradient>
               <linearGradient id="line-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#cd3ef9" />
+                <stop offset="0%" stopColor="#323dfe" />
                 <stop offset="100%" stopColor="#323dfe" />
               </linearGradient>
             </defs>

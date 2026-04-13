@@ -36,7 +36,7 @@ export default function VoiceDemoCompact() {
                   selectedLanguage === "hindi"
                     ? {
                         background:
-                          "linear-gradient(135deg, #323dfe 0%, #cd3ef9 50%, #9ca3af 100%)",
+                          "linear-gradient(135deg, #323dfe 0%, #323dfe 50%, #9ca3af 100%)",
                       }
                     : undefined
                 }
@@ -54,7 +54,7 @@ export default function VoiceDemoCompact() {
                   selectedLanguage === "english"
                     ? {
                         background:
-                          "linear-gradient(135deg, #323dfe 0%, #cd3ef9 50%, #9ca3af 100%)",
+                          "linear-gradient(135deg, #323dfe 0%, #323dfe 50%, #9ca3af 100%)",
                       }
                     : undefined
                 }
@@ -73,7 +73,7 @@ export default function VoiceDemoCompact() {
                 className="flex h-12 w-12 sm:h-16 sm:w-16 items-center justify-center rounded-full"
                 style={{
                   background:
-                    "linear-gradient(135deg, #323dfe 0%, #cd3ef9 50%, #9ca3af 100%)",
+                    "linear-gradient(135deg, #323dfe 0%, #323dfe 50%, #9ca3af 100%)",
                 }}
               >
                 <div className="flex items-center gap-[3px]">

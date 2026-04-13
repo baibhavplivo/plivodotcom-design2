@@ -127,7 +127,7 @@ const BlogPost = ({
 
           {/* Author Info */}
           <div className="flex items-center gap-3">
-            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-r from-[#cd3ef9] via-[#323dfe] to-black text-white font-semibold text-lg">
+            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-r from-[#323dfe] to-black text-white font-semibold text-lg">
               P
             </div>
             <div>

@@ -158,7 +158,7 @@ export default function VerifyHeroIllustration() {
                     >
                       <defs>
                         <linearGradient id="verifyIconGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                          <stop offset="0%" stopColor="#cd3ef9" />
+                          <stop offset="0%" stopColor="#323dfe" />
                           <stop offset="100%" stopColor="#323dfe" />
                         </linearGradient>
                       </defs>
@@ -219,7 +219,7 @@ export default function VerifyHeroIllustration() {
                   )}
                 >
                   <div className="flex items-center justify-center gap-1.5 mb-4">
-                    <div className="w-4 h-4 rounded-full bg-gradient-to-br from-[#cd3ef9] via-[#323dfe] to-black flex items-center justify-center">
+                    <div className="w-4 h-4 rounded-full bg-gradient-to-br from-[#323dfe] to-black flex items-center justify-center">
                       <svg
                         className="w-2.5 h-2.5 text-white"
                         fill="none"
@@ -234,7 +234,7 @@ export default function VerifyHeroIllustration() {
                         />
                       </svg>
                     </div>
-                    <span className="font-medium bg-gradient-to-r from-[#cd3ef9] to-[#323dfe] bg-clip-text text-transparent">
+                    <span className="font-medium bg-gradient-to-r from-[#323dfe] to-black bg-clip-text text-transparent">
                       Verified successfully!
                     </span>
                   </div>
@@ -246,7 +246,7 @@ export default function VerifyHeroIllustration() {
                     className={cn(
                       "w-full py-3 rounded-lg font-medium text-sm transition-all duration-300",
                       filledDigits === 4
-                        ? "bg-gradient-to-r from-[#cd3ef9]/20 to-[#323dfe]/20 text-black"
+                        ? "bg-gradient-to-r from-[#323dfe]/20 to-black/20 text-black"
                         : "bg-gray-200 text-gray-400"
                     )}
                   >

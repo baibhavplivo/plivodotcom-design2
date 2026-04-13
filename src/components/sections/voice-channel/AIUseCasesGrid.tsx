@@ -49,7 +49,7 @@ export default function AIUseCasesGrid() {
               className="group rounded-lg border border-gray-200 bg-white p-6 transition-all hover:border-gray-300 hover:shadow-md"
             >
               {/* Icon */}
-              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-[#323dfe]/10 to-[#cd3ef9]/10 text-[#323dfe] transition-colors group-hover:from-[#323dfe]/20 group-hover:to-[#cd3ef9]/20">
+              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-[#323dfe]/10 to-[#323dfe]/10 text-[#323dfe] transition-colors group-hover:from-[#323dfe]/20 group-hover:to-[#323dfe]/20">
                 {useCase.icon}
               </div>
 

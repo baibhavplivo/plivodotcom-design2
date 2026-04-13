@@ -234,7 +234,7 @@ function AudioPlayer({
           className={`flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full transition-colors ${
             isGray
               ? "bg-black text-white cta-hover-gradient"
-              : "bg-gradient-to-r from-[#cd3ef9] to-[#323dfe] text-white hover:opacity-90"
+              : "bg-gradient-to-r from-[#323dfe] to-black text-white hover:opacity-90"
           }`}
         >
           {isPlaying ? (
@@ -308,7 +308,7 @@ function VoiceDemoCard() {
         <button
           onClick={togglePlay}
           className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full text-white transition-transform hover:scale-105"
-          style={{ background: "linear-gradient(135deg, #000 0%, #323dfe 40%, #8b5cf6 70%, #cd3ef9 100%)" }}
+          style={{ background: "linear-gradient(135deg, #000 0%, #323dfe 100%)" }}
         >
           {isPlaying ? <Pause className="h-3.5 w-3.5" fill="currentColor" /> : <Play className="ml-0.5 h-3.5 w-3.5" fill="currentColor" />}
         </button>
@@ -456,8 +456,8 @@ function SelfImprovingCard() {
             </Circle>
             {/* Center gradient circle with Plivo logo style and pulsating glow */}
             <div className="relative">
-              <div className="absolute inset-0 animate-pulse-glow rounded-full bg-gradient-to-br from-[#cd3ef9] via-[#323dfe] to-black blur-md opacity-50" />
-              <Circle ref={centerRef} className="relative size-16 border-0 bg-gradient-to-br from-[#cd3ef9] via-[#323dfe] to-black shadow-lg">
+              <div className="absolute inset-0 animate-pulse-glow rounded-full bg-gradient-to-br from-[#323dfe] to-black blur-md opacity-50" />
+              <Circle ref={centerRef} className="relative size-16 border-0 bg-gradient-to-br from-[#323dfe] to-black shadow-lg">
                 {/* Curved 4-point star sparkle icon with pulsating animation */}
                 <svg className="size-7 text-white animate-pulse-spark" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M12 0C13.5 4.5 19.5 10.5 24 12C19.5 13.5 13.5 19.5 12 24C10.5 19.5 4.5 13.5 0 12C4.5 10.5 10.5 4.5 12 0Z" />

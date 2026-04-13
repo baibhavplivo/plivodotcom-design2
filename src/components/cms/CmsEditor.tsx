@@ -943,7 +943,7 @@ export default function CmsEditor({ slug, onBack }: CmsEditorProps) {
                           {author.image ? (
                             <img src={author.image} alt={author.name} className="h-10 w-10 rounded-full object-cover border border-gray-200 shrink-0" />
                           ) : (
-                            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-r from-[#cd3ef9] via-[#323dfe] to-black text-white font-semibold text-sm shrink-0">
+                            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-r from-[#323dfe] to-black text-white font-semibold text-sm shrink-0">
                               {author.name.charAt(0).toUpperCase()}
                             </div>
                           )}
@@ -967,7 +967,7 @@ export default function CmsEditor({ slug, onBack }: CmsEditorProps) {
                       {fm.authorImage ? (
                         <img src={authorImagePreview || fm.authorImage} alt={fm.authorName} className="h-14 w-14 rounded-full object-cover border border-gray-200" />
                       ) : (
-                        <div className="flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-r from-[#cd3ef9] via-[#323dfe] to-black text-white font-semibold text-lg">
+                        <div className="flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-r from-[#323dfe] to-black text-white font-semibold text-lg">
                           {(fm.authorName || "T").charAt(0).toUpperCase()}
                         </div>
                       )}

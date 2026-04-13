@@ -36,7 +36,7 @@ function MessageTypesIllustration() {
       <svg className="absolute w-0 h-0">
         <defs>
           <linearGradient id="chatIconGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#cd3ef9" />
+            <stop offset="0%" stopColor="#323dfe" />
             <stop offset="100%" stopColor="#323dfe" />
           </linearGradient>
         </defs>
@@ -112,7 +112,7 @@ function CustomInteractiveIllustration() {
             </div>
             <div className="flex gap-1.5">
               <button className="flex-1 py-1 text-[9px] font-medium text-gray-600 bg-gray-100 rounded">Cancel</button>
-              <button className="flex-1 py-1 text-[9px] font-medium text-white bg-gradient-to-r from-[#cd3ef9] to-[#323dfe] rounded">Confirm</button>
+              <button className="flex-1 py-1 text-[9px] font-medium text-white bg-gradient-to-r from-[#323dfe] to-black rounded">Confirm</button>
             </div>
           </div>
         </div>
@@ -140,7 +140,7 @@ function BrandedChatIllustration() {
             <div className="p-3.5">
               <p className="text-[9px] text-gray-500 mb-2">Brand Colors</p>
               <div className="flex gap-2.5 mb-3">
-                {["#cd3ef9", "#323dfe", "#0f1117", "#ffffff"].map((color, i) => (
+                {["#323dfe", "#323dfe", "#0f1117", "#ffffff"].map((color, i) => (
                   <div key={i} className="flex flex-col items-center gap-1">
                     <div className="w-5 h-5 rounded border border-gray-200" style={{ backgroundColor: color }} />
                     <span className="text-[7px] text-gray-400">{color}</span>
@@ -185,7 +185,7 @@ function WebChatIllustration() {
             <div className="w-1/2 h-2 bg-gray-100 rounded mb-2" />
             <div className="w-2/3 h-2 bg-gray-100 rounded" />
             {/* Chat widget bubble */}
-            <div className="absolute bottom-2 right-2 w-7 h-7 rounded-full bg-gradient-to-br from-[#cd3ef9] via-[#323dfe] to-black flex items-center justify-center shadow-lg">
+            <div className="absolute bottom-2 right-2 w-7 h-7 rounded-full bg-gradient-to-br from-[#323dfe] to-black flex items-center justify-center shadow-lg">
               <svg className="w-3.5 h-3.5 text-white" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M4.913 2.658c2.075-.27 4.19-.408 6.337-.408 2.147 0 4.262.139 6.337.408 1.922.25 3.291 1.861 3.405 3.727a4.403 4.403 0 00-1.032-.211 50.89 50.89 0 00-8.42 0c-2.358.196-4.04 2.19-4.04 4.434v4.286a4.47 4.47 0 002.433 3.984L7.28 21.53A.75.75 0 016 21v-4.03a48.527 48.527 0 01-1.087-.128C2.905 16.58 1.5 14.833 1.5 12.862V6.638c0-1.97 1.405-3.718 3.413-3.979z" />
                 <path d="M15.75 7.5c-1.376 0-2.739.057-4.086.169C10.124 7.797 9 9.103 9 10.609v4.285c0 1.507 1.128 2.814 2.67 2.94 1.243.102 2.5.157 3.768.165l2.782 2.781a.75.75 0 001.28-.53v-2.39l.33-.026c1.542-.125 2.67-1.433 2.67-2.94v-4.286c0-1.505-1.125-2.811-2.664-2.94A49.392 49.392 0 0015.75 7.5z" />
@@ -213,7 +213,7 @@ function MobileAppIllustration() {
             {/* Screen */}
             <div className="absolute inset-[2px] rounded-t-[18px] overflow-hidden bg-gray-50 flex flex-col">
               {/* Chat header - light gradient */}
-              <div className="bg-gradient-to-r from-[#cd3ef9]/10 to-[#323dfe]/10 px-3 py-2 pt-4 flex items-center gap-1.5">
+              <div className="bg-gradient-to-r from-[#323dfe]/10 to-black/10 px-3 py-2 pt-4 flex items-center gap-1.5">
                 <div className="w-4 h-4 rounded-full bg-[#323dfe]/10 flex items-center justify-center">
                   <svg className="w-2.5 h-2.5 text-[#323dfe]" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M12.813 15.904L12 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L5.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L12 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L18.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" />
@@ -278,7 +278,7 @@ function SnippetsIllustration() {
                   <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" strokeWidth={1.5}>
                     <defs>
                       <linearGradient id="snipGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stopColor="#cd3ef9" />
+                        <stop offset="0%" stopColor="#323dfe" />
                         <stop offset="100%" stopColor="#323dfe" />
                       </linearGradient>
                     </defs>

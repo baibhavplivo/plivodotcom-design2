@@ -29,10 +29,10 @@ function DisplayCard({
             )}
         >
             <div className="flex items-center gap-2.5">
-                <span className="relative inline-flex items-center justify-center rounded-md bg-indigo-50 p-2">
+                <span className="relative inline-flex items-center justify-center rounded-md bg-gray-100 p-2">
                     {icon}
                 </span>
-                <p className={cn("text-xl font-semibold text-[#323DFE]", titleClassName)}>{title}</p>
+                <p className={cn("text-xl font-medium text-black", titleClassName)}>{title}</p>
             </div>
             <p className="mt-2 text-base text-gray-500 line-clamp-2">{description}</p>
         </div>

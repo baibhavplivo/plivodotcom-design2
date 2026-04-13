@@ -280,6 +280,16 @@ const Navbar1 = ({ currentPage = "/" }: Navbar1Props) => {
 
           {/* Right Side - CTAs */}
           <div className="flex items-center gap-2">
+            {/* Login - Desktop */}
+            <a
+              href="https://cx.plivo.com/login"
+              className="hidden items-center justify-center px-3.5 py-1.5 text-[13px] font-normal text-gray-700 transition-all hover:text-black lg:inline-flex"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Login
+            </a>
+
             {/* Contact Sales - Desktop */}
             {secondaryNavigation.map((item) => (
               <a

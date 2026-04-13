@@ -292,7 +292,7 @@ export default function CmsPreview({
                     className="h-11 w-11 rounded-full object-cover border border-gray-200 shrink-0"
                   />
                 ) : (
-                  <div className="flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-r from-[#cd3ef9] via-[#323dfe] to-black text-white font-semibold text-base shrink-0">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-r from-[#323dfe] to-black text-white font-semibold text-base shrink-0">
                     {(authorName || "T").charAt(0).toUpperCase()}
                   </div>
                 )}

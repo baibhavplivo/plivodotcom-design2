@@ -111,7 +111,7 @@ function AudioPlayer({
           style={{
             background: isGray
               ? "#000000"
-              : "linear-gradient(135deg, #000000 0%, #323dfe 40%, #8b5cf6 70%, #cd3ef9 100%)",
+              : "linear-gradient(135deg, #000000 0%, #323dfe 100%)",
           }}
         >
           {isPlaying ? (

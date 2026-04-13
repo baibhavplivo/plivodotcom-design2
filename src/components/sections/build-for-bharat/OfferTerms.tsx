@@ -147,7 +147,7 @@ export default function OfferTerms() {
             Questions? Email{" "}
             <a
               href="mailto:events@plivo.com?subject=Build%20for%20Bharat%20Inquiry"
-              className="font-medium text-black hover:text-[#cd3ef9] transition-colors underline underline-offset-2"
+              className="font-medium text-black hover:text-[#323dfe] transition-colors underline underline-offset-2"
             >
               events@plivo.com
             </a>{" "}

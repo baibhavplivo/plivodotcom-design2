@@ -37,7 +37,7 @@ function GlobalReachIllustration() {
         <div className="absolute right-4 top-1/2 -translate-y-1/2 z-10">
           <div className="bg-white/95 backdrop-blur-sm rounded-full px-4 py-2 shadow-lg border border-gray-200/60">
             <div className="flex items-center gap-1.5">
-              <span className="text-[22px] font-semibold bg-gradient-to-r from-[#cd3ef9] to-[#323dfe] bg-clip-text text-transparent leading-none">150+</span>
+              <span className="text-[22px] font-semibold bg-gradient-to-r from-[#323dfe] to-black bg-clip-text text-transparent leading-none">150+</span>
               <span className="text-[11px] text-gray-600 font-medium">Countries</span>
             </div>
           </div>
@@ -59,7 +59,7 @@ function ConversionRateIllustration() {
         <div className="absolute right-4 top-4 z-10">
           <div className="bg-white/95 backdrop-blur-sm rounded-full pl-2.5 pr-3 py-1.5 shadow-sm border border-gray-200/60 flex items-center gap-2">
             <div className="w-1.5 h-1.5 rounded-full bg-[#323dfe]" />
-            <span className="text-[18px] font-semibold bg-gradient-to-r from-[#cd3ef9] to-[#323dfe] bg-clip-text text-transparent leading-none">95%</span>
+            <span className="text-[18px] font-semibold bg-gradient-to-r from-[#323dfe] to-black bg-clip-text text-transparent leading-none">95%</span>
           </div>
         </div>
 
@@ -77,7 +77,7 @@ function ConversionRateIllustration() {
                 <stop offset="100%" stopColor="#323dfe" stopOpacity="0" />
               </linearGradient>
               <linearGradient id="conversion-line" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#cd3ef9" />
+                <stop offset="0%" stopColor="#323dfe" />
                 <stop offset="100%" stopColor="#323dfe" />
               </linearGradient>
             </defs>
@@ -275,11 +275,11 @@ function TransparentPricingIllustration() {
           <div className="space-y-2">
             <div className="flex items-center justify-between p-2 rounded-md bg-gray-50">
               <span className="text-[11px] text-gray-600">Verification fee</span>
-              <span className="text-[13px] font-semibold bg-gradient-to-r from-[#cd3ef9] to-[#323dfe] bg-clip-text text-transparent">$0.00</span>
+              <span className="text-[13px] font-semibold bg-gradient-to-r from-[#323dfe] to-black bg-clip-text text-transparent">$0.00</span>
             </div>
             <div className="flex items-center justify-between p-2 rounded-md bg-gray-50">
               <span className="text-[11px] text-gray-600">Fraud Shield</span>
-              <span className="text-[13px] font-semibold bg-gradient-to-r from-[#cd3ef9] to-[#323dfe] bg-clip-text text-transparent">$0.00</span>
+              <span className="text-[13px] font-semibold bg-gradient-to-r from-[#323dfe] to-black bg-clip-text text-transparent">$0.00</span>
             </div>
             <div className="flex items-center justify-between p-2 rounded-md bg-[#323dfe]/5 border border-[#323dfe]/10">
               <span className="text-[11px] text-gray-700 font-medium">Channel cost only</span>
@@ -321,7 +321,7 @@ function PremiumSupportIllustration() {
           <div className="flex-1 p-2 space-y-2 bg-gray-50">
             {/* User message */}
             <div className="flex justify-end">
-              <div className="bg-gradient-to-r from-[#cd3ef9] to-[#323dfe] text-white text-[10px] px-2.5 py-1.5 rounded-lg rounded-br-sm max-w-[85%]">
+              <div className="bg-gradient-to-r from-[#323dfe] to-black text-white text-[10px] px-2.5 py-1.5 rounded-lg rounded-br-sm max-w-[85%]">
                 Hi, I need help with OTP delivery rates
               </div>
             </div>

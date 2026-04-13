@@ -20,7 +20,7 @@ interface Category {
 // Reusable voice waveform component - primary gradient accent
 function VoiceWaveform({ color = "gradient", size = "sm" }: { color?: "gradient" | "gray" | "white"; size?: "sm" | "md" }) {
   const heights = size === "md" ? [4, 8, 12, 6, 14, 8, 10, 6, 12, 8, 4] : [3, 6, 10, 5, 12, 6, 8, 5, 10, 6, 3];
-  const colorClass = color === "gradient" ? "bg-gradient-to-t from-black via-[#323dfe] to-[#8b5cf6]" : color === "white" ? "bg-white/70" : "bg-gray-300";
+  const colorClass = color === "gradient" ? "bg-gradient-to-t from-black via-[#323dfe] to-[#323dfe]" : color === "white" ? "bg-white/70" : "bg-gray-300";
 
   return (
     <div className="flex items-center gap-[2px]">
@@ -39,7 +39,7 @@ function AIAvatar({ size = 8 }: { size?: number }) {
       <svg viewBox="0 0 32 32" className="w-full h-full">
         <defs>
           <linearGradient id={id} x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#cd3ef9" />
+            <stop offset="0%" stopColor="#323dfe" />
             <stop offset="50%" stopColor="#323dfe" />
             <stop offset="100%" stopColor="#000000" />
           </linearGradient>
@@ -89,10 +89,10 @@ function LeadQualificationIllustration() {
             <div className="flex items-center gap-1.5">
               <div className="flex gap-0.5">
                 {[1,2,3,4,5].map(i => (
-                  <div key={i} className={cn("w-1.5 h-3 rounded-sm", i <= 4 ? "bg-gradient-to-t from-black via-[#323dfe] to-[#8b5cf6]" : "bg-gray-200")} />
+                  <div key={i} className={cn("w-1.5 h-3 rounded-sm", i <= 4 ? "bg-gradient-to-t from-black via-[#323dfe] to-[#323dfe]" : "bg-gray-200")} />
                 ))}
               </div>
-              <span className="text-[10px] font-medium text-[#6366f1]">High</span>
+              <span className="text-[10px] font-medium text-[#323dfe]">High</span>
             </div>
           </div>
         </div>
@@ -117,7 +117,7 @@ function AppointmentSchedulerIllustration() {
               {['Mon', 'Tue', 'Wed'].map((d, i) => (
                 <div key={d} className={cn(
                   "w-10 text-center py-1.5 rounded-lg",
-                  i === 1 ? "bg-gradient-to-br from-black via-[#323dfe] to-[#8b5cf6]" : "bg-gray-100"
+                  i === 1 ? "bg-gradient-to-br from-black via-[#323dfe] to-[#323dfe]" : "bg-gray-100"
                 )}>
                   <div className={cn("text-[8px]", i === 1 ? "text-white/90" : "text-gray-400")}>{d}</div>
                   <div className={cn("text-[11px] font-semibold", i === 1 ? "text-white" : "text-gray-600")}>{15 + i}</div>
@@ -213,7 +213,7 @@ function VoiceAlertsIllustration() {
           </div>
           {/* Voice playback bar */}
           <div className="flex items-center gap-2 bg-gray-50 rounded-lg px-2.5 py-2">
-            <div className="w-6 h-6 rounded-full bg-gradient-to-br from-[#cd3ef9] via-[#323dfe] to-black flex items-center justify-center flex-shrink-0">
+            <div className="w-6 h-6 rounded-full bg-gradient-to-br from-[#323dfe] to-black flex items-center justify-center flex-shrink-0">
               <svg className="w-3 h-3 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M8 5v14l11-7z" />
               </svg>
@@ -221,7 +221,7 @@ function VoiceAlertsIllustration() {
             {/* Wide waveform */}
             <div className="flex-1 flex items-center gap-[2px]">
               {[4, 8, 12, 6, 14, 8, 10, 6, 12, 8, 4, 6, 10, 14, 8, 12, 6, 10, 4, 8, 12, 6, 14, 10, 8].map((h, i) => (
-                <div key={i} className="w-[2px] rounded-full bg-gradient-to-t from-black via-[#323dfe] to-[#8b5cf6]" style={{ height: `${h}px` }} />
+                <div key={i} className="w-[2px] rounded-full bg-gradient-to-t from-black via-[#323dfe] to-[#323dfe]" style={{ height: `${h}px` }} />
               ))}
             </div>
             <span className="text-[9px] text-gray-400">0:15</span>
@@ -310,7 +310,7 @@ function AppointmentReminderIllustration() {
               {['Tue 4 PM', 'Wed 2 PM', 'Thu 10 AM'].map((t, i) => (
                 <span key={t} className={cn(
                   "flex-1 text-center text-[10px] px-2 py-1.5 rounded-lg",
-                  i === 0 ? "bg-gradient-to-r from-black via-[#323dfe] to-[#8b5cf6] text-white font-medium" : "bg-gray-100 text-gray-500"
+                  i === 0 ? "bg-gradient-to-r from-black via-[#323dfe] to-[#323dfe] text-white font-medium" : "bg-gray-100 text-gray-500"
                 )}>{t}</span>
               ))}
             </div>
@@ -321,7 +321,7 @@ function AppointmentReminderIllustration() {
         <div className="mt-auto bg-white rounded-lg px-3 py-2 border border-gray-200">
           <div className="flex items-center justify-between">
             <span className="text-[10px] text-gray-500">Rescheduled to:</span>
-            <span className="text-[11px] font-medium text-[#6366f1]">Tue, 4 PM</span>
+            <span className="text-[11px] font-medium text-[#323dfe]">Tue, 4 PM</span>
           </div>
         </div>
       </div>
@@ -405,7 +405,7 @@ function ComplaintResolutionIllustration() {
             <p className="text-[11px] text-gray-700 mb-2">"I apologize! Here's what I can do:"</p>
             <div className="flex gap-1.5">
               <span className="flex-1 text-center text-[10px] bg-emerald-50 text-emerald-600 px-2 py-1.5 rounded-lg font-medium">Free Replacement</span>
-              <span className="flex-1 text-center text-[10px] bg-indigo-50 text-[#6366f1] px-2 py-1.5 rounded-lg font-medium">20% Credit</span>
+              <span className="flex-1 text-center text-[10px] bg-indigo-50 text-[#323dfe] px-2 py-1.5 rounded-lg font-medium">20% Credit</span>
             </div>
           </div>
         </div>
@@ -441,7 +441,7 @@ function FeedbackSurveyIllustration() {
                   className={cn(
                     "w-8 h-8 rounded-full flex items-center justify-center text-[11px] font-medium",
                     num === 5
-                      ? "bg-gradient-to-br from-black via-[#323dfe] to-[#8b5cf6] text-white"
+                      ? "bg-gradient-to-br from-black via-[#323dfe] to-[#323dfe] text-white"
                       : "bg-gray-100 text-gray-400"
                   )}
                 >

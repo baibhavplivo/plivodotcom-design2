@@ -207,7 +207,7 @@ function AudioDemoCard({
           onClick={togglePlay}
           className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full text-white transition-colors"
           style={{
-            background: "linear-gradient(135deg, #000000 0%, #323dfe 40%, #8b5cf6 70%, #cd3ef9 100%)",
+            background: "linear-gradient(135deg, #000000 0%, #323dfe 100%)",
           }}
         >
           {isPlaying ? (
@@ -230,7 +230,7 @@ function AudioDemoCard({
                   height: `${height * 100}%`,
                   minWidth: "2px",
                   maxWidth: "4px",
-                  backgroundColor: isPlayed ? "#8b5cf6" : "#d1d5db",
+                  backgroundColor: isPlayed ? "#323dfe" : "#d1d5db",
                 }}
               />
             );

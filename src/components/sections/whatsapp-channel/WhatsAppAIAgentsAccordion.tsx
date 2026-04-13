@@ -539,7 +539,7 @@ function Availability247Illustration() {
                   <div key={i} className="flex-1 flex flex-col items-center">
                     <div className="w-full flex items-end justify-center h-[60px]">
                       <div
-                        className="w-full max-w-[28px] rounded-t-sm bg-gradient-to-t from-[#323dfe] to-[#cd3ef9] transition-all duration-700 ease-out"
+                        className="w-full max-w-[28px] rounded-t-sm bg-gradient-to-t from-[#323dfe] to-black transition-all duration-700 ease-out"
                         style={{
                           height: animatedBars ? `${item.value}%` : '0%',
                           transitionDelay: `${i * 80}ms`

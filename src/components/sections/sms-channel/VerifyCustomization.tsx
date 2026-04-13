@@ -70,7 +70,7 @@ function AndroidAutofillIllustration() {
             <button
               className="px-4 py-1.5 text-white font-medium text-[10px] rounded-full"
               style={{
-                background: "linear-gradient(135deg, #cd3ef9 0%, #323dfe 100%)",
+                background: "linear-gradient(135deg, #323dfe 0%, #000000 100%)",
               }}
             >
               Allow
@@ -123,7 +123,7 @@ function ConfigurationIllustration() {
                   </div>
                   <div
                     className="w-5 h-5 rounded-sm flex items-center justify-center flex-shrink-0"
-                    style={{ background: "linear-gradient(135deg, #cd3ef9 0%, #323dfe 100%)" }}
+                    style={{ background: "linear-gradient(135deg, #323dfe 0%, #000000 100%)" }}
                   >
                     <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" strokeWidth={3} stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
@@ -140,7 +140,7 @@ function ConfigurationIllustration() {
                   <div
                     className="w-5 h-5 rounded-sm flex-shrink-0"
                     style={{
-                      background: "linear-gradient(135deg, #cd3ef9 0%, #323dfe 100%)",
+                      background: "linear-gradient(135deg, #323dfe 0%, #000000 100%)",
                       padding: "2px",
                     }}
                   >

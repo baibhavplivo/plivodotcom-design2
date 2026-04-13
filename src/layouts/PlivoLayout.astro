@@ -40,6 +40,10 @@ const posthogHost = import.meta.env.PUBLIC_POSTHOG_HOST || "https://us.i.posthog
     )}
   </head>
   <body class="min-h-screen bg-white antialiased">
+    {/* Google Tag Manager (noscript) - only in production */}
+    {gtmContainerId && (
+      <noscript><iframe src={`https://www.googletagmanager.com/ns.html?id=${gtmContainerId}`} height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    )}
     <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:rounded-md focus:bg-black focus:px-4 focus:py-2 focus:text-sm focus:text-white focus:outline-none">
       Skip to main content
     </a>

@@ -536,8 +536,8 @@ function ContextAwareIllustration() {
           {/* AI Agent message */}
           <div className="flex items-start gap-2.5 sm:gap-3">
             {/* Agent avatar - gradient orb */}
-            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gradient-to-br from-[#cd3ef9] via-[#323dfe] to-black flex items-center justify-center flex-shrink-0 shadow-lg">
-              <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-gradient-to-br from-[#323dfe]/80 to-[#8b5cf6]/80 flex items-center justify-center border border-white/30">
+            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gradient-to-br from-[#323dfe] to-black flex items-center justify-center flex-shrink-0 shadow-lg">
+              <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-gradient-to-br from-[#323dfe]/80 to-[#323dfe]/80 flex items-center justify-center border border-white/30">
                 <span className="text-white text-xs sm:text-sm">✦</span>
               </div>
             </div>
@@ -685,7 +685,7 @@ function AvailabilityIllustration() {
           {/* Header */}
           <div className="flex items-center justify-between mb-3">
             <div className="flex items-center gap-2">
-              <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-gradient-to-br from-[#323dfe] to-[#8b5cf6] flex items-center justify-center">
+              <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-gradient-to-br from-[#323dfe] to-black flex items-center justify-center">
                 <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                 </svg>
@@ -777,7 +777,7 @@ function AvailabilityIllustration() {
                 <div className="space-y-1.5">
                   {[
                     { type: 'Support', value: 45, color: '#323dfe' },
-                    { type: 'Sales', value: 30, color: '#8b5cf6' },
+                    { type: 'Sales', value: 30, color: '#323dfe' },
                     { type: 'Billing', value: 25, color: '#06b6d4' },
                   ].map((item) => (
                     <div key={item.type} className="flex items-center gap-1.5">

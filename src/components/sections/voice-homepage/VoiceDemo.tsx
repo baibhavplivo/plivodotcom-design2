@@ -11,7 +11,7 @@ const INDIA_APP_ID = "18059965556351397";
 const TOKEN_API_URL = "/api/voice-agent";
 const TOKEN_ISSUER = "MAOTC4NDM0MDATMMU0NC";
 
-const PLIVO_GRADIENT = "linear-gradient(135deg, #cd3ef9 0%, #323dfe 100%)";
+const PLIVO_GRADIENT = "linear-gradient(135deg, #323dfe 0%, #000000 100%)";
 const ACTIVE_GRADIENT = "linear-gradient(135deg, #ef4444 0%, #dc2626 100%)";
 
 type Language = "hindi" | "english";

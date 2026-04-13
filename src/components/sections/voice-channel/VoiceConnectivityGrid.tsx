@@ -168,8 +168,8 @@ function IntelligentRoutingIllustration() {
           {/* AI Routing - Circular with Glow */}
           <div className="flex flex-col items-center gap-1.5 relative">
             {/* Soft glow effect */}
-            <div className="absolute w-20 h-20 rounded-full bg-gradient-to-br from-[#cd3ef9]/30 to-[#323dfe]/30 blur-xl" />
-            <div className="relative w-14 h-14 rounded-full bg-gradient-to-br from-[#cd3ef9] via-[#323dfe] to-black flex items-center justify-center shadow-lg">
+            <div className="absolute w-20 h-20 rounded-full bg-gradient-to-br from-[#323dfe]/30 to-black/30 blur-xl" />
+            <div className="relative w-14 h-14 rounded-full bg-gradient-to-br from-[#323dfe] to-black flex items-center justify-center shadow-lg">
               {/* Sparkle icon from Vector.svg */}
               <svg className="w-6 h-6" viewBox="0 0 8 8" fill="none">
                 <path d="M7.2153 3.67496C6.54391 3.93557 5.86369 4.10783 5.27623 4.54953C4.37957 5.22534 4.03063 6.15291 3.69493 7.1865C3.6596 7.23508 3.56684 7.23508 3.53592 7.1865C3.28415 6.51511 3.10747 5.84372 2.66577 5.26509C1.91487 4.2801 1.20373 4.16084 0.134811 3.72797C0.0508876 3.69263 -0.046287 3.67055 0.0243854 3.55129C0.0553046 3.49828 1.00055 3.18909 1.15073 3.12284C2.07388 2.72972 2.74969 2.04508 3.1428 1.12192C3.29298 0.764144 3.39016 0.375446 3.54917 0.0265011L3.62868 0L3.7126 0.0706723C4.02621 1.0645 4.37074 1.95232 5.20997 2.61488C5.79744 3.07866 6.48649 3.2686 7.17555 3.52478C7.22855 3.5557 7.22413 3.62196 7.21088 3.67496H7.2153Z" fill="white"/>
@@ -331,7 +331,7 @@ function AudioStreamingIllustration() {
         <div className="w-full flex items-center gap-6">
           {/* Source */}
           <div className="flex flex-col items-center gap-2">
-            <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#cd3ef9] via-[#323dfe] to-black flex items-center justify-center shadow-lg">
+            <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#323dfe] to-black flex items-center justify-center shadow-lg">
               <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
               </svg>
@@ -356,7 +356,7 @@ function AudioStreamingIllustration() {
               {[10, 18, 8, 24, 14, 20, 8, 28, 12, 20, 6, 22, 16, 26, 10, 18, 5, 22, 14, 24, 8, 20, 12, 24, 6, 28, 18, 16, 22, 10, 26, 14, 20, 8, 24].map((height, i) => (
                 <div
                   key={i}
-                  className="stream-wave-bar w-[3px] rounded-full bg-gradient-to-t from-[#323dfe] to-[#cd3ef9]"
+                  className="stream-wave-bar w-[3px] rounded-full bg-gradient-to-t from-[#323dfe] to-black"
                   style={{
                     height: `${height}px`,
                     animationDelay: `${(i * 0.08) % 1.2}s`,
@@ -421,14 +421,14 @@ function SIPTrunkingIllustration() {
 
           {/* Connection Line 1 */}
           <div className="flex items-center gap-1">
-            <div className="h-[2px] w-8 bg-gradient-to-r from-gray-300 to-[#cd3ef9] sip-pulse" />
+            <div className="h-[2px] w-8 bg-gradient-to-r from-gray-300 to-[#323dfe] sip-pulse" />
             <div className="px-2 py-1 rounded bg-[#323dfe]/10 text-[10px] text-[#323dfe] font-medium">SIP</div>
-            <div className="h-[2px] w-8 bg-gradient-to-r from-[#cd3ef9] to-[#323dfe] sip-pulse" />
+            <div className="h-[2px] w-8 bg-gradient-to-r from-[#323dfe] to-black sip-pulse" />
           </div>
 
           {/* Plivo SIP Trunk */}
           <div className="flex flex-col items-center gap-2">
-            <div className="bg-gradient-to-br from-[#cd3ef9] via-[#323dfe] to-black rounded-2xl p-4 shadow-lg">
+            <div className="bg-gradient-to-br from-[#323dfe] to-black rounded-2xl p-4 shadow-lg">
               <div className="text-center">
                 <p className="text-sm font-bold text-white">Plivo</p>
                 <p className="text-[10px] text-white/80">SIP Trunk</p>
@@ -444,9 +444,9 @@ function SIPTrunkingIllustration() {
 
           {/* Connection Line 2 */}
           <div className="flex items-center gap-1">
-            <div className="h-[2px] w-8 bg-gradient-to-r from-[#323dfe] to-[#cd3ef9] sip-pulse" />
+            <div className="h-[2px] w-8 bg-gradient-to-r from-[#323dfe] to-black sip-pulse" />
             <div className="px-2 py-1 rounded bg-[#323dfe]/10 text-[10px] text-[#323dfe] font-medium">SIP</div>
-            <div className="h-[2px] w-8 bg-gradient-to-r from-[#cd3ef9] to-gray-300 sip-pulse" />
+            <div className="h-[2px] w-8 bg-gradient-to-r from-[#323dfe] to-gray-300 sip-pulse" />
           </div>
 
           {/* Destinations */}

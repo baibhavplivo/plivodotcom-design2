@@ -14,7 +14,7 @@
   --font-inter: "Inter", "sans-serif";
 
   /* Plivo Brand Colors */
-  --color-plivo-purple: #cd3ef9;
+  --color-plivo-purple: #323dfe;
   --color-plivo-blue: #323dfe;
   --color-plivo-dark: rgb(15, 17, 23);
 
@@ -169,15 +169,15 @@
 
 /* Plivo gradient utilities */
 @utility bg-plivo-gradient {
-  background: linear-gradient(90deg, #cd3ef9, #323dfe);
+  background: linear-gradient(90deg, #323dfe, #000000);
 }
 
 @utility bg-plivo-gradient-vertical {
-  background: linear-gradient(180deg, #cd3ef9, #323dfe);
+  background: linear-gradient(180deg, #323dfe, #000000);
 }
 
 @utility text-gradient {
-  background: linear-gradient(90deg, #cd3ef9, #323dfe);
+  background: linear-gradient(90deg, #323dfe, #000000);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -197,7 +197,7 @@
 
 @utility cta-hover-gradient {
   &:hover {
-    background-image: linear-gradient(to left, #000000, #4f46e5, #d946ef);
+    background-image: linear-gradient(to left, #000000, #323dfe);
   }
 }
 
@@ -259,11 +259,11 @@
   /* Plivo Button Styles */
   .btn-primary {
     @apply inline-flex items-center justify-center rounded-lg px-6 py-3 text-sm font-semibold text-white transition-all duration-200;
-    background: linear-gradient(90deg, #cd3ef9, #323dfe);
+    background: linear-gradient(90deg, #323dfe, #000000);
   }
   .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 0 30px rgba(205, 62, 249, 0.4);
+    box-shadow: 0 0 30px rgba(50, 61, 254, 0.4);
   }
 
   .btn-secondary {
@@ -283,7 +283,7 @@
     --card-foreground: 225 21% 7%;
     --popover: 0 0% 100%;
     --popover-foreground: 225 21% 7%;
-    --primary: 285 94% 61%; /* #cd3ef9 Plivo Purple */
+    --primary: 235 99% 56%; /* #323dfe Plivo Blue */
     --primary-foreground: 0 0% 100%;
     --secondary: 0 0% 96%;
     --secondary-foreground: 225 21% 7%;
@@ -298,7 +298,7 @@
     --ring: 238 99% 60%; /* Plivo Blue for focus ring */
 
     /* Brand colors for glow effect - Plivo purple/blue gradient */
-    --brand: 285 94% 61%;
+    --brand: 235 99% 56%;
     --brand-foreground: 238 99% 60%;
 
     /* HU Theme Variables */
@@ -333,7 +333,7 @@
     --card-foreground: 0 0% 100%;
     --popover: 225 21% 7%;
     --popover-foreground: 0 0% 100%;
-    --primary: 285 94% 61%; /* Plivo Purple */
+    --primary: 235 99% 56%; /* Plivo Purple */
     --primary-foreground: 0 0% 100%;
     --secondary: 225 21% 12%;
     --secondary-foreground: 0 0% 100%;
@@ -345,7 +345,7 @@
     --destructive-foreground: 0 0% 100%;
     --border: 0 0% 100% / 0.1;
     --input: 225 21% 12%;
-    --ring: 285 94% 61%;
+    --ring: 235 99% 56%;
 
     /* HU Theme Dark Variables */
     --hu-background: 0, 0%, 7%;

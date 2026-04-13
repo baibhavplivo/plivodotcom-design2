@@ -753,7 +753,7 @@ export function PlivoPricing() {
               {/* Voice */}
               <div className="p-4 space-y-4 flex flex-col">
                 <div className="flex items-center gap-2 py-2">
-                  <Phone className="h-5 w-5 text-[#323dfe]" />
+                  <Phone className="h-5 w-5 text-gray-800" />
                   <h3 className="text-base font-semibold text-black">Voice</h3>
                 </div>
                 <VoicePricingContent selectedCountry={selectedCountry} inline />
@@ -765,7 +765,7 @@ export function PlivoPricing() {
               {/* AI Agents */}
               <div className="p-4 space-y-4 flex flex-col">
                 <div className="flex items-center gap-2 py-2">
-                  <Sparkles className="h-5 w-5 text-[#323dfe]" />
+                  <Sparkles className="h-5 w-5 text-gray-800" />
                   <h3 className="text-base font-semibold text-black">AI Agents</h3>
                 </div>
                 <AIAgentsPricingContent selectedCountry={selectedCountry} inline />
@@ -774,7 +774,7 @@ export function PlivoPricing() {
               {/* SMS & RCS */}
               <div className="p-4 space-y-4 flex flex-col">
                 <div className="flex items-center gap-2 py-2">
-                  <MessageSquare className="h-5 w-5 text-[#323dfe]" />
+                  <MessageSquare className="h-5 w-5 text-gray-800" />
                   <h3 className="text-base font-semibold text-black">SMS & RCS</h3>
                 </div>
                 <SMSPricingContent selectedCountry={selectedCountry} inline />
@@ -786,7 +786,7 @@ export function PlivoPricing() {
               {/* WhatsApp */}
               <div className="p-4 space-y-4 flex flex-col">
                 <div className="flex items-center gap-2 py-2">
-                  <WhatsAppIcon className="h-5 w-5 text-[#323dfe]" />
+                  <WhatsAppIcon className="h-5 w-5 text-gray-800" />
                   <h3 className="text-base font-semibold text-black">WhatsApp</h3>
                 </div>
                 <WhatsAppPricingContent selectedCountry={selectedCountry} inline />
