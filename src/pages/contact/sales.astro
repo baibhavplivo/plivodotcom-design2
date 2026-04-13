@@ -105,21 +105,20 @@ import ContactSalesHero from "@/components/sections/contact/ContactSalesHero";
       if (calWrapper) calWrapper.style.display = "none";
     }
 
-    // Intercept the external script's onFormSuccess by watching the submit button.
-    // form-submission.js sets text to "Submitting..." on submit, then resets on success.
-    var submitBtn = document.getElementById("vpf-submit-btn");
-    if (submitBtn) {
-      var wasSubmitting = false;
-      var checkInterval = setInterval(function() {
-        var text = (submitBtn.innerText || submitBtn.textContent || "").trim();
-        if (text === "Submitting...") {
-          wasSubmitting = true;
-        } else if (wasSubmitting) {
-          clearInterval(checkInterval);
-          setTimeout(showThankYou, 500);
-        }
-      }, 200);
-    }
+    // Poll for submit button (React renders after this script via client:only).
+    // form-submission.js sets text to "Submitting..." then resets on success.
+    var wasSubmitting = false;
+    setInterval(function() {
+      var btn = document.getElementById("vpf-submit-btn");
+      if (!btn) return;
+      var text = (btn.innerText || btn.textContent || "").trim();
+      if (text === "Submitting...") {
+        wasSubmitting = true;
+      } else if (wasSubmitting) {
+        wasSubmitting = false;
+        setTimeout(showThankYou, 500);
+      }
+    }, 200);
   })();
   </script>
 

@@ -105,19 +105,17 @@ import RequestTrialHero from "@/components/sections/request-trial/RequestTrialHe
       if (calWrapper) calWrapper.style.display = "none";
     }
 
-    var submitBtn = document.getElementById("vpf-submit-btn");
-    if (submitBtn) {
-      var wasSubmitting = false;
-      var checkInterval = setInterval(function() {
-        var text = (submitBtn.innerText || submitBtn.textContent || "").trim();
-        if (text === "Submitting...") {
-          wasSubmitting = true;
-        } else if (wasSubmitting) {
-          clearInterval(checkInterval);
-          setTimeout(showThankYou, 500);
-        }
+    var wasSubmitting = false;
+    setInterval(function() {
+      var btn = document.getElementById("vpf-submit-btn");
+      if (!btn) return;
+      var text = (btn.innerText || btn.textContent || "").trim();
+      if (text === "Submitting...") {
+        wasSubmitting = true;
+      } else if (wasSubmitting) {
+        wasSubmitting = false;
+        setTimeout(showThankYou, 500);
       }, 200);
-    }
   })();
   </script>
 
