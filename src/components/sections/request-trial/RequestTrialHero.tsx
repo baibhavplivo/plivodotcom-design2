@@ -263,7 +263,7 @@ export default function RequestTrialHero() {
   // Unsupported: show "not available in your region" message
   if (category === "unsupported") {
     return (
-      <section className="bg-white pt-12 sm:pt-16 md:pt-24 pb-12 sm:pb-16 md:pb-24">
+      <section className="relative z-[1] bg-white pt-12 sm:pt-16 md:pt-24 pb-12 sm:pb-16 md:pb-24">
         <div className="container mx-auto max-w-2xl px-4 text-center">
           <div className="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center mx-auto mb-6">
             <svg className="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
@@ -274,14 +274,8 @@ export default function RequestTrialHero() {
             We're not available in your region yet
           </h1>
           <p className="text-base text-gray-600 mt-4 max-w-lg mx-auto leading-relaxed">
-            Plivo services are currently available in select countries. Please contact our sales team to learn more about availability in your area.
+            Plivo services are currently available in select countries. Please check back later for updates on availability in your area.
           </p>
-          <a
-            href="/contact/sales/"
-            className="inline-flex items-center justify-center mt-8 rounded-md bg-black px-6 py-3 text-sm font-medium text-white hover:bg-gray-800 transition-colors"
-          >
-            Contact Sales
-          </a>
         </div>
       </section>
     );

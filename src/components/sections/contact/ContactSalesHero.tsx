@@ -249,7 +249,7 @@ export default function ContactSalesHero() {
   // Unsupported: show "not available in your region" message
   if (category === "unsupported") {
     return (
-      <section className="bg-white pt-12 sm:pt-16 md:pt-24 pb-12 sm:pb-16 md:pb-24">
+      <section className="relative z-[1] bg-white pt-12 sm:pt-16 md:pt-24 pb-12 sm:pb-16 md:pb-24">
         <div className="container mx-auto max-w-2xl px-4 text-center">
           <div className="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center mx-auto mb-6">
             <svg className="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
