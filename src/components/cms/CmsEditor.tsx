@@ -123,6 +123,20 @@ export default function CmsEditor({ slug, onBack }: CmsEditorProps) {
     setFm((prev) => ({ ...prev, [key]: value }));
   }, []);
 
+  // Refs to stabilize handleSave — avoids tearing down event listeners on every keystroke
+  const fmRef = useRef(fm);
+  const shaRef = useRef(sha);
+  const postSlugRef = useRef(postSlug);
+  const lastEditModeRef = useRef(lastEditMode);
+  const sourceHtmlRef = useRef(sourceHtml);
+  const stepRef = useRef(step);
+  useEffect(() => { fmRef.current = fm; }, [fm]);
+  useEffect(() => { shaRef.current = sha; }, [sha]);
+  useEffect(() => { postSlugRef.current = postSlug; }, [postSlug]);
+  useEffect(() => { lastEditModeRef.current = lastEditMode; }, [lastEditMode]);
+  useEffect(() => { sourceHtmlRef.current = sourceHtml; }, [sourceHtml]);
+  useEffect(() => { stepRef.current = step; }, [step]);
+
   // TipTap editor
   const editor = useEditor({
     extensions: [
@@ -219,29 +233,35 @@ export default function CmsEditor({ slug, onBack }: CmsEditorProps) {
 
   const handleSave = useCallback(
     async (asDraft: boolean) => {
+      const curFm = fmRef.current;
+      const curSha = shaRef.current;
+      const curPostSlug = postSlugRef.current;
+      const curLastEditMode = lastEditModeRef.current;
+      const curSourceHtml = sourceHtmlRef.current;
+
       // Validate required fields
       const errors: string[] = [];
 
-      if (!fm.title.trim()) {
+      if (!curFm.title.trim()) {
         errors.push("Title is required (Step 1)");
       }
-      if (!postSlug.trim()) {
+      if (!curPostSlug.trim()) {
         errors.push("Slug is required (Step 1)");
       }
 
       // Only enforce these for publish, not draft
       if (!asDraft) {
-        const body = lastEditMode === "source" ? sourceHtml : (editor?.getText() || "");
+        const body = curLastEditMode === "source" ? curSourceHtml : (editor?.getText() || "");
         if (!body.trim()) {
           errors.push("Blog content is empty (Step 1)");
         }
-        if (!fm.description.trim()) {
+        if (!curFm.description.trim()) {
           errors.push("Description is required for publishing (Step 2)");
         }
-        if (fm.categories.length === 0) {
+        if (curFm.categories.length === 0) {
           errors.push("At least one category is required (Step 2)");
         }
-        if (!fm.image) {
+        if (!curFm.image) {
           errors.push("Cover image is required for publishing (Step 3)");
         }
       }
@@ -261,35 +281,35 @@ export default function CmsEditor({ slug, onBack }: CmsEditorProps) {
       setSuccess("");
 
       const frontmatter: Record<string, unknown> = {
-        title: fm.title,
-        description: fm.description,
-        pubDate: fm.pubDate ? new Date(fm.pubDate).toISOString() : new Date().toISOString(),
-        authorName: fm.authorName,
+        title: curFm.title,
+        description: curFm.description,
+        pubDate: curFm.pubDate ? new Date(curFm.pubDate).toISOString() : new Date().toISOString(),
+        authorName: curFm.authorName,
         draft: asDraft,
-        featured: fm.featured,
-        noindex: fm.noindex,
-        categories: fm.categories,
+        featured: curFm.featured,
+        noindex: curFm.noindex,
+        categories: curFm.categories,
       };
 
       // Only include optional fields if they have values
-      if (fm.updatedDate) frontmatter.updatedDate = new Date(fm.updatedDate).toISOString();
-      if (fm.image) frontmatter.image = fm.image;
-      if (fm.thumbnail) frontmatter.thumbnail = fm.thumbnail;
-      if (fm.seoTitle) frontmatter.seoTitle = fm.seoTitle;
-      if (fm.seoDescription) frontmatter.seoDescription = fm.seoDescription;
-      if (fm.keyTakeaways) frontmatter.keyTakeaways = fm.keyTakeaways;
-      if (fm.imageAlt) frontmatter.imageAlt = fm.imageAlt;
-      if (fm.authorBio) frontmatter.authorBio = fm.authorBio;
-      if (fm.authorImage) frontmatter.authorImage = fm.authorImage;
+      if (curFm.updatedDate) frontmatter.updatedDate = new Date(curFm.updatedDate).toISOString();
+      if (curFm.image) frontmatter.image = curFm.image;
+      if (curFm.thumbnail) frontmatter.thumbnail = curFm.thumbnail;
+      if (curFm.seoTitle) frontmatter.seoTitle = curFm.seoTitle;
+      if (curFm.seoDescription) frontmatter.seoDescription = curFm.seoDescription;
+      if (curFm.keyTakeaways) frontmatter.keyTakeaways = curFm.keyTakeaways;
+      if (curFm.imageAlt) frontmatter.imageAlt = curFm.imageAlt;
+      if (curFm.authorBio) frontmatter.authorBio = curFm.authorBio;
+      if (curFm.authorImage) frontmatter.authorImage = curFm.authorImage;
 
       // If user last edited in source mode, use raw HTML directly to preserve custom markup
-      const body = lastEditMode === "source" ? sourceHtml : (editor?.getHTML() || "");
+      const body = curLastEditMode === "source" ? curSourceHtml : (editor?.getHTML() || "");
 
       try {
-        if (sha) {
-          await updatePost(postSlug, frontmatter, body, sha);
+        if (curSha) {
+          await updatePost(curPostSlug, frontmatter, body, curSha);
         } else {
-          await createPost(postSlug, frontmatter, body);
+          await createPost(curPostSlug, frontmatter, body);
         }
         setSuccess(asDraft ? "Saved as draft" : "Published!");
         updateFm("draft", asDraft);
@@ -302,7 +322,7 @@ export default function CmsEditor({ slug, onBack }: CmsEditorProps) {
         setSaving(false);
       }
     },
-    [postSlug, fm, editor, sha, slug, updateFm]
+    [editor, updateFm, onBack]
   );
 
   // Native event listeners for buttons
@@ -447,14 +467,14 @@ export default function CmsEditor({ slug, onBack }: CmsEditorProps) {
     };
   }, [editor, sourceMode, sourceHtml]);
 
-  // Step navigation handlers
+  // Step navigation handlers — uses refs so this effect only attaches once
   useEffect(() => {
     const handleStepNav = (e: MouseEvent) => {
       const btn = (e.target as HTMLElement).closest("[data-nav]") as HTMLElement | null;
       if (btn) {
         const nav = btn.getAttribute("data-nav");
-        if (nav === "next" && step < 4) { setStep((s) => (s + 1) as 1 | 2 | 3 | 4); setError(""); }
-        if (nav === "prev" && step > 1) { setStep((s) => (s - 1) as 1 | 2 | 3 | 4); setError(""); }
+        if (nav === "next" && stepRef.current < 4) { setStep((s) => (s + 1) as 1 | 2 | 3 | 4); setError(""); }
+        if (nav === "prev" && stepRef.current > 1) { setStep((s) => (s - 1) as 1 | 2 | 3 | 4); setError(""); }
       }
       const stepBtn = (e.target as HTMLElement).closest("[data-step]") as HTMLElement | null;
       if (stepBtn) {
@@ -471,7 +491,7 @@ export default function CmsEditor({ slug, onBack }: CmsEditorProps) {
 
     document.addEventListener("click", handleStepNav);
     return () => document.removeEventListener("click", handleStepNav);
-  }, [step, handleSave]);
+  }, [handleSave]);
 
   // Source mode textarea listener
   const sourceTextareaRef = useRef<HTMLTextAreaElement>(null);

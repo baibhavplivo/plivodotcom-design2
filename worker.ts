@@ -1016,7 +1016,7 @@ async function handleGetPost(slug: string, env: Env, origin?: string): Promise<R
   if (!res.ok) return errorResponse("Post not found", 404, origin);
 
   const data: { content: string; sha: string } = await res.json();
-  const content = atob(data.content.replace(/\n/g, ""));
+  const content = decodeURIComponent(escape(atob(data.content.replace(/\n/g, ""))));
   const { frontmatter, body } = parseFrontmatter(content);
 
   return jsonResponse({
@@ -1273,7 +1273,7 @@ async function handleListAuthors(env: Env, origin?: string): Promise<Response> {
   }
 
   const data: { content: string; sha: string } = await res.json();
-  const content = atob(data.content.replace(/\n/g, ""));
+  const content = decodeURIComponent(escape(atob(data.content.replace(/\n/g, ""))));
   let authors: unknown[] = [];
   try {
     authors = JSON.parse(content);
