@@ -1,0 +1,29 @@
+---
+import PlivoLayout from "@/layouts/PlivoLayout.astro";
+import TwilioAltHero from "@/components/sections/twilio-alternative/TwilioAltHero.astro";
+import ClientLogos from "@/components/sections/voice-homepage/ClientLogos.astro";
+import CostComparison from "@/components/sections/twilio-alternative/CostComparison";
+import WhiteGloveService from "@/components/sections/twilio-alternative/WhiteGloveService";
+import EnterpriseCapabilities from "@/components/sections/twilio-alternative/EnterpriseCapabilities";
+import FeatureSuite from "@/components/sections/twilio-alternative/FeatureSuite";
+import TwilioAltFAQ from "@/components/sections/twilio-alternative/TwilioAltFAQ";
+import PreFooterCTA from "@/components/sections/voice-homepage/PreFooterCTA";
+---
+
+<PlivoLayout
+  title="Best Twilio Alternative | Plivo"
+  description="Switch from Twilio to Plivo and save up to 70% on SMS and voice. Enterprise-grade CPaaS with 220+ country coverage, 99.99% uptime SLA, and 24/7 premium support."
+>
+  <TwilioAltHero />
+  <ClientLogos />
+  <CostComparison client:visible />
+  <WhiteGloveService client:visible />
+  <EnterpriseCapabilities client:visible />
+  <FeatureSuite client:visible />
+  <TwilioAltFAQ client:load />
+  <PreFooterCTA
+    title="Ready to switch to the best Twilio alternative?"
+    subtitle="Start with $10 in free credits. No setup fees."
+    client:visible
+  />
+</PlivoLayout>
