@@ -1,0 +1,163 @@
+---
+// TwilioAltHero.astro - Hero for Twilio Alternative landing page
+---
+
+<section class="bg-white pt-16 sm:pt-20 md:pt-24 pb-0 relative overflow-hidden">
+  <div class="container mx-auto max-w-7xl px-4 relative z-10 text-center">
+    <div class="max-w-3xl mx-auto">
+      {/* Badge */}
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-gray-200 bg-gray-50 mb-6">
+        <span class="text-[13px] font-medium text-gray-700">
+          #1 Leader — Gartner Peer Insights Customers' Choice for Global CPaaS
+        </span>
+      </div>
+
+      <h1 class="font-sora text-[2rem] sm:text-[2.5rem] md:text-[3rem] font-normal leading-[1.1] tracking-[-0.02em] text-black">
+        The #1 Twilio Alternative
+      </h1>
+      <p class="text-base sm:text-lg text-gray-600 mt-4 leading-relaxed max-w-2xl mx-auto">
+        Experience award-winning CPaaS solutions that power better customer engagement. Trusted by thousands of businesses as the leading alternative to Twilio.
+      </p>
+    </div>
+  </div>
+
+  {/* Animated dot surface area */}
+  <div class="flicker-area relative overflow-hidden" style="height:400px;">
+    <canvas id="twilio-hero-dots" class="absolute inset-0 z-0 pointer-events-none"></canvas>
+    {/* Top fade */}
+    <div class="absolute inset-x-0 top-0 z-[1] pointer-events-none" style="height:70%;background:linear-gradient(to bottom,white 40%,transparent);"></div>
+    {/* Side fades */}
+    <div class="absolute inset-y-0 left-0 w-20 sm:w-32 bg-gradient-to-r from-white to-transparent z-[1] pointer-events-none"></div>
+    <div class="absolute inset-y-0 right-0 w-20 sm:w-32 bg-gradient-to-l from-white to-transparent z-[1] pointer-events-none"></div>
+
+    {/* CTAs + trust indicators on top of dots */}
+    <div class="relative z-[2] text-center pt-6">
+      <div class="flex flex-col sm:flex-row gap-3 justify-center">
+        <a
+          href="https://cx.plivo.com/pungis2"
+          data-geo-cta="signup"
+          class="inline-flex items-center justify-center px-6 py-3 text-base font-medium bg-black text-white rounded-md cta-hover-gradient transition-colors"
+        >
+          Sign up for free
+        </a>
+        <a
+          href="/contact/sales/"
+          class="inline-flex items-center justify-center px-6 py-3 text-base font-medium border border-gray-300 bg-white text-black rounded-md hover:bg-gray-50 transition-colors"
+        >
+          Contact Sales
+        </a>
+      </div>
+
+      <div class="mt-8 flex flex-wrap items-center justify-center gap-6">
+        <div class="flex items-center gap-2 text-sm text-gray-500">
+          <svg class="w-4 h-4 text-[#323dfe]" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12" /></svg>
+          Up to 70% savings on SMS
+        </div>
+        <div class="flex items-center gap-2 text-sm text-gray-500">
+          <svg class="w-4 h-4 text-[#323dfe]" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12" /></svg>
+          99.99% uptime SLA
+        </div>
+        <div class="flex items-center gap-2 text-sm text-gray-500">
+          <svg class="w-4 h-4 text-[#323dfe]" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12" /></svg>
+          220+ countries
+        </div>
+        <div class="flex items-center gap-2 text-sm text-gray-500">
+          <svg class="w-4 h-4 text-[#323dfe]" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12" /></svg>
+          24/7 premium support
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  function initTwilioHeroDots() {
+    const canvas = document.getElementById("twilio-hero-dots") as HTMLCanvasElement | null;
+    if (!canvas) return;
+    const container = canvas.parentElement as HTMLElement | null;
+    if (!container) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    let COLS = 50;
+    let ROWS = 80;
+    const SPACING = 100;
+    const FOCAL = 350;
+    const CAM_HEIGHT = 250;
+    const WAVE_AMP = 35;
+    const WAVE_SPEED = 0.015;
+    const PI2 = Math.PI * 2;
+    const MAX_R = 3.0;
+    const MIN_R = 0.4;
+
+    let dpr = 1, cw = 0, ch = 0, raf: number, time = 0;
+
+    const setup = () => {
+      const w = container.clientWidth, h = container.clientHeight;
+      if (w <= 0 || h <= 0) return;
+      dpr = window.devicePixelRatio || 1;
+      canvas.width = w * dpr;
+      canvas.height = h * dpr;
+      canvas.style.width = `${w}px`;
+      canvas.style.height = `${h}px`;
+      cw = canvas.width;
+      ch = canvas.height;
+      COLS = w < 640 ? 30 : 50;
+      ROWS = w < 640 ? 50 : 80;
+    };
+    setup();
+
+    const draw = () => {
+      raf = requestAnimationFrame(draw);
+      if (!cw || !ch) { setup(); return; }
+      ctx.clearRect(0, 0, cw, ch);
+
+      const horizonY = ch * 0.40 - (20 * dpr);
+      const centerX = cw / 2;
+      const focalDpr = FOCAL * dpr;
+
+      for (let j = ROWS - 1; j >= 0; j--) {
+        const z = (j + 1) * SPACING;
+        const waveY = (row: number, col: number) =>
+          Math.sin((col * 0.3) + time) * WAVE_AMP +
+          Math.sin((row * 0.5) + time * 0.7) * WAVE_AMP;
+
+        const scale = focalDpr / z;
+        const baseScreenY = horizonY + (CAM_HEIGHT * scale);
+
+        for (let i = 0; i < COLS; i++) {
+          const wx = (i - COLS / 2) * SPACING;
+          const wy = waveY(j, i);
+          const screenX = centerX + wx * scale;
+          const screenY = baseScreenY - wy * scale;
+
+          if (screenX < -10 || screenX > cw + 10 || screenY < -10 || screenY > ch + 10) continue;
+
+          const r = Math.min(MAX_R * dpr, Math.max(MIN_R * dpr, scale * 3));
+          const t = j / ROWS;
+          let cr: number, cg: number, cb: number;
+          if (t < 0.5) {
+            const p = t * 2;
+            cr = p * 50; cg = p * 61; cb = p * 254;
+          } else {
+            const p = (t - 0.5) * 2;
+            cr = 50 + p * 155; cg = 61 + p * 1; cb = 254 - p * 5;
+          }
+          const alpha = 1.0 - t * 0.7;
+
+          ctx.beginPath();
+          ctx.arc(screenX, screenY, r, 0, PI2);
+          ctx.fillStyle = `rgba(${cr|0},${cg|0},${cb|0},${alpha})`;
+          ctx.fill();
+        }
+      }
+      time += WAVE_SPEED;
+    };
+    raf = requestAnimationFrame(draw);
+
+    const ro = new ResizeObserver(() => setup());
+    ro.observe(container);
+  }
+  initTwilioHeroDots();
+  document.addEventListener("astro:after-swap", initTwilioHeroDots);
+</script>
