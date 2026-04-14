@@ -28,6 +28,8 @@ const posthogHost = import.meta.env.PUBLIC_POSTHOG_HOST || "https://us.i.posthog
   <head>
     <BaseHead title={`${title} | Plivo`} description={description} image={image} ogType={ogType} />
     <slot name="head" />
+    {/* RB2B visitor identification */}
+    <script is:inline>!function(key){if(window.reb2b)return;window.reb2b={loaded:true};var s=document.createElement("script");s.async=true;s.src="https://b2bjsstore.s3.us-west-2.amazonaws.com/b/"+key+"/"+key+".js.gz";document.getElementsByTagName("script")[0].parentNode.insertBefore(s,document.getElementsByTagName("script")[0]);}("J0OV0VH1LX6Z");</script>
     {isDev && (
       <script type="module" is:inline>
         import RefreshRuntime from "/@react-refresh";
