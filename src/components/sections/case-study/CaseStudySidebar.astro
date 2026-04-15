@@ -1,0 +1,52 @@
+---
+interface MetaItem {
+  label: string;
+  value: string;
+}
+
+interface Props {
+  companyName: string;
+  meta: MetaItem[];
+  ctaText?: string;
+  ctaHref?: string;
+}
+
+const {
+  companyName,
+  meta,
+  ctaText = "Contact Sales",
+  ctaHref = "/contact/sales/",
+} = Astro.props;
+---
+
+<aside class="lg:sticky lg:top-[96px] self-start" aria-label="Company information">
+  {/* Company info card */}
+  <div class="rounded-lg border border-gray-200 p-6">
+    {/* Company name as text logo */}
+    <div class="font-sora text-xl font-semibold text-black mb-6 pb-4 border-b border-gray-100">
+      {companyName}
+    </div>
+
+    <dl class="space-y-5">
+      {meta.map((item) => (
+        <div>
+          <dt class="text-xs font-medium text-gray-500 uppercase tracking-wider mb-1">
+            {item.label}
+          </dt>
+          <dd class="text-sm text-black font-medium">{item.value}</dd>
+        </div>
+      ))}
+    </dl>
+  </div>
+
+  {/* CTA card */}
+  <div class="rounded-lg bg-gray-50 p-6 mt-4">
+    <p class="text-sm text-gray-600 mb-4">Want similar results for your platform?</p>
+    <a
+      href={ctaHref}
+      class="inline-flex items-center justify-center w-full px-4 py-2.5 text-sm font-medium bg-black text-white rounded-md hover:bg-gray-800 transition-colors"
+    >
+      {ctaText}
+    </a>
+  </div>
+</aside>

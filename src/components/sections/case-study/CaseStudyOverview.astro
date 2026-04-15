@@ -1,0 +1,65 @@
+---
+interface Stat {
+  value: string;
+  label: string;
+}
+
+interface MetaItem {
+  label: string;
+  value: string;
+}
+
+interface Props {
+  companyName: string;
+  meta: MetaItem[];
+  stats: Stat[];
+}
+
+const { companyName, meta, stats } = Astro.props;
+---
+
+<section class="py-12 sm:py-16 md:py-20 bg-white" aria-label="Company overview and key results">
+  <h2 class="sr-only">Company Overview</h2>
+  <div class="container mx-auto max-w-5xl px-4">
+    <div class="rounded-lg border border-gray-200 overflow-hidden">
+
+      {/* Company info row — 4 items: Company + 3 meta */}
+      <dl class="grid grid-cols-2 sm:grid-cols-4 border-b border-gray-200">
+        {[{ label: "Company", value: companyName, isCompany: true }, ...meta.map(m => ({ ...m, isCompany: false }))].map((item, index) => (
+          <div
+            class:list={[
+              "flex flex-col justify-center px-5 py-5 sm:py-6",
+              index % 2 === 0 && "border-r border-gray-200",
+              index % 2 !== 0 && index < 3 && "sm:border-r sm:border-gray-200",
+              index >= 2 && "border-t sm:border-t-0 border-gray-200",
+            ]}
+          >
+            <dt class="text-xs font-medium text-gray-500 uppercase tracking-wider mb-1">{item.label}</dt>
+            <dd class:list={[
+              item.isCompany ? "font-sora text-lg font-semibold text-black" : "text-sm text-black font-medium"
+            ]}>{item.value}</dd>
+          </div>
+        ))}
+      </dl>
+
+      {/* Stats row */}
+      <dl class="grid grid-cols-2 lg:grid-cols-4">
+        {stats.map((stat, index) => (
+          <div
+            class:list={[
+              "flex flex-col items-center justify-center px-4 py-8 sm:py-10 md:py-12",
+              index % 2 === 0 && "border-r border-gray-200",
+              index % 2 !== 0 && index < stats.length - 1 && "lg:border-r lg:border-gray-200",
+              index >= 2 && "border-t lg:border-t-0 border-gray-200",
+            ]}
+          >
+            <dd class="font-sora text-2xl sm:text-3xl md:text-4xl font-semibold mb-1 bg-gradient-to-r from-[#cd3ef9] to-[#323dfe] bg-clip-text text-transparent">
+              {stat.value}
+            </dd>
+            <dt class="text-sm text-gray-500">{stat.label}</dt>
+          </div>
+        ))}
+      </dl>
+    </div>
+  </div>
+</section>

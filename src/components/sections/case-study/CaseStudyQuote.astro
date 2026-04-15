@@ -1,0 +1,41 @@
+---
+interface Props {
+  quote: string;
+  name: string;
+  role: string;
+  avatar?: string;
+}
+
+const { quote, name, role, avatar } = Astro.props;
+---
+
+<section class="py-12 sm:py-16 md:py-20 bg-white">
+  <div class="container mx-auto max-w-4xl px-4 text-center">
+    {/* Decorative quote mark */}
+    <div class="text-6xl sm:text-7xl font-serif text-gray-200 leading-none mb-2 select-none" aria-hidden="true">
+      &ldquo;
+    </div>
+
+    {/* Quote */}
+    <blockquote>
+      <p class="font-sora text-[1.25rem] sm:text-[1.5rem] md:text-[1.75rem] font-normal leading-[1.4] tracking-[-0.01em] text-black">
+        {quote}
+      </p>
+      <footer class="mt-8 flex flex-col items-center gap-3">
+        {avatar ? (
+          <img src={avatar} alt={name} class="w-14 h-14 rounded-full object-cover border border-gray-200" />
+        ) : (
+          <div class="flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-r from-[#323dfe] to-black text-white font-semibold text-lg">
+            {name.charAt(0).toUpperCase()}
+          </div>
+        )}
+        <div>
+          <p class="text-sm font-medium text-gray-900">
+            <cite class="not-italic">{name}</cite>
+          </p>
+          <p class="text-sm text-gray-500">{role}</p>
+        </div>
+      </footer>
+    </blockquote>
+  </div>
+</section>
