@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 220" fill="none">
+  <!-- Audio waveform bars -->
+  <g fill="#3B5998" opacity="0.85">
+    <!-- Left side bars (ascending) -->
+    <rect x="20" y="110" width="4" height="40" rx="2"/>
+    <rect x="30" y="95" width="4" height="70" rx="2"/>
+    <rect x="40" y="80" width="4" height="100" rx="2"/>
+    <rect x="50" y="65" width="4" height="130" rx="2"/>
+    <rect x="60" y="50" width="4" height="155" rx="2"/>
+    <rect x="70" y="40" width="4" height="175" rx="2"/>
+    <rect x="80" y="30" width="4" height="190" rx="2"/>
+    <rect x="90" y="25" width="4" height="195" rx="2"/>
+    <rect x="100" y="20" width="4" height="200" rx="2"/>
+    <rect x="110" y="25" width="4" height="195" rx="2"/>
+
+    <!-- Center-left bars (peak) -->
+    <rect x="120" y="18" width="4" height="200" rx="2"/>
+    <rect x="130" y="15" width="4" height="200" rx="2"/>
+    <rect x="140" y="18" width="4" height="200" rx="2"/>
+
+    <!-- Center bars (behind text) -->
+    <rect x="150" y="22" width="4" height="196" rx="2"/>
+    <rect x="160" y="28" width="4" height="188" rx="2"/>
+    <rect x="170" y="20" width="4" height="198" rx="2"/>
+    <rect x="180" y="15" width="4" height="200" rx="2"/>
+    <rect x="190" y="18" width="4" height="200" rx="2"/>
+    <rect x="200" y="22" width="4" height="196" rx="2"/>
+    <rect x="210" y="15" width="4" height="200" rx="2"/>
+    <rect x="220" y="18" width="4" height="200" rx="2"/>
+    <rect x="230" y="22" width="4" height="196" rx="2"/>
+    <rect x="240" y="15" width="4" height="200" rx="2"/>
+    <rect x="250" y="20" width="4" height="198" rx="2"/>
+    <rect x="260" y="18" width="4" height="200" rx="2"/>
+    <rect x="270" y="15" width="4" height="200" rx="2"/>
+    <rect x="280" y="20" width="4" height="198" rx="2"/>
+    <rect x="290" y="22" width="4" height="196" rx="2"/>
+
+    <!-- Center-right bars (peak) -->
+    <rect x="300" y="18" width="4" height="200" rx="2"/>
+    <rect x="310" y="15" width="4" height="200" rx="2"/>
+    <rect x="320" y="18" width="4" height="200" rx="2"/>
+
+    <!-- Right side bars (descending) -->
+    <rect x="330" y="25" width="4" height="195" rx="2"/>
+    <rect x="340" y="20" width="4" height="200" rx="2"/>
+    <rect x="350" y="25" width="4" height="195" rx="2"/>
+    <rect x="360" y="30" width="4" height="190" rx="2"/>
+    <rect x="370" y="40" width="4" height="175" rx="2"/>
+    <rect x="380" y="50" width="4" height="155" rx="2"/>
+    <rect x="390" y="65" width="4" height="130" rx="2"/>
+    <rect x="400" y="80" width="4" height="100" rx="2"/>
+    <rect x="410" y="95" width="4" height="70" rx="2"/>
+    <rect x="420" y="110" width="4" height="40" rx="2"/>
+  </g>
+
+  <!-- BOLNA text -->
+  <text x="220" y="130" text-anchor="middle" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="72" fill="#3B5998" letter-spacing="8">BOLNA</text>
+</svg>

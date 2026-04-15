@@ -18,5 +18,5 @@ export function useSignupUrl(): SignupUrlResult {
   if (category === "supported") {
     return { url: SIGNUP_URL, label: "Sign up for free", category };
   }
-  return { url: "/request-trial/", label: "Request a trial", category };
+  return { url: "/request-trial/", label: "Sign up for free", category };
 }
