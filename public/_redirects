@@ -20,7 +20,6 @@
 /sms/shortcode/         /sms/overview/           301
 /sms/toll-free/         /sms/overview/           301
 /compare/*             /ai/                     301
-/customers/*           /about/                  301
 /customers/             /about/                  301
 /glossary/*            /blog/                   301
 /guide/*               /blog/                   301
