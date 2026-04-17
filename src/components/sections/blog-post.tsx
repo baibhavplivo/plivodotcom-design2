@@ -119,7 +119,7 @@ const BlogPost = ({
           )}
 
           {/* Article Body */}
-          <article className="blog-content prose prose-lg prose-h1:font-sora prose-h2:font-sora prose-headings:font-medium prose-h2:text-2xl prose-h2:mt-10 prose-h2:mb-4 prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-3 prose-p:text-base prose-p:leading-relaxed prose-p:text-gray-700 prose-a:text-[#323dfe] prose-a:no-underline hover:prose-a:underline prose-img:rounded-lg prose-blockquote:border-l-[#323dfe] prose-blockquote:bg-gray-50 prose-blockquote:py-1 prose-blockquote:not-italic prose-strong:text-black prose-li:text-gray-700 max-w-none">
+          <article className="blog-content prose prose-lg prose-h1:font-sora prose-h2:font-sora prose-headings:font-medium prose-h2:text-2xl prose-h2:mt-10 prose-h2:mb-4 prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-3 prose-p:text-base prose-p:leading-relaxed prose-p:text-gray-700 prose-a:text-[#323dfe] prose-a:no-underline hover:prose-a:underline prose-img:rounded-lg prose-blockquote:border-l-black prose-blockquote:bg-gray-50 prose-blockquote:py-1 prose-blockquote:not-italic prose-strong:text-black prose-li:text-gray-700 max-w-none">
             {children}
           </article>
 

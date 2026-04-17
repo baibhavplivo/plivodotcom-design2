@@ -199,7 +199,7 @@ function formatDate(date: Date): string {
 				prose-p:text-base prose-p:leading-relaxed prose-p:text-gray-700 prose-p:mb-5
 				prose-a:text-[#323dfe] prose-a:no-underline hover:prose-a:underline
 				prose-img:rounded-lg prose-img:my-8
-				prose-blockquote:border-l-[#323dfe] prose-blockquote:bg-gray-50 prose-blockquote:py-1 prose-blockquote:not-italic prose-blockquote:my-8
+				prose-blockquote:border-l-black prose-blockquote:bg-gray-50 prose-blockquote:py-1 prose-blockquote:not-italic prose-blockquote:my-8
 				prose-strong:text-black prose-li:text-gray-700 prose-li:leading-relaxed
 				prose-ul:my-5 prose-ol:my-5 prose-hr:my-10">
 				<Content />
@@ -344,10 +344,10 @@ document.addEventListener('DOMContentLoaded', () => {
 			const linkId = link.dataset.tocLink;
 			if (linkId === activeId) {
 				link.classList.remove('border-transparent', 'text-gray-500');
-				link.classList.add('border-[#323dfe]', 'text-[#323dfe]', 'font-medium');
+				link.classList.add('border-black', 'text-black', 'font-medium');
 			} else {
 				link.classList.add('border-transparent', 'text-gray-500');
-				link.classList.remove('border-[#323dfe]', 'text-[#323dfe]', 'font-medium');
+				link.classList.remove('border-black', 'text-black', 'font-medium');
 			}
 		});
 	}
