@@ -127,7 +127,7 @@ const tocHeadings = [
             Outdated documentation. Sluggish integrations. Support teams that couldn't keep pace with AI-scale workloads. The infrastructure layer was the bottleneck.
           </p>
 
-          <blockquote class="border-l-4 border-[#323dfe] bg-gray-50 py-4 px-6 my-8 rounded-r-lg">
+          <blockquote class="border-l-4 border-black bg-gray-50 py-4 px-6 my-8 rounded-r-lg">
             <p class="text-base leading-relaxed text-gray-700 mb-0">
               &ldquo;Standard providers were never built for this. We needed a partner who understood voice AI as a fundamentally different use case. Real-time media streaming, dynamic routing, bursting from hundreds to tens of thousands of concurrent sessions in minutes.&rdquo;
             </p>
@@ -194,7 +194,7 @@ const tocHeadings = [
             Bolna is expanding into more complex conversational workflows and deeper multilingual support. The demands on infrastructure will only grow.
           </p>
 
-          <blockquote class="border-l-4 border-[#323dfe] bg-gray-50 py-4 px-6 my-8 rounded-r-lg">
+          <blockquote class="border-l-4 border-black bg-gray-50 py-4 px-6 my-8 rounded-r-lg">
             <p class="text-base leading-relaxed text-gray-700 mb-0">
               &ldquo;Having Plivo as a backbone gives us the confidence it will scale with our ambitions and help us focus entirely on building the best voice platform out there.&rdquo;
             </p>
@@ -279,10 +279,10 @@ document.addEventListener('DOMContentLoaded', () => {
       const linkId = link.dataset.tocLink;
       if (linkId === activeId) {
         link.classList.remove('border-transparent', 'text-gray-500');
-        link.classList.add('border-[#323dfe]', 'text-[#323dfe]', 'font-medium');
+        link.classList.add('border-black', 'text-black', 'font-medium');
       } else {
         link.classList.add('border-transparent', 'text-gray-500');
-        link.classList.remove('border-[#323dfe]', 'text-[#323dfe]', 'font-medium');
+        link.classList.remove('border-black', 'text-black', 'font-medium');
       }
     });
   }
