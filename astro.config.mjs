@@ -28,6 +28,7 @@ export default defineConfig({
         const path = new URL(page).pathname;
         if (EXCLUDED_SITEMAP_PATHS.has(path)) return false;
         if (EXCLUDED_SITEMAP_PREFIXES.some((prefix) => path.startsWith(prefix))) return false;
+        if (/^\/blog\/\d+\/$/.test(path)) return false;
         return true;
       },
     }),
