@@ -506,8 +506,12 @@ export function PlivoPricing() {
   const [mainSearchQuery, setMainSearchQuery] = useState("");
   const [showDetails, setShowDetails] = useState(false);
   const mainDropdownRef = useRef<HTMLDivElement>(null);
+  const toggleDetailsRef = useRef<() => void>(null);
   const { convertPriceString: cp } = useExchangeRate();
   const { url: signupUrl, label: signupLabel } = useSignupUrl();
+
+  // Stable toggle function for native event listeners
+  toggleDetailsRef.current = () => setShowDetails((prev) => !prev);
 
   // Auto-select country based on IP geolocation
   useEffect(() => {
@@ -515,6 +519,19 @@ export function PlivoPricing() {
       setSelectedCountry(geoCountry);
     }
   }, [geoCountry]);
+
+  // CRITICAL: Native addEventListener for "See what's included" toggles
+  // React onClick breaks after Astro hydration — use event delegation instead
+  useEffect(() => {
+    const handleClick = (e: MouseEvent) => {
+      const btn = (e.target as HTMLElement).closest<HTMLButtonElement>("[data-toggle-details]");
+      if (btn && toggleDetailsRef.current) {
+        toggleDetailsRef.current();
+      }
+    };
+    document.addEventListener("click", handleClick);
+    return () => document.removeEventListener("click", handleClick);
+  }, []);
 
   const mainFilteredCountries = useMemo(() => {
     if (!mainSearchQuery) return countries;
@@ -636,8 +653,8 @@ export function PlivoPricing() {
                 {/* See what's included toggle */}
                 <button
                   type="button"
-                  onClick={() => setShowDetails((prev) => !prev)}
-                  className="mt-4 flex items-center gap-1 text-sm text-gray-500 hover:text-gray-700"
+                  data-toggle-details
+                  className="mt-4 flex items-center gap-1 text-sm text-gray-500 hover:text-gray-700 cursor-pointer"
                 >
                   See what's included
                   <ChevronDown className={cn("h-4 w-4 transition-transform", showDetails && "rotate-180")} />
@@ -652,6 +669,32 @@ export function PlivoPricing() {
                         <span className="text-sm text-gray-700">United States, India</span>
                       </div>
                     </div>
+                    {(selectedCountry === "US" || selectedCountry === "IN") && (
+                      <div className="mb-4">
+                        <h3 className="text-sm font-semibold text-black mb-2">Channels included</h3>
+                        <div className="space-y-2">
+                          <div className="flex items-center gap-2">
+                            <Check className="h-4 w-4 text-[#323dfe]" />
+                            <span className="text-sm text-gray-700">Voice</span>
+                          </div>
+                          {selectedCountry === "US" && (
+                            <div className="flex items-center gap-2">
+                              <Check className="h-4 w-4 text-[#323dfe]" />
+                              <span className="text-sm text-gray-700">SMS</span>
+                            </div>
+                          )}
+                          {selectedCountry === "IN" && (
+                            <>
+                              <div className="flex items-center gap-2">
+                                <Check className="h-4 w-4 text-[#323dfe]" />
+                                <span className="text-sm text-gray-700">SMS (international routes only)</span>
+                              </div>
+                              <p className="text-xs text-gray-500 pl-6">India domestic SMS is available on the Enterprise plan</p>
+                            </>
+                          )}
+                        </div>
+                      </div>
+                    )}
                     <div>
                       <h3 className="text-sm font-semibold text-black mb-2">Features</h3>
                       <div className="space-y-2">
@@ -691,8 +734,8 @@ export function PlivoPricing() {
                 {/* See what's included toggle */}
                 <button
                   type="button"
-                  onClick={() => setShowDetails((prev) => !prev)}
-                  className="mt-4 flex items-center gap-1 text-sm text-gray-500 hover:text-gray-700"
+                  data-toggle-details
+                  className="mt-4 flex items-center gap-1 text-sm text-gray-500 hover:text-gray-700 cursor-pointer"
                 >
                   See what's included
                   <ChevronDown className={cn("h-4 w-4 transition-transform", showDetails && "rotate-180")} />
@@ -711,6 +754,12 @@ export function PlivoPricing() {
                       <h3 className="text-sm font-semibold text-black mb-2">Features</h3>
                       <p className="text-sm text-gray-700 mb-2">Everything in Pay as you go and:</p>
                       <div className="space-y-2">
+                        {selectedCountry === "IN" && (
+                          <div className="flex items-center gap-2">
+                            <Check className="h-4 w-4 text-[#323dfe]" />
+                            <span className="text-sm text-gray-700">India domestic SMS</span>
+                          </div>
+                        )}
                         <div className="flex items-center gap-2">
                           <Check className="h-4 w-4 text-[#323dfe]" />
                           <span className="text-sm text-gray-700">Custom pricing & volume discounts</span>
