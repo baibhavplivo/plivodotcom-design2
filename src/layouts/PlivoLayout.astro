@@ -28,8 +28,8 @@ const posthogHost = import.meta.env.PUBLIC_POSTHOG_HOST || "https://us.i.posthog
   <head>
     <BaseHead title={`${title} | Plivo`} description={description} image={image} ogType={ogType} />
     <slot name="head" />
-    {/* RB2B visitor identification — US only */}
-    <script is:inline>if(window.__CF_COUNTRY==="US"){!function(key){if(window.reb2b)return;window.reb2b={loaded:true};var s=document.createElement("script");s.async=true;s.src="https://b2bjsstore.s3.us-west-2.amazonaws.com/b/"+key+"/"+key+".js.gz";document.getElementsByTagName("script")[0].parentNode.insertBefore(s,document.getElementsByTagName("script")[0]);}("J0OV0VH1LX6Z");}</script>
+    {/* RB2B visitor identification — US only (supports both CF Worker and CloudFront) */}
+    <script is:inline>!function(){var c=window.__CF_COUNTRY||"";if(!c){try{c=sessionStorage.getItem("plivo_geo_country")||""}catch(e){}}function load(){if(window.reb2b)return;window.reb2b={loaded:true};var s=document.createElement("script");s.async=true;s.src="https://b2bjsstore.s3.us-west-2.amazonaws.com/b/J0OV0VH1LX6Z/J0OV0VH1LX6Z.js.gz";document.getElementsByTagName("script")[0].parentNode.insertBefore(s,document.getElementsByTagName("script")[0])}if(c==="US"){load()}else if(!c){var n=0;var p=setInterval(function(){n++;try{c=sessionStorage.getItem("plivo_geo_country")||""}catch(e){}if(c==="US"){clearInterval(p);load()}else if(c||n>40){clearInterval(p)}},100)}}();</script>
     {isDev && (
       <script type="module" is:inline>
         import RefreshRuntime from "/@react-refresh";
