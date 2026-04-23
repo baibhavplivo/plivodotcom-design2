@@ -8,13 +8,13 @@ import { type LucideIcon, ChevronDown, Check } from "lucide-react";
 import { motion } from "motion/react";
 
 const selectTriggerVariants = cva(
-    "flex h-9 w-full items-center justify-between gap-3 rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 transition-all placeholder:text-gray-400 hover:border-gray-400 focus:outline-none focus:border-blue-400 focus:ring-[3px] focus:ring-blue-100 data-[state=open]:border-blue-400 data-[state=open]:ring-[3px] data-[state=open]:ring-blue-100 ring-offset-white disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1",
+    "flex h-9 w-full items-center justify-between gap-3 rounded-lg border border-border-strong bg-background px-3 py-2 text-sm text-foreground transition-all placeholder:text-muted-foreground hover:border-border-strong focus:outline-none focus:border-blue-400 focus:ring-[3px] focus:ring-blue-100 data-[state=open]:border-blue-400 data-[state=open]:ring-[3px] data-[state=open]:ring-blue-100 ring-offset-background disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1",
     {
         variants: {
             variant: {
                 default: "",
-                outline: "border-2 hover:border-gray-400",
-                ghost: "border-transparent hover:bg-gray-100",
+                outline: "border-2 hover:border-border-strong",
+                ghost: "border-transparent hover:bg-muted",
             },
             size: {
                 sm: "h-8 p-2 text-xs gap-2",
@@ -30,7 +30,7 @@ const selectTriggerVariants = cva(
 );
 
 const selectContentVariants = cva(
-    "relative z-50 max-h-[300px] min-w-[8rem] overflow-hidden rounded-lg border border-gray-200 bg-white text-gray-900 shadow-lg data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
+    "relative z-50 max-h-[300px] min-w-[8rem] overflow-hidden rounded-lg border border-border bg-background text-foreground shadow-lg data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
     {
         variants: {
             position: {
@@ -57,10 +57,10 @@ const SelectValue = React.forwardRef<
 >(({ className, placeholder, ...props }, ref) => (
     <SelectPrimitive.Value
         ref={ref}
-        className={cn("text-sm select-none text-gray-900", className)}
+        className={cn("text-sm select-none text-foreground", className)}
         placeholder={
             placeholder && (
-                <span className="text-gray-400 select-none">
+                <span className="text-muted-foreground select-none">
                     {placeholder}
                 </span>
             )
@@ -98,7 +98,7 @@ const SelectTrigger = React.forwardRef<
                 {Icon && (
                     <Icon
                         size={16}
-                        className="shrink-0 text-gray-500"
+                        className="shrink-0 text-muted-foreground"
                     />
                 )}
                 <span className="truncate">{children}</span>
@@ -158,7 +158,7 @@ const SelectLabel = React.forwardRef<
     <SelectPrimitive.Label
         ref={ref}
         className={cn(
-            "px-3 py-2 text-xs font-semibold text-gray-500",
+            "px-3 py-2 text-xs font-semibold text-muted-foreground",
             className
         )}
         {...props}
@@ -178,7 +178,7 @@ const SelectItem = React.forwardRef<
     <SelectPrimitive.Item
         ref={ref}
         className={cn(
-            "relative flex w-full cursor-pointer select-none items-center rounded-md py-2 pl-3 pr-8 text-sm text-gray-900 outline-none transition-colors hover:bg-gray-50 focus:bg-gray-100 focus:text-gray-900 data-[state=checked]:bg-blue-50 data-[state=checked]:text-blue-600 data-[disabled]:pointer-events-none data-[disabled]:opacity-50 data-[disabled]:text-gray-400",
+            "relative flex w-full cursor-pointer select-none items-center rounded-md py-2 pl-3 pr-8 text-sm text-foreground outline-none transition-colors hover:bg-surface focus:bg-muted focus:text-foreground data-[state=checked]:bg-blue-50 data-[state=checked]:text-blue-600 data-[disabled]:pointer-events-none data-[disabled]:opacity-50 data-[disabled]:text-muted-foreground",
             className
         )}
         {...props}

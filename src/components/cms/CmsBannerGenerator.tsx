@@ -149,7 +149,7 @@ export default function CmsBannerGenerator({
     <div className="space-y-5">
       {/* Template selector */}
       <div>
-        <label className="mb-2 block text-xs font-semibold text-gray-500 uppercase">Template</label>
+        <label className="mb-2 block text-xs font-semibold text-muted-foreground uppercase">Template</label>
         <div className="flex flex-wrap gap-2">
           {TEMPLATES.map((t) => (
             <TemplateOption
@@ -163,7 +163,7 @@ export default function CmsBannerGenerator({
       </div>
 
       {/* Live preview */}
-      <div className="overflow-hidden rounded-lg border border-gray-200">
+      <div className="overflow-hidden rounded-lg border border-border">
         <canvas
           ref={canvasRef}
           style={{ width: "100%", height: "auto", display: "block", aspectRatio: `${CANVAS_W}/${CANVAS_H}` }}
@@ -173,25 +173,25 @@ export default function CmsBannerGenerator({
       {/* Text fields */}
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
         <div>
-          <label className="mb-1 block text-xs font-medium text-gray-700">Banner Title</label>
+          <label className="mb-1 block text-xs font-medium text-foreground/80">Banner Title</label>
           <textarea
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             rows={2}
             placeholder="Enter banner title"
-            className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 placeholder-gray-400 outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-100"
+            className="w-full rounded-md border border-border-strong bg-background px-3 py-2 text-sm text-foreground placeholder-muted-foreground outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-100"
           />
         </div>
         <div>
-          <label className="mb-1 block text-xs font-medium text-gray-700">
-            Subtitle <span className="text-gray-400">(optional)</span>
+          <label className="mb-1 block text-xs font-medium text-foreground/80">
+            Subtitle <span className="text-muted-foreground">(optional)</span>
           </label>
           <textarea
             value={subtitle}
             onChange={(e) => setSubtitle(e.target.value)}
             rows={2}
             placeholder="Short tagline or description"
-            className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 placeholder-gray-400 outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-100"
+            className="w-full rounded-md border border-border-strong bg-background px-3 py-2 text-sm text-foreground placeholder-muted-foreground outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-100"
           />
         </div>
       </div>
@@ -201,12 +201,12 @@ export default function CmsBannerGenerator({
       <button
         ref={generateBtnRef}
         disabled={generating}
-        className="flex w-full items-center justify-center gap-2 rounded-md bg-black px-4 py-2.5 text-sm font-medium text-white transition-colors cta-hover-gradient disabled:opacity-50"
+        className="flex w-full items-center justify-center gap-2 rounded-md bg-foreground px-4 py-2.5 text-sm font-medium text-background transition-colors cta-hover-gradient disabled:opacity-50"
       >
         {generating ? <Loader2 className="h-4 w-4 animate-spin" /> : <Check className="h-4 w-4" />}
         {generating ? "Generating & Uploading..." : "Generate & Set as Cover Image"}
       </button>
-      <p className="text-center text-[10px] text-gray-400">
+      <p className="text-center text-[10px] text-muted-foreground">
         {CANVAS_W} x {CANVAS_H}px — optimized for social sharing
       </p>
     </div>
@@ -233,7 +233,7 @@ function TemplateOption({
     <button
       ref={ref}
       className={`rounded-full px-3.5 py-1.5 text-xs font-medium transition-colors ${
-        selected ? "bg-black text-white" : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+        selected ? "bg-foreground text-background" : "bg-muted text-muted-foreground hover:bg-gray-200"
       }`}
     >
       {template.name}

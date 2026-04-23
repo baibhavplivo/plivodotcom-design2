@@ -42,18 +42,26 @@ export default function FooterCTA() {
       />
 
       {/* Content */}
-      <div className="container relative z-10 mx-auto flex max-w-3xl flex-col items-center px-4 text-center">
-        <h2 className="font-sora text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] font-normal leading-[1.25] tracking-[-0.02em] text-white">
+      <div className="container relative z-10 mx-auto flex max-w-3xl flex-col items-center px-4">
+        <div className="flex items-center gap-3 font-mono-ui text-[11px] uppercase tracking-[0.12em] text-muted-foreground mb-8">
+          <span className="flex items-center gap-2">
+            <span className="tabular-nums text-foreground/70">~</span>
+            <span className="h-px w-6 bg-border" />
+          </span>
+          <span>footer cta</span>
+          <span className="flex-1 border-t border-dashed border-border" />
+        </div>
+        <h2 className="font-sora text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] font-normal leading-[1.04] tracking-[-0.035em] text-white">
           Start building your AI agent now
         </h2>
-        <p className="mx-auto max-w-2xl text-base sm:text-lg text-gray-400 mt-4">
+        <p className="max-w-2xl text-base sm:text-lg text-muted-foreground mt-4">
           No coding required. Get your agents up and running in under 30
           minutes.
         </p>
         <a
           href={signupUrl}
           {...(signupUrl.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-          className="inline-flex items-center justify-center rounded-lg bg-white px-8 py-3 text-base font-semibold text-gray-900 transition-all hover:bg-gray-100 hover:shadow-xl hover:-translate-y-0.5 mt-8"
+          className="inline-flex items-center justify-center rounded-lg bg-background px-8 py-3 text-base font-semibold text-foreground transition-all hover:bg-muted hover:shadow-xl hover:-translate-y-0.5 mt-8"
         >
           {signupLabel}
         </a>

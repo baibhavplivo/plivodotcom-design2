@@ -60,13 +60,13 @@ export default function VerifyHeroIllustration() {
       {/* Dotted Grid Background */}
       <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
         <div className="relative w-full h-full">
-          <div className="h-full w-full" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }} />
+          <div className="h-full w-full" style={{ backgroundImage: 'radial-gradient(circle, hsl(var(--border)) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }} />
           {/* Radial fade from all sides */}
           <div
             className="absolute inset-0 pointer-events-none"
             style={{
               background:
-                "radial-gradient(ellipse at center, transparent 20%, white 70%)",
+                "radial-gradient(ellipse at center, transparent 20%, hsl(var(--background)) 70%)",
             }}
           />
         </div>
@@ -78,27 +78,27 @@ export default function VerifyHeroIllustration() {
         <div className="w-[288px] sm:w-[320px]">
           {/* Phone outer frame */}
           <div
-            className="relative rounded-[32px] p-1.5 shadow-2xl border border-gray-300 bg-gray-100"
+            className="relative rounded-[32px] p-1.5 border border-border-strong bg-muted"
           >
 
             {/* Screen */}
-            <div className="relative rounded-[30px] overflow-hidden bg-white shadow-inner">
+            <div className="relative rounded-[30px] overflow-hidden bg-background shadow-inner">
               {/* Status bar */}
-              <div className="h-7 bg-gray-100 flex items-center justify-between px-5 text-xs font-medium rounded-t-[30px]">
+              <div className="h-7 bg-muted flex items-center justify-between px-5 text-xs font-medium rounded-t-[30px]">
                 <div className="flex items-center gap-1 opacity-50">
                   <div className="flex gap-0.5">
-                    <span className="w-1 h-1 rounded-full bg-black" />
-                    <span className="w-1 h-1 rounded-full bg-black" />
-                    <span className="w-1 h-1 rounded-full bg-black" />
-                    <span className="w-1 h-1 rounded-full bg-black" />
-                    <span className="w-1 h-1 rounded-full bg-gray-300" />
+                    <span className="w-1 h-1 rounded-full bg-foreground" />
+                    <span className="w-1 h-1 rounded-full bg-foreground" />
+                    <span className="w-1 h-1 rounded-full bg-foreground" />
+                    <span className="w-1 h-1 rounded-full bg-foreground" />
+                    <span className="w-1 h-1 rounded-full bg-muted-foreground/30" />
                   </div>
-                  <span className="ml-1 text-black">Plivo</span>
+                  <span className="ml-1 text-foreground">Plivo</span>
                 </div>
-                <span className="text-black opacity-50">9:41 AM</span>
+                <span className="text-foreground opacity-50">9:41 AM</span>
                 <div className="flex items-center gap-1 opacity-50">
-                  <span className="text-black text-[10px]">100%</span>
-                  <div className="w-5 h-2.5 rounded-sm bg-black" />
+                  <span className="text-foreground text-[10px]">100%</span>
+                  <div className="w-5 h-2.5 rounded-sm bg-foreground" />
                 </div>
               </div>
 
@@ -111,7 +111,7 @@ export default function VerifyHeroIllustration() {
                     : "opacity-0 -translate-y-full"
                 )}
               >
-                <div className="bg-white/95 backdrop-blur-lg rounded-2xl shadow-lg border border-gray-200 p-3">
+                <div className="bg-background/95 backdrop-blur-lg rounded-2xl shadow-sm border border-border p-3">
                   <div className="flex items-start gap-3">
                     {/* App icon - iOS Messages style */}
                     <div className="w-9 h-9 rounded-lg bg-[#34C759] flex items-center justify-center flex-shrink-0">
@@ -127,14 +127,14 @@ export default function VerifyHeroIllustration() {
                     {/* Content */}
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center justify-between mb-0.5">
-                        <span className="text-sm font-semibold text-gray-900">
+                        <span className="text-sm font-semibold text-foreground">
                           Messages
                         </span>
-                        <span className="text-[10px] text-gray-400">now</span>
+                        <span className="text-[10px] text-muted-foreground">now</span>
                       </div>
-                      <p className="text-[13px] text-gray-600 leading-tight">
+                      <p className="text-[13px] text-muted-foreground leading-tight">
                         Your verification code is{" "}
-                        <span className="font-bold text-gray-900">
+                        <span className="font-bold text-foreground">
                           {OTP_CODE}
                         </span>
                         . Do not share this code.
@@ -145,10 +145,10 @@ export default function VerifyHeroIllustration() {
               </div>
 
               {/* App Content Area */}
-              <div className="px-4 pt-8 pb-4 min-h-[552px] bg-white">
+              <div className="px-4 pt-8 pb-4 min-h-[552px] bg-background">
                 {/* App Header */}
                 <div className="text-center mb-6">
-                  <div className="w-14 h-14 mx-auto mb-3 rounded-2xl bg-gray-100 flex items-center justify-center">
+                  <div className="w-14 h-14 mx-auto mb-3 rounded-2xl bg-muted flex items-center justify-center">
                     <svg
                       className="w-7 h-7"
                       fill="none"
@@ -169,13 +169,13 @@ export default function VerifyHeroIllustration() {
                       />
                     </svg>
                   </div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-1">
+                  <h3 className="text-lg font-semibold text-foreground mb-1">
                     Verify Your Number
                   </h3>
-                  <p className="text-sm text-gray-500">
+                  <p className="text-sm text-muted-foreground">
                     Enter the 4-digit code sent to
                   </p>
-                  <p className="text-sm font-medium text-gray-700">
+                  <p className="text-sm font-medium text-foreground/80">
                     +1 (555) 123-4567
                   </p>
                 </div>
@@ -188,8 +188,8 @@ export default function VerifyHeroIllustration() {
                       className={cn(
                         "w-14 h-16 rounded-xl border-2 flex items-center justify-center text-2xl font-bold transition-all duration-300",
                         filledDigits > index
-                          ? "border-gray-400 bg-gray-100 text-gray-700"
-                          : "border-gray-300 bg-white text-gray-900",
+                          ? "border-gray-400 bg-muted text-foreground/80"
+                          : "border-border-strong bg-background text-foreground",
                         animationPhase === "filling" &&
                           filledDigits === index &&
                           "border-gray-500 scale-105"
@@ -219,7 +219,7 @@ export default function VerifyHeroIllustration() {
                   )}
                 >
                   <div className="flex items-center justify-center gap-1.5 mb-4">
-                    <div className="w-4 h-4 rounded-full bg-gradient-to-br from-[#323dfe] to-black flex items-center justify-center">
+                    <div className="w-4 h-4 rounded-full bg-gradient-to-br from-primary to-black flex items-center justify-center">
                       <svg
                         className="w-2.5 h-2.5 text-white"
                         fill="none"
@@ -234,7 +234,7 @@ export default function VerifyHeroIllustration() {
                         />
                       </svg>
                     </div>
-                    <span className="font-medium bg-gradient-to-r from-[#323dfe] to-black bg-clip-text text-transparent">
+                    <span className="font-medium bg-gradient-to-r from-primary to-black dark:to-white bg-clip-text text-transparent">
                       Verified successfully!
                     </span>
                   </div>
@@ -246,8 +246,8 @@ export default function VerifyHeroIllustration() {
                     className={cn(
                       "w-full py-3 rounded-lg font-medium text-sm transition-all duration-300",
                       filledDigits === 4
-                        ? "bg-gradient-to-r from-[#323dfe]/20 to-black/20 text-black"
-                        : "bg-gray-200 text-gray-400"
+                        ? "bg-gradient-to-r from-primary/20 to-black/20 text-foreground"
+                        : "bg-muted text-muted-foreground"
                     )}
                   >
                     {showSuccess ? "Verified" : "Verify"}
@@ -256,8 +256,8 @@ export default function VerifyHeroIllustration() {
               </div>
 
               {/* Home indicator */}
-              <div className="h-7 bg-white flex items-center justify-center">
-                <div className="w-28 h-1 rounded-full bg-black/20" />
+              <div className="h-7 bg-background flex items-center justify-center">
+                <div className="w-28 h-1 rounded-full bg-foreground/$1" />
               </div>
             </div>
           </div>
@@ -268,7 +268,7 @@ export default function VerifyHeroIllustration() {
           className="absolute inset-x-0 bottom-0 h-32 pointer-events-none"
           style={{
             background:
-              "linear-gradient(to top, white 0%, white 20%, rgba(255,255,255,0.9) 50%, transparent 100%)",
+              "linear-gradient(to top, hsl(var(--background)) 0%, hsl(var(--background)) 20%, hsl(var(--background) / 0.9) 50%, transparent 100%)",
           }}
         />
       </div>

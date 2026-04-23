@@ -96,12 +96,12 @@ const INDIA_LIVE_SMS_ROWS: SMSDisplayRow[] = [
 const INDIA_LIVE_PHONE_SECTION: PhoneSectionData = {
   rows: [{ label: "Long Codes", price: "$3.12500/month" }],
 };
-const SECTION_HEADING_CLASS = "font-sans text-xl font-semibold text-black mb-2";
-const SECTION_DESCRIPTION_CLASS = "mb-6 text-sm text-gray-500";
+const SECTION_HEADING_CLASS = "font-sans text-xl font-semibold text-foreground mb-2";
+const SECTION_DESCRIPTION_CLASS = "mb-6 text-sm text-muted-foreground";
 const INLINE_LINK_CLASS =
-  "font-medium text-[#323dfe] hover:text-[#2832cc] hover:underline transition-colors";
+  "font-medium text-primary hover:text-primary hover:underline transition-colors";
 const TEXT_LINK_CLASS =
-  "text-[#323dfe] hover:text-[#2832cc] hover:underline transition-colors";
+  "text-primary hover:text-primary hover:underline transition-colors";
 
 class SMSPricingErrorBoundary extends Component<
   { children: ReactNode },
@@ -120,22 +120,22 @@ class SMSPricingErrorBoundary extends Component<
   render() {
     if (this.state.hasError) {
       return (
-        <section className="bg-white py-12 lg:py-16">
+        <section className="bg-background border-t border-border py-12 lg:py-16">
           <div className="mx-auto max-w-7xl px-4">
-            <div className="rounded-xl border border-gray-200 bg-white p-6">
-              <h1 className="font-sora text-[2rem] font-normal leading-[1.1] tracking-[-0.02em] text-black">
+            <div className="rounded-xl border border-border bg-background p-6">
+              <h1 className="font-sora text-[2rem] font-normal leading-[1.1] tracking-[-0.02em] text-foreground">
                 SMS Pricing
               </h1>
-              <p className="mt-4 max-w-2xl text-[1rem] text-gray-600 sm:text-[1.125rem]">
+              <p className="mt-4 max-w-2xl text-[1rem] text-muted-foreground sm:text-[1.125rem]">
                 We hit a client-side rendering issue on this pricing page.
                 Please refresh, or contact support if the page keeps failing.
               </p>
-              <p className="mt-4 text-sm text-gray-600">
+              <p className="mt-4 text-sm text-muted-foreground">
                 <a
                   href={SMS_PRICING_SUPPORT_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-[#323dfe] hover:underline"
+                  className="text-primary hover:underline"
                 >
                   Contact support
                 </a>
@@ -206,9 +206,9 @@ function phoneTypeLabel(type: string) {
 
 function renderValueClass(value: string) {
   if (/^(na|not supported|not supported\.)$/i.test(value.trim())) {
-    return "text-gray-400";
+    return "text-muted-foreground";
   }
-  return "text-black";
+  return "text-foreground";
 }
 
 function deriveDetailSection(
@@ -377,7 +377,7 @@ function PricingValue({
         href={SMS_PRICING_SUPPORT_URL}
         target="_blank"
         rel="noopener noreferrer"
-        className={cn("font-medium text-[#323dfe] hover:underline", className)}
+        className={cn("font-medium text-primary hover:underline", className)}
       >
         Contact support
       </a>
@@ -431,22 +431,22 @@ function SMSSection({
       <div className="overflow-x-auto">
         <table className="w-full">
           <thead>
-            <tr className="border-b border-gray-200">
-              <th className="w-[40%] py-3 pr-4 text-left text-sm font-semibold text-black">
+            <tr className="border-b border-border">
+              <th className="w-[40%] py-3 pr-4 text-left text-sm font-semibold text-foreground">
                 Route Type
               </th>
-              <th className="py-3 pr-4 text-left text-sm font-semibold text-black">
+              <th className="py-3 pr-4 text-left text-sm font-semibold text-foreground">
                 To send SMS (Outbound)
               </th>
-              <th className="py-3 text-left text-sm font-semibold text-black">
+              <th className="py-3 text-left text-sm font-semibold text-foreground">
                 To receive SMS (Inbound)
               </th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-gray-100">
+          <tbody className="divide-y divide-border">
             {rows.map((row) => (
               <tr key={row.label}>
-                <td className="py-3 pr-4 text-sm text-gray-900">{row.label}</td>
+                <td className="py-3 pr-4 text-sm text-foreground">{row.label}</td>
                 <td className="py-3 pr-4 text-sm">
                   <div className="flex flex-col items-start gap-1">
                     <PricingValue
@@ -460,7 +460,7 @@ function SMSSection({
                     {row.showNetworkLink && (
                       <a
                         href="#additional-pricing"
-                        className="text-sm text-[#323dfe] hover:underline"
+                        className="text-sm text-primary hover:underline"
                       >
                         View all networks
                       </a>
@@ -498,22 +498,22 @@ function RCSSection({ countryCode }: { countryCode: string }) {
       <div className="overflow-x-auto">
         <table className="w-full">
           <thead>
-            <tr className="border-b border-gray-200">
-              <th className="w-[40%] py-3 pr-4 text-left text-sm font-semibold text-black">
+            <tr className="border-b border-border">
+              <th className="w-[40%] py-3 pr-4 text-left text-sm font-semibold text-foreground">
                 Sender Type
               </th>
-              <th className="py-3 pr-4 text-left text-sm font-semibold text-black">
+              <th className="py-3 pr-4 text-left text-sm font-semibold text-foreground">
                 To send RCS (Outbound)
               </th>
-              <th className="py-3 text-left text-sm font-semibold text-black">
+              <th className="py-3 text-left text-sm font-semibold text-foreground">
                 To receive RCS (Inbound)
               </th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-gray-100">
+          <tbody className="divide-y divide-border">
             {SMS_RCS_RATES.map((row) => (
               <tr key={row.type}>
-                <td className="py-3 pr-4 text-sm text-gray-900">{row.type}</td>
+                <td className="py-3 pr-4 text-sm text-foreground">{row.type}</td>
                 <td className="py-3 pr-4 text-sm">
                   <PricingValue
                     value={row.outbound}
@@ -558,22 +558,22 @@ function MMSSection({
       <div className="overflow-x-auto">
         <table className="w-full">
           <thead>
-            <tr className="border-b border-gray-200">
-              <th className="w-[40%] py-3 pr-4 text-left text-sm font-semibold text-black">
+            <tr className="border-b border-border">
+              <th className="w-[40%] py-3 pr-4 text-left text-sm font-semibold text-foreground">
                 Route Type
               </th>
-              <th className="py-3 pr-4 text-left text-sm font-semibold text-black">
+              <th className="py-3 pr-4 text-left text-sm font-semibold text-foreground">
                 To send MMS (Outbound)
               </th>
-              <th className="py-3 text-left text-sm font-semibold text-black">
+              <th className="py-3 text-left text-sm font-semibold text-foreground">
                 To receive MMS (Inbound)
               </th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-gray-100">
+          <tbody className="divide-y divide-border">
             {rows.map((row) => (
               <tr key={row.type}>
-                <td className="py-3 pr-4 text-sm text-gray-900">{row.type}</td>
+                <td className="py-3 pr-4 text-sm text-foreground">{row.type}</td>
                 <td className="py-3 pr-4 text-sm">
                   <PricingValue
                     value={row.outbound}
@@ -615,16 +615,16 @@ function PhoneNumbersSection({
       <div className="overflow-x-auto">
         <table className="w-full">
           <thead>
-            <tr className="border-b border-gray-200">
-              <th className="w-[65%] py-3 pr-4 text-left text-sm font-semibold text-black">
+            <tr className="border-b border-border">
+              <th className="w-[65%] py-3 pr-4 text-left text-sm font-semibold text-foreground">
                 Sender Type
               </th>
-              <th className="py-3 text-left text-sm font-semibold text-black">
+              <th className="py-3 text-left text-sm font-semibold text-foreground">
                 Price
               </th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-gray-100">
+          <tbody className="divide-y divide-border">
             {data.rows.map((row) =>
               row.children ? (
                 <tr key={row.label}>
@@ -632,19 +632,19 @@ function PhoneNumbersSection({
                     <table className="w-full">
                       <tbody>
                         <tr>
-                          <td className="py-3 pr-4 text-sm font-medium text-gray-900">
+                          <td className="py-3 pr-4 text-sm font-medium text-foreground">
                             {row.label}
                           </td>
-                          <td className="py-3 text-sm text-gray-500">
+                          <td className="py-3 text-sm text-muted-foreground">
                             Plus one-time setup fee**
                           </td>
                         </tr>
                         {row.children.map((child) => (
                           <tr
                             key={`${row.label}-${child.label}`}
-                            className="border-t border-gray-100"
+                            className="border-t border-border"
                           >
-                            <td className="py-3 pr-4 pl-4 text-sm text-gray-900">
+                            <td className="py-3 pr-4 pl-4 text-sm text-foreground">
                               {child.label}
                             </td>
                             <td className="py-3 text-sm">
@@ -662,12 +662,12 @@ function PhoneNumbersSection({
                 </tr>
               ) : (
                 <tr key={row.label}>
-                  <td className="py-3 pr-4 text-sm text-gray-900">{row.label}</td>
+                  <td className="py-3 pr-4 text-sm text-foreground">{row.label}</td>
                   <td className="py-3 text-sm">
                     <PricingValue
                       value={row.price ?? ""}
                       countryCode={countryCode}
-                      className={row.muted ? "text-gray-400" : "font-medium"}
+                      className={row.muted ? "text-muted-foreground" : "font-medium"}
                     />
                   </td>
                 </tr>
@@ -692,19 +692,19 @@ function AddOnServicesSection({ countryCode }: { countryCode: string }) {
       <div className="overflow-x-auto">
         <table className="w-full">
           <thead>
-            <tr className="border-b border-gray-200">
-              <th className="w-[65%] py-3 pr-4 text-left text-sm font-semibold text-black">
+            <tr className="border-b border-border">
+              <th className="w-[65%] py-3 pr-4 text-left text-sm font-semibold text-foreground">
                 Service
               </th>
-              <th className="py-3 text-left text-sm font-semibold text-black">
+              <th className="py-3 text-left text-sm font-semibold text-foreground">
                 Price
               </th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-gray-100">
+          <tbody className="divide-y divide-border">
             {SMS_ADD_ON_SERVICES.map((service) => (
               <tr key={service.name}>
-                <td className="py-3 pr-4 text-sm text-gray-900">
+                <td className="py-3 pr-4 text-sm text-foreground">
                   {service.name}
                 </td>
                 <td className="py-3 text-sm">
@@ -741,28 +741,28 @@ function CarrierFeeSection({
 
       {groups.map((group) => (
         <div key={group.title} className="space-y-4">
-          <h3 className="text-lg font-semibold text-black">{group.title}</h3>
+          <h3 className="text-lg font-semibold text-foreground">{group.title}</h3>
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
-                <tr className="border-b border-gray-200">
-                  <th className="py-3 pr-4 text-left font-semibold text-black">
+                <tr className="border-b border-border">
+                  <th className="py-3 pr-4 text-left font-semibold text-foreground">
                     Carrier
                   </th>
                   {group.columns.map((column) => (
                     <th
                       key={`${group.title}-${column}`}
-                      className="py-3 px-2 text-left font-semibold text-black"
+                      className="py-3 px-2 text-left font-semibold text-foreground"
                     >
                       {column}
                     </th>
                   ))}
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-100">
+              <tbody className="divide-y divide-border">
                 {group.rows.map((row) => (
                   <tr key={`${group.title}-${row.carrier}`}>
-                    <td className="py-3 pr-4 text-gray-900">{row.carrier}</td>
+                    <td className="py-3 pr-4 text-foreground">{row.carrier}</td>
                     {row.values.map((value, index) => (
                       <td key={`${row.carrier}-${index}`} className="py-3 px-2">
                         <PricingValue value={value} countryCode={countryCode} />
@@ -774,7 +774,7 @@ function CarrierFeeSection({
             </table>
           </div>
           {group.footnote && (
-            <p className="text-xs text-gray-500">{group.footnote}</p>
+            <p className="text-xs text-muted-foreground">{group.footnote}</p>
           )}
         </div>
       ))}
@@ -795,28 +795,28 @@ function NetworkPricingSection({
     <div>
       <div className="mb-6">
         <h2 className={SECTION_HEADING_CLASS}>{title}</h2>
-        <p className="text-sm text-gray-500">
+        <p className="text-sm text-muted-foreground">
           Pricing per network group -{" "}
-          <span className="font-semibold text-black">Outbound SMS</span>
+          <span className="font-semibold text-foreground">Outbound SMS</span>
         </p>
       </div>
 
       <div className="overflow-x-auto">
         <table className="w-full">
           <thead>
-            <tr className="border-b border-gray-200">
-              <th className="w-[65%] py-3 pr-4 text-left text-sm font-semibold text-black">
+            <tr className="border-b border-border">
+              <th className="w-[65%] py-3 pr-4 text-left text-sm font-semibold text-foreground">
                 Carrier Network
               </th>
-              <th className="py-3 text-left text-sm font-semibold text-black">
+              <th className="py-3 text-left text-sm font-semibold text-foreground">
                 To Send SMS (Outbound)
               </th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-gray-100">
+          <tbody className="divide-y divide-border">
             {rows.map((row) => (
               <tr key={`${row.network}-${row.rate}`}>
-                <td className="py-3 pr-4 text-sm text-gray-900">{row.network}</td>
+                <td className="py-3 pr-4 text-sm text-foreground">{row.network}</td>
                 <td className="py-3 text-sm">
                   <PricingValue
                     value={row.rate}
@@ -1060,54 +1060,63 @@ function SMSPricingPageInner({
 
   return (
     <>
-      <section className="bg-white pb-10 pt-[56px] sm:pt-[64px] md:pt-[72px]">
+      <section className="bg-background border-t border-border pb-10 pt-[56px] sm:pt-[64px] md:pt-[72px]">
         <div className="container mx-auto max-w-7xl px-4">
-          <div className="text-center">
-            <h1 className="font-sora mb-4 text-[2rem] font-normal leading-[1.1] tracking-[-0.02em] text-black sm:text-[2.5rem] md:text-[3rem]">
-            {heroTitle}
+          <div className="flex items-center gap-3 font-mono-ui text-[11px] uppercase tracking-[0.12em] text-muted-foreground mb-8">
+            <span className="flex items-center gap-2">
+              <span className="tabular-nums text-foreground/70">~</span>
+              <span className="h-px w-6 bg-border" />
+            </span>
+            <span>sms pricing</span>
+            <span className="flex-1 border-t border-dashed border-border" />
+            <span>per-message · pay as you go</span>
+          </div>
+          <div>
+            <h1 className="font-sora mb-4 text-[2rem] font-normal leading-[1.04] tracking-[-0.035em] text-foreground sm:text-[2.5rem] md:text-[3rem]">
+              {heroTitle}
             </h1>
-            <p className="mx-auto max-w-3xl text-base text-gray-600 sm:text-lg">
+            <p className="max-w-xl text-[15px] leading-relaxed text-muted-foreground">
               {SMS_PRICING_HERO_COPY}
             </p>
           </div>
         </div>
       </section>
 
-      <section className="bg-white pb-12 lg:pb-20">
+      <section className="bg-background border-t border-border pb-12 lg:pb-20">
         <div className="container mx-auto max-w-7xl px-4">
           <div className="lg:grid lg:grid-cols-[256px_1fr] lg:items-start lg:gap-8">
             <div ref={sidebarWrapperRef} className="mb-8 lg:mb-0">
-              <aside className="z-30 bg-white" style={sidebarStyle}>
+              <aside className="z-30 bg-background" style={sidebarStyle}>
                 <div className="relative" ref={dropdownRef}>
-                  <label className="mb-2 block text-sm font-medium text-gray-700">
+                  <label className="mb-2 block text-sm font-medium text-foreground/80">
                     Select Country
                   </label>
                   <button
                     type="button"
                     onClick={() => setIsCountryOpen((value) => !value)}
-                    className="flex w-full items-center gap-3 rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-left transition-colors hover:border-gray-400"
+                    className="flex w-full items-center gap-3 rounded-lg border border-border-strong bg-background px-4 py-2.5 text-left transition-colors hover:border-border-strong"
                   >
                     <span className="text-xl">{selectedCountry.flag}</span>
-                    <span className="flex-1 text-sm font-medium text-gray-900">
+                    <span className="flex-1 text-sm font-medium text-foreground">
                       {selectedCountry.name}
                     </span>
                     <ChevronDown
                       className={cn(
-                        "h-4 w-4 text-gray-400 transition-transform",
+                        "h-4 w-4 text-muted-foreground transition-transform",
                         isCountryOpen && "rotate-180",
                       )}
                     />
                   </button>
 
                   {isCountryOpen && (
-                    <div className="absolute left-0 right-0 top-full z-20 mt-2 overflow-hidden rounded-lg border border-gray-200 bg-white shadow-lg">
-                      <div className="border-b border-gray-100 p-2">
+                    <div className="absolute left-0 right-0 top-full z-20 mt-2 overflow-hidden rounded-lg border border-border bg-background shadow-sm">
+                      <div className="border-b border-border p-2">
                         <input
                           type="text"
                           placeholder="Search country..."
                           value={searchQuery}
                           onChange={(event) => setSearchQuery(event.target.value)}
-                          className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm text-gray-900 outline-none placeholder:text-gray-400 focus:border-gray-500"
+                          className="w-full rounded-md border border-border-strong px-3 py-2 text-sm text-foreground outline-none placeholder:text-muted-foreground focus:border-gray-500"
                           autoFocus
                         />
                       </div>
@@ -1118,17 +1127,17 @@ function SMSPricingPageInner({
                             type="button"
                             onClick={() => handleCountryChange(country)}
                             className={cn(
-                              "flex w-full items-center gap-2.5 px-4 py-2.5 text-left text-sm transition-colors hover:bg-gray-50",
+                              "flex w-full items-center gap-2.5 px-4 py-2.5 text-left text-sm transition-colors hover:bg-surface",
                               selectedCountry.code === country.code &&
-                                "bg-[#323dfe]/5",
+                                "bg-primary/5",
                             )}
                           >
                             <span className="text-xl">{country.flag}</span>
-                            <span className="text-gray-900">{country.name}</span>
+                            <span className="text-foreground">{country.name}</span>
                           </button>
                         ))}
                         {filteredCountries.length === 0 && (
-                          <div className="px-4 py-3 text-sm text-gray-500">
+                          <div className="px-4 py-3 text-sm text-muted-foreground">
                             No countries found
                           </div>
                         )}
@@ -1137,8 +1146,8 @@ function SMSPricingPageInner({
                   )}
                 </div>
 
-                <nav className="mt-6 hidden border-t border-gray-100 pt-6 lg:block">
-                  <p className="mb-3 text-sm font-medium text-gray-700">
+                <nav className="mt-6 hidden border-t border-border pt-6 lg:block">
+                  <p className="mb-3 text-sm font-medium text-foreground/80">
                     Jump to section
                   </p>
                   <ul className="space-y-1">
@@ -1150,8 +1159,8 @@ function SMSPricingPageInner({
                           className={cn(
                             "w-full border-l-2 px-3 py-2 text-left text-sm transition-colors",
                             activeSection === section.id
-                              ? "border-[#323dfe] font-medium text-[#323dfe]"
-                              : "border-transparent text-gray-600 hover:border-gray-300 hover:text-gray-900",
+                              ? "border-primary font-medium text-primary"
+                              : "border-transparent text-muted-foreground hover:border-border-strong hover:text-foreground",
                           )}
                         >
                           {section.label}
@@ -1166,7 +1175,7 @@ function SMSPricingPageInner({
             <div ref={contentRef} className="min-w-0">
               <div
                 id="sms"
-                className="mb-6 scroll-mt-32 rounded-xl border border-gray-200 bg-white p-6"
+                className="mb-6 scroll-mt-32 rounded-xl border border-border bg-background p-6"
               >
                 <SMSSection
                   countryCode={selectedCountry.code}
@@ -1178,7 +1187,7 @@ function SMSPricingPageInner({
             {hasRCS && (
               <div
                 id="rcs"
-                className="mb-6 scroll-mt-32 rounded-xl border border-gray-200 bg-white p-6"
+                className="mb-6 scroll-mt-32 rounded-xl border border-border bg-background p-6"
               >
                 <RCSSection countryCode={selectedCountry.code} />
               </div>
@@ -1187,7 +1196,7 @@ function SMSPricingPageInner({
             {hasMMS && (
               <div
                 id="mms"
-                className="mb-6 scroll-mt-32 rounded-xl border border-gray-200 bg-white p-6"
+                className="mb-6 scroll-mt-32 rounded-xl border border-border bg-background p-6"
               >
                 <MMSSection
                   countryCode={selectedCountry.code}
@@ -1199,7 +1208,7 @@ function SMSPricingPageInner({
             {phoneSection && (
               <div
                 id="phone-numbers"
-                className="mb-6 scroll-mt-32 rounded-xl border border-gray-200 bg-white p-6"
+                className="mb-6 scroll-mt-32 rounded-xl border border-border bg-background p-6"
               >
                 <PhoneNumbersSection
                   countryCode={selectedCountry.code}
@@ -1210,7 +1219,7 @@ function SMSPricingPageInner({
 
             <div
               id="add-on"
-              className="mb-6 scroll-mt-32 rounded-xl border border-gray-200 bg-white p-6"
+              className="mb-6 scroll-mt-32 rounded-xl border border-border bg-background p-6"
             >
               <AddOnServicesSection countryCode={selectedCountry.code} />
             </div>
@@ -1218,7 +1227,7 @@ function SMSPricingPageInner({
             {detailSection && (
               <div
                 id="additional-pricing"
-                className="mb-6 scroll-mt-32 rounded-xl border border-gray-200 bg-white p-6"
+                className="mb-6 scroll-mt-32 rounded-xl border border-border bg-background p-6"
               >
                 {detailSection.kind === "carrier" ? (
                   <CarrierFeeSection

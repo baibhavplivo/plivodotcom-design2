@@ -32,19 +32,19 @@ export default function LegalLayout({
   return (
     <>
       {/* Hero */}
-      <section className="bg-white pb-10 pt-16 sm:pt-20 md:pt-24">
+      <section className="bg-background border-t border-border pb-10 pt-16 sm:pt-20 md:pt-24">
         <div className="container mx-auto max-w-7xl px-4 text-center">
-          <h1 className="font-sora mb-4 text-[2rem] font-normal leading-[1.1] tracking-[-0.02em] text-black sm:text-[2.5rem] md:text-[3rem]">
+          <h1 className="font-sora mb-4 text-[2rem] font-normal leading-[1.1] tracking-[-0.02em] text-foreground sm:text-[2.5rem] md:text-[3rem]">
             Legal
           </h1>
-          <p className="mx-auto max-w-2xl text-base text-gray-600 sm:text-lg">
+          <p className="max-w-2xl text-base text-muted-foreground sm:text-lg">
             Terms, policies, and legal information for Plivo services.
           </p>
         </div>
       </section>
 
       {/* Two-Column Layout */}
-      <section className="bg-white pb-16 lg:pb-24">
+      <section className="bg-background border-t border-border pb-16 lg:pb-24">
         <div className="container mx-auto max-w-7xl px-4">
           <div className="lg:grid lg:grid-cols-[240px_1fr] lg:items-start lg:gap-10">
             {/* Sidebar */}
@@ -57,8 +57,8 @@ export default function LegalLayout({
                       className={cn(
                         "block rounded-md px-3 py-2 text-sm transition-colors",
                         activePage === link.href
-                          ? "bg-gray-100 font-medium text-black"
-                          : "text-gray-600 hover:bg-gray-50 hover:text-gray-900",
+                          ? "bg-muted font-medium text-foreground"
+                          : "text-muted-foreground hover:bg-surface hover:text-foreground",
                       )}
                     >
                       {link.title}
@@ -70,7 +70,7 @@ export default function LegalLayout({
 
             {/* Content */}
             <div className="min-w-0">
-              <div className="rounded-xl border border-gray-200 p-6 sm:p-8">
+              <div className="rounded-xl border border-border p-6 sm:p-8">
                 {children}
               </div>
             </div>

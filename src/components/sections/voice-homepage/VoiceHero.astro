@@ -1,267 +1,117 @@
 ---
-// VoiceHero.astro - Hero section for Voice AI homepage
+// VoiceHero.astro - Section 01 / voice ai
+// Editorial hero, left-aligned, with live voice-agent animation on the right.
+import VoiceAgentDemo from "@/components/sections/voice-homepage/VoiceAgentDemo";
 ---
 
-<section class="hero bg-white pt-10 sm:pt-16 md:pt-20">
-  <div class="container mx-auto max-w-7xl px-4 text-center">
-    <!-- Available on pill with clickable channels -->
-    <div class="mb-6 flex justify-center">
-      <div class="inline-flex items-center gap-0.5 sm:gap-1 rounded-full border border-gray-200 px-2 sm:px-3 py-1 sm:py-1.5">
-        <span class="text-[10px] sm:text-xs font-medium text-gray-500 mr-0.5 sm:mr-1">Available on</span>
-        <!-- Voice - PhoneCall icon (matches nav) -->
-        <a href="/voice/overview/" class="inline-flex items-center gap-0.5 sm:gap-1 rounded-full px-2.5 sm:px-3 py-1 sm:py-1.5 text-[10px] sm:text-xs font-medium text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900">
-          <svg class="w-2.5 h-2.5 sm:w-3 sm:h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-            <path d="M14.05 2a9 9 0 0 1 8 7.94"></path>
-            <path d="M14.05 6A5 5 0 0 1 18 10"></path>
-          </svg>
-          Voice
-        </a>
-        <!-- SMS - MessageSquare icon (matches nav) -->
-        <a href="/sms/overview/" class="inline-flex items-center gap-0.5 sm:gap-1 rounded-full px-2.5 sm:px-3 py-1 sm:py-1.5 text-[10px] sm:text-xs font-medium text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900">
-          <svg class="w-2.5 h-2.5 sm:w-3 sm:h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-          </svg>
-          SMS
-        </a>
-        <!-- WhatsApp - WhatsApp filled icon (matches nav) -->
-        <a href="/whatsapp-message/overview/" class="inline-flex items-center gap-0.5 sm:gap-1 rounded-full px-2.5 sm:px-3 py-1 sm:py-1.5 text-[10px] sm:text-xs font-medium text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900">
-          <svg class="w-2.5 h-2.5 sm:w-3 sm:h-3" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"></path>
-          </svg>
-          WhatsApp
-        </a>
-        <!-- Chat - MessageCircle icon (matches nav) -->
-        <a href="/chat/overview/" class="inline-flex items-center gap-0.5 sm:gap-1 rounded-full px-2.5 sm:px-3 py-1 sm:py-1.5 text-[10px] sm:text-xs font-medium text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900">
-          <svg class="w-2.5 h-2.5 sm:w-3 sm:h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path>
-          </svg>
-          Chat
-        </a>
+<section id="section-voice" class="relative w-full overflow-hidden">
+  <!-- Subtle grid backdrop, masked to the hero area -->
+  <div class="pointer-events-none absolute inset-0 dev-grid-bg opacity-[0.35] [mask-image:linear-gradient(to_bottom,black_40%,transparent_95%)]"></div>
+
+  <div class="relative container mx-auto max-w-7xl px-4 sm:px-6 pt-10 pb-14 sm:pt-14 sm:pb-20 md:pt-20 md:pb-24">
+    <!-- Kicker strip -->
+    <div class="flex items-center gap-3 font-mono-ui text-[11px] uppercase tracking-[0.12em] text-muted-foreground">
+      <span class="flex items-center gap-2">
+        <span class="tabular-nums text-foreground/70">01</span>
+        <span class="h-px w-6 bg-border"></span>
+      </span>
+      <span>voice ai</span>
+      <span class="flex-1 border-t border-dashed border-border"></span>
+      <!-- Channel pills inline with the kicker -->
+      <div class="hidden items-center gap-1 sm:flex">
+        <span class="text-muted-foreground/80">available on</span>
+        <span class="mx-1 text-border">·</span>
+        <a href="/voice/overview/" class="rounded px-1.5 py-0.5 text-foreground/80 hover:bg-surface hover:text-foreground transition-colors">voice</a>
+        <a href="/sms/overview/" class="rounded px-1.5 py-0.5 text-foreground/80 hover:bg-surface hover:text-foreground transition-colors">sms</a>
+        <a href="/whatsapp-message/overview/" class="rounded px-1.5 py-0.5 text-foreground/80 hover:bg-surface hover:text-foreground transition-colors">whatsapp</a>
+        <a href="/chat/overview/" class="rounded px-1.5 py-0.5 text-foreground/80 hover:bg-surface hover:text-foreground transition-colors">chat</a>
       </div>
     </div>
-    <h1 class="font-sora text-[2rem] sm:text-[2.5rem] md:text-[3rem] font-normal leading-[1.1] tracking-[-0.02em] text-black">
-      Build human-like voice AI agents
-    </h1>
-    <p class="text-base sm:text-lg md:text-xl text-gray-600 mt-3 max-w-[700px] mx-auto leading-relaxed">
-      From no-code builders for teams to flexible APIs for developers, deploy voice agents that actually sound human.
-    </p>
-  </div>
 
-  <!-- CTA area + flickering grid behind it -->
-  <div class="flicker-area relative overflow-hidden" style="height:400px;">
-    <canvas id="hero-dotted-surface" class="absolute inset-0 z-0 pointer-events-none"></canvas>
-    <!-- Gradual top fade -->
-    <div class="absolute inset-x-0 top-0 z-[1] pointer-events-none" style="height:70%;background:linear-gradient(to bottom,white 40%,transparent);"></div>
-    <!-- Left/right fades -->
-    <div class="absolute inset-y-0 left-0 w-20 sm:w-32 bg-gradient-to-r from-white to-transparent z-[1] pointer-events-none"></div>
-    <div class="absolute inset-y-0 right-0 w-20 sm:w-32 bg-gradient-to-l from-white to-transparent z-[1] pointer-events-none"></div>
-    <!-- CTA content on top of dots -->
-    <div class="relative z-[2] text-center pt-6">
-      <div class="flex justify-center">
-        <a
-          href="https://cx.plivo.com/pungis2"
-          data-geo-cta="signup"
-          class="beam-btn relative inline-flex items-center justify-center px-6 py-3 text-base font-medium bg-black text-white rounded-md cta-hover-gradient transition-colors overflow-hidden"
-        >
-          <span class="beam-border"></span>
-          <span class="relative z-10">Start for free</span>
-        </a>
+    <!-- Headline + aside grid -->
+    <div class="mt-10 grid grid-cols-1 gap-10 lg:mt-14 lg:grid-cols-12 lg:gap-12">
+      <!-- Left: headline, copy, CTAs -->
+      <div class="lg:col-span-7">
+        <h1 class="font-sora text-[2.25rem] font-normal leading-[1.02] tracking-[-0.04em] text-foreground sm:text-[3rem] md:text-[3.75rem]">
+          Build human-like
+          <br />
+          <span class="[text-decoration-line:underline] decoration-primary/25 [text-decoration-thickness:0.14em] [text-underline-offset:0.12em]">voice AI agents</span>
+        </h1>
+        <p class="mt-5 max-w-xl text-[15px] leading-relaxed text-muted-foreground sm:text-base">
+          From no-code builders for teams to flexible APIs for developers, deploy voice agents that actually sound human.
+        </p>
+
+        <div class="mt-7 flex flex-wrap items-center gap-3">
+          <a
+            href="https://cx.plivo.com/pungis2"
+            data-geo-cta="signup"
+            class="group inline-flex items-center rounded-md bg-foreground px-4 py-2.5 text-[13.5px] font-medium text-background transition-colors hover:bg-primary hover:text-white"
+          >
+            Start for free
+            <svg class="ml-1.5 h-4 w-4 transition-transform group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+            </svg>
+          </a>
+          <a
+            href="https://www.plivo.com/docs/"
+            class="inline-flex items-center gap-1.5 rounded-md border border-border bg-background px-4 py-2.5 text-[13.5px] font-medium text-foreground transition-colors hover:border-border-strong hover:bg-surface"
+          >
+            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="16 18 22 12 16 6"/>
+              <polyline points="8 6 2 12 8 18"/>
+            </svg>
+            Read the docs
+          </a>
+          <span id="hero-credits-text" class="font-mono-ui ml-1 text-[11px] text-muted-foreground">
+            $10 in free credits.
+          </span>
+        </div>
+
+        <!-- Micro metrics row -->
+        <dl class="mt-10 grid grid-cols-3 gap-4 border-t border-border pt-6 sm:max-w-lg">
+          <div>
+            <dt class="font-mono-ui text-[10px] uppercase tracking-[0.12em] text-muted-foreground">latency</dt>
+            <dd class="mt-1 font-mono-ui text-xl font-semibold tabular-nums text-foreground">&lt;500<span class="text-muted-foreground text-sm">ms</span></dd>
+          </div>
+          <div>
+            <dt class="font-mono-ui text-[10px] uppercase tracking-[0.12em] text-muted-foreground">uptime</dt>
+            <dd class="mt-1 font-mono-ui text-xl font-semibold tabular-nums text-foreground">99.99<span class="text-muted-foreground text-sm">%</span></dd>
+          </div>
+          <div>
+            <dt class="font-mono-ui text-[10px] uppercase tracking-[0.12em] text-muted-foreground">countries</dt>
+            <dd class="mt-1 font-mono-ui text-xl font-semibold tabular-nums text-foreground">150<span class="text-muted-foreground text-sm">+</span></dd>
+          </div>
+        </dl>
       </div>
-      <p id="hero-credits-text" class="text-sm text-gray-500 mt-4 leading-relaxed">
-        $10 in free credits.
-      </p>
+
+      <!-- Right: live voice agent animation -->
+      <div class="lg:col-span-5">
+        <VoiceAgentDemo client:load />
+      </div>
     </div>
   </div>
 </section>
 
-<style>
-  .beam-btn {
-    isolation: isolate;
-  }
-  .beam-border {
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    overflow: hidden;
-    pointer-events: none;
-  }
-  .beam-border::before {
-    content: "";
-    position: absolute;
-    inset: -200%;
-    background: conic-gradient(
-      from 0deg,
-      transparent 0%,
-      transparent 70%,
-      #323dfe 78%,
-      #5b8aff 86%,
-      transparent 92%,
-      transparent 100%
-    );
-    animation: beam-spin 3s linear infinite;
-  }
-  .beam-border::after {
-    content: "";
-    position: absolute;
-    inset: 2.5px;
-    border-radius: inherit;
-    background: black;
-  }
-  .beam-btn:hover .beam-border::after {
-    background-image: linear-gradient(to left, #000000, #323dfe);
-  }
-  @keyframes beam-spin {
-    to { transform: rotate(360deg); }
-  }
-</style>
-
 <script is:inline>
-  // Geo-swap hero credits text for India visitors
-  (function() {
+  (function () {
     function swapCredits(country) {
       if (country === "IN") {
         var el = document.getElementById("hero-credits-text");
-        if (el) el.textContent = "\u20B91,000 in free credits.";
+        if (el) el.textContent = "₹1,000 in free credits.";
       }
     }
     var cf = window.__CF_COUNTRY;
     if (cf && cf !== "XX") { swapCredits(cf); return; }
-    try { var gc = sessionStorage.getItem("plivo_geo_country"); if (gc) { swapCredits(gc); return; } } catch(e) {}
-    try { var ip = sessionStorage.getItem("plivo_ip_info"); if (ip) { swapCredits(JSON.parse(ip).country); return; } } catch(e) {}
+    try { var gc = sessionStorage.getItem("plivo_geo_country"); if (gc) { swapCredits(gc); return; } } catch (e) {}
+    try { var ip = sessionStorage.getItem("plivo_ip_info"); if (ip) { swapCredits(JSON.parse(ip).country); return; } } catch (e) {}
     var attempts = 0;
-    var poll = setInterval(function() {
+    var poll = setInterval(function () {
       attempts++;
       try {
         var gc2 = sessionStorage.getItem("plivo_geo_country");
         if (gc2) { swapCredits(gc2); clearInterval(poll); return; }
-      } catch(e) {}
+      } catch (e) {}
       if (attempts > 30) clearInterval(poll);
     }, 100);
   })();
-</script>
-
-<script>
-  function initDottedSurface() {
-    const canvas = document.getElementById("hero-dotted-surface") as HTMLCanvasElement | null;
-    if (!canvas) return;
-    const container = canvas.parentElement as HTMLElement | null;
-    if (!container) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
-    // Grid size
-    let COLS = 50;
-    let ROWS = 80;
-    const SPACING = 100; // world-space gap between dots
-
-    // Perspective
-    const FOCAL = 350;
-    const CAM_HEIGHT = 250;
-
-    // Wave
-    const WAVE_AMP = 35;
-    const WAVE_SPEED = 0.015;
-    const PI2 = Math.PI * 2;
-
-    // Dot style
-    const MAX_R = 3.0;
-    const MIN_R = 0.4;
-
-    let dpr = 1, cw = 0, ch = 0, raf: number, time = 0;
-
-    const setup = () => {
-      const w = container.clientWidth, h = container.clientHeight;
-      if (w <= 0 || h <= 0) return;
-      dpr = window.devicePixelRatio || 1;
-      canvas.width = w * dpr;
-      canvas.height = h * dpr;
-      canvas.style.width = `${w}px`;
-      canvas.style.height = `${h}px`;
-      cw = canvas.width;
-      ch = canvas.height;
-      COLS = w < 640 ? 30 : 50;
-      ROWS = w < 640 ? 50 : 80;
-    };
-    setup();
-
-    const draw = () => {
-      raf = requestAnimationFrame(draw);
-      if (!cw || !ch) { setup(); return; }
-      ctx.clearRect(0, 0, cw, ch);
-
-      // Horizon line sits roughly 40% from top of canvas
-      const horizonY = ch * 0.40 - (20 * dpr);
-      const centerX = cw / 2;
-      const focalDpr = FOCAL * dpr;
-
-      // Draw far rows first (small dots at horizon), near rows last (big dots at bottom)
-      for (let j = ROWS - 1; j >= 0; j--) {
-        // z = distance from camera; row 0 is closest, ROWS-1 is farthest
-        const z = (j + 1) * SPACING;
-
-        // Wave displacement for this row (vertical offset in world space)
-        const waveY = (row: number, col: number) =>
-          Math.sin((col * 0.3) + time) * WAVE_AMP +
-          Math.sin((row * 0.5) + time * 0.7) * WAVE_AMP;
-
-        // Perspective scale: how much a unit in world-space maps to screen pixels
-        const scale = focalDpr / z;
-
-        // Screen Y: below horizon, proportional to perspective
-        // Closer rows (small j, small z) → large scale → far below horizon
-        // Far rows (large j, large z) → small scale → near horizon
-        const baseScreenY = horizonY + (CAM_HEIGHT * scale);
-
-        for (let i = 0; i < COLS; i++) {
-          const wx = (i - COLS / 2) * SPACING;
-
-          // Apply wave to Y
-          const wy = waveY(j, i);
-          const screenX = centerX + wx * scale;
-          const screenY = baseScreenY - wy * scale;
-
-          // Cull off-screen
-          if (screenX < -10 || screenX > cw + 10 || screenY < -10 || screenY > ch + 10) continue;
-
-          // Dot radius scales with perspective
-          const r = Math.min(MAX_R * dpr, Math.max(MIN_R * dpr, scale * 3));
-
-          // Color gradient: black (near) → blue (mid) → purple (far/horizon)
-          // t=0 near (bottom), t=1 far (horizon)
-          const t = j / ROWS;
-          let cr: number, cg: number, cb: number;
-          if (t < 0.5) {
-            // black (0,0,0) → blue (50,61,254)
-            const p = t * 2;
-            cr = p * 50;
-            cg = p * 61;
-            cb = p * 254;
-          } else {
-            // blue (50,61,254) → purple (205,62,249)
-            const p = (t - 0.5) * 2;
-            cr = 50 + p * 155;
-            cg = 61 + p * 1;
-            cb = 254 - p * 5;
-          }
-
-          // Opacity: full for near, fades for far
-          const alpha = 1.0 - t * 0.7;
-
-          ctx.beginPath();
-          ctx.arc(screenX, screenY, r, 0, PI2);
-          ctx.fillStyle = `rgba(${cr|0},${cg|0},${cb|0},${alpha})`;
-          ctx.fill();
-        }
-      }
-
-      time += WAVE_SPEED;
-    };
-    raf = requestAnimationFrame(draw);
-
-    const ro = new ResizeObserver(() => setup());
-    ro.observe(container);
-  }
-  initDottedSurface();
-  document.addEventListener("astro:after-swap", initDottedSurface);
 </script>

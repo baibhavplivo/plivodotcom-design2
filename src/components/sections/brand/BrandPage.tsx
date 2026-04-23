@@ -3,18 +3,18 @@
 import { Download } from "lucide-react";
 
 const LOGO_VARIANTS = [
-  { name: "Primary Logo", desc: "Full-color logo on white", bg: "bg-white", file: "plivo-logo-primary.svg", full: true },
-  { name: "Logo on Dark", desc: "White logo for dark backgrounds", bg: "bg-[#0f1117]", file: "plivo-logo-white.svg", dark: true, full: true },
-  { name: "Logo Symbol", desc: "Icon mark on white", bg: "bg-white", file: "plivo-symbol.svg" },
-  { name: "Symbol on Dark", desc: "Icon mark for dark backgrounds", bg: "bg-[#0f1117]", file: "plivo-symbol-white.svg", dark: true },
+  { name: "Primary Logo", desc: "Full-color logo on white", bg: "bg-background", file: "plivo-logo-primary.svg", full: true },
+  { name: "Logo on Dark", desc: "White logo for dark backgrounds", bg: "bg-surface-2", file: "plivo-logo-white.svg", dark: true, full: true },
+  { name: "Logo Symbol", desc: "Icon mark on white", bg: "bg-background", file: "plivo-symbol.svg" },
+  { name: "Symbol on Dark", desc: "Icon mark for dark backgrounds", bg: "bg-surface-2", file: "plivo-symbol-white.svg", dark: true },
 ];
 
 const BRAND_COLORS = [
   { name: "Plivo Purple", hex: "#cd3ef9", text: "text-white" },
   { name: "Plivo Blue", hex: "#323dfe", text: "text-white" },
   { name: "Dark", hex: "#0f1117", text: "text-white" },
-  { name: "White", hex: "#ffffff", text: "text-gray-900", border: true },
-  { name: "Gray 50", hex: "#f9fafb", text: "text-gray-900", border: true },
+  { name: "White", hex: "#ffffff", text: "text-foreground", border: true },
+  { name: "Gray 50", hex: "#f9fafb", text: "text-foreground", border: true },
 ];
 
 const FONT_WEIGHTS = ["Light", "Regular", "Semibold", "Bold"];
@@ -23,18 +23,18 @@ export default function BrandPage() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-white py-16 lg:py-24">
+      <section className="bg-background border-t border-border py-16 lg:py-24">
         <div className="container mx-auto max-w-7xl px-4 text-center">
-          <h1 className="font-sora text-[2rem] sm:text-[2.5rem] md:text-[3rem] font-normal leading-[1.1] tracking-[-0.02em] text-black">
+          <h1 className="font-sora text-[2rem] sm:text-[2.5rem] md:text-[3rem] font-normal leading-[1.1] tracking-[-0.02em] text-foreground">
             Brand Guidelines
           </h1>
-          <p className="text-base sm:text-lg text-gray-600 mt-4 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg text-muted-foreground mt-4 max-w-2xl leading-relaxed">
             A guide to Plivo's visual identity standards. Use these resources to
             represent Plivo consistently across all media.
           </p>
           <a
             href="mailto:marketing@plivo.com"
-            className="inline-flex items-center gap-2 mt-6 text-sm font-medium text-[#323dfe] hover:text-[#2a34d6] transition-colors"
+            className="inline-flex items-center gap-2 mt-6 text-sm font-medium text-primary hover:text-primary transition-colors"
           >
             Questions? Email marketing@plivo.com
           </a>
@@ -42,12 +42,12 @@ export default function BrandPage() {
       </section>
 
       {/* Logo Usage */}
-      <section className="bg-gray-50 py-12 lg:py-16">
+      <section className="bg-surface border-t border-border py-12 lg:py-16">
         <div className="container mx-auto max-w-7xl px-4">
-          <h2 className="font-sora text-2xl sm:text-3xl font-normal leading-[1.25] tracking-[-0.02em] text-black mb-3">
+          <h2 className="font-sora text-2xl sm:text-3xl font-normal leading-[1.25] tracking-[-0.02em] text-foreground mb-3">
             Logo
           </h2>
-          <p className="text-base text-gray-600 max-w-3xl mb-8 leading-relaxed">
+          <p className="text-base text-muted-foreground max-w-3xl mb-8 leading-relaxed">
             These logos are the trademarked property of Plivo, Inc. Avoid using
             our name, logo, or screenshots in a manner that may be confusing,
             misleading, or suggests sponsorship, endorsement, or partnership
@@ -56,7 +56,7 @@ export default function BrandPage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
             {LOGO_VARIANTS.map((v) => (
-              <div key={v.name} className="rounded-lg border border-gray-200 overflow-hidden">
+              <div key={v.name} className="rounded-lg border border-border overflow-hidden">
                 <div className={`${v.bg} flex items-center justify-center h-44 p-6`}>
                   <img
                     src={`/images/brand/${v.file}`}
@@ -65,9 +65,9 @@ export default function BrandPage() {
                     loading="lazy"
                   />
                 </div>
-                <div className="bg-white p-3 border-t border-gray-200">
-                  <p className="text-sm font-medium text-black">{v.name}</p>
-                  <p className="text-xs text-gray-500">{v.desc}</p>
+                <div className="bg-background p-3 border-t border-border">
+                  <p className="text-sm font-medium text-foreground">{v.name}</p>
+                  <p className="text-xs text-muted-foreground">{v.desc}</p>
                 </div>
               </div>
             ))}
@@ -75,36 +75,36 @@ export default function BrandPage() {
 
           {/* Do's and Don'ts */}
           <div className="grid sm:grid-cols-2 gap-4">
-            <div className="rounded-lg border border-green-200 bg-green-50 p-5">
+            <div className="rounded-lg border border-green-200 dark:border-green-900/50 bg-green-50 dark:bg-green-900/30 p-5">
               <h3 className="font-inter text-sm font-semibold text-green-800 mb-3">Do</h3>
               <ul className="space-y-2 text-sm text-green-900">
                 <li className="flex items-start gap-2">
-                  <span className="text-green-600 mt-0.5">&#10003;</span>
+                  <span className="text-green-600 dark:text-green-300 mt-0.5">&#10003;</span>
                   Use the official logo files provided
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-green-600 mt-0.5">&#10003;</span>
+                  <span className="text-green-600 dark:text-green-300 mt-0.5">&#10003;</span>
                   Maintain adequate clear space around the logo
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-green-600 mt-0.5">&#10003;</span>
+                  <span className="text-green-600 dark:text-green-300 mt-0.5">&#10003;</span>
                   Use the dark version on light backgrounds and vice versa
                 </li>
               </ul>
             </div>
-            <div className="rounded-lg border border-red-200 bg-red-50 p-5">
+            <div className="rounded-lg border border-red-200 dark:border-red-900/50 bg-red-50 dark:bg-red-900/30 p-5">
               <h3 className="font-inter text-sm font-semibold text-red-800 mb-3">Don't</h3>
               <ul className="space-y-2 text-sm text-red-900">
                 <li className="flex items-start gap-2">
-                  <span className="text-red-600 mt-0.5">&#10007;</span>
+                  <span className="text-red-600 dark:text-red-300 mt-0.5">&#10007;</span>
                   Alter, rotate, or distort the logo in any way
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-red-600 mt-0.5">&#10007;</span>
+                  <span className="text-red-600 dark:text-red-300 mt-0.5">&#10007;</span>
                   Change the logo colors or add effects
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-red-600 mt-0.5">&#10007;</span>
+                  <span className="text-red-600 dark:text-red-300 mt-0.5">&#10007;</span>
                   Use the logo to imply sponsorship or endorsement
                 </li>
               </ul>
@@ -114,12 +114,12 @@ export default function BrandPage() {
       </section>
 
       {/* Brand Colors */}
-      <section className="bg-white py-12 lg:py-16">
+      <section className="bg-background border-t border-border py-12 lg:py-16">
         <div className="container mx-auto max-w-7xl px-4">
-          <h2 className="font-sora text-2xl sm:text-3xl font-normal leading-[1.25] tracking-[-0.02em] text-black mb-3">
+          <h2 className="font-sora text-2xl sm:text-3xl font-normal leading-[1.25] tracking-[-0.02em] text-foreground mb-3">
             Brand Colors
           </h2>
-          <p className="text-base text-gray-600 max-w-3xl mb-8 leading-relaxed">
+          <p className="text-base text-muted-foreground max-w-3xl mb-8 leading-relaxed">
             Our primary palette uses bold, confident colors that reflect
             Plivo's modern identity.
           </p>
@@ -135,15 +135,15 @@ export default function BrandPage() {
 
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
             {BRAND_COLORS.map((c) => (
-              <div key={c.name} className="rounded-lg overflow-hidden border border-gray-200">
+              <div key={c.name} className="rounded-lg overflow-hidden border border-border">
                 <div
                   className={`h-20 flex items-end p-3 ${c.text}`}
                   style={{ backgroundColor: c.hex }}
                 >
                   <span className="text-xs font-medium opacity-90">{c.hex}</span>
                 </div>
-                <div className="bg-white p-3 border-t border-gray-200">
-                  <p className="text-sm font-medium text-black">{c.name}</p>
+                <div className="bg-background p-3 border-t border-border">
+                  <p className="text-sm font-medium text-foreground">{c.name}</p>
                 </div>
               </div>
             ))}
@@ -152,62 +152,62 @@ export default function BrandPage() {
       </section>
 
       {/* Typography */}
-      <section className="bg-gray-50 py-12 lg:py-16">
+      <section className="bg-surface border-t border-border py-12 lg:py-16">
         <div className="container mx-auto max-w-7xl px-4">
-          <h2 className="font-sora text-2xl sm:text-3xl font-normal leading-[1.25] tracking-[-0.02em] text-black mb-3">
+          <h2 className="font-sora text-2xl sm:text-3xl font-normal leading-[1.25] tracking-[-0.02em] text-foreground mb-3">
             Typography
           </h2>
-          <p className="text-base text-gray-600 max-w-3xl mb-8 leading-relaxed">
+          <p className="text-base text-muted-foreground max-w-3xl mb-8 leading-relaxed">
             Plivo uses two carefully selected typefaces for a clean, balanced
             aesthetic across all communications.
           </p>
 
           <div className="grid sm:grid-cols-2 gap-6">
             {/* Sora */}
-            <div className="rounded-lg border border-gray-200 bg-white p-6">
-              <h3 className="font-sora text-3xl font-normal text-black mb-1">Sora</h3>
-              <p className="text-sm text-gray-500 mb-4">Display / Headlines</p>
-              <p className="text-sm text-gray-600 leading-relaxed mb-5">
+            <div className="rounded-lg border border-border bg-background p-6">
+              <h3 className="font-sora text-3xl font-normal text-foreground mb-1">Sora</h3>
+              <p className="text-sm text-muted-foreground mb-4">Display / Headlines</p>
+              <p className="text-sm text-muted-foreground leading-relaxed mb-5">
                 A display-oriented sans-serif font designed with modernity and
                 confidence. Used for all headers across brand communications.
               </p>
               <div className="flex flex-wrap gap-2">
                 {FONT_WEIGHTS.map((w) => (
-                  <span key={w} className="rounded-md border border-gray-200 bg-gray-50 px-3 py-1.5 text-xs font-medium text-gray-700">
+                  <span key={w} className="rounded-md border border-border bg-surface px-3 py-1.5 text-xs font-medium text-foreground/80">
                     {w}
                   </span>
                 ))}
               </div>
-              <div className="mt-5 pt-5 border-t border-gray-200">
-                <p className="font-sora text-2xl font-light text-black leading-tight">
+              <div className="mt-5 pt-5 border-t border-border">
+                <p className="font-sora text-2xl font-light text-foreground leading-tight">
                   Aa Bb Cc Dd Ee
                 </p>
-                <p className="font-sora text-sm text-gray-500 mt-2">
+                <p className="font-sora text-sm text-muted-foreground mt-2">
                   ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz 0123456789
                 </p>
               </div>
             </div>
 
             {/* Inter */}
-            <div className="rounded-lg border border-gray-200 bg-white p-6">
-              <h3 className="font-inter text-3xl font-normal text-black mb-1">Inter</h3>
-              <p className="text-sm text-gray-500 mb-4">Body Text / UI</p>
-              <p className="text-sm text-gray-600 leading-relaxed mb-5">
+            <div className="rounded-lg border border-border bg-background p-6">
+              <h3 className="font-inter text-3xl font-normal text-foreground mb-1">Inter</h3>
+              <p className="text-sm text-muted-foreground mb-4">Body Text / UI</p>
+              <p className="text-sm text-muted-foreground leading-relaxed mb-5">
                 A versatile, highly legible sans-serif typeface optimized for
                 digital interfaces. Used for body copy and long-form content.
               </p>
               <div className="flex flex-wrap gap-2">
                 {FONT_WEIGHTS.map((w) => (
-                  <span key={w} className="rounded-md border border-gray-200 bg-gray-50 px-3 py-1.5 text-xs font-medium text-gray-700">
+                  <span key={w} className="rounded-md border border-border bg-surface px-3 py-1.5 text-xs font-medium text-foreground/80">
                     {w}
                   </span>
                 ))}
               </div>
-              <div className="mt-5 pt-5 border-t border-gray-200">
-                <p className="font-inter text-2xl font-light text-black leading-tight">
+              <div className="mt-5 pt-5 border-t border-border">
+                <p className="font-inter text-2xl font-light text-foreground leading-tight">
                   Aa Bb Cc Dd Ee
                 </p>
-                <p className="font-inter text-sm text-gray-500 mt-2">
+                <p className="font-inter text-sm text-muted-foreground mt-2">
                   ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz 0123456789
                 </p>
               </div>
@@ -217,12 +217,12 @@ export default function BrandPage() {
       </section>
 
       {/* Product Icons */}
-      <section className="bg-white py-12 lg:py-16">
+      <section className="bg-background border-t border-border py-12 lg:py-16">
         <div className="container mx-auto max-w-7xl px-4">
-          <h2 className="font-sora text-2xl sm:text-3xl font-normal leading-[1.25] tracking-[-0.02em] text-black mb-3">
+          <h2 className="font-sora text-2xl sm:text-3xl font-normal leading-[1.25] tracking-[-0.02em] text-foreground mb-3">
             Product Icons
           </h2>
-          <p className="text-base text-gray-600 max-w-3xl mb-8 leading-relaxed">
+          <p className="text-base text-muted-foreground max-w-3xl mb-8 leading-relaxed">
             Simple, geometric icon set designed for product and feature
             communication. Icons use consistent stroke widths and rounded
             corners for a unified look.
@@ -236,13 +236,13 @@ export default function BrandPage() {
               { label: "SIP Trunking", icon: "M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01" },
               { label: "Verify", icon: "M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" },
             ].map((item) => (
-              <div key={item.label} className="rounded-lg border border-gray-200 bg-white p-4 flex flex-col items-center gap-3">
-                <div className="h-10 w-10 flex items-center justify-center rounded-lg bg-gray-50">
-                  <svg className="h-5 w-5 text-[#323dfe]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <div key={item.label} className="rounded-lg border border-border bg-background p-4 flex flex-col items-center gap-3">
+                <div className="h-10 w-10 flex items-center justify-center rounded-lg bg-surface">
+                  <svg className="h-5 w-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                     <path d={item.icon} />
                   </svg>
                 </div>
-                <span className="text-xs font-medium text-gray-700">{item.label}</span>
+                <span className="text-xs font-medium text-foreground/80">{item.label}</span>
               </div>
             ))}
           </div>
@@ -250,12 +250,12 @@ export default function BrandPage() {
       </section>
 
       {/* Downloads / Contact */}
-      <section className="bg-gray-50 py-12 lg:py-16">
-        <div className="container mx-auto max-w-7xl px-4 text-center">
-          <h2 className="font-sora text-2xl sm:text-3xl font-normal leading-[1.25] tracking-[-0.02em] text-black mb-3">
+      <section className="bg-surface border-t border-border py-12 lg:py-16">
+        <div className="container mx-auto max-w-7xl px-4">
+          <h2 className="font-sora text-2xl sm:text-3xl font-normal leading-[1.25] tracking-[-0.02em] text-foreground mb-3">
             Downloads
           </h2>
-          <p className="text-base text-gray-600 max-w-2xl mx-auto mb-8 leading-relaxed">
+          <p className="text-base text-muted-foreground max-w-2xl mb-8 leading-relaxed">
             Download our logo kit and brand book for use in press, partnerships,
             and co-marketing materials.
           </p>
@@ -264,15 +264,15 @@ export default function BrandPage() {
               href="https://drive.google.com/file/d/1S_CH5okXH1eMYSilV6mbQNDfCaGPvOC7/view"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 rounded-md bg-black px-6 py-3 text-sm font-medium text-white cta-hover-gradient transition-colors"
+              className="inline-flex items-center justify-center gap-2 rounded-md bg-foreground px-6 py-3 text-sm font-medium text-background cta-hover-gradient transition-colors"
             >
               <Download className="h-4 w-4" aria-hidden="true" />
               Download Brand Kit
             </a>
           </div>
-          <p className="text-sm text-gray-500 mt-6">
+          <p className="text-sm text-muted-foreground mt-6">
             For logo usage questions, contact{" "}
-            <a href="mailto:marketing@plivo.com" className="text-[#323dfe] hover:text-[#2a34d6]">
+            <a href="mailto:marketing@plivo.com" className="text-primary hover:text-primary">
               marketing@plivo.com
             </a>
           </p>

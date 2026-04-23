@@ -37,13 +37,13 @@ export default function ClientLogos() {
   const logos = rawCountry === "IN" ? INDIA_LOGOS : INTL_LOGOS;
 
   return (
-    <section className="bg-white py-6 sm:py-8 lg:py-10">
+    <section className="bg-background border-t border-border py-6 sm:py-8 lg:py-10">
       <div
         style={{
           maskImage:
-            "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.15) 5%, rgba(0,0,0,0.4) 10%, rgba(0,0,0,0.7) 18%, rgba(0,0,0,0.9) 25%, black 35%, black 65%, rgba(0,0,0,0.9) 75%, rgba(0,0,0,0.7) 82%, rgba(0,0,0,0.4) 90%, rgba(0,0,0,0.15) 95%, transparent 100%)",
+            "linear-gradient(to right, transparent 0%, hsl(var(--border)) 5%, rgba(0,0,0,0.4) 10%, rgba(0,0,0,0.7) 18%, rgba(0,0,0,0.9) 25%, black 35%, black 65%, rgba(0,0,0,0.9) 75%, rgba(0,0,0,0.7) 82%, rgba(0,0,0,0.4) 90%, hsl(var(--border)) 95%, transparent 100%)",
           WebkitMaskImage:
-            "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.15) 5%, rgba(0,0,0,0.4) 10%, rgba(0,0,0,0.7) 18%, rgba(0,0,0,0.9) 25%, black 35%, black 65%, rgba(0,0,0,0.9) 75%, rgba(0,0,0,0.7) 82%, rgba(0,0,0,0.4) 90%, rgba(0,0,0,0.15) 95%, transparent 100%)",
+            "linear-gradient(to right, transparent 0%, hsl(var(--border)) 5%, rgba(0,0,0,0.4) 10%, rgba(0,0,0,0.7) 18%, rgba(0,0,0,0.9) 25%, black 35%, black 65%, rgba(0,0,0,0.9) 75%, rgba(0,0,0,0.7) 82%, rgba(0,0,0,0.4) 90%, hsl(var(--border)) 95%, transparent 100%)",
         }}
       >
         <Marquee

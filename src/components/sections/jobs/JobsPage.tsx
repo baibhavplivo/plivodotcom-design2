@@ -105,17 +105,17 @@ export default function JobsPage() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-white pt-16 sm:pt-20 md:pt-24 pb-0">
+      <section className="bg-background border-t border-border pt-16 sm:pt-20 md:pt-24 pb-0">
         <div className="container mx-auto max-w-7xl px-4 text-center mb-8 sm:mb-10">
-          <h1 className="font-sora text-[2rem] sm:text-[2.5rem] md:text-[3rem] font-normal leading-[1.1] tracking-[-0.02em] text-black mb-5">
+          <h1 className="font-sora text-[2rem] sm:text-[2.5rem] md:text-[3rem] font-normal leading-[1.1] tracking-[-0.02em] text-foreground mb-5">
             Come build the future of
             <br className="hidden sm:block" />
             {" "}Agentic AI with us
           </h1>
-          <p className="text-gray-600 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed mb-4">
+          <p className="text-muted-foreground text-base sm:text-lg max-w-2xl leading-relaxed mb-4">
             Plivo is redefining customer engagement through intelligent, autonomous conversations at global scale - handling over one billion API requests monthly.
           </p>
-          <p className="text-black text-base sm:text-lg font-medium max-w-2xl mx-auto leading-relaxed">
+          <p className="text-foreground text-base sm:text-lg font-medium max-w-2xl mx-auto leading-relaxed">
             We're a 100+ person team with offices in India and the US, backed by Andreessen Horowitz, Battery Ventures, Qualcomm Ventures, and Y Combinator.
           </p>
         </div>
@@ -127,17 +127,17 @@ export default function JobsPage() {
       </section>
 
       {/* Company Overview */}
-      <section className="bg-gray-50 py-12 lg:py-16">
+      <section className="bg-surface border-t border-border py-12 lg:py-16">
         <div className="container mx-auto max-w-7xl px-4">
-          <div className="max-w-3xl mx-auto text-center mb-10">
-            <h2 className="font-sora text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] font-normal leading-[1.25] tracking-[-0.02em] text-black mb-4">
+          <div className="max-w-3xl mx-auto mb-10">
+            <h2 className="font-sora text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] font-normal leading-[1.25] tracking-[-0.02em] text-foreground mb-4">
               Our Journey
             </h2>
-            <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
+            <p className="text-muted-foreground text-sm sm:text-base leading-relaxed">
               Plivo began in 2011 offering programmable voice and messaging APIs, evolving into a Communications Platform as a Service (CPaaS) leader. Now we're building the next frontier - autonomous communication agents that handle complex customer interactions at scale. Profitable since 2015, we're backed by Andreessen Horowitz, Battery Ventures, Qualcomm Ventures, and Y Combinator. We're a 100+ person team with offices in India and the US.
             </p>
           </div>
-          <div className="rounded-lg border border-gray-200 bg-white overflow-hidden">
+          <div className="rounded-lg border border-border bg-background overflow-hidden">
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5">
               {[
                 { value: "2011", label: "Plivo Founded" },
@@ -149,13 +149,13 @@ export default function JobsPage() {
                 <div
                   key={stat.label}
                   className={`flex flex-col items-center justify-center px-4 py-8 sm:py-10 ${
-                    index < 4 ? "border-r border-gray-200" : ""
-                  } ${index >= 2 ? "border-t sm:border-t lg:border-t-0 border-gray-200" : ""} ${index >= 3 ? "border-t lg:border-t-0 border-gray-200" : ""}`}
+                    index < 4 ? "border-r border-border" : ""
+                  } ${index >= 2 ? "border-t sm:border-t lg:border-t-0 border-border" : ""} ${index >= 3 ? "border-t lg:border-t-0 border-border" : ""}`}
                 >
-                  <div className="text-2xl sm:text-3xl font-semibold text-black mb-1">
+                  <div className="text-2xl sm:text-3xl font-semibold text-foreground mb-1">
                     {stat.value}
                   </div>
-                  <div className="text-sm text-gray-500">{stat.label}</div>
+                  <div className="text-sm text-muted-foreground">{stat.label}</div>
                 </div>
               ))}
             </div>
@@ -164,27 +164,27 @@ export default function JobsPage() {
       </section>
 
       {/* Perks */}
-      <section className="bg-white py-12 lg:py-16">
+      <section className="bg-background border-t border-border py-12 lg:py-16">
         <div className="container mx-auto max-w-7xl px-4">
-          <h2 className="font-sora text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] font-normal leading-[1.25] tracking-[-0.02em] text-black text-center mb-3">
+          <h2 className="font-sora text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] font-normal leading-[1.25] tracking-[-0.02em] text-foreground mb-3">
             Perks & Benefits
           </h2>
-          <p className="text-gray-600 text-base max-w-xl mx-auto text-center mb-10">
+          <p className="text-muted-foreground text-base max-w-xl mb-10">
             We invest in our people so they can do their best work.
           </p>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {perks.map((perk) => (
               <div
                 key={perk.title}
-                className="bg-gray-50 rounded-lg p-5"
+                className="bg-surface rounded-lg p-5"
               >
-                <div className="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-white text-[#323dfe] border border-gray-200 mb-3">
+                <div className="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-background text-primary border border-border mb-3">
                   {perk.icon}
                 </div>
-                <h3 className="font-inter text-sm font-semibold text-black mb-1.5">
+                <h3 className="font-inter text-sm font-semibold text-foreground mb-1.5">
                   {perk.title}
                 </h3>
-                <p className="text-xs text-gray-600 leading-relaxed">{perk.desc}</p>
+                <p className="text-xs text-muted-foreground leading-relaxed">{perk.desc}</p>
               </div>
             ))}
           </div>
@@ -192,12 +192,12 @@ export default function JobsPage() {
       </section>
 
       {/* Open Positions */}
-      <section className="bg-white py-12 lg:py-16">
+      <section className="bg-background border-t border-border py-12 lg:py-16">
         <div className="container mx-auto max-w-7xl px-4">
-          <h2 className="font-sora text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] font-normal leading-[1.25] tracking-[-0.02em] text-black text-center mb-3">
+          <h2 className="font-sora text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] font-normal leading-[1.25] tracking-[-0.02em] text-foreground mb-3">
             Open Positions
           </h2>
-          <p className="text-gray-600 text-base max-w-xl mx-auto text-center mb-8">
+          <p className="text-muted-foreground text-base max-w-xl mb-8">
             Find your next role and help shape the future of AI-powered communication.
           </p>
 
@@ -206,7 +206,7 @@ export default function JobsPage() {
             <select
               value={locationFilter}
               onChange={(e) => setLocationFilter(e.target.value)}
-              className="px-3 py-2 text-sm bg-white border border-gray-300 rounded-md text-gray-700 focus:outline-none focus:border-gray-500"
+              className="px-3 py-2 text-sm bg-background border border-border-strong rounded-md text-foreground/80 focus:outline-none focus:border-gray-500"
             >
               <option value="all">All locations</option>
               {locations.map((loc) => (
@@ -216,7 +216,7 @@ export default function JobsPage() {
             <select
               value={departmentFilter}
               onChange={(e) => setDepartmentFilter(e.target.value)}
-              className="px-3 py-2 text-sm bg-white border border-gray-300 rounded-md text-gray-700 focus:outline-none focus:border-gray-500"
+              className="px-3 py-2 text-sm bg-background border border-border-strong rounded-md text-foreground/80 focus:outline-none focus:border-gray-500"
             >
               <option value="all">All departments</option>
               {departments.map((dept) => (
@@ -228,18 +228,18 @@ export default function JobsPage() {
           {/* Job Listings */}
           {loading ? (
             <div className="text-center py-10">
-              <div className="inline-block w-6 h-6 border-2 border-gray-300 border-t-gray-700 rounded-full animate-spin" />
-              <p className="text-sm text-gray-500 mt-2">Loading positions...</p>
+              <div className="inline-block w-6 h-6 border-2 border-border-strong border-t-gray-700 rounded-full animate-spin" />
+              <p className="text-sm text-muted-foreground mt-2">Loading positions...</p>
             </div>
           ) : filteredJobs.length === 0 ? (
             <div className="text-center py-10">
-              <p className="text-sm text-gray-500">No open positions match your filters. Check back soon!</p>
+              <p className="text-sm text-muted-foreground">No open positions match your filters. Check back soon!</p>
             </div>
           ) : (
             <div className="space-y-8">
               {Object.entries(groupedJobs).map(([dept, deptJobs]) => (
                 <div key={dept}>
-                  <h3 className="font-inter text-base font-semibold text-black mb-3 px-1">
+                  <h3 className="font-inter text-base font-semibold text-foreground mb-3 px-1">
                     {dept}
                   </h3>
                   <div className="space-y-2">
@@ -249,19 +249,19 @@ export default function JobsPage() {
                         href={job.hostedUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center justify-between bg-white rounded-lg border border-gray-200 px-5 py-4 hover:border-gray-300 transition-colors group"
+                        className="flex items-center justify-between bg-background rounded-lg border border-border px-5 py-4 hover:border-border-strong transition-colors group"
                       >
                         <div>
-                          <span className="text-sm font-medium text-black group-hover:text-[#323dfe] transition-colors">
+                          <span className="text-sm font-medium text-foreground group-hover:text-primary transition-colors">
                             {job.text}
                           </span>
                           {job.categories.location && (
-                            <span className="ml-3 inline-flex items-center px-2 py-0.5 rounded text-xs bg-gray-100 text-gray-600">
+                            <span className="ml-3 inline-flex items-center px-2 py-0.5 rounded text-xs bg-muted text-muted-foreground">
                               {job.categories.location}
                             </span>
                           )}
                         </div>
-                        <span className="text-sm font-medium text-[#323dfe] flex-shrink-0 ml-4">
+                        <span className="text-sm font-medium text-primary flex-shrink-0 ml-4">
                           Apply →
                         </span>
                       </a>

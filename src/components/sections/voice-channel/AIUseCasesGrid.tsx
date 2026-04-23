@@ -29,15 +29,23 @@ const useCases: UseCase[] = [
 
 export default function AIUseCasesGrid() {
   return (
-    <section className="bg-white py-12 sm:py-16 md:py-20">
+    <section className="bg-background border-t border-border py-12 sm:py-16 md:py-20">
       <div className="container mx-auto max-w-7xl px-4">
         {/* Section Header */}
-        <h2 className="font-sora text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] font-normal leading-[1.25] tracking-[-0.02em] text-black text-center mb-4 max-w-3xl mx-auto">
+        <div className="flex items-center gap-3 font-mono-ui text-[11px] uppercase tracking-[0.12em] text-muted-foreground mb-8">
+          <span className="flex items-center gap-2">
+            <span className="tabular-nums text-foreground/70">~</span>
+            <span className="h-px w-6 bg-border" />
+          </span>
+          <span>ai use cases grid</span>
+          <span className="flex-1 border-t border-dashed border-border" />
+        </div>
+        <h2 className="font-sora text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] font-normal leading-[1.04] tracking-[-0.035em] text-foreground mb-4">
           AI voice agents for every
           <br />
           customer interaction
         </h2>
-        <p className="text-gray-600 text-center max-w-2xl mx-auto mb-10 md:mb-14">
+        <p className="text-muted-foreground max-w-2xl  mb-10 md:mb-14">
           From support calls to sales outreach, deploy voice AI that handles it all.
         </p>
 
@@ -46,20 +54,20 @@ export default function AIUseCasesGrid() {
           {useCases.map((useCase, index) => (
             <div
               key={index}
-              className="group rounded-lg border border-gray-200 bg-white p-6 transition-all hover:border-gray-300 hover:shadow-md"
+              className="group rounded-lg border border-border bg-background p-6 transition-all hover:border-border-strong hover:shadow-md"
             >
               {/* Icon */}
-              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-[#323dfe]/10 to-[#323dfe]/10 text-[#323dfe] transition-colors group-hover:from-[#323dfe]/20 group-hover:to-[#323dfe]/20">
+              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-primary/10 to-primary/10 text-primary transition-colors group-hover:from-primary/20 group-hover:to-primary/20">
                 {useCase.icon}
               </div>
 
               {/* Title */}
-              <h3 className="mb-2 text-lg font-semibold text-black">
+              <h3 className="mb-2 text-lg font-semibold text-foreground">
                 {useCase.title}
               </h3>
 
               {/* Description */}
-              <p className="text-sm text-gray-600 leading-relaxed">
+              <p className="text-sm text-muted-foreground leading-relaxed">
                 {useCase.description}
               </p>
             </div>

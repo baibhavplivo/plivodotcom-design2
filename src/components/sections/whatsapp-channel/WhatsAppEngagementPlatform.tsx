@@ -81,54 +81,75 @@ const bottomFeatures: Feature[] = [
 ];
 
 export default function WhatsAppEngagementPlatform() {
+  const allFeatures = [...topFeatures, ...bottomFeatures];
+  const metaTags = ["onboarding", "global", "flexible", "meta assist", "low latency", "compliant"];
   return (
-    <section className="bg-white py-12 sm:py-16 md:py-20">
-      <div className="container mx-auto max-w-7xl px-4">
-        {/* Section Header */}
-        <div className="text-center mb-10 md:mb-14">
-          <h2 className="font-sora text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] font-normal leading-[1.25] tracking-[-0.02em] text-black mb-4 max-w-3xl mx-auto">
-            Plivo: Your unbeatable
-            <br />
-            WhatsApp advantage
-          </h2>
-          <p className="text-gray-600 max-w-3xl mx-auto">
-            From rapid setup to guaranteed compliance, we eliminate barriers to your WhatsApp success. Our unmatched reliability, speed, and expertise put you ahead.
-          </p>
+    <section className="relative w-full bg-background border-t border-border">
+      <div className="container mx-auto max-w-7xl px-4 sm:px-6 py-14 sm:py-20 md:py-24">
+        <div className="flex items-center gap-3 font-mono-ui text-[11px] uppercase tracking-[0.12em] text-muted-foreground">
+          <span className="flex items-center gap-2">
+            <span className="tabular-nums text-foreground/70">~</span>
+            <span className="h-px w-6 bg-border" />
+          </span>
+          <span>engagement platform</span>
+          <span className="flex-1 border-t border-dashed border-border" />
+          <span>{allFeatures.length} advantages</span>
         </div>
 
-        {/* Bordered Grid Container */}
-        <div className="border border-gray-200 rounded-xl overflow-hidden">
-          {/* Top Row - 3 Features */}
-          <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-gray-200">
-            {topFeatures.map((feature, index) => (
-              <div key={index} className="p-6 lg:p-8">
-                <span className="text-[#323dfe] mb-4 block">{feature.icon}</span>
-                <h3 className="text-base font-semibold text-black mb-2">
-                  {feature.title}
-                </h3>
-                <p className="text-sm text-gray-600 leading-relaxed">
-                  {feature.description}
-                </p>
-              </div>
-            ))}
+        <div className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-12 lg:gap-10">
+          <div className="lg:col-span-8">
+            <h2 className="font-sora text-[2rem] font-normal leading-[1.04] tracking-[-0.035em] text-foreground sm:text-[2.5rem] md:text-[3rem]">
+              Plivo: Your unbeatable WhatsApp advantage
+            </h2>
+            <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-muted-foreground">
+              From rapid setup to guaranteed compliance, we eliminate barriers to your WhatsApp success. Our unmatched reliability, speed, and expertise put you ahead.
+            </p>
           </div>
+        </div>
 
-          {/* Divider */}
-          <div className="border-t border-gray-200" />
-
-          {/* Bottom Row - 3 Features */}
-          <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-gray-200">
-            {bottomFeatures.map((feature, index) => (
-              <div key={index} className="p-6 lg:p-8">
-                <span className="text-[#323dfe] mb-4 block">{feature.icon}</span>
-                <h3 className="text-base font-semibold text-black mb-2">
-                  {feature.title}
-                </h3>
-                <p className="text-sm text-gray-600 leading-relaxed">
-                  {feature.description}
-                </p>
-              </div>
-            ))}
+        <div className="mt-10 overflow-hidden rounded-xl border border-border bg-surface">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+            {allFeatures.map((feature, index) => {
+              const lgCol = index % 3;
+              const lgRow = Math.floor(index / 3);
+              const smCol = index % 2;
+              const smRow = Math.floor(index / 2);
+              return (
+                <div
+                  key={index}
+                  className={[
+                    "group relative flex flex-col gap-3 p-6 sm:p-8 transition-colors hover:bg-background border-t border-border",
+                    index === 0 ? "border-t-0" : "",
+                    "sm:border-t-0",
+                    smRow > 0 ? "sm:border-t sm:border-border" : "",
+                    smCol === 0 ? "sm:border-r sm:border-border" : "",
+                    "lg:border-t-0 lg:border-r-0",
+                    lgRow > 0 ? "lg:border-t lg:border-border" : "",
+                    lgCol < 2 ? "lg:border-r lg:border-border" : "",
+                  ].filter(Boolean).join(" ")}
+                >
+                  <div className="flex items-center justify-between">
+                    <div className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-border bg-background text-foreground transition-colors group-hover:text-primary [&_svg]:h-5 [&_svg]:w-5">
+                      {feature.icon}
+                    </div>
+                    <span className="font-mono-ui text-[10px] uppercase tracking-[0.08em] text-muted-foreground">
+                      {metaTags[index]}
+                    </span>
+                  </div>
+                  <div>
+                    <h3 className="font-sora text-[17px] font-semibold tracking-[-0.01em] text-foreground">
+                      {feature.title}
+                    </h3>
+                    <p className="mt-1.5 text-sm text-muted-foreground leading-relaxed">
+                      {feature.description}
+                    </p>
+                  </div>
+                  <span className="font-mono-ui mt-auto text-[10px] text-muted-foreground/60">
+                    [{String(index + 1).padStart(2, "0")}]
+                  </span>
+                </div>
+              );
+            })}
           </div>
         </div>
 
@@ -145,9 +166,9 @@ export default function WhatsAppEngagementPlatform() {
               <img
                 src={cert.src}
                 alt={`${cert.name} compliance`}
-                className="h-10 sm:h-12 w-10 sm:w-12 object-contain opacity-60"
+                className="h-10 sm:h-12 w-10 sm:w-12 object-contain opacity-60 dark:invert"
               />
-              <span className="text-xs sm:text-sm font-medium text-gray-500">{cert.name}</span>
+              <span className="text-xs sm:text-sm font-medium text-muted-foreground">{cert.name}</span>
             </div>
           ))}
         </div>

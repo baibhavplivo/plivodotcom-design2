@@ -1,7 +1,7 @@
 // Outbound Illustration - calls going out to global destinations
 function OutboundIllustration() {
   return (
-    <div className="relative h-full w-full rounded-xl overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
+    <div className="relative h-full w-full rounded-xl overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, hsl(var(--border)) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <style>{`
         @keyframes outbound-pulse {
           0%, 100% { opacity: 0.3; }
@@ -13,10 +13,10 @@ function OutboundIllustration() {
       `}</style>
 
       <div className="relative h-full w-full p-4 sm:p-6 flex flex-col justify-center">
-        <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-4 sm:p-5">
+        <div className="bg-background rounded-xl shadow-sm border border-border p-4 sm:p-5">
           {/* Header */}
-          <div className="flex items-center gap-2 mb-4 pb-3 border-b border-gray-100">
-            <div className="w-8 h-8 rounded-lg bg-black flex items-center justify-center">
+          <div className="flex items-center gap-2 mb-4 pb-3 border-b border-border">
+            <div className="w-8 h-8 rounded-lg bg-foreground flex items-center justify-center">
               <svg
                 className="w-4 h-4 text-white"
                 fill="none"
@@ -32,10 +32,10 @@ function OutboundIllustration() {
               </svg>
             </div>
             <div>
-              <p className="text-sm font-semibold text-gray-900">
+              <p className="text-sm font-semibold text-foreground">
                 Outbound Calls
               </p>
-              <p className="text-[10px] text-gray-500">220+ countries</p>
+              <p className="text-[10px] text-muted-foreground">220+ countries</p>
             </div>
           </div>
 
@@ -80,21 +80,21 @@ function OutboundIllustration() {
             ].map((dest, i) => (
               <div
                 key={i}
-                className="flex items-center gap-3 px-3 py-1.5 rounded-lg bg-gray-50 border border-gray-100"
+                className="flex items-center gap-3 px-3 py-1.5 rounded-lg bg-surface border border-border"
               >
                 <span className="text-lg flex-shrink-0">{dest.flag}</span>
                 <div className="flex-1 min-w-0">
-                  <p className="text-xs font-medium text-gray-900 truncate">
+                  <p className="text-xs font-medium text-foreground truncate">
                     {dest.country}
                   </p>
-                  <p className="text-[10px] text-gray-500">{dest.type}</p>
+                  <p className="text-[10px] text-muted-foreground">{dest.type}</p>
                 </div>
                 {/* Dotted connection line */}
                 <div className="flex items-center gap-1.5 flex-shrink-0">
                   <div
                     className={`w-1.5 h-1.5 rounded-full bg-emerald-500 ${dest.cls}`}
                   />
-                  <span className="text-[10px] text-emerald-600 font-medium">
+                  <span className="text-[10px] text-emerald-600 dark:text-emerald-300 font-medium">
                     {dest.status}
                   </span>
                 </div>
@@ -103,13 +103,13 @@ function OutboundIllustration() {
           </div>
 
           {/* Footer */}
-          <div className="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between">
-            <span className="text-[10px] text-gray-500">
+          <div className="mt-4 pt-3 border-t border-border flex items-center justify-between">
+            <span className="text-[10px] text-muted-foreground">
               + 215 more countries
             </span>
             <div className="flex items-center gap-1.5">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-              <span className="text-[10px] text-gray-500">All routes active</span>
+              <span className="text-[10px] text-muted-foreground">All routes active</span>
             </div>
           </div>
         </div>
@@ -121,12 +121,12 @@ function OutboundIllustration() {
 // Inbound Illustration - phone numbers being provisioned
 function InboundIllustration() {
   return (
-    <div className="relative h-full w-full rounded-xl overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
+    <div className="relative h-full w-full rounded-xl overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, hsl(var(--border)) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="relative h-full w-full p-4 sm:p-6 flex flex-col justify-center">
-        <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-4 sm:p-5">
+        <div className="bg-background rounded-xl shadow-sm border border-border p-4 sm:p-5">
           {/* Header */}
-          <div className="flex items-center gap-2 mb-4 pb-3 border-b border-gray-100">
-            <div className="w-8 h-8 rounded-lg bg-black flex items-center justify-center">
+          <div className="flex items-center gap-2 mb-4 pb-3 border-b border-border">
+            <div className="w-8 h-8 rounded-lg bg-foreground flex items-center justify-center">
               <svg
                 className="w-4 h-4 text-white"
                 fill="none"
@@ -142,10 +142,10 @@ function InboundIllustration() {
               </svg>
             </div>
             <div>
-              <p className="text-sm font-semibold text-gray-900">
+              <p className="text-sm font-semibold text-foreground">
                 Inbound Numbers
               </p>
-              <p className="text-[10px] text-gray-500">
+              <p className="text-[10px] text-muted-foreground">
                 70+ countries available
               </p>
             </div>
@@ -187,16 +187,16 @@ function InboundIllustration() {
             ].map((num, i) => (
               <div
                 key={i}
-                className="flex items-center gap-3 px-3 py-1.5 rounded-lg bg-gray-50 border border-gray-100"
+                className="flex items-center gap-3 px-3 py-1.5 rounded-lg bg-surface border border-border"
               >
                 <span className="text-lg flex-shrink-0">{num.flag}</span>
                 <div className="flex-1 min-w-0">
-                  <p className="text-xs font-medium text-gray-900 font-mono truncate">
+                  <p className="text-xs font-medium text-foreground font-mono truncate">
                     {num.number}
                   </p>
-                  <p className="text-[10px] text-gray-500">{num.label}</p>
+                  <p className="text-[10px] text-muted-foreground">{num.label}</p>
                 </div>
-                <span className="text-[10px] font-medium text-[#323dfe] bg-[#323dfe]/5 px-2 py-0.5 rounded-full border border-[#323dfe]/10 flex-shrink-0">
+                <span className="text-[10px] font-medium text-primary bg-primary/5 px-2 py-0.5 rounded-full border border-primary/10 flex-shrink-0">
                   {num.type}
                 </span>
               </div>
@@ -204,11 +204,11 @@ function InboundIllustration() {
           </div>
 
           {/* Footer */}
-          <div className="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between">
-            <span className="text-[10px] text-gray-500">
+          <div className="mt-4 pt-3 border-t border-border flex items-center justify-between">
+            <span className="text-[10px] text-muted-foreground">
               Instantly provisioned
             </span>
-            <span className="text-[10px] text-gray-500">
+            <span className="text-[10px] text-muted-foreground">
               Unlimited concurrent calls
             </span>
           </div>
@@ -355,14 +355,14 @@ function FeatureList({ features }: { features: DirectionFeature[] }) {
     <div className="space-y-6">
       {features.map((feature, index) => (
         <div key={index} className="flex items-start gap-3">
-          <span className="text-[#323dfe] flex-shrink-0 mt-0.5">
+          <span className="text-primary flex-shrink-0 mt-0.5">
             {feature.icon}
           </span>
           <div>
-            <h4 className="text-base font-medium text-black mb-1">
+            <h4 className="text-base font-medium text-foreground mb-1">
               {feature.title}
             </h4>
-            <p className="text-sm text-gray-600 leading-relaxed">
+            <p className="text-sm text-muted-foreground leading-relaxed">
               {feature.description}
             </p>
           </div>
@@ -374,12 +374,12 @@ function FeatureList({ features }: { features: DirectionFeature[] }) {
 
 export default function SIPTrunkingDirections() {
   return (
-    <section className="bg-white py-12 sm:py-16 md:py-20">
+    <section className="bg-background border-t border-border py-12 sm:py-16 md:py-20">
       <div className="container mx-auto max-w-7xl px-4">
         {/* Outbound - Features Left, Illustration Right */}
         <div className="grid gap-8 lg:grid-cols-2 lg:gap-12 items-center mb-16 lg:mb-24">
           <div>
-            <h3 className="text-[1.5rem] sm:text-[1.75rem] font-normal leading-[1.25] tracking-[-0.02em] text-black mb-8">
+            <h3 className="text-[1.5rem] sm:text-[1.75rem] font-normal leading-[1.25] tracking-[-0.02em] text-foreground mb-8">
               SIP trunking outbound
             </h3>
             <FeatureList features={outboundFeatures} />
@@ -399,7 +399,7 @@ export default function SIPTrunkingDirections() {
             </div>
           </div>
           <div>
-            <h3 className="text-[1.5rem] sm:text-[1.75rem] font-normal leading-[1.25] tracking-[-0.02em] text-black mb-8">
+            <h3 className="text-[1.5rem] sm:text-[1.75rem] font-normal leading-[1.25] tracking-[-0.02em] text-foreground mb-8">
               SIP trunking inbound
             </h3>
             <FeatureList features={inboundFeatures} />

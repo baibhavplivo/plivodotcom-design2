@@ -27,15 +27,15 @@ const phoneNumbers = [
 // Phone number card component
 function PhoneNumberCard({ flag, code, number, city }: { flag: string; code: string; number: string; city: string }) {
   return (
-    <div className="flex-shrink-0 bg-white rounded-xl border border-gray-200 px-4 py-3 flex items-center gap-3 min-w-[200px]">
+    <div className="flex-shrink-0 bg-background rounded-xl border border-border px-4 py-3 flex items-center gap-3 min-w-[200px]">
       <div className="flex items-center gap-2">
         <span className="text-2xl">{flag}</span>
-        <span className="text-sm font-semibold text-gray-900">{code}</span>
+        <span className="text-sm font-semibold text-foreground">{code}</span>
       </div>
       <div className="w-px h-8 bg-gray-200" />
       <div>
-        <p className="text-sm font-medium text-gray-900">{number}</p>
-        <p className="text-xs text-gray-500">{city}</p>
+        <p className="text-sm font-medium text-foreground">{number}</p>
+        <p className="text-xs text-muted-foreground">{city}</p>
       </div>
     </div>
   );
@@ -88,10 +88,10 @@ function GlobalCoverageIllustration() {
       </div>
 
       {/* Fade edges */}
-      <div className="absolute inset-y-0 left-0 w-12 bg-gradient-to-r from-gray-100/70 to-transparent pointer-events-none z-10" />
-      <div className="absolute inset-y-0 right-0 w-12 bg-gradient-to-l from-gray-100/70 to-transparent pointer-events-none z-10" />
+      <div className="absolute inset-y-0 left-0 w-12 bg-gradient-to-r from-muted/70 to-transparent pointer-events-none z-10" />
+      <div className="absolute inset-y-0 right-0 w-12 bg-gradient-to-l from-muted/70 to-transparent pointer-events-none z-10" />
       {/* Bottom fade */}
-      <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-white to-transparent pointer-events-none z-10" />
+      <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-background to-transparent pointer-events-none z-10" />
     </div>
   );
 }
@@ -99,7 +99,7 @@ function GlobalCoverageIllustration() {
 // Illustration for Crystal Clear Quality
 function CrystalClearIllustration() {
   return (
-    <div className="relative h-48 w-full rounded-lg overflow-hidden bg-white">
+    <div className="relative h-48 w-full rounded-lg overflow-hidden bg-background">
       {/* World Map with animated routes */}
       <WorldMap
         lineColor="#323dfe"
@@ -133,15 +133,15 @@ function CrystalClearIllustration() {
 
       {/* Stats badge */}
       <div className="absolute right-3 top-3 flex flex-col items-center gap-1 z-20">
-        <div className="flex items-center gap-2 rounded-full bg-white px-3 py-1.5 shadow-md">
-          <span className="h-2 w-2 animate-pulse rounded-full bg-[#323dfe]" />
-          <span className="text-sm font-medium text-black">&lt;500ms</span>
+        <div className="flex items-center gap-2 rounded-full bg-background px-3 py-1.5 shadow-sm">
+          <span className="h-2 w-2 animate-pulse rounded-full bg-primary" />
+          <span className="text-sm font-medium text-foreground">&lt;500ms</span>
         </div>
-        <span className="text-xs text-gray-500">1 hop</span>
+        <span className="text-xs text-muted-foreground">1 hop</span>
       </div>
 
       {/* Bottom fade */}
-      <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-white to-transparent pointer-events-none z-10" />
+      <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-background to-transparent pointer-events-none z-10" />
     </div>
   );
 }
@@ -154,12 +154,12 @@ function IntelligentRoutingIllustration() {
         <div className="w-full flex items-center justify-between">
           {/* Source */}
           <div className="flex flex-col items-center gap-1.5">
-            <div className="w-12 h-12 rounded-xl bg-white border border-gray-200 flex items-center justify-center shadow-sm">
-              <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="w-12 h-12 rounded-xl bg-background border border-border flex items-center justify-center shadow-sm">
+              <svg className="w-6 h-6 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
               </svg>
             </div>
-            <span className="text-[10px] text-gray-500">Inbound</span>
+            <span className="text-[10px] text-muted-foreground">Inbound</span>
           </div>
 
           {/* Line 1 - Inbound to AI */}
@@ -168,45 +168,45 @@ function IntelligentRoutingIllustration() {
           {/* AI Routing - Circular with Glow */}
           <div className="flex flex-col items-center gap-1.5 relative">
             {/* Soft glow effect */}
-            <div className="absolute w-20 h-20 rounded-full bg-gradient-to-br from-[#323dfe]/30 to-black/30 blur-xl" />
-            <div className="relative w-14 h-14 rounded-full bg-gradient-to-br from-[#323dfe] to-black flex items-center justify-center shadow-lg">
+            <div className="absolute w-20 h-20 rounded-full bg-gradient-to-br from-primary/30 to-black/30 blur-xl" />
+            <div className="relative w-14 h-14 rounded-full bg-gradient-to-br from-primary to-black flex items-center justify-center shadow-sm">
               {/* Sparkle icon from Vector.svg */}
               <svg className="w-6 h-6" viewBox="0 0 8 8" fill="none">
                 <path d="M7.2153 3.67496C6.54391 3.93557 5.86369 4.10783 5.27623 4.54953C4.37957 5.22534 4.03063 6.15291 3.69493 7.1865C3.6596 7.23508 3.56684 7.23508 3.53592 7.1865C3.28415 6.51511 3.10747 5.84372 2.66577 5.26509C1.91487 4.2801 1.20373 4.16084 0.134811 3.72797C0.0508876 3.69263 -0.046287 3.67055 0.0243854 3.55129C0.0553046 3.49828 1.00055 3.18909 1.15073 3.12284C2.07388 2.72972 2.74969 2.04508 3.1428 1.12192C3.29298 0.764144 3.39016 0.375446 3.54917 0.0265011L3.62868 0L3.7126 0.0706723C4.02621 1.0645 4.37074 1.95232 5.20997 2.61488C5.79744 3.07866 6.48649 3.2686 7.17555 3.52478C7.22855 3.5557 7.22413 3.62196 7.21088 3.67496H7.2153Z" fill="white"/>
               </svg>
             </div>
-            <span className="text-[10px] text-gray-500 font-medium relative">AI Routing</span>
+            <span className="text-[10px] text-muted-foreground font-medium relative">AI Routing</span>
           </div>
 
           {/* Lines to Carriers - branching */}
           <div className="flex-1 flex flex-col justify-center gap-[18px] mx-3">
-            <div className="h-[2px] bg-gradient-to-r from-[#323dfe] to-[#323dfe]/60 rounded-full" />
+            <div className="h-[2px] bg-gradient-to-r from-primary to-primary/60 rounded-full" />
             <div className="h-[2px] bg-gradient-to-r from-gray-300 to-gray-200 rounded-full" />
             <div className="h-[2px] bg-gradient-to-r from-gray-300 to-gray-200 rounded-full" />
           </div>
 
           {/* Carriers */}
           <div className="flex flex-col gap-2">
-            <div className="flex items-center gap-2 bg-white rounded-lg border-2 border-[#323dfe] px-3 py-1.5 shadow-sm">
+            <div className="flex items-center gap-2 bg-background rounded-lg border-2 border-primary px-3 py-1.5 shadow-sm">
               <div className="w-2 h-2 rounded-full bg-emerald-500" />
-              <span className="text-xs font-medium text-gray-700">Carrier A</span>
-              <span className="text-[10px] text-emerald-600 font-medium">45ms</span>
+              <span className="text-xs font-medium text-foreground/80">Carrier A</span>
+              <span className="text-[10px] text-emerald-600 dark:text-emerald-300 font-medium">45ms</span>
             </div>
-            <div className="flex items-center gap-2 bg-white rounded-lg border border-gray-200 px-3 py-1.5 opacity-50">
+            <div className="flex items-center gap-2 bg-background rounded-lg border border-border px-3 py-1.5 opacity-50">
               <div className="w-2 h-2 rounded-full bg-gray-300" />
-              <span className="text-xs text-gray-500">Carrier B</span>
-              <span className="text-[10px] text-gray-400">120ms</span>
+              <span className="text-xs text-muted-foreground">Carrier B</span>
+              <span className="text-[10px] text-muted-foreground">120ms</span>
             </div>
-            <div className="flex items-center gap-2 bg-white rounded-lg border border-gray-200 px-3 py-1.5 opacity-50">
+            <div className="flex items-center gap-2 bg-background rounded-lg border border-border px-3 py-1.5 opacity-50">
               <div className="w-2 h-2 rounded-full bg-gray-300" />
-              <span className="text-xs text-gray-500">Carrier C</span>
-              <span className="text-[10px] text-gray-400">200ms</span>
+              <span className="text-xs text-muted-foreground">Carrier C</span>
+              <span className="text-[10px] text-muted-foreground">200ms</span>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-white to-transparent pointer-events-none" />
+      <div className="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-background to-transparent pointer-events-none" />
     </div>
   );
 }
@@ -218,7 +218,7 @@ function VerifiedCallsIllustration() {
       <div className="absolute inset-0 flex items-start pt-3 px-6">
         <div className="w-full flex items-start justify-center gap-5">
           {/* Phone Device Mock - Incoming Call Screen (Light Version) */}
-          <div className="relative w-48 h-[220px] bg-white rounded-[24px] shadow-lg overflow-hidden border border-gray-200">
+          <div className="relative w-48 h-[220px] bg-background rounded-[24px] shadow-sm overflow-hidden border border-border">
             {/* Phone notch/speaker */}
             <div className="absolute top-2.5 left-1/2 -translate-x-1/2 w-16 h-1.5 bg-gray-200 rounded-full" />
 
@@ -226,26 +226,26 @@ function VerifiedCallsIllustration() {
             <div className="h-full flex flex-col items-center justify-between py-5 px-4">
               {/* Top - Caller info */}
               <div className="text-center mt-4">
-                <p className="text-[9px] text-gray-400 uppercase tracking-wider mb-1.5">Incoming Call</p>
+                <p className="text-[9px] text-muted-foreground font-mono-ui uppercase tracking-[0.1em] mb-1.5">Incoming Call</p>
                 <div className="flex items-center justify-center gap-1.5">
-                  <p className="text-lg font-semibold text-gray-900">Acme Inc.</p>
-                  <svg className="w-4.5 h-4.5 text-emerald-500" fill="currentColor" viewBox="0 0 20 20">
+                  <p className="text-lg font-semibold text-foreground">Acme Inc.</p>
+                  <svg className="w-4.5 h-4.5 text-emerald-500 dark:text-emerald-400" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
                 </div>
-                <p className="text-xs text-gray-400 mt-1.5">+1 (555) 123-4567</p>
+                <p className="text-xs text-muted-foreground mt-1.5">+1 (555) 123-4567</p>
               </div>
 
               {/* Bottom - Call buttons */}
               <div className="flex items-center justify-center gap-10 mb-9">
                 {/* Decline */}
-                <div className="w-10 h-10 rounded-full bg-red-500 flex items-center justify-center shadow-md">
+                <div className="w-10 h-10 rounded-full bg-red-500 flex items-center justify-center shadow-sm">
                   <svg className="w-4.5 h-4.5 text-white rotate-[135deg]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                   </svg>
                 </div>
                 {/* Accept */}
-                <div className="w-10 h-10 rounded-full bg-emerald-500 flex items-center justify-center shadow-md">
+                <div className="w-10 h-10 rounded-full bg-emerald-500 flex items-center justify-center shadow-sm">
                   <svg className="w-4.5 h-4.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                   </svg>
@@ -254,49 +254,49 @@ function VerifiedCallsIllustration() {
             </div>
 
             {/* Bottom fade effect */}
-            <div className="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-gray-50 to-transparent pointer-events-none" />
+            <div className="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-surface to-transparent pointer-events-none" />
           </div>
 
           {/* Verification Features - Tighter spacing */}
           <div className="flex flex-col gap-2">
-            <div className="flex items-center gap-2.5 bg-white rounded-lg border border-gray-200 px-3 py-2 shadow-sm">
-              <div className="w-7 h-7 rounded-md bg-gray-100 flex items-center justify-center">
-                <svg className="w-3.5 h-3.5 text-gray-600" fill="currentColor" viewBox="0 0 20 20">
+            <div className="flex items-center gap-2.5 bg-background rounded-lg border border-border px-3 py-2 shadow-sm">
+              <div className="w-7 h-7 rounded-md bg-muted flex items-center justify-center">
+                <svg className="w-3.5 h-3.5 text-muted-foreground" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                 </svg>
               </div>
               <div>
-                <p className="text-[11px] font-semibold text-gray-900 leading-tight">SHAKEN/STIR</p>
-                <p className="text-[9px] text-gray-500 leading-tight">Call authentication</p>
+                <p className="text-[11px] font-semibold text-foreground leading-tight">SHAKEN/STIR</p>
+                <p className="text-[9px] text-muted-foreground leading-tight">Call authentication</p>
               </div>
             </div>
-            <div className="flex items-center gap-2.5 bg-white rounded-lg border border-gray-200 px-3 py-2 shadow-sm">
-              <div className="w-7 h-7 rounded-md bg-gray-100 flex items-center justify-center">
-                <svg className="w-3.5 h-3.5 text-gray-600" fill="currentColor" viewBox="0 0 20 20">
+            <div className="flex items-center gap-2.5 bg-background rounded-lg border border-border px-3 py-2 shadow-sm">
+              <div className="w-7 h-7 rounded-md bg-muted flex items-center justify-center">
+                <svg className="w-3.5 h-3.5 text-muted-foreground" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
                 </svg>
               </div>
               <div>
-                <p className="text-[11px] font-semibold text-gray-900 leading-tight">CNAM</p>
-                <p className="text-[9px] text-gray-500 leading-tight">Caller ID name</p>
+                <p className="text-[11px] font-semibold text-foreground leading-tight">CNAM</p>
+                <p className="text-[9px] text-muted-foreground leading-tight">Caller ID name</p>
               </div>
             </div>
-            <div className="flex items-center gap-2.5 bg-white rounded-lg border border-gray-200 px-3 py-2 shadow-sm">
-              <div className="w-7 h-7 rounded-md bg-gray-100 flex items-center justify-center">
-                <svg className="w-3.5 h-3.5 text-gray-600" fill="currentColor" viewBox="0 0 20 20">
+            <div className="flex items-center gap-2.5 bg-background rounded-lg border border-border px-3 py-2 shadow-sm">
+              <div className="w-7 h-7 rounded-md bg-muted flex items-center justify-center">
+                <svg className="w-3.5 h-3.5 text-muted-foreground" fill="currentColor" viewBox="0 0 20 20">
                   <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                 </svg>
               </div>
               <div>
-                <p className="text-[11px] font-semibold text-gray-900 leading-tight">Branded Caller ID</p>
-                <p className="text-[9px] text-gray-500 leading-tight">Logo & business name</p>
+                <p className="text-[11px] font-semibold text-foreground leading-tight">Branded Caller ID</p>
+                <p className="text-[9px] text-muted-foreground leading-tight">Logo & business name</p>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-white to-transparent pointer-events-none" />
+      <div className="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-background to-transparent pointer-events-none" />
     </div>
   );
 }
@@ -331,32 +331,32 @@ function AudioStreamingIllustration() {
         <div className="w-full flex items-center gap-6">
           {/* Source */}
           <div className="flex flex-col items-center gap-2">
-            <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#323dfe] to-black flex items-center justify-center shadow-lg">
+            <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary to-black flex items-center justify-center shadow-sm">
               <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
               </svg>
             </div>
-            <span className="text-[10px] text-gray-500 font-medium">Voice Input</span>
+            <span className="text-[10px] text-muted-foreground font-medium">Voice Input</span>
           </div>
 
           {/* Waveform Panel */}
-          <div className="flex-1 bg-white rounded-xl border border-gray-200 shadow-sm p-4">
+          <div className="flex-1 bg-background rounded-xl border border-border shadow-sm p-4">
             <div className="flex items-center justify-between mb-3">
               <div className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-[#323dfe] animate-pulse" />
-                <span className="text-xs font-medium text-gray-900">WebSocket Stream</span>
+                <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+                <span className="text-xs font-medium text-foreground">WebSocket Stream</span>
               </div>
-              <div className="flex items-center gap-3 text-[10px] text-gray-500">
+              <div className="flex items-center gap-3 text-[10px] text-muted-foreground">
                 <span>128kbps</span>
                 <span>Opus</span>
-                <span className="text-[#323dfe] font-medium">Live</span>
+                <span className="text-primary font-medium">Live</span>
               </div>
             </div>
             <div className="flex items-center justify-center gap-[2px] h-16">
               {[10, 18, 8, 24, 14, 20, 8, 28, 12, 20, 6, 22, 16, 26, 10, 18, 5, 22, 14, 24, 8, 20, 12, 24, 6, 28, 18, 16, 22, 10, 26, 14, 20, 8, 24].map((height, i) => (
                 <div
                   key={i}
-                  className="stream-wave-bar w-[3px] rounded-full bg-gradient-to-t from-[#323dfe] to-black"
+                  className="stream-wave-bar w-[3px] rounded-full bg-gradient-to-t from-primary to-black"
                   style={{
                     height: `${height}px`,
                     animationDelay: `${(i * 0.08) % 1.2}s`,
@@ -369,17 +369,17 @@ function AudioStreamingIllustration() {
 
           {/* Output */}
           <div className="flex flex-col items-center gap-2">
-            <div className="w-14 h-14 rounded-2xl bg-white border border-gray-200 flex items-center justify-center shadow-sm">
-              <svg className="w-7 h-7 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="w-14 h-14 rounded-2xl bg-background border border-border flex items-center justify-center shadow-sm">
+              <svg className="w-7 h-7 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
               </svg>
             </div>
-            <span className="text-[10px] text-gray-500 font-medium">Your App</span>
+            <span className="text-[10px] text-muted-foreground font-medium">Your App</span>
           </div>
         </div>
       </div>
 
-      <div className="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-white to-transparent pointer-events-none" />
+      <div className="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-background to-transparent pointer-events-none" />
     </div>
   );
 }
@@ -400,76 +400,76 @@ function SIPTrunkingIllustration() {
         <div className="w-full flex items-center justify-between">
           {/* Your Infrastructure */}
           <div className="flex flex-col items-center gap-2">
-            <div className="bg-white rounded-xl border border-gray-200 p-3 shadow-sm">
+            <div className="bg-background rounded-xl border border-border p-3 shadow-sm">
               <div className="flex items-center gap-2 mb-2">
-                <div className="w-8 h-8 rounded-lg bg-gray-100 flex items-center justify-center">
-                  <svg className="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="w-8 h-8 rounded-lg bg-muted flex items-center justify-center">
+                  <svg className="w-4 h-4 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01" />
                   </svg>
                 </div>
                 <div>
-                  <p className="text-xs font-semibold text-gray-900">Your PBX</p>
-                  <p className="text-[10px] text-gray-500">IP-PBX / UCaaS</p>
+                  <p className="text-xs font-semibold text-foreground">Your PBX</p>
+                  <p className="text-[10px] text-muted-foreground">IP-PBX / UCaaS</p>
                 </div>
               </div>
               <div className="flex items-center gap-1">
                 <div className="w-2 h-2 rounded-full bg-emerald-500" />
-                <span className="text-[10px] text-gray-500">Connected</span>
+                <span className="text-[10px] text-muted-foreground">Connected</span>
               </div>
             </div>
           </div>
 
           {/* Connection Line 1 */}
           <div className="flex items-center gap-1">
-            <div className="h-[2px] w-8 bg-gradient-to-r from-gray-300 to-[#323dfe] sip-pulse" />
-            <div className="px-2 py-1 rounded bg-[#323dfe]/10 text-[10px] text-[#323dfe] font-medium">SIP</div>
-            <div className="h-[2px] w-8 bg-gradient-to-r from-[#323dfe] to-black sip-pulse" />
+            <div className="h-[2px] w-8 bg-gradient-to-r from-gray-300 to-primary sip-pulse" />
+            <div className="px-2 py-1 rounded bg-primary/10 text-[10px] text-primary font-medium">SIP</div>
+            <div className="h-[2px] w-8 bg-gradient-to-r from-primary to-black sip-pulse" />
           </div>
 
           {/* Plivo SIP Trunk */}
           <div className="flex flex-col items-center gap-2">
-            <div className="bg-gradient-to-br from-[#323dfe] to-black rounded-2xl p-4 shadow-lg">
+            <div className="bg-gradient-to-br from-primary to-black rounded-2xl p-4 shadow-sm">
               <div className="text-center">
                 <p className="text-sm font-bold text-white">Plivo</p>
                 <p className="text-[10px] text-white/80">SIP Trunk</p>
               </div>
               <div className="flex items-center justify-center gap-1 mt-2">
-                <div className="w-2 h-2 rounded-full bg-white/40" />
-                <div className="w-2 h-2 rounded-full bg-white/60" />
-                <div className="w-2 h-2 rounded-full bg-white/80" />
-                <div className="w-2 h-2 rounded-full bg-white" />
+                <div className="w-2 h-2 rounded-full bg-background/40" />
+                <div className="w-2 h-2 rounded-full bg-background/60" />
+                <div className="w-2 h-2 rounded-full bg-background/80" />
+                <div className="w-2 h-2 rounded-full bg-background" />
               </div>
             </div>
           </div>
 
           {/* Connection Line 2 */}
           <div className="flex items-center gap-1">
-            <div className="h-[2px] w-8 bg-gradient-to-r from-[#323dfe] to-black sip-pulse" />
-            <div className="px-2 py-1 rounded bg-[#323dfe]/10 text-[10px] text-[#323dfe] font-medium">SIP</div>
-            <div className="h-[2px] w-8 bg-gradient-to-r from-[#323dfe] to-gray-300 sip-pulse" />
+            <div className="h-[2px] w-8 bg-gradient-to-r from-primary to-black sip-pulse" />
+            <div className="px-2 py-1 rounded bg-primary/10 text-[10px] text-primary font-medium">SIP</div>
+            <div className="h-[2px] w-8 bg-gradient-to-r from-primary to-gray-300 sip-pulse" />
           </div>
 
           {/* Destinations */}
           <div className="flex flex-col gap-2">
-            <div className="bg-white rounded-lg border border-gray-200 px-3 py-2 shadow-sm">
+            <div className="bg-background rounded-lg border border-border px-3 py-2 shadow-sm">
               <div className="flex items-center gap-2">
-                <svg className="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-4 h-4 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064" />
                 </svg>
                 <div>
-                  <p className="text-xs font-medium text-gray-900">PSTN</p>
-                  <p className="text-[10px] text-gray-500">Global</p>
+                  <p className="text-xs font-medium text-foreground">PSTN</p>
+                  <p className="text-[10px] text-muted-foreground">Global</p>
                 </div>
               </div>
             </div>
-            <div className="bg-white rounded-lg border border-gray-200 px-3 py-2 shadow-sm">
+            <div className="bg-background rounded-lg border border-border px-3 py-2 shadow-sm">
               <div className="flex items-center gap-2">
-                <svg className="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-4 h-4 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
                 </svg>
                 <div>
-                  <p className="text-xs font-medium text-gray-900">Mobile</p>
-                  <p className="text-[10px] text-gray-500">Carriers</p>
+                  <p className="text-xs font-medium text-foreground">Mobile</p>
+                  <p className="text-[10px] text-muted-foreground">Carriers</p>
                 </div>
               </div>
             </div>
@@ -477,7 +477,7 @@ function SIPTrunkingIllustration() {
         </div>
       </div>
 
-      <div className="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-white to-transparent pointer-events-none" />
+      <div className="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-background to-transparent pointer-events-none" />
     </div>
   );
 }
@@ -529,14 +529,22 @@ const features: Feature[] = [
 
 export default function VoiceConnectivityGrid() {
   return (
-    <section className="bg-white py-12 sm:py-16 md:py-20">
-      <style>{`.voice-dotgrid { background-image: radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px); background-size: 16px 16px; background-position: center center; }`}</style>
+    <section className="bg-background border-t border-border py-12 sm:py-16 md:py-20">
+      <style>{`.voice-dotgrid { background-image: radial-gradient(circle, hsl(var(--border)) 1px, transparent 1px); background-size: 16px 16px; background-position: center center; }`}</style>
       <div className="container mx-auto max-w-7xl px-4">
         {/* Section Header */}
-        <h2 className="font-sora text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] font-normal leading-[1.25] tracking-[-0.02em] text-black text-center mb-4 max-w-3xl mx-auto">
+        <div className="flex items-center gap-3 font-mono-ui text-[11px] uppercase tracking-[0.12em] text-muted-foreground mb-8">
+          <span className="flex items-center gap-2">
+            <span className="tabular-nums text-foreground/70">~</span>
+            <span className="h-px w-6 bg-border" />
+          </span>
+          <span>connectivity grid</span>
+          <span className="flex-1 border-t border-dashed border-border" />
+        </div>
+        <h2 className="font-sora text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] font-normal leading-[1.04] tracking-[-0.035em] text-foreground mb-4">
           Powerful voice connectivity
         </h2>
-        <p className="text-gray-600 text-center max-w-2xl mx-auto mb-10 md:mb-14">
+        <p className="text-muted-foreground max-w-2xl  mb-10 md:mb-14">
           Enterprise-grade telephony infrastructure that scales with your business.
         </p>
 
@@ -545,7 +553,7 @@ export default function VoiceConnectivityGrid() {
           {features.map((feature, index) => (
             <div
               key={index}
-              className="group rounded-xl bg-white border border-gray-200 overflow-hidden transition-all hover:shadow-lg hover:border-gray-300"
+              className="group rounded-xl bg-background border border-border overflow-hidden transition-all hover:shadow-lg hover:border-border-strong"
             >
               {/* Illustration */}
               {feature.illustration}
@@ -558,7 +566,7 @@ export default function VoiceConnectivityGrid() {
                     <Badge
                       key={i}
                       variant="secondary"
-                      className="bg-gray-100 text-gray-900 hover:bg-gray-200 text-xs"
+                      className="bg-muted text-foreground hover:bg-gray-200 text-xs"
                     >
                       {tag}
                     </Badge>
@@ -566,12 +574,12 @@ export default function VoiceConnectivityGrid() {
                 </div>
 
                 {/* Title */}
-                <h3 className="text-lg font-semibold text-black mb-2">
+                <h3 className="text-lg font-semibold text-foreground mb-2">
                   {feature.title}
                 </h3>
 
                 {/* Description */}
-                <p className="text-sm text-gray-600 leading-relaxed">
+                <p className="text-sm text-muted-foreground leading-relaxed">
                   {feature.description}
                 </p>
               </div>

@@ -58,6 +58,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
 
 import { cn } from "@/lib/utils";
 
@@ -169,20 +170,27 @@ const Navbar1 = ({ currentPage = "/" }: Navbar1Props) => {
   return (
     <header
       className={cn(
-        "fixed left-0 right-0 top-0 z-50 border-b border-gray-100 transition-all duration-200",
-        isScrolled ? "bg-white/95 shadow-sm backdrop-blur-sm" : "bg-white",
+        "fixed left-0 right-0 top-0 z-50 border-b border-border transition-all duration-200",
+        isScrolled ? "bg-background/85 shadow-sm backdrop-blur-md" : "bg-background",
       )}
     >
       <div className="mx-auto max-w-7xl px-4">
         <nav aria-label="Main navigation" className="flex h-[72px] items-center justify-between">
-          {/* Logo */}
-          <a href="/" className="flex shrink-0 items-center">
+          {/* Logo — swaps variants across themes */}
+          <a href="/" className="flex shrink-0 items-center" aria-label="Plivo home">
             <img
               src="/images/plivo-logo.svg"
               alt="Plivo"
               width={72}
               height={24}
-              className="h-6 w-auto"
+              className="h-6 w-auto dark:hidden"
+            />
+            <img
+              src="/images/plivo-logo-white.svg"
+              alt="Plivo"
+              width={72}
+              height={24}
+              className="hidden h-6 w-auto dark:block"
             />
           </a>
 
@@ -192,7 +200,7 @@ const Navbar1 = ({ currentPage = "/" }: Navbar1Props) => {
               {mainNavigation.map((navItem) =>
                 hasDropdown(navItem) ? (
                   <NavigationMenuItem key={navItem.title}>
-                    <NavigationMenuTrigger className="bg-transparent text-[15px] font-normal text-black hover:bg-gray-50 hover:text-black data-[state=open]:bg-gray-50">
+                    <NavigationMenuTrigger className="bg-transparent text-[14px] font-normal text-foreground hover:bg-surface hover:text-foreground data-[state=open]:bg-surface">
                       {navItem.title}
                     </NavigationMenuTrigger>
                     <NavigationMenuContent className="p-1.5">
@@ -201,27 +209,27 @@ const Navbar1 = ({ currentPage = "/" }: Navbar1Props) => {
                           <div>
                             {navItem.sections.map((section) => (
                               <div key={section.title}>
-                                <ul className="grid grid-cols-2 gap-2 rounded-lg border border-gray-100 bg-white p-2">
+                                <ul className="grid grid-cols-2 gap-2 rounded-lg border border-border bg-popover p-2">
                                   {section.items.map((item) => (
                                     <li key={item.title}>
                                       <NavigationMenuLink asChild>
                                         <a
                                           href={item.href}
-                                          className="group flex items-center gap-2.5 rounded-md p-2 transition-colors hover:bg-gray-50"
+                                          className="group flex items-center gap-2.5 rounded-md p-2 transition-colors hover:bg-surface"
                                         >
                                           {item.icon && iconMap[item.icon] && (
-                                            <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md border border-gray-200 bg-white shadow-sm">
-                                              <span className="text-gray-800 [&>svg]:h-3.5 [&>svg]:w-3.5">
+                                            <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md border border-border bg-background shadow-sm">
+                                              <span className="text-foreground [&>svg]:h-3.5 [&>svg]:w-3.5">
                                                 {iconMap[item.icon]}
                                               </span>
                                             </div>
                                           )}
                                           <div className="flex flex-col">
-                                            <span className="text-[13px] font-semibold text-gray-900 group-hover:text-[#323DFE]">
+                                            <span className="text-[13px] font-semibold text-foreground group-hover:text-primary">
                                               {item.title}
                                             </span>
                                             {item.description && (
-                                              <span className="text-[11px] leading-snug text-gray-500">
+                                              <span className="text-[11px] leading-snug text-muted-foreground">
                                                 {item.description}
                                               </span>
                                             )}
@@ -238,7 +246,7 @@ const Navbar1 = ({ currentPage = "/" }: Navbar1Props) => {
                         {navItem.bottomItems &&
                           navItem.bottomItems.length > 0 && (
                             <div className="px-2 py-2.5">
-                              <p className="mb-1.5 text-[11px] font-medium uppercase tracking-wider text-gray-400">
+                              <p className="mb-1.5 font-mono-ui text-[10px] font-medium uppercase tracking-[0.08em] text-muted-foreground">
                                 More products
                               </p>
                               <div className="flex items-center gap-4">
@@ -246,10 +254,10 @@ const Navbar1 = ({ currentPage = "/" }: Navbar1Props) => {
                                   <a
                                     key={item.title}
                                     href={item.href}
-                                    className="flex items-center gap-1.5 text-[13px] font-medium text-gray-700 hover:text-[#323DFE]"
+                                    className="flex items-center gap-1.5 text-[13px] font-medium text-foreground/80 hover:text-primary transition-colors"
                                   >
                                     {item.icon && iconMap[item.icon] && (
-                                      <span className="text-gray-500 [&>svg]:h-3.5 [&>svg]:w-3.5">
+                                      <span className="text-muted-foreground [&>svg]:h-3.5 [&>svg]:w-3.5">
                                         {iconMap[item.icon]}
                                       </span>
                                     )}
@@ -267,7 +275,7 @@ const Navbar1 = ({ currentPage = "/" }: Navbar1Props) => {
                     <NavigationMenuLink asChild>
                       <a
                         href={navItem.href}
-                        className="inline-flex h-10 items-center justify-center rounded-md px-4 py-2 text-[15px] font-normal text-black transition-colors hover:bg-gray-50 hover:text-black focus:bg-gray-50 focus:text-black focus:outline-none"
+                        className="inline-flex h-10 items-center justify-center rounded-md px-4 py-2 text-[14px] font-normal text-foreground transition-colors hover:bg-surface focus:bg-surface focus:outline-none"
                       >
                         {navItem.title}
                       </a>
@@ -284,7 +292,7 @@ const Navbar1 = ({ currentPage = "/" }: Navbar1Props) => {
             {geoCategory === "supported" && (
               <a
                 href="https://cx.plivo.com/login"
-                className="hidden items-center justify-center px-3.5 py-1.5 text-[13px] font-normal text-gray-700 transition-all hover:text-black lg:inline-flex"
+                className="hidden items-center justify-center px-3.5 py-1.5 text-[13px] font-normal text-muted-foreground transition-all hover:text-foreground lg:inline-flex"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -297,16 +305,21 @@ const Navbar1 = ({ currentPage = "/" }: Navbar1Props) => {
               <a
                 key={item.title}
                 href={item.href}
-                className="hidden items-center justify-center rounded-md border border-gray-300 bg-white px-3.5 py-1.5 text-[13px] font-normal text-gray-700 transition-all hover:border-gray-400 hover:text-black lg:inline-flex"
+                className="hidden items-center justify-center rounded-md border border-border bg-background px-3.5 py-1.5 text-[13px] font-normal text-foreground transition-all hover:border-border-strong hover:bg-surface lg:inline-flex"
               >
                 {item.title}
               </a>
             ))}
 
+            {/* Theme Toggle - Desktop */}
+            <div className="hidden lg:inline-flex">
+              <ThemeToggle size="sm" />
+            </div>
+
             {/* Primary CTA - Desktop */}
             <a
               href={signupUrl}
-              className="hidden items-center rounded-md bg-black px-3.5 py-1.5 text-[13px] font-normal text-white transition-all cta-hover-gradient lg:inline-flex"
+              className="hidden items-center rounded-md bg-foreground px-3.5 py-1.5 text-[13px] font-medium text-background transition-all cta-hover-gradient hover:text-white lg:inline-flex"
               {...(isExternalCta && {
                 target: "_blank",
                 rel: "noopener noreferrer",
@@ -318,7 +331,7 @@ const Navbar1 = ({ currentPage = "/" }: Navbar1Props) => {
             {/* Primary CTA - Mobile (left of hamburger) */}
             <a
               href={signupUrl}
-              className="inline-flex items-center rounded-md bg-black px-3 py-1.5 text-[12px] font-medium text-white transition-all cta-hover-gradient lg:hidden"
+              className="inline-flex items-center rounded-md bg-foreground px-3 py-1.5 text-[12px] font-medium text-background transition-all cta-hover-gradient hover:text-white lg:hidden"
               {...(isExternalCta && {
                 target: "_blank",
                 rel: "noopener noreferrer",
@@ -331,20 +344,20 @@ const Navbar1 = ({ currentPage = "/" }: Navbar1Props) => {
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
               <SheetTrigger asChild>
                 <button
-                  className="relative flex h-9 w-9 items-center justify-center rounded-md transition-colors hover:bg-gray-100 lg:hidden"
+                  className="relative flex h-9 w-9 items-center justify-center rounded-md transition-colors hover:bg-surface lg:hidden"
                   aria-label="Open menu"
                 >
                   <div className="flex flex-col items-center justify-center gap-[5px]">
                     <span className={cn(
-                      "block h-[1.5px] w-5 rounded-full bg-gray-800 transition-all duration-300",
+                      "block h-[1.5px] w-5 rounded-full bg-foreground transition-all duration-300",
                       isOpen && "translate-y-[6.5px] rotate-45"
                     )} />
                     <span className={cn(
-                      "block h-[1.5px] w-5 rounded-full bg-gray-800 transition-all duration-300",
+                      "block h-[1.5px] w-5 rounded-full bg-foreground transition-all duration-300",
                       isOpen && "opacity-0"
                     )} />
                     <span className={cn(
-                      "block h-[1.5px] w-5 rounded-full bg-gray-800 transition-all duration-300",
+                      "block h-[1.5px] w-5 rounded-full bg-foreground transition-all duration-300",
                       isOpen && "-translate-y-[6.5px] -rotate-45"
                     )} />
                   </div>
@@ -352,10 +365,10 @@ const Navbar1 = ({ currentPage = "/" }: Navbar1Props) => {
               </SheetTrigger>
               <SheetContent
                 side="right"
-                className="w-[85vw] max-w-sm overflow-y-auto bg-white p-0"
+                className="w-[85vw] max-w-sm overflow-y-auto bg-background p-0 text-foreground"
               >
                 {/* Header */}
-                <div className="flex items-center border-b border-gray-100 px-5 py-4">
+                <div className="flex items-center justify-between border-b border-border px-5 py-4">
                   <SheetHeader className="flex-row items-center space-y-0">
                     <SheetTitle className="text-base font-semibold">
                       <a href="/" className="flex items-center" onClick={() => setIsOpen(false)}>
@@ -364,11 +377,19 @@ const Navbar1 = ({ currentPage = "/" }: Navbar1Props) => {
                           alt="Plivo"
                           width={60}
                           height={20}
-                          className="h-5 w-auto"
+                          className="h-5 w-auto dark:hidden"
+                        />
+                        <img
+                          src="/images/plivo-logo-white.svg"
+                          alt="Plivo"
+                          width={60}
+                          height={20}
+                          className="hidden h-5 w-auto dark:block"
                         />
                       </a>
                     </SheetTitle>
                   </SheetHeader>
+                  <ThemeToggle size="sm" />
                 </div>
 
                 {/* Nav links */}
@@ -379,9 +400,9 @@ const Navbar1 = ({ currentPage = "/" }: Navbar1Props) => {
                         <AccordionItem
                           key={navItem.title}
                           value={`item-${idx}`}
-                          className="border-b border-gray-100"
+                          className="border-b border-border"
                         >
-                          <AccordionTrigger className="py-3.5 text-[15px] font-normal text-black hover:no-underline [&>svg:last-child]:hidden">
+                          <AccordionTrigger className="py-3.5 text-[15px] font-normal text-foreground hover:no-underline [&>svg:last-child]:hidden">
                             {navItem.title}
                             <svg
                               className="relative top-px ml-1 size-3 shrink-0 transition duration-300 [[data-state=open]>&]:rotate-180"
@@ -399,27 +420,27 @@ const Navbar1 = ({ currentPage = "/" }: Navbar1Props) => {
                           <AccordionContent className="pb-3">
                             {navItem.sections?.map((section) => (
                               <div key={section.title} className="mb-3 last:mb-0">
-                                <div className="space-y-1 rounded-lg border border-gray-100 bg-white p-2">
+                                <div className="space-y-1 rounded-lg border border-border bg-background p-2">
                                   {section.items.map((item) => (
                                     <a
                                       key={item.title}
                                       href={item.href}
-                                      className="group flex items-center gap-2.5 rounded-md p-2 transition-colors hover:bg-gray-50"
+                                      className="group flex items-center gap-2.5 rounded-md p-2 transition-colors hover:bg-surface"
                                       onClick={() => setIsOpen(false)}
                                     >
                                       {item.icon && iconMap[item.icon] && (
-                                        <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md border border-gray-200 bg-white shadow-sm">
-                                          <span className="text-gray-800 [&>svg]:h-3.5 [&>svg]:w-3.5">
+                                        <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md border border-border bg-background shadow-sm">
+                                          <span className="text-foreground [&>svg]:h-3.5 [&>svg]:w-3.5">
                                             {iconMap[item.icon]}
                                           </span>
                                         </div>
                                       )}
                                       <div className="flex flex-col min-w-0">
-                                        <span className="text-[13px] font-semibold text-gray-900 group-hover:text-[#323DFE]">
+                                        <span className="text-[13px] font-semibold text-foreground group-hover:text-primary">
                                           {item.title}
                                         </span>
                                         {item.description && (
-                                          <span className="text-[11px] leading-snug text-gray-500">
+                                          <span className="text-[11px] leading-snug text-muted-foreground">
                                             {item.description}
                                           </span>
                                         )}
@@ -431,7 +452,7 @@ const Navbar1 = ({ currentPage = "/" }: Navbar1Props) => {
                             ))}
                             {navItem.bottomItems && navItem.bottomItems.length > 0 && (
                               <div className="mt-2 pt-2.5 px-2">
-                                <p className="mb-1.5 text-[11px] font-medium uppercase tracking-wider text-gray-400">
+                                <p className="mb-1.5 font-mono-ui text-[10px] font-medium uppercase tracking-[0.08em] text-muted-foreground">
                                   More products
                                 </p>
                                 <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
@@ -439,11 +460,11 @@ const Navbar1 = ({ currentPage = "/" }: Navbar1Props) => {
                                     <a
                                       key={item.title}
                                       href={item.href}
-                                      className="flex items-center gap-1.5 text-[13px] font-medium text-gray-700 hover:text-[#323DFE] transition-colors"
+                                      className="flex items-center gap-1.5 text-[13px] font-medium text-foreground/80 hover:text-primary transition-colors"
                                       onClick={() => setIsOpen(false)}
                                     >
                                       {item.icon && iconMap[item.icon] && (
-                                        <span className="text-gray-500 [&>svg]:h-3.5 [&>svg]:w-3.5">
+                                        <span className="text-muted-foreground [&>svg]:h-3.5 [&>svg]:w-3.5">
                                           {iconMap[item.icon]}
                                         </span>
                                       )}
@@ -459,7 +480,7 @@ const Navbar1 = ({ currentPage = "/" }: Navbar1Props) => {
                         <a
                           key={navItem.title}
                           href={navItem.href}
-                          className="flex items-center border-b border-gray-100 py-3.5 text-[15px] font-normal text-black hover:text-[#323DFE] transition-colors"
+                          className="flex items-center border-b border-border py-3.5 text-[15px] font-normal text-foreground hover:text-primary transition-colors"
                           onClick={() => setIsOpen(false)}
                         >
                           {navItem.title}
@@ -472,7 +493,7 @@ const Navbar1 = ({ currentPage = "/" }: Navbar1Props) => {
                   <div className="mt-8 flex flex-col gap-3">
                     <a
                       href={signupUrl}
-                      className="flex w-full items-center justify-center rounded-md bg-black px-4 py-3 text-[14px] font-medium text-white transition-colors cta-hover-gradient"
+                      className="flex w-full items-center justify-center rounded-md bg-foreground px-4 py-3 text-[14px] font-medium text-background transition-colors cta-hover-gradient hover:text-white"
                       onClick={() => setIsOpen(false)}
                       {...(isExternalCta && {
                         target: "_blank",
@@ -485,7 +506,7 @@ const Navbar1 = ({ currentPage = "/" }: Navbar1Props) => {
                       <a
                         key={item.title}
                         href={item.href}
-                        className="flex w-full items-center justify-center rounded-md border border-gray-300 px-4 py-3 text-[14px] font-medium text-gray-700 transition-colors hover:border-gray-400 hover:text-black"
+                        className="flex w-full items-center justify-center rounded-md border border-border px-4 py-3 text-[14px] font-medium text-foreground transition-colors hover:border-border-strong hover:bg-surface"
                         onClick={() => setIsOpen(false)}
                       >
                         {item.title}

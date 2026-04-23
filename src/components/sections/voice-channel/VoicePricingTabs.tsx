@@ -34,12 +34,12 @@ const INDIA_REQUIREMENTS_URL =
 const RECORDING_STORAGE_URL =
   "https://support.plivo.com/hc/en-us/articles/20048101619353-Does-Plivo-charge-for-recording-storage";
 const SECTION_HEADING_CLASS =
-  "font-sans text-xl font-semibold text-black mb-2";
-const SECTION_DESCRIPTION_CLASS = "mb-6 text-sm text-gray-500";
+  "font-sans text-xl font-semibold text-foreground mb-2";
+const SECTION_DESCRIPTION_CLASS = "mb-6 text-sm text-muted-foreground";
 const INLINE_LINK_CLASS =
-  "font-medium text-[#323dfe] hover:text-[#2832cc] hover:underline transition-colors";
+  "font-medium text-primary hover:text-primary hover:underline transition-colors";
 const TEXT_LINK_CLASS =
-  "text-[#323dfe] hover:text-[#2832cc] hover:underline transition-colors";
+  "text-primary hover:text-primary hover:underline transition-colors";
 
 type SectionId =
   | "voice-calls"
@@ -124,7 +124,7 @@ function getSections(
 }
 
 const Shimmer = () => (
-  <span className="inline-block h-4 w-20 animate-pulse rounded bg-gray-100" />
+  <span className="inline-block h-4 w-20 animate-pulse rounded bg-muted" />
 );
 
 function getVoicePricingDescription() {
@@ -313,48 +313,57 @@ export default function VoicePricingTabs({
 
   return (
     <>
-      <section className="bg-white pb-10 pt-[56px] sm:pt-[64px] md:pt-[72px]">
+      <section className="bg-background border-t border-border pb-10 pt-[56px] sm:pt-[64px] md:pt-[72px]">
         <div className="container mx-auto max-w-7xl px-4">
           <div className="text-center">
-            <h1 className="font-sora mb-4 text-[2rem] font-normal leading-[1.1] tracking-[-0.02em] text-black sm:text-[2.5rem] md:text-[3rem]">
+            <div className="flex items-center gap-3 font-mono-ui text-[11px] uppercase tracking-[0.12em] text-muted-foreground mb-8">
+            <span className="flex items-center gap-2">
+              <span className="tabular-nums text-foreground/70">~</span>
+              <span className="h-px w-6 bg-border" />
+            </span>
+            <span>voice pricing</span>
+            <span className="flex-1 border-t border-dashed border-border" />
+            <span>per-minute · pay as you go</span>
+          </div>
+          <h1 className="font-sora text-[2rem] font-normal leading-[1.1] tracking-[-0.02em] text-foreground sm:text-[2.5rem] md:text-[3rem]">
               Voice Pricing
             </h1>
-            <p className="mx-auto max-w-3xl text-base text-gray-600 sm:text-lg">
+            <p className="max-w-3xl text-base text-muted-foreground sm:text-lg">
               {getVoicePricingDescription()}
             </p>
           </div>
         </div>
       </section>
 
-      <section className="bg-white pb-12 lg:pb-20">
+      <section className="bg-background border-t border-border pb-12 lg:pb-20">
         <div className="container mx-auto max-w-7xl px-4">
           <div className="lg:grid lg:grid-cols-[256px_1fr] lg:items-start lg:gap-8">
             <div ref={sidebarWrapperRef} className="mb-8 lg:mb-0">
-              <aside className="z-30 bg-white" style={sidebarStyle}>
+              <aside className="z-30 bg-background" style={sidebarStyle}>
                 <div className="relative mb-6" ref={dropdownRef}>
-                  <label className="mb-2 block text-sm font-medium text-gray-700">
+                  <label className="mb-2 block text-sm font-medium text-foreground/80">
                     Select Country
                   </label>
                   <button
                     type="button"
                     onClick={() => setIsCountryOpen((open) => !open)}
-                    className="flex w-full items-center gap-3 rounded-lg border border-gray-300 bg-white px-4 py-2.5 transition-colors hover:border-gray-400"
+                    className="flex w-full items-center gap-3 rounded-lg border border-border-strong bg-background px-4 py-2.5 transition-colors hover:border-border-strong"
                   >
                     <span className="text-xl">{selectedCountry.flag}</span>
-                    <span className="flex-1 text-left text-sm font-medium text-gray-900">
+                    <span className="flex-1 text-left text-sm font-medium text-foreground">
                       {selectedCountry.name}
                     </span>
                     <ChevronDown
                       className={cn(
-                        "h-4 w-4 text-gray-400 transition-transform",
+                        "h-4 w-4 text-muted-foreground transition-transform",
                         isCountryOpen && "rotate-180",
                       )}
                     />
                   </button>
 
                   {isCountryOpen && (
-                    <div className="absolute left-0 right-0 top-full z-10 mt-1 flex max-h-72 flex-col overflow-hidden rounded-lg border border-gray-200 bg-white shadow-lg">
-                      <div className="border-b border-gray-100 p-2">
+                    <div className="absolute left-0 right-0 top-full z-10 mt-1 flex max-h-72 flex-col overflow-hidden rounded-lg border border-border bg-background shadow-sm">
+                      <div className="border-b border-border p-2">
                         <input
                           type="text"
                           placeholder="Search country..."
@@ -362,7 +371,7 @@ export default function VoicePricingTabs({
                           onChange={(event) =>
                             setSearchQuery(event.target.value)
                           }
-                          className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 placeholder:text-gray-400 focus:border-gray-500 focus:outline-none"
+                          className="w-full rounded-md border border-border-strong bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:border-gray-500 focus:outline-none"
                           autoFocus
                         />
                       </div>
@@ -372,26 +381,26 @@ export default function VoicePricingTabs({
                             {!country.isPriority &&
                               index > 0 &&
                               filteredCountries[index - 1]?.isPriority && (
-                                <div className="my-1 border-t border-gray-200" />
+                                <div className="my-1 border-t border-border" />
                               )}
                             <button
                               type="button"
                               onClick={() => handleCountryChange(country)}
                               className={cn(
-                                "flex w-full items-center gap-2.5 px-4 py-2.5 text-left transition-colors hover:bg-gray-50",
+                                "flex w-full items-center gap-2.5 px-4 py-2.5 text-left transition-colors hover:bg-surface",
                                 selectedCountry.code === country.code &&
-                                  "bg-[#323dfe]/5",
+                                  "bg-primary/5",
                               )}
                             >
                               <span className="text-xl">{country.flag}</span>
-                              <span className="text-sm text-gray-900">
+                              <span className="text-sm text-foreground">
                                 {country.name}
                               </span>
                             </button>
                           </div>
                         ))}
                         {filteredCountries.length === 0 && (
-                          <div className="px-4 py-3 text-sm text-gray-500">
+                          <div className="px-4 py-3 text-sm text-muted-foreground">
                             No countries found
                           </div>
                         )}
@@ -401,7 +410,7 @@ export default function VoicePricingTabs({
                 </div>
 
                 <nav className="hidden lg:block">
-                  <p className="mb-3 text-sm font-medium text-gray-700">
+                  <p className="mb-3 text-sm font-medium text-foreground/80">
                     Jump to section
                   </p>
                   <ul className="space-y-1">
@@ -413,8 +422,8 @@ export default function VoicePricingTabs({
                           className={cn(
                             "w-full border-l-2 px-3 py-2 text-left text-sm transition-colors",
                             activeSection === section.id
-                              ? "border-[#323dfe] font-medium text-[#323dfe]"
-                              : "border-transparent text-gray-600 hover:border-gray-300 hover:text-gray-900",
+                              ? "border-primary font-medium text-primary"
+                              : "border-transparent text-muted-foreground hover:border-border-strong hover:text-foreground",
                           )}
                         >
                           {section.label}
@@ -429,7 +438,7 @@ export default function VoicePricingTabs({
             <div ref={contentRef} className="min-w-0">
               <div
                 id="voice-calls"
-                className="mb-6 rounded-xl border border-gray-200 bg-white p-6"
+                className="mb-6 rounded-xl border border-border bg-background p-6"
               >
                 <VoiceCallRatesSection
                   countryCode={selectedCountry.code}
@@ -442,7 +451,7 @@ export default function VoicePricingTabs({
               {phoneRentalRows.length > 0 && (
                 <div
                   id="phone-number-rental"
-                  className="mb-6 rounded-xl border border-gray-200 bg-white p-6"
+                  className="mb-6 rounded-xl border border-border bg-background p-6"
                 >
                   <PhoneRentalSection
                     loading={loading}
@@ -453,7 +462,7 @@ export default function VoicePricingTabs({
 
               <div
                 id="add-on-services"
-                className="mb-6 rounded-xl border border-gray-200 bg-white p-6"
+                className="mb-6 rounded-xl border border-border bg-background p-6"
               >
                 <AddOnsSection
                   countryCode={selectedCountry.code}
@@ -464,7 +473,7 @@ export default function VoicePricingTabs({
               {destinationRates.length > 0 && (
                 <div
                   id="detailed-pricing"
-                  className="mb-6 rounded-xl border border-gray-200 bg-white p-6"
+                  className="mb-6 rounded-xl border border-border bg-background p-6"
                 >
                   <DestinationRatesSection
                     countryCode={selectedCountry.code}
@@ -474,7 +483,7 @@ export default function VoicePricingTabs({
                 </div>
               )}
 
-              <div className="rounded-xl border border-gray-200 bg-white p-6">
+              <div className="rounded-xl border border-border bg-background p-6">
                 <VoiceCostCalculator
                   initialCountryCode={selectedCountry.code}
                 />
@@ -508,11 +517,11 @@ function VoiceCallRatesSection({
     if (loading) return <Shimmer />;
 
     if (options?.forceFree) {
-      return <span className="text-sm font-medium text-black">Free</span>;
+      return <span className="text-sm font-medium text-foreground">Free</span>;
     }
 
     if (!value || value === "Not Supported") {
-      return <span className="text-sm text-gray-400">Not Supported</span>;
+      return <span className="text-sm text-muted-foreground">Not Supported</span>;
     }
 
     const hasStartsAt = value.startsWith("Starts at ");
@@ -522,8 +531,8 @@ function VoiceCallRatesSection({
 
     return (
       <div>
-        {hasStartsAt && <div className="text-xs text-gray-500">Starts at</div>}
-        <div className="text-sm font-medium text-black">
+        {hasStartsAt && <div className="text-xs text-muted-foreground">Starts at</div>}
+        <div className="text-sm font-medium text-foreground">
           {convertPriceString(normalizedValue, countryCode)}
         </div>
         {options?.linkToDetails && (
@@ -575,21 +584,21 @@ function VoiceCallRatesSection({
       <div className="overflow-x-auto">
         <table className="w-full">
           <thead>
-            <tr className="border-b border-gray-200">
-              <th className="w-[40%] py-3 pr-4 text-left text-sm font-semibold text-black">
+            <tr className="border-b border-border">
+              <th className="w-[40%] py-3 pr-4 text-left text-sm font-semibold text-foreground">
                 Route Type
               </th>
-              <th className="py-3 pr-4 text-left text-sm font-semibold text-black">
+              <th className="py-3 pr-4 text-left text-sm font-semibold text-foreground">
                 To Make Calls (Outbound)
               </th>
-              <th className="py-3 text-left text-sm font-semibold text-black">
+              <th className="py-3 text-left text-sm font-semibold text-foreground">
                 To Receive Calls (Inbound)
               </th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-gray-100">
+          <tbody className="divide-y divide-border">
             <tr>
-              <td className="py-3 pr-4 text-sm text-gray-900">Local Calls</td>
+              <td className="py-3 pr-4 text-sm text-foreground">Local Calls</td>
               <td className="py-3 pr-4">
                 {renderRate(rates?.localOutbound, {
                   linkToDetails: !isIndia && hasDestinationRates,
@@ -599,7 +608,7 @@ function VoiceCallRatesSection({
             </tr>
             {showMobile && (
               <tr>
-                <td className="py-3 pr-4 text-sm text-gray-900">
+                <td className="py-3 pr-4 text-sm text-foreground">
                   Mobile Calls
                 </td>
                 <td className="py-3 pr-4">
@@ -610,7 +619,7 @@ function VoiceCallRatesSection({
             )}
             {showTollfree && (
               <tr>
-                <td className="py-3 pr-4 text-sm text-gray-900">
+                <td className="py-3 pr-4 text-sm text-foreground">
                   Toll-Free Calls
                 </td>
                 <td className="py-3 pr-4">
@@ -620,21 +629,21 @@ function VoiceCallRatesSection({
               </tr>
             )}
             <tr>
-              <td className="py-3 pr-4 text-sm text-gray-900">
+              <td className="py-3 pr-4 text-sm text-foreground">
                 Browser SDK and SIP Calls
               </td>
               <td className="py-3 pr-4">{renderRate(rates?.ipOutbound)}</td>
               <td className="py-3">{renderRate(hasCoverage ? rates?.ipInbound : "Not Supported")}</td>
             </tr>
             <tr>
-              <td className="py-3 pr-4 text-sm text-gray-900">
+              <td className="py-3 pr-4 text-sm text-foreground">
                 Audio streaming & noise cancellation
               </td>
               <td className="py-3 pr-4">
-                <span className="text-sm font-medium text-black">Included</span>
+                <span className="text-sm font-medium text-foreground">Included</span>
               </td>
               <td className="py-3">
-                <span className="text-sm font-medium text-black">Included</span>
+                <span className="text-sm font-medium text-foreground">Included</span>
               </td>
             </tr>
           </tbody>
@@ -642,7 +651,7 @@ function VoiceCallRatesSection({
       </div>
 
       {isIndia && (
-        <div className="mt-5 rounded-lg bg-gray-50 p-4">
+        <div className="mt-5 rounded-lg bg-surface p-4">
           <a
             href={INDIA_REQUIREMENTS_URL}
             target="_blank"
@@ -686,22 +695,22 @@ function PhoneRentalSection({
       <div className="overflow-x-auto">
         <table className="w-full">
           <thead>
-            <tr className="border-b border-gray-200">
-              <th className="w-[65%] py-3 pr-4 text-left text-sm font-semibold text-black">
+            <tr className="border-b border-border">
+              <th className="w-[65%] py-3 pr-4 text-left text-sm font-semibold text-foreground">
                 Route Type
               </th>
-              <th className="py-3 text-left text-sm font-semibold text-black">
+              <th className="py-3 text-left text-sm font-semibold text-foreground">
                 Price
               </th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-gray-100">
+          <tbody className="divide-y divide-border">
             {phoneRates.map((phoneRate, index) => (
               <tr key={`${phoneRate.type}-${index}`}>
-                <td className="py-3 pr-4 text-sm text-gray-900">
+                <td className="py-3 pr-4 text-sm text-foreground">
                   {formatPhoneType(phoneRate.type)}
                 </td>
-                <td className="py-3 text-sm font-medium text-black">
+                <td className="py-3 text-sm font-medium text-foreground">
                   {loading ? <Shimmer /> : phoneRate.displayRate}
                 </td>
               </tr>
@@ -729,25 +738,25 @@ function DestinationRatesSection({
     <div>
       <div className="mb-6">
         <h2 className={SECTION_HEADING_CLASS}>Detailed Network Pricing</h2>
-        <p className="text-sm text-gray-500">
+        <p className="text-sm text-muted-foreground">
           Pricing per network group -{" "}
-          <span className="font-semibold text-black">Outbound calls</span>
+          <span className="font-semibold text-foreground">Outbound calls</span>
         </p>
       </div>
 
       <div className="overflow-x-auto">
         <table className="w-full">
           <thead>
-            <tr className="border-b border-gray-200">
-              <th className="w-[65%] py-3 pr-4 text-left text-sm font-semibold text-black">
+            <tr className="border-b border-border">
+              <th className="w-[65%] py-3 pr-4 text-left text-sm font-semibold text-foreground">
                 Network Group
               </th>
-              <th className="py-3 text-left text-sm font-semibold text-black">
+              <th className="py-3 text-left text-sm font-semibold text-foreground">
                 Pricing
               </th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-gray-100">
+          <tbody className="divide-y divide-border">
             {loading ? (
               <tr>
                 <td className="py-3 pr-4">
@@ -762,7 +771,7 @@ function DestinationRatesSection({
                 <Fragment key={`${entry.networkGroup}-${index}`}>
                   <tr>
                     <td className="py-3 pr-4">
-                      <span className="text-sm text-gray-900">
+                      <span className="text-sm text-foreground">
                         {entry.networkGroup}
                       </span>
                       {entry.destinationPrefixes.length > 0 && (
@@ -781,7 +790,7 @@ function DestinationRatesSection({
                         </button>
                       )}
                     </td>
-                    <td className="py-3 text-sm font-medium text-black">
+                    <td className="py-3 text-sm font-medium text-foreground">
                       {convertPriceString(entry.rate, countryCode)}
                     </td>
                   </tr>
@@ -789,12 +798,12 @@ function DestinationRatesSection({
                     entry.destinationPrefixes.length > 0 && (
                       <tr>
                         <td colSpan={2} className="px-2 pb-3">
-                          <div className="flex flex-wrap gap-1.5 rounded-lg bg-gray-50 p-3 text-xs text-gray-600">
+                          <div className="flex flex-wrap gap-1.5 rounded-lg bg-surface p-3 text-xs text-muted-foreground">
                             {entry.destinationPrefixes.map(
                               (prefix, prefixIndex) => (
                                 <span
                                   key={`${prefix}-${prefixIndex}`}
-                                  className="rounded border border-gray-200 bg-white px-2 py-0.5"
+                                  className="rounded border border-border bg-background px-2 py-0.5"
                                 >
                                   {prefix}
                                 </span>
@@ -835,23 +844,23 @@ function AddOnsSection({
       <div className="overflow-x-auto">
         <table className="w-full">
           <thead>
-            <tr className="border-b border-gray-200">
-              <th className="w-[65%] py-3 pr-4 text-left text-sm font-semibold text-black">
+            <tr className="border-b border-border">
+              <th className="w-[65%] py-3 pr-4 text-left text-sm font-semibold text-foreground">
                 Service
               </th>
-              <th className="py-3 text-left text-sm font-semibold text-black">
+              <th className="py-3 text-left text-sm font-semibold text-foreground">
                 Price
               </th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-gray-100">
+          <tbody className="divide-y divide-border">
             {rows.map((row) => (
               <tr key={row.label}>
-                <td className="py-3 pr-4 text-sm text-gray-900">
+                <td className="py-3 pr-4 text-sm text-foreground">
                   {row.beta ? (
                     <div className="flex items-center gap-2">
                       <span>{row.label}</span>
-                      <span className="rounded-full bg-gray-100 px-2 py-0.5 text-[11px] font-medium uppercase tracking-[0.08em] text-gray-600">
+                      <span className="rounded-full bg-muted px-2 py-0.5 text-[11px] font-medium uppercase tracking-[0.08em] text-muted-foreground">
                         Beta
                       </span>
                     </div>
@@ -859,14 +868,14 @@ function AddOnsSection({
                     row.label
                   )}
                 </td>
-                <td className="py-3 text-sm font-medium text-black">
+                <td className="py-3 text-sm font-medium text-foreground">
                   {loading ? (
                     <Shimmer />
                   ) : row.tiers ? (
                     <div className="space-y-2">
                       {row.tiers.map((tier) => (
                         <div key={tier.label}>
-                          <div className="text-xs text-gray-500">
+                          <div className="text-xs text-muted-foreground">
                             {tier.label}
                           </div>
                           <div>{tier.value}</div>
@@ -881,8 +890,8 @@ function AddOnsSection({
             ))}
             {!isIndia && (
               <tr>
-                <td className="py-3 pr-4 text-sm text-gray-900">CNAM Lookup</td>
-                <td className="py-3 text-sm font-medium text-black">
+                <td className="py-3 pr-4 text-sm text-foreground">CNAM Lookup</td>
+                <td className="py-3 text-sm font-medium text-foreground">
                   {loading ? <Shimmer /> : "$0.00500/lookup"}
                 </td>
               </tr>
@@ -891,7 +900,7 @@ function AddOnsSection({
         </table>
       </div>
 
-      <p className="mt-4 text-sm text-gray-600">
+      <p className="mt-4 text-sm text-muted-foreground">
         * Free for 90 days. $0.0004/min per month afterwards.{" "}
         <a
           href={RECORDING_STORAGE_URL}
@@ -1016,46 +1025,46 @@ function VoiceCostCalculator({
     <div>
       <div className="mb-6">
         <h2 className={SECTION_HEADING_CLASS}>Voice Price Calculator</h2>
-        <p className="text-sm text-gray-500">
+        <p className="text-sm text-muted-foreground">
           Cost comparison for{" "}
-          <span className="font-semibold text-black">{volume.toLocaleString()}</span>{" "}
+          <span className="font-semibold text-foreground">{volume.toLocaleString()}</span>{" "}
           calling mins in{" "}
-          <span className="font-semibold text-black">{selectedCountry.name}</span>.
+          <span className="font-semibold text-foreground">{selectedCountry.name}</span>.
         </p>
       </div>
 
       <div className="grid gap-6 lg:grid-cols-[280px_1fr]">
-        <div className="rounded-xl border border-gray-200 bg-gray-50 p-5">
+        <div className="rounded-xl border border-border bg-surface p-5">
           <div className="relative mb-5" ref={dropdownRef}>
-            <label className="mb-2 block text-sm font-medium text-gray-700">
+            <label className="mb-2 block text-sm font-medium text-foreground/80">
               Pricing Geography
             </label>
             <button
               type="button"
               onClick={() => setIsCountryOpen((open) => !open)}
-              className="flex w-full items-center gap-3 rounded-lg border border-gray-300 bg-white px-4 py-2.5 transition-colors hover:border-gray-400"
+              className="flex w-full items-center gap-3 rounded-lg border border-border-strong bg-background px-4 py-2.5 transition-colors hover:border-border-strong"
             >
               <span className="text-xl">{selectedCountry.flag}</span>
-              <span className="flex-1 text-left text-sm font-medium text-gray-900">
+              <span className="flex-1 text-left text-sm font-medium text-foreground">
                 {selectedCountry.name}
               </span>
               <ChevronDown
                 className={cn(
-                  "h-4 w-4 text-gray-400 transition-transform",
+                  "h-4 w-4 text-muted-foreground transition-transform",
                   isCountryOpen && "rotate-180",
                 )}
               />
             </button>
 
             {isCountryOpen && (
-              <div className="absolute left-0 right-0 top-full z-10 mt-1 flex max-h-72 flex-col overflow-hidden rounded-lg border border-gray-200 bg-white shadow-lg">
-                <div className="border-b border-gray-100 p-2">
+              <div className="absolute left-0 right-0 top-full z-10 mt-1 flex max-h-72 flex-col overflow-hidden rounded-lg border border-border bg-background shadow-sm">
+                <div className="border-b border-border p-2">
                   <input
                     type="text"
                     placeholder="Search country..."
                     value={searchQuery}
                     onChange={(event) => setSearchQuery(event.target.value)}
-                    className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 placeholder:text-gray-400 focus:border-gray-500 focus:outline-none"
+                    className="w-full rounded-md border border-border-strong bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:border-gray-500 focus:outline-none"
                     autoFocus
                   />
                 </div>
@@ -1065,7 +1074,7 @@ function VoiceCostCalculator({
                       {!country.isPriority &&
                         index > 0 &&
                         filteredCountries[index - 1]?.isPriority && (
-                          <div className="my-1 border-t border-gray-200" />
+                          <div className="my-1 border-t border-border" />
                         )}
                       <button
                         type="button"
@@ -1075,20 +1084,20 @@ function VoiceCostCalculator({
                           setSearchQuery("");
                         }}
                         className={cn(
-                          "flex w-full items-center gap-2.5 px-4 py-2.5 text-left transition-colors hover:bg-gray-50",
+                          "flex w-full items-center gap-2.5 px-4 py-2.5 text-left transition-colors hover:bg-surface",
                           selectedCountry.code === country.code &&
-                            "bg-[#323dfe]/5",
+                            "bg-primary/5",
                         )}
                       >
                         <span className="text-xl">{country.flag}</span>
-                        <span className="text-sm text-gray-900">
+                        <span className="text-sm text-foreground">
                           {country.name}
                         </span>
                       </button>
                     </div>
                   ))}
                   {filteredCountries.length === 0 && (
-                    <div className="px-4 py-3 text-sm text-gray-500">
+                    <div className="px-4 py-3 text-sm text-muted-foreground">
                       No countries found
                     </div>
                   )}
@@ -1098,9 +1107,9 @@ function VoiceCostCalculator({
           </div>
 
           <div>
-            <label className="mb-2 block text-sm font-medium text-gray-700">
+            <label className="mb-2 block text-sm font-medium text-foreground/80">
               Monthly call volume:{" "}
-              <span className="font-semibold text-black">
+              <span className="font-semibold text-foreground">
                 {volume.toLocaleString()} minutes
               </span>
             </label>
@@ -1116,7 +1125,7 @@ function VoiceCostCalculator({
                 background: `linear-gradient(to right, #323dfe ${((volume - 100000) / 500000) * 100}%, #e5e7eb ${((volume - 100000) / 500000) * 100}%)`,
               }}
             />
-            <div className="mt-1 flex justify-between text-xs text-gray-400">
+            <div className="mt-1 flex justify-between text-xs text-muted-foreground">
               <span>100K</span>
               <span>600K</span>
             </div>
@@ -1132,48 +1141,48 @@ function VoiceCostCalculator({
                   value={formatCurrency(otherCost)}
                   width={maxCost > 0 ? (otherCost / maxCost) * 100 : 0}
                   barClassName="bg-gray-400"
-                  labelClassName="text-gray-600"
+                  labelClassName="text-muted-foreground"
                 />
                 <CostComparisonBar
                   label="Plivo"
                   value={formatCurrency(plivoCost)}
                   width={maxCost > 0 ? (plivoCost / maxCost) * 100 : 0}
-                  barClassName="bg-[#323dfe]"
-                  labelClassName="text-black"
+                  barClassName="bg-primary"
+                  labelClassName="text-foreground"
                 />
               </div>
 
-              <div className="overflow-x-auto rounded-xl border border-gray-200">
+              <div className="overflow-x-auto rounded-xl border border-border">
                 <table className="w-full">
-                  <thead className="bg-gray-50">
+                  <thead className="bg-surface">
                     <tr>
-                      <th className="px-4 py-3 text-left text-sm font-semibold text-black" />
-                      <th className="px-4 py-3 text-left text-sm font-semibold text-black">
+                      <th className="px-4 py-3 text-left text-sm font-semibold text-foreground" />
+                      <th className="px-4 py-3 text-left text-sm font-semibold text-foreground">
                         Voice Cost
                       </th>
-                      <th className="px-4 py-3 text-left text-sm font-semibold text-black">
+                      <th className="px-4 py-3 text-left text-sm font-semibold text-foreground">
                         Total
                       </th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-gray-100">
+                  <tbody className="divide-y divide-border">
                     <tr>
-                      <td className="px-4 py-3 text-sm text-gray-700">
+                      <td className="px-4 py-3 text-sm text-foreground/80">
                         Other Platforms
                       </td>
-                      <td className="px-4 py-3 text-sm font-medium text-black">
+                      <td className="px-4 py-3 text-sm font-medium text-foreground">
                         {formatCurrency(otherCost)}
                       </td>
-                      <td className="px-4 py-3 text-sm font-medium text-black">
+                      <td className="px-4 py-3 text-sm font-medium text-foreground">
                         {formatCurrency(otherCost)}
                       </td>
                     </tr>
                     <tr>
-                      <td className="px-4 py-3 text-sm text-gray-700">Plivo</td>
-                      <td className="px-4 py-3 text-sm font-medium text-black">
+                      <td className="px-4 py-3 text-sm text-foreground/80">Plivo</td>
+                      <td className="px-4 py-3 text-sm font-medium text-foreground">
                         {formatCurrency(plivoCost)}
                       </td>
-                      <td className="px-4 py-3 text-sm font-medium text-black">
+                      <td className="px-4 py-3 text-sm font-medium text-foreground">
                         {formatCurrency(plivoCost)}
                       </td>
                     </tr>
@@ -1181,32 +1190,32 @@ function VoiceCostCalculator({
                 </table>
               </div>
 
-              <div className="rounded-xl bg-gray-50 p-5">
-                <div className="mb-2 text-sm font-semibold uppercase tracking-[0.08em] text-gray-500">
+              <div className="rounded-xl bg-surface p-5">
+                <div className="mb-2 text-sm font-semibold uppercase tracking-[0.08em] text-muted-foreground">
                   Savings with Plivo
                 </div>
-                <div className="font-sora text-[2rem] font-normal leading-none tracking-[-0.02em] text-black">
+                <div className="font-sora text-[2rem] font-normal leading-none tracking-[-0.02em] text-foreground">
                   {formatCurrency(savings)}
                 </div>
-                <p className="mt-3 text-sm text-gray-700">
+                <p className="mt-3 text-sm text-foreground/80">
                   With Plivo, you save over{" "}
-                  <span className="font-semibold text-black">
+                  <span className="font-semibold text-foreground">
                     {savingsPercent}%
                   </span>{" "}
                   of costs compared to other platforms for every{" "}
-                  <span className="font-semibold text-black">
+                  <span className="font-semibold text-foreground">
                     {volume.toLocaleString()}
                   </span>{" "}
-                  <span className="font-semibold text-black">mins called.</span>
+                  <span className="font-semibold text-foreground">mins called.</span>
                 </p>
               </div>
             </>
           ) : (
-            <div className="rounded-xl border border-gray-200 bg-gray-50 p-5">
-              <p className="text-sm text-gray-600">
+            <div className="rounded-xl border border-border bg-surface p-5">
+              <p className="text-sm text-muted-foreground">
                 Live calculator comparison data is currently available for
                 select geographies only. No comparison data is available for{" "}
-                <span className="font-semibold text-black">
+                <span className="font-semibold text-foreground">
                   {selectedCountry.name}
                 </span>{" "}
                 yet.
@@ -1242,7 +1251,7 @@ function CostComparisonBar({
           {value}
         </span>
       </div>
-      <div className="h-8 overflow-hidden rounded-md bg-gray-100">
+      <div className="h-8 overflow-hidden rounded-md bg-muted">
         <div
           className={cn(
             "h-full rounded-md transition-all duration-500",

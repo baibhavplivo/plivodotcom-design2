@@ -65,7 +65,7 @@ const complianceCerts = [
 ];
 
 const CheckIcon = () => (
-  <svg className="w-4 h-4 text-[#323dfe] mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+  <svg className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
     <polyline points="20 6 9 17 4 12" />
   </svg>
 );
@@ -135,20 +135,20 @@ export default function SecurityPage() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-white pt-16 sm:pt-20 md:pt-24 pb-12">
+      <section className="bg-background border-t border-border pt-16 sm:pt-20 md:pt-24 pb-12">
         <div className="container mx-auto max-w-7xl px-4 text-center">
-          <h1 className="font-sora text-[2rem] sm:text-[2.5rem] md:text-[3rem] font-normal leading-[1.1] tracking-[-0.02em] text-black mb-4">
+          <h1 className="font-sora text-[2rem] sm:text-[2.5rem] md:text-[3rem] font-normal leading-[1.1] tracking-[-0.02em] text-foreground mb-4">
             Secure cloud communications
           </h1>
-          <p className="text-gray-600 text-base sm:text-lg max-w-2xl mx-auto">
+          <p className="text-muted-foreground text-base sm:text-lg max-w-2xl">
             We employ security best practices and policies to ensure that our network is secured physically and virtually, and that our customers' data and payment information are both private and secure.
           </p>
         </div>
       </section>
 
       {/* Security Pillars */}
-      <section className="relative py-12 lg:py-16 overflow-hidden bg-white">
-        <div className="pointer-events-none absolute inset-0 z-[1]" style={{ maskImage: "linear-gradient(to right, transparent, black 20%, black 80%, transparent)", WebkitMaskImage: "linear-gradient(to right, transparent, black 20%, black 80%, transparent)", backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }} />
+      <section className="relative py-12 lg:py-16 overflow-hidden bg-background border-t border-border">
+        <div className="pointer-events-none absolute inset-0 z-[1]" style={{ maskImage: "linear-gradient(to right, transparent, black 20%, black 80%, transparent)", WebkitMaskImage: "linear-gradient(to right, transparent, black 20%, black 80%, transparent)", backgroundImage: 'radial-gradient(circle, hsl(var(--border)) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }} />
         <div className="container mx-auto max-w-7xl px-4 relative z-10">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
             {[
@@ -200,15 +200,15 @@ export default function SecurityPage() {
             ].map((pillar) => (
               <div
                 key={pillar.title}
-                className="bg-white rounded-lg border border-gray-200 p-5 text-center"
+                className="bg-background rounded-lg border border-border p-5 text-center"
               >
-                <div className="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-gray-50 text-[#323dfe] mb-3">
+                <div className="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-surface text-primary mb-3">
                   {pillar.icon}
                 </div>
-                <h3 className="font-inter text-sm font-semibold text-black mb-1.5">
+                <h3 className="font-inter text-sm font-semibold text-foreground mb-1.5">
                   {pillar.title}
                 </h3>
-                <p className="text-xs text-gray-500 leading-relaxed">{pillar.desc}</p>
+                <p className="text-xs text-muted-foreground leading-relaxed">{pillar.desc}</p>
               </div>
             ))}
           </div>
@@ -216,13 +216,13 @@ export default function SecurityPage() {
       </section>
 
       {/* Two-Column Detail Sections */}
-      <section className="bg-white py-12 lg:py-20">
+      <section className="bg-background border-t border-border py-12 lg:py-20">
         <div className="container mx-auto max-w-7xl px-4">
           <div className="lg:grid lg:grid-cols-[220px_1fr] lg:gap-10 lg:items-start">
             {/* Sidebar Nav Wrapper */}
             <div ref={sidebarWrapperRef} className="hidden lg:block">
-              <nav className="bg-white z-30" style={sidebarStyle}>
-                <p className="text-sm font-medium text-gray-700 mb-3">Sections</p>
+              <nav className="bg-background z-30" style={sidebarStyle}>
+                <p className="text-sm font-medium text-foreground/80 mb-3">Sections</p>
                 <ul className="space-y-1">
                   {sections.map((s) => (
                     <li key={s.id}>
@@ -231,8 +231,8 @@ export default function SecurityPage() {
                         className={cn(
                           "w-full text-left px-3 py-2 text-sm transition-colors border-l-2",
                           activeSection === s.id
-                            ? "border-[#323dfe] text-[#323dfe] font-medium"
-                            : "border-transparent text-gray-600 hover:border-gray-300 hover:text-gray-900"
+                            ? "border-primary text-primary font-medium"
+                            : "border-transparent text-muted-foreground hover:border-border-strong hover:text-foreground"
                         )}
                       >
                         {s.label}
@@ -246,11 +246,19 @@ export default function SecurityPage() {
             {/* Content */}
             <div ref={contentRef} className="space-y-10">
               {/* Physical Security */}
-              <div id="physical-security" className="rounded-xl border border-gray-200 p-6">
-                <h2 className="font-sora text-xl font-medium text-black mb-2">
+              <div id="physical-security" className="rounded-xl border border-border p-6">
+                <div className="flex items-center gap-3 font-mono-ui text-[11px] uppercase tracking-[0.12em] text-muted-foreground mb-8">
+          <span className="flex items-center gap-2">
+            <span className="tabular-nums text-foreground/70">~</span>
+            <span className="h-px w-6 bg-border" />
+          </span>
+          <span>security page</span>
+          <span className="flex-1 border-t border-dashed border-border" />
+        </div>
+        <h2 className="font-sora text-xl font-medium text-foreground mb-2">
                   Physical on-premises security
                 </h2>
-                <p className="text-sm text-gray-500 mb-5">
+                <p className="text-sm text-muted-foreground mb-5">
                   State-of-the-art on-premises security for all of our distributed computing and storage networks worldwide.
                 </p>
                 <div className="space-y-4">
@@ -275,8 +283,8 @@ export default function SecurityPage() {
                     <div key={item.title} className="flex items-start gap-3">
                       <CheckIcon />
                       <div>
-                        <span className="text-sm font-semibold text-black">{item.title}</span>
-                        <p className="text-sm text-gray-600 mt-0.5">{item.desc}</p>
+                        <span className="text-sm font-semibold text-foreground">{item.title}</span>
+                        <p className="text-sm text-muted-foreground mt-0.5">{item.desc}</p>
                       </div>
                     </div>
                   ))}
@@ -284,11 +292,19 @@ export default function SecurityPage() {
               </div>
 
               {/* Infrastructure Security */}
-              <div id="infrastructure-security" className="rounded-xl border border-gray-200 p-6">
-                <h2 className="font-sora text-xl font-medium text-black mb-2">
+              <div id="infrastructure-security" className="rounded-xl border border-border p-6">
+                <div className="flex items-center gap-3 font-mono-ui text-[11px] uppercase tracking-[0.12em] text-muted-foreground mb-8">
+          <span className="flex items-center gap-2">
+            <span className="tabular-nums text-foreground/70">~</span>
+            <span className="h-px w-6 bg-border" />
+          </span>
+          <span>security page</span>
+          <span className="flex-1 border-t border-dashed border-border" />
+        </div>
+        <h2 className="font-sora text-xl font-medium text-foreground mb-2">
                   Infrastructure security & availability
                 </h2>
-                <p className="text-sm text-gray-500 mb-5">
+                <p className="text-sm text-muted-foreground mb-5">
                   Redundant, distributed infrastructure designed for maximum uptime and rapid failover.
                 </p>
                 <div className="space-y-4">
@@ -325,8 +341,8 @@ export default function SecurityPage() {
                     <div key={item.title} className="flex items-start gap-3">
                       <CheckIcon />
                       <div>
-                        <span className="text-sm font-semibold text-black">{item.title}</span>
-                        <p className="text-sm text-gray-600 mt-0.5">{item.desc}</p>
+                        <span className="text-sm font-semibold text-foreground">{item.title}</span>
+                        <p className="text-sm text-muted-foreground mt-0.5">{item.desc}</p>
                       </div>
                     </div>
                   ))}
@@ -334,11 +350,19 @@ export default function SecurityPage() {
               </div>
 
               {/* Application Security */}
-              <div id="application-security" className="rounded-xl border border-gray-200 p-6">
-                <h2 className="font-sora text-xl font-medium text-black mb-2">
+              <div id="application-security" className="rounded-xl border border-border p-6">
+                <div className="flex items-center gap-3 font-mono-ui text-[11px] uppercase tracking-[0.12em] text-muted-foreground mb-8">
+          <span className="flex items-center gap-2">
+            <span className="tabular-nums text-foreground/70">~</span>
+            <span className="h-px w-6 bg-border" />
+          </span>
+          <span>security page</span>
+          <span className="flex-1 border-t border-dashed border-border" />
+        </div>
+        <h2 className="font-sora text-xl font-medium text-foreground mb-2">
                   Application security
                 </h2>
-                <p className="text-sm text-gray-500 mb-5">
+                <p className="text-sm text-muted-foreground mb-5">
                   Encryption and authentication for secure and efficient access of Plivo's APIs.
                 </p>
                 <div className="space-y-4">
@@ -359,8 +383,8 @@ export default function SecurityPage() {
                     <div key={item.title} className="flex items-start gap-3">
                       <CheckIcon />
                       <div>
-                        <span className="text-sm font-semibold text-black">{item.title}</span>
-                        <p className="text-sm text-gray-600 mt-0.5">{item.desc}</p>
+                        <span className="text-sm font-semibold text-foreground">{item.title}</span>
+                        <p className="text-sm text-muted-foreground mt-0.5">{item.desc}</p>
                       </div>
                     </div>
                   ))}
@@ -368,11 +392,19 @@ export default function SecurityPage() {
               </div>
 
               {/* Data Security */}
-              <div id="data-security" className="rounded-xl border border-gray-200 p-6">
-                <h2 className="font-sora text-xl font-medium text-black mb-2">
+              <div id="data-security" className="rounded-xl border border-border p-6">
+                <div className="flex items-center gap-3 font-mono-ui text-[11px] uppercase tracking-[0.12em] text-muted-foreground mb-8">
+          <span className="flex items-center gap-2">
+            <span className="tabular-nums text-foreground/70">~</span>
+            <span className="h-px w-6 bg-border" />
+          </span>
+          <span>security page</span>
+          <span className="flex-1 border-t border-dashed border-border" />
+        </div>
+        <h2 className="font-sora text-xl font-medium text-foreground mb-2">
                   Data security & privacy
                 </h2>
-                <p className="text-sm text-gray-500 mb-5">
+                <p className="text-sm text-muted-foreground mb-5">
                   Backup encryption and account access limitations to mitigate risk and threats to our customer data.
                 </p>
                 <div className="space-y-4">
@@ -397,8 +429,8 @@ export default function SecurityPage() {
                     <div key={item.title} className="flex items-start gap-3">
                       <CheckIcon />
                       <div>
-                        <span className="text-sm font-semibold text-black">{item.title}</span>
-                        <p className="text-sm text-gray-600 mt-0.5">{item.desc}</p>
+                        <span className="text-sm font-semibold text-foreground">{item.title}</span>
+                        <p className="text-sm text-muted-foreground mt-0.5">{item.desc}</p>
                       </div>
                     </div>
                   ))}
@@ -406,11 +438,19 @@ export default function SecurityPage() {
               </div>
 
               {/* Payment Security */}
-              <div id="payment-security" className="rounded-xl border border-gray-200 p-6">
-                <h2 className="font-sora text-xl font-medium text-black mb-2">
+              <div id="payment-security" className="rounded-xl border border-border p-6">
+                <div className="flex items-center gap-3 font-mono-ui text-[11px] uppercase tracking-[0.12em] text-muted-foreground mb-8">
+          <span className="flex items-center gap-2">
+            <span className="tabular-nums text-foreground/70">~</span>
+            <span className="h-px w-6 bg-border" />
+          </span>
+          <span>security page</span>
+          <span className="flex-1 border-t border-dashed border-border" />
+        </div>
+        <h2 className="font-sora text-xl font-medium text-foreground mb-2">
                   Payment security
                 </h2>
-                <p className="text-sm text-gray-500 mb-5">
+                <p className="text-sm text-muted-foreground mb-5">
                   Use of leading industry transaction processing vendors to protect all transactions and payment information.
                 </p>
                 <div className="space-y-4">
@@ -427,8 +467,8 @@ export default function SecurityPage() {
                     <div key={item.title} className="flex items-start gap-3">
                       <CheckIcon />
                       <div>
-                        <span className="text-sm font-semibold text-black">{item.title}</span>
-                        <p className="text-sm text-gray-600 mt-0.5">{item.desc}</p>
+                        <span className="text-sm font-semibold text-foreground">{item.title}</span>
+                        <p className="text-sm text-muted-foreground mt-0.5">{item.desc}</p>
                       </div>
                     </div>
                   ))}
@@ -436,33 +476,40 @@ export default function SecurityPage() {
               </div>
 
               {/* Compliance */}
-              <div id="compliance" className="rounded-xl border border-gray-200 p-6">
-                <h2 className="font-sora text-xl font-medium text-black mb-2">
+              <div id="compliance" className="rounded-xl border border-border p-6">
+                <div className="flex items-center gap-3 font-mono-ui text-[11px] uppercase tracking-[0.12em] text-muted-foreground mb-8">
+          <span className="flex items-center gap-2">
+            <span className="tabular-nums text-foreground/70">~</span>
+            <span className="h-px w-6 bg-border" />
+          </span>
+          <span>security page</span>
+          <span className="flex-1 border-t border-dashed border-border" />
+        </div>
+        <h2 className="font-sora text-xl font-medium text-foreground mb-2">
                   Compliance & certifications
                 </h2>
-                <p className="text-sm text-gray-500 mb-5">
+                <p className="text-sm text-muted-foreground mb-5">
                   Plivo maintains the highest standards of compliance, validated through independent audits and certifications.
                 </p>
                 <div className="grid sm:grid-cols-2 gap-4">
                   {complianceCerts.map((cert) => (
-                    <div key={cert.name} className="bg-gray-50 rounded-lg p-4">
+                    <div key={cert.name} className="bg-surface rounded-lg p-4">
                       <div className="flex items-start gap-4">
                         {cert.logo && (
-                          <img
-                            src={cert.logo}
+                          <img src={cert.logo}
                             alt={cert.name}
-                            className="w-12 h-12 object-contain flex-shrink-0"
+                            className="w-12 h-12 object-contain flex-shrink-0 dark:invert"
                           />
                         )}
                         <div>
-                          <h4 className="text-sm font-semibold text-black mb-1">{cert.name}</h4>
-                          <p className="text-xs text-gray-600 leading-relaxed">{cert.description}</p>
+                          <h4 className="text-sm font-semibold text-foreground mb-1">{cert.name}</h4>
+                          <p className="text-xs text-muted-foreground leading-relaxed">{cert.description}</p>
                           {cert.link && (
                             <a
                               href={cert.link}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="inline-flex items-center gap-1 text-xs font-medium text-[#323dfe] hover:underline mt-1.5"
+                              className="inline-flex items-center gap-1 text-xs font-medium text-primary hover:underline mt-1.5"
                             >
                               {cert.linkText}
                               <svg className="w-3 h-3" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
@@ -478,11 +525,19 @@ export default function SecurityPage() {
               </div>
 
               {/* Operational Transparency */}
-              <div className="rounded-xl border border-gray-200 p-6">
-                <h2 className="font-sora text-xl font-medium text-black mb-2">
+              <div className="rounded-xl border border-border p-6">
+                <div className="flex items-center gap-3 font-mono-ui text-[11px] uppercase tracking-[0.12em] text-muted-foreground mb-8">
+          <span className="flex items-center gap-2">
+            <span className="tabular-nums text-foreground/70">~</span>
+            <span className="h-px w-6 bg-border" />
+          </span>
+          <span>security page</span>
+          <span className="flex-1 border-t border-dashed border-border" />
+        </div>
+        <h2 className="font-sora text-xl font-medium text-foreground mb-2">
                   Operational transparency
                 </h2>
-                <p className="text-sm text-gray-500 mb-5">
+                <p className="text-sm text-muted-foreground mb-5">
                   Transparent incident response and employee accountability across all operations.
                 </p>
                 <div className="space-y-4">
@@ -499,8 +554,8 @@ export default function SecurityPage() {
                     <div key={item.title} className="flex items-start gap-3">
                       <CheckIcon />
                       <div>
-                        <span className="text-sm font-semibold text-black">{item.title}</span>
-                        <p className="text-sm text-gray-600 mt-0.5">{item.desc}</p>
+                        <span className="text-sm font-semibold text-foreground">{item.title}</span>
+                        <p className="text-sm text-muted-foreground mt-0.5">{item.desc}</p>
                       </div>
                     </div>
                   ))}

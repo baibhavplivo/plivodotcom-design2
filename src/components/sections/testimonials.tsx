@@ -84,7 +84,7 @@ export default function Testimonials() {
             product builders
           </h2>
           <div className="flex flex-1 flex-col items-start gap-3 md:max-w-md md:self-end">
-            <p className="text-lg font-medium text-gray-700 dark:text-gray-300">
+            <p className="text-lg font-medium text-foreground/80 dark:text-gray-300">
               Streamline is built on the habits that make the best product teams
               successful: staying focused, moving quickly, and always aiming for
               high-quality work.
@@ -118,7 +118,7 @@ export default function Testimonials() {
                       className={`h-full border-[7px] transition-all ${
                         current === index
                           ? "border-foreground"
-                          : "border-mint text-emerald-600 shadow-none"
+                          : "border-mint text-emerald-600 dark:text-emerald-300 shadow-none"
                       }`}
                     >
                       <CardHeader className="p-0">

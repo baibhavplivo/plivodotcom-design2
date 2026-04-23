@@ -18,23 +18,23 @@ function DisplayCard({
     icon = <Sparkles className="size-4 text-blue-300" />,
     title = "Featured",
     description = "Discover amazing content",
-    iconClassName = "text-[#323DFE]",
+    iconClassName = "text-primary",
     titleClassName = "",
 }: DisplayCardProps) {
     return (
         <div
             className={cn(
-                "relative flex h-36 w-[22rem] -skew-y-[8deg] select-none flex-col justify-start gap-2 rounded-lg border border-gray-200 bg-white px-4 py-3 transition-all duration-700 shadow-sm hover:shadow-md",
+                "relative flex h-36 w-[22rem] -skew-y-[8deg] select-none flex-col justify-start gap-2 rounded-lg border border-border bg-background px-4 py-3 transition-all duration-700 shadow-sm hover:shadow-md",
                 className
             )}
         >
             <div className="flex items-center gap-2.5">
-                <span className="relative inline-flex items-center justify-center rounded-md bg-gray-100 p-2">
+                <span className="relative inline-flex items-center justify-center rounded-md bg-muted p-2">
                     {icon}
                 </span>
-                <p className={cn("text-xl font-medium text-black", titleClassName)}>{title}</p>
+                <p className={cn("text-xl font-medium text-foreground", titleClassName)}>{title}</p>
             </div>
-            <p className="mt-2 text-base text-gray-500 line-clamp-2">{description}</p>
+            <p className="mt-2 text-base text-muted-foreground line-clamp-2">{description}</p>
         </div>
     );
 }

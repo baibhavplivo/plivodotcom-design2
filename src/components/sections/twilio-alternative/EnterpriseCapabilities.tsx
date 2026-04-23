@@ -22,13 +22,21 @@ const MAP_ROUTES = [
 
 export default function EnterpriseCapabilities() {
   return (
-    <section className="py-12 lg:py-16 bg-white">
+    <section className="py-12 lg:py-16 bg-background border-t border-border">
       <div className="container mx-auto max-w-7xl px-4">
-        <div className="text-center mb-10">
-          <h2 className="font-sora text-[2rem] sm:text-[2.5rem] font-normal leading-[1.25] tracking-[-0.02em] text-black">
+        <div className="mb-10">
+          <div className="flex items-center gap-3 font-mono-ui text-[11px] uppercase tracking-[0.12em] text-muted-foreground mb-8">
+          <span className="flex items-center gap-2">
+            <span className="tabular-nums text-foreground/70">~</span>
+            <span className="h-px w-6 bg-border" />
+          </span>
+          <span>enterprise capabilities</span>
+          <span className="flex-1 border-t border-dashed border-border" />
+        </div>
+        <h2 className="font-sora text-[2rem] sm:text-[2.5rem] font-normal leading-[1.04] tracking-[-0.035em] text-foreground">
             Enterprise-grade capabilities
           </h2>
-          <p className="text-base sm:text-lg text-gray-600 mt-3 max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg text-muted-foreground mt-3 max-w-2xl">
             Built for scale, security, and reliability from day one.
           </p>
         </div>
@@ -45,10 +53,10 @@ export default function EnterpriseCapabilities() {
         <div className="grid grid-cols-2 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
           {STATS.map((stat) => (
             <div key={stat.label} className="text-center">
-              <div className="font-sora text-2xl sm:text-3xl font-normal text-black">
+              <div className="font-sora text-2xl sm:text-3xl font-normal text-foreground">
                 {stat.value}
               </div>
-              <div className="text-sm text-gray-500 mt-1">{stat.label}</div>
+              <div className="text-sm text-muted-foreground mt-1">{stat.label}</div>
             </div>
           ))}
         </div>

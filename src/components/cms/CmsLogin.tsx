@@ -139,22 +139,22 @@ export default function CmsLogin({ onSuccess }: CmsLoginProps) {
   }, [onSuccess, resetTurnstile]);
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-50 px-4">
+    <div className="flex min-h-screen items-center justify-center bg-surface px-4">
       <div className="w-full max-w-sm">
-        <div className="rounded-lg border border-gray-200 bg-white p-8 shadow-sm">
+        <div className="rounded-lg border border-border bg-background p-8 shadow-sm">
           {/* Logo */}
           <div className="mb-8 text-center">
-            <div className="mb-2 font-sora text-2xl font-semibold text-gray-900">
+            <div className="mb-2 font-sora text-2xl font-semibold text-foreground">
               Plivo
             </div>
-            <p className="text-sm text-gray-500">Blog Content Management</p>
+            <p className="text-sm text-muted-foreground">Blog Content Management</p>
           </div>
 
           {/* Password field */}
           <div className="mb-4">
             <label
               htmlFor="cms-password"
-              className="mb-1.5 block text-sm font-medium text-gray-700"
+              className="mb-1.5 block text-sm font-medium text-foreground/80"
             >
               Password
             </label>
@@ -164,7 +164,7 @@ export default function CmsLogin({ onSuccess }: CmsLoginProps) {
               type="password"
               autoFocus
               placeholder="Enter CMS password"
-              className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 placeholder-gray-400 outline-none transition-colors hover:border-gray-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+              className="w-full rounded-md border border-border-strong bg-background px-3 py-2 text-sm text-foreground placeholder-muted-foreground outline-none transition-colors hover:border-border-strong focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
             />
           </div>
 
@@ -181,7 +181,7 @@ export default function CmsLogin({ onSuccess }: CmsLoginProps) {
           <button
             ref={buttonRef}
             disabled={loading}
-            className="w-full rounded-md bg-black px-4 py-2.5 text-sm font-medium text-white transition-colors cta-hover-gradient disabled:cursor-not-allowed disabled:opacity-50"
+            className="w-full rounded-md bg-foreground px-4 py-2.5 text-sm font-medium text-background transition-colors cta-hover-gradient disabled:cursor-not-allowed disabled:opacity-50"
           >
             {loading ? "Signing in..." : "Access CMS"}
           </button>

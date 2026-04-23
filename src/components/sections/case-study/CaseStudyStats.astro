@@ -11,22 +11,22 @@ interface Props {
 const { stats } = Astro.props;
 ---
 
-<section class="pt-10 pb-4 bg-white" aria-label="Key results">
+<section class="pt-10 pb-4 bg-background border-t border-border" aria-label="Key results">
   <h2 class="sr-only">Key Results</h2>
   <div class="container mx-auto max-w-5xl px-4">
-    <dl class="rounded-lg border border-gray-200 overflow-hidden grid grid-cols-2 sm:grid-cols-4">
+    <dl class="rounded-lg border border-border overflow-hidden grid grid-cols-2 sm:grid-cols-4">
       {stats.map((stat, index) => (
         <div
           class:list={[
             "flex flex-col justify-center px-4 py-4 sm:px-6 sm:py-5",
-            index < stats.length - 1 && "border-r border-gray-200",
-            index >= 2 && "border-t sm:border-t-0 border-gray-200",
+            index < stats.length - 1 && "border-r border-border",
+            index >= 2 && "border-t sm:border-t-0 border-border",
           ]}
         >
-          <dd class="text-xl font-semibold text-black sm:text-2xl">
+          <dd class="text-xl font-semibold text-foreground sm:text-2xl">
             {stat.value}
           </dd>
-          <dt class="text-sm text-gray-500">{stat.label}</dt>
+          <dt class="text-sm text-muted-foreground">{stat.label}</dt>
         </div>
       ))}
     </dl>

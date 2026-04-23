@@ -81,7 +81,7 @@ const MetafiFeatures = () => {
   const [f1, f2, f3, f4] = FEATURES;
 
   return (
-    <section id="metafi-features" className="bg-background px-6 lg:px-0">
+    <section id="metafi-features" className="bg-background border-t border-border px-6 lg:px-0">
       <div className="container px-0 py-16 sm:py-20 md:px-6 md:py-28">
         <p className="text-tagline mb-4 text-center text-sm sm:text-base">
           Features
@@ -92,7 +92,7 @@ const MetafiFeatures = () => {
           Grow Your Business
         </h2>
 
-        <p className="mx-auto mt-4 max-w-2xl text-center text-base text-muted-foreground sm:text-lg">
+        <p className="mt-4 max-w-2xl text-base text-muted-foreground sm:text-lg">
           All the tools and resources necessary for managing and expanding your
           business, conveniently accessible in one place. Take control of your
           journey to success with our comprehensive solutions.

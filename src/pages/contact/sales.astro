@@ -7,11 +7,11 @@ import ContactSalesHero from "@/components/sections/contact/ContactSalesHero";
   <ContactSalesHero client:only="react" />
 
   <!-- Dots surface animation (same as homepage hero) -->
-  <div class="relative overflow-hidden bg-white -mt-[132px]" style="height:400px; z-index:0;">
+  <div class="relative overflow-hidden bg-background -mt-[132px]" style="height:400px; z-index:0;">
     <canvas id="contact-dotted-surface" class="absolute inset-0 z-0 pointer-events-none"></canvas>
-    <div class="absolute inset-x-0 top-0 z-[1] pointer-events-none" style="height:30%;background:linear-gradient(to bottom,white 0%,transparent);"></div>
-    <div class="absolute inset-y-0 left-0 w-20 sm:w-32 bg-gradient-to-r from-white to-transparent z-[1] pointer-events-none"></div>
-    <div class="absolute inset-y-0 right-0 w-20 sm:w-32 bg-gradient-to-l from-white to-transparent z-[1] pointer-events-none"></div>
+    <div class="absolute inset-x-0 top-0 z-[1] pointer-events-none" style="height:30%;background:linear-gradient(to bottom,hsl(var(--background)) 0%,transparent);"></div>
+    <div class="absolute inset-y-0 left-0 w-20 sm:w-32 bg-gradient-to-r from-background to-transparent z-[1] pointer-events-none"></div>
+    <div class="absolute inset-y-0 right-0 w-20 sm:w-32 bg-gradient-to-l from-background to-transparent z-[1] pointer-events-none"></div>
   </div>
 
   <script is:inline>
@@ -252,7 +252,7 @@ import ContactSalesHero from "@/components/sections/contact/ContactSalesHero";
     max-height: 200px;
     border-radius: 0.5rem;
     border: 1px solid #d1d5db;
-    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 6px -1px hsl(var(--border));
     background: white;
   }
   .iti__country-list .iti__country {

@@ -239,10 +239,10 @@ export default function RequestTrialHero() {
   // Loading state while waiting for geo data
   if (!geoReady) {
     return (
-      <section className="bg-white pt-24 pb-24 flex items-center justify-center min-h-[60vh]">
+      <section className="bg-background border-t border-border pt-24 pb-24 flex items-center justify-center min-h-[60vh]">
         <div className="text-center">
-          <div className="w-8 h-8 border-2 border-gray-300 border-t-black rounded-full animate-spin mx-auto" />
-          <p className="mt-4 text-sm text-gray-500">Loading...</p>
+          <div className="w-8 h-8 border-2 border-border-strong border-t-foreground rounded-full animate-spin mx-auto" />
+          <p className="mt-4 text-sm text-muted-foreground">Loading...</p>
         </div>
       </section>
     );
@@ -251,10 +251,10 @@ export default function RequestTrialHero() {
   // Supported: show redirect spinner (useEffect above handles the actual redirect)
   if (category === "supported") {
     return (
-      <section className="bg-white pt-24 pb-24 flex items-center justify-center min-h-[60vh]">
+      <section className="bg-background border-t border-border pt-24 pb-24 flex items-center justify-center min-h-[60vh]">
         <div className="text-center">
-          <div className="w-8 h-8 border-2 border-gray-300 border-t-black rounded-full animate-spin mx-auto" />
-          <p className="mt-4 text-sm text-gray-500">Redirecting you to sign up...</p>
+          <div className="w-8 h-8 border-2 border-border-strong border-t-foreground rounded-full animate-spin mx-auto" />
+          <p className="mt-4 text-sm text-muted-foreground">Redirecting you to sign up...</p>
         </div>
       </section>
     );
@@ -263,17 +263,17 @@ export default function RequestTrialHero() {
   // Unsupported: show "not available in your region" message
   if (category === "unsupported") {
     return (
-      <section className="relative z-[1] bg-white pt-12 sm:pt-16 md:pt-24 pb-12 sm:pb-16 md:pb-24">
+      <section className="relative z-[1] bg-background border-t border-border pt-12 sm:pt-16 md:pt-24 pb-12 sm:pb-16 md:pb-24">
         <div className="container mx-auto max-w-2xl px-4 text-center">
-          <div className="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center mx-auto mb-6">
-            <svg className="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+          <div className="w-16 h-16 rounded-full bg-muted flex items-center justify-center mx-auto mb-6">
+            <svg className="w-8 h-8 text-muted-foreground" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" />
             </svg>
           </div>
-          <h1 className="font-sora text-[2rem] sm:text-[2.5rem] font-normal leading-[1.1] tracking-[-0.02em] text-black">
+          <h1 className="font-sora text-[2rem] sm:text-[2.5rem] font-normal leading-[1.1] tracking-[-0.02em] text-foreground">
             We're not available in your region yet
           </h1>
-          <p className="text-base text-gray-600 mt-4 max-w-lg mx-auto leading-relaxed">
+          <p className="text-base text-muted-foreground mt-4 max-w-lg mx-auto leading-relaxed">
             Plivo services are currently available in select countries. Please check back later for updates on availability in your area.
           </p>
         </div>
@@ -283,15 +283,15 @@ export default function RequestTrialHero() {
 
   // Cat B: show the trial request form
   return (
-    <section className="relative z-[1] bg-white pt-2 sm:pt-3 md:pt-4 pb-0">
+    <section className="relative z-[1] bg-background border-t border-border pt-2 sm:pt-3 md:pt-4 pb-0">
       <div className="container mx-auto max-w-7xl px-4">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
           {/* Left Column - Content */}
           <div className="order-2 lg:order-1">
-            <h1 className="font-sora text-[2rem] sm:text-[2.5rem] md:text-[3rem] font-normal leading-[1.1] tracking-[-0.02em] text-black">
+            <h1 className="font-sora text-[2rem] sm:text-[2.5rem] md:text-[3rem] font-normal leading-[1.1] tracking-[-0.02em] text-foreground">
               Get access to your trial account
             </h1>
-            <p className="text-sm sm:text-base text-gray-600 mt-3 leading-relaxed max-w-lg">
+            <p className="text-sm sm:text-base text-muted-foreground mt-3 leading-relaxed max-w-lg">
               Try Plivo's AI-powered communication platform with full API access. Our team will set up your trial account and guide you through the process.
             </p>
 
@@ -300,7 +300,7 @@ export default function RequestTrialHero() {
               {VALUE_PROPS.map((prop) => (
                 <div key={prop} className="flex items-start gap-2.5">
                   <svg
-                    className="w-4 h-4 text-[#323dfe] mt-[1px] flex-shrink-0"
+                    className="w-4 h-4 text-primary mt-[1px] flex-shrink-0"
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
@@ -310,21 +310,21 @@ export default function RequestTrialHero() {
                   >
                     <polyline points="20 6 9 17 4 12" />
                   </svg>
-                  <span className="text-sm text-black">{prop}</span>
+                  <span className="text-sm text-foreground">{prop}</span>
                 </div>
               ))}
             </div>
 
             {/* Compliance Badges */}
             <div className="mt-10">
-              <p className="text-[11px] font-medium text-gray-400 uppercase tracking-wider mb-3">
+              <p className="text-[11px] font-medium text-muted-foreground font-mono-ui uppercase tracking-[0.1em] mb-3">
                 Enterprise-grade reliability, guaranteed
               </p>
               <div className="flex flex-wrap items-center gap-4 sm:gap-6 md:gap-8">
                 {COMPLIANCE_BADGES.map((badge) => (
                   <div key={badge.label} className="flex flex-col items-center gap-1">
-                    <img src={badge.src} alt={badge.alt} className="h-7 sm:h-9 w-auto opacity-60" />
-                    <span className="text-[9px] sm:text-[10px] text-gray-400 font-medium">{badge.label}</span>
+                    <img src={badge.src} alt={badge.alt} className="h-7 sm:h-9 w-auto opacity-60 dark:invert" />
+                    <span className="text-[9px] sm:text-[10px] text-muted-foreground font-medium">{badge.label}</span>
                   </div>
                 ))}
               </div>
@@ -332,17 +332,17 @@ export default function RequestTrialHero() {
 
             {/* Trusted By Logos */}
             <div className="mt-10">
-              <p className="text-[11px] font-medium text-gray-400 uppercase tracking-wider mb-3">
+              <p className="text-[11px] font-medium text-muted-foreground font-mono-ui uppercase tracking-[0.1em] mb-3">
                 Trusted by leading consumer brands worldwide
               </p>
               <div className="flex flex-wrap items-center">
                 {logosRow1.map((logo) => (
-                  <img key={logo.name} src={logo.src} alt={logo.name} className="h-10 sm:h-12 w-auto opacity-40 grayscale" />
+                  <img key={logo.name} src={logo.src} alt={logo.name} className="h-10 sm:h-12 w-auto opacity-40 grayscale dark:invert" />
                 ))}
               </div>
               <div className="flex flex-wrap items-center">
                 {logosRow2.map((logo) => (
-                  <img key={logo.name} src={logo.src} alt={logo.name} className="h-10 sm:h-12 w-auto opacity-40 grayscale" />
+                  <img key={logo.name} src={logo.src} alt={logo.name} className="h-10 sm:h-12 w-auto opacity-40 grayscale dark:invert" />
                 ))}
               </div>
             </div>
@@ -353,7 +353,7 @@ export default function RequestTrialHero() {
 
             {/* Form Card */}
             <div className="relative z-10 flex items-center justify-center py-6 sm:py-10 md:py-14 px-2 sm:px-6 md:px-10">
-              <div className="w-full sm:max-w-md rounded-xl border border-gray-200 bg-white p-4 sm:p-5 md:p-6">
+              <div className="w-full sm:max-w-md rounded-xl border border-border bg-background p-4 sm:p-5 md:p-6">
                 {/* @ts-expect-error vpf is a custom attribute used by form-submission.js */}
                 <div vpf="form-wrapper">
                   <div className="steps_progress_wrapper">
@@ -371,7 +371,7 @@ export default function RequestTrialHero() {
                   {/* @ts-expect-error vpf is a custom attribute */}
                   <div vpf="1">
                     <div className="space-y-3.5">
-                      <h2 className="font-inter text-xl font-semibold text-black mb-3">
+                      <h2 className="font-inter text-xl font-semibold text-foreground mb-3">
                         Request your trial account
                       </h2>
 
@@ -388,7 +388,7 @@ export default function RequestTrialHero() {
                       >
                         {/* Full name */}
                         <div className="form-field">
-                          <label htmlFor="full_name" className="text-[13px] font-medium text-gray-700 mb-1 block">
+                          <label htmlFor="full_name" className="text-[13px] font-medium text-foreground/80 mb-1 block">
                             Full name <span className="text-red-400">*</span>
                           </label>
                           <input
@@ -398,14 +398,14 @@ export default function RequestTrialHero() {
                             maxLength={256}
                             placeholder="Olivia Rodriguez"
                             required
-                            className="w-full h-10 rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 placeholder:text-gray-400 hover:border-gray-400 focus:outline-none focus:border-blue-400 focus:ring-[3px] focus:ring-blue-100 transition-all"
+                            className="w-full h-10 rounded-lg border border-border-strong bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground hover:border-border-strong focus:outline-none focus:border-blue-400 focus:ring-[3px] focus:ring-blue-100 transition-all"
                           />
                           <span className="invalid-feedback error" />
                         </div>
 
                         {/* Work email */}
                         <div className="form-field">
-                          <label htmlFor="company_email" className="text-[13px] font-medium text-gray-700 mb-1 block">
+                          <label htmlFor="company_email" className="text-[13px] font-medium text-foreground/80 mb-1 block">
                             Work email <span className="text-red-400">*</span>
                           </label>
                           <div className="relative">
@@ -416,7 +416,7 @@ export default function RequestTrialHero() {
                               maxLength={256}
                               placeholder="olivia@plivo.com"
                               required
-                              className="w-full h-10 rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 placeholder:text-gray-400 hover:border-gray-400 focus:outline-none focus:border-blue-400 focus:ring-[3px] focus:ring-blue-100 transition-all"
+                              className="w-full h-10 rounded-lg border border-border-strong bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground hover:border-border-strong focus:outline-none focus:border-blue-400 focus:ring-[3px] focus:ring-blue-100 transition-all"
                             />
                             {/* @ts-expect-error vpf is a custom attribute */}
                             <div vpf="email-loader" style={{ display: "none" }} className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5" />
@@ -430,7 +430,7 @@ export default function RequestTrialHero() {
 
                         {/* Phone number */}
                         <div className="form-field">
-                          <label htmlFor="phone" className="text-[13px] font-medium text-gray-700 mb-1 block">
+                          <label htmlFor="phone" className="text-[13px] font-medium text-foreground/80 mb-1 block">
                             Phone number <span className="text-red-400">*</span>
                           </label>
                           <input
@@ -441,14 +441,14 @@ export default function RequestTrialHero() {
                             placeholder="888888 88888"
                             required
                             autoComplete="off"
-                            className="w-full h-10 rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 placeholder:text-gray-400 hover:border-gray-400 focus:outline-none focus:border-blue-400 focus:ring-[3px] focus:ring-blue-100 transition-all"
+                            className="w-full h-10 rounded-lg border border-border-strong bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground hover:border-border-strong focus:outline-none focus:border-blue-400 focus:ring-[3px] focus:ring-blue-100 transition-all"
                           />
                           <span className="invalid-feedback error" id="lbl-invalid-phone-number" />
                         </div>
 
                         {/* Detailed requirement */}
                         <div className="form-field">
-                          <label htmlFor="detailed_requirement" className="text-[13px] font-medium text-gray-700 mb-1 block">
+                          <label htmlFor="detailed_requirement" className="text-[13px] font-medium text-foreground/80 mb-1 block">
                             Detailed requirement <span className="text-red-400">*</span>
                           </label>
                           <textarea
@@ -457,11 +457,11 @@ export default function RequestTrialHero() {
                             maxLength={5000}
                             placeholder="Describe your use case, channels needed, countries you need service for and estimated volume"
                             required
-                            className="w-full min-h-[88px] rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 placeholder:text-gray-400 resize-none hover:border-gray-400 focus:outline-none focus:border-blue-400 focus:ring-[3px] focus:ring-blue-100 transition-all"
+                            className="w-full min-h-[88px] rounded-lg border border-border-strong bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground resize-none hover:border-border-strong focus:outline-none focus:border-blue-400 focus:ring-[3px] focus:ring-blue-100 transition-all"
                           />
                           <div className="flex items-center justify-between mt-0.5">
                             <span className="invalid-feedback error" />
-                            <span id="req-char-count" className="text-[11px] text-gray-400 tabular-nums" />
+                            <span id="req-char-count" className="text-[11px] text-muted-foreground tabular-nums" />
                           </div>
                         </div>
 
@@ -472,13 +472,13 @@ export default function RequestTrialHero() {
                               id="terms_accepted"
                               name="terms_accepted"
                               type="checkbox"
-                              className="mt-0.5 h-4 w-4 rounded border-gray-300 text-[#323dfe] focus:ring-[#323dfe]"
+                              className="mt-0.5 h-4 w-4 rounded border-border-strong text-primary focus:ring-primary"
                             />
-                            <span className="text-[12px] text-gray-500 leading-relaxed">
+                            <span className="text-[12px] text-muted-foreground leading-relaxed">
                               I agree to Plivo's{" "}
-                              <a href="/legal/tos/" className="underline hover:text-gray-700">terms of service</a>{" "}
+                              <a href="/legal/tos/" className="underline hover:text-foreground/80">terms of service</a>{" "}
                               and{" "}
-                              <a href="/legal/privacy/" className="underline hover:text-gray-700">privacy policy</a>
+                              <a href="/legal/privacy/" className="underline hover:text-foreground/80">privacy policy</a>
                             </span>
                           </label>
                           <span className="invalid-feedback error" />
@@ -498,7 +498,7 @@ export default function RequestTrialHero() {
                           type="submit"
                           // @ts-expect-error vpf is a custom attribute
                           vpf="submit-btn"
-                          className="w-full rounded-md bg-black px-5 py-2.5 text-sm font-medium text-white transition-colors cta-hover-gradient"
+                          className="w-full rounded-md bg-foreground px-5 py-2.5 text-sm font-medium text-background transition-colors cta-hover-gradient"
                         >
                           Request Trial
                         </button>
@@ -612,20 +612,20 @@ export default function RequestTrialHero() {
                   {/* Step 4: Thank you */}
                   {/* @ts-expect-error vpf is a custom attribute */}
                   <div vpf="4" style={{ display: "none" }} className="text-center py-12">
-                    <div className="w-14 h-14 rounded-full bg-emerald-50 flex items-center justify-center mx-auto mb-4">
-                      <svg className="w-7 h-7 text-emerald-500" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
+                    <div className="w-14 h-14 rounded-full bg-emerald-50 dark:bg-emerald-900/30 flex items-center justify-center mx-auto mb-4">
+                      <svg className="w-7 h-7 text-emerald-500 dark:text-emerald-400" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
                         <polyline points="20 6 9 17 4 12" />
                       </svg>
                     </div>
                     {/* @ts-expect-error vpf is a custom attribute */}
-                    <h3 vpf="4-title" className="text-xl font-normal text-black">
+                    <h3 vpf="4-title" className="text-xl font-normal text-foreground">
                       You're all set!
                     </h3>
                     {/* @ts-expect-error vpf is a custom attribute */}
-                    <p vpf="4-desc" className="text-sm text-gray-500 mt-2 max-w-xs mx-auto leading-relaxed">
+                    <p vpf="4-desc" className="text-sm text-muted-foreground mt-2 max-w-xs mx-auto leading-relaxed">
                       Thank you. We've received your trial request. A member of our team will reach out within 1 business day to set up your account.
                     </p>
-                    <a href="/" className="inline-block mt-6 text-sm font-medium text-gray-600 hover:text-black transition-colors">
+                    <a href="/" className="inline-block mt-6 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
                       &larr; Back to homepage
                     </a>
                   </div>

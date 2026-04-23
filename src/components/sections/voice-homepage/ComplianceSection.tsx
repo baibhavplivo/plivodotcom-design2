@@ -153,10 +153,10 @@ function ComplianceGlobe({
 
 export default function ComplianceSection() {
   return (
-    <section className="compliance-section bg-white py-12 lg:py-16">
+    <section className="compliance-section bg-background py-12 lg:py-16">
       <div className="container mx-auto max-w-7xl px-4">
         {/* Main card container */}
-        <div className="relative overflow-hidden rounded-3xl border border-gray-200 bg-gray-50">
+        <div className="relative overflow-hidden rounded-3xl border border-border bg-surface">
           <div className="flex flex-col md:flex-row">
             {/* Left content */}
             <div className="relative z-10 flex-1 p-8 md:p-12">
@@ -167,14 +167,13 @@ export default function ComplianceSection() {
                     key={badge.name}
                     className="flex flex-col items-center gap-2"
                   >
-                    <div className="flex h-14 w-14 items-center justify-center rounded-xl border border-gray-200 bg-white p-2.5 shadow-sm">
-                      <img
-                        src={badge.icon}
+                    <div className="flex h-14 w-14 items-center justify-center rounded-xl border border-border bg-background p-2.5 shadow-sm">
+                      <img src={badge.icon}
                         alt={badge.name}
-                        className="h-full w-full object-contain opacity-50 grayscale"
+                        className="h-full w-full object-contain opacity-50 grayscale dark:invert"
                       />
                     </div>
-                    <span className="text-xs font-medium text-gray-500">
+                    <span className="text-xs font-medium text-muted-foreground">
                       {badge.name}
                     </span>
                   </div>
@@ -185,10 +184,10 @@ export default function ComplianceSection() {
               <div className="grid gap-8 md:grid-cols-3">
                 {features.map((feature, index) => (
                   <div key={index}>
-                    <h3 className="mb-2 text-base font-semibold text-black">
+                    <h3 className="mb-2 text-base font-semibold text-foreground">
                       {feature.title}
                     </h3>
-                    <p className="text-sm leading-relaxed text-gray-500">
+                    <p className="text-sm leading-relaxed text-muted-foreground">
                       {feature.description}
                     </p>
                   </div>

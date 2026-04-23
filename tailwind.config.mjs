@@ -75,6 +75,13 @@ export default {
         display: ["Sora", "sans-serif"],
         body: ["Inter", "sans-serif"],
         sans: ["Inter", "sans-serif"],
+        mono: [
+          "JetBrains Mono",
+          "ui-monospace",
+          "SFMono-Regular",
+          "Menlo",
+          "monospace",
+        ],
       },
       fontSize: {
         // Display sizes

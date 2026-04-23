@@ -3,14 +3,14 @@ import WorldMap from "@/components/ui/world-map";
 // Quality Feature Card illustrations
 function GuaranteedQualityIllustration() {
   return (
-    <div className="relative h-48 w-full rounded-lg overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
+    <div className="relative h-48 w-full rounded-lg overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, hsl(var(--border)) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="absolute inset-0 flex items-center justify-center px-6">
         <div className="w-full flex items-center justify-between gap-4">
           {/* Source Phone */}
           <div className="flex flex-col items-center gap-1.5">
-            <div className="w-12 h-12 rounded-xl bg-white border border-gray-200 flex items-center justify-center shadow-sm">
+            <div className="w-12 h-12 rounded-xl bg-background border border-border flex items-center justify-center shadow-sm">
               <svg
-                className="w-6 h-6 text-gray-600"
+                className="w-6 h-6 text-muted-foreground"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -23,28 +23,28 @@ function GuaranteedQualityIllustration() {
                 />
               </svg>
             </div>
-            <span className="text-[10px] text-gray-500">Caller</span>
+            <span className="text-[10px] text-muted-foreground">Caller</span>
           </div>
 
           {/* One-Hop Connection */}
           <div className="flex-1 flex flex-col items-center gap-2">
             <div className="w-full h-[2px] bg-gradient-to-r from-gray-300 via-[#323dfe] to-gray-300 rounded-full" />
             <div className="flex items-center gap-2">
-              <div className="flex items-center gap-1.5 bg-white rounded-full border border-gray-200 px-3 py-1 shadow-sm">
+              <div className="flex items-center gap-1.5 bg-background rounded-full border border-border px-3 py-1 shadow-sm">
                 <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                <span className="text-xs font-medium text-gray-700">
+                <span className="text-xs font-medium text-foreground/80">
                   1-hop
                 </span>
               </div>
-              <div className="flex items-center gap-1.5 bg-white rounded-full border border-gray-200 px-3 py-1 shadow-sm">
-                <span className="text-xs font-medium text-gray-700">CLI</span>
+              <div className="flex items-center gap-1.5 bg-background rounded-full border border-border px-3 py-1 shadow-sm">
+                <span className="text-xs font-medium text-foreground/80">CLI</span>
               </div>
-              <div className="flex items-center gap-1.5 bg-white rounded-full border border-gray-200 px-3 py-1 shadow-sm">
-                <span className="text-xs font-medium text-gray-700">DTMF</span>
+              <div className="flex items-center gap-1.5 bg-background rounded-full border border-border px-3 py-1 shadow-sm">
+                <span className="text-xs font-medium text-foreground/80">DTMF</span>
               </div>
             </div>
             <div className="text-center">
-              <p className="text-[10px] text-emerald-600 font-medium">
+              <p className="text-[10px] text-emerald-600 dark:text-emerald-300 font-medium">
                 Low post-dial delay
               </p>
             </div>
@@ -52,7 +52,7 @@ function GuaranteedQualityIllustration() {
 
           {/* Destination */}
           <div className="flex flex-col items-center gap-1.5">
-            <div className="w-12 h-12 rounded-xl bg-gray-100 flex items-center justify-center">
+            <div className="w-12 h-12 rounded-xl bg-muted flex items-center justify-center">
               <svg
                 className="w-6 h-6"
                 fill="none"
@@ -73,19 +73,19 @@ function GuaranteedQualityIllustration() {
                 />
               </svg>
             </div>
-            <span className="text-[10px] text-gray-500">Local Carrier</span>
+            <span className="text-[10px] text-muted-foreground">Local Carrier</span>
           </div>
         </div>
       </div>
 
-      <div className="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-white to-transparent pointer-events-none" />
+      <div className="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-background to-transparent pointer-events-none" />
     </div>
   );
 }
 
 function GlobalInfrastructureIllustration() {
   return (
-    <div className="relative h-48 w-full rounded-lg overflow-hidden bg-white">
+    <div className="relative h-48 w-full rounded-lg overflow-hidden bg-background">
       <WorldMap
         lineColor="#323dfe"
         dots={[
@@ -118,30 +118,30 @@ function GlobalInfrastructureIllustration() {
 
       {/* PoP indicators */}
       <div className="absolute left-3 top-3 flex items-center gap-2 z-20">
-        <div className="flex items-center gap-1.5 rounded-full bg-white px-2.5 py-1 shadow-md">
+        <div className="flex items-center gap-1.5 rounded-full bg-background px-2.5 py-1 shadow-sm">
           <span className="h-2 w-2 animate-pulse rounded-full bg-emerald-500" />
-          <span className="text-[10px] font-medium text-black">
+          <span className="text-[10px] font-medium text-foreground">
             7 PoPs active
           </span>
         </div>
       </div>
 
       <div className="absolute right-3 top-3 flex items-center gap-2 z-20">
-        <div className="flex items-center gap-1.5 rounded-full bg-white px-2.5 py-1 shadow-md">
-          <span className="text-[10px] font-medium text-black">
+        <div className="flex items-center gap-1.5 rounded-full bg-background px-2.5 py-1 shadow-sm">
+          <span className="text-[10px] font-medium text-foreground">
             5 continents
           </span>
         </div>
       </div>
 
-      <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-white to-transparent pointer-events-none z-10" />
+      <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-background to-transparent pointer-events-none z-10" />
     </div>
   );
 }
 
 function HighAvailabilityIllustration() {
   return (
-    <div className="relative h-48 w-full rounded-lg overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
+    <div className="relative h-48 w-full rounded-lg overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, hsl(var(--border)) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <style>{`
         @keyframes ha-pulse {
           0%, 100% { opacity: 0.5; }
@@ -156,8 +156,8 @@ function HighAvailabilityIllustration() {
         <div className="w-full">
           {/* Uptime badge */}
           <div className="flex justify-center mb-4">
-            <div className="flex items-center gap-2 bg-white rounded-full border border-gray-200 px-4 py-2 shadow-sm">
-              <div className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center">
+            <div className="flex items-center gap-2 bg-background rounded-full border border-border px-4 py-2 shadow-sm">
+              <div className="w-8 h-8 rounded-full bg-muted flex items-center justify-center">
                 <svg
                   className="w-4 h-4"
                   viewBox="0 0 20 20"
@@ -177,8 +177,8 @@ function HighAvailabilityIllustration() {
                 </svg>
               </div>
               <div>
-                <p className="text-lg font-bold text-black">99.99%</p>
-                <p className="text-[10px] text-gray-500">Guaranteed uptime</p>
+                <p className="text-lg font-bold text-foreground">99.99%</p>
+                <p className="text-[10px] text-muted-foreground">Guaranteed uptime</p>
               </div>
             </div>
           </div>
@@ -188,9 +188,9 @@ function HighAvailabilityIllustration() {
             {["Region A", "Region B", "Region C"].map((region, i) => (
               <div
                 key={region}
-                className="bg-white rounded-lg border border-gray-200 p-2.5 shadow-sm"
+                className="bg-background rounded-lg border border-border p-2.5 shadow-sm"
               >
-                <p className="text-[10px] font-semibold text-gray-900 mb-1.5">
+                <p className="text-[10px] font-semibold text-foreground mb-1.5">
                   {region}
                 </p>
                 <div className="flex flex-col gap-1">
@@ -206,7 +206,7 @@ function HighAvailabilityIllustration() {
                       }`}
                     >
                       <div className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-                      <span className="text-[9px] text-gray-500">
+                      <span className="text-[9px] text-muted-foreground">
                         Carrier {carrier}
                       </span>
                     </div>
@@ -218,7 +218,7 @@ function HighAvailabilityIllustration() {
         </div>
       </div>
 
-      <div className="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-white to-transparent pointer-events-none" />
+      <div className="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-background to-transparent pointer-events-none" />
     </div>
   );
 }
@@ -252,32 +252,51 @@ const qualityFeatures: QualityFeature[] = [
 
 export default function SIPQualityFeatures() {
   return (
-    <section className="bg-white py-12 sm:py-16 md:py-20">
-      <div className="container mx-auto max-w-7xl px-4">
-        {/* Section Header */}
-        <div className="text-center mb-4">
-          <h2 className="font-sora text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] font-normal leading-[1.25] tracking-[-0.02em] text-black mb-4 max-w-3xl mx-auto">
-            Quality SIP trunking
-          </h2>
+    <section className="relative w-full bg-background border-t border-border">
+      <div className="container mx-auto max-w-7xl px-4 sm:px-6 py-14 sm:py-20 md:py-24">
+        <div className="flex items-center gap-3 font-mono-ui text-[11px] uppercase tracking-[0.12em] text-muted-foreground">
+          <span className="flex items-center gap-2">
+            <span className="tabular-nums text-foreground/70">~</span>
+            <span className="h-px w-6 bg-border" />
+          </span>
+          <span>quality features</span>
+          <span className="flex-1 border-t border-dashed border-border" />
+          <span>{qualityFeatures.length} pillars</span>
         </div>
-        <p className="text-gray-600 text-center max-w-2xl mx-auto mb-10 md:mb-14">
-          Learn how thousands of innovative businesses rely on Plivo for their
-          customer engagement
-        </p>
 
-        {/* 3-Column Feature Grid */}
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-12 lg:gap-10">
+          <div className="lg:col-span-8">
+            <h2 className="font-sora text-[2rem] font-normal leading-[1.04] tracking-[-0.035em] text-foreground sm:text-[2.5rem] md:text-[3rem]">
+              Quality SIP trunking
+            </h2>
+            <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-muted-foreground">
+              Learn how thousands of innovative businesses rely on Plivo for their customer engagement.
+            </p>
+          </div>
+        </div>
+
+        <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {qualityFeatures.map((feature, index) => (
             <div
               key={index}
-              className="group rounded-xl bg-white border border-gray-200 overflow-hidden transition-all hover:shadow-lg hover:border-gray-300"
+              className="group relative flex flex-col overflow-hidden rounded-xl border border-border bg-surface transition-colors hover:border-border-strong"
             >
-              {feature.illustration}
-              <div className="p-5">
-                <h3 className="text-lg font-semibold text-black mb-2">
+              <div className="flex items-center justify-between border-b border-border bg-background/40 px-4 py-2.5">
+                <span className="font-mono-ui text-[11px] text-muted-foreground">
+                  pillar / {String(index + 1).padStart(2, "0")}
+                </span>
+                <span className="font-mono-ui text-[10px] uppercase tracking-[0.08em] text-muted-foreground/70">
+                  sip quality
+                </span>
+              </div>
+              <div className="relative overflow-hidden border-b border-border">
+                {feature.illustration}
+              </div>
+              <div className="flex flex-grow flex-col gap-2 p-5 sm:p-6">
+                <h3 className="font-sora text-[17px] font-semibold tracking-[-0.01em] text-foreground">
                   {feature.title}
                 </h3>
-                <p className="text-sm text-gray-600 leading-relaxed">
+                <p className="text-sm text-muted-foreground leading-relaxed">
                   {feature.description}
                 </p>
               </div>

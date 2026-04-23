@@ -17,17 +17,17 @@ function VoiceSmsIllustration() {
       `}</style>
 
       <div className="relative h-full w-full p-4 sm:p-6 flex flex-col justify-center">
-        <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-4 sm:p-5">
+        <div className="bg-background rounded-xl shadow-sm border border-border p-4 sm:p-5">
           {/* Header */}
-          <div className="flex items-center gap-2 mb-4 pb-3 border-b border-gray-100">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#323dfe] to-black flex items-center justify-center">
+          <div className="flex items-center gap-2 mb-4 pb-3 border-b border-border">
+            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-black flex items-center justify-center">
               <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
               </svg>
             </div>
             <div>
-              <p className="text-sm font-semibold text-gray-900">Voice & SMS numbers</p>
-              <p className="text-[10px] text-gray-500">50+ countries available</p>
+              <p className="text-sm font-semibold text-foreground">Voice & SMS numbers</p>
+              <p className="text-[10px] text-muted-foreground">50+ countries available</p>
             </div>
           </div>
 
@@ -40,13 +40,13 @@ function VoiceSmsIllustration() {
               { flag: "\ud83c\udde6\ud83c\uddfa", number: "+61 3 9876 5432", type: "Local", capabilities: "Voice, SMS", cls: "num-pulse" },
               { flag: "\ud83c\uddee\ud83c\uddf3", number: "+91 22 4567 8901", type: "Toll-free", capabilities: "Voice", cls: "num-pulse-d1" },
             ].map((num, i) => (
-              <div key={i} className="flex items-center gap-3 px-3 py-1.5 rounded-lg bg-gray-50 border border-gray-100">
+              <div key={i} className="flex items-center gap-3 px-3 py-1.5 rounded-lg bg-surface border border-border">
                 <span className="text-lg flex-shrink-0">{num.flag}</span>
                 <div className="flex-1 min-w-0">
-                  <p className="text-xs font-medium text-gray-900 font-mono truncate">{num.number}</p>
-                  <p className="text-[10px] text-gray-500">{num.capabilities}</p>
+                  <p className="text-xs font-medium text-foreground font-mono truncate">{num.number}</p>
+                  <p className="text-[10px] text-muted-foreground">{num.capabilities}</p>
                 </div>
-                <span className="text-[10px] font-medium text-[#323dfe] bg-[#323dfe]/5 px-2 py-0.5 rounded-full border border-[#323dfe]/10 flex-shrink-0">
+                <span className="text-[10px] font-medium text-primary bg-primary/5 px-2 py-0.5 rounded-full border border-primary/10 flex-shrink-0">
                   {num.type}
                 </span>
               </div>
@@ -54,11 +54,11 @@ function VoiceSmsIllustration() {
           </div>
 
           {/* Footer */}
-          <div className="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between">
-            <span className="text-[10px] text-gray-500">Instantly provisioned</span>
+          <div className="mt-4 pt-3 border-t border-border flex items-center justify-between">
+            <span className="text-[10px] text-muted-foreground">Instantly provisioned</span>
             <div className="flex items-center gap-1.5">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-              <span className="text-[10px] text-gray-500">All numbers active</span>
+              <span className="text-[10px] text-muted-foreground">All numbers active</span>
             </div>
           </div>
         </div>
@@ -74,17 +74,17 @@ function MessagingIllustration() {
       className="relative h-full w-full rounded-xl overflow-hidden"
     >
       <div className="relative h-full w-full p-4 sm:p-6 flex flex-col justify-center">
-        <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-4 sm:p-5">
+        <div className="bg-background rounded-xl shadow-sm border border-border p-4 sm:p-5">
           {/* Header */}
-          <div className="flex items-center gap-2 mb-4 pb-3 border-b border-gray-100">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#323dfe] to-black flex items-center justify-center">
+          <div className="flex items-center gap-2 mb-4 pb-3 border-b border-border">
+            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-black flex items-center justify-center">
               <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 20.97a5.969 5.969 0 01-.474-.065 4.48 4.48 0 00.978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z" />
               </svg>
             </div>
             <div>
-              <p className="text-sm font-semibold text-gray-900">Messaging numbers</p>
-              <p className="text-[10px] text-gray-500">High-throughput delivery</p>
+              <p className="text-sm font-semibold text-foreground">Messaging numbers</p>
+              <p className="text-[10px] text-muted-foreground">High-throughput delivery</p>
             </div>
           </div>
 
@@ -96,13 +96,13 @@ function MessagingIllustration() {
               { flag: "\ud83c\uddfa\ud83c\uddf8", number: "12345", type: "Short code", detail: "SMS, MMS" },
               { flag: "\ud83c\uddee\ud83c\uddf3", number: "+91 98765 43210", type: "Mobile", detail: "SMS, Voice" },
             ].map((num, i) => (
-              <div key={i} className="flex items-center gap-3 px-3 py-1.5 rounded-lg bg-gray-50 border border-gray-100">
+              <div key={i} className="flex items-center gap-3 px-3 py-1.5 rounded-lg bg-surface border border-border">
                 <span className="text-lg flex-shrink-0">{num.flag}</span>
                 <div className="flex-1 min-w-0">
-                  <p className="text-xs font-medium text-gray-900 font-mono truncate">{num.number}</p>
-                  <p className="text-[10px] text-gray-500">{num.detail}</p>
+                  <p className="text-xs font-medium text-foreground font-mono truncate">{num.number}</p>
+                  <p className="text-[10px] text-muted-foreground">{num.detail}</p>
                 </div>
-                <span className="text-[10px] font-medium text-[#323dfe] bg-[#323dfe]/5 px-2 py-0.5 rounded-full border border-[#323dfe]/10 flex-shrink-0">
+                <span className="text-[10px] font-medium text-primary bg-primary/5 px-2 py-0.5 rounded-full border border-primary/10 flex-shrink-0">
                   {num.type}
                 </span>
               </div>
@@ -110,22 +110,22 @@ function MessagingIllustration() {
           </div>
 
           {/* BYON callout */}
-          <div className="mt-1.5 px-3 py-2 rounded-lg border border-dashed border-gray-300 bg-gray-50/50">
+          <div className="mt-1.5 px-3 py-2 rounded-lg border border-dashed border-border-strong bg-surface/50">
             <div className="flex items-center gap-2.5">
-              <svg className="w-4 h-4 text-[#323dfe] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+              <svg className="w-4 h-4 text-primary flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
               </svg>
               <div>
-                <p className="text-[11px] font-medium text-gray-900">Bring your own number</p>
-                <p className="text-[10px] text-gray-500">Port existing numbers via SIP forwarding</p>
+                <p className="text-[11px] font-medium text-foreground">Bring your own number</p>
+                <p className="text-[10px] text-muted-foreground">Port existing numbers via SIP forwarding</p>
               </div>
             </div>
           </div>
 
           {/* Footer */}
-          <div className="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between">
-            <span className="text-[10px] text-gray-500">Higher throughput</span>
-            <span className="text-[10px] text-gray-500">Brand recognition</span>
+          <div className="mt-4 pt-3 border-t border-border flex items-center justify-between">
+            <span className="text-[10px] text-muted-foreground">Higher throughput</span>
+            <span className="text-[10px] text-muted-foreground">Brand recognition</span>
           </div>
         </div>
       </div>
@@ -212,21 +212,21 @@ function FeatureList({ features }: { features: NumberFeature[] }) {
     <div className="space-y-6">
       {features.map((feature, index) => (
         <div key={index} className="flex items-start gap-3">
-          <span className="text-[#323dfe] flex-shrink-0 mt-0.5">
+          <span className="text-primary flex-shrink-0 mt-0.5">
             {feature.icon}
           </span>
           <div>
-            <h4 className="text-base font-medium text-black mb-1">
+            <h4 className="text-base font-medium text-foreground mb-1">
               {feature.title}
             </h4>
-            <p className="text-sm text-gray-600 leading-relaxed mb-2">
+            <p className="text-sm text-muted-foreground leading-relaxed mb-2">
               {feature.description}
             </p>
             <div className="flex flex-wrap gap-1.5">
               {feature.capabilities.map((cap) => (
                 <span
                   key={cap}
-                  className="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-medium bg-gray-100 text-gray-600"
+                  className="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-medium bg-muted text-muted-foreground"
                 >
                   {cap}
                 </span>
@@ -241,11 +241,19 @@ function FeatureList({ features }: { features: NumberFeature[] }) {
 
 export default function PhoneNumberTypes() {
   return (
-    <section className="bg-white py-12 sm:py-16 md:py-20">
+    <section className="bg-background border-t border-border py-12 sm:py-16 md:py-20">
       <div className="container mx-auto max-w-7xl px-4">
         {/* Section Header */}
-        <div className="text-center mb-10 md:mb-14">
-          <h2 className="font-sora text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] font-normal leading-[1.25] tracking-[-0.02em] text-black mb-4 max-w-3xl mx-auto">
+        <div className="mb-10 md:mb-14">
+          <div className="flex items-center gap-3 font-mono-ui text-[11px] uppercase tracking-[0.12em] text-muted-foreground mb-8">
+          <span className="flex items-center gap-2">
+            <span className="tabular-nums text-foreground/70">~</span>
+            <span className="h-px w-6 bg-border" />
+          </span>
+          <span>phone number types</span>
+          <span className="flex-1 border-t border-dashed border-border" />
+        </div>
+        <h2 className="font-sora text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] font-normal leading-[1.04] tracking-[-0.035em] text-foreground mb-4">
             Multiple types of numbers to suit your business needs
           </h2>
         </div>

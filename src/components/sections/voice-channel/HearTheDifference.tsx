@@ -184,19 +184,19 @@ function AudioDemoCard({
   };
 
   return (
-    <div className="rounded-lg border border-gray-200 bg-white p-6 sm:p-8 min-w-[320px] sm:min-w-[400px]">
+    <div className="rounded-lg border border-border bg-background p-6 sm:p-8 min-w-[320px] sm:min-w-[400px]">
       {/* Pills Row */}
       <div className="flex items-center gap-2 mb-3">
-        <span className="inline-block rounded-full border border-gray-200 bg-gray-50 px-3 py-1 text-xs text-gray-500">
+        <span className="inline-block rounded-full border border-border bg-surface px-3 py-1 text-xs text-muted-foreground">
           {card.category}
         </span>
-        <span className="inline-block rounded-full border border-gray-200 bg-gray-50 px-3 py-1 text-xs text-gray-500">
+        <span className="inline-block rounded-full border border-border bg-surface px-3 py-1 text-xs text-muted-foreground">
           {card.languageFlag} {card.language}
         </span>
       </div>
 
       {/* Title */}
-      <h4 className="text-lg sm:text-xl font-semibold text-black mb-6">
+      <h4 className="text-lg sm:text-xl font-semibold text-foreground mb-6">
         {card.title}
       </h4>
 
@@ -238,31 +238,31 @@ function AudioDemoCard({
         </div>
 
         {/* Duration */}
-        <span className="flex-shrink-0 text-sm text-gray-500 font-medium">
+        <span className="flex-shrink-0 text-sm text-muted-foreground font-medium">
           {duration > 0 ? formatTime(duration) : "15.3 s"}
         </span>
       </div>
 
       {/* Separator */}
-      <div className="border-t border-gray-200 mb-6" />
+      <div className="border-t border-border mb-6" />
 
       {/* Metrics */}
       <div className="space-y-3">
         <div className="flex items-center justify-between">
-          <span className="text-sm text-gray-500">Latency</span>
-          <span className="text-sm font-medium text-black">
+          <span className="text-sm text-muted-foreground">Latency</span>
+          <span className="text-sm font-medium text-foreground">
             {card.metrics.latency}
           </span>
         </div>
         <div className="flex items-center justify-between">
-          <span className="text-sm text-gray-500">Resolution</span>
-          <span className="text-sm font-medium text-black">
+          <span className="text-sm text-muted-foreground">Resolution</span>
+          <span className="text-sm font-medium text-foreground">
             {card.metrics.resolution}
           </span>
         </div>
         <div className="flex items-center justify-between">
-          <span className="text-sm text-gray-500">Cost</span>
-          <span className="text-sm font-medium text-black">
+          <span className="text-sm text-muted-foreground">Cost</span>
+          <span className="text-sm font-medium text-foreground">
             {card.metrics.cost}
           </span>
         </div>
@@ -302,16 +302,24 @@ export default function HearTheDifference() {
   };
 
   return (
-    <section className="relative bg-white py-12 sm:py-16 md:py-20 overflow-hidden">
+    <section className="relative bg-background border-t border-border py-12 sm:py-16 md:py-20 overflow-hidden">
       {/* Left Fade - Fixed to viewport edge */}
-      <div className="pointer-events-none absolute left-0 top-0 bottom-0 z-10 w-16 sm:w-32 md:w-48 bg-gradient-to-r from-white to-transparent" />
+      <div className="pointer-events-none absolute left-0 top-0 bottom-0 z-10 w-16 sm:w-32 md:w-48 bg-gradient-to-r from-background to-transparent" />
 
       {/* Right Fade - Fixed to viewport edge */}
-      <div className="pointer-events-none absolute right-0 top-0 bottom-0 z-10 w-16 sm:w-32 md:w-48 bg-gradient-to-l from-white to-transparent" />
+      <div className="pointer-events-none absolute right-0 top-0 bottom-0 z-10 w-16 sm:w-32 md:w-48 bg-gradient-to-l from-background to-transparent" />
 
       <div className="container mx-auto max-w-7xl px-4">
         {/* Section Header */}
-        <h2 className="font-sora text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] font-normal leading-[1.25] tracking-[-0.02em] text-black text-center mb-10 md:mb-12 max-w-3xl mx-auto">
+        <div className="flex items-center gap-3 font-mono-ui text-[11px] uppercase tracking-[0.12em] text-muted-foreground mb-8">
+          <span className="flex items-center gap-2">
+            <span className="tabular-nums text-foreground/70">~</span>
+            <span className="h-px w-6 bg-border" />
+          </span>
+          <span>hear the difference</span>
+          <span className="flex-1 border-t border-dashed border-border" />
+        </div>
+        <h2 className="font-sora text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] font-normal leading-[1.04] tracking-[-0.035em] text-foreground mb-10 md:mb-12">
           Hear the difference
         </h2>
       </div>
@@ -334,13 +342,13 @@ export default function HearTheDifference() {
         <div className="flex justify-center gap-2 mt-6">
           <button
             onClick={handlePrev}
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-gray-300 bg-white text-gray-600 transition-colors hover:bg-gray-50"
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-border-strong bg-background text-muted-foreground transition-colors hover:bg-surface"
           >
             <ChevronLeft className="h-5 w-5" />
           </button>
           <button
             onClick={handleNext}
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-gray-300 bg-white text-gray-600 transition-colors hover:bg-gray-50"
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-border-strong bg-background text-muted-foreground transition-colors hover:bg-surface"
           >
             <ChevronRight className="h-5 w-5" />
           </button>

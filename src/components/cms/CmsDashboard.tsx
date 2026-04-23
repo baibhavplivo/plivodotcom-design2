@@ -147,15 +147,15 @@ export default function CmsDashboard({ onEdit, onNew, onLogout }: CmsDashboardPr
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-surface">
       {/* Top bar */}
-      <header className="sticky top-0 z-10 border-b border-gray-200 bg-white">
+      <header className="sticky top-0 z-10 border-b border-border bg-background">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6">
           <div className="flex items-center gap-4">
-            <h1 className="font-sora text-lg font-semibold text-gray-900">
+            <h1 className="font-sora text-lg font-semibold text-foreground">
               Blog CMS
             </h1>
-            <span className="rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-600">
+            <span className="rounded-full bg-muted px-2.5 py-0.5 text-xs font-medium text-muted-foreground">
               {posts.length} posts
             </span>
           </div>
@@ -163,14 +163,14 @@ export default function CmsDashboard({ onEdit, onNew, onLogout }: CmsDashboardPr
           <div className="flex items-center gap-2">
             <button
               ref={newBtnRef}
-              className="flex items-center gap-1.5 rounded-md bg-black px-3 py-1.5 text-sm font-medium text-white transition-colors cta-hover-gradient"
+              className="flex items-center gap-1.5 rounded-md bg-foreground px-3 py-1.5 text-sm font-medium text-background transition-colors cta-hover-gradient"
             >
               <Plus className="h-4 w-4" />
               New Post
             </button>
             <button
               ref={logoutBtnRef}
-              className="flex items-center gap-1.5 rounded-md border border-gray-300 px-3 py-1.5 text-sm text-gray-600 transition-colors hover:bg-gray-50"
+              className="flex items-center gap-1.5 rounded-md border border-border-strong px-3 py-1.5 text-sm text-muted-foreground transition-colors hover:bg-surface"
             >
               <LogOut className="h-4 w-4" />
             </button>
@@ -182,23 +182,23 @@ export default function CmsDashboard({ onEdit, onNew, onLogout }: CmsDashboardPr
         {/* Search & filters */}
         <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div className="relative flex-1 sm:max-w-xs">
-            <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
+            <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
             <input
               ref={searchRef}
               type="text"
               placeholder="Search posts..."
-              className="w-full rounded-md border border-gray-300 bg-white py-2 pl-9 pr-3 text-sm text-gray-900 placeholder-gray-400 outline-none transition-colors hover:border-gray-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+              className="w-full rounded-md border border-border-strong bg-background py-2 pl-9 pr-3 text-sm text-foreground placeholder-muted-foreground outline-none transition-colors hover:border-border-strong focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
             />
           </div>
 
-          <div className="flex gap-1 rounded-md border border-gray-200 bg-white p-0.5">
+          <div className="flex gap-1 rounded-md border border-border bg-background p-0.5">
             {(["all", "published", "drafts"] as FilterTab[]).map((t) => (
               <button
                 key={t}
                 className={`rounded px-3 py-1.5 text-sm font-medium capitalize transition-colors ${
                   tab === t
                     ? "bg-gray-900 text-white"
-                    : "text-gray-600 hover:text-gray-900"
+                    : "text-muted-foreground hover:text-foreground"
                 }`}
                 data-tab={t}
               >
@@ -211,8 +211,8 @@ export default function CmsDashboard({ onEdit, onNew, onLogout }: CmsDashboardPr
         {/* Loading */}
         {loading && (
           <div className="flex items-center justify-center py-20">
-            <Loader2 className="h-8 w-8 animate-spin text-gray-400" />
-            <span className="ml-3 text-sm text-gray-500">Loading posts...</span>
+            <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
+            <span className="ml-3 text-sm text-muted-foreground">Loading posts...</span>
           </div>
         )}
 
@@ -226,43 +226,43 @@ export default function CmsDashboard({ onEdit, onNew, onLogout }: CmsDashboardPr
         {/* Posts table */}
         {!loading && !error && (
           <>
-            <div className="overflow-hidden rounded-lg border border-gray-200 bg-white">
+            <div className="overflow-hidden rounded-lg border border-border bg-background">
               <table className="w-full">
                 <thead>
-                  <tr className="border-b border-gray-200 bg-gray-50">
-                    <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+                  <tr className="border-b border-border bg-surface">
+                    <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-muted-foreground">
                       Title
                     </th>
-                    <th className="hidden px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 md:table-cell">
+                    <th className="hidden px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-muted-foreground md:table-cell">
                       Author
                     </th>
-                    <th className="hidden px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 sm:table-cell">
+                    <th className="hidden px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-muted-foreground sm:table-cell">
                       Date
                     </th>
-                    <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+                    <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-muted-foreground">
                       Status
                     </th>
-                    <th className="hidden px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 lg:table-cell">
+                    <th className="hidden px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-muted-foreground lg:table-cell">
                       Categories
                     </th>
-                    <th className="px-4 py-3 text-right text-xs font-medium uppercase tracking-wider text-gray-500">
+                    <th className="px-4 py-3 text-right text-xs font-medium uppercase tracking-wider text-muted-foreground">
                       Actions
                     </th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-gray-100">
+                <tbody className="divide-y divide-border">
                   {paginatedPosts.map((post) => (
                     <tr
                       key={post.slug}
-                      className="transition-colors hover:bg-gray-50"
+                      className="transition-colors hover:bg-surface"
                     >
-                      <td className="max-w-xs truncate px-4 py-3 text-sm font-medium text-gray-900">
+                      <td className="max-w-xs truncate px-4 py-3 text-sm font-medium text-foreground">
                         {post.title}
                       </td>
-                      <td className="hidden px-4 py-3 text-sm text-gray-500 md:table-cell">
+                      <td className="hidden px-4 py-3 text-sm text-muted-foreground md:table-cell">
                         {post.authorName || "—"}
                       </td>
-                      <td className="hidden px-4 py-3 text-sm text-gray-500 sm:table-cell">
+                      <td className="hidden px-4 py-3 text-sm text-muted-foreground sm:table-cell">
                         {formatDate(post.pubDate)}
                       </td>
                       <td className="px-4 py-3">
@@ -281,13 +281,13 @@ export default function CmsDashboard({ onEdit, onNew, onLogout }: CmsDashboardPr
                           {post.categories.slice(0, 3).map((cat) => (
                             <span
                               key={cat}
-                              className="rounded bg-gray-100 px-1.5 py-0.5 text-xs text-gray-600"
+                              className="rounded bg-muted px-1.5 py-0.5 text-xs text-muted-foreground"
                             >
                               {cat}
                             </span>
                           ))}
                           {post.categories.length > 3 && (
-                            <span className="text-xs text-gray-400">
+                            <span className="text-xs text-muted-foreground">
                               +{post.categories.length - 3}
                             </span>
                           )}
@@ -296,7 +296,7 @@ export default function CmsDashboard({ onEdit, onNew, onLogout }: CmsDashboardPr
                       <td className="px-4 py-3">
                         <div className="flex items-center justify-end gap-1">
                           <button
-                            className="rounded p-1.5 text-gray-400 transition-colors hover:bg-gray-100 hover:text-gray-600"
+                            className="rounded p-1.5 text-muted-foreground transition-colors hover:bg-muted hover:text-muted-foreground"
                             title="Edit"
                             data-action="edit"
                             data-slug={post.slug}
@@ -307,7 +307,7 @@ export default function CmsDashboard({ onEdit, onNew, onLogout }: CmsDashboardPr
                             href={`/blog/${post.slug}`}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="rounded p-1.5 text-gray-400 transition-colors hover:bg-gray-100 hover:text-gray-600"
+                            className="rounded p-1.5 text-muted-foreground transition-colors hover:bg-muted hover:text-muted-foreground"
                             title="View on site"
                           >
                             <ExternalLink className="h-4 w-4" />
@@ -322,7 +322,7 @@ export default function CmsDashboard({ onEdit, onNew, onLogout }: CmsDashboardPr
                                 Confirm
                               </button>
                               <button
-                                className="rounded px-2 py-1 text-xs text-gray-500 hover:bg-gray-100"
+                                className="rounded px-2 py-1 text-xs text-muted-foreground hover:bg-muted"
                                 data-action="cancel-delete"
                               >
                                 Cancel
@@ -330,7 +330,7 @@ export default function CmsDashboard({ onEdit, onNew, onLogout }: CmsDashboardPr
                             </div>
                           ) : (
                             <button
-                              className="rounded p-1.5 text-gray-400 transition-colors hover:bg-red-50 hover:text-red-500"
+                              className="rounded p-1.5 text-muted-foreground transition-colors hover:bg-red-50 hover:text-red-500"
                               title="Delete"
                               data-action="delete"
                               data-slug={post.slug}
@@ -346,7 +346,7 @@ export default function CmsDashboard({ onEdit, onNew, onLogout }: CmsDashboardPr
               </table>
 
               {paginatedPosts.length === 0 && (
-                <div className="py-12 text-center text-sm text-gray-500">
+                <div className="py-12 text-center text-sm text-muted-foreground">
                   {search ? "No posts match your search." : "No posts found."}
                 </div>
               )}
@@ -355,7 +355,7 @@ export default function CmsDashboard({ onEdit, onNew, onLogout }: CmsDashboardPr
             {/* Pagination */}
             {totalPages > 1 && (
               <div className="mt-4 flex items-center justify-between">
-                <p className="text-sm text-gray-500">
+                <p className="text-sm text-muted-foreground">
                   Showing {(page - 1) * POSTS_PER_PAGE + 1}–
                   {Math.min(page * POSTS_PER_PAGE, filteredPosts.length)} of{" "}
                   {filteredPosts.length}
@@ -363,14 +363,14 @@ export default function CmsDashboard({ onEdit, onNew, onLogout }: CmsDashboardPr
                 <div className="flex gap-1">
                   <button
                     disabled={page === 1}
-                    className="rounded-md border border-gray-300 p-1.5 text-gray-600 transition-colors hover:bg-gray-50 disabled:opacity-30"
+                    className="rounded-md border border-border-strong p-1.5 text-muted-foreground transition-colors hover:bg-surface disabled:opacity-30"
                     data-action="prev-page"
                   >
                     <ChevronLeft className="h-4 w-4" />
                   </button>
                   <button
                     disabled={page === totalPages}
-                    className="rounded-md border border-gray-300 p-1.5 text-gray-600 transition-colors hover:bg-gray-50 disabled:opacity-30"
+                    className="rounded-md border border-border-strong p-1.5 text-muted-foreground transition-colors hover:bg-surface disabled:opacity-30"
                     data-action="next-page"
                   >
                     <ChevronRight className="h-4 w-4" />

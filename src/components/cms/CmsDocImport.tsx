@@ -167,7 +167,7 @@ export default function CmsDocImport({ onImport }: CmsDocImportProps) {
         <button
           ref={btnRef}
           disabled={importing}
-          className="flex items-center gap-1.5 rounded-md border border-gray-300 px-3 py-1.5 text-xs font-medium text-gray-600 transition-colors hover:bg-gray-50 disabled:opacity-50"
+          className="flex items-center gap-1.5 rounded-md border border-border-strong px-3 py-1.5 text-xs font-medium text-muted-foreground transition-colors hover:bg-surface disabled:opacity-50"
         >
           {importing ? (
             <Loader2 className="h-3.5 w-3.5 animate-spin" />
@@ -183,7 +183,7 @@ export default function CmsDocImport({ onImport }: CmsDocImportProps) {
           className={`flex items-center gap-1.5 rounded-md border px-3 py-1.5 text-xs font-medium transition-colors disabled:opacity-50 ${
             showGdocInput
               ? "border-blue-300 bg-blue-50 text-blue-700"
-              : "border-gray-300 text-gray-600 hover:bg-gray-50"
+              : "border-border-strong text-muted-foreground hover:bg-surface"
           }`}
         >
           <Link2 className="h-3.5 w-3.5" />
@@ -230,7 +230,7 @@ export default function CmsDocImport({ onImport }: CmsDocImportProps) {
             value={gdocUrl}
             onChange={(e) => setGdocUrl(e.target.value)}
             placeholder="Paste Google Docs link (must be shared as 'Anyone with the link')"
-            className="flex-1 rounded-md border border-gray-300 bg-white px-2.5 py-1.5 text-xs text-gray-900 placeholder-gray-400 outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-100"
+            className="flex-1 rounded-md border border-border-strong bg-background px-2.5 py-1.5 text-xs text-foreground placeholder-muted-foreground outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-100"
           />
           <button
             ref={gdocBtnRef}

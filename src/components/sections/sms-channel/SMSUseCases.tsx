@@ -14,7 +14,7 @@ interface UseCase {
 // Wrapper component for illustrations - simulates phone message screen
 function IllustrationWrapper({ children, className }: { children: React.ReactNode; className?: string }) {
   return (
-    <div className={cn("relative h-56 w-full rounded-xl overflow-hidden", className)} style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
+    <div className={cn("relative h-56 w-full rounded-xl overflow-hidden border border-border bg-surface", className)} style={{ backgroundImage: 'radial-gradient(circle, hsl(var(--border)) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       {/* Content */}
       <div className="relative h-full w-full px-3 py-4 flex flex-col">
         {children}
@@ -27,8 +27,8 @@ function IllustrationWrapper({ children, className }: { children: React.ReactNod
 function IncomingBubble({ children, className }: { children: React.ReactNode; className?: string }) {
   return (
     <div className={cn("max-w-[85%] self-start", className)}>
-      <div className="rounded-2xl rounded-bl-sm bg-[#e9e9eb] px-3 py-2">
-        <p className="text-[13px] leading-[1.35] text-black whitespace-pre-line">{children}</p>
+      <div className="rounded-2xl rounded-bl-sm bg-[#e9e9eb] dark:bg-[#2c2c2e] px-3 py-2">
+        <p className="text-[13px] leading-[1.35] text-[#111] dark:text-[#e5e5e7] whitespace-pre-line">{children}</p>
       </div>
     </div>
   );
@@ -42,7 +42,7 @@ function OutgoingBubble({ children, className, delivered }: { children: React.Re
         <p className="text-[13px] leading-[1.35] text-white">{children}</p>
       </div>
       {delivered && (
-        <p className="text-[10px] text-gray-400 text-right mt-0.5 mr-1">Delivered</p>
+        <p className="text-[10px] text-muted-foreground text-right mt-0.5 mr-1">Delivered</p>
       )}
     </div>
   );
@@ -51,13 +51,13 @@ function OutgoingBubble({ children, className, delivered }: { children: React.Re
 // Chat header with contact info
 function ChatHeader({ name, subtitle }: { name: string; subtitle?: string }) {
   return (
-    <div className="flex items-center justify-center gap-2 mb-3 pb-2 border-b border-gray-200/60">
-      <div className="flex h-6 w-6 items-center justify-center rounded-full bg-gray-300 text-[10px] font-semibold text-gray-600">
+    <div className="flex items-center justify-center gap-2 mb-3 pb-2 border-b border-border/60">
+      <div className="flex h-6 w-6 items-center justify-center rounded-full bg-muted text-[10px] font-semibold text-muted-foreground">
         {name.split(' ').map(n => n[0]).join('').slice(0, 2)}
       </div>
       <div className="text-center">
-        <p className="text-[11px] font-medium text-gray-900 leading-tight">{name}</p>
-        {subtitle && <p className="text-[9px] text-gray-500 leading-tight">{subtitle}</p>}
+        <p className="text-[11px] font-medium text-foreground leading-tight">{name}</p>
+        {subtitle && <p className="text-[9px] text-muted-foreground leading-tight">{subtitle}</p>}
       </div>
     </div>
   );
@@ -66,7 +66,7 @@ function ChatHeader({ name, subtitle }: { name: string; subtitle?: string }) {
 // Time stamp between messages
 function TimeStamp({ time }: { time: string }) {
   return (
-    <p className="text-[9px] text-gray-400 text-center my-1.5">{time}</p>
+    <p className="text-[9px] text-muted-foreground my-1.5">{time}</p>
   );
 }
 
@@ -91,8 +91,8 @@ function AlertsNotificationsIllustration() {
     <IllustrationWrapper className="">
       {/* Badge with blue dot */}
       <div className="flex justify-center mb-4">
-        <span className="inline-flex items-center gap-1.5 rounded-full bg-white/80 border border-gray-200 px-3 py-1 text-[12px] font-medium text-gray-600">
-          <span className="h-1.5 w-1.5 rounded-full bg-[#323dfe]" />
+        <span className="inline-flex items-center gap-1.5 rounded-full bg-background/80 border border-border px-3 py-1 text-[12px] font-medium text-muted-foreground">
+          <span className="h-1.5 w-1.5 rounded-full bg-primary" />
           8 messages
         </span>
       </div>
@@ -102,15 +102,15 @@ function AlertsNotificationsIllustration() {
         {/* Back card (3rd) - partial card visible */}
         <div
           className={cn(
-            "absolute left-6 right-6 top-0 rounded-xl bg-white/70 border border-gray-200/50 shadow-sm transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)]",
+            "absolute left-6 right-6 top-0 rounded-xl bg-surface/70 border border-border shadow-sm transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)]",
             animationStep >= 1 ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-3"
           )}
         >
           <div className="p-2.5">
             <div className="flex items-center gap-2">
-              <div className="w-6 h-6 rounded-full bg-gray-200/80" />
+              <div className="w-6 h-6 rounded-full bg-muted border border-border/60" />
               <div className="flex-1">
-                <div className="h-2 w-16 bg-gray-200/80 rounded" />
+                <div className="h-2 w-16 bg-muted border border-border/60 rounded" />
               </div>
             </div>
           </div>
@@ -119,16 +119,16 @@ function AlertsNotificationsIllustration() {
         {/* Middle card (2nd) - more visible */}
         <div
           className={cn(
-            "absolute left-4 right-4 top-6 rounded-xl bg-white/85 border border-gray-200/70 shadow-[0_2px_8px_rgba(0,0,0,0.04)] transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)]",
+            "absolute left-4 right-4 top-6 rounded-xl bg-surface/90 border border-border shadow-[0_2px_8px_rgba(0,0,0,0.04)] transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)]",
             animationStep >= 2 ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-3"
           )}
         >
           <div className="p-2.5">
             <div className="flex items-center gap-2">
-              <div className="w-7 h-7 rounded-full bg-gray-200/90" />
+              <div className="w-7 h-7 rounded-full bg-muted border border-border/60" />
               <div className="flex-1">
-                <div className="h-2.5 w-20 bg-gray-200/90 rounded mb-1" />
-                <div className="h-2 w-12 bg-gray-100 rounded" />
+                <div className="h-2.5 w-20 bg-muted border border-border/60 rounded mb-1" />
+                <div className="h-2 w-12 bg-muted rounded" />
               </div>
             </div>
           </div>
@@ -137,22 +137,22 @@ function AlertsNotificationsIllustration() {
         {/* Front card (1st) - with full content */}
         <div
           className={cn(
-            "relative w-full rounded-xl bg-white border border-gray-200 shadow-[0_4px_12px_rgba(0,0,0,0.08)] p-3 mt-12 transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)]",
+            "relative w-full rounded-xl bg-background border border-border shadow-[0_4px_12px_rgba(0,0,0,0.08)] p-3 mt-12 transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)]",
             animationStep >= 3 ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-3"
           )}
         >
           {/* Notification header */}
           <div className="flex items-center gap-2.5 mb-1.5">
-            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-gray-200 to-gray-300 text-[10px] font-semibold text-gray-700">
+            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-muted border border-border text-[10px] font-semibold text-foreground/70">
               FP
             </div>
             <div className="flex-1 min-w-0">
-              <p className="text-[12px] font-semibold text-gray-900 leading-tight">FitPro Gym</p>
-              <p className="text-[10px] text-gray-400">now</p>
+              <p className="text-[12px] font-semibold text-foreground leading-tight">FitPro Gym</p>
+              <p className="text-[10px] text-muted-foreground">now</p>
             </div>
           </div>
           {/* Message preview */}
-          <p className="text-[12px] text-gray-600 leading-snug">
+          <p className="text-[12px] text-muted-foreground leading-snug">
             Dear Jacky, your $199 payment is due on Mar 5.
           </p>
         </div>
@@ -184,16 +184,16 @@ function VerifyIllustration() {
       <div className="relative flex-1 px-3 pt-2">
         {/* Top card - OTP Input (right aligned) */}
         <div className="relative z-10 flex justify-end">
-          <div className="inline-block rounded-2xl bg-white shadow-[0_4px_16px_rgba(0,0,0,0.08)] p-4">
-            <p className="text-[14px] font-semibold text-gray-900 mb-3">Enter OTP to login</p>
+          <div className="inline-block rounded-2xl bg-background shadow-[0_4px_16px_rgba(0,0,0,0.08)] p-4">
+            <p className="text-[14px] font-semibold text-foreground mb-3">Enter OTP to login</p>
             {/* OTP Input boxes with gradient border */}
             <div className="flex gap-2">
               {digits.map((digit, i) => (
                 <div
                   key={i}
-                  className="w-10 h-11 rounded-lg p-[1.5px] bg-gradient-to-br from-[#323dfe] to-black"
+                  className="w-10 h-11 rounded-lg p-[1.5px] bg-gradient-to-br from-primary to-black"
                 >
-                  <div className="w-full h-full rounded-[6px] bg-gray-50 flex items-center justify-center text-[18px] font-semibold text-gray-900">
+                  <div className="w-full h-full rounded-[6px] bg-surface flex items-center justify-center text-[18px] font-semibold text-foreground">
                     <span
                       className={cn(
                         "transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]",
@@ -210,20 +210,20 @@ function VerifyIllustration() {
         </div>
 
         {/* Bottom card - SMS Message (offset to bottom-left) */}
-        <div className="absolute left-3 bottom-0 w-[85%] rounded-2xl bg-white shadow-[0_4px_16px_rgba(0,0,0,0.08)] p-3.5">
+        <div className="absolute left-3 bottom-0 w-[85%] rounded-2xl bg-background shadow-[0_4px_16px_rgba(0,0,0,0.08)] p-3.5">
           {/* Message header */}
           <div className="flex items-center gap-2 mb-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-gray-200 to-gray-300 text-[10px] font-semibold text-gray-700">
+            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-muted border border-border text-[10px] font-semibold text-foreground/70">
               V
             </div>
             <div className="flex-1 min-w-0">
-              <p className="text-[13px] font-semibold text-gray-900 leading-tight">Verify</p>
-              <p className="text-[11px] text-gray-400">just now</p>
+              <p className="text-[13px] font-semibold text-foreground leading-tight">Verify</p>
+              <p className="text-[11px] text-muted-foreground">just now</p>
             </div>
           </div>
           {/* Message content */}
-          <p className="text-[13px] text-gray-600 leading-snug">
-            Your OTP is <span className="font-semibold text-gray-900">2834</span>. Don't share this with anyone.
+          <p className="text-[13px] text-muted-foreground leading-snug">
+            Your OTP is <span className="font-semibold text-foreground">2834</span>. Don't share this with anyone.
           </p>
         </div>
       </div>
@@ -237,15 +237,15 @@ function PromotionalMarketingIllustration() {
     <IllustrationWrapper className="">
       <div className="relative flex-1 px-3 flex items-center justify-center">
         {/* Message card with small image + text layout */}
-        <div className="rounded-2xl bg-white shadow-[0_4px_16px_rgba(0,0,0,0.08)] overflow-hidden">
+        <div className="rounded-2xl bg-background shadow-[0_4px_16px_rgba(0,0,0,0.08)] overflow-hidden">
           {/* Header */}
           <div className="flex items-center gap-2 p-3 pb-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-gray-200 to-gray-300 text-[10px] font-semibold text-gray-700">
+            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-muted border border-border text-[10px] font-semibold text-foreground/70">
               SS
             </div>
             <div className="flex-1 min-w-0">
-              <p className="text-[13px] font-semibold text-gray-900 leading-tight">StyleShop</p>
-              <p className="text-[11px] text-gray-400">1-800-STYLE</p>
+              <p className="text-[13px] font-semibold text-foreground leading-tight">StyleShop</p>
+              <p className="text-[11px] text-muted-foreground">1-800-STYLE</p>
             </div>
           </div>
 
@@ -253,7 +253,7 @@ function PromotionalMarketingIllustration() {
           <div className="px-3 pb-3">
             <div className="flex gap-3">
               {/* Small Square Product Image */}
-              <div className="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0 bg-gray-50">
+              <div className="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0 bg-surface">
                 <img
                   src="/images/shoe-product.jpg"
                   alt="Sneaker"
@@ -262,10 +262,10 @@ function PromotionalMarketingIllustration() {
               </div>
               {/* Text Content */}
               <div className="flex-1 min-w-0">
-                <p className="text-[13px] text-gray-700 leading-snug">
+                <p className="text-[13px] text-foreground/80 leading-snug">
                   🎉 Flash Sale! Get 20% off our spring collection.
                 </p>
-                <p className="text-[12px] text-gray-700 mt-1">
+                <p className="text-[12px] text-foreground/80 mt-1">
                   Use code <span className="font-semibold">SPRING20</span>
                 </p>
               </div>
@@ -284,7 +284,7 @@ function AbandonedCartIllustration() {
       <div className="relative flex-1 px-3 pt-2">
         {/* Top card - Shopping Cart preview (right aligned) */}
         <div className="relative z-10 flex justify-end">
-          <div className="inline-block rounded-2xl bg-white shadow-[0_4px_16px_rgba(0,0,0,0.08)] p-3">
+          <div className="inline-block rounded-2xl bg-background shadow-[0_4px_16px_rgba(0,0,0,0.08)] p-3">
             <div className="flex items-center gap-1.5 mb-2">
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24">
                 <defs>
@@ -295,10 +295,10 @@ function AbandonedCartIllustration() {
                 </defs>
                 <path stroke="url(#cartGradient)" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
               </svg>
-              <p className="text-[12px] text-gray-500">Your cart</p>
+              <p className="text-[12px] text-muted-foreground">Your cart</p>
             </div>
             <div className="flex items-center gap-2.5">
-              <div className="w-12 h-12 rounded-lg overflow-hidden bg-gray-100">
+              <div className="w-12 h-12 rounded-lg overflow-hidden bg-muted">
                 <img
                   src="/images/products/designer-bag.jpg"
                   alt="Product"
@@ -306,27 +306,27 @@ function AbandonedCartIllustration() {
                 />
               </div>
               <div>
-                <p className="text-[13px] font-semibold text-gray-900">Designer Bag</p>
-                <p className="text-[12px] text-gray-500">$89.00</p>
+                <p className="text-[13px] font-semibold text-foreground">Designer Bag</p>
+                <p className="text-[12px] text-muted-foreground">$89.00</p>
               </div>
             </div>
           </div>
         </div>
 
         {/* Bottom card - SMS Message (offset to bottom-left) */}
-        <div className="absolute left-3 bottom-0 w-[88%] rounded-2xl bg-white shadow-[0_4px_16px_rgba(0,0,0,0.08)] p-3.5">
+        <div className="absolute left-3 bottom-0 w-[88%] rounded-2xl bg-background shadow-[0_4px_16px_rgba(0,0,0,0.08)] p-3.5">
           {/* Message header */}
           <div className="flex items-center gap-2 mb-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-gray-200 to-gray-300 text-[10px] font-semibold text-gray-700">
+            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-muted border border-border text-[10px] font-semibold text-foreground/70">
               GL
             </div>
             <div className="flex-1 min-w-0">
-              <p className="text-[13px] font-semibold text-gray-900 leading-tight">GlamLooks</p>
-              <p className="text-[11px] text-gray-400">2h ago</p>
+              <p className="text-[13px] font-semibold text-foreground leading-tight">GlamLooks</p>
+              <p className="text-[11px] text-muted-foreground">2h ago</p>
             </div>
           </div>
           {/* Message content */}
-          <p className="text-[13px] text-gray-600 leading-snug">
+          <p className="text-[13px] text-muted-foreground leading-snug">
             Hey! Complete your order now & get 10% off with code <span className="font-semibold">COMEBACK10</span>
           </p>
         </div>
@@ -371,44 +371,44 @@ function LoyaltyMarketingIllustration() {
     <IllustrationWrapper className="">
       <div className="relative flex-1 px-3 pt-2 flex flex-col">
         {/* Message card with rewards content */}
-        <div className="rounded-2xl bg-white shadow-[0_4px_16px_rgba(0,0,0,0.08)] overflow-hidden">
+        <div className="rounded-2xl bg-background shadow-[0_4px_16px_rgba(0,0,0,0.08)] overflow-hidden">
           {/* Header */}
           <div className="flex items-center gap-2 p-2.5 pb-1.5">
-            <div className="flex h-7 w-7 items-center justify-center rounded-full bg-gradient-to-br from-gray-200 to-gray-300 text-[9px] font-semibold text-gray-700">
+            <div className="flex h-7 w-7 items-center justify-center rounded-full bg-muted border border-border text-[9px] font-semibold text-foreground/70">
               RC
             </div>
             <div className="flex-1 min-w-0">
-              <p className="text-[12px] font-semibold text-gray-900 leading-tight">Rewards Club</p>
-              <p className="text-[10px] text-gray-400">Loyalty Program</p>
+              <p className="text-[12px] font-semibold text-foreground leading-tight">Rewards Club</p>
+              <p className="text-[10px] text-muted-foreground">Loyalty Program</p>
             </div>
           </div>
 
           {/* Message */}
-          <p className="text-[12px] text-gray-700 leading-snug px-2.5 pb-2">
+          <p className="text-[12px] text-foreground/80 leading-snug px-2.5 pb-2">
             🎁 You've earned <span className="font-semibold">500 points</span>. Redeem for $10 off!
           </p>
 
           {/* Rewards Card - light grey with gradient progress bar */}
-          <div className="mx-2.5 mb-2.5 rounded-lg overflow-hidden bg-gray-100 p-2.5">
+          <div className="mx-2.5 mb-2.5 rounded-lg overflow-hidden bg-muted p-2.5">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-[9px] text-gray-500">Your Points</p>
-                <p className="text-[18px] font-bold text-gray-900 leading-tight">500</p>
+                <p className="text-[9px] text-muted-foreground">Your Points</p>
+                <p className="text-[18px] font-bold text-foreground leading-tight">500</p>
               </div>
               <div className="text-right">
-                <p className="text-[9px] text-gray-500">Member</p>
-                <p className="text-[11px] font-medium text-gray-700">2023</p>
+                <p className="text-[9px] text-muted-foreground">Member</p>
+                <p className="text-[11px] font-medium text-foreground/80">2023</p>
               </div>
             </div>
             {/* Progress bar with gradient - animated */}
             <div className="mt-1.5">
               <div className="flex items-center justify-between mb-0.5">
-                <p className="text-[9px] text-gray-500">Next reward</p>
-                <p className="text-[9px] text-gray-700 font-medium">{progress}%</p>
+                <p className="text-[9px] text-muted-foreground">Next reward</p>
+                <p className="text-[9px] text-foreground/80 font-medium">{progress}%</p>
               </div>
-              <div className="w-full h-1 rounded-full bg-gray-300 overflow-hidden">
+              <div className="w-full h-1 rounded-full bg-muted overflow-hidden">
                 <div
-                  className="h-full rounded-full bg-gradient-to-r from-[#323dfe] to-black transition-all duration-100"
+                  className="h-full rounded-full bg-gradient-to-r from-primary to-black transition-all duration-100"
                   style={{ width: `${progress}%` }}
                 />
               </div>
@@ -450,31 +450,31 @@ function ConversationalMessagingIllustration() {
         {/* Phone device - compact */}
         <div className="w-full max-w-[220px]">
           {/* Phone outer frame with gradient */}
-          <div className="relative rounded-[20px] p-1 shadow-xl" style={{ background: 'linear-gradient(135deg, rgba(205, 62, 249, 0.5) 0%, rgba(50, 61, 254, 0.5) 100%)' }}>
+          <div className="relative rounded-[20px] p-1 " style={{ background: 'linear-gradient(135deg, rgba(205, 62, 249, 0.5) 0%, rgba(50, 61, 254, 0.5) 100%)' }}>
             {/* Screen */}
-            <div className="relative rounded-[18px] overflow-hidden bg-white">
+            <div className="relative rounded-[18px] overflow-hidden bg-background">
               {/* Status bar - compact */}
-              <div className="h-5 bg-gray-100 flex items-center justify-between px-3 text-[9px] font-medium">
-                <span className="text-black/50">9:41</span>
-                <div className="flex items-center gap-1 text-black/50">
+              <div className="h-5 bg-muted flex items-center justify-between px-3 text-[9px] font-medium">
+                <span className="text-foreground/50">9:41</span>
+                <div className="flex items-center gap-1 text-foreground/50">
                   <div className="flex gap-0.5">
-                    {[1,2,3,4].map(i => <span key={i} className="w-0.5 h-0.5 rounded-full bg-black" />)}
+                    {[1,2,3,4].map(i => <span key={i} className="w-0.5 h-0.5 rounded-full bg-foreground" />)}
                   </div>
-                  <div className="w-3.5 h-1.5 rounded-sm bg-black/50" />
+                  <div className="w-3.5 h-1.5 rounded-sm bg-foreground/$1" />
                 </div>
               </div>
 
               {/* Navigation bar - compact */}
-              <div className="h-7 bg-gray-100 border-b border-gray-200 flex items-center px-2">
+              <div className="h-7 bg-muted border-b border-border flex items-center px-2">
                 <svg className="w-3.5 h-3.5 text-[#007AFF]" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
                 </svg>
-                <span className="flex-1 text-center text-[11px] font-semibold text-black">RapidFood</span>
+                <span className="flex-1 text-center text-[11px] font-semibold text-foreground">RapidFood</span>
                 <span className="text-[9px] text-[#007AFF]">Details</span>
               </div>
 
               {/* Messages area - compact */}
-              <div className="px-2 py-2 space-y-1.5 bg-white min-h-[173px]">
+              <div className="px-2 py-2 space-y-1.5 bg-background min-h-[173px]">
                 {messages.map((message, i) => (
                   <div
                     key={i}
@@ -485,8 +485,8 @@ function ConversationalMessagingIllustration() {
                   >
                     {message.type === "incoming" ? (
                       <div className="flex items-start">
-                        <div className="rounded-2xl rounded-bl-sm px-2 py-1 max-w-[85%] bg-gray-200">
-                          <p className="text-[10px] text-black leading-snug">{message.text}</p>
+                        <div className="rounded-2xl rounded-bl-sm px-2 py-1 max-w-[85%] bg-muted">
+                          <p className="text-[10px] text-foreground leading-snug">{message.text}</p>
                         </div>
                       </div>
                     ) : (
@@ -501,8 +501,8 @@ function ConversationalMessagingIllustration() {
               </div>
 
               {/* Home indicator */}
-              <div className="h-4 bg-white flex items-center justify-center">
-                <div className="w-12 h-0.5 rounded-full bg-black/20" />
+              <div className="h-4 bg-background flex items-center justify-center">
+                <div className="w-12 h-0.5 rounded-full bg-foreground/$1" />
               </div>
             </div>
           </div>
@@ -553,13 +553,21 @@ const useCases: UseCase[] = [
 
 export default function SMSUseCases() {
   return (
-    <section className="bg-white py-12 sm:py-16 md:py-20">
+    <section className="bg-background border-t border-border py-12 sm:py-16 md:py-20">
       <div className="container mx-auto max-w-7xl px-4">
         {/* Section Header */}
-        <h2 className="font-sora text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] font-normal leading-[1.25] tracking-[-0.02em] text-black text-center mb-4 max-w-3xl mx-auto">
+        <div className="flex items-center gap-3 font-mono-ui text-[11px] uppercase tracking-[0.12em] text-muted-foreground mb-8">
+          <span className="flex items-center gap-2">
+            <span className="tabular-nums text-foreground/70">~</span>
+            <span className="h-px w-6 bg-border" />
+          </span>
+          <span>use cases</span>
+          <span className="flex-1 border-t border-dashed border-border" />
+        </div>
+        <h2 className="font-sora text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] font-normal leading-[1.04] tracking-[-0.035em] text-foreground mb-4">
           Engage your customers at every step of their journey
         </h2>
-        <p className="text-gray-600 text-center max-w-3xl mx-auto mb-10 md:mb-14">
+        <p className="text-muted-foreground max-w-3xl mb-10 md:mb-14">
           An all-in-one platform that delivers all your messaging needs with OTPs, alerts & notifications, promotional & loyalty campaigns, and conversational messaging.
         </p>
 
@@ -571,17 +579,17 @@ export default function SMSUseCases() {
               className="group"
             >
               {/* Illustration */}
-              <div className="mb-4 overflow-hidden rounded-xl border border-gray-200 transition-all">
+              <div className="mb-4 overflow-hidden rounded-xl border border-border transition-all">
                 {useCase.illustration}
               </div>
 
               {/* Title */}
-              <h3 className="mb-2 text-lg font-semibold text-black">
+              <h3 className="mb-2 text-lg font-semibold text-foreground">
                 {useCase.title}
               </h3>
 
               {/* Description */}
-              <p className="text-sm text-gray-600 leading-relaxed mb-3">
+              <p className="text-sm text-muted-foreground leading-relaxed mb-3">
                 {useCase.description}
               </p>
 

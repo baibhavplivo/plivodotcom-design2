@@ -19,7 +19,7 @@ function highlightCode(code: string, language: string): JSX.Element[] {
       // Comments
       const commentMatch = remaining.match(/^(#.*|\/\/.*|\/\*.*?\*\/)/);
       if (commentMatch) {
-        tokens.push(<span key={tokenIndex++} className="text-gray-400 italic">{commentMatch[0]}</span>);
+        tokens.push(<span key={tokenIndex++} className="text-muted-foreground italic">{commentMatch[0]}</span>);
         remaining = remaining.slice(commentMatch[0].length);
         matched = true;
         continue;
@@ -28,7 +28,7 @@ function highlightCode(code: string, language: string): JSX.Element[] {
       // Strings (double quotes)
       const doubleStringMatch = remaining.match(/^"([^"\\]|\\.)*"/);
       if (doubleStringMatch) {
-        tokens.push(<span key={tokenIndex++} className="text-emerald-600">{doubleStringMatch[0]}</span>);
+        tokens.push(<span key={tokenIndex++} className="text-emerald-600 dark:text-emerald-300">{doubleStringMatch[0]}</span>);
         remaining = remaining.slice(doubleStringMatch[0].length);
         matched = true;
         continue;
@@ -37,7 +37,7 @@ function highlightCode(code: string, language: string): JSX.Element[] {
       // Strings (single quotes)
       const singleStringMatch = remaining.match(/^'([^'\\]|\\.)*'/);
       if (singleStringMatch) {
-        tokens.push(<span key={tokenIndex++} className="text-emerald-600">{singleStringMatch[0]}</span>);
+        tokens.push(<span key={tokenIndex++} className="text-emerald-600 dark:text-emerald-300">{singleStringMatch[0]}</span>);
         remaining = remaining.slice(singleStringMatch[0].length);
         matched = true;
         continue;
@@ -91,7 +91,7 @@ function highlightCode(code: string, language: string): JSX.Element[] {
       // Property access
       const propMatch = remaining.match(/^\.([a-zA-Z_][a-zA-Z0-9_]*)/);
       if (propMatch) {
-        tokens.push(<span key={tokenIndex++} className="text-gray-700">.</span>);
+        tokens.push(<span key={tokenIndex++} className="text-foreground/80">.</span>);
         tokens.push(<span key={tokenIndex++} className="text-sky-600">{propMatch[1]}</span>);
         remaining = remaining.slice(propMatch[0].length);
         matched = true;
@@ -101,7 +101,7 @@ function highlightCode(code: string, language: string): JSX.Element[] {
       // Operators and punctuation
       const opMatch = remaining.match(/^[{}()[\];:,=<>+\-*\/&|!?@$%^~`\\]+/);
       if (opMatch) {
-        tokens.push(<span key={tokenIndex++} className="text-gray-500">{opMatch[0]}</span>);
+        tokens.push(<span key={tokenIndex++} className="text-muted-foreground">{opMatch[0]}</span>);
         remaining = remaining.slice(opMatch[0].length);
         matched = true;
         continue;
@@ -109,7 +109,7 @@ function highlightCode(code: string, language: string): JSX.Element[] {
 
       // Default: take one character
       if (!matched) {
-        tokens.push(<span key={tokenIndex++} className="text-gray-700">{remaining[0]}</span>);
+        tokens.push(<span key={tokenIndex++} className="text-foreground/80">{remaining[0]}</span>);
         remaining = remaining.slice(1);
       }
     }
@@ -392,20 +392,28 @@ export default function VerifyCodeSection() {
   };
 
   return (
-    <section className="bg-white py-12 lg:py-16">
+    <section className="bg-background border-t border-border py-12 lg:py-16">
       <div className="container mx-auto max-w-7xl px-4">
         <div className="grid gap-8 lg:grid-cols-2 lg:gap-12 items-center">
           {/* Left Content */}
           <div>
-            <h2 className="font-sora text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] font-normal leading-[1.25] tracking-[-0.02em] text-black mb-4">
+            <div className="flex items-center gap-3 font-mono-ui text-[11px] uppercase tracking-[0.12em] text-muted-foreground mb-8">
+          <span className="flex items-center gap-2">
+            <span className="tabular-nums text-foreground/70">~</span>
+            <span className="h-px w-6 bg-border" />
+          </span>
+          <span>code section</span>
+          <span className="flex-1 border-t border-dashed border-border" />
+        </div>
+        <h2 className="font-sora text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] font-normal leading-[1.04] tracking-[-0.035em] text-foreground mb-4">
               Switch to Plivo in under 5 minutes
             </h2>
-            <p className="text-gray-600 text-base sm:text-lg leading-relaxed mb-6">
+            <p className="text-muted-foreground text-base sm:text-lg leading-relaxed mb-6">
               Plivo's Verify API is designed to 'Go live in one sprint'. Our developer-first APIs and sample code can slash implementation time by 90% so your business never misses a beat!
             </p>
             <a
               href="https://www.plivo.com/docs/programmable-api/verify/overview"
-              className="inline-flex items-center gap-2 text-[#323dfe] font-medium hover:underline"
+              className="inline-flex items-center gap-2 text-primary font-medium hover:underline"
             >
               View full documentation
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
@@ -415,9 +423,9 @@ export default function VerifyCodeSection() {
           </div>
 
           {/* Right - Code Block */}
-          <div className="bg-white rounded-xl overflow-hidden border border-gray-200">
+          <div className="bg-background rounded-xl overflow-hidden border border-border">
             {/* Language Tabs */}
-            <div className="flex items-center justify-between px-4 py-3 border-b border-gray-200 bg-gray-50">
+            <div className="flex items-center justify-between px-4 py-3 border-b border-border bg-surface">
               <div className="flex items-center gap-1 overflow-x-auto">
                 {languages.map((lang) => (
                   <button
@@ -426,8 +434,8 @@ export default function VerifyCodeSection() {
                     className={cn(
                       "px-3 py-1.5 text-xs font-medium rounded-md whitespace-nowrap transition-colors",
                       activeLanguage === lang.id
-                        ? "bg-[#323dfe] text-white"
-                        : "text-gray-600 hover:text-black hover:bg-gray-200"
+                        ? "bg-primary text-white"
+                        : "text-muted-foreground hover:text-foreground hover:bg-gray-200"
                     )}
                   >
                     {lang.name}
@@ -436,14 +444,14 @@ export default function VerifyCodeSection() {
               </div>
               <button
                 onClick={handleCopy}
-                className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-gray-600 hover:text-black hover:bg-gray-200 rounded-md transition-colors ml-2 flex-shrink-0"
+                className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-muted-foreground hover:text-foreground hover:bg-gray-200 rounded-md transition-colors ml-2 flex-shrink-0"
               >
                 {copied ? (
                   <>
-                    <svg className="w-4 h-4 text-emerald-600" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
+                    <svg className="w-4 h-4 text-emerald-600 dark:text-emerald-300" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                     </svg>
-                    <span className="text-emerald-600">Copied!</span>
+                    <span className="text-emerald-600 dark:text-emerald-300">Copied!</span>
                   </>
                 ) : (
                   <>

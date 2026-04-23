@@ -85,16 +85,16 @@ const knowledgeFeatures: Feature[] = [
 // Brand Personality Configuration Illustration
 function BrandPersonalityIllustration() {
   return (
-    <div className="relative h-full w-full rounded-xl overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
+    <div className="relative h-full w-full rounded-xl overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, hsl(var(--border)) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="relative h-full w-full p-3 sm:p-4">
         {/* Configuration Panel */}
-        <div className="bg-white rounded-lg border border-gray-200 shadow-sm h-full flex flex-col">
+        <div className="bg-background rounded-lg border border-border shadow-sm h-full flex flex-col">
           {/* Header */}
-          <div className="px-4 py-3 border-b border-gray-100 flex items-center gap-3">
-            <Sparkles className="w-5 h-5 text-black" />
+          <div className="px-4 py-3 border-b border-border flex items-center gap-3">
+            <Sparkles className="w-5 h-5 text-foreground" />
             <div>
-              <p className="text-sm font-semibold text-gray-900">Brand Voice Configuration</p>
-              <p className="text-[10px] text-gray-500">Configure AI personality settings</p>
+              <p className="text-sm font-semibold text-foreground">Brand Voice Configuration</p>
+              <p className="text-[10px] text-muted-foreground">Configure AI personality settings</p>
             </div>
           </div>
 
@@ -102,23 +102,23 @@ function BrandPersonalityIllustration() {
           <div className="flex-1 p-4 space-y-4 overflow-hidden">
             {/* Brand Name Input */}
             <div>
-              <label className="text-[11px] font-medium text-gray-600 uppercase tracking-wide">Brand Name</label>
-              <div className="mt-1.5 px-3 py-2 bg-gray-50 rounded-md border border-gray-200 text-sm text-gray-900">
+              <label className="text-[11px] font-medium text-muted-foreground font-mono-ui uppercase tracking-[0.1em]">Brand Name</label>
+              <div className="mt-1.5 px-3 py-2 bg-surface rounded-md border border-border text-sm text-foreground">
                 TechStore
               </div>
             </div>
 
             {/* Tone Selection */}
             <div>
-              <label className="text-[11px] font-medium text-gray-600 uppercase tracking-wide">Tone of Voice</label>
+              <label className="text-[11px] font-medium text-muted-foreground font-mono-ui uppercase tracking-[0.1em]">Tone of Voice</label>
               <div className="mt-1.5 grid grid-cols-3 gap-2">
                 {["Friendly", "Professional", "Casual"].map((tone, i) => (
                   <div
                     key={i}
                     className={`px-3 py-2 rounded-md text-xs font-medium text-center cursor-pointer transition-colors ${
                       i === 0
-                        ? "bg-[#323dfe]/10 text-[#323dfe] border border-[#323dfe]"
-                        : "bg-gray-50 text-gray-600 border border-gray-200"
+                        ? "bg-surface border border-border text-foreground/80 border border-primary"
+                        : "bg-surface text-muted-foreground border border-border"
                     }`}
                   >
                     {tone}
@@ -129,15 +129,15 @@ function BrandPersonalityIllustration() {
 
             {/* Personality Traits */}
             <div>
-              <label className="text-[11px] font-medium text-gray-600 uppercase tracking-wide">Personality Traits</label>
+              <label className="text-[11px] font-medium text-muted-foreground font-mono-ui uppercase tracking-[0.1em]">Personality Traits</label>
               <div className="mt-1.5 flex flex-wrap gap-1.5">
                 {["Empathetic", "Helpful", "Enthusiastic", "Concise"].map((trait, i) => (
                   <span
                     key={i}
                     className={`px-2.5 py-1 rounded-full text-[10px] font-medium ${
                       i < 3
-                        ? "bg-[#323dfe]/10 text-[#323dfe] border border-[#323dfe]/20"
-                        : "bg-gray-100 text-gray-500 border border-gray-200"
+                        ? "bg-surface border border-border text-foreground/80 border border-primary/20"
+                        : "bg-muted text-muted-foreground border border-border"
                     }`}
                   >
                     {trait}
@@ -148,10 +148,10 @@ function BrandPersonalityIllustration() {
           </div>
 
           {/* Footer */}
-          <div className="px-4 py-3 border-t border-gray-100 bg-gray-50/50">
+          <div className="px-4 py-3 border-t border-border bg-surface/50">
             <div className="flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-[#323dfe]"></span>
-              <span className="text-[11px] text-gray-600">AI agent configured and active</span>
+              <span className="w-2 h-2 rounded-full bg-primary"></span>
+              <span className="text-[11px] text-muted-foreground">AI agent configured and active</span>
             </div>
           </div>
         </div>
@@ -170,22 +170,22 @@ function TwoWayConversationIllustration() {
   }, []);
 
   return (
-    <div className="relative h-full w-full rounded-xl overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
+    <div className="relative h-full w-full rounded-xl overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, hsl(var(--border)) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="relative h-full w-full pt-3 sm:pt-4 flex justify-center overflow-hidden">
         {/* Phone device */}
         <div className="w-[280px] sm:w-[320px] h-[500px]">
           {/* Phone outer frame */}
-          <div className="relative rounded-[36px] p-1.5 shadow-2xl h-full border border-gray-300 bg-gray-100">
+          <div className="relative rounded-[36px] p-1.5 h-full border border-border-strong bg-muted">
 
             {/* Screen */}
-            <div className="relative rounded-[32px] overflow-hidden bg-[#efeae2] shadow-inner h-full flex flex-col">
+            <div className="relative rounded-[32px] overflow-hidden bg-[#efeae2] dark:bg-[#0b141a] shadow-inner h-full flex flex-col">
               {/* WhatsApp header */}
-              <div className="h-14 bg-[#075E54] flex items-center px-3 gap-2 rounded-t-[32px]">
+              <div className="h-14 bg-[#075E54] dark:bg-[#1f2c33] flex items-center px-3 gap-2 rounded-t-[32px]">
                 <svg className="w-5 h-5 text-white/80" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
                 </svg>
                 <div className="w-8 h-8 rounded-full bg-gray-300 flex items-center justify-center">
-                  <span className="text-xs font-semibold text-gray-600">TS</span>
+                  <span className="text-xs font-semibold text-muted-foreground">TS</span>
                 </div>
                 <div className="flex-1">
                   <p className="text-white text-sm font-medium">TechStore AI</p>
@@ -194,7 +194,7 @@ function TwoWayConversationIllustration() {
               </div>
 
               {/* Messages area */}
-              <div className="flex-1 px-3 py-3 space-y-2 bg-[#efeae2]">
+              <div className="flex-1 px-3 py-3 space-y-2 bg-[#efeae2] dark:bg-[#0b141a]">
                 {/* AI message */}
                 <div
                   className="flex items-start transition-all duration-700 ease-out"
@@ -204,9 +204,9 @@ function TwoWayConversationIllustration() {
                     transitionDelay: '0ms'
                   }}
                 >
-                  <div className="relative rounded-lg rounded-tl-sm px-2.5 py-1.5 max-w-[85%] bg-white shadow-sm">
-                    <p className="text-[12px] text-gray-800 leading-snug">Hi Sarah! 👋 Your cart has some great items. Ready to check out?</p>
-                    <p className="text-[5px] text-gray-400 text-right mt-0.5">9:41 AM</p>
+                  <div className="relative rounded-lg rounded-tl-sm px-2.5 py-1.5 max-w-[85%] bg-background shadow-sm text-[#111b21] [&_p]:!text-[#111b21]">
+                    <p className="text-[12px] text-foreground leading-snug">Hi Sarah! 👋 Your cart has some great items. Ready to check out?</p>
+                    <p className="text-[5px] text-muted-foreground text-right mt-0.5">9:41 AM</p>
                   </div>
                 </div>
 
@@ -219,9 +219,9 @@ function TwoWayConversationIllustration() {
                     transitionDelay: '600ms'
                   }}
                 >
-                  <div className="relative rounded-lg rounded-tr-sm px-2.5 py-1.5 max-w-[85%] bg-[#dcf8c6] shadow-sm">
-                    <p className="text-[12px] text-gray-800 leading-snug">Yes! But I had a question about sizing</p>
-                    <p className="text-[5px] text-gray-500 text-right mt-0.5 flex items-center justify-end gap-0.5">9:41 AM <svg className="w-[5px] h-[5px] text-[#53bdeb]" viewBox="0 0 16 15" fill="currentColor"><path d="M15.01 3.316l-.478-.372a.365.365 0 00-.51.063L8.666 9.88 5.64 6.37a.365.365 0 00-.51-.063l-.478.372a.365.365 0 00-.063.51l3.65 4.49a.365.365 0 00.564.004l6.145-7.858a.365.365 0 00-.063-.51z"/><path d="M12.01 3.316l-.478-.372a.365.365 0 00-.51.063L5.666 9.88 4.64 8.37a.365.365 0 00-.51-.063l-.478.372a.365.365 0 00-.063.51l1.65 2.49a.365.365 0 00.564.004l6.145-7.858a.365.365 0 00-.063-.51z"/></svg></p>
+                  <div className="relative rounded-lg rounded-tr-sm px-2.5 py-1.5 max-w-[85%] bg-[#dcf8c6] dark:bg-[#005c4b] shadow-sm text-[#111b21] dark:text-[#e9edef] [&_p]:!text-[#111b21] dark:[&_p]:!text-[#e9edef]">
+                    <p className="text-[12px] text-[#111b21] leading-snug">Yes! But I had a question about sizing</p>
+                    <p className="text-[5px] text-[#667781] text-right mt-0.5 flex items-center justify-end gap-0.5">9:41 AM <svg className="w-[5px] h-[5px] text-[#53bdeb]" viewBox="0 0 16 15" fill="currentColor"><path d="M15.01 3.316l-.478-.372a.365.365 0 00-.51.063L8.666 9.88 5.64 6.37a.365.365 0 00-.51-.063l-.478.372a.365.365 0 00-.063.51l3.65 4.49a.365.365 0 00.564.004l6.145-7.858a.365.365 0 00-.063-.51z"/><path d="M12.01 3.316l-.478-.372a.365.365 0 00-.51.063L5.666 9.88 4.64 8.37a.365.365 0 00-.51-.063l-.478.372a.365.365 0 00-.063.51l1.65 2.49a.365.365 0 00.564.004l6.145-7.858a.365.365 0 00-.063-.51z"/></svg></p>
                   </div>
                 </div>
 
@@ -234,9 +234,9 @@ function TwoWayConversationIllustration() {
                     transitionDelay: '1200ms'
                   }}
                 >
-                  <div className="relative rounded-lg rounded-tl-sm px-2.5 py-1.5 max-w-[85%] bg-white shadow-sm">
-                    <p className="text-[12px] text-gray-800 leading-snug">The blue dress runs true to size. Based on your orders, Medium would be perfect!</p>
-                    <p className="text-[5px] text-gray-400 text-right mt-0.5">9:42 AM</p>
+                  <div className="relative rounded-lg rounded-tl-sm px-2.5 py-1.5 max-w-[85%] bg-background shadow-sm text-[#111b21] [&_p]:!text-[#111b21]">
+                    <p className="text-[12px] text-foreground leading-snug">The blue dress runs true to size. Based on your orders, Medium would be perfect!</p>
+                    <p className="text-[5px] text-muted-foreground text-right mt-0.5">9:42 AM</p>
                   </div>
                 </div>
 
@@ -249,9 +249,9 @@ function TwoWayConversationIllustration() {
                     transitionDelay: '1800ms'
                   }}
                 >
-                  <div className="relative rounded-lg rounded-tr-sm px-2.5 py-1.5 max-w-[85%] bg-[#dcf8c6] shadow-sm">
-                    <p className="text-[12px] text-gray-800 leading-snug">Add it to my cart! 🙌</p>
-                    <p className="text-[5px] text-gray-500 text-right mt-0.5 flex items-center justify-end gap-0.5">9:42 AM <svg className="w-[5px] h-[5px] text-[#53bdeb]" viewBox="0 0 16 15" fill="currentColor"><path d="M15.01 3.316l-.478-.372a.365.365 0 00-.51.063L8.666 9.88 5.64 6.37a.365.365 0 00-.51-.063l-.478.372a.365.365 0 00-.063.51l3.65 4.49a.365.365 0 00.564.004l6.145-7.858a.365.365 0 00-.063-.51z"/><path d="M12.01 3.316l-.478-.372a.365.365 0 00-.51.063L5.666 9.88 4.64 8.37a.365.365 0 00-.51-.063l-.478.372a.365.365 0 00-.063.51l1.65 2.49a.365.365 0 00.564.004l6.145-7.858a.365.365 0 00-.063-.51z"/></svg></p>
+                  <div className="relative rounded-lg rounded-tr-sm px-2.5 py-1.5 max-w-[85%] bg-[#dcf8c6] dark:bg-[#005c4b] shadow-sm text-[#111b21] dark:text-[#e9edef] [&_p]:!text-[#111b21] dark:[&_p]:!text-[#e9edef]">
+                    <p className="text-[12px] text-[#111b21] leading-snug">Add it to my cart! 🙌</p>
+                    <p className="text-[5px] text-[#667781] text-right mt-0.5 flex items-center justify-end gap-0.5">9:42 AM <svg className="w-[5px] h-[5px] text-[#53bdeb]" viewBox="0 0 16 15" fill="currentColor"><path d="M15.01 3.316l-.478-.372a.365.365 0 00-.51.063L8.666 9.88 5.64 6.37a.365.365 0 00-.51-.063l-.478.372a.365.365 0 00-.063.51l3.65 4.49a.365.365 0 00.564.004l6.145-7.858a.365.365 0 00-.063-.51z"/><path d="M12.01 3.316l-.478-.372a.365.365 0 00-.51.063L5.666 9.88 4.64 8.37a.365.365 0 00-.51-.063l-.478.372a.365.365 0 00-.063.51l1.65 2.49a.365.365 0 00.564.004l6.145-7.858a.365.365 0 00-.063-.51z"/></svg></p>
                   </div>
                 </div>
               </div>
@@ -263,7 +263,7 @@ function TwoWayConversationIllustration() {
         <div
           className="absolute inset-x-0 bottom-0 h-32 pointer-events-none"
           style={{
-            background: 'linear-gradient(to top, white 0%, white 20%, transparent 100%)'
+            background: 'linear-gradient(to top, hsl(var(--background)) 0%, hsl(var(--background)) 20%, transparent 100%)'
           }}
         />
       </div>
@@ -274,15 +274,15 @@ function TwoWayConversationIllustration() {
 // High-Performance AI Content Illustration
 function HighPerformanceContentIllustration() {
   return (
-    <div className="relative h-full w-full rounded-xl overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
+    <div className="relative h-full w-full rounded-xl overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, hsl(var(--border)) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="relative h-full w-full p-3 sm:p-4">
-        <div className="bg-white rounded-lg border border-gray-200 shadow-sm h-full flex flex-col">
+        <div className="bg-background rounded-lg border border-border shadow-sm h-full flex flex-col">
           {/* Header */}
-          <div className="px-4 py-3 border-b border-gray-100 flex items-center gap-3">
-            <Zap className="w-5 h-5 text-black" />
+          <div className="px-4 py-3 border-b border-border flex items-center gap-3">
+            <Zap className="w-5 h-5 text-foreground" />
             <div className="flex-1">
-              <p className="text-sm font-semibold text-gray-900">Message Generator</p>
-              <p className="text-[10px] text-gray-500">A/B variants generated</p>
+              <p className="text-sm font-semibold text-foreground">Message Generator</p>
+              <p className="text-[10px] text-muted-foreground">A/B variants generated</p>
             </div>
             <span className="text-[10px] px-2 py-1 rounded-md bg-blue-50 text-blue-700 font-medium border border-blue-200">Ready</span>
           </div>
@@ -291,42 +291,42 @@ function HighPerformanceContentIllustration() {
           <div className="flex-1 p-4 overflow-hidden">
             <div className="grid grid-cols-2 gap-3 h-full">
               {/* Variant A - Winner */}
-              <div className="rounded-lg border border-[#323dfe] bg-[#323dfe]/5 p-3 flex flex-col">
+              <div className="rounded-lg border border-primary bg-primary/5 p-3 flex flex-col">
                 <div className="flex items-center justify-between mb-2">
                   <div className="flex items-center gap-2">
-                    <div className="w-6 h-6 rounded-md bg-[#323dfe] text-white flex items-center justify-center text-xs font-semibold">
+                    <div className="w-6 h-6 rounded-md bg-primary text-white flex items-center justify-center text-xs font-semibold">
                       A
                     </div>
-                    <span className="text-[10px] text-[#323dfe] font-medium uppercase tracking-wide">Winner</span>
+                    <span className="text-[10px] text-primary font-medium font-mono-ui uppercase tracking-[0.1em]">Winner</span>
                   </div>
                   <div className="text-right">
-                    <p className="text-base font-bold text-[#323dfe]">92%</p>
-                    <p className="text-[9px] text-gray-500">score</p>
+                    <p className="text-base font-bold text-primary">92%</p>
+                    <p className="text-[9px] text-muted-foreground">score</p>
                   </div>
                 </div>
-                <div className="flex-1 bg-white rounded-md border border-gray-200 p-3">
-                  <p className="text-[12px] text-gray-700 leading-relaxed">
+                <div className="flex-1 bg-background rounded-md border border-border p-3">
+                  <p className="text-[12px] text-foreground/80 leading-relaxed">
                     🎉 Flash Sale! 40% off ends tonight. Shop now →
                   </p>
                 </div>
               </div>
 
               {/* Variant B */}
-              <div className="rounded-lg border border-gray-200 bg-white p-3 flex flex-col">
+              <div className="rounded-lg border border-border bg-background p-3 flex flex-col">
                 <div className="flex items-center justify-between mb-2">
                   <div className="flex items-center gap-2">
-                    <div className="w-6 h-6 rounded-md bg-gray-100 text-gray-500 flex items-center justify-center text-xs font-semibold">
+                    <div className="w-6 h-6 rounded-md bg-muted text-muted-foreground flex items-center justify-center text-xs font-semibold">
                       B
                     </div>
-                    <span className="text-[10px] text-gray-400 font-medium uppercase tracking-wide">Variant</span>
+                    <span className="text-[10px] text-muted-foreground font-medium font-mono-ui uppercase tracking-[0.1em]">Variant</span>
                   </div>
                   <div className="text-right">
-                    <p className="text-base font-bold text-gray-600">85%</p>
-                    <p className="text-[9px] text-gray-500">score</p>
+                    <p className="text-base font-bold text-muted-foreground">85%</p>
+                    <p className="text-[9px] text-muted-foreground">score</p>
                   </div>
                 </div>
-                <div className="flex-1 bg-gray-50 rounded-md border border-gray-200 p-3">
-                  <p className="text-[12px] text-gray-700 leading-relaxed">
+                <div className="flex-1 bg-surface rounded-md border border-border p-3">
+                  <p className="text-[12px] text-foreground/80 leading-relaxed">
                     Hey! Your favorites are on sale. 40% off for 24hrs!
                   </p>
                 </div>
@@ -335,19 +335,19 @@ function HighPerformanceContentIllustration() {
           </div>
 
           {/* Footer stats */}
-          <div className="px-4 py-3 border-t border-gray-100 bg-gray-50/50">
+          <div className="px-4 py-3 border-t border-border bg-surface/50">
             <div className="grid grid-cols-3 gap-3">
               <div className="text-center">
-                <p className="text-lg font-semibold text-gray-900">28%</p>
-                <p className="text-[9px] text-gray-500">Open rate</p>
+                <p className="text-lg font-semibold text-foreground">28%</p>
+                <p className="text-[9px] text-muted-foreground">Open rate</p>
               </div>
               <div className="text-center">
-                <p className="text-lg font-semibold text-gray-900">$15.2k</p>
-                <p className="text-[9px] text-gray-500">Est. revenue</p>
+                <p className="text-lg font-semibold text-foreground">$15.2k</p>
+                <p className="text-[9px] text-muted-foreground">Est. revenue</p>
               </div>
               <div className="text-center">
-                <p className="text-lg font-semibold text-[#323dfe]">9.4x</p>
-                <p className="text-[9px] text-gray-500">ROI</p>
+                <p className="text-lg font-semibold text-primary">9.4x</p>
+                <p className="text-[9px] text-muted-foreground">ROI</p>
               </div>
             </div>
           </div>
@@ -360,20 +360,20 @@ function HighPerformanceContentIllustration() {
 // Personalized Recommendations Illustration
 function PersonalizedRecommendationsIllustration() {
   return (
-    <div className="relative h-full w-full rounded-xl overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
+    <div className="relative h-full w-full rounded-xl overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, hsl(var(--border)) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="relative h-full w-full p-3 sm:p-4">
-        <div className="bg-white rounded-lg border border-gray-200 shadow-sm h-full flex flex-col">
-          <div className="px-4 py-3 border-b border-gray-100 flex items-center gap-3">
-            <Target className="w-5 h-5 text-black" />
+        <div className="bg-background rounded-lg border border-border shadow-sm h-full flex flex-col">
+          <div className="px-4 py-3 border-b border-border flex items-center gap-3">
+            <Target className="w-5 h-5 text-foreground" />
             <div className="flex-1">
-              <p className="text-sm font-semibold text-gray-900">Smart Recommendations</p>
-              <p className="text-[10px] text-gray-500">AI-powered personalization</p>
+              <p className="text-sm font-semibold text-foreground">Smart Recommendations</p>
+              <p className="text-[10px] text-muted-foreground">AI-powered personalization</p>
             </div>
             <span className="text-[10px] px-2 py-1 rounded-md bg-blue-50 text-blue-700 font-medium border border-blue-200">Live</span>
           </div>
 
           {/* Customer Profile */}
-          <div className="px-4 py-3 border-b border-gray-100 bg-gray-50/50">
+          <div className="px-4 py-3 border-b border-border bg-surface/50">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-full overflow-hidden flex-shrink-0 bg-gray-200">
                 <img
@@ -383,31 +383,31 @@ function PersonalizedRecommendationsIllustration() {
                 />
               </div>
               <div className="flex-1">
-                <p className="text-[13px] font-medium text-gray-900">Jessica Davis</p>
-                <p className="text-[10px] text-gray-500">Based on 24 interactions</p>
+                <p className="text-[13px] font-medium text-foreground">Jessica Davis</p>
+                <p className="text-[10px] text-muted-foreground">Based on 24 interactions</p>
               </div>
             </div>
           </div>
 
           {/* Recommended Products */}
           <div className="flex-1 px-4 py-3 space-y-2.5 overflow-hidden">
-            <p className="text-[10px] text-gray-500 font-medium uppercase tracking-wide">Recommended for Jessica</p>
+            <p className="text-[10px] text-muted-foreground font-medium font-mono-ui uppercase tracking-[0.1em]">Recommended for Jessica</p>
 
             {[
               { name: "Summer Dress", match: "94%", img: "/images/products/summer-dress.jpg" },
               { name: "Beach Sandals", match: "89%", img: "/images/products/beach-sandals.jpg" },
               { name: "Sun Hat", match: "85%", img: "/images/products/sun-hat.jpg" },
             ].map((item, i) => (
-              <div key={i} className="flex items-center gap-3 p-2 rounded-lg bg-gray-50 border border-gray-100">
-                <div className="w-10 h-10 rounded-md overflow-hidden flex-shrink-0 bg-gray-100">
+              <div key={i} className="flex items-center gap-3 p-2 rounded-lg bg-surface border border-border">
+                <div className="w-10 h-10 rounded-md overflow-hidden flex-shrink-0 bg-muted">
                   <img src={item.img} alt={item.name} className="w-full h-full object-cover" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-[12px] font-medium text-gray-900">{item.name}</p>
+                  <p className="text-[12px] font-medium text-foreground">{item.name}</p>
                 </div>
                 <div className="text-right">
-                  <p className="text-[12px] font-semibold text-[#323dfe]">{item.match}</p>
-                  <p className="text-[9px] text-gray-400">match</p>
+                  <p className="text-[12px] font-semibold text-primary">{item.match}</p>
+                  <p className="text-[9px] text-muted-foreground">match</p>
                 </div>
               </div>
             ))}
@@ -428,61 +428,61 @@ function KnowledgeIntegrationIllustration() {
   ];
 
   return (
-    <div className="relative h-full w-full rounded-xl overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
+    <div className="relative h-full w-full rounded-xl overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, hsl(var(--border)) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="relative h-full w-full p-3 sm:p-4">
-        <div className="bg-white rounded-lg border border-gray-200 shadow-sm h-full flex flex-col">
-          <div className="px-4 py-3 border-b border-gray-100 flex items-center gap-3">
-            <Database className="w-5 h-5 text-black" />
+        <div className="bg-background rounded-lg border border-border shadow-sm h-full flex flex-col">
+          <div className="px-4 py-3 border-b border-border flex items-center gap-3">
+            <Database className="w-5 h-5 text-foreground" />
             <div className="flex-1">
-              <p className="text-sm font-semibold text-gray-900">Knowledge Sources</p>
-              <p className="text-[10px] text-gray-500">Connected integrations</p>
+              <p className="text-sm font-semibold text-foreground">Knowledge Sources</p>
+              <p className="text-[10px] text-muted-foreground">Connected integrations</p>
             </div>
             <span className="text-[10px] px-2 py-1 rounded-md bg-blue-50 text-blue-700 font-medium border border-blue-200">Synced</span>
           </div>
 
           {/* Integration logos */}
-          <div className="px-4 py-4 border-b border-gray-100">
+          <div className="px-4 py-4 border-b border-border">
             <div className="flex items-center justify-between gap-2">
               {brands.map((brand, i) => (
                 <div key={i} className="flex flex-col items-center gap-1.5">
-                  <div className="w-12 h-12 rounded-lg bg-gray-50 border border-gray-200 flex items-center justify-center p-2">
+                  <div className="w-12 h-12 rounded-lg bg-surface border border-border flex items-center justify-center p-2">
                     <img
                       src={brand.logo}
                       alt={brand.name}
                       className="w-6 h-6 object-contain"
                     />
                   </div>
-                  <span className="text-[10px] text-gray-600 text-center font-medium">{brand.name}</span>
+                  <span className="text-[10px] text-muted-foreground text-center font-medium">{brand.name}</span>
                 </div>
               ))}
             </div>
           </div>
 
           {/* Stats */}
-          <div className="px-4 py-3 bg-gray-50/50 border-b border-gray-100">
+          <div className="px-4 py-3 bg-surface/50 border-b border-border">
             <div className="grid grid-cols-3 gap-3">
-              <div className="text-center p-2 bg-white rounded-md border border-gray-200">
-                <p className="text-lg font-semibold text-gray-900">12.4k</p>
-                <p className="text-[9px] text-gray-500">Products</p>
+              <div className="text-center p-2 bg-background rounded-md border border-border">
+                <p className="text-lg font-semibold text-foreground">12.4k</p>
+                <p className="text-[9px] text-muted-foreground">Products</p>
               </div>
-              <div className="text-center p-2 bg-white rounded-md border border-gray-200">
-                <p className="text-lg font-semibold text-gray-900">856</p>
-                <p className="text-[9px] text-gray-500">FAQs</p>
+              <div className="text-center p-2 bg-background rounded-md border border-border">
+                <p className="text-lg font-semibold text-foreground">856</p>
+                <p className="text-[9px] text-muted-foreground">FAQs</p>
               </div>
-              <div className="text-center p-2 bg-white rounded-md border border-gray-200">
-                <p className="text-lg font-semibold text-gray-900">45k</p>
-                <p className="text-[9px] text-gray-500">Customers</p>
+              <div className="text-center p-2 bg-background rounded-md border border-border">
+                <p className="text-lg font-semibold text-foreground">45k</p>
+                <p className="text-[9px] text-muted-foreground">Customers</p>
               </div>
             </div>
           </div>
 
           {/* Recent sync */}
           <div className="flex-1 p-4">
-            <p className="text-[10px] text-gray-500 font-medium uppercase tracking-wide mb-2">Last Sync</p>
-            <div className="flex items-center gap-2 text-[10px] p-2 bg-gray-50 rounded-md">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#323dfe] flex-shrink-0" />
-              <span className="text-gray-700 flex-1">All sources synced</span>
-              <span className="text-gray-400">2m ago</span>
+            <p className="text-[10px] text-muted-foreground font-medium font-mono-ui uppercase tracking-[0.1em] mb-2">Last Sync</p>
+            <div className="flex items-center gap-2 text-[10px] p-2 bg-surface rounded-md">
+              <span className="w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0" />
+              <span className="text-foreground/80 flex-1">All sources synced</span>
+              <span className="text-muted-foreground">2m ago</span>
             </div>
           </div>
         </div>
@@ -507,46 +507,46 @@ function Availability247Illustration() {
   ];
 
   return (
-    <div className="relative h-full w-full rounded-xl overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
+    <div className="relative h-full w-full rounded-xl overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, hsl(var(--border)) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="relative h-full w-full p-3 sm:p-4">
-        <div className="bg-white rounded-xl border border-gray-200 shadow-sm h-full flex flex-col">
-          <div className="px-4 py-3.5 border-b border-gray-100 flex items-center gap-3">
-            <Clock className="w-6 h-6 text-black" strokeWidth={1.5} />
+        <div className="bg-background rounded-xl border border-border shadow-sm h-full flex flex-col">
+          <div className="px-4 py-3.5 border-b border-border flex items-center gap-3">
+            <Clock className="w-6 h-6 text-foreground" strokeWidth={1.5} />
             <div className="flex-1">
-              <p className="text-[15px] font-semibold text-gray-900">24/7 Automation</p>
-              <p className="text-[11px] text-gray-500">Always-on WhatsApp engagement</p>
+              <p className="text-[15px] font-semibold text-foreground">24/7 Automation</p>
+              <p className="text-[11px] text-muted-foreground">Always-on WhatsApp engagement</p>
             </div>
             <div className="text-right">
-              <p className="text-base font-semibold text-[#323dfe]">99.9%</p>
-              <p className="text-[10px] text-gray-500">Uptime</p>
+              <p className="text-base font-semibold text-primary">99.9%</p>
+              <p className="text-[10px] text-muted-foreground">Uptime</p>
             </div>
           </div>
 
           {/* Chart */}
-          <div className="px-4 py-4 border-b border-gray-100 flex-1">
+          <div className="px-4 py-4 border-b border-border flex-1">
             <div className="flex items-center justify-between mb-4">
-              <p className="text-[10px] text-gray-500 font-semibold uppercase tracking-wider">Messages by Hour</p>
-              <p className="text-[11px] text-gray-900 font-medium">3,247 today</p>
+              <p className="text-[10px] text-muted-foreground font-semibold font-mono-ui uppercase tracking-[0.1em]">Messages by Hour</p>
+              <p className="text-[11px] text-foreground font-medium">3,247 today</p>
             </div>
             <div className="relative h-20">
               <div className="absolute inset-0 flex flex-col justify-between pointer-events-none">
-                <div className="border-b border-gray-100" />
-                <div className="border-b border-gray-100" />
-                <div className="border-b border-gray-100" />
+                <div className="border-b border-border" />
+                <div className="border-b border-border" />
+                <div className="border-b border-border" />
               </div>
               <div className="relative h-full flex items-end justify-between gap-2 px-1">
                 {hourlyData.map((item, i) => (
                   <div key={i} className="flex-1 flex flex-col items-center">
                     <div className="w-full flex items-end justify-center h-[60px]">
                       <div
-                        className="w-full max-w-[28px] rounded-t-sm bg-gradient-to-t from-[#323dfe] to-black transition-all duration-700 ease-out"
+                        className="w-full max-w-[28px] rounded-t-sm bg-gradient-to-t from-primary to-black transition-all duration-700 ease-out"
                         style={{
                           height: animatedBars ? `${item.value}%` : '0%',
                           transitionDelay: `${i * 80}ms`
                         }}
                       />
                     </div>
-                    <span className="text-[9px] text-gray-400 mt-1.5">{item.hour}</span>
+                    <span className="text-[9px] text-muted-foreground mt-1.5">{item.hour}</span>
                   </div>
                 ))}
               </div>
@@ -556,34 +556,34 @@ function Availability247Illustration() {
           {/* Stats */}
           <div className="px-4 py-3">
             <div className="grid grid-cols-3 gap-2.5">
-              <div className="text-center py-2.5 px-2 bg-white rounded-lg border border-gray-200">
-                <p className="text-xl font-semibold text-gray-900">2s</p>
-                <p className="text-[9px] text-gray-500">Avg response</p>
+              <div className="text-center py-2.5 px-2 bg-background rounded-lg border border-border">
+                <p className="text-xl font-semibold text-foreground">2s</p>
+                <p className="text-[9px] text-muted-foreground">Avg response</p>
               </div>
-              <div className="text-center py-2.5 px-2 bg-white rounded-lg border border-gray-200">
-                <p className="text-xl font-semibold text-gray-900">96%</p>
-                <p className="text-[9px] text-gray-500">Resolution</p>
+              <div className="text-center py-2.5 px-2 bg-background rounded-lg border border-border">
+                <p className="text-xl font-semibold text-foreground">96%</p>
+                <p className="text-[9px] text-muted-foreground">Resolution</p>
               </div>
-              <div className="text-center py-2.5 px-2 bg-white rounded-lg border border-gray-200">
-                <p className="text-xl font-semibold text-[#323dfe]">0</p>
-                <p className="text-[9px] text-gray-500">Missed</p>
+              <div className="text-center py-2.5 px-2 bg-background rounded-lg border border-border">
+                <p className="text-xl font-semibold text-primary">0</p>
+                <p className="text-[9px] text-muted-foreground">Missed</p>
               </div>
             </div>
           </div>
 
           {/* After-hours */}
           <div className="px-4 pb-4">
-            <div className="flex items-center gap-3 p-3.5 bg-gray-50 rounded-xl border border-gray-200">
+            <div className="flex items-center gap-3 p-3.5 bg-surface rounded-xl border border-border">
               <div className="w-11 h-11 rounded-xl bg-gray-200/70 flex items-center justify-center flex-shrink-0">
-                <Moon className="w-5 h-5 text-black" strokeWidth={1.5} />
+                <Moon className="w-5 h-5 text-foreground" strokeWidth={1.5} />
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-[13px] font-semibold text-gray-900">After-hours coverage</p>
-                <p className="text-[11px] text-gray-500">524 conversations handled overnight</p>
+                <p className="text-[13px] font-semibold text-foreground">After-hours coverage</p>
+                <p className="text-[11px] text-muted-foreground">524 conversations handled overnight</p>
               </div>
               <div className="text-right flex-shrink-0">
-                <p className="text-[15px] font-semibold text-[#323dfe]">$11.2k</p>
-                <p className="text-[9px] text-gray-400">revenue</p>
+                <p className="text-[15px] font-semibold text-primary">$11.2k</p>
+                <p className="text-[9px] text-muted-foreground">revenue</p>
               </div>
             </div>
           </div>
@@ -596,15 +596,15 @@ function Availability247Illustration() {
 // Voices that Feel Real Illustration
 function VoicesFeelRealIllustration() {
   return (
-    <div className="relative h-full w-full rounded-xl overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
+    <div className="relative h-full w-full rounded-xl overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, hsl(var(--border)) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="relative h-full w-full p-3 sm:p-4">
-        <div className="bg-white rounded-lg border border-gray-200 shadow-sm h-full flex flex-col">
+        <div className="bg-background rounded-lg border border-border shadow-sm h-full flex flex-col">
           {/* Header */}
-          <div className="px-4 py-3 border-b border-gray-100 flex items-center gap-3">
-            <AudioLines className="w-5 h-5 text-black" />
+          <div className="px-4 py-3 border-b border-border flex items-center gap-3">
+            <AudioLines className="w-5 h-5 text-foreground" />
             <div className="flex-1">
-              <p className="text-sm font-semibold text-gray-900">Voice Configuration</p>
-              <p className="text-[10px] text-gray-500">WhatsApp call voice settings</p>
+              <p className="text-sm font-semibold text-foreground">Voice Configuration</p>
+              <p className="text-[10px] text-muted-foreground">WhatsApp call voice settings</p>
             </div>
             <span className="text-[10px] px-2 py-1 rounded-md bg-green-50 text-green-700 font-medium border border-green-200">Active</span>
           </div>
@@ -612,25 +612,25 @@ function VoicesFeelRealIllustration() {
           {/* Voice options */}
           <div className="flex-1 p-4 space-y-3 overflow-hidden">
             {/* Selected voice */}
-            <div className="rounded-lg border-2 border-[#323dfe] bg-[#323dfe]/5 p-3">
+            <div className="rounded-lg border-2 border-primary bg-primary/5 p-3">
               <div className="flex items-center justify-between mb-2">
                 <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 rounded-full bg-[#323dfe] text-white flex items-center justify-center">
+                  <div className="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center">
                     <AudioLines className="w-4 h-4" />
                   </div>
                   <div>
-                    <p className="text-[12px] font-semibold text-gray-900">Sarah</p>
-                    <p className="text-[10px] text-gray-500">English (US) - Warm & Friendly</p>
+                    <p className="text-[12px] font-semibold text-foreground">Sarah</p>
+                    <p className="text-[10px] text-muted-foreground">English (US) - Warm & Friendly</p>
                   </div>
                 </div>
-                <svg className="w-4 h-4 text-[#323dfe]" fill="currentColor" viewBox="0 0 20 20">
+                <svg className="w-4 h-4 text-primary" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                 </svg>
               </div>
               {/* Waveform */}
               <div className="flex items-center gap-0.5 h-6">
                 {[3, 5, 8, 12, 7, 10, 14, 6, 9, 13, 5, 8, 11, 7, 4, 6, 10, 8, 5, 3].map((h, i) => (
-                  <div key={i} className="flex-1 bg-[#323dfe]/40 rounded-full" style={{ height: `${h * 1.5}px` }} />
+                  <div key={i} className="flex-1 bg-primary/40 rounded-full" style={{ height: `${h * 1.5}px` }} />
                 ))}
               </div>
             </div>
@@ -641,11 +641,11 @@ function VoicesFeelRealIllustration() {
               { name: "Carlos", lang: "Spanish (MX) - Casual", flag: "🇲🇽" },
               { name: "Yuki", lang: "Japanese - Polite", flag: "🇯🇵" },
             ].map((voice, i) => (
-              <div key={i} className="flex items-center gap-2.5 p-2.5 rounded-lg bg-gray-50 border border-gray-200">
+              <div key={i} className="flex items-center gap-2.5 p-2.5 rounded-lg bg-surface border border-border">
                 <span className="text-sm">{voice.flag}</span>
                 <div className="flex-1">
-                  <p className="text-[11px] font-medium text-gray-800">{voice.name}</p>
-                  <p className="text-[9px] text-gray-500">{voice.lang}</p>
+                  <p className="text-[11px] font-medium text-foreground">{voice.name}</p>
+                  <p className="text-[9px] text-muted-foreground">{voice.lang}</p>
                 </div>
               </div>
             ))}
@@ -688,15 +688,23 @@ export default function WhatsAppAIAgentsAccordion() {
   const [activeKnowledgeFeature, setActiveKnowledgeFeature] = useState<string>(knowledgeFeatures[0].id);
 
   return (
-    <section className="bg-white py-12 sm:py-16 md:py-20">
+    <section className="bg-background border-t border-border py-12 sm:py-16 md:py-20">
       <div className="container mx-auto max-w-7xl px-4">
         {/* Section Header */}
-        <h2 className="font-sora text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] font-normal leading-[1.25] tracking-[-0.02em] text-black text-center mb-4 max-w-3xl mx-auto">
+        <div className="flex items-center gap-3 font-mono-ui text-[11px] uppercase tracking-[0.12em] text-muted-foreground mb-8">
+          <span className="flex items-center gap-2">
+            <span className="tabular-nums text-foreground/70">~</span>
+            <span className="h-px w-6 bg-border" />
+          </span>
+          <span>ai agents accordion</span>
+          <span className="flex-1 border-t border-dashed border-border" />
+        </div>
+        <h2 className="font-sora text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] font-normal leading-[1.04] tracking-[-0.035em] text-foreground mb-4">
           AI agents that remember context
           <br />
           and personalize every interaction
         </h2>
-        <p className="text-gray-600 text-center max-w-2xl mx-auto mb-12 md:mb-16">
+        <p className="text-muted-foreground max-w-2xl  mb-12 md:mb-16">
           Unified 360° customer profiles, knowledge source integration, and human-like conversations that understand preferences and history.
         </p>
 
@@ -715,15 +723,15 @@ export default function WhatsAppAIAgentsAccordion() {
                 <AccordionItem
                   key={feature.id}
                   value={feature.id}
-                  className="border-b border-gray-200"
+                  className="border-b border-border"
                 >
                   <AccordionTrigger className="py-4 hover:no-underline group">
                     <div className="flex items-center gap-3 text-left">
                       <span
                         className={`transition-colors ${
                           activeBrandFeature === feature.id
-                            ? "text-[#323dfe]"
-                            : "text-gray-400 group-hover:text-gray-600"
+                            ? "text-primary"
+                            : "text-muted-foreground group-hover:text-muted-foreground"
                         }`}
                       >
                         {feature.icon}
@@ -731,8 +739,8 @@ export default function WhatsAppAIAgentsAccordion() {
                       <span
                         className={`text-base font-medium transition-colors ${
                           activeBrandFeature === feature.id
-                            ? "text-black"
-                            : "text-gray-700"
+                            ? "text-foreground"
+                            : "text-foreground/80"
                         }`}
                       >
                         {feature.title}
@@ -740,7 +748,7 @@ export default function WhatsAppAIAgentsAccordion() {
                     </div>
                   </AccordionTrigger>
                   <AccordionContent className="pl-7 pr-4 pb-4">
-                    <p className="text-sm text-gray-600 leading-relaxed">
+                    <p className="text-sm text-muted-foreground leading-relaxed">
                       {feature.description}
                     </p>
                   </AccordionContent>
@@ -779,15 +787,15 @@ export default function WhatsAppAIAgentsAccordion() {
                 <AccordionItem
                   key={feature.id}
                   value={feature.id}
-                  className="border-b border-gray-200"
+                  className="border-b border-border"
                 >
                   <AccordionTrigger className="py-4 hover:no-underline group">
                     <div className="flex items-center gap-3 text-left">
                       <span
                         className={`transition-colors ${
                           activeKnowledgeFeature === feature.id
-                            ? "text-[#323dfe]"
-                            : "text-gray-400 group-hover:text-gray-600"
+                            ? "text-primary"
+                            : "text-muted-foreground group-hover:text-muted-foreground"
                         }`}
                       >
                         {feature.icon}
@@ -795,8 +803,8 @@ export default function WhatsAppAIAgentsAccordion() {
                       <span
                         className={`text-base font-medium transition-colors ${
                           activeKnowledgeFeature === feature.id
-                            ? "text-black"
-                            : "text-gray-700"
+                            ? "text-foreground"
+                            : "text-foreground/80"
                         }`}
                       >
                         {feature.title}
@@ -804,7 +812,7 @@ export default function WhatsAppAIAgentsAccordion() {
                     </div>
                   </AccordionTrigger>
                   <AccordionContent className="pl-7 pr-4 pb-4">
-                    <p className="text-sm text-gray-600 leading-relaxed">
+                    <p className="text-sm text-muted-foreground leading-relaxed">
                       {feature.description}
                     </p>
                   </AccordionContent>

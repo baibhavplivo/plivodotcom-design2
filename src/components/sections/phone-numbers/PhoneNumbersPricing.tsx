@@ -34,11 +34,19 @@ const pricingModels: PricingModel[] = [
 
 export default function PhoneNumbersPricing() {
   return (
-    <section className="bg-gray-50 py-12 sm:py-16 md:py-20">
+    <section className="bg-surface border-t border-border py-12 sm:py-16 md:py-20">
       <div className="container mx-auto max-w-7xl px-4">
         {/* Section Header */}
-        <div className="text-center mb-10 md:mb-14">
-          <h2 className="font-sora text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] font-normal leading-[1.25] tracking-[-0.02em] text-black mb-4 max-w-3xl mx-auto">
+        <div className="mb-10 md:mb-14">
+          <div className="flex items-center gap-3 font-mono-ui text-[11px] uppercase tracking-[0.12em] text-muted-foreground mb-8">
+          <span className="flex items-center gap-2">
+            <span className="tabular-nums text-foreground/70">~</span>
+            <span className="h-px w-6 bg-border" />
+          </span>
+          <span>pricing</span>
+          <span className="flex-1 border-t border-dashed border-border" />
+        </div>
+        <h2 className="font-sora text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] font-normal leading-[1.04] tracking-[-0.035em] text-foreground mb-4">
             Flexible pricing models to meet your needs
           </h2>
         </div>
@@ -48,19 +56,19 @@ export default function PhoneNumbersPricing() {
           {pricingModels.map((model, index) => (
             <div
               key={index}
-              className="rounded-xl bg-white border border-gray-200 p-6 lg:p-8 transition-all hover:shadow-lg hover:border-gray-300"
+              className="rounded-xl bg-background border border-border p-6 lg:p-8 transition-all hover:shadow-lg hover:border-border-strong"
             >
-              <span className="text-[#323dfe] mb-4 block">{model.icon}</span>
-              <h3 className="text-lg font-semibold text-black mb-3">
+              <span className="text-primary mb-4 block">{model.icon}</span>
+              <h3 className="text-lg font-semibold text-foreground mb-3">
                 {model.title}
               </h3>
-              <p className="text-sm text-gray-600 leading-relaxed mb-5">
+              <p className="text-sm text-muted-foreground leading-relaxed mb-5">
                 {model.description}
               </p>
               {model.cta && (
                 <a
                   href={model.cta.href}
-                  className="inline-flex items-center text-sm font-medium text-[#323dfe] hover:text-[#323dfe]/80 transition-colors"
+                  className="inline-flex items-center text-sm font-medium text-primary hover:text-primary/80 transition-colors"
                 >
                   {model.cta.label}
                   <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>

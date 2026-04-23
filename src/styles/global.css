@@ -1,5 +1,5 @@
-/* Google Fonts import for Sora and Inter */
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@400;500;600;700;800&display=swap");
+/* Google Fonts — Sora (display), Inter (body), JetBrains Mono (code/dev accents) */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Sora:wght@400;500;600;700;800&display=swap");
 
 @import "tailwindcss";
 
@@ -9,18 +9,20 @@
 @variant dark (&:is(.dark *));
 
 @theme {
-  /* Plivo Fonts */
+  /* ---------- Typography ---------- */
   --font-sora: "Sora", "sans-serif";
   --font-inter: "Inter", "sans-serif";
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 
-  /* Plivo Brand Colors */
-  --color-plivo-purple: #323dfe;
+  /* ---------- Plivo brand ---------- */
   --color-plivo-blue: #323dfe;
-  --color-plivo-dark: rgb(15, 17, 23);
+  --color-plivo-blue-soft: #5b6bff; /* dark-mode optical adjustment */
 
-  /* Theme Colors - Main */
+  /* ---------- Semantic surfaces (theme-driven) ---------- */
   --color-background: hsl(var(--background));
   --color-foreground: hsl(var(--foreground));
+  --color-surface: hsl(var(--surface));
+  --color-surface-2: hsl(var(--surface-2));
 
   --color-card: hsl(var(--card));
   --color-card-foreground: hsl(var(--card-foreground));
@@ -44,10 +46,15 @@
   --color-destructive-foreground: hsl(var(--destructive-foreground));
 
   --color-border: hsl(var(--border));
+  --color-border-strong: hsl(var(--border-strong));
   --color-input: hsl(var(--input));
   --color-ring: hsl(var(--ring));
 
-  /* HU Theme Colors (Added) */
+  /* Code surface — for inline code / mono pills / terminal blocks */
+  --color-code: hsl(var(--code));
+  --color-code-foreground: hsl(var(--code-foreground));
+
+  /* Legacy HU tokens (kept for existing components) */
   --color-hu-background: hsl(var(--hu-background));
   --color-hu-foreground: hsl(var(--hu-foreground));
   --color-hu-card: hsl(var(--hu-card));
@@ -72,12 +79,11 @@
   --radius-ele: var(--radius);
   --radius-card: var(--card-radius);
 
-  /* Animations */
+  /* ---------- Animations ---------- */
   --animate-accordion-down: accordion-down 0.2s ease-out;
   --animate-accordion-up: accordion-up 0.2s ease-out;
   --animate-marquee: marquee var(--duration, 40s) linear infinite;
-  --animate-marquee-reverse: marquee var(--duration, 40s) linear infinite
-    reverse;
+  --animate-marquee-reverse: marquee var(--duration, 40s) linear infinite reverse;
   --animate-fade-in: fadeIn 0.5s ease-out;
   --animate-slide-up: slideUp 0.5s ease-out;
   --animate-appear: appear 0.5s ease-out forwards;
@@ -85,74 +91,36 @@
   --animate-grid: grid 15s linear infinite;
 
   @keyframes grid {
-    0% {
-      transform: translateY(-50%);
-    }
-    100% {
-      transform: translateY(0);
-    }
+    0% { transform: translateY(-50%); }
+    100% { transform: translateY(0); }
   }
   @keyframes accordion-down {
-    from {
-      height: 0;
-    }
-    to {
-      height: var(--radix-accordion-content-height);
-    }
+    from { height: 0; }
+    to { height: var(--radix-accordion-content-height); }
   }
   @keyframes accordion-up {
-    from {
-      height: var(--radix-accordion-content-height);
-    }
-    to {
-      height: 0;
-    }
+    from { height: var(--radix-accordion-content-height); }
+    to { height: 0; }
   }
   @keyframes marquee {
-    from {
-      transform: translateX(0);
-    }
-    to {
-      transform: translateX(calc(-100% - var(--gap, 1rem)));
-    }
+    from { transform: translateX(0); }
+    to { transform: translateX(calc(-100% - var(--gap, 1rem))); }
   }
   @keyframes fadeIn {
-    0% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
+    0% { opacity: 0; }
+    100% { opacity: 1; }
   }
   @keyframes slideUp {
-    0% {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
   }
   @keyframes appear {
-    0% {
-      opacity: 0;
-      transform: translateY(10px);
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    0% { opacity: 0; transform: translateY(10px); }
+    100% { opacity: 1; transform: translateY(0); }
   }
   @keyframes appear-zoom {
-    0% {
-      opacity: 0;
-      transform: scale(0.95);
-    }
-    100% {
-      opacity: 1;
-      transform: scale(1);
-    }
+    0% { opacity: 0; transform: scale(0.95); }
+    100% { opacity: 1; transform: scale(1); }
   }
 }
 
@@ -167,15 +135,13 @@
   }
 }
 
-/* Plivo gradient utilities */
+/* Plivo accent utilities — used sparingly */
 @utility bg-plivo-gradient {
   background: linear-gradient(90deg, #323dfe, #000000);
 }
-
 @utility bg-plivo-gradient-vertical {
   background: linear-gradient(180deg, #323dfe, #000000);
 }
-
 @utility text-gradient {
   background: linear-gradient(90deg, #323dfe, #000000);
   -webkit-background-clip: text;
@@ -183,22 +149,196 @@
   background-clip: text;
 }
 
+/* Dark-section utility — now respects semantic surface */
 @utility section-dark {
-  background-color: rgb(15, 17, 23);
-  color: #ffffff;
+  background-color: hsl(var(--surface-2));
+  color: hsl(var(--foreground));
 }
 
 @utility hover-lift {
   transition: transform 0.2s ease-out;
+  &:hover { transform: translateY(-0.5rem); }
+}
+
+/* CTA hover — solid primary blue, theme-consistent
+ * Matches every other primary CTA on the site (e.g. "Start for free" on hero,
+ * "Talk to us" on AgentBuilder). A solid hover reads cleanly in both themes;
+ * the old gradient relied on `var(--foreground)` and flipped to white-on-blue
+ * in dark mode. */
+@utility cta-hover-gradient {
   &:hover {
-    transform: translateY(-0.5rem);
+    background-color: hsl(var(--primary));
+    background-image: none;
+    color: white;
   }
 }
 
-@utility cta-hover-gradient {
-  &:hover {
-    background-image: linear-gradient(to left, #000000, #323dfe);
-  }
+/* Developer-precision utilities */
+@utility dev-grid-bg {
+  background-image:
+    linear-gradient(to right, hsl(var(--border)) 1px, transparent 1px),
+    linear-gradient(to bottom, hsl(var(--border)) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+@utility dev-grid-bg-fine {
+  background-image:
+    linear-gradient(to right, hsl(var(--border)) 1px, transparent 1px),
+    linear-gradient(to bottom, hsl(var(--border)) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+@utility hairline {
+  border: 1px solid hsl(var(--border));
+}
+@utility hairline-strong {
+  border: 1px solid hsl(var(--border-strong));
+}
+
+/* ------------------------------------------------------------------ */
+/* Pill specimens — keep pill styling in one place so updates        */
+/* propagate across the whole site.                                  */
+/* ------------------------------------------------------------------ */
+
+/* Default tag pill: hairline outline on surface, muted text. This is
+ * the primary pill pattern used across the homepage and should be the
+ * default in both themes. Low contrast, editorial. */
+@utility pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  padding: 0.125rem 0.5rem;
+  border-radius: 9999px;
+  border: 1px solid hsl(var(--border));
+  background-color: hsl(var(--surface));
+  color: hsl(var(--muted-foreground));
+  font-size: 0.6875rem; /* 11px */
+  line-height: 1.25;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* Mono pill: same chrome as .pill but monospace + uppercase tracking,
+ * used for metadata, version tags, code accents. */
+@utility pill-mono {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  padding: 0.125rem 0.5rem;
+  border-radius: 9999px;
+  border: 1px solid hsl(var(--border));
+  background-color: hsl(var(--surface));
+  color: hsl(var(--muted-foreground));
+  font-family: var(--font-mono);
+  font-size: 0.625rem; /* 10px */
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* Accent pill: restrained primary tint — for reply chips, soft highlights.
+ * Uses primary at very low alpha so the pill doesn't scream in dark mode.
+ * Text uses foreground/muted, not the bright primary hue. */
+@utility pill-accent {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  padding: 0.25rem 0.625rem;
+  border-radius: 9999px;
+  border: 1px solid hsl(var(--border));
+  background-color: color-mix(in oklab, hsl(var(--primary)) 6%, hsl(var(--surface)));
+  color: hsl(var(--foreground));
+  font-size: 0.6875rem;
+  line-height: 1.25;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* Active/status pill: solid primary for "ON" or "live" states.
+ * Used sparingly — one per section at most. */
+@utility pill-active {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  padding: 0.125rem 0.5rem;
+  border-radius: 9999px;
+  background-color: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  font-size: 0.6875rem;
+  line-height: 1.25;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* Semantic status pills — theme-aware.
+ * Keep saturation low enough that green/amber/red don't shout in dark mode. */
+@utility pill-success {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  padding: 0.125rem 0.5rem;
+  border-radius: 9999px;
+  background-color: rgb(240 253 244); /* green-50 */
+  border: 1px solid rgb(220 252 231);  /* green-100 */
+  color: rgb(22 101 52);                /* green-800 */
+  font-size: 0.6875rem;
+  line-height: 1.25;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.dark .pill-success,
+.dark *:where(.pill-success) {
+  background-color: rgb(6 78 59 / 0.35);    /* green-900 @ 35% */
+  border-color: rgb(6 95 70 / 0.5);          /* emerald-800 @ 50% */
+  color: rgb(134 239 172);                    /* green-300 */
+}
+
+@utility pill-warning {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  padding: 0.125rem 0.5rem;
+  border-radius: 9999px;
+  background-color: rgb(254 252 232); /* amber-50 */
+  border: 1px solid rgb(254 243 199);  /* amber-100 */
+  color: rgb(133 77 14);                /* amber-800 */
+  font-size: 0.6875rem;
+  line-height: 1.25;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.dark .pill-warning,
+.dark *:where(.pill-warning) {
+  background-color: rgb(120 53 15 / 0.35);  /* amber-900 @ 35% */
+  border-color: rgb(146 64 14 / 0.5);
+  color: rgb(252 211 77);                    /* amber-300 */
+}
+
+@utility pill-danger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  padding: 0.125rem 0.5rem;
+  border-radius: 9999px;
+  background-color: rgb(254 242 242); /* red-50 */
+  border: 1px solid rgb(254 226 226);  /* red-100 */
+  color: rgb(153 27 27);                /* red-800 */
+  font-size: 0.6875rem;
+  line-height: 1.25;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.dark .pill-danger,
+.dark *:where(.pill-danger) {
+  background-color: rgb(127 29 29 / 0.35);  /* red-900 @ 35% */
+  border-color: rgb(153 27 27 / 0.5);
+  color: rgb(252 165 165);                   /* red-300 */
 }
 
 @layer base {
@@ -207,7 +347,7 @@
   ::before,
   ::backdrop,
   ::file-selector-button {
-    border-color: var(--color-gray-200, currentColor);
+    border-color: hsl(var(--border));
   }
 }
 
@@ -215,93 +355,104 @@
   body {
     font-family: var(--font-inter), sans-serif;
   }
-
-  h1,
-  h2 {
+  h1, h2 {
     font-family: var(--font-sora), sans-serif;
   }
-
-  h3,
-  h4,
-  h5,
-  h6 {
+  h3, h4, h5, h6 {
     font-family: var(--font-inter), sans-serif;
   }
 
-  /* Animation utilities */
-  .animate-appear {
-    animation: appear 0.5s ease-out forwards;
-  }
-  .animate-appear-zoom {
-    animation: appear-zoom 0.5s ease-out forwards;
-  }
-  .delay-100 {
-    animation-delay: 100ms;
-  }
-  .delay-300 {
-    animation-delay: 300ms;
+  /* Monospace utility pill — used for labels, version tags, inline code accents */
+  .font-mono-ui {
+    font-family: var(--font-mono);
+    font-feature-settings: "ss01", "cv01";
+    letter-spacing: -0.01em;
   }
 
-  /* Max container width */
-  .max-w-container {
-    max-width: 80rem;
-  }
+  .animate-appear { animation: appear 0.5s ease-out forwards; }
+  .animate-appear-zoom { animation: appear-zoom 0.5s ease-out forwards; }
+  .delay-100 { animation-delay: 100ms; }
+  .delay-300 { animation-delay: 300ms; }
+
+  .max-w-container { max-width: 80rem; }
 }
 
 @layer components {
-  button {
-    cursor: pointer;
-  }
-  [class*="border"] {
-    @apply border-border;
-  }
+  button { cursor: pointer; }
+  [class*="border"] { @apply border-border; }
 
-  /* Plivo Button Styles */
+  /* Plivo Button Styles — now theme-aware */
   .btn-primary {
-    @apply inline-flex items-center justify-center rounded-lg px-6 py-3 text-sm font-semibold text-white transition-all duration-200;
-    background: linear-gradient(90deg, #323dfe, #000000);
+    @apply inline-flex items-center justify-center rounded-md px-6 py-3 text-sm font-semibold text-white transition-all duration-200;
+    background: #323dfe;
   }
   .btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 0 30px rgba(50, 61, 254, 0.4);
+    background: #4a52ff;
+    transform: translateY(-1px);
+    box-shadow: 0 0 30px rgba(50, 61, 254, 0.35);
   }
 
   .btn-secondary {
-    @apply inline-flex items-center justify-center rounded-lg border border-border bg-transparent px-6 py-3 text-sm font-semibold transition-all duration-200;
+    @apply inline-flex items-center justify-center rounded-md border border-border bg-transparent px-6 py-3 text-sm font-semibold text-foreground transition-all duration-200;
   }
   .btn-secondary:hover {
-    @apply bg-secondary;
+    background: hsl(var(--surface));
   }
 }
 
+/* ---------- Theme tokens ---------- */
+/*
+ * Token model (developer-precision):
+ *   --background   : page background
+ *   --surface      : first elevation (cards on page)
+ *   --surface-2    : second elevation (popovers, dark sections, dropdowns)
+ *   --foreground   : primary text
+ *   --muted-foreground : secondary text
+ *   --border       : hairline (subtle)
+ *   --border-strong: emphasis border (focus, active)
+ *   --accent       : Plivo blue (optically adjusted per theme)
+ *   --code         : monospace/code block background
+ */
 @layer base {
   :root {
-    /* Light mode - Plivo themed */
-    --background: 0 0% 100%; /* #FFFFFF */
-    --foreground: 225 21% 7%; /* rgb(15, 17, 23) */
-    --card: 0 0% 100%; /* #FFFFFF */
-    --card-foreground: 225 21% 7%;
+    /* ----- LIGHT ----- */
+    --background: 0 0% 100%;            /* #ffffff */
+    --foreground: 240 10% 4%;           /* near-black, slight blue */
+    --surface: 240 5% 98%;              /* #f8f8fa */
+    --surface-2: 240 6% 96%;            /* #f1f2f5 */
+
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 4%;
     --popover: 0 0% 100%;
-    --popover-foreground: 225 21% 7%;
-    --primary: 235 99% 56%; /* #323dfe Plivo Blue */
+    --popover-foreground: 240 10% 4%;
+
+    --primary: 235 99% 59%;             /* #323dfe — Plivo blue */
     --primary-foreground: 0 0% 100%;
-    --secondary: 0 0% 96%;
-    --secondary-foreground: 225 21% 7%;
-    --muted: 0 0% 96%;
-    --muted-foreground: 220 9% 46%; /* rgb(107, 114, 128) */
-    --accent: 238 99% 60%; /* #323dfe Plivo Blue */
+
+    --secondary: 240 5% 96%;
+    --secondary-foreground: 240 10% 4%;
+
+    --muted: 240 5% 96%;
+    --muted-foreground: 240 4% 42%;     /* zinc-500-ish */
+
+    --accent: 235 99% 59%;              /* Plivo blue */
     --accent-foreground: 0 0% 100%;
+
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
-    --border: 0 0% 0% / 0.09;
-    --input: 0 0% 100%; /* White background for inputs */
-    --ring: 238 99% 60%; /* Plivo Blue for focus ring */
 
-    /* Brand colors for glow effect - Plivo purple/blue gradient */
-    --brand: 235 99% 56%;
-    --brand-foreground: 238 99% 60%;
+    --border: 240 6% 90%;               /* #e3e4e8 hairline */
+    --border-strong: 240 6% 80%;        /* #c8cace */
+    --input: 0 0% 100%;
+    --ring: 235 99% 59%;
 
-    /* HU Theme Variables */
+    --code: 240 5% 96%;                 /* code block bg — light */
+    --code-foreground: 240 10% 12%;
+
+    --brand: 235 99% 59%;
+    --brand-foreground: 235 99% 59%;
+
+    /* HU theme (legacy, untouched) */
     --hu-font-geist: var(--font-geist, sans-serif);
     --hu-font-jetbrains: var(--font-jetbrains-mono, monospace);
     --radius: 8px;
@@ -326,28 +477,41 @@
   }
 
   .dark {
-    /* Dark mode - Plivo themed */
-    --background: 225 21% 7%; /* rgb(15, 17, 23) */
-    --foreground: 0 0% 100%;
-    --card: 225 21% 10%;
-    --card-foreground: 0 0% 100%;
-    --popover: 225 21% 7%;
-    --popover-foreground: 0 0% 100%;
-    --primary: 235 99% 56%; /* Plivo Purple */
-    --primary-foreground: 0 0% 100%;
-    --secondary: 225 21% 12%;
-    --secondary-foreground: 0 0% 100%;
-    --muted: 225 21% 12%;
-    --muted-foreground: 220 9% 65%;
-    --accent: 238 99% 60%; /* Plivo Blue */
-    --accent-foreground: 0 0% 100%;
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 100%;
-    --border: 0 0% 100% / 0.1;
-    --input: 225 21% 12%;
-    --ring: 235 99% 56%;
+    /* ----- DARK (true dark, not inverted) ----- */
+    --background: 225 18% 5%;           /* #0a0b10 — deep near-black blue */
+    --foreground: 240 5% 96%;           /* #f2f2f5 */
+    --surface: 225 15% 8%;              /* #10121a elevated */
+    --surface-2: 225 14% 11%;           /* #171a24 popovers/dropdowns */
 
-    /* HU Theme Dark Variables */
+    --card: 225 15% 8%;
+    --card-foreground: 240 5% 96%;
+    --popover: 225 14% 11%;
+    --popover-foreground: 240 5% 96%;
+
+    --primary: 235 100% 68%;            /* Plivo blue, lightened for dark */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 225 14% 13%;
+    --secondary-foreground: 240 5% 96%;
+
+    --muted: 225 14% 13%;
+    --muted-foreground: 240 4% 64%;     /* zinc-400-ish */
+
+    --accent: 235 100% 68%;             /* lighter blue reads on dark */
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 75% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 225 12% 18%;              /* hairline on dark */
+    --border-strong: 225 10% 28%;
+    --input: 225 14% 13%;
+    --ring: 235 100% 68%;
+
+    --code: 225 14% 11%;
+    --code-foreground: 240 5% 90%;
+
+    /* HU dark (legacy) */
     --hu-background: 0, 0%, 7%;
     --hu-foreground: 0, 0%, 100%;
     --hu-card: 0, 0%, 9%;
@@ -369,57 +533,87 @@
 }
 
 @layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
+  * { @apply border-border; }
+  body { @apply bg-background text-foreground; }
 }
 
-html,
-body {
+html, body {
   overflow-x: hidden;
   scroll-behavior: smooth;
 }
 
-body {
-  position: relative;
-}
+body { position: relative; }
 
-/* Pulsating glow animation for Self-improving card */
+/* Color-scheme hint helps native form controls / scrollbars adapt */
+:root { color-scheme: light; }
+.dark { color-scheme: dark; }
+
+/* Pulsating glow animation */
 @keyframes pulse-glow {
-  0%, 100% {
-    opacity: 0.4;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.7;
-    transform: scale(1.15);
-  }
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.15); }
+}
+.animate-pulse-glow { animation: pulse-glow 2s ease-in-out infinite; }
+
+/* ------------------------------------------------------------------
+ * Dark-mode remapping for UI asset illustrations.
+ *
+ * The illustration containers across the site share a dotted-grid
+ * background built with `radial-gradient(circle, hsl(var(--border))`.
+ * We scope to that signature so only those SVGs are affected — keeps
+ * brand logos, product icons, and unrelated SVGs untouched.
+ *
+ * Maps hardcoded light neutrals → dark-appropriate surfaces / blues.
+ * ------------------------------------------------------------------ */
+.dark [style*="radial-gradient(circle, hsl(var(--border))"] svg [fill="white"],
+.dark [style*="radial-gradient(circle, hsl(var(--border))"] svg [fill="#fff"],
+.dark [style*="radial-gradient(circle, hsl(var(--border))"] svg [fill="#ffffff"] {
+  fill: hsl(var(--surface));
+}
+.dark [style*="radial-gradient(circle, hsl(var(--border))"] svg [stroke="white"],
+.dark [style*="radial-gradient(circle, hsl(var(--border))"] svg [stroke="#fff"],
+.dark [style*="radial-gradient(circle, hsl(var(--border))"] svg [stroke="#ffffff"] {
+  stroke: hsl(var(--border-strong));
 }
 
-.animate-pulse-glow {
-  animation: pulse-glow 2s ease-in-out infinite;
+/* Text & neutral fills → readable blues in dark mode */
+.dark [style*="radial-gradient(circle, hsl(var(--border))"] svg [fill="#6b7280"] {
+  fill: #60a5fa; /* blue-400 */
+}
+.dark [style*="radial-gradient(circle, hsl(var(--border))"] svg [fill="#9ca3af"] {
+  fill: #93c5fd; /* blue-300 */
+}
+.dark [style*="radial-gradient(circle, hsl(var(--border))"] svg [fill="#d1d5db"] {
+  fill: #3b82f6; /* blue-500 — visible dot fill */
+}
+.dark [style*="radial-gradient(circle, hsl(var(--border))"] svg [fill="#111827"] {
+  fill: hsl(var(--foreground));
 }
 
-/* Pulsating spark animation for AI icon */
+/* Route / divider strokes → softer blues/grays on dark */
+.dark [style*="radial-gradient(circle, hsl(var(--border))"] svg [stroke="#111827"] {
+  stroke: #93c5fd; /* highlight route = bright blue on dark */
+}
+.dark [style*="radial-gradient(circle, hsl(var(--border))"] svg [stroke="#6b7280"] {
+  stroke: #60a5fa;
+}
+.dark [style*="radial-gradient(circle, hsl(var(--border))"] svg [stroke="#9ca3af"] {
+  stroke: #3b82f6;
+}
+.dark [style*="radial-gradient(circle, hsl(var(--border))"] svg [stroke="#d1d5db"] {
+  stroke: hsl(var(--border-strong));
+}
+.dark [style*="radial-gradient(circle, hsl(var(--border))"] svg [stroke="#e5e7eb"] {
+  stroke: hsl(var(--border));
+}
+
 @keyframes pulse-spark {
-  0%, 100% {
-    transform: scale(1) rotate(0deg);
-    opacity: 1;
-  }
-  50% {
-    transform: scale(1.15) rotate(15deg);
-    opacity: 0.9;
-  }
+  0%, 100% { transform: scale(1) rotate(0deg); opacity: 1; }
+  50% { transform: scale(1.15) rotate(15deg); opacity: 0.9; }
 }
+.animate-pulse-spark { animation: pulse-spark 2s ease-in-out infinite; }
 
-.animate-pulse-spark {
-  animation: pulse-spark 2s ease-in-out infinite;
-}
-
-/* Form error banner (replaces alert()) */
+/* Form error banner */
 .form-error-banner {
   background: #fef2f2;
   border: 1px solid #fecaca;
@@ -429,4 +623,9 @@ body {
   font-size: 13px;
   margin-bottom: 12px;
   animation: fadeIn 0.2s ease;
+}
+.dark .form-error-banner {
+  background: rgba(239, 68, 68, 0.12);
+  border-color: rgba(239, 68, 68, 0.35);
+  color: #fca5a5;
 }

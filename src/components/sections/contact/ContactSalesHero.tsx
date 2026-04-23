@@ -237,10 +237,10 @@ export default function ContactSalesHero() {
   // Loading state while waiting for geo data
   if (!geoReady) {
     return (
-      <section className="bg-white pt-24 pb-24 flex items-center justify-center min-h-[60vh]">
+      <section className="bg-background border-t border-border pt-24 pb-24 flex items-center justify-center min-h-[60vh]">
         <div className="text-center">
-          <div className="w-8 h-8 border-2 border-gray-300 border-t-black rounded-full animate-spin mx-auto" />
-          <p className="mt-4 text-sm text-gray-500">Loading...</p>
+          <div className="w-8 h-8 border-2 border-border-strong border-t-foreground rounded-full animate-spin mx-auto" />
+          <p className="mt-4 text-sm text-muted-foreground">Loading...</p>
         </div>
       </section>
     );
@@ -249,17 +249,17 @@ export default function ContactSalesHero() {
   // Unsupported: show "not available in your region" message
   if (category === "unsupported") {
     return (
-      <section className="relative z-[1] bg-white pt-12 sm:pt-16 md:pt-24 pb-12 sm:pb-16 md:pb-24">
+      <section className="relative z-[1] bg-background border-t border-border pt-12 sm:pt-16 md:pt-24 pb-12 sm:pb-16 md:pb-24">
         <div className="container mx-auto max-w-2xl px-4 text-center">
-          <div className="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center mx-auto mb-6">
-            <svg className="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+          <div className="w-16 h-16 rounded-full bg-muted flex items-center justify-center mx-auto mb-6">
+            <svg className="w-8 h-8 text-muted-foreground" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" />
             </svg>
           </div>
-          <h1 className="font-sora text-[2rem] sm:text-[2.5rem] font-normal leading-[1.1] tracking-[-0.02em] text-black">
+          <h1 className="font-sora text-[2rem] sm:text-[2.5rem] font-normal leading-[1.1] tracking-[-0.02em] text-foreground">
             We're not available in your region yet
           </h1>
-          <p className="text-base text-gray-600 mt-4 max-w-lg mx-auto leading-relaxed">
+          <p className="text-base text-muted-foreground mt-4 max-w-lg mx-auto leading-relaxed">
             Plivo services are currently available in select countries. Please check back later for updates on availability in your area.
           </p>
         </div>
@@ -268,18 +268,26 @@ export default function ContactSalesHero() {
   }
 
   return (
-    <section className="relative z-[1] bg-white pt-2 sm:pt-3 md:pt-4 pb-0">
-      <div className="container mx-auto max-w-7xl px-4">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+    <section className="relative z-[1] w-full overflow-hidden bg-background border-t border-border">
+      <div className="pointer-events-none absolute inset-0 dev-grid-bg opacity-[0.25] [mask-image:linear-gradient(to_bottom,black_40%,transparent_95%)]" />
+      <div className="relative container mx-auto max-w-7xl px-4 sm:px-6 pt-10 sm:pt-14">
+        <div className="flex items-center gap-3 font-mono-ui text-[11px] uppercase tracking-[0.12em] text-muted-foreground">
+          <span className="flex items-center gap-2">
+            <span className="tabular-nums text-foreground/70">~</span>
+            <span className="h-px w-6 bg-border" />
+          </span>
+          <span>contact sales</span>
+          <span className="flex-1 border-t border-dashed border-border" />
+          <span>&lt; 1 business day response</span>
+        </div>
+        <div className="mt-10 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
           {/* Left Column - Content */}
-          <div className="order-2 lg:order-1">
-            <h1 className="font-sora text-[2rem] sm:text-[2.5rem] md:text-[3rem] font-normal leading-[1.1] tracking-[-0.02em] text-black">
-              Talk to our sales team
+          <div className="order-2 lg:order-1 lg:pt-2">
+            <h1 className="font-sora text-[2.25rem] font-normal leading-[1.02] tracking-[-0.04em] text-foreground sm:text-[3rem] md:text-[3.25rem]">
+              <span className="[text-decoration-line:underline] decoration-primary/25 [text-decoration-thickness:0.14em] [text-underline-offset:0.12em]">Talk to our sales team</span>
             </h1>
-            <p className="text-sm sm:text-base text-gray-600 mt-3 leading-relaxed max-w-lg">
-              Connect with our experts to design the right solution for your
-              business - from pricing and compliance to AI agent setup tailored
-              to your use case.
+            <p className="mt-5 max-w-lg text-[15px] leading-relaxed text-muted-foreground sm:text-base">
+              Connect with our experts to design the right solution for your business - from pricing and compliance to AI agent setup tailored to your use case.
             </p>
 
             {/* Value Props */}
@@ -287,7 +295,7 @@ export default function ContactSalesHero() {
               {VALUE_PROPS.map((prop) => (
                 <div key={prop} className="flex items-start gap-2.5">
                   <svg
-                    className="w-4 h-4 text-[#323dfe] mt-[1px] flex-shrink-0"
+                    className="w-4 h-4 text-primary mt-[1px] flex-shrink-0"
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
@@ -297,14 +305,14 @@ export default function ContactSalesHero() {
                   >
                     <polyline points="20 6 9 17 4 12" />
                   </svg>
-                  <span className="text-sm text-black">{prop}</span>
+                  <span className="text-sm text-foreground">{prop}</span>
                 </div>
               ))}
             </div>
 
             {/* Compliance Badges */}
-            <div className="mt-10">
-              <p className="text-[11px] font-medium text-gray-400 uppercase tracking-wider mb-3">
+            <div className="mt-10 border-t border-border pt-6">
+              <p className="font-mono-ui text-[11px] uppercase tracking-[0.1em] text-muted-foreground mb-3">
                 Enterprise-grade reliability, guaranteed
               </p>
               <div className="flex flex-wrap items-center gap-4 sm:gap-6 md:gap-8">
@@ -313,12 +321,11 @@ export default function ContactSalesHero() {
                     key={badge.label}
                     className="flex flex-col items-center gap-1"
                   >
-                    <img
-                      src={badge.src}
+                    <img src={badge.src}
                       alt={badge.alt}
-                      className="h-7 sm:h-9 w-auto opacity-60"
+                      className="h-9 sm:h-12 w-auto opacity-60 dark:invert"
                     />
-                    <span className="text-[9px] sm:text-[10px] text-gray-400 font-medium">
+                    <span className="text-[9px] sm:text-[10px] text-muted-foreground font-medium">
                       {badge.label}
                     </span>
                   </div>
@@ -327,27 +334,25 @@ export default function ContactSalesHero() {
             </div>
 
             {/* Trusted By Logos */}
-            <div className="mt-10">
-              <p className="text-[11px] font-medium text-gray-400 uppercase tracking-wider mb-3">
+            <div className="mt-10 border-t border-border pt-6">
+              <p className="font-mono-ui text-[11px] uppercase tracking-[0.1em] text-muted-foreground mb-3">
                 Trusted by leading consumer brands worldwide
               </p>
               <div className="flex flex-wrap items-center">
                 {logosRow1.map((logo) => (
-                  <img
-                    key={logo.name}
+                  <img key={logo.name}
                     src={logo.src}
                     alt={logo.name}
-                    className="h-10 sm:h-12 w-auto opacity-40 grayscale"
+                    className="h-12 sm:h-14 w-auto opacity-40 grayscale dark:invert"
                   />
                 ))}
               </div>
               <div className="flex flex-wrap items-center">
                 {logosRow2.map((logo) => (
-                  <img
-                    key={logo.name}
+                  <img key={logo.name}
                     src={logo.src}
                     alt={logo.name}
-                    className="h-10 sm:h-12 w-auto opacity-40 grayscale"
+                    className="h-12 sm:h-14 w-auto opacity-40 grayscale dark:invert"
                   />
                 ))}
               </div>
@@ -359,7 +364,7 @@ export default function ContactSalesHero() {
 
             {/* Form Card */}
             <div className="relative z-10 flex items-center justify-center py-6 sm:py-10 md:py-14 px-2 sm:px-6 md:px-10">
-              <div className="w-full sm:max-w-md rounded-xl border border-gray-200 bg-white p-4 sm:p-5 md:p-6">
+              <div className="w-full sm:max-w-md rounded-xl border border-border bg-background p-4 sm:p-5 md:p-6">
                 {/* @ts-expect-error vpf is a custom attribute used by form-submission.js */}
                 <div vpf="form-wrapper">
                   {/* Progress indicators (hidden by default, script controls visibility) */}
@@ -378,7 +383,7 @@ export default function ContactSalesHero() {
                   {/* @ts-expect-error vpf is a custom attribute */}
                   <div vpf="1">
                     <div className="space-y-3.5">
-                      <h2 className="font-inter text-xl font-semibold text-black mb-3">
+                      <h2 className="font-inter text-xl font-semibold text-foreground mb-3">
                         Let's create your custom plan together
                       </h2>
 
@@ -395,7 +400,7 @@ export default function ContactSalesHero() {
                       >
                         {/* Full name */}
                         <div className="form-field">
-                          <label htmlFor="full_name" className="text-[13px] font-medium text-gray-700 mb-1 block">
+                          <label htmlFor="full_name" className="text-[13px] font-medium text-foreground/80 mb-1 block">
                             Full name <span className="text-red-400">*</span>
                           </label>
                           <input
@@ -405,14 +410,14 @@ export default function ContactSalesHero() {
                             maxLength={256}
                             placeholder="Olivia Rodriguez"
                             required
-                            className="w-full h-10 rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 placeholder:text-gray-400 hover:border-gray-400 focus:outline-none focus:border-blue-400 focus:ring-[3px] focus:ring-blue-100 transition-all"
+                            className="w-full h-10 rounded-lg border border-border-strong bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground hover:border-border-strong focus:outline-none focus:border-blue-400 focus:ring-[3px] focus:ring-blue-100 transition-all"
                           />
                           <span className="invalid-feedback error" />
                         </div>
 
                         {/* Work email */}
                         <div className="form-field">
-                          <label htmlFor="company_email" className="text-[13px] font-medium text-gray-700 mb-1 block">
+                          <label htmlFor="company_email" className="text-[13px] font-medium text-foreground/80 mb-1 block">
                             Work email <span className="text-red-400">*</span>
                           </label>
                           <div className="relative">
@@ -423,7 +428,7 @@ export default function ContactSalesHero() {
                               maxLength={256}
                               placeholder="olivia@plivo.com"
                               required
-                              className="w-full h-10 rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 placeholder:text-gray-400 hover:border-gray-400 focus:outline-none focus:border-blue-400 focus:ring-[3px] focus:ring-blue-100 transition-all"
+                              className="w-full h-10 rounded-lg border border-border-strong bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground hover:border-border-strong focus:outline-none focus:border-blue-400 focus:ring-[3px] focus:ring-blue-100 transition-all"
                             />
                             {/* @ts-expect-error vpf is a custom attribute */}
                             <div vpf="email-loader" style={{ display: "none" }} className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5" />
@@ -437,7 +442,7 @@ export default function ContactSalesHero() {
 
                         {/* Phone number (intl-tel-input attaches here) */}
                         <div className="form-field">
-                          <label htmlFor="phone" className="text-[13px] font-medium text-gray-700 mb-1 block">
+                          <label htmlFor="phone" className="text-[13px] font-medium text-foreground/80 mb-1 block">
                             Phone number <span className="text-red-400">*</span>
                           </label>
                           <input
@@ -448,14 +453,14 @@ export default function ContactSalesHero() {
                             placeholder="888888 88888"
                             required
                             autoComplete="off"
-                            className="w-full h-10 rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 placeholder:text-gray-400 hover:border-gray-400 focus:outline-none focus:border-blue-400 focus:ring-[3px] focus:ring-blue-100 transition-all"
+                            className="w-full h-10 rounded-lg border border-border-strong bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground hover:border-border-strong focus:outline-none focus:border-blue-400 focus:ring-[3px] focus:ring-blue-100 transition-all"
                           />
                           <span className="invalid-feedback error" id="lbl-invalid-phone-number" />
                         </div>
 
                         {/* Detailed requirement */}
                         <div className="form-field">
-                          <label htmlFor="detailed_requirement" className="text-[13px] font-medium text-gray-700 mb-1 block">
+                          <label htmlFor="detailed_requirement" className="text-[13px] font-medium text-foreground/80 mb-1 block">
                             Detailed requirement <span className="text-red-400">*</span>
                           </label>
                           <textarea
@@ -464,11 +469,11 @@ export default function ContactSalesHero() {
                             maxLength={5000}
                             placeholder="Detail your use case, channel(s), countries you need service for and estimated volume"
                             required
-                            className="w-full min-h-[88px] rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 placeholder:text-gray-400 resize-none hover:border-gray-400 focus:outline-none focus:border-blue-400 focus:ring-[3px] focus:ring-blue-100 transition-all"
+                            className="w-full min-h-[88px] rounded-lg border border-border-strong bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground resize-none hover:border-border-strong focus:outline-none focus:border-blue-400 focus:ring-[3px] focus:ring-blue-100 transition-all"
                           />
                           <div className="flex items-center justify-between mt-0.5">
                             <span className="invalid-feedback error" />
-                            <span id="req-char-count" className="text-[11px] text-gray-400 tabular-nums" />
+                            <span id="req-char-count" className="text-[11px] text-muted-foreground tabular-nums" />
                           </div>
                         </div>
 
@@ -486,7 +491,7 @@ export default function ContactSalesHero() {
                           type="submit"
                           // @ts-expect-error vpf is a custom attribute
                           vpf="submit-btn"
-                          className="w-full rounded-md bg-black px-5 py-2.5 text-sm font-medium text-white transition-colors cta-hover-gradient"
+                          className="w-full rounded-md bg-foreground px-5 py-2.5 text-sm font-medium text-background transition-colors cta-hover-gradient"
                         >
                           Submit
                         </button>
@@ -592,18 +597,18 @@ export default function ContactSalesHero() {
                         <input type="hidden" id="landing_page_2" name="landing_page_2" />
                       </form>
 
-                      <p className="text-[11px] text-gray-400 text-center leading-relaxed mt-3">
+                      <p className="text-[11px] text-muted-foreground text-center leading-relaxed mt-3">
                         By creating an account with Plivo, you agree to Plivo's{" "}
                         <a
                           href="/legal/tos/"
-                          className="underline hover:text-gray-600"
+                          className="underline hover:text-muted-foreground"
                         >
                           terms of service
                         </a>{" "}
                         and{" "}
                         <a
                           href="/legal/privacy/"
-                          className="underline hover:text-gray-600"
+                          className="underline hover:text-muted-foreground"
                         >
                           privacy policy
                         </a>
@@ -626,9 +631,9 @@ export default function ContactSalesHero() {
                   {/* Step 4: Thank you (hidden until form-submission.js shows it) */}
                   {/* @ts-expect-error vpf is a custom attribute */}
                   <div vpf="4" style={{ display: "none" }} className="text-center py-12">
-                    <div className="w-14 h-14 rounded-full bg-emerald-50 flex items-center justify-center mx-auto mb-4">
+                    <div className="w-14 h-14 rounded-full bg-emerald-50 dark:bg-emerald-900/30 flex items-center justify-center mx-auto mb-4">
                       <svg
-                        className="w-7 h-7 text-emerald-500"
+                        className="w-7 h-7 text-emerald-500 dark:text-emerald-400"
                         fill="none"
                         stroke="currentColor"
                         strokeWidth={2.5}
@@ -638,16 +643,16 @@ export default function ContactSalesHero() {
                       </svg>
                     </div>
                     {/* @ts-expect-error vpf is a custom attribute */}
-                    <h3 vpf="4-title" className="text-xl font-normal text-black">
+                    <h3 vpf="4-title" className="text-xl font-normal text-foreground">
                       You're all set!
                     </h3>
                     {/* @ts-expect-error vpf is a custom attribute */}
-                    <p vpf="4-desc" className="text-sm text-gray-500 mt-2 max-w-xs mx-auto leading-relaxed">
+                    <p vpf="4-desc" className="text-sm text-muted-foreground mt-2 max-w-xs mx-auto leading-relaxed">
                       Thank you. We've received your request. A member of our sales team will get back to you within 1 business day.
                     </p>
                     <a
                       href="/"
-                      className="inline-block mt-6 text-sm font-medium text-gray-600 hover:text-black transition-colors"
+                      className="inline-block mt-6 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
                     >
                       &larr; Back to homepage
                     </a>

@@ -2,35 +2,35 @@
 // AIAgentsHero.astro - Hero section with Vimeo video embed
 ---
 
-<section class="bg-white pt-16 sm:pt-20 md:pt-24 pb-12 sm:pb-16 relative overflow-hidden">
+<section class="bg-background pt-16 sm:pt-20 md:pt-24 pb-12 sm:pb-16 relative overflow-hidden">
   {/* Dotted Grid Background - beneath the video area */}
-  <div class="absolute inset-0 flex items-center justify-center pointer-events-none opacity-40" style="background-image: radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px); background-size: 16px 16px; background-position: center center; mask-image: linear-gradient(to bottom, transparent 0%, transparent 30%, rgba(255,255,255,0.3) 45%, white 55%, white 65%, rgba(255,255,255,0.3) 80%, transparent 100%); -webkit-mask-image: linear-gradient(to bottom, transparent 0%, transparent 30%, rgba(255,255,255,0.3) 45%, white 55%, white 65%, rgba(255,255,255,0.3) 80%, transparent 100%);">
+  <div class="absolute inset-0 flex items-center justify-center pointer-events-none opacity-40" style="background-image: radial-gradient(circle, hsl(var(--border)) 1px, transparent 1px); background-size: 16px 16px; background-position: center center; mask-image: linear-gradient(to bottom, transparent 0%, transparent 30%, rgba(255,255,255,0.3) 45%, white 55%, white 65%, rgba(255,255,255,0.3) 80%, transparent 100%); -webkit-mask-image: linear-gradient(to bottom, transparent 0%, transparent 30%, rgba(255,255,255,0.3) 45%, white 55%, white 65%, rgba(255,255,255,0.3) 80%, transparent 100%);">
   </div>
 
   {/* Fade Edges - Left and Right */}
-  <div class="absolute inset-y-0 left-0 z-[5] w-32 bg-gradient-to-r from-white to-transparent pointer-events-none" />
-  <div class="absolute inset-y-0 right-0 z-[5] w-32 bg-gradient-to-l from-white to-transparent pointer-events-none" />
+  <div class="absolute inset-y-0 left-0 z-[5] w-32 bg-gradient-to-r from-background to-transparent pointer-events-none" />
+  <div class="absolute inset-y-0 right-0 z-[5] w-32 bg-gradient-to-l from-background to-transparent pointer-events-none" />
 
   <div class="container mx-auto max-w-7xl px-4 relative z-10">
     {/* Text Content */}
     <div class="text-center max-w-3xl mx-auto mb-10 md:mb-14">
-      <h1 class="font-sora text-[2rem] sm:text-[2.5rem] md:text-[3rem] font-normal leading-[1.1] tracking-[-0.02em] text-black">
+      <h1 class="font-sora text-[2rem] sm:text-[2.5rem] md:text-[3rem] font-normal leading-[1.1] tracking-[-0.02em] text-foreground">
         AI agents that just work
       </h1>
-      <p class="text-base sm:text-lg text-gray-600 mt-4 leading-relaxed">
+      <p class="text-base sm:text-lg text-muted-foreground mt-4 leading-relaxed">
         No code. No guesswork. Just reliable automation for key customer moments.
       </p>
       <div class="flex flex-col sm:flex-row gap-3 mt-8 justify-center">
         <a
           href="/contact/sales/"
-          class="inline-flex items-center justify-center px-6 py-3 text-base font-medium border border-gray-300 text-black rounded-md hover:bg-gray-50 transition-colors"
+          class="inline-flex items-center justify-center px-6 py-3 text-base font-medium border border-border-strong text-foreground rounded-md hover:bg-surface transition-colors"
         >
           Contact Sales
         </a>
         <a
           href="https://cx.plivo.com/pungis2"
           data-geo-cta="signup"
-          class="inline-flex items-center justify-center px-6 py-3 text-base font-medium bg-black text-white rounded-md cta-hover-gradient transition-colors"
+          class="inline-flex items-center justify-center px-6 py-3 text-base font-medium bg-foreground text-background rounded-md cta-hover-gradient transition-colors"
         >
           Signup now
         </a>
@@ -39,7 +39,7 @@
 
     {/* Video */}
     <div class="max-w-4xl mx-auto">
-      <div class="relative rounded-xl overflow-hidden border border-gray-200" style="padding-top: 56.25%;">
+      <div class="relative rounded-xl overflow-hidden border border-border" style="padding-top: 56.25%;">
         <iframe
           src="https://player.vimeo.com/video/1115023739?h=f64ddfcd6a&autoplay=1&muted=1&loop=1&background=1&title=0&byline=0&portrait=0"
           class="absolute inset-0 w-full h-full"

@@ -230,13 +230,23 @@ export const FAQPage = () => {
   };
 
   return (
-    <section className="bg-sand-100 min-h-screen py-16 md:py-28 lg:py-32">
-      <div className="container max-w-4xl">
-        <div className="text-center">
-          <h1 className="font-sora text-center text-4xl font-normal tracking-tight sm:text-5xl">
+    <section className="relative min-h-screen w-full overflow-hidden bg-background border-t border-border">
+      <div className="pointer-events-none absolute inset-0 dev-grid-bg opacity-[0.25] [mask-image:linear-gradient(to_bottom,black,transparent_70%)]" />
+      <div className="relative container mx-auto max-w-5xl px-4 sm:px-6 pt-12 pb-16 md:pt-20">
+        <div className="flex items-center gap-3 font-mono-ui text-[11px] uppercase tracking-[0.12em] text-muted-foreground">
+          <span className="flex items-center gap-2">
+            <span className="tabular-nums text-foreground/70">~</span>
+            <span className="h-px w-6 bg-border" />
+          </span>
+          <span>faq</span>
+          <span className="flex-1 border-t border-dashed border-border" />
+          <span>everything, in one place</span>
+        </div>
+        <div className="mt-10 max-w-3xl">
+          <h1 className="font-sora text-[2.25rem] font-normal leading-[1.04] tracking-[-0.035em] text-foreground sm:text-[3rem]">
             Frequently asked questions
           </h1>
-          <p className="mx-auto mt-4 max-w-xl text-balance text-center text-muted-foreground">
+          <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-muted-foreground">
             Everything you need to know about Plivo's cloud communications platform.
           </p>
         </div>

@@ -100,14 +100,14 @@ const PhoneNumberCard = ({
       className={cn(
         "relative mx-auto min-h-fit w-full max-w-[340px] cursor-pointer overflow-hidden rounded-lg px-4 py-3",
         "transition-all duration-300 ease-out hover:scale-[101%]",
-        "bg-white shadow-[0_1px_3px_rgba(0,0,0,0.08),0_4px_12px_rgba(0,0,0,0.05)]"
+        "bg-background shadow-[0_1px_3px_rgba(0,0,0,0.08),0_4px_12px_rgba(0,0,0,0.05)]"
       )}
     >
       <div className="flex flex-row items-center gap-4">
         {/* Flag and Country Code */}
         <div className="flex items-center gap-2 min-w-[70px]">
           <span className="text-xl">{flag}</span>
-          <span className="text-sm font-semibold text-gray-900">{country}</span>
+          <span className="text-sm font-semibold text-foreground">{country}</span>
         </div>
 
         {/* Divider */}
@@ -115,10 +115,10 @@ const PhoneNumberCard = ({
 
         {/* Phone Number and City */}
         <div className="flex flex-col">
-          <span className="text-base font-semibold text-gray-500 tracking-wide">
+          <span className="text-base font-semibold text-muted-foreground tracking-wide">
             {countryCode} {number}
           </span>
-          <span className="text-xs text-[#323dfe] font-medium">{city}</span>
+          <span className="text-xs text-primary font-medium">{city}</span>
         </div>
       </div>
     </figure>
@@ -150,10 +150,10 @@ export default function AnimatedPhoneNumbers({
       </div>
 
       {/* Top fade */}
-      <div className="pointer-events-none absolute inset-x-0 top-0 z-20 h-28 bg-gradient-to-b from-white/60 via-white/30 to-transparent" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 z-20 h-28 bg-gradient-to-b from-background/60 via-background/30 to-transparent" />
 
       {/* Bottom fade */}
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-28 bg-gradient-to-t from-white/60 via-white/30 to-transparent" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-28 bg-gradient-to-t from-background/60 via-background/30 to-transparent" />
     </div>
   );
 }

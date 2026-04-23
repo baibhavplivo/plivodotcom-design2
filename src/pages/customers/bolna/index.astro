@@ -55,7 +55,7 @@ const tocHeadings = [
   />
 
   {/* Blog-style content area: left TOC | content | right CTA */}
-  <section class="py-12 sm:py-16 md:py-20 bg-white">
+  <section class="py-12 sm:py-16 md:py-20 bg-background">
     <div class="mx-auto max-w-7xl px-4 pb-14 lg:grid lg:grid-cols-[220px_1fr_220px] lg:gap-10 lg:items-start">
 
       {/* Left sidebar: Company info + TOC */}
@@ -63,31 +63,31 @@ const tocHeadings = [
         <aside id="toc-sidebar" class="pt-1" aria-label="Company information and navigation">
 
           {/* Company info card */}
-          <div class="rounded-lg border border-gray-200 overflow-hidden mb-8">
+          <div class="rounded-lg border border-border overflow-hidden mb-8">
             {/* Logo */}
-            <div class="px-4 py-4 border-b border-gray-200 flex items-center justify-center">
+            <div class="px-4 py-4 border-b border-border flex items-center justify-center">
               <img src="/images/customers/bolna-logo.png" alt="Bolna" class="w-full max-w-[160px] h-auto" />
             </div>
 
             {/* Meta grid */}
-            <dl class="divide-y divide-gray-200">
+            <dl class="divide-y divide-border">
               {companyMeta.map((item) => (
                 <div class="px-4 py-3">
-                  <dt class="text-[10px] font-medium text-gray-500 uppercase tracking-wider mb-0.5">{item.label}</dt>
-                  <dd class="text-xs text-black font-medium">{item.value}</dd>
+                  <dt class="text-[10px] font-medium text-muted-foreground uppercase tracking-wider mb-0.5">{item.label}</dt>
+                  <dd class="text-xs text-foreground font-medium">{item.value}</dd>
                 </div>
               ))}
             </dl>
           </div>
 
           {/* TOC */}
-          <p class="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-3">On this page</p>
+          <p class="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-3">On this page</p>
           <nav class="space-y-0.5 max-h-[calc(100vh-180px)] overflow-y-auto">
             {tocHeadings.map((h) => (
               <a
                 href={`#${h.id}`}
                 data-toc-link={h.id}
-                class="block text-sm leading-snug py-1.5 border-l-2 border-transparent text-gray-500 hover:text-gray-900 hover:border-gray-300 transition-colors pl-3"
+                class="block text-sm leading-snug py-1.5 border-l-2 border-transparent text-muted-foreground hover:text-foreground hover:border-border-strong transition-colors pl-3"
               >
                 {h.text}
               </a>
@@ -101,104 +101,104 @@ const tocHeadings = [
         <article class="case-study-content">
 
           {/* Section: Voice AI for D2C */}
-          <h2 id="voice-ai-for-d2c-logistics-and-ecommerce" class="font-sora text-2xl sm:text-3xl font-medium text-black mt-0 mb-5 leading-tight">
+          <h2 id="voice-ai-for-d2c-logistics-and-ecommerce" class="font-sora text-2xl sm:text-3xl font-medium text-foreground mt-0 mb-5 leading-tight">
             Voice AI for D2C, Logistics, and E-Commerce
           </h2>
-          <p class="text-base leading-relaxed text-gray-700 mb-5">
+          <p class="text-base leading-relaxed text-foreground/80 mb-5">
             Bolna deploys intelligent voice agents across some of India's fastest-moving verticals. D2C brands recovering abandoned carts, logistics companies coordinating last-mile deliveries, and enterprise sales teams automating outbound at scale.
           </p>
-          <p class="text-base leading-relaxed text-gray-700 mb-5">
+          <p class="text-base leading-relaxed text-foreground/80 mb-5">
             Today, the platform handles over a million conversations every month. Every one of them runs on Plivo.
           </p>
-          <p class="text-base leading-relaxed text-gray-700 mb-5">
+          <p class="text-base leading-relaxed text-foreground/80 mb-5">
             But getting here meant solving a fundamental infrastructure problem first.
           </p>
 
-          <hr class="my-10 border-gray-200" />
+          <hr class="my-10 border-border" />
 
           {/* Section: The Problem */}
-          <h2 id="the-problem" class="font-sora text-2xl sm:text-3xl font-medium text-black mt-14 mb-5 leading-tight">
+          <h2 id="the-problem" class="font-sora text-2xl sm:text-3xl font-medium text-foreground mt-14 mb-5 leading-tight">
             The Problem
           </h2>
-          <p class="text-base leading-relaxed text-gray-700 mb-5">
+          <p class="text-base leading-relaxed text-foreground/80 mb-5">
             At the scale Bolna operates, every dropped interaction is a broken experience. And a broken promise to the businesses depending on the platform. Before Plivo, Bolna's team went through several providers.
           </p>
-          <p class="text-base leading-relaxed text-gray-700 mb-5">
+          <p class="text-base leading-relaxed text-foreground/80 mb-5">
             Outdated documentation. Sluggish integrations. Support teams that couldn't keep pace with AI-scale workloads. The infrastructure layer was the bottleneck.
           </p>
 
-          <blockquote class="border-l-4 border-black bg-gray-50 py-4 px-6 my-8 rounded-r-lg">
-            <p class="text-base leading-relaxed text-gray-700 mb-0">
+          <blockquote class="border-l-4 border-foreground bg-surface py-4 px-6 my-8 rounded-r-lg">
+            <p class="text-base leading-relaxed text-foreground/80 mb-0">
               &ldquo;Standard providers were never built for this. We needed a partner who understood voice AI as a fundamentally different use case. Real-time media streaming, dynamic routing, bursting from hundreds to tens of thousands of concurrent sessions in minutes.&rdquo;
             </p>
-            <footer class="mt-3 text-sm text-gray-500">
+            <footer class="mt-3 text-sm text-muted-foreground">
               &mdash; <cite class="not-italic">Pratik, Founder, Bolna</cite>
             </footer>
           </blockquote>
 
-          <hr class="my-10 border-gray-200" />
+          <hr class="my-10 border-border" />
 
           {/* Section: Why Plivo */}
-          <h2 id="why-plivo" class="font-sora text-2xl sm:text-3xl font-medium text-black mt-14 mb-5 leading-tight">
+          <h2 id="why-plivo" class="font-sora text-2xl sm:text-3xl font-medium text-foreground mt-14 mb-5 leading-tight">
             Why Plivo
           </h2>
-          <p class="text-base leading-relaxed text-gray-700 mb-5">
+          <p class="text-base leading-relaxed text-foreground/80 mb-5">
             Bolna didn't need another vendor. They needed infrastructure built for how voice AI actually works. Pratik's team evaluated Plivo on three things:
           </p>
 
           <div class="space-y-6 my-6">
             <div>
-              <h3 class="text-lg font-semibold text-gray-900 mb-2">Carrier-grade reliability with AI-ready flexibility</h3>
-              <p class="text-base leading-relaxed text-gray-700">
+              <h3 class="text-lg font-semibold text-foreground mb-2">Carrier-grade reliability with AI-ready flexibility</h3>
+              <p class="text-base leading-relaxed text-foreground/80">
                 Plivo's infrastructure handled dynamic AI workloads out of the box, including real-time audio streaming directly over the telephony network. No need to stitch together separate streaming providers.
               </p>
             </div>
             <div>
-              <h3 class="text-lg font-semibold text-gray-900 mb-2">APIs that just worked</h3>
-              <p class="text-base leading-relaxed text-gray-700">
+              <h3 class="text-lg font-semibold text-foreground mb-2">APIs that just worked</h3>
+              <p class="text-base leading-relaxed text-foreground/80">
                 Clean documentation, seamless integration, and account provisioning handled in hours, not weeks.
               </p>
             </div>
             <div>
-              <h3 class="text-lg font-semibold text-gray-900 mb-2">A true engineering partnership</h3>
-              <p class="text-base leading-relaxed text-gray-700">
+              <h3 class="text-lg font-semibold text-foreground mb-2">A true engineering partnership</h3>
+              <p class="text-base leading-relaxed text-foreground/80">
                 Bolna's team got direct access to Plivo's engineers, collaborating on new capabilities and pushing boundaries together.
               </p>
             </div>
           </div>
 
-          <p class="text-base leading-relaxed text-gray-700 mb-5">
+          <p class="text-base leading-relaxed text-foreground/80 mb-5">
             Whether Bolna uses the full integrated stack or just the connectivity layer, Plivo's modular architecture lets them decide where the platform ends and their own stack begins. That flexibility is what made the difference.
           </p>
 
-          <hr class="my-10 border-gray-200" />
+          <hr class="my-10 border-border" />
 
           {/* Section: The Results */}
-          <h2 id="the-results" class="font-sora text-2xl sm:text-3xl font-medium text-black mt-14 mb-5 leading-tight">
+          <h2 id="the-results" class="font-sora text-2xl sm:text-3xl font-medium text-foreground mt-14 mb-5 leading-tight">
             The Results
           </h2>
-          <p class="text-base leading-relaxed text-gray-700 mb-5">
+          <p class="text-base leading-relaxed text-foreground/80 mb-5">
             Since partnering with Plivo, Bolna has scaled from a few hundred sessions to over a million voice AI conversations every month. Uptime: 99.9%+.
           </p>
-          <p class="text-base leading-relaxed text-gray-700 mb-5">
+          <p class="text-base leading-relaxed text-foreground/80 mb-5">
             The predictability of Plivo's infrastructure lets Bolna's engineering team focus on what they do best: building smarter, more natural voice agents. No more firefighting connectivity issues. No more working around provider limitations.
           </p>
 
-          <hr class="my-10 border-gray-200" />
+          <hr class="my-10 border-border" />
 
           {/* Section: What's Next */}
-          <h2 id="whats-next" class="font-sora text-2xl sm:text-3xl font-medium text-black mt-14 mb-5 leading-tight">
+          <h2 id="whats-next" class="font-sora text-2xl sm:text-3xl font-medium text-foreground mt-14 mb-5 leading-tight">
             What's Next
           </h2>
-          <p class="text-base leading-relaxed text-gray-700 mb-5">
+          <p class="text-base leading-relaxed text-foreground/80 mb-5">
             Bolna is expanding into more complex conversational workflows and deeper multilingual support. The demands on infrastructure will only grow.
           </p>
 
-          <blockquote class="border-l-4 border-black bg-gray-50 py-4 px-6 my-8 rounded-r-lg">
-            <p class="text-base leading-relaxed text-gray-700 mb-0">
+          <blockquote class="border-l-4 border-foreground bg-surface py-4 px-6 my-8 rounded-r-lg">
+            <p class="text-base leading-relaxed text-foreground/80 mb-0">
               &ldquo;Having Plivo as a backbone gives us the confidence it will scale with our ambitions and help us focus entirely on building the best voice platform out there.&rdquo;
             </p>
-            <footer class="mt-3 text-sm text-gray-500">
+            <footer class="mt-3 text-sm text-muted-foreground">
               &mdash; <cite class="not-italic">Pratik, Founder, Bolna</cite>
             </footer>
           </blockquote>
@@ -209,11 +209,11 @@ const tocHeadings = [
       {/* Right sidebar: CTA */}
       <div class="hidden lg:block" id="cta-wrapper">
         <div id="cta-sidebar" class="pt-1">
-          <div class="rounded-lg bg-[#0f1117] p-5">
+          <div class="rounded-lg bg-surface-2 p-5">
             <p class="font-sora text-sm font-semibold text-white mb-2">
               Ready to scale your voice AI?
             </p>
-            <p class="text-xs text-gray-400 leading-relaxed mb-4">
+            <p class="text-xs text-muted-foreground leading-relaxed mb-4">
               Get started with Plivo's Voice API and Audio Streaming. Free credits included.
             </p>
             <a
@@ -221,7 +221,7 @@ const tocHeadings = [
               data-geo-cta="signup"
               target="_blank"
               rel="noopener noreferrer"
-              class="flex items-center justify-center w-full px-4 py-2.5 text-sm font-medium bg-white text-black rounded-md hover:bg-gray-200 transition-colors"
+              class="flex items-center justify-center w-full px-4 py-2.5 text-sm font-medium bg-background text-foreground rounded-md hover:bg-gray-200 transition-colors"
             >
               Sign up for free
             </a>
@@ -278,11 +278,11 @@ document.addEventListener('DOMContentLoaded', () => {
     tocLinks.forEach(link => {
       const linkId = link.dataset.tocLink;
       if (linkId === activeId) {
-        link.classList.remove('border-transparent', 'text-gray-500');
-        link.classList.add('border-black', 'text-black', 'font-medium');
+        link.classList.remove('border-transparent', 'text-muted-foreground');
+        link.classList.add('border-foreground', 'text-foreground', 'font-medium');
       } else {
-        link.classList.add('border-transparent', 'text-gray-500');
-        link.classList.remove('border-black', 'text-black', 'font-medium');
+        link.classList.add('border-transparent', 'text-muted-foreground');
+        link.classList.remove('border-foreground', 'text-foreground', 'font-medium');
       }
     });
   }

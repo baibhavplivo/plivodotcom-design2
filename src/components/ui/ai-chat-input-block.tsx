@@ -92,7 +92,7 @@ const BasicAIChatInput = () => {
       {/* Bot Icon + Heading */}
       <div className="flex flex-col items-center gap-1.5 sm:gap-2">
         <img src="/images/buddy.svg" alt="AI Agent" className="h-8 sm:h-10 w-auto" />
-        <h3 className="text-sm sm:text-base font-medium text-black/90">Start building your Agent</h3>
+        <h3 className="text-sm sm:text-base font-medium text-foreground/90">Start building your Agent</h3>
       </div>
 
       {/* Text Input */}
@@ -101,7 +101,7 @@ const BasicAIChatInput = () => {
           value={prompt}
           onChange={(e) => setPrompt(e.target.value)}
           placeholder="Describe what you need and let AI build it for you"
-          className="min-h-[90px] sm:min-h-[110px] w-full resize-none rounded-lg border border-gray-200 bg-white p-3 sm:p-4 pr-12 text-xs sm:text-sm text-gray-900 placeholder:text-gray-400 focus:border-gray-300 focus:outline-none focus:ring-0 shadow-xl"
+          className="min-h-[90px] sm:min-h-[110px] w-full resize-none rounded-lg border border-border bg-background p-3 sm:p-4 pr-12 text-xs sm:text-sm text-foreground placeholder:text-muted-foreground focus:border-border-strong focus:outline-none focus:ring-0 shadow-xl"
         />
         <button
           onClick={handleSubmit}
@@ -120,12 +120,12 @@ const BasicAIChatInput = () => {
               key={template.label}
               onClick={() => handleTemplateClick(template.prompt)}
               disabled={isTyping}
-              className={`flex items-center gap-2.5 rounded-full border border-gray-200 bg-white px-4 py-2 text-left transition-all ${
-                isTyping ? "opacity-50 cursor-not-allowed" : "hover:border-gray-300 hover:bg-gray-50"
+              className={`flex items-center gap-2.5 rounded-full border border-border bg-background px-4 py-2 text-left transition-all ${
+                isTyping ? "opacity-50 cursor-not-allowed" : "hover:border-border-strong hover:bg-surface"
               }`}
             >
-              <Icon className="h-4 w-4 flex-shrink-0 text-[#323DFE]" />
-              <span className="text-sm font-medium text-gray-600 truncate">{template.label}</span>
+              <Icon className="h-4 w-4 flex-shrink-0 text-primary" />
+              <span className="text-sm font-medium text-muted-foreground truncate">{template.label}</span>
             </button>
           );
         })}
@@ -136,27 +136,27 @@ const BasicAIChatInput = () => {
         <button
           onClick={() => setIsDropdownOpen(!isDropdownOpen)}
           disabled={isTyping}
-          className={`flex w-full items-center justify-between gap-2 rounded-lg border border-gray-200 bg-white px-3 py-2.5 text-left transition-all ${
-            isTyping ? "opacity-50 cursor-not-allowed" : "hover:border-gray-300"
+          className={`flex w-full items-center justify-between gap-2 rounded-lg border border-border bg-background px-3 py-2.5 text-left transition-all ${
+            isTyping ? "opacity-50 cursor-not-allowed" : "hover:border-border-strong"
           }`}
         >
-          <span className="text-xs font-medium text-gray-500">Select a template to get started</span>
-          <ChevronDown className={`h-4 w-4 text-gray-400 transition-transform ${isDropdownOpen ? "rotate-180" : ""}`} />
+          <span className="text-xs font-medium text-muted-foreground">Select a template to get started</span>
+          <ChevronDown className={`h-4 w-4 text-muted-foreground transition-transform ${isDropdownOpen ? "rotate-180" : ""}`} />
         </button>
 
         {/* Dropdown menu - opens downward */}
         {isDropdownOpen && (
-          <div className="absolute top-full left-0 right-0 mt-1 rounded-lg border border-gray-200 bg-white py-1 shadow-lg z-50">
+          <div className="absolute top-full left-0 right-0 mt-1 rounded-lg border border-border bg-background py-1 shadow-lg z-50">
             {AGENT_TEMPLATES.map((template) => {
               const Icon = template.icon;
               return (
                 <button
                   key={template.label}
                   onClick={() => handleTemplateClick(template.prompt)}
-                  className="flex w-full items-center gap-2.5 px-3 py-2.5 text-left transition-colors hover:bg-gray-50"
+                  className="flex w-full items-center gap-2.5 px-3 py-2.5 text-left transition-colors hover:bg-surface"
                 >
-                  <Icon className="h-4 w-4 flex-shrink-0 text-[#323DFE]" />
-                  <span className="text-xs font-medium text-gray-700">{template.label}</span>
+                  <Icon className="h-4 w-4 flex-shrink-0 text-primary" />
+                  <span className="text-xs font-medium text-foreground/80">{template.label}</span>
                 </button>
               );
             })}

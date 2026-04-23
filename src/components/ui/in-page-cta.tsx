@@ -14,7 +14,7 @@ export default function InPageCTA({
   ctaHref = "/contact/sales",
 }: InPageCTAProps) {
   return (
-    <div className="relative overflow-hidden rounded-2xl bg-[#0f1117]">
+    <div className="relative overflow-hidden rounded-2xl bg-surface-2">
       <div className="relative z-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 px-8 sm:px-10 py-8 sm:py-10">
         {/* Left - Text */}
         <h2 className="font-sora text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] font-normal leading-[1.25] tracking-[-0.02em] text-white max-w-lg">
@@ -24,7 +24,7 @@ export default function InPageCTA({
         {/* Right - CTA */}
         <a
           href={ctaHref}
-          className="inline-flex items-center justify-center rounded-md bg-white px-6 py-3 text-sm font-medium text-black transition-colors hover:bg-gray-200 flex-shrink-0"
+          className="inline-flex items-center justify-center rounded-md bg-background px-6 py-3 text-sm font-medium text-foreground transition-colors hover:bg-gray-200 flex-shrink-0"
         >
           {ctaText}
         </a>

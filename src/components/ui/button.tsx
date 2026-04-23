@@ -15,12 +15,12 @@ const buttonVariants = cva(
         destructive:
           "bg-red-500 text-white hover:bg-red-600 focus-visible:ring-red-400 shadow-sm/2",
         outline:
-          "border border-gray-300 bg-white text-gray-900 hover:bg-gray-100 focus-visible:ring-blue-400 shadow-sm/2",
+          "border border-border-strong bg-background text-foreground hover:bg-muted focus-visible:ring-blue-400 shadow-sm/2",
         secondary:
           "bg-gray-900 text-white cta-hover-gradient focus-visible:ring-blue-400",
         ghost:
-          "text-gray-900 hover:bg-gray-100 focus-visible:ring-blue-400",
-        link: "text-gray-900 underline-offset-4 hover:underline focus-visible:ring-blue-400",
+          "text-foreground hover:bg-muted focus-visible:ring-blue-400",
+        link: "text-foreground underline-offset-4 hover:underline focus-visible:ring-blue-400",
       },
       size: {
         default: "h-9 px-4 py-2",

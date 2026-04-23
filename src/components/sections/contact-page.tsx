@@ -99,7 +99,7 @@ export const ContactPage = () => {
         <h1 className="text-center text-4xl font-semibold tracking-tight sm:text-5xl">
           Contact us
         </h1>
-        <p className="mt-4 text-center text-muted-foreground">
+        <p className="mt-4 text-muted-foreground">
           We'd love to hear from you. Reach out and we'll get back to you soon.
         </p>
 
@@ -178,12 +178,12 @@ export const ContactPage = () => {
             <h2 className="text-lg font-semibold">Inquiries</h2>
 
             {formState === "success" ? (
-              <div className="mt-8 flex flex-col items-center gap-4 rounded-lg border border-green-200 bg-green-50 p-8 text-center">
-                <CheckCircle className="h-10 w-10 text-green-600" />
+              <div className="mt-8 flex flex-col items-center gap-4 rounded-lg border border-green-200 dark:border-green-900/50 bg-green-50 dark:bg-green-900/30 p-8 text-center">
+                <CheckCircle className="h-10 w-10 text-green-600 dark:text-green-300" />
                 <h3 className="text-lg font-semibold text-green-900">
                   Thank you for reaching out!
                 </h3>
-                <p className="text-sm text-green-700">
+                <p className="text-sm text-green-700 dark:text-green-300">
                   We've received your message and will get back to you soon.
                 </p>
               </div>
@@ -244,7 +244,7 @@ export const ContactPage = () => {
                 </div>
 
                 {formState === "error" && errorMsg && (
-                  <p className="text-sm text-red-600">{errorMsg}</p>
+                  <p className="text-sm text-red-600 dark:text-red-300">{errorMsg}</p>
                 )}
 
                 <div className="flex justify-end">

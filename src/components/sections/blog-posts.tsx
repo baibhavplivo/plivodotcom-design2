@@ -41,7 +41,7 @@ const BlogPosts = ({ posts }: { posts: any[] }) => {
               <div className="relative lg:col-span-3">
                 <a href={`/blog/${featuredPost.id}/`} className="group block">
                   <div className="relative aspect-[16/10] overflow-hidden rounded-2xl">
-                    <div className="absolute inset-0 bg-black/10 transition-opacity group-hover:bg-black/20"></div>
+                    <div className="absolute inset-0 bg-foreground/$1 transition-opacity group-hover:bg-foreground/$1"></div>
                     <img
                       src={featuredPost.data.image}
                       alt={featuredPost.data.title}

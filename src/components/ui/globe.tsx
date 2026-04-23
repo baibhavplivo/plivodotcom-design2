@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useCallback } from "react";
+import { useEffect, useRef, useCallback, useState } from "react";
 import createGlobe from "cobe";
 import { cn } from "@/lib/utils";
 
@@ -12,17 +12,41 @@ interface GlobeProps {
   glowColor?: [number, number, number];
   markerColor?: [number, number, number];
   opacity?: number;
+  darkBaseColor?: [number, number, number];
+  darkGlowColor?: [number, number, number];
+  darkMarkerColor?: [number, number, number];
+  darkOpacity?: number;
   interactive?: boolean;
+}
+
+function useIsDark() {
+  const [isDark, setIsDark] = useState(false);
+  useEffect(() => {
+    const check = () =>
+      setIsDark(document.documentElement.classList.contains("dark"));
+    check();
+    const observer = new MutationObserver(check);
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
+    return () => observer.disconnect();
+  }, []);
+  return isDark;
 }
 
 export function Globe({
   className,
   size = 600,
-  dark = false,
+  dark,
   baseColor = [0.9, 0.9, 0.95],
   glowColor = [0.85, 0.85, 0.9],
   markerColor = [0.55, 0.36, 0.96],
   opacity = 0.4,
+  darkBaseColor = [0.32, 0.38, 0.55],
+  darkGlowColor = [0.05, 0.06, 0.1],
+  darkMarkerColor,
+  darkOpacity = 0.85,
   interactive = true,
 }: GlobeProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -30,6 +54,15 @@ export function Globe({
   const pointerInteractionMovement = useRef(0);
   const phiRef = useRef(0);
   const thetaRef = useRef(0.25);
+
+  const isDark = useIsDark();
+  const effectiveDark = dark ?? isDark;
+  const effectiveBase = effectiveDark ? darkBaseColor : baseColor;
+  const effectiveGlow = effectiveDark ? darkGlowColor : glowColor;
+  const effectiveMarker = effectiveDark
+    ? darkMarkerColor ?? markerColor
+    : markerColor;
+  const effectiveOpacity = effectiveDark ? darkOpacity : opacity;
 
   const onPointerDown = useCallback(
     (e: React.PointerEvent<HTMLCanvasElement>) => {
@@ -77,14 +110,14 @@ export function Globe({
         height: pixelSize,
         phi: 0,
         theta: 0.25,
-        dark: dark ? 1 : 0,
+        dark: effectiveDark ? 1 : 0,
         diffuse: 1.2,
         mapSamples: 16000,
         mapBrightness: 6,
-        baseColor,
-        markerColor,
-        glowColor,
-        opacity,
+        baseColor: effectiveBase,
+        markerColor: effectiveMarker,
+        glowColor: effectiveGlow,
+        opacity: effectiveOpacity,
         markers: [
           { location: [37.7749, -122.4194], size: 0.05 }, // San Francisco
           { location: [40.7128, -74.006], size: 0.05 }, // New York
@@ -127,7 +160,14 @@ export function Globe({
         globe.destroy();
       }
     };
-  }, [size, dark, baseColor, glowColor, markerColor, opacity]);
+  }, [
+    size,
+    effectiveDark,
+    effectiveBase,
+    effectiveGlow,
+    effectiveMarker,
+    effectiveOpacity,
+  ]);
 
   return (
     <canvas

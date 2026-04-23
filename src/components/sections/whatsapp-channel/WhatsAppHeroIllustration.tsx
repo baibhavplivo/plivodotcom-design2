@@ -72,7 +72,7 @@ export default function WhatsAppHeroIllustration() {
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: "radial-gradient(ellipse at center, transparent 30%, white 70%)"
+          background: "radial-gradient(ellipse at center, transparent 30%, hsl(var(--background)) 70%)"
         }}
       />
 
@@ -81,17 +81,17 @@ export default function WhatsAppHeroIllustration() {
         {/* Phone device */}
         <div className="w-[288px] sm:w-[320px]">
           {/* Phone outer frame */}
-          <div className="relative rounded-[32px] p-1.5 shadow-2xl border border-gray-300 bg-gray-100">
+          <div className="relative rounded-[32px] p-1.5 border border-border-strong bg-muted">
 
             {/* Screen */}
-            <div className="relative rounded-[30px] overflow-hidden bg-[#efeae2] shadow-inner">
+            <div className="relative rounded-[30px] overflow-hidden bg-[#efeae2] dark:bg-[#0b141a] shadow-inner">
               {/* WhatsApp header */}
-              <div className="h-16 bg-[#075E54] flex items-center px-3 gap-2 rounded-t-[30px]">
+              <div className="h-16 bg-[#075E54] dark:bg-[#1f2c33] flex items-center px-3 gap-2 rounded-t-[30px]">
                 <svg className="w-5 h-5 text-white/80" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
                 </svg>
                 <div className="w-9 h-9 rounded-full bg-gray-300 flex items-center justify-center overflow-hidden">
-                  <svg className="w-6 h-6 text-gray-500" fill="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-6 h-6 text-muted-foreground" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
                   </svg>
                 </div>
@@ -110,10 +110,20 @@ export default function WhatsAppHeroIllustration() {
               </div>
 
               {/* Chat background pattern */}
-              <div className="relative min-h-[400px] bg-[#efeae2]" style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d1c4b8' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")" }}>
+              <div className="relative min-h-[400px] bg-[#efeae2] dark:bg-[#0b141a]">
+                {/* Doodle overlay — dim in dark mode so it blends */}
+                <div
+                  className="pointer-events-none absolute inset-0 opacity-100 dark:opacity-[0.08]"
+                  style={{
+                    backgroundImage:
+                      "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d1c4b8' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")",
+                  }}
+                  aria-hidden="true"
+                />
+                <div className="relative">
                 {/* Date badge */}
                 <div className="flex justify-center py-3">
-                  <span className="px-3 py-1 rounded-md bg-white/80 text-[11px] text-gray-600 shadow-sm">
+                  <span className="px-3 py-1 rounded-md bg-white/80 dark:bg-[#1f2c33] text-[11px] !text-[#667781] dark:!text-[#8696a0] shadow-sm">
                     Today
                   </span>
                 </div>
@@ -132,24 +142,24 @@ export default function WhatsAppHeroIllustration() {
                     >
                       {message.type === "incoming" ? (
                         <div className="flex items-start max-w-[85%]">
-                          <div className="relative rounded-lg rounded-tl-sm px-2.5 py-1.5 bg-white shadow-sm">
+                          <div className="relative rounded-lg rounded-tl-sm px-2.5 py-1.5 bg-white dark:bg-[#1f2c33] shadow-sm text-[#111b21] dark:text-[#e9edef] [&_p]:!text-[#111b21] dark:[&_p]:!text-[#e9edef]">
                             {/* Tail */}
-                            <div className="absolute -left-2 top-0 w-0 h-0 border-t-8 border-t-white border-l-8 border-l-transparent" />
-                            <p className="text-[13px] text-gray-800 leading-snug whitespace-pre-line">{message.text}</p>
+                            <div className="absolute -left-2 top-0 w-0 h-0 border-t-8 border-t-white dark:border-t-[#1f2c33] border-l-8 border-l-transparent" />
+                            <p className="text-[13px] leading-snug whitespace-pre-line">{message.text}</p>
                             {message.link && (
                               <span className="text-[13px] text-[#53bdeb] underline break-all leading-snug">{message.link}</span>
                             )}
-                            <p className="text-[10px] text-gray-400 text-right mt-0.5">9:41 AM</p>
+                            <p className="text-[10px] !text-[#667781] dark:!text-[#8696a0] text-right mt-0.5">9:41 AM</p>
                           </div>
                         </div>
                       ) : (
                         <div className="flex justify-end">
-                          <div className="relative rounded-lg rounded-tr-sm px-2.5 py-1.5 max-w-[85%] bg-[#dcf8c6] shadow-sm">
+                          <div className="relative rounded-lg rounded-tr-sm px-2.5 py-1.5 max-w-[85%] bg-[#dcf8c6] dark:bg-[#005c4b] shadow-sm text-[#111b21] dark:text-[#e9edef] [&_p]:!text-[#111b21] dark:[&_p]:!text-[#e9edef]">
                             {/* Tail */}
-                            <div className="absolute -right-2 top-0 w-0 h-0 border-t-8 border-t-[#dcf8c6] border-r-8 border-r-transparent" />
-                            <p className="text-[13px] text-gray-800 leading-snug">{message.text}</p>
+                            <div className="absolute -right-2 top-0 w-0 h-0 border-t-8 border-t-[#dcf8c6] dark:border-t-[#005c4b] border-r-8 border-r-transparent" />
+                            <p className="text-[13px] leading-snug">{message.text}</p>
                             <div className="flex items-center justify-end gap-1 mt-0.5">
-                              <p className="text-[10px] text-gray-500">9:41 AM</p>
+                              <p className="text-[10px] !text-[#667781] dark:!text-[#8696a0]">9:41 AM</p>
                               {message.hasCheckmarks && (
                                 <svg className="w-4 h-4 text-[#53bdeb]" viewBox="0 0 16 15" fill="currentColor">
                                   <path d="M15.01 3.316l-.478-.372a.365.365 0 0 0-.51.063L8.666 9.879a.32.32 0 0 1-.484.033l-.358-.325a.319.319 0 0 0-.484.032l-.378.483a.418.418 0 0 0 .036.541l1.32 1.266c.143.14.361.125.484-.033l6.272-8.048a.366.366 0 0 0-.064-.512zm-4.1 0l-.478-.372a.365.365 0 0 0-.51.063L4.566 9.879a.32.32 0 0 1-.484.033L1.891 7.769a.366.366 0 0 0-.515.006l-.423.433a.364.364 0 0 0 .006.514l3.258 3.185c.143.14.361.125.484-.033l6.272-8.048a.365.365 0 0 0-.063-.512z" />
@@ -162,19 +172,20 @@ export default function WhatsAppHeroIllustration() {
                     </div>
                   ))}
                 </div>
+                </div>
               </div>
 
               {/* Input area */}
-              <div className="px-2 py-2 bg-[#f0f0f0] flex items-center gap-2">
-                <div className="text-gray-500">
+              <div className="px-2 py-2 bg-[#f0f0f0] dark:bg-[#1f2c33] flex items-center gap-2 text-[#667781] dark:text-[#8696a0]">
+                <div>
                   <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M15.182 15.182a4.5 4.5 0 01-6.364 0M21 12a9 9 0 11-18 0 9 9 0 0118 0zM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75 9.168 9 9.375 9s.375.336.375.75zm-.375 0h.008v.015h-.008V9.75zm5.625 0c0 .414-.168.75-.375.75s-.375-.336-.375-.75.168-.75.375-.75.375.336.375.75zm-.375 0h.008v.015h-.008V9.75z" />
                   </svg>
                 </div>
-                <div className="flex-1 rounded-full px-4 py-2 bg-white">
-                  <span className="text-[13px] text-gray-400">Type a message</span>
+                <div className="flex-1 rounded-full px-4 py-2 bg-white dark:bg-[#2a3942]">
+                  <span className="text-[13px] !text-[#667781] dark:!text-[#8696a0]">Type a message</span>
                 </div>
-                <div className="w-10 h-10 rounded-full bg-[#323dfe] flex items-center justify-center">
+                <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center">
                   <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M12 15c1.66 0 3-1.34 3-3V6c0-1.66-1.34-3-3-3S9 4.34 9 6v6c0 1.66 1.34 3 3 3zm-1 1.93c-3.94-.49-7-3.85-7-7.93h2c0 2.76 2.24 5 5 5s5-2.24 5-5h2c0 4.08-3.06 7.44-7 7.93V21h-2v-4.07z"/>
                   </svg>
@@ -182,8 +193,8 @@ export default function WhatsAppHeroIllustration() {
               </div>
 
               {/* Home indicator */}
-              <div className="h-6 bg-[#f0f0f0] flex items-center justify-center">
-                <div className="w-28 h-1 rounded-full bg-black/20" />
+              <div className="h-6 bg-[#f0f0f0] dark:bg-[#1f2c33] flex items-center justify-center">
+                <div className="w-28 h-1 rounded-full bg-foreground/20" />
               </div>
             </div>
           </div>
@@ -193,7 +204,7 @@ export default function WhatsAppHeroIllustration() {
         <div
           className="absolute inset-x-0 bottom-0 h-32 pointer-events-none"
           style={{
-            background: 'linear-gradient(to top, white 0%, white 20%, rgba(255,255,255,0.9) 50%, transparent 100%)'
+            background: 'linear-gradient(to top, hsl(var(--background)) 0%, hsl(var(--background)) 20%, hsl(var(--background) / 0.9) 50%, transparent 100%)'
           }}
         />
       </div>

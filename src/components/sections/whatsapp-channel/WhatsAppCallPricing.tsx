@@ -184,55 +184,64 @@ export default function WhatsAppCallPricing({
 
   return (
     <>
-      <section className="bg-white pb-10 pt-[56px] sm:pt-[64px] md:pt-[72px]">
+      <section className="bg-background border-t border-border pb-10 pt-[56px] sm:pt-[64px] md:pt-[72px]">
         <div className="container mx-auto max-w-7xl px-4">
           <div className="text-center">
-            <h1 className="mb-4 font-sora text-[2rem] font-normal leading-[1.1] tracking-[-0.02em] text-black sm:text-[2.5rem] md:text-[3rem]">
+            <div className="flex items-center gap-3 font-mono-ui text-[11px] uppercase tracking-[0.12em] text-muted-foreground mb-8">
+            <span className="flex items-center gap-2">
+              <span className="tabular-nums text-foreground/70">~</span>
+              <span className="h-px w-6 bg-border" />
+            </span>
+            <span>whatsapp call pricing</span>
+            <span className="flex-1 border-t border-dashed border-border" />
+            <span>per-call · pay as you go</span>
+          </div>
+          <h1 className="font-sora text-[2rem] font-normal leading-[1.1] tracking-[-0.02em] text-foreground sm:text-[2.5rem] md:text-[3rem]">
               {WHATSAPP_CALL_PAGE_COPY.title}
             </h1>
-            <p className="mx-auto max-w-2xl text-base text-gray-600 sm:text-lg">
+            <p className="max-w-2xl text-base text-muted-foreground sm:text-lg">
               {WHATSAPP_CALL_PAGE_COPY.subtitle}
             </p>
           </div>
         </div>
       </section>
 
-      <section className="bg-white pb-12 lg:pb-20">
+      <section className="bg-background border-t border-border pb-12 lg:pb-20">
         <div className="container mx-auto max-w-7xl px-4">
           <div className="lg:grid lg:grid-cols-[256px_1fr] lg:items-start lg:gap-8">
             <div ref={sidebarWrapperRef} className="mb-8 lg:mb-0">
-              <aside className="z-30 bg-white" style={sidebarStyle}>
+              <aside className="z-30 bg-background" style={sidebarStyle}>
                 <div className="relative mb-6" ref={dropdownRef}>
-                  <label className="mb-2 block text-sm font-medium text-gray-700">
+                  <label className="mb-2 block text-sm font-medium text-foreground/80">
                     {WHATSAPP_CALL_PAGE_COPY.countrySelectorLabel}
                   </label>
 
                   <button
                     type="button"
                     onClick={() => setIsCountryOpen((open) => !open)}
-                    className="flex w-full items-center gap-3 rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-left transition-colors hover:border-gray-400"
+                    className="flex w-full items-center gap-3 rounded-lg border border-border-strong bg-background px-4 py-2.5 text-left transition-colors hover:border-border-strong"
                   >
                     <span className="text-xl">{selectedCountry.flag}</span>
-                    <span className="flex-1 text-sm font-medium text-gray-900">
+                    <span className="flex-1 text-sm font-medium text-foreground">
                       {selectedCountry.name}
                     </span>
                     <ChevronDown
                       className={cn(
-                        "h-4 w-4 text-gray-400 transition-transform",
+                        "h-4 w-4 text-muted-foreground transition-transform",
                         isCountryOpen && "rotate-180",
                       )}
                     />
                   </button>
 
                   {isCountryOpen && (
-                    <div className="absolute left-0 right-0 top-full z-10 mt-1 flex max-h-72 flex-col overflow-hidden rounded-lg border border-gray-200 bg-white shadow-lg">
-                      <div className="border-b border-gray-100 p-2">
+                    <div className="absolute left-0 right-0 top-full z-10 mt-1 flex max-h-72 flex-col overflow-hidden rounded-lg border border-border bg-background shadow-sm">
+                      <div className="border-b border-border p-2">
                         <input
                           type="text"
                           placeholder="Search country..."
                           value={searchQuery}
                           onChange={(event) => setSearchQuery(event.target.value)}
-                          className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 placeholder:text-gray-400 focus:border-gray-500 focus:outline-none"
+                          className="w-full rounded-md border border-border-strong bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:border-gray-500 focus:outline-none"
                           autoFocus
                         />
                       </div>
@@ -242,26 +251,26 @@ export default function WhatsAppCallPricing({
                             {!country.isPriority &&
                               index > 0 &&
                               filteredCountries[index - 1]?.isPriority && (
-                                <div className="my-1 border-t border-gray-200" />
+                                <div className="my-1 border-t border-border" />
                               )}
                             <button
                               type="button"
                               onClick={() => handleCountryChange(country)}
                               className={cn(
-                                "flex w-full items-center gap-2.5 px-4 py-2.5 text-left transition-colors hover:bg-gray-50",
+                                "flex w-full items-center gap-2.5 px-4 py-2.5 text-left transition-colors hover:bg-surface",
                                 selectedCountry.code === country.code &&
-                                  "bg-[#323dfe]/5",
+                                  "bg-primary/5",
                               )}
                             >
                               <span className="text-xl">{country.flag}</span>
-                              <span className="text-sm text-gray-900">
+                              <span className="text-sm text-foreground">
                                 {country.name}
                               </span>
                             </button>
                           </div>
                         ))}
                         {filteredCountries.length === 0 && (
-                          <div className="px-4 py-3 text-sm text-gray-500">
+                          <div className="px-4 py-3 text-sm text-muted-foreground">
                             No countries found
                           </div>
                         )}
@@ -271,7 +280,7 @@ export default function WhatsAppCallPricing({
                 </div>
 
                 <nav className="hidden lg:block">
-                  <p className="mb-3 text-sm font-medium text-gray-700">
+                  <p className="mb-3 text-sm font-medium text-foreground/80">
                     {WHATSAPP_CALL_PAGE_COPY.sectionNavLabel}
                   </p>
                   <ul className="space-y-1">
@@ -283,8 +292,8 @@ export default function WhatsAppCallPricing({
                           className={cn(
                             "w-full border-l-2 px-3 py-2 text-left text-sm transition-colors",
                             activeSection === section.id
-                              ? "border-[#323dfe] font-medium text-[#323dfe]"
-                              : "border-transparent text-gray-600 hover:border-gray-300 hover:text-gray-900",
+                              ? "border-primary font-medium text-primary"
+                              : "border-transparent text-muted-foreground hover:border-border-strong hover:text-foreground",
                           )}
                         >
                           {section.label}
@@ -299,7 +308,7 @@ export default function WhatsAppCallPricing({
             <div ref={contentRef} className="min-w-0">
               <div
                 id="whatsapp-calling"
-                className="mb-6 rounded-xl border border-gray-200 bg-white p-6 scroll-mt-32"
+                className="mb-6 rounded-xl border border-border bg-background p-6 scroll-mt-32"
               >
                 <WhatsAppCallingSection pricing={selectedCountry.pricing} />
               </div>
@@ -307,7 +316,7 @@ export default function WhatsAppCallPricing({
               {phoneRates.length > 0 && (
                 <div
                   id="phone-numbers"
-                  className="mb-6 rounded-xl border border-gray-200 bg-white p-6 scroll-mt-32"
+                  className="mb-6 rounded-xl border border-border bg-background p-6 scroll-mt-32"
                 >
                   <PhoneNumbersSection phoneRates={phoneRates} />
                 </div>
@@ -315,7 +324,7 @@ export default function WhatsAppCallPricing({
 
               <div
                 id="add-ons"
-                className="rounded-xl border border-gray-200 bg-white p-6 scroll-mt-32"
+                className="rounded-xl border border-border bg-background p-6 scroll-mt-32"
               >
                 <AddOnServicesSection
                   addOns={addOns}
@@ -343,27 +352,27 @@ function WhatsAppCallingSection({
 
   return (
     <div>
-      <h2 className="mb-2 font-sans text-xl font-semibold text-black">
+      <h2 className="mb-2 font-sans text-xl font-semibold text-foreground">
         {WHATSAPP_CALL_PAGE_COPY.callingSectionTitle}
       </h2>
 
       <div className="overflow-x-auto">
         <table className="w-full">
           <thead>
-            <tr className="border-b border-gray-200">
-              <th className="w-[65%] py-3 pr-4 text-left text-sm font-semibold text-black">
+            <tr className="border-b border-border">
+              <th className="w-[65%] py-3 pr-4 text-left text-sm font-semibold text-foreground">
                 Call Type
               </th>
-              <th className="py-3 text-left text-sm font-semibold text-black">
+              <th className="py-3 text-left text-sm font-semibold text-foreground">
                 Price per minute
               </th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-gray-100">
+          <tbody className="divide-y divide-border">
             {rows.map((row) => (
               <tr key={row.label}>
-                <td className="py-3 pr-4 text-sm text-gray-900">{row.label}</td>
-                <td className="py-3 text-sm font-medium text-black">{row.price}</td>
+                <td className="py-3 pr-4 text-sm text-foreground">{row.label}</td>
+                <td className="py-3 text-sm font-medium text-foreground">{row.price}</td>
               </tr>
             ))}
           </tbody>
@@ -380,25 +389,25 @@ function PhoneNumbersSection({
 }) {
   return (
     <div>
-      <h2 className="mb-6 font-sans text-xl font-semibold text-black">
+      <h2 className="mb-6 font-sans text-xl font-semibold text-foreground">
         {WHATSAPP_CALL_PAGE_COPY.phoneNumbersTitle}
       </h2>
 
       <div className="overflow-x-auto">
         <table className="w-full">
           <thead>
-            <tr className="border-b border-gray-200">
-              <th className="w-[65%] py-3 pr-4 text-left text-sm font-semibold text-black">
+            <tr className="border-b border-border">
+              <th className="w-[65%] py-3 pr-4 text-left text-sm font-semibold text-foreground">
                 Route Type
               </th>
-              <th className="py-3 text-left text-sm font-semibold text-black">Price</th>
+              <th className="py-3 text-left text-sm font-semibold text-foreground">Price</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-gray-100">
+          <tbody className="divide-y divide-border">
             {phoneRates.map((row) => (
               <tr key={row.label}>
-                <td className="py-3 pr-4 text-sm text-gray-900">{row.label}</td>
-                <td className="py-3 text-sm font-medium text-black">{row.price}</td>
+                <td className="py-3 pr-4 text-sm text-foreground">{row.label}</td>
+                <td className="py-3 text-sm font-medium text-foreground">{row.price}</td>
               </tr>
             ))}
           </tbody>
@@ -419,17 +428,17 @@ function AddOnServicesSection({
 
   return (
     <div>
-      <h2 className="mb-2 font-sans text-xl font-semibold text-black">
+      <h2 className="mb-2 font-sans text-xl font-semibold text-foreground">
         {WHATSAPP_CALL_PAGE_COPY.addOnsTitle}
       </h2>
-      <p className="mb-6 text-sm text-gray-500">
+      <p className="mb-6 text-sm text-muted-foreground">
         {note}{" "}
         {isIndia && (
           <a
             href={WHATSAPP_CALL_PAGE_COPY.recordingStorageSupportHref}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[#323dfe] hover:underline"
+            className="text-primary hover:underline"
           >
             Read More.
           </a>
@@ -439,21 +448,21 @@ function AddOnServicesSection({
       <div className="overflow-x-auto">
         <table className="w-full">
           <thead>
-            <tr className="border-b border-gray-200">
-              <th className="w-[65%] py-3 pr-4 text-left text-sm font-semibold text-black">
+            <tr className="border-b border-border">
+              <th className="w-[65%] py-3 pr-4 text-left text-sm font-semibold text-foreground">
                 Service
               </th>
-              <th className="py-3 text-left text-sm font-semibold text-black">Price</th>
+              <th className="py-3 text-left text-sm font-semibold text-foreground">Price</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-gray-100">
+          <tbody className="divide-y divide-border">
             {addOns.map((row) => (
               <tr key={row.label}>
                 <td className="py-3 pr-4 align-top">
-                  <div className="flex items-center gap-2 text-sm text-gray-900">
+                  <div className="flex items-center gap-2 text-sm text-foreground">
                     <span>{row.label}</span>
                     {row.badge && (
-                      <span className="rounded-full bg-gray-100 px-2 py-0.5 text-[11px] font-medium uppercase tracking-[0.08em] text-gray-600">
+                      <span className="rounded-full bg-muted px-2 py-0.5 text-[11px] font-medium uppercase tracking-[0.08em] text-muted-foreground">
                         {row.badge}
                       </span>
                     )}
@@ -464,15 +473,15 @@ function AddOnServicesSection({
                     <div className="space-y-3">
                       {row.children.map((child) => (
                         <div key={child.label}>
-                          <div className="text-xs uppercase tracking-[0.08em] text-gray-500">
+                          <div className="text-xs uppercase tracking-[0.08em] text-muted-foreground">
                             {child.label}
                           </div>
-                          <div className="text-sm font-medium text-black">{child.price}</div>
+                          <div className="text-sm font-medium text-foreground">{child.price}</div>
                         </div>
                       ))}
                     </div>
                   ) : (
-                    <div className="text-sm font-medium text-black">{row.price}</div>
+                    <div className="text-sm font-medium text-foreground">{row.price}</div>
                   )}
                 </td>
               </tr>

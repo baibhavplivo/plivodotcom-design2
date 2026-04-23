@@ -153,14 +153,14 @@ function IllustrationCard({
   children: React.ReactNode;
 }) {
   return (
-    <div className="relative h-full w-full rounded-xl overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
+    <div className="relative h-full w-full rounded-xl overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, hsl(var(--border)) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="relative h-full w-full p-3 sm:p-4">
-        <div className="bg-white rounded-lg border border-gray-200 shadow-sm h-full flex flex-col">
-          <div className="px-4 py-3 border-b border-gray-100 flex items-center gap-3">
-            <span className="text-black">{icon}</span>
-            <p className="text-sm font-semibold text-gray-900 flex-1">{title}</p>
+        <div className="bg-background rounded-lg border border-border shadow-sm h-full flex flex-col">
+          <div className="px-4 py-3 border-b border-border flex items-center gap-3">
+            <span className="text-foreground">{icon}</span>
+            <p className="text-sm font-semibold text-foreground flex-1">{title}</p>
             {badge && (
-              <span className="text-[10px] px-2 py-1 rounded-md bg-blue-50 text-blue-700 font-medium border border-blue-200">
+              <span className="text-[10px] px-2 py-1 rounded-md bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 font-medium border border-blue-200 dark:bg-blue-900/30 dark:text-blue-300 dark:border-blue-900/50">
                 {badge}
               </span>
             )}
@@ -176,22 +176,22 @@ function IllustrationCard({
 
 function CustomizeBrandIllustration() {
   return (
-    <div className="relative h-full w-full rounded-xl overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
+    <div className="relative h-full w-full rounded-xl overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, hsl(var(--border)) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="relative h-full w-full p-2.5 sm:p-3 md:p-4">
-        <div className="bg-white rounded-xl shadow-lg border border-gray-200 h-full flex flex-col overflow-hidden">
+        <div className="bg-background rounded-xl shadow-sm border border-border h-full flex flex-col overflow-hidden">
           {/* Header */}
-          <div className="p-2.5 sm:p-3 border-b border-gray-100">
+          <div className="p-2.5 sm:p-3 border-b border-border">
             <div className="flex items-center gap-2 sm:gap-2.5">
-              <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-gradient-to-br from-gray-700 to-gray-900 flex items-center justify-center shadow-md">
+              <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-gradient-to-br from-gray-700 to-gray-900 flex items-center justify-center shadow-sm">
                 <span className="text-white text-[10px] sm:text-xs">✦</span>
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-xs sm:text-sm font-semibold text-gray-900 truncate">Acme Support Agent</p>
-                <p className="text-[10px] sm:text-xs text-gray-500">Brand voice configured</p>
+                <p className="text-xs sm:text-sm font-semibold text-foreground truncate">Acme Support Agent</p>
+                <p className="text-[10px] sm:text-xs text-muted-foreground">Brand voice configured</p>
               </div>
-              <div className="flex items-center gap-1 bg-[#323dfe]/10 px-2 py-1 rounded-full border border-[#323dfe]/20">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#323dfe]" />
-                <span className="text-[10px] sm:text-xs text-[#323dfe] font-medium">Active</span>
+              <div className="flex items-center gap-1 bg-primary/10 px-2 py-1 rounded-full border border-primary/20">
+                <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+                <span className="text-[10px] sm:text-xs text-primary font-medium">Active</span>
               </div>
             </div>
           </div>
@@ -200,7 +200,7 @@ function CustomizeBrandIllustration() {
           <div className="flex-1 p-3 sm:p-4 space-y-4 sm:space-y-5 min-h-0">
             {/* Personality traits */}
             <div>
-              <p className="text-[10px] sm:text-xs text-gray-500 mb-2 font-medium uppercase tracking-wide">Personality Traits</p>
+              <p className="text-[10px] sm:text-xs text-muted-foreground mb-2 font-medium font-mono-ui uppercase tracking-[0.1em]">Personality Traits</p>
               <div className="flex flex-wrap gap-1.5 sm:gap-2">
                 {[
                   { trait: 'Friendly', active: true },
@@ -212,8 +212,8 @@ function CustomizeBrandIllustration() {
                     key={i}
                     className={`text-[11px] sm:text-xs px-2.5 py-1 sm:py-1.5 rounded-full border transition-all duration-200 ${
                       item.active
-                        ? 'bg-gray-100 text-gray-900 border-gray-900'
-                        : 'bg-gray-50/50 text-gray-300 border-gray-100'
+                        ? 'bg-muted text-foreground border-gray-900'
+                        : 'bg-surface/50 text-gray-300 border-border'
                     }`}
                   >
                     {item.trait}
@@ -225,22 +225,22 @@ function CustomizeBrandIllustration() {
             {/* Tone slider */}
             <div>
               <div className="flex items-center justify-between mb-2">
-                <p className="text-[10px] sm:text-xs text-gray-500 font-medium uppercase tracking-wide">Conversation Tone</p>
-                <span className="text-[10px] sm:text-xs text-[#323dfe] font-medium bg-[#323dfe]/10 px-1.5 py-0.5 rounded">Warm</span>
+                <p className="text-[10px] sm:text-xs text-muted-foreground font-medium font-mono-ui uppercase tracking-[0.1em]">Conversation Tone</p>
+                <span className="text-[10px] sm:text-xs text-primary font-medium bg-primary/10 px-1.5 py-0.5 rounded">Warm</span>
               </div>
-              <div className="h-1.5 sm:h-2 rounded-full bg-gray-100 relative">
-                <div className="absolute left-0 top-0 h-1.5 sm:h-2 w-3/4 rounded-full bg-gradient-to-r from-gray-400 to-[#323dfe]" />
-                <div className="absolute left-3/4 top-1/2 -translate-y-1/2 -translate-x-1/2 w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full bg-white border-2 border-[#323dfe] shadow-md" />
+              <div className="h-1.5 sm:h-2 rounded-full bg-muted relative">
+                <div className="absolute left-0 top-0 h-1.5 sm:h-2 w-3/4 rounded-full bg-gradient-to-r from-gray-400 to-primary" />
+                <div className="absolute left-3/4 top-1/2 -translate-y-1/2 -translate-x-1/2 w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full bg-background border-2 border-primary shadow-sm" />
               </div>
               <div className="flex justify-between mt-1.5">
-                <span className="text-[9px] sm:text-[10px] text-gray-400">Formal</span>
-                <span className="text-[9px] sm:text-[10px] text-gray-400">Casual</span>
+                <span className="text-[9px] sm:text-[10px] text-muted-foreground">Formal</span>
+                <span className="text-[9px] sm:text-[10px] text-muted-foreground">Casual</span>
               </div>
             </div>
 
             {/* Response style */}
             <div>
-              <p className="text-[10px] sm:text-xs text-gray-500 mb-2 font-medium uppercase tracking-wide">Response Style</p>
+              <p className="text-[10px] sm:text-xs text-muted-foreground mb-2 font-medium font-mono-ui uppercase tracking-[0.1em]">Response Style</p>
               <div className="grid grid-cols-3 gap-2">
                 {[
                   { label: 'Concise', active: false },
@@ -251,8 +251,8 @@ function CustomizeBrandIllustration() {
                     key={i}
                     className={`text-[11px] sm:text-xs py-1.5 sm:py-2 rounded-lg border text-center ${
                       item.active
-                        ? 'bg-[#323dfe]/10 text-[#323dfe] border-[#323dfe] shadow-sm'
-                        : 'bg-white text-gray-600 border-gray-200'
+                        ? 'bg-surface border border-border text-foreground/80 border-primary shadow-sm'
+                        : 'bg-background text-muted-foreground border-border'
                     }`}
                   >
                     {item.label}
@@ -263,14 +263,14 @@ function CustomizeBrandIllustration() {
           </div>
 
           {/* Preview footer */}
-          <div className="p-2.5 sm:p-3 bg-gray-50 border-t border-gray-100">
+          <div className="p-2.5 sm:p-3 bg-surface border-t border-border">
             <div className="flex items-center gap-1.5 mb-1.5">
               <div className="w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-gray-900 flex items-center justify-center">
                 <span className="text-white text-[7px] sm:text-[8px]">✦</span>
               </div>
-              <p className="text-[10px] sm:text-xs text-gray-500 font-medium">Preview</p>
+              <p className="text-[10px] sm:text-xs text-muted-foreground font-medium">Preview</p>
             </div>
-            <p className="text-[11px] sm:text-xs text-gray-600 leading-relaxed">
+            <p className="text-[11px] sm:text-xs text-muted-foreground leading-relaxed">
               "Hey there! Thanks for reaching out to Acme. I'm here to help - what can I do for you today?"
             </p>
           </div>
@@ -289,13 +289,13 @@ function Availability247Illustration() {
   ];
   const maxVal = Math.max(...hours.map(h => h.val));
   return (
-    <div className="relative h-full w-full rounded-xl overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
+    <div className="relative h-full w-full rounded-xl overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, hsl(var(--border)) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="relative h-full w-full p-3 sm:p-4">
-        <div className="bg-white rounded-lg border border-gray-200 shadow-sm h-full flex flex-col">
+        <div className="bg-background rounded-lg border border-border shadow-sm h-full flex flex-col">
           {/* Header */}
-          <div className="px-4 py-3 border-b border-gray-100 flex items-center gap-3">
-            <Clock className="w-5 h-5 text-black" />
-            <p className="text-sm font-semibold text-gray-900 flex-1">24/7 Activity</p>
+          <div className="px-4 py-3 border-b border-border flex items-center gap-3">
+            <Clock className="w-5 h-5 text-foreground" />
+            <p className="text-sm font-semibold text-foreground flex-1">24/7 Activity</p>
             <span className="text-[10px] px-2 py-1 rounded-md bg-green-50 text-green-700 font-medium border border-green-200 flex items-center gap-1.5">
               <span className="relative flex h-1.5 w-1.5">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
@@ -310,8 +310,8 @@ function Availability247Illustration() {
             {/* Activity chart */}
             <div>
               <div className="flex items-center justify-between mb-3">
-                <p className="text-[11px] sm:text-xs font-medium text-gray-500">Conversations today</p>
-                <span className="text-sm sm:text-base font-bold text-gray-900">1,847</span>
+                <p className="text-[11px] sm:text-xs font-medium text-muted-foreground">Conversations today</p>
+                <span className="text-sm sm:text-base font-bold text-foreground">1,847</span>
               </div>
               <div className="flex items-end gap-[4px] sm:gap-[6px]" style={{ height: '80px' }}>
                 {hours.map((h, i) => {
@@ -336,7 +336,7 @@ function Availability247Illustration() {
               </div>
               <div className="flex mt-1.5">
                 {hours.map((h, i) => (
-                  <span key={i} className="flex-1 text-center text-[8px] sm:text-[9px] text-gray-400">{i % 2 === 0 ? h.label : ''}</span>
+                  <span key={i} className="flex-1 text-center text-[8px] sm:text-[9px] text-muted-foreground">{i % 2 === 0 ? h.label : ''}</span>
                 ))}
               </div>
             </div>
@@ -348,23 +348,23 @@ function Availability247Illustration() {
                 { label: "Avg response", value: "1.8s" },
                 { label: "Resolved", value: "96%" },
               ].map((stat, i) => (
-                <div key={i} className="text-center px-2 py-2.5 sm:py-3 rounded-xl border border-gray-100 bg-gray-50">
-                  <p className="text-base sm:text-lg font-bold text-gray-900">{stat.value}</p>
-                  <p className="text-[10px] sm:text-[11px] text-gray-500 mt-0.5">{stat.label}</p>
+                <div key={i} className="text-center px-2 py-2.5 sm:py-3 rounded-xl border border-border bg-surface">
+                  <p className="text-base sm:text-lg font-bold text-foreground">{stat.value}</p>
+                  <p className="text-[10px] sm:text-[11px] text-muted-foreground mt-0.5">{stat.label}</p>
                 </div>
               ))}
             </div>
 
             {/* Live status footer */}
-            <div className="flex items-center justify-between p-2.5 sm:p-3 bg-gray-50 rounded-xl border border-gray-100">
+            <div className="flex items-center justify-between p-2.5 sm:p-3 bg-surface rounded-xl border border-border">
               <div className="flex items-center gap-2">
                 <span className="relative flex h-2.5 w-2.5">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
                   <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500" />
                 </span>
-                <span className="text-[11px] sm:text-xs font-medium text-gray-700">After-hours active</span>
+                <span className="text-[11px] sm:text-xs font-medium text-foreground/80">After-hours active</span>
               </div>
-              <span className="text-[11px] sm:text-xs font-semibold text-gray-900">524 chats handled</span>
+              <span className="text-[11px] sm:text-xs font-semibold text-foreground">524 chats handled</span>
             </div>
           </div>
         </div>
@@ -396,12 +396,12 @@ function NaturalConversationIllustration() {
   }, []);
 
   return (
-    <div className="relative h-full w-full flex items-start justify-center rounded-xl overflow-hidden pt-4 sm:pt-6" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
+    <div className="relative h-full w-full flex items-start justify-center rounded-xl overflow-hidden pt-4 sm:pt-6" style={{ backgroundImage: 'radial-gradient(circle, hsl(var(--border)) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       {/* Phone device */}
       <div className="relative w-[280px] sm:w-[310px] h-[480px] sm:h-[520px]">
         {/* Phone outer frame */}
         <div
-          className="relative rounded-[32px] p-1.5 shadow-2xl h-full"
+          className="relative rounded-[32px] p-1.5 h-full"
           style={{ background: "linear-gradient(135deg, rgba(205,62,249,0.45) 0%, rgba(50,61,254,0.45) 100%)" }}
         >
           {/* 3D highlight */}
@@ -411,14 +411,14 @@ function NaturalConversationIllustration() {
           />
 
           {/* Screen */}
-          <div className="relative rounded-[30px] overflow-hidden bg-[#efeae2] shadow-inner h-full flex flex-col">
+          <div className="relative rounded-[30px] overflow-hidden bg-[#efeae2] dark:bg-[#0b141a] shadow-inner h-full flex flex-col">
             {/* WhatsApp header */}
-            <div className="h-16 bg-[#075E54] flex items-center px-3 gap-2 flex-shrink-0">
+            <div className="h-16 bg-[#075E54] dark:bg-[#1f2c33] flex items-center px-3 gap-2 flex-shrink-0">
               <svg className="w-5 h-5 text-white/80 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
               </svg>
               <div className="w-9 h-9 rounded-full bg-gray-300 flex items-center justify-center flex-shrink-0">
-                <svg className="w-6 h-6 text-gray-500" fill="currentColor" viewBox="0 0 24 24">
+                <svg className="w-6 h-6 text-muted-foreground" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
                 </svg>
               </div>
@@ -440,7 +440,7 @@ function NaturalConversationIllustration() {
             >
               {/* Date badge */}
               <div className="flex justify-center py-3">
-                <span className="px-3 py-1 rounded-md bg-white/80 text-[11px] text-gray-600 shadow-sm">Today</span>
+                <span className="px-3 py-1 rounded-md bg-background/80 text-[11px] text-muted-foreground shadow-sm">Today</span>
               </div>
 
               {/* Messages */}
@@ -457,11 +457,11 @@ function NaturalConversationIllustration() {
                   >
                     {msg.type === "outgoing" ? (
                       <div className="flex justify-end">
-                        <div className="relative rounded-lg rounded-tr-sm px-2.5 py-1.5 max-w-[85%] bg-[#dcf8c6] shadow-sm">
-                          <div className="absolute -right-2 top-0 w-0 h-0 border-t-8 border-t-[#dcf8c6] border-r-8 border-r-transparent" />
-                          <p className="text-[13px] text-gray-800 leading-snug">{msg.text}</p>
+                        <div className="relative rounded-lg rounded-tr-sm px-2.5 py-1.5 max-w-[85%] bg-[#dcf8c6] dark:bg-[#005c4b] shadow-sm text-[#111b21] dark:text-[#e9edef] [&_p]:!text-[#111b21] dark:[&_p]:!text-[#e9edef]">
+                          <div className="absolute -right-2 top-0 w-0 h-0 border-t-8 border-t-[#dcf8c6] dark:border-t-[#005c4b] border-r-8 border-r-transparent" />
+                          <p className="text-[13px] text-[#111b21] leading-snug">{msg.text}</p>
                           <div className="flex items-center justify-end gap-1 mt-0.5">
-                            <span className="text-[10px] text-gray-500">9:41 AM</span>
+                            <span className="text-[10px] text-[#667781]">9:41 AM</span>
                             <svg className="w-4 h-4 text-[#53bdeb]" viewBox="0 0 16 15" fill="currentColor">
                               <path d="M15.01 3.316l-.478-.372a.365.365 0 0 0-.51.063L8.666 9.879a.32.32 0 0 1-.484.033l-.358-.325a.319.319 0 0 0-.484.032l-.378.483a.418.418 0 0 0 .036.541l1.32 1.266c.143.14.361.125.484-.033l6.272-8.048a.366.366 0 0 0-.064-.512zm-4.1 0l-.478-.372a.365.365 0 0 0-.51.063L4.566 9.879a.32.32 0 0 1-.484.033L1.891 7.769a.366.366 0 0 0-.515.006l-.423.433a.364.364 0 0 0 .006.514l3.258 3.185c.143.14.361.125.484-.033l6.272-8.048a.365.365 0 0 0-.063-.512z" />
                             </svg>
@@ -470,10 +470,10 @@ function NaturalConversationIllustration() {
                       </div>
                     ) : (
                       <div className="flex items-start max-w-[85%]">
-                        <div className="relative rounded-lg rounded-tl-sm px-2.5 py-1.5 bg-white shadow-sm">
-                          <div className="absolute -left-2 top-0 w-0 h-0 border-t-8 border-t-white border-l-8 border-l-transparent" />
-                          <p className="text-[13px] text-gray-800 leading-snug">{msg.text}</p>
-                          <p className="text-[10px] text-gray-400 text-right mt-0.5">9:41 AM</p>
+                        <div className="relative rounded-lg rounded-tl-sm px-2.5 py-1.5 bg-background shadow-sm text-[#111b21] [&_p]:!text-[#111b21]">
+                          <div className="absolute -left-2 top-0 w-0 h-0 border-t-8 border-t-white dark:border-t-[#1f2c33] border-l-8 border-l-transparent" />
+                          <p className="text-[13px] text-foreground leading-snug">{msg.text}</p>
+                          <p className="text-[10px] text-muted-foreground text-right mt-0.5">9:41 AM</p>
                         </div>
                       </div>
                     )}
@@ -484,14 +484,14 @@ function NaturalConversationIllustration() {
             </div>
 
             {/* Input area */}
-            <div className="px-2 py-2 bg-[#f0f0f0] flex items-center gap-2 flex-shrink-0">
-              <svg className="w-6 h-6 text-gray-500 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+            <div className="px-2 py-2 bg-[#f0f0f0] dark:bg-[#1f2c33] flex items-center gap-2 flex-shrink-0">
+              <svg className="w-6 h-6 text-muted-foreground flex-shrink-0" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15.182 15.182a4.5 4.5 0 01-6.364 0M21 12a9 9 0 11-18 0 9 9 0 0118 0zM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75 9.168 9 9.375 9s.375.336.375.75zm-.375 0h.008v.015h-.008V9.75zm5.625 0c0 .414-.168.75-.375.75s-.375-.336-.375-.75.168-.75.375-.75.375.336.375.75zm-.375 0h.008v.015h-.008V9.75z" />
               </svg>
-              <div className="flex-1 rounded-full px-4 py-2 bg-white">
-                <span className="text-[13px] text-gray-400">Type a message</span>
+              <div className="flex-1 rounded-full px-4 py-2 bg-background">
+                <span className="text-[13px] text-muted-foreground">Type a message</span>
               </div>
-              <div className="w-10 h-10 rounded-full bg-[#323dfe] flex items-center justify-center flex-shrink-0">
+              <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center flex-shrink-0">
                 <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M12 15c1.66 0 3-1.34 3-3V6c0-1.66-1.34-3-3-3S9 4.34 9 6v6c0 1.66 1.34 3 3 3zm-1 1.93c-3.94-.49-7-3.85-7-7.93h2c0 2.76 2.24 5 5 5s5-2.24 5-5h2c0 4.08-3.06 7.44-7 7.93V21h-2v-4.07z" />
                 </svg>
@@ -499,8 +499,8 @@ function NaturalConversationIllustration() {
             </div>
 
             {/* Home indicator */}
-            <div className="h-6 bg-[#f0f0f0] flex items-center justify-center flex-shrink-0">
-              <div className="w-28 h-1 rounded-full bg-black/20" />
+            <div className="h-6 bg-[#f0f0f0] dark:bg-[#1f2c33] flex items-center justify-center flex-shrink-0">
+              <div className="w-28 h-1 rounded-full bg-foreground/$1" />
             </div>
           </div>
         </div>
@@ -524,10 +524,10 @@ function UnifiedProfilesIllustration() {
             />
           </div>
           <div className="flex-1 min-w-0">
-            <p className="text-[13px] font-semibold text-gray-900">James Wilson</p>
-            <p className="text-[10px] text-gray-500">Premium member since 2023</p>
+            <p className="text-[13px] font-semibold text-foreground">James Wilson</p>
+            <p className="text-[10px] text-muted-foreground">Premium member since 2023</p>
           </div>
-          <span className="text-[9px] px-2 py-0.5 rounded-full bg-[#323dfe]/10 text-[#323dfe] font-medium">VIP</span>
+          <span className="text-[9px] px-2 py-0.5 rounded-full bg-surface border border-border text-foreground/80 font-medium">VIP</span>
         </div>
         <div className="grid grid-cols-3 gap-2">
           {[
@@ -535,21 +535,21 @@ function UnifiedProfilesIllustration() {
             { label: "LTV", value: "$2.8k" },
             { label: "CSAT", value: "98%" },
           ].map((stat, i) => (
-            <div key={i} className="text-center p-1.5 bg-gray-50 rounded-md border border-gray-100">
-              <p className="text-[13px] font-semibold text-gray-900">{stat.value}</p>
-              <p className="text-[9px] text-gray-500">{stat.label}</p>
+            <div key={i} className="text-center p-1.5 bg-surface rounded-md border border-border">
+              <p className="text-[13px] font-semibold text-foreground">{stat.value}</p>
+              <p className="text-[9px] text-muted-foreground">{stat.label}</p>
             </div>
           ))}
         </div>
         <div className="space-y-1.5">
-          <p className="text-[10px] font-medium text-gray-500 uppercase tracking-wide">Recent Activity</p>
+          <p className="text-[10px] font-medium text-muted-foreground font-mono-ui uppercase tracking-[0.1em]">Recent Activity</p>
           {[
             { action: "Purchased Premium Plan", time: "2h ago" },
             { action: "Asked about shipping to UK", time: "1d ago" },
           ].map((item, i) => (
-            <div key={i} className="flex items-center justify-between p-1.5 bg-gray-50 rounded text-[10px]">
-              <span className="text-gray-700">{item.action}</span>
-              <span className="text-gray-400">{item.time}</span>
+            <div key={i} className="flex items-center justify-between p-1.5 bg-surface rounded text-[10px]">
+              <span className="text-foreground/80">{item.action}</span>
+              <span className="text-muted-foreground">{item.time}</span>
             </div>
           ))}
         </div>
@@ -560,13 +560,13 @@ function UnifiedProfilesIllustration() {
 
 function KnowledgeSourcesIllustration() {
   return (
-    <div className="relative h-full w-full rounded-xl overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
+    <div className="relative h-full w-full rounded-xl overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, hsl(var(--border)) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="relative h-full w-full p-3 sm:p-4">
-        <div className="bg-white rounded-lg border border-gray-200 shadow-sm h-full flex flex-col">
+        <div className="bg-background rounded-lg border border-border shadow-sm h-full flex flex-col">
           {/* Header bar */}
-          <div className="px-5 py-3.5 border-b border-gray-100 flex items-center gap-3">
-            <BookOpen className="w-5 h-5 text-black" />
-            <p className="text-[15px] font-semibold text-gray-900">Knowledge Base</p>
+          <div className="px-5 py-3.5 border-b border-border flex items-center gap-3">
+            <BookOpen className="w-5 h-5 text-foreground" />
+            <p className="text-[15px] font-semibold text-foreground">Knowledge Base</p>
           </div>
 
           {/* Content */}
@@ -579,7 +579,7 @@ function KnowledgeSourcesIllustration() {
                 </svg>
                 Apps
               </div>
-              <div className="flex items-center gap-2 px-4 py-2 rounded-lg border border-gray-200 text-gray-400 text-[13px] font-medium">
+              <div className="flex items-center gap-2 px-4 py-2 rounded-lg border border-border text-muted-foreground text-[13px] font-medium">
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M12 21a9 9 0 100-18 9 9 0 000 18z" />
                   <path strokeLinecap="round" strokeLinejoin="round" d="M3.6 9h16.8M3.6 15h16.8" />
@@ -587,7 +587,7 @@ function KnowledgeSourcesIllustration() {
                 </svg>
                 Website
               </div>
-              <div className="flex items-center gap-2 px-4 py-2 rounded-lg border border-gray-200 text-gray-400 text-[13px] font-medium">
+              <div className="flex items-center gap-2 px-4 py-2 rounded-lg border border-border text-muted-foreground text-[13px] font-medium">
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m3.75 9v6m3-3H9m1.5-12H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
                 </svg>
@@ -597,57 +597,57 @@ function KnowledgeSourcesIllustration() {
 
             {/* Data source dropdown */}
             <div>
-              <p className="text-[12px] text-gray-400 mb-1.5 font-medium">Select data source</p>
-              <div className="flex items-center justify-between px-4 py-2.5 rounded-lg border border-gray-200 bg-white">
+              <p className="text-[12px] text-muted-foreground mb-1.5 font-medium">Select data source</p>
+              <div className="flex items-center justify-between px-4 py-2.5 rounded-lg border border-border bg-background">
                 <div className="flex items-center gap-2.5">
                   {/* Notion logo */}
                   <img src="/images/logos/notion.png" alt="Notion" className="w-5 h-5 object-contain" />
-                  <span className="text-[13px] text-gray-800 font-medium">Notion</span>
+                  <span className="text-[13px] text-foreground font-medium">Notion</span>
                 </div>
-                <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                <svg className="w-4 h-4 text-muted-foreground" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
                 </svg>
               </div>
             </div>
 
             {/* File tree */}
-            <div className="rounded-lg border border-gray-100 bg-gray-50 p-4 space-y-3">
+            <div className="rounded-lg border border-border bg-surface p-4 space-y-3">
               {/* FAQs row */}
               <div className="flex items-center gap-2.5">
-                <div className="w-[18px] h-[18px] rounded-[3px] border border-[#323dfe] bg-[#323dfe] flex items-center justify-center flex-shrink-0">
+                <div className="w-[18px] h-[18px] rounded-[3px] border border-primary bg-primary flex items-center justify-center flex-shrink-0">
                   <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" strokeWidth={3} viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                   </svg>
                 </div>
-                <span className="text-[13px] font-semibold text-gray-800">FAQs</span>
-                <span className="text-[12px] text-gray-400">9 pages</span>
+                <span className="text-[13px] font-semibold text-foreground">FAQs</span>
+                <span className="text-[12px] text-muted-foreground">9 pages</span>
                 <span className="ml-auto w-2 h-2 rounded-full bg-green-500" />
               </div>
 
               {/* Policies row */}
               <div className="flex items-center gap-2.5">
-                <div className="w-[18px] h-[18px] rounded-[3px] border border-[#323dfe] bg-[#323dfe] flex items-center justify-center flex-shrink-0">
+                <div className="w-[18px] h-[18px] rounded-[3px] border border-primary bg-primary flex items-center justify-center flex-shrink-0">
                   <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" strokeWidth={3} viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                   </svg>
                 </div>
-                <svg className="w-3.5 h-3.5 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                <svg className="w-3.5 h-3.5 text-muted-foreground flex-shrink-0" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
                 </svg>
-                <span className="text-[13px] font-semibold text-gray-800">Policies</span>
-                <span className="text-[12px] text-gray-400">3 pages</span>
+                <span className="text-[13px] font-semibold text-foreground">Policies</span>
+                <span className="text-[12px] text-muted-foreground">3 pages</span>
                 <span className="ml-auto w-2 h-2 rounded-full bg-green-500" />
               </div>
 
               {/* Sub-items */}
-              <div className="pl-6 space-y-2.5 border-l-2 border-gray-200 ml-2">
+              <div className="pl-6 space-y-2.5 border-l-2 border-border ml-2">
                 <div className="flex items-center gap-2.5">
-                  <div className="w-[18px] h-[18px] rounded-[3px] border border-gray-300 bg-white flex-shrink-0" />
+                  <div className="w-[18px] h-[18px] rounded-[3px] border border-border-strong bg-background flex-shrink-0" />
                   <FileText className="w-4 h-4 text-gray-300 flex-shrink-0" />
                   <div className="h-2 w-24 rounded-full bg-gray-200" />
                 </div>
                 <div className="flex items-center gap-2.5">
-                  <div className="w-[18px] h-[18px] rounded-[3px] border border-gray-300 bg-white flex-shrink-0" />
+                  <div className="w-[18px] h-[18px] rounded-[3px] border border-border-strong bg-background flex-shrink-0" />
                   <FileText className="w-4 h-4 text-gray-300 flex-shrink-0" />
                   <div className="h-2 w-16 rounded-full bg-gray-200" />
                 </div>
@@ -655,8 +655,8 @@ function KnowledgeSourcesIllustration() {
 
               {/* Blog Posts row */}
               <div className="flex items-center gap-2.5">
-                <div className="w-[18px] h-[18px] rounded-[3px] border border-gray-300 bg-white flex-shrink-0" />
-                <span className="text-[13px] font-medium text-gray-400">Blog Posts</span>
+                <div className="w-[18px] h-[18px] rounded-[3px] border border-border-strong bg-background flex-shrink-0" />
+                <span className="text-[13px] font-medium text-muted-foreground">Blog Posts</span>
                 <span className="text-[12px] text-gray-300">124 posts</span>
               </div>
             </div>
@@ -669,12 +669,12 @@ function KnowledgeSourcesIllustration() {
 
 function NoCodeStudioIllustration() {
   return (
-    <div className="relative h-full w-full rounded-xl overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
+    <div className="relative h-full w-full rounded-xl overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, hsl(var(--border)) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="relative h-full w-full p-3 sm:p-4">
-        <div className="bg-white rounded-lg border border-gray-200 shadow-sm h-full flex flex-col">
-          <div className="px-4 py-3 border-b border-gray-100 flex items-center gap-3">
-            <Blocks className="w-5 h-5 text-black" />
-            <p className="text-sm font-semibold text-gray-900 flex-1">AI Agent Studio</p>
+        <div className="bg-background rounded-lg border border-border shadow-sm h-full flex flex-col">
+          <div className="px-4 py-3 border-b border-border flex items-center gap-3">
+            <Blocks className="w-5 h-5 text-foreground" />
+            <p className="text-sm font-semibold text-foreground flex-1">AI Agent Studio</p>
           </div>
           <div className="flex-1 p-4 overflow-hidden flex items-center justify-center">
             <BasicAIChatInput />
@@ -687,14 +687,14 @@ function NoCodeStudioIllustration() {
 
 function HumanInLoopIllustration() {
   return (
-    <div className="relative h-full w-full rounded-xl overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
+    <div className="relative h-full w-full rounded-xl overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, hsl(var(--border)) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="relative h-full w-full p-3 sm:p-4">
-        <div className="bg-white rounded-lg border border-gray-200 shadow-sm h-full flex flex-col">
+        <div className="bg-background rounded-lg border border-border shadow-sm h-full flex flex-col">
           {/* Header */}
-          <div className="px-4 py-3 border-b border-gray-100 flex items-center gap-3">
-            <UserCheck className="w-5 h-5 text-black" />
-            <p className="text-sm font-semibold text-gray-900 flex-1">Agent Handoff</p>
-            <span className="text-[10px] px-2 py-1 rounded-md bg-blue-50 text-blue-700 font-medium border border-blue-200">
+          <div className="px-4 py-3 border-b border-border flex items-center gap-3">
+            <UserCheck className="w-5 h-5 text-foreground" />
+            <p className="text-sm font-semibold text-foreground flex-1">Agent Handoff</p>
+            <span className="text-[10px] px-2 py-1 rounded-md bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 font-medium border border-blue-200 dark:bg-blue-900/30 dark:text-blue-300 dark:border-blue-900/50">
               Active
             </span>
           </div>
@@ -702,32 +702,32 @@ function HumanInLoopIllustration() {
           {/* Content: Two panels side by side */}
           <div className="flex-1 flex overflow-hidden">
             {/* Left: Flow diagram */}
-            <div className="flex-1 p-5 flex flex-col items-center justify-center border-r border-gray-100 bg-gray-50/50">
+            <div className="flex-1 p-5 flex flex-col items-center justify-center border-r border-border bg-surface/50">
               {/* Dashed line top */}
-              <div className="w-px h-8 border-l border-dashed border-gray-300" />
+              <div className="w-px h-8 border-l border-dashed border-border-strong" />
 
               {/* Transfer node */}
-              <div className="flex items-center gap-2.5 px-4 py-2.5 rounded-xl border border-gray-200 bg-white shadow-sm">
-                <span className="text-[13px] font-medium text-gray-800 whitespace-nowrap">Transfer to human agent</span>
-                <svg className="w-3.5 h-3.5 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+              <div className="flex items-center gap-2.5 px-4 py-2.5 rounded-xl border border-border bg-background shadow-sm">
+                <span className="text-[13px] font-medium text-foreground whitespace-nowrap">Transfer to human agent</span>
+                <svg className="w-3.5 h-3.5 text-muted-foreground flex-shrink-0" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487z" />
                 </svg>
               </div>
 
               {/* Dashed connector with dot */}
               <div className="flex flex-col items-center">
-                <div className="w-px h-5 border-l border-dashed border-gray-300" />
+                <div className="w-px h-5 border-l border-dashed border-border-strong" />
                 <div className="w-2.5 h-2.5 rounded-full bg-gray-300" />
-                <div className="w-px h-5 border-l border-dashed border-gray-300" />
+                <div className="w-px h-5 border-l border-dashed border-border-strong" />
               </div>
 
               {/* Assign node */}
-              <div className="w-full max-w-[200px] rounded-xl border border-gray-200 bg-white shadow-sm p-3">
+              <div className="w-full max-w-[200px] rounded-xl border border-border bg-background shadow-sm p-3">
                 <div className="flex items-center gap-2.5 mb-2.5">
-                  <div className="w-6 h-6 rounded-md bg-gray-100 flex items-center justify-center flex-shrink-0">
-                    <Users className="w-3.5 h-3.5 text-gray-500" />
+                  <div className="w-6 h-6 rounded-md bg-muted flex items-center justify-center flex-shrink-0">
+                    <Users className="w-3.5 h-3.5 text-muted-foreground" />
                   </div>
-                  <span className="text-[13px] font-medium text-gray-800 flex-1">Assign to IT team</span>
+                  <span className="text-[13px] font-medium text-foreground flex-1">Assign to IT team</span>
                   <svg className="w-4 h-4 text-gray-300 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
                     <circle cx="12" cy="6" r="1.5" />
                     <circle cx="12" cy="12" r="1.5" />
@@ -736,16 +736,16 @@ function HumanInLoopIllustration() {
                 </div>
                 {/* Skeleton lines */}
                 <div className="space-y-2 pl-8">
-                  <div className="h-2 w-full rounded-full bg-gray-100" />
-                  <div className="h-2 w-4/5 rounded-full bg-gray-100" />
-                  <div className="h-2 w-3/5 rounded-full bg-gray-100" />
+                  <div className="h-2 w-full rounded-full bg-muted" />
+                  <div className="h-2 w-4/5 rounded-full bg-muted" />
+                  <div className="h-2 w-3/5 rounded-full bg-muted" />
                 </div>
               </div>
 
               {/* Plus button */}
               <div className="mt-4">
-                <div className="w-7 h-7 rounded-full border border-dashed border-gray-300 flex items-center justify-center">
-                  <svg className="w-3.5 h-3.5 text-gray-400" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                <div className="w-7 h-7 rounded-full border border-dashed border-border-strong flex items-center justify-center">
+                  <svg className="w-3.5 h-3.5 text-muted-foreground" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                   </svg>
                 </div>
@@ -754,50 +754,50 @@ function HumanInLoopIllustration() {
 
             {/* Right: Settings panel */}
             <div className="flex-1 p-5 flex flex-col">
-              <p className="text-[15px] font-semibold text-gray-900 mb-4">Transfer to human</p>
+              <p className="text-[15px] font-semibold text-foreground mb-4">Transfer to human</p>
 
               {/* Assign to label */}
-              <p className="text-[13px] text-gray-500 font-medium mb-2">Assign to</p>
+              <p className="text-[13px] text-muted-foreground font-medium mb-2">Assign to</p>
 
               {/* Select dropdown */}
-              <div className="px-3.5 py-2.5 rounded-lg border border-gray-200 mb-4">
-                <span className="text-[13px] text-gray-400">Select agent or team</span>
+              <div className="px-3.5 py-2.5 rounded-lg border border-border mb-4">
+                <span className="text-[13px] text-muted-foreground">Select agent or team</span>
               </div>
 
               {/* Tabs */}
-              <div className="flex gap-5 mb-4 border-b border-gray-100">
-                <span className="text-[13px] text-gray-400 pb-2.5">Human Agents</span>
-                <span className="text-[13px] font-semibold text-gray-900 pb-2.5 border-b-2 border-gray-900">Teams</span>
+              <div className="flex gap-5 mb-4 border-b border-border">
+                <span className="text-[13px] text-muted-foreground pb-2.5">Human Agents</span>
+                <span className="text-[13px] font-semibold text-foreground pb-2.5 border-b-2 border-gray-900">Teams</span>
               </div>
 
               {/* Search */}
-              <div className="flex items-center gap-2.5 px-3.5 py-2.5 rounded-lg border border-gray-200 mb-4">
-                <svg className="w-4 h-4 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+              <div className="flex items-center gap-2.5 px-3.5 py-2.5 rounded-lg border border-border mb-4">
+                <svg className="w-4 h-4 text-muted-foreground flex-shrink-0" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
                 </svg>
-                <span className="text-[13px] text-gray-400">Search Agents</span>
+                <span className="text-[13px] text-muted-foreground">Search Agents</span>
               </div>
 
               {/* Team list */}
               <div className="space-y-3.5">
                 {/* Active row */}
                 <div className="flex items-center gap-3">
-                  <div className="w-[20px] h-[20px] rounded-[3px] border border-[#323dfe] bg-[#323dfe] flex items-center justify-center flex-shrink-0">
+                  <div className="w-[20px] h-[20px] rounded-[3px] border border-primary bg-primary flex items-center justify-center flex-shrink-0">
                     <svg className="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" strokeWidth={3} viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                     </svg>
                   </div>
-                  <span className="text-[13px] font-medium text-gray-800">IT Support</span>
-                  <span className="text-[12px] text-gray-400">(25 members)</span>
+                  <span className="text-[13px] font-medium text-foreground">IT Support</span>
+                  <span className="text-[12px] text-muted-foreground">(25 members)</span>
                 </div>
 
                 {/* Inactive rows with skeletons */}
                 <div className="flex items-center gap-3">
-                  <div className="w-[20px] h-[20px] rounded-[3px] border border-gray-200 bg-white flex-shrink-0" />
-                  <div className="h-2.5 w-28 rounded-full bg-gray-100" />
+                  <div className="w-[20px] h-[20px] rounded-[3px] border border-border bg-background flex-shrink-0" />
+                  <div className="h-2.5 w-28 rounded-full bg-muted" />
                 </div>
                 <div className="flex items-center gap-3">
-                  <div className="w-[20px] h-[20px] rounded-[3px] border border-gray-200 bg-white flex-shrink-0" />
+                  <div className="w-[20px] h-[20px] rounded-[3px] border border-border bg-background flex-shrink-0" />
                   <div className="h-2.5 w-24 rounded-full bg-gray-200" />
                 </div>
               </div>
@@ -815,34 +815,34 @@ function EngagementAnalyticsIllustration() {
       <div className="space-y-3">
         <div className="grid grid-cols-2 gap-2">
           {[
-            { label: "CSAT Score", value: "95.2%", color: "text-[#323dfe]" },
-            { label: "Response Time", value: "1.8s", color: "text-gray-900" },
-            { label: "Resolution Rate", value: "94%", color: "text-gray-900" },
-            { label: "Active Conv.", value: "1,247", color: "text-[#323dfe]" },
+            { label: "CSAT Score", value: "95.2%", color: "text-primary" },
+            { label: "Response Time", value: "1.8s", color: "text-foreground" },
+            { label: "Resolution Rate", value: "94%", color: "text-foreground" },
+            { label: "Active Conv.", value: "1,247", color: "text-primary" },
           ].map((metric, i) => (
-            <div key={i} className="p-2 bg-gray-50 rounded-lg border border-gray-100">
+            <div key={i} className="p-2 bg-surface rounded-lg border border-border">
               <p className={`text-base font-semibold ${metric.color}`}>{metric.value}</p>
-              <p className="text-[9px] text-gray-500">{metric.label}</p>
+              <p className="text-[9px] text-muted-foreground">{metric.label}</p>
             </div>
           ))}
         </div>
         <div>
-          <p className="text-[10px] text-gray-500 font-medium mb-1.5">Campaign Performance</p>
+          <p className="text-[10px] text-muted-foreground font-medium mb-1.5">Campaign Performance</p>
           <div className="space-y-1.5">
             {[
-              { name: "Welcome Series", rate: 82, color: "from-[#323dfe] to-black" },
-              { name: "Cart Recovery", rate: 67, color: "from-[#323dfe] to-black" },
-              { name: "Re-engagement", rate: 54, color: "from-[#323dfe] to-black" },
+              { name: "Welcome Series", rate: 82, color: "from-primary to-black" },
+              { name: "Cart Recovery", rate: 67, color: "from-primary to-black" },
+              { name: "Re-engagement", rate: 54, color: "from-primary to-black" },
             ].map((campaign, i) => (
               <div key={i} className="flex items-center gap-2">
-                <span className="text-[9px] text-gray-600 w-20 truncate">{campaign.name}</span>
-                <div className="flex-1 h-1.5 bg-gray-100 rounded-full">
+                <span className="text-[9px] text-muted-foreground w-20 truncate">{campaign.name}</span>
+                <div className="flex-1 h-1.5 bg-muted rounded-full">
                   <div
                     className={`h-1.5 rounded-full bg-gradient-to-r ${campaign.color}`}
                     style={{ width: `${campaign.rate}%` }}
                   />
                 </div>
-                <span className="text-[9px] text-gray-500 w-7 text-right">{campaign.rate}%</span>
+                <span className="text-[9px] text-muted-foreground w-7 text-right">{campaign.rate}%</span>
               </div>
             ))}
           </div>
@@ -889,13 +889,13 @@ function SeamlessIntegrationsIllustration() {
     )},
   ];
   return (
-    <div className="relative h-full w-full rounded-xl overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
+    <div className="relative h-full w-full rounded-xl overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, hsl(var(--border)) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="relative h-full w-full p-3 sm:p-4">
-        <div className="bg-white rounded-lg border border-gray-200 shadow-sm h-full flex flex-col">
-          <div className="px-4 py-3 border-b border-gray-100 flex items-center gap-3">
-            <Link2 className="w-5 h-5 text-black" />
-            <p className="text-sm font-semibold text-gray-900 flex-1">Integrations</p>
-            <span className="text-[10px] px-2 py-1 rounded-md bg-blue-50 text-blue-700 font-medium border border-blue-200">
+        <div className="bg-background rounded-lg border border-border shadow-sm h-full flex flex-col">
+          <div className="px-4 py-3 border-b border-border flex items-center gap-3">
+            <Link2 className="w-5 h-5 text-foreground" />
+            <p className="text-sm font-semibold text-foreground flex-1">Integrations</p>
+            <span className="text-[10px] px-2 py-1 rounded-md bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 font-medium border border-blue-200 dark:bg-blue-900/30 dark:text-blue-300 dark:border-blue-900/50">
               {brands.length} Active
             </span>
           </div>
@@ -903,16 +903,16 @@ function SeamlessIntegrationsIllustration() {
             <div className="space-y-3 h-full flex flex-col">
               <div className="grid grid-cols-3 gap-2.5 flex-1">
                 {brands.map((brand, i) => (
-                  <div key={i} className="flex flex-col items-center justify-center gap-2 p-3 rounded-xl bg-gray-50 border border-gray-100 relative">
+                  <div key={i} className="flex flex-col items-center justify-center gap-2 p-3 rounded-xl bg-surface border border-border relative">
                     {brand.logo}
-                    <span className="text-[11px] font-medium text-gray-700">{brand.name}</span>
+                    <span className="text-[11px] font-medium text-foreground/80">{brand.name}</span>
                     <span className="absolute top-2 right-2 w-2 h-2 rounded-full bg-green-500" />
                   </div>
                 ))}
               </div>
-              <div className="flex items-center gap-2.5 p-2.5 bg-gray-50 rounded-lg">
+              <div className="flex items-center gap-2.5 p-2.5 bg-surface rounded-lg">
                 <span className="w-2 h-2 rounded-full bg-green-500 flex-shrink-0" />
-                <span className="text-[12px] text-gray-600">All integrations synced and active</span>
+                <span className="text-[12px] text-muted-foreground">All integrations synced and active</span>
               </div>
             </div>
           </div>
@@ -935,15 +935,15 @@ function RichMediaIllustration() {
             { label: "Documents", desc: "PDF, XLSX, DOCX" },
             { label: "Location", desc: "Maps & pins" },
           ].map((item, i) => (
-            <div key={i} className="p-2.5 rounded-lg bg-gray-50 border border-gray-100">
-              <p className="text-[11px] font-medium text-gray-900">{item.label}</p>
-              <p className="text-[9px] text-gray-500">{item.desc}</p>
+            <div key={i} className="p-2.5 rounded-lg bg-surface border border-border">
+              <p className="text-[11px] font-medium text-foreground">{item.label}</p>
+              <p className="text-[9px] text-muted-foreground">{item.desc}</p>
             </div>
           ))}
         </div>
-        <div className="p-2.5 rounded-lg bg-gray-50 border border-gray-100">
-          <p className="text-[11px] font-medium text-gray-900">Interactive Catalogs</p>
-          <p className="text-[9px] text-gray-500">Product carousels with images, prices & buy buttons</p>
+        <div className="p-2.5 rounded-lg bg-surface border border-border">
+          <p className="text-[11px] font-medium text-foreground">Interactive Catalogs</p>
+          <p className="text-[9px] text-muted-foreground">Product carousels with images, prices & buy buttons</p>
         </div>
       </div>
     </IllustrationCard>
@@ -952,29 +952,29 @@ function RichMediaIllustration() {
 
 function VerifiedProfileIllustration() {
   return (
-    <div className="relative h-full w-full rounded-xl overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
+    <div className="relative h-full w-full rounded-xl overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, hsl(var(--border)) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="relative h-full w-full p-3 sm:p-4 flex items-center justify-center">
         <div className="flex flex-col items-center gap-4">
           {/* Verified badge */}
-          <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-5">
+          <div className="bg-background rounded-2xl shadow-sm border border-border p-5">
             <div className="flex items-center gap-4">
-              <div className="w-14 h-14 rounded-full bg-[#323dfe] flex items-center justify-center">
+              <div className="w-14 h-14 rounded-full bg-primary flex items-center justify-center">
                 <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
                 </svg>
               </div>
               <div>
-                <p className="text-sm font-semibold text-gray-900">Your Business Name</p>
-                <p className="text-xs text-gray-500">Official Business Account</p>
+                <p className="text-sm font-semibold text-foreground">Your Business Name</p>
+                <p className="text-xs text-muted-foreground">Official Business Account</p>
               </div>
             </div>
           </div>
           {/* Green tick pill */}
-          <div className="flex items-center gap-2 bg-white rounded-full px-4 py-2 shadow-sm border border-gray-200">
+          <div className="flex items-center gap-2 bg-background rounded-full px-4 py-2 shadow-sm border border-border">
             <svg className="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
               <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
             </svg>
-            <span className="text-xs font-medium text-gray-700">Verified Green Tick</span>
+            <span className="text-xs font-medium text-foreground/80">Verified Green Tick</span>
           </div>
         </div>
       </div>
@@ -984,19 +984,19 @@ function VerifiedProfileIllustration() {
 
 function QuickReplyIllustration() {
   return (
-    <div className="relative h-full w-full rounded-xl overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
+    <div className="relative h-full w-full rounded-xl overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, hsl(var(--border)) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="relative h-full w-full p-3 sm:p-4 flex items-center justify-center">
         <div className="space-y-3 w-full max-w-[260px]">
           {/* Message with CTA buttons */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200">
+          <div className="bg-background rounded-xl shadow-sm border border-border">
             <div className="px-3 py-2.5">
-              <p className="text-[12px] text-gray-800 leading-snug">How would you like to proceed with your order?</p>
+              <p className="text-[12px] text-foreground leading-snug">How would you like to proceed with your order?</p>
             </div>
-            <div className="border-t border-gray-100">
+            <div className="border-t border-border">
               {["Track My Order", "Talk to Support", "Browse Products"].map((btn, i) => (
                 <button
                   key={i}
-                  className="w-full px-3 py-2 text-[12px] font-medium text-[#323dfe] border-b border-gray-100 last:border-0 text-center"
+                  className="w-full px-3 py-2 text-[12px] font-medium text-primary border-b border-border last:border-0 text-center"
                 >
                   {btn}
                 </button>
@@ -1004,10 +1004,10 @@ function QuickReplyIllustration() {
             </div>
           </div>
           {/* List message */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 px-3 py-2.5">
+          <div className="bg-background rounded-xl shadow-sm border border-border px-3 py-2.5">
             <div className="flex items-center justify-between">
-              <p className="text-[12px] text-gray-800">Select a product category</p>
-              <svg className="w-4 h-4 text-[#323dfe]" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+              <p className="text-[12px] text-foreground">Select a product category</p>
+              <svg className="w-4 h-4 text-primary" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 6.75h12M8.25 12h12m-12 5.25h12M3.75 6.75h.007v.008H3.75V6.75zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zM3.75 12h.007v.008H3.75V12zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm-.375 5.25h.007v.008H3.75v-.008zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
               </svg>
             </div>
@@ -1028,13 +1028,13 @@ function MessageTemplatesIllustration() {
           { name: "Cart Reminder", status: "Approved", category: "Marketing" },
           { name: "Shipping Update", status: "Pending", category: "Utility" },
         ].map((tpl, i) => (
-          <div key={i} className="flex items-center gap-2.5 p-2 rounded-lg bg-gray-50 border border-gray-100">
-            <div className="w-7 h-7 rounded-md bg-white border border-gray-200 flex items-center justify-center flex-shrink-0">
-              <FileText className="w-3.5 h-3.5 text-gray-400" />
+          <div key={i} className="flex items-center gap-2.5 p-2 rounded-lg bg-surface border border-border">
+            <div className="w-7 h-7 rounded-md bg-background border border-border flex items-center justify-center flex-shrink-0">
+              <FileText className="w-3.5 h-3.5 text-muted-foreground" />
             </div>
             <div className="flex-1 min-w-0">
-              <p className="text-[11px] font-medium text-gray-900">{tpl.name}</p>
-              <p className="text-[9px] text-gray-500">{tpl.category}</p>
+              <p className="text-[11px] font-medium text-foreground">{tpl.name}</p>
+              <p className="text-[9px] text-muted-foreground">{tpl.category}</p>
             </div>
             <span
               className={`text-[8px] font-medium px-1.5 py-0.5 rounded-full ${
@@ -1088,36 +1088,36 @@ function MultiLanguageIllustration() {
     { code: "CS", name: "Čeština", flag: "🇨🇿" },
   ];
   return (
-    <div className="relative h-full w-full rounded-xl overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
+    <div className="relative h-full w-full rounded-xl overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, hsl(var(--border)) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="flex flex-col gap-2 h-full justify-center py-4">
         <Marquee className="[--duration:25s] [--gap:0.6rem] px-0 py-1.5" pauseOnHover>
           {row1.map((lang, i) => (
-            <div key={i} className="flex items-center gap-2 bg-white rounded-full border border-gray-200 px-4 py-2 shadow-[0_1px_3px_rgba(0,0,0,0.06)]">
+            <div key={i} className="flex items-center gap-2 bg-background rounded-full border border-border px-4 py-2 shadow-[0_1px_3px_rgba(0,0,0,0.06)]">
               <span className="text-base">{lang.flag}</span>
-              <span className="text-sm font-medium text-gray-800 whitespace-nowrap">{lang.name}</span>
+              <span className="text-sm font-medium text-foreground whitespace-nowrap">{lang.name}</span>
             </div>
           ))}
         </Marquee>
         <Marquee className="[--duration:30s] [--gap:0.6rem] px-0 py-1.5" reverse pauseOnHover>
           {row2.map((lang, i) => (
-            <div key={i} className="flex items-center gap-2 bg-white rounded-full border border-gray-200 px-4 py-2 shadow-[0_1px_3px_rgba(0,0,0,0.06)]">
+            <div key={i} className="flex items-center gap-2 bg-background rounded-full border border-border px-4 py-2 shadow-[0_1px_3px_rgba(0,0,0,0.06)]">
               <span className="text-base">{lang.flag}</span>
-              <span className="text-sm font-medium text-gray-800 whitespace-nowrap">{lang.name}</span>
+              <span className="text-sm font-medium text-foreground whitespace-nowrap">{lang.name}</span>
             </div>
           ))}
         </Marquee>
         <Marquee className="[--duration:22s] [--gap:0.6rem] px-0 py-1.5" pauseOnHover>
           {row3.map((lang, i) => (
-            <div key={i} className="flex items-center gap-2 bg-white rounded-full border border-gray-200 px-4 py-2 shadow-[0_1px_3px_rgba(0,0,0,0.06)]">
+            <div key={i} className="flex items-center gap-2 bg-background rounded-full border border-border px-4 py-2 shadow-[0_1px_3px_rgba(0,0,0,0.06)]">
               <span className="text-base">{lang.flag}</span>
-              <span className="text-sm font-medium text-gray-800 whitespace-nowrap">{lang.name}</span>
+              <span className="text-sm font-medium text-foreground whitespace-nowrap">{lang.name}</span>
             </div>
           ))}
         </Marquee>
       </div>
       {/* Side fades */}
-      <div className="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-gray-50/50 to-transparent pointer-events-none z-10" />
-      <div className="absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-gray-50/50 to-transparent pointer-events-none z-10" />
+      <div className="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-surface/50 to-transparent pointer-events-none z-10" />
+      <div className="absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-surface/50 to-transparent pointer-events-none z-10" />
     </div>
   );
 }
@@ -1133,26 +1133,26 @@ function BroadcastIllustration() {
             { label: "Opened", value: "67%" },
             { label: "Clicked", value: "23%" },
           ].map((stat, i) => (
-            <div key={i} className="p-2 bg-gray-50 rounded-lg border border-gray-100 text-center">
-              <p className="text-sm font-semibold text-gray-900">{stat.value}</p>
-              <p className="text-[9px] text-gray-500">{stat.label}</p>
+            <div key={i} className="p-2 bg-surface rounded-lg border border-border text-center">
+              <p className="text-sm font-semibold text-foreground">{stat.value}</p>
+              <p className="text-[9px] text-muted-foreground">{stat.label}</p>
             </div>
           ))}
         </div>
-        <div className="p-2.5 bg-gray-50 rounded-lg border border-gray-100">
-          <p className="text-[10px] font-medium text-gray-700 mb-1">Target Segments</p>
+        <div className="p-2.5 bg-surface rounded-lg border border-border">
+          <p className="text-[10px] font-medium text-foreground/80 mb-1">Target Segments</p>
           <div className="flex flex-wrap gap-1">
             {["Premium Users", "Cart Abandoned", "Inactive 30d"].map((seg, i) => (
-              <span key={i} className="text-[9px] px-2 py-0.5 rounded-full bg-white border border-gray-200 text-gray-600">
+              <span key={i} className="text-[9px] px-2 py-0.5 rounded-full bg-background border border-border text-muted-foreground">
                 {seg}
               </span>
             ))}
           </div>
         </div>
-        <div className="h-1.5 bg-gray-100 rounded-full">
-          <div className="h-1.5 rounded-full bg-gradient-to-r from-[#323dfe] to-black transition-all" style={{ width: "73%" }} />
+        <div className="h-1.5 bg-muted rounded-full">
+          <div className="h-1.5 rounded-full bg-gradient-to-r from-primary to-black transition-all" style={{ width: "73%" }} />
         </div>
-        <p className="text-[9px] text-gray-500 text-center">9,110 of 12,480 delivered</p>
+        <p className="text-[9px] text-muted-foreground ">9,110 of 12,480 delivered</p>
       </div>
     </IllustrationCard>
   );
@@ -1223,7 +1223,7 @@ function AccordionSection({
 }) {
   const accordionBlock = (
     <div>
-      <p className="text-sm font-semibold text-[#323dfe] mb-5">{label}</p>
+      <p className="text-sm font-semibold text-primary mb-5">{label}</p>
       <Accordion
         type="single"
         collapsible
@@ -1235,15 +1235,15 @@ function AccordionSection({
           <AccordionItem
             key={feature.id}
             value={feature.id}
-            className="border-b border-gray-200"
+            className="border-b border-border"
           >
             <AccordionTrigger className="py-4 hover:no-underline group">
               <div className="flex items-center gap-3 text-left">
                 <span
                   className={`transition-colors ${
                     activeFeature === feature.id
-                      ? "text-[#323dfe]"
-                      : "text-gray-400 group-hover:text-gray-600"
+                      ? "text-primary"
+                      : "text-muted-foreground group-hover:text-muted-foreground"
                   }`}
                 >
                   {feature.icon}
@@ -1251,8 +1251,8 @@ function AccordionSection({
                 <span
                   className={`text-base font-medium transition-colors ${
                     activeFeature === feature.id
-                      ? "text-black"
-                      : "text-gray-700"
+                      ? "text-foreground"
+                      : "text-foreground/80"
                   }`}
                 >
                   {feature.title}
@@ -1260,7 +1260,7 @@ function AccordionSection({
               </div>
             </AccordionTrigger>
             <AccordionContent className="pl-7 pr-4 pb-4">
-              <p className="text-sm text-gray-600 leading-relaxed">
+              <p className="text-sm text-muted-foreground leading-relaxed">
                 {feature.description}
               </p>
             </AccordionContent>
@@ -1302,15 +1302,23 @@ export default function WhatsAppFeatureRichAgents() {
   const [activeEngagement, setActiveEngagement] = useState<string>(engagementFeatures[0].id);
 
   return (
-    <section className="bg-white py-12 sm:py-16 md:py-20">
+    <section className="bg-background border-t border-border py-12 sm:py-16 md:py-20">
       <div className="container mx-auto max-w-7xl px-4">
         {/* Section Header */}
-        <h2 className="font-sora text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] font-normal leading-[1.25] tracking-[-0.02em] text-black text-center mb-4 max-w-3xl mx-auto">
+        <div className="flex items-center gap-3 font-mono-ui text-[11px] uppercase tracking-[0.12em] text-muted-foreground mb-8">
+          <span className="flex items-center gap-2">
+            <span className="tabular-nums text-foreground/70">~</span>
+            <span className="h-px w-6 bg-border" />
+          </span>
+          <span>feature rich agents</span>
+          <span className="flex-1 border-t border-dashed border-border" />
+        </div>
+        <h2 className="font-sora text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] font-normal leading-[1.04] tracking-[-0.035em] text-foreground mb-4">
           Feature-rich AI agents for complete
           <br />
           customer engagement
         </h2>
-        <p className="text-gray-600 text-center max-w-2xl mx-auto mb-12 md:mb-16">
+        <p className="text-muted-foreground max-w-2xl  mb-12 md:mb-16">
           Context-aware Agents that reflect your brand, understand customers, execute actions in your systems, and handle customer interactions.
         </p>
 

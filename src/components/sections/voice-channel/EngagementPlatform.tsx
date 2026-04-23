@@ -143,65 +143,94 @@ const featureSections: FeatureSection[] = [
 ];
 
 export default function EngagementPlatform() {
+  const total = featureSections.reduce((n, s) => n + s.items.length, 0);
+  let runningIndex = 0;
   return (
-    <section className="bg-white py-12 sm:py-16 md:py-20">
-      <div className="container mx-auto max-w-7xl px-4">
-        {/* Section Header */}
-        <div className="text-center mb-10 md:mb-14">
-          <h2 className="font-sora text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] font-normal leading-[1.25] tracking-[-0.02em] text-black mb-4">
-            Next-gen engagement platform
-          </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            A complete platform to build, monitor, and optimize your voice AI
-            operations. Everything you need in one place.
-          </p>
+    <section className="relative w-full bg-background border-t border-border">
+      <div className="container mx-auto max-w-7xl px-4 sm:px-6 py-14 sm:py-20 md:py-24">
+        <div className="flex items-center gap-3 font-mono-ui text-[11px] uppercase tracking-[0.12em] text-muted-foreground">
+          <span className="flex items-center gap-2">
+            <span className="tabular-nums text-foreground/70">~</span>
+            <span className="h-px w-6 bg-border" />
+          </span>
+          <span>engagement platform</span>
+          <span className="flex-1 border-t border-dashed border-border" />
+          <span>{total} capabilities</span>
         </div>
 
-        {/* Feature Sections - Single unified bordered box */}
-        <div className="border border-gray-200 rounded-xl overflow-hidden">
-          {featureSections.map((section, sectionIndex) => (
-            <div key={sectionIndex}>
-              {/* Subheader Row */}
-              <div className={`px-6 py-4 border-b border-gray-200 ${sectionIndex !== 0 ? "border-t border-gray-200" : ""}`}>
-                <h3 className="text-lg font-semibold text-black">
-                  {section.subheader}
-                </h3>
-              </div>
-
-              {/* Feature Cards Grid */}
-              <div
-                className={`grid ${
-                  section.items.length === 2
-                    ? "grid-cols-1 sm:grid-cols-2"
-                    : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4"
-                }`}
-              >
-                {section.items.map((item, itemIndex) => (
-                  <div
-                    key={itemIndex}
-                    className={`p-5 ${
-                      itemIndex !== 0 ? "sm:border-l border-gray-200" : ""
-                    } ${
-                      itemIndex >= 1 ? "max-sm:border-t border-gray-200" : ""
-                    } ${
-                      section.items.length === 4 && itemIndex >= 2
-                        ? "max-lg:border-t max-lg:border-l-0" : ""
-                    }`}
-                  >
-                    <span className="text-[#323dfe] mb-3 block">{item.icon}</span>
-                    <h4 className="text-sm font-semibold text-black mb-2">
-                      {item.title}
-                    </h4>
-                    <p className="text-sm text-gray-600 leading-relaxed">
-                      {item.description}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          ))}
+        <div className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-12 lg:gap-10">
+          <div className="lg:col-span-8">
+            <h2 className="font-sora text-[2rem] font-normal leading-[1.04] tracking-[-0.035em] text-foreground sm:text-[2.5rem] md:text-[3rem]">
+              Next-gen engagement platform
+            </h2>
+            <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-muted-foreground">
+              A complete platform to build, monitor, and optimize your voice AI operations. Everything you need in one place.
+            </p>
+          </div>
         </div>
 
+        <div className="mt-10 overflow-hidden rounded-xl border border-border bg-surface">
+          {featureSections.map((section, sectionIndex) => {
+            const cols = section.items.length === 2 ? 2 : 4;
+            return (
+              <div key={sectionIndex}>
+                {/* Sub-header row */}
+                <div className={`flex items-center justify-between bg-background/40 px-5 py-3 ${sectionIndex !== 0 ? "border-t border-border" : ""} border-b border-border`}>
+                  <span className="font-mono-ui text-[11px] uppercase tracking-[0.1em] text-muted-foreground">
+                    {section.subheader}
+                  </span>
+                  <span className="font-mono-ui text-[10px] tabular-nums text-muted-foreground/70">
+                    {String(section.items.length).padStart(2, "0")} items
+                  </span>
+                </div>
+
+                {/* Feature cells */}
+                <div className={`grid grid-cols-1 sm:grid-cols-2 ${cols === 4 ? "lg:grid-cols-4" : ""}`}>
+                  {section.items.map((item, itemIndex) => {
+                    const idx = runningIndex++;
+                    const lgCol = cols === 4 ? itemIndex % 4 : itemIndex % 2;
+                    const lgLastCol = cols - 1;
+                    const smCol = itemIndex % 2;
+                    const smRow = Math.floor(itemIndex / 2);
+                    const lgRow = Math.floor(itemIndex / cols);
+                    return (
+                      <div
+                        key={itemIndex}
+                        className={[
+                          "group relative flex flex-col gap-3 p-5 sm:p-6 transition-colors hover:bg-background",
+                          // sm dividers
+                          smCol === 0 ? "sm:border-r sm:border-border" : "",
+                          smRow > 0 ? "sm:border-t sm:border-border" : "",
+                          // lg dividers (only if 4-col)
+                          cols === 4 ? "lg:border-t-0 lg:border-r-0" : "",
+                          cols === 4 && lgCol < lgLastCol ? "lg:border-r lg:border-border" : "",
+                          cols === 4 && lgRow > 0 ? "lg:border-t lg:border-border" : "",
+                        ].filter(Boolean).join(" ")}
+                      >
+                        <div className="flex items-center justify-between">
+                          <div className="inline-flex h-8 w-8 items-center justify-center rounded-md border border-border bg-background text-foreground transition-colors group-hover:text-primary [&_svg]:h-4 [&_svg]:w-4">
+                            {item.icon}
+                          </div>
+                          <span className="font-mono-ui text-[10px] text-muted-foreground/60">
+                            [{String(idx + 1).padStart(2, "0")}]
+                          </span>
+                        </div>
+                        <div>
+                          <h4 className="font-sora text-[14px] font-semibold tracking-[-0.01em] text-foreground">
+                            {item.title}
+                          </h4>
+                          <p className="mt-1 text-[13px] leading-relaxed text-muted-foreground">
+                            {item.description}
+                          </p>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </section>
   );

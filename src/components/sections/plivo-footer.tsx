@@ -48,13 +48,13 @@ export const PlivoFooter = () => {
   ];
 
   return (
-    <footer className="border-t border-gray-800 bg-[#0f1117]">
+    <footer className="border-t border-border bg-surface-2 text-foreground">
       <div className="container mx-auto max-w-7xl px-4 pb-8 pt-16">
         {/* Main Footer Grid */}
         <div className="grid grid-cols-2 gap-8 md:grid-cols-3 lg:grid-cols-5">
           {footerSections.map((section) => (
             <div key={section.title}>
-              <h3 className="mb-4 text-sm font-semibold text-white">
+              <h3 className="mb-4 font-mono-ui text-[11px] font-medium uppercase tracking-[0.08em] text-muted-foreground">
                 {section.title}
               </h3>
               <ul className="space-y-3">
@@ -62,7 +62,7 @@ export const PlivoFooter = () => {
                   <li key={item.title}>
                     <a
                       href={item.href}
-                      className="text-sm text-gray-400 transition-colors hover:text-white"
+                      className="text-sm text-foreground/70 transition-colors hover:text-foreground"
                       {...((item as any).external && {
                         target: "_blank",
                         rel: "noopener noreferrer",
@@ -78,19 +78,24 @@ export const PlivoFooter = () => {
         </div>
 
         {/* Bottom Section */}
-        <div className="relative mt-16 flex flex-col items-center gap-6 border-t border-gray-800 pt-8 md:flex-row md:justify-between">
-          {/* Logo */}
-          <a href="/" className="flex items-center">
+        <div className="relative mt-16 flex flex-col items-center gap-6 border-t border-border pt-8 md:flex-row md:justify-between">
+          {/* Logo — swaps per theme */}
+          <a href="/" className="flex items-center" aria-label="Plivo home">
+            <img
+              src="/images/plivo-logo.svg"
+              alt="Plivo"
+              className="h-5 w-auto dark:hidden"
+            />
             <img
               src="/images/plivo-logo-white.svg"
               alt="Plivo"
-              className="h-5 w-auto"
+              className="hidden h-5 w-auto dark:block"
             />
           </a>
 
           {/* Copyright - Centered */}
-          <p className="text-sm text-gray-500 md:absolute md:left-1/2 md:-translate-x-1/2">
-            Copyright &copy; {new Date().getFullYear()} Plivo Inc.
+          <p className="font-mono-ui text-xs text-muted-foreground md:absolute md:left-1/2 md:-translate-x-1/2">
+            &copy; {new Date().getFullYear()} Plivo Inc.
           </p>
 
           {/* Social Links */}
@@ -101,7 +106,7 @@ export const PlivoFooter = () => {
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-400 transition-colors hover:text-white"
+                className="text-muted-foreground transition-colors hover:text-foreground"
                 aria-label={link.name}
               >
                 <SocialIcon icon={link.icon} />

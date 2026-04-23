@@ -17,12 +17,12 @@
   <div class="absolute inset-0 z-0">
     <!-- Bright source point at top center -->
     <div class="absolute top-[24px] left-1/2 -translate-x-1/2 w-[8px] h-[8px] rounded-full"
-      style="background: white; box-shadow: 0 0 20px 8px rgba(255,255,255,0.9), 0 0 60px 20px rgba(255,255,255,0.5), 0 0 120px 40px rgba(255,255,255,0.2);">
+      style="background: white; box-shadow: 0 0 20px 8px hsl(var(--background) / 0.9), 0 0 60px 20px hsl(var(--background) / 0.5), 0 0 120px 40px rgba(255,255,255,0.2);">
     </div>
 
     <!-- Narrow bright beam from source -->
     <div class="absolute top-[28px] left-1/2 -translate-x-1/2 w-[3px] h-[120px]"
-      style="background: linear-gradient(to bottom, rgba(255,255,255,0.8), rgba(255,255,255,0.1) 70%, transparent);">
+      style="background: linear-gradient(to bottom, hsl(var(--background) / 0.8), rgba(255,255,255,0.1) 70%, transparent);">
     </div>
 
     <!-- Primary light cone using clip-path -->
@@ -74,14 +74,14 @@
         <a
           href="https://cx.plivo.com/pungis2"
           data-geo-cta="signup"
-          class="inline-flex items-center justify-center px-10 py-4 text-lg font-semibold bg-white text-gray-900 rounded-lg hover:bg-gray-100 transition-all duration-200 shadow-lg hover:shadow-xl hover:-translate-y-0.5"
+          class="inline-flex items-center justify-center px-10 py-4 text-lg font-semibold bg-background text-foreground rounded-lg hover:bg-muted transition-all duration-200 shadow-sm hover:shadow-xl hover:-translate-y-0.5"
         >
           Sign Up Now
         </a>
       </div>
 
       <!-- Description -->
-      <p class="text-base sm:text-lg text-gray-400 max-w-2xl mx-auto leading-relaxed">
+      <p class="text-base sm:text-lg text-muted-foreground max-w-2xl leading-relaxed">
         Sign up during India AI Summit week and we'll match every recharge
         you make. No code. No limits. Applied automatically.
       </p>

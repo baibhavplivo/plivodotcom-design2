@@ -104,11 +104,11 @@ const subcategories: CategoryConfig[] = [
 function FeatureCell({ feature }: { feature: Feature }) {
   return (
     <div className="p-6 lg:p-8">
-      <span className="text-[#323dfe] mb-4 block">{feature.icon}</span>
-      <h3 className="text-base font-semibold text-black mb-2">
+      <span className="text-primary mb-4 block">{feature.icon}</span>
+      <h3 className="text-base font-semibold text-foreground mb-2">
         {feature.title}
       </h3>
-      <p className="text-sm text-gray-600 leading-relaxed">
+      <p className="text-sm text-muted-foreground leading-relaxed">
         {feature.description}
       </p>
     </div>
@@ -124,21 +124,29 @@ export default function ChatAICapabilities() {
   const bottomRow = currentCategory.features.slice(is2x2 ? 2 : 3);
 
   return (
-    <section className="bg-white py-12 sm:py-16 md:py-20">
+    <section className="bg-background border-t border-border py-12 sm:py-16 md:py-20">
       <div className="container mx-auto max-w-7xl px-4">
         {/* Section Header */}
-        <h2 className="font-sora text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] font-normal leading-[1.25] tracking-[-0.02em] text-black text-center mb-4 max-w-3xl mx-auto">
+        <div className="flex items-center gap-3 font-mono-ui text-[11px] uppercase tracking-[0.12em] text-muted-foreground mb-8">
+          <span className="flex items-center gap-2">
+            <span className="tabular-nums text-foreground/70">~</span>
+            <span className="h-px w-6 bg-border" />
+          </span>
+          <span>ai capabilities</span>
+          <span className="flex-1 border-t border-dashed border-border" />
+        </div>
+        <h2 className="font-sora text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] font-normal leading-[1.04] tracking-[-0.035em] text-foreground mb-4">
           AI chat, built for B2C brands -
           <br />
           powerful, customizable, always-on
         </h2>
-        <p className="text-gray-600 text-center max-w-2xl mx-auto mb-10 md:mb-14">
+        <p className="text-muted-foreground max-w-2xl mb-10 md:mb-14">
           Powerful chat features that make conversations impactful with context-rich, instant answers, takes actions and completes tasks.
         </p>
 
         {/* Sub-category Tabs */}
         <div className="flex justify-center mb-8">
-          <div className="inline-flex bg-white rounded-lg border border-gray-200 p-1">
+          <div className="inline-flex bg-background rounded-lg border border-border p-1">
             {subcategories.map((sub) => (
               <button
                 key={sub.id}
@@ -146,8 +154,8 @@ export default function ChatAICapabilities() {
                 className={cn(
                   "px-4 sm:px-6 py-2 rounded-md text-sm font-medium transition-all",
                   activeSubcategory === sub.id
-                    ? "bg-black text-white"
-                    : "text-gray-600 hover:text-black hover:bg-gray-50"
+                    ? "bg-foreground text-background"
+                    : "text-muted-foreground hover:text-foreground hover:bg-surface"
                 )}
               >
                 {sub.label}
@@ -157,19 +165,19 @@ export default function ChatAICapabilities() {
         </div>
 
         {/* Bordered Grid */}
-        <div className="border border-gray-200 rounded-xl overflow-hidden" key={activeSubcategory}>
+        <div className="border border-border rounded-xl overflow-hidden" key={activeSubcategory}>
           {/* Top Row */}
-          <div className={cn("grid grid-cols-1 divide-y md:divide-y-0 md:divide-x divide-gray-200", is2x2 ? "md:grid-cols-2" : "md:grid-cols-3")}>
+          <div className={cn("grid grid-cols-1 divide-y md:divide-y-0 md:divide-x divide-border", is2x2 ? "md:grid-cols-2" : "md:grid-cols-3")}>
             {topRow.map((feature) => (
               <FeatureCell key={feature.id} feature={feature} />
             ))}
           </div>
 
           {/* Divider */}
-          <div className="border-t border-gray-200" />
+          <div className="border-t border-border" />
 
           {/* Bottom Row */}
-          <div className="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-gray-200">
+          <div className="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-border">
             {bottomRow.map((feature) => (
               <FeatureCell key={feature.id} feature={feature} />
             ))}

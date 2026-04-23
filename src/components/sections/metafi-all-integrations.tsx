@@ -92,7 +92,7 @@ export default function MetafiAllIntegrations({
   return (
     <section
       id="metafi-all-integrations"
-      className="bg-background px-6 lg:px-0"
+      className="bg-background border-t border-border px-6 lg:px-0"
     >
       <div className="container px-0 py-16 sm:py-20 md:px-6 md:py-24">
         <h2 className="text-center text-[40px] font-medium leading-tight tracking-tight text-foreground md:text-[52px]">

@@ -139,59 +139,74 @@ const features: FeatureItem[] = [
 ];
 
 export default function SIPRobustFeatures() {
+  const metaTags = ["ip auth", "encrypted", "fraud", "interop", "self-serve", "separated"];
   return (
-    <section className="bg-white py-12 sm:py-16 md:py-20">
-      <div className="container mx-auto max-w-7xl px-4">
-        {/* Section Header */}
-        <div className="text-center mb-10 md:mb-14">
-          <h2 className="font-sora text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] font-normal leading-[1.25] tracking-[-0.02em] text-black mb-4">
-            Robust feature set for all your business needs
-          </h2>
+    <section className="relative w-full bg-background border-t border-border">
+      <div className="container mx-auto max-w-7xl px-4 sm:px-6 py-14 sm:py-20 md:py-24">
+        <div className="flex items-center gap-3 font-mono-ui text-[11px] uppercase tracking-[0.12em] text-muted-foreground">
+          <span className="flex items-center gap-2">
+            <span className="tabular-nums text-foreground/70">~</span>
+            <span className="h-px w-6 bg-border" />
+          </span>
+          <span>robust features</span>
+          <span className="flex-1 border-t border-dashed border-border" />
+          <span>{features.length} capabilities</span>
         </div>
 
-        {/* Feature Grid - Bordered Layout */}
-        <div className="border border-gray-200 rounded-xl overflow-hidden">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-            {features.map((feature, index) => (
-              <div
-                key={index}
-                className={`p-5 sm:p-6 ${
-                  index % 3 !== 0
-                    ? "lg:border-l border-gray-200"
-                    : ""
-                } ${
-                  index % 2 !== 0
-                    ? "max-lg:border-l max-sm:border-l-0 border-gray-200"
-                    : ""
-                } ${
-                  index >= 3
-                    ? "border-t border-gray-200"
-                    : ""
-                } ${
-                  index >= 2 && index < 3
-                    ? "max-lg:border-t border-gray-200"
-                    : ""
-                } ${
-                  index >= 1 && index < 3
-                    ? "max-sm:border-t border-gray-200"
-                    : ""
-                }`}
-              >
-                <span className="text-[#323dfe] mb-3 block">
-                  {feature.icon}
-                </span>
-                <h4 className="text-sm font-semibold text-black mb-2">
-                  {feature.title}
-                </h4>
-                <p className="text-sm text-gray-600 leading-relaxed">
-                  {feature.description}
-                </p>
-              </div>
-            ))}
+        <div className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-12 lg:gap-10">
+          <div className="lg:col-span-8">
+            <h2 className="font-sora text-[2rem] font-normal leading-[1.04] tracking-[-0.035em] text-foreground sm:text-[2.5rem] md:text-[3rem]">
+              Robust feature set for all your business needs
+            </h2>
           </div>
         </div>
 
-        {/* Mid-page CTA */}
+        <div className="mt-10 overflow-hidden rounded-xl border border-border bg-surface">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+            {features.map((feature, index) => {
+              const lgCol = index % 3;
+              const lgRow = Math.floor(index / 3);
+              const smCol = index % 2;
+              const smRow = Math.floor(index / 2);
+              return (
+                <div
+                  key={index}
+                  className={[
+                    "group relative flex flex-col gap-3 p-5 sm:p-6 transition-colors hover:bg-background border-t border-border",
+                    index === 0 ? "border-t-0" : "",
+                    "sm:border-t-0",
+                    smRow > 0 ? "sm:border-t sm:border-border" : "",
+                    smCol === 0 ? "sm:border-r sm:border-border" : "",
+                    "lg:border-t-0 lg:border-r-0",
+                    lgRow > 0 ? "lg:border-t lg:border-border" : "",
+                    lgCol < 2 ? "lg:border-r lg:border-border" : "",
+                  ].filter(Boolean).join(" ")}
+                >
+                  <div className="flex items-center justify-between">
+                    <div className="inline-flex h-8 w-8 items-center justify-center rounded-md border border-border bg-background text-foreground transition-colors group-hover:text-primary [&_svg]:h-4 [&_svg]:w-4">
+                      {feature.icon}
+                    </div>
+                    <span className="font-mono-ui text-[10px] uppercase tracking-[0.08em] text-muted-foreground">
+                      {metaTags[index]}
+                    </span>
+                  </div>
+                  <div>
+                    <h4 className="font-sora text-[15px] font-semibold tracking-[-0.01em] text-foreground">
+                      {feature.title}
+                    </h4>
+                    <p className="mt-1 text-[13px] text-muted-foreground leading-relaxed">
+                      {feature.description}
+                    </p>
+                  </div>
+                  <span className="font-mono-ui mt-auto text-[10px] text-muted-foreground/60">
+                    [{String(index + 1).padStart(2, "0")}]
+                  </span>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
         <div className="mt-12 sm:mt-16">
           <InPageCTA />
         </div>

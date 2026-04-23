@@ -15,22 +15,22 @@ export default function VoiceDemoCompact() {
   return (
     <div className="flex flex-col items-center lg:items-end">
       {/* Demo Card */}
-      <div className="w-full max-w-[420px] overflow-hidden rounded-lg border border-gray-200 bg-white">
+      <div className="w-full max-w-[420px] overflow-hidden rounded-lg border border-border bg-background">
         {/* Main Content Area with Flickering Grid */}
         <div className="relative min-h-[280px] sm:min-h-[320px] flex flex-col items-center justify-center">
           {/* Dotted Grid Background - Extends beyond edges to hide grid gaps */}
-          <div className="absolute -inset-2 z-0 overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }} />
+          <div className="absolute -inset-2 z-0 overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, hsl(var(--border)) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }} />
 
           {/* Content */}
           <div className="relative z-10 flex flex-col items-center gap-3">
             {/* Language Selector */}
-            <div className="flex rounded-full bg-white p-0.5 shadow-sm">
+            <div className="flex rounded-full bg-background p-0.5 shadow-sm">
               <button
                 onClick={() => setSelectedLanguage("hindi")}
                 className={`rounded-full px-3 py-1 text-xs font-medium transition-colors ${
                   selectedLanguage === "hindi"
                     ? "text-white"
-                    : "text-gray-500 hover:text-black"
+                    : "text-muted-foreground hover:text-foreground"
                 }`}
                 style={
                   selectedLanguage === "hindi"
@@ -48,7 +48,7 @@ export default function VoiceDemoCompact() {
                 className={`rounded-full px-3 py-1 text-xs font-medium transition-colors ${
                   selectedLanguage === "english"
                     ? "text-white"
-                    : "text-gray-500 hover:text-black"
+                    : "text-muted-foreground hover:text-foreground"
                 }`}
                 style={
                   selectedLanguage === "english"
@@ -66,7 +66,7 @@ export default function VoiceDemoCompact() {
             {/* Talk Button */}
             <button
               onClick={handleTalk}
-              className="flex items-center gap-3 sm:gap-5 rounded-[80px] bg-white pl-3 pr-8 sm:pl-4 sm:pr-14 py-3 sm:py-4 shadow-xl transition-all duration-200 hover:-translate-y-1 hover:shadow-2xl"
+              className="flex items-center gap-3 sm:gap-5 rounded-[80px] bg-background pl-3 pr-8 sm:pl-4 sm:pr-14 py-3 sm:py-4 transition-all duration-200 hover:-translate-y-1 hover:shadow-2xl"
             >
               {/* Gradient Circle with Dancing Bars */}
               <div
@@ -80,7 +80,7 @@ export default function VoiceDemoCompact() {
                   {[1, 2, 3, 4, 5].map((i) => (
                     <span
                       key={i}
-                      className="animate-wave-bar w-[3px] rounded-full bg-white"
+                      className="animate-wave-bar w-[3px] rounded-full bg-background"
                       style={{
                         height: `${14 + (i % 3) * 5}px`,
                         animationDelay: `${i * 0.1}s`,
@@ -89,7 +89,7 @@ export default function VoiceDemoCompact() {
                   ))}
                 </div>
               </div>
-              <span className="text-base sm:text-xl font-semibold text-black">
+              <span className="text-base sm:text-xl font-semibold text-foreground">
                 Press to talk
               </span>
             </button>
@@ -97,22 +97,22 @@ export default function VoiceDemoCompact() {
         </div>
 
         {/* Metrics Section */}
-        <div className="bg-white px-6 sm:px-8 py-6">
+        <div className="bg-background px-6 sm:px-8 py-6">
           <div className="space-y-4">
             <div className="flex items-center justify-between">
-              <span className="text-sm font-medium uppercase tracking-widest text-gray-400">
+              <span className="text-sm font-medium font-mono-ui uppercase tracking-[0.12em] text-muted-foreground">
                 Latency
               </span>
-              <span className="text-base font-semibold text-black">500ms</span>
+              <span className="text-base font-semibold text-foreground">500ms</span>
             </div>
             <div className="flex items-center justify-between">
-              <span className="text-sm font-medium uppercase tracking-widest text-gray-400">
+              <span className="text-sm font-medium font-mono-ui uppercase tracking-[0.12em] text-muted-foreground">
                 Turn Detection
               </span>
               <span className="text-base font-semibold text-green-500">On</span>
             </div>
             <div className="flex items-center justify-between">
-              <span className="text-sm font-medium uppercase tracking-widest text-gray-400">
+              <span className="text-sm font-medium font-mono-ui uppercase tracking-[0.12em] text-muted-foreground">
                 Noise Cancellation
               </span>
               <span className="text-base font-semibold text-green-500">On</span>

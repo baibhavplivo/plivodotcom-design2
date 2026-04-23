@@ -72,26 +72,26 @@ export default function TwilioAltFAQ() {
   }, []);
 
   return (
-    <section className="py-12 lg:py-16 bg-white">
+    <section className="py-12 lg:py-16 bg-background border-t border-border">
       <div className="container mx-auto max-w-3xl px-4">
-        <div className="text-center mb-10">
-          <h2 className="font-sora text-[2rem] sm:text-[2.5rem] font-normal leading-[1.25] tracking-[-0.02em] text-black">
+        <div className="mb-10">
+          <h2 className="font-sora text-[2rem] sm:text-[2.5rem] font-normal leading-[1.25] tracking-[-0.02em] text-foreground">
             Frequently asked questions
           </h2>
         </div>
 
-        <div ref={containerRef} className="divide-y divide-gray-200 border-t border-b border-gray-200">
+        <div ref={containerRef} className="divide-y divide-border border-t border-b border-border">
           {FAQS.map((faq, i) => {
             const isOpen = openIndex === i;
             return (
               <div key={i}>
                 <button
                   data-faq-trigger
-                  className="flex w-full items-center justify-between py-4 text-left text-[15px] font-medium text-black transition-colors hover:text-gray-700"
+                  className="flex w-full items-center justify-between py-4 text-left text-[15px] font-medium text-foreground transition-colors hover:text-foreground/80"
                 >
                   {faq.q}
                   <svg
-                    className={`ml-4 h-4 w-4 flex-shrink-0 text-gray-400 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
+                    className={`ml-4 h-4 w-4 flex-shrink-0 text-muted-foreground transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
                     fill="none"
                     stroke="currentColor"
                     strokeWidth="2"
@@ -103,7 +103,7 @@ export default function TwilioAltFAQ() {
                 <div
                   className={`overflow-hidden transition-all duration-200 ${isOpen ? "max-h-96 pb-4" : "max-h-0"}`}
                 >
-                  <p className="text-sm text-gray-600 leading-relaxed pr-8">
+                  <p className="text-sm text-muted-foreground leading-relaxed pr-8">
                     {faq.a}
                   </p>
                 </div>

@@ -199,12 +199,12 @@ export default function StartupsHero() {
   }, []);
 
   return (
-    <section className="relative z-[1] bg-white pt-2 sm:pt-3 md:pt-4 pb-0">
+    <section className="relative z-[1] bg-background border-t border-border pt-2 sm:pt-3 md:pt-4 pb-0">
       <div className="container mx-auto max-w-7xl px-4">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
           {/* Left Column - Hero Content */}
           <div className="order-2 lg:order-1">
-            <h1 className="font-sora text-[2rem] sm:text-[2.5rem] md:text-[3rem] font-normal leading-[1.1] tracking-[-0.02em] text-black">
+            <h1 className="font-sora text-[2rem] sm:text-[2.5rem] md:text-[3rem] font-normal leading-[1.1] tracking-[-0.02em] text-foreground">
               Why Startups Build on Plivo:
             </h1>
 
@@ -213,7 +213,7 @@ export default function StartupsHero() {
               {VALUE_PROPS.map((prop) => (
                 <div key={prop.title} className="flex items-start gap-2.5">
                   <svg
-                    className="w-4 h-4 text-[#323dfe] mt-[1px] flex-shrink-0"
+                    className="w-4 h-4 text-primary mt-[1px] flex-shrink-0"
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
@@ -224,8 +224,8 @@ export default function StartupsHero() {
                     <polyline points="20 6 9 17 4 12" />
                   </svg>
                   <div>
-                    <span className="text-sm font-semibold text-black">{prop.title}</span>
-                    <p className="text-sm text-gray-600 mt-0.5 leading-relaxed">{prop.desc}</p>
+                    <span className="text-sm font-semibold text-foreground">{prop.title}</span>
+                    <p className="text-sm text-muted-foreground mt-0.5 leading-relaxed">{prop.desc}</p>
                   </div>
                 </div>
               ))}
@@ -233,7 +233,7 @@ export default function StartupsHero() {
 
             {/* Trusted By Logos */}
             <div className="mt-10">
-              <p className="text-[11px] font-medium text-gray-400 uppercase tracking-wider mb-3">
+              <p className="text-[11px] font-medium text-muted-foreground font-mono-ui uppercase tracking-[0.1em] mb-3">
                 Trusted by leading consumer brands worldwide
               </p>
               <div className="flex flex-wrap items-center gap-1">
@@ -252,7 +252,7 @@ export default function StartupsHero() {
           {/* Right Column - Form */}
           <div className="order-1 lg:order-2 relative rounded-2xl">
             <div className="relative z-10 flex items-center justify-center py-6 sm:py-10 md:py-14 px-2 sm:px-6 md:px-10">
-              <div className="w-full sm:max-w-md rounded-xl border border-gray-200 bg-white p-4 sm:p-5 md:p-6">
+              <div className="w-full sm:max-w-md rounded-xl border border-border bg-background p-4 sm:p-5 md:p-6">
                 {/* @ts-expect-error vpf is a custom attribute used by form-submission.js */}
                 <div vpf="form-wrapper">
                   {/* Progress indicators (hidden by default, script controls visibility) */}
@@ -271,7 +271,7 @@ export default function StartupsHero() {
                   {/* @ts-expect-error vpf is a custom attribute */}
                   <div vpf="1">
                     <div className="space-y-3.5">
-                      <h2 className="font-inter text-xl font-semibold text-black mb-3">
+                      <h2 className="font-inter text-xl font-semibold text-foreground mb-3">
                         Secure your partner grant
                       </h2>
 
@@ -288,7 +288,7 @@ export default function StartupsHero() {
                       >
                         {/* Full name */}
                         <div className="form-field">
-                          <label htmlFor="full_name" className="text-[13px] font-medium text-gray-700 mb-1 block">
+                          <label htmlFor="full_name" className="text-[13px] font-medium text-foreground/80 mb-1 block">
                             Full name <span className="text-red-400">*</span>
                           </label>
                           <input
@@ -298,14 +298,14 @@ export default function StartupsHero() {
                             maxLength={256}
                             placeholder="Olivia Rodriguez"
                             required
-                            className="w-full h-10 rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 placeholder:text-gray-400 hover:border-gray-400 focus:outline-none focus:border-blue-400 focus:ring-[3px] focus:ring-blue-100 transition-all"
+                            className="w-full h-10 rounded-lg border border-border-strong bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground hover:border-border-strong focus:outline-none focus:border-blue-400 focus:ring-[3px] focus:ring-blue-100 transition-all"
                           />
                           <span className="invalid-feedback error" />
                         </div>
 
                         {/* Work email */}
                         <div className="form-field">
-                          <label htmlFor="company_email" className="text-[13px] font-medium text-gray-700 mb-1 block">
+                          <label htmlFor="company_email" className="text-[13px] font-medium text-foreground/80 mb-1 block">
                             Work email <span className="text-red-400">*</span>
                           </label>
                           <div className="relative">
@@ -316,7 +316,7 @@ export default function StartupsHero() {
                               maxLength={256}
                               placeholder="olivia@company.com"
                               required
-                              className="w-full h-10 rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 placeholder:text-gray-400 hover:border-gray-400 focus:outline-none focus:border-blue-400 focus:ring-[3px] focus:ring-blue-100 transition-all"
+                              className="w-full h-10 rounded-lg border border-border-strong bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground hover:border-border-strong focus:outline-none focus:border-blue-400 focus:ring-[3px] focus:ring-blue-100 transition-all"
                             />
                             {/* @ts-expect-error vpf is a custom attribute */}
                             <div vpf="email-loader" style={{ display: "none" }} className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5" />
@@ -330,7 +330,7 @@ export default function StartupsHero() {
 
                         {/* Phone number */}
                         <div className="form-field">
-                          <label htmlFor="phone" className="text-[13px] font-medium text-gray-700 mb-1 block">
+                          <label htmlFor="phone" className="text-[13px] font-medium text-foreground/80 mb-1 block">
                             Phone number <span className="text-red-400">*</span>
                           </label>
                           <input
@@ -341,14 +341,14 @@ export default function StartupsHero() {
                             placeholder="888888 88888"
                             required
                             autoComplete="off"
-                            className="w-full h-10 rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 placeholder:text-gray-400 hover:border-gray-400 focus:outline-none focus:border-blue-400 focus:ring-[3px] focus:ring-blue-100 transition-all"
+                            className="w-full h-10 rounded-lg border border-border-strong bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground hover:border-border-strong focus:outline-none focus:border-blue-400 focus:ring-[3px] focus:ring-blue-100 transition-all"
                           />
                           <span className="invalid-feedback error" id="lbl-invalid-phone-number" />
                         </div>
 
                         {/* Partner Fund */}
                         <div className="form-field">
-                          <label htmlFor="partner_fund" className="text-[13px] font-medium text-gray-700 mb-1 block">
+                          <label htmlFor="partner_fund" className="text-[13px] font-medium text-foreground/80 mb-1 block">
                             Partner fund <span className="text-red-400">*</span>
                           </label>
                           <input
@@ -358,14 +358,14 @@ export default function StartupsHero() {
                             maxLength={256}
                             placeholder="e.g. Y Combinator, Techstars"
                             required
-                            className="w-full h-10 rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 placeholder:text-gray-400 hover:border-gray-400 focus:outline-none focus:border-blue-400 focus:ring-[3px] focus:ring-blue-100 transition-all"
+                            className="w-full h-10 rounded-lg border border-border-strong bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground hover:border-border-strong focus:outline-none focus:border-blue-400 focus:ring-[3px] focus:ring-blue-100 transition-all"
                           />
                           <span className="invalid-feedback error" />
                         </div>
 
                         {/* Role */}
                         <div className="form-field">
-                          <label htmlFor="role" className="text-[13px] font-medium text-gray-700 mb-1 block">
+                          <label htmlFor="role" className="text-[13px] font-medium text-foreground/80 mb-1 block">
                             Role <span className="text-red-400">*</span>
                           </label>
                           <input
@@ -375,14 +375,14 @@ export default function StartupsHero() {
                             maxLength={256}
                             placeholder="e.g. Founder, CTO, Developer"
                             required
-                            className="w-full h-10 rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 placeholder:text-gray-400 hover:border-gray-400 focus:outline-none focus:border-blue-400 focus:ring-[3px] focus:ring-blue-100 transition-all"
+                            className="w-full h-10 rounded-lg border border-border-strong bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground hover:border-border-strong focus:outline-none focus:border-blue-400 focus:ring-[3px] focus:ring-blue-100 transition-all"
                           />
                           <span className="invalid-feedback error" />
                         </div>
 
                         {/* Detailed requirement */}
                         <div className="form-field">
-                          <label htmlFor="detailed_requirement" className="text-[13px] font-medium text-gray-700 mb-1 block">
+                          <label htmlFor="detailed_requirement" className="text-[13px] font-medium text-foreground/80 mb-1 block">
                             Detailed requirement <span className="text-red-400">*</span>
                           </label>
                           <textarea
@@ -391,11 +391,11 @@ export default function StartupsHero() {
                             maxLength={5000}
                             placeholder="Detail your use case, channel(s), countries you need service for and estimated volume"
                             required
-                            className="w-full min-h-[88px] rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 placeholder:text-gray-400 resize-none hover:border-gray-400 focus:outline-none focus:border-blue-400 focus:ring-[3px] focus:ring-blue-100 transition-all"
+                            className="w-full min-h-[88px] rounded-lg border border-border-strong bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground resize-none hover:border-border-strong focus:outline-none focus:border-blue-400 focus:ring-[3px] focus:ring-blue-100 transition-all"
                           />
                           <div className="flex items-center justify-between mt-0.5">
                             <span className="invalid-feedback error" />
-                            <span id="req-char-count" className="text-[11px] text-gray-400 tabular-nums" />
+                            <span id="req-char-count" className="text-[11px] text-muted-foreground tabular-nums" />
                           </div>
                         </div>
 
@@ -413,7 +413,7 @@ export default function StartupsHero() {
                           type="submit"
                           // @ts-expect-error vpf is a custom attribute
                           vpf="submit-btn"
-                          className="w-full rounded-md bg-black px-5 py-2.5 text-sm font-medium text-white transition-colors cta-hover-gradient"
+                          className="w-full rounded-md bg-foreground px-5 py-2.5 text-sm font-medium text-background transition-colors cta-hover-gradient"
                         >
                           Submit
                         </button>
@@ -519,11 +519,11 @@ export default function StartupsHero() {
                         <input type="hidden" id="landing_page_2" name="landing_page_2" />
                       </form>
 
-                      <p className="text-[11px] text-gray-400 text-center leading-relaxed mt-3">
+                      <p className="text-[11px] text-muted-foreground text-center leading-relaxed mt-3">
                         By creating an account with Plivo, you agree to Plivo's{" "}
-                        <a href="/legal/tos/" className="underline hover:text-gray-600">terms of service</a>{" "}
+                        <a href="/legal/tos/" className="underline hover:text-muted-foreground">terms of service</a>{" "}
                         and{" "}
-                        <a href="/legal/privacy/" className="underline hover:text-gray-600">privacy policy</a>
+                        <a href="/legal/privacy/" className="underline hover:text-muted-foreground">privacy policy</a>
                       </p>
                     </div>
                   </div>
@@ -543,20 +543,20 @@ export default function StartupsHero() {
                   {/* Step 4: Thank you */}
                   {/* @ts-expect-error vpf is a custom attribute */}
                   <div vpf="4" style={{ display: "none" }} className="text-center py-12">
-                    <div className="w-14 h-14 rounded-full bg-emerald-50 flex items-center justify-center mx-auto mb-4">
-                      <svg className="w-7 h-7 text-emerald-500" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
+                    <div className="w-14 h-14 rounded-full bg-emerald-50 dark:bg-emerald-900/30 flex items-center justify-center mx-auto mb-4">
+                      <svg className="w-7 h-7 text-emerald-500 dark:text-emerald-400" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
                         <polyline points="20 6 9 17 4 12" />
                       </svg>
                     </div>
                     {/* @ts-expect-error vpf is a custom attribute */}
-                    <h3 vpf="4-title" className="text-xl font-normal text-black">
+                    <h3 vpf="4-title" className="text-xl font-normal text-foreground">
                       You're all set!
                     </h3>
                     {/* @ts-expect-error vpf is a custom attribute */}
-                    <p vpf="4-desc" className="text-sm text-gray-500 mt-2 max-w-xs mx-auto leading-relaxed">
+                    <p vpf="4-desc" className="text-sm text-muted-foreground mt-2 max-w-xs mx-auto leading-relaxed">
                       Thank you for your submission. We will reach out to you soon.
                     </p>
-                    <a href="/" className="inline-block mt-6 text-sm font-medium text-gray-600 hover:text-black transition-colors">
+                    <a href="/" className="inline-block mt-6 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
                       &larr; Back to homepage
                     </a>
                   </div>

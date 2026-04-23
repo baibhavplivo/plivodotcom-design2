@@ -25,11 +25,11 @@ export class ErrorBoundary extends Component<Props, State> {
       return (
         this.props.fallback ?? (
           <div className="flex flex-col items-center justify-center gap-3 py-16 text-center">
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-muted-foreground">
               Something went wrong loading this section.
             </p>
             <button
-              className="rounded-md bg-black px-4 py-2 text-sm text-white hover:bg-gray-800"
+              className="rounded-md bg-foreground px-4 py-2 text-sm text-background hover:bg-gray-800"
               onClick={() => this.setState({ hasError: false })}
             >
               Try again

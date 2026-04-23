@@ -40,20 +40,20 @@ const BlogPost = ({
   return (
     <div className="relative">
       {/* Breadcrumb */}
-      <div className="bg-white border-b border-gray-100">
+      <div className="bg-background border-b border-border">
         <div className="container max-w-4xl py-3">
-          <nav className="flex items-center gap-1 text-sm text-gray-400">
-            <a href="/" className="hover:text-gray-600 transition-colors">Home</a>
+          <nav className="flex items-center gap-1 text-sm text-muted-foreground">
+            <a href="/" className="hover:text-muted-foreground transition-colors">Home</a>
             <ChevronRight className="h-3.5 w-3.5" />
-            <a href="/blog/" className="hover:text-gray-600 transition-colors">Blog</a>
+            <a href="/blog/" className="hover:text-muted-foreground transition-colors">Blog</a>
             <ChevronRight className="h-3.5 w-3.5" />
-            <span className="text-gray-600 truncate max-w-xs">{title}</span>
+            <span className="text-muted-foreground truncate max-w-xs">{title}</span>
           </nav>
         </div>
       </div>
 
       {/* Header */}
-      <div className="relative bg-white pb-8 pt-10 md:pt-16">
+      <div className="relative bg-background pb-8 pt-10 md:pt-16">
         <div className="container max-w-4xl">
           <div className="mb-8 text-center">
             {/* Category badges */}
@@ -63,7 +63,7 @@ const BlogPost = ({
                   <a key={cat} href={`/blog/?category=${cat}`}>
                     <Badge
                       variant="outline"
-                      className="px-3 py-1 text-xs text-gray-500 border-gray-200 hover:border-gray-400 transition-colors cursor-pointer"
+                      className="px-3 py-1 text-xs text-muted-foreground border-border hover:border-border-strong transition-colors cursor-pointer"
                     >
                       {categories[cat] || cat}
                     </Badge>
@@ -72,15 +72,15 @@ const BlogPost = ({
               </div>
             )}
 
-            <h1 className="mb-4 font-sora text-2xl font-medium leading-tight tracking-tight md:text-3xl lg:text-4xl text-black">
+            <h1 className="mb-4 font-sora text-2xl font-medium leading-tight tracking-tight md:text-3xl lg:text-4xl text-foreground">
               {title}
             </h1>
-            <p className="mx-auto max-w-3xl text-lg font-normal leading-relaxed text-gray-500">
+            <p className="max-w-3xl text-lg font-normal leading-relaxed text-muted-foreground">
               {description}
             </p>
           </div>
 
-          <div className="flex items-center justify-center gap-4 text-sm text-gray-400">
+          <div className="flex items-center justify-center gap-4 text-sm text-muted-foreground">
             <span>{format(pubDate, "MMMM d, yyyy")}</span>
             <span>&middot;</span>
             <div className="flex items-center gap-1">
@@ -96,7 +96,7 @@ const BlogPost = ({
       {/* Featured Image */}
       {image && (
         <div className="relative mx-auto -mt-2 max-w-4xl px-4 md:-mt-4">
-          <div className="aspect-[16/9] overflow-hidden rounded-lg border border-gray-200">
+          <div className="aspect-[16/9] overflow-hidden rounded-lg border border-border">
             <img src={image} alt={title} className="h-full w-full object-cover" />
           </div>
         </div>
@@ -108,18 +108,18 @@ const BlogPost = ({
           {/* Key Takeaways */}
           {keyTakeaways && (
             <div className="rounded-lg border border-blue-100 bg-blue-50/50 p-6">
-              <h3 className="mb-3 text-sm font-semibold uppercase tracking-wider text-gray-700">
+              <h3 className="mb-3 text-sm font-semibold font-mono-ui uppercase tracking-[0.1em] text-foreground/80">
                 Key Takeaways
               </h3>
               <div
-                className="prose prose-sm max-w-none text-gray-600 [&_ul]:list-disc [&_ul]:pl-5 [&_li]:mb-1.5"
+                className="prose prose-sm max-w-none text-muted-foreground [&_ul]:list-disc [&_ul]:pl-5 [&_li]:mb-1.5"
                 dangerouslySetInnerHTML={{ __html: sanitizeHtml(keyTakeaways) }}
               />
             </div>
           )}
 
           {/* Article Body */}
-          <article className="blog-content prose prose-lg prose-h1:font-sora prose-h2:font-sora prose-headings:font-medium prose-h2:text-2xl prose-h2:mt-10 prose-h2:mb-4 prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-3 prose-p:text-base prose-p:leading-relaxed prose-p:text-gray-700 prose-a:text-[#323dfe] prose-a:no-underline hover:prose-a:underline prose-img:rounded-lg prose-blockquote:border-l-black prose-blockquote:bg-gray-50 prose-blockquote:py-1 prose-blockquote:not-italic prose-strong:text-black prose-li:text-gray-700 max-w-none">
+          <article className="blog-content prose prose-lg prose-h1:font-sora prose-h2:font-sora prose-headings:font-medium prose-h2:text-2xl prose-h2:mt-10 prose-h2:mb-4 prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-3 prose-p:text-base prose-p:leading-relaxed prose-p:text-foreground/80 prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-img:rounded-lg prose-blockquote:border-l-foreground prose-blockquote:bg-surface prose-blockquote:py-1 prose-blockquote:not-italic prose-strong:text-foreground prose-li:text-foreground/80 max-w-none">
             {children}
           </article>
 
@@ -127,12 +127,12 @@ const BlogPost = ({
 
           {/* Author Info */}
           <div className="flex items-center gap-3">
-            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-r from-[#323dfe] to-black text-white font-semibold text-lg">
+            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-r from-primary to-black text-white font-semibold text-lg">
               P
             </div>
             <div>
-              <div className="font-semibold text-black">{authorName}</div>
-              <div className="text-sm text-gray-500">Plivo Blog</div>
+              <div className="font-semibold text-foreground">{authorName}</div>
+              <div className="text-sm text-muted-foreground">Plivo Blog</div>
             </div>
           </div>
         </div>
@@ -140,9 +140,9 @@ const BlogPost = ({
 
       {/* Related Posts */}
       {relatedPosts.length > 0 && (
-        <div className="bg-gray-50 py-12">
+        <div className="bg-surface py-12">
           <div className="container max-w-7xl">
-            <h2 className="font-sora text-2xl font-medium text-black mb-8">
+            <h2 className="font-sora text-2xl font-medium text-foreground mb-8">
               Related Articles
             </h2>
             <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
@@ -150,9 +150,9 @@ const BlogPost = ({
                 <a
                   key={rp.id}
                   href={`/blog/${rp.id}/`}
-                  className="group flex flex-col overflow-hidden rounded-lg border border-gray-200 bg-white transition-shadow hover:shadow-md"
+                  className="group flex flex-col overflow-hidden rounded-lg border border-border bg-background transition-shadow hover:shadow-md"
                 >
-                  <div className="aspect-video overflow-hidden bg-gray-100">
+                  <div className="aspect-video overflow-hidden bg-muted">
                     {rp.image && (
                       <img
                         src={rp.image}
@@ -164,14 +164,14 @@ const BlogPost = ({
                   </div>
                   <div className="flex flex-1 flex-col p-5">
                     {rp.categories?.[0] && (
-                      <span className="mb-2 inline-block w-fit rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-600">
+                      <span className="mb-2 inline-block w-fit rounded-full bg-muted px-3 py-1 text-xs font-medium text-muted-foreground">
                         {categories[rp.categories[0]] || rp.categories[0]}
                       </span>
                     )}
-                    <h3 className="text-base font-semibold text-black leading-tight group-hover:text-gray-700 transition-colors line-clamp-2">
+                    <h3 className="text-base font-semibold text-foreground leading-tight group-hover:text-foreground/80 transition-colors line-clamp-2">
                       {rp.title}
                     </h3>
-                    <span className="mt-3 text-xs text-gray-400">
+                    <span className="mt-3 text-xs text-muted-foreground">
                       {format(new Date(rp.pubDate), "MMM d, yyyy")}
                     </span>
                   </div>

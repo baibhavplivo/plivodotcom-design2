@@ -63,17 +63,17 @@ const features = [
 export const PlivoHero = ({ headline, subheadline }: PlivoHeroProps) => {
   const { url: signupUrl, label: signupLabel } = useSignupUrl();
   return (
-    <section className="relative overflow-hidden bg-white pb-8 pt-12 md:pt-16 lg:pt-20">
+    <section className="relative overflow-hidden bg-background border-t border-border pb-8 pt-12 md:pt-16 lg:pt-20">
       <div className="mx-auto max-w-[1200px] px-6">
         <div className="grid items-center gap-8 lg:grid-cols-[1fr_1.1fr] lg:gap-12">
           {/* Left side - Content */}
           <div className="space-y-6 lg:space-y-8">
             {/* Headline */}
             <div>
-              <h1 className="font-sora text-[28px] font-medium leading-[1.15] tracking-[-0.02em] text-black sm:text-[36px] lg:text-[42px]">
+              <h1 className="font-sora text-[28px] font-medium leading-[1.15] tracking-[-0.02em] text-foreground sm:text-[36px] lg:text-[42px]">
                 {headline}
               </h1>
-              <p className="mt-4 text-[15px] font-normal leading-[1.7] text-gray-600 sm:text-[16px] lg:text-[17px]">
+              <p className="mt-4 text-[15px] font-normal leading-[1.7] text-muted-foreground sm:text-[16px] lg:text-[17px]">
                 {subheadline}
               </p>
             </div>
@@ -87,8 +87,8 @@ export const PlivoHero = ({ headline, subheadline }: PlivoHeroProps) => {
                     key={feature.title}
                     className="flex items-center gap-2.5"
                   >
-                    <Icon className="h-4 w-4 shrink-0 text-[#323dfe]" />
-                    <span className="text-[14px] font-medium text-black">
+                    <Icon className="h-4 w-4 shrink-0 text-primary" />
+                    <span className="text-[14px] font-medium text-foreground">
                       {feature.title}
                     </span>
                   </div>
@@ -101,7 +101,7 @@ export const PlivoHero = ({ headline, subheadline }: PlivoHeroProps) => {
               <a
                 href={signupUrl}
                 {...(signupUrl.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                className="group inline-flex items-center justify-center gap-2 rounded-md bg-black px-6 py-3 text-[14px] font-medium text-white transition-all cta-hover-gradient hover:shadow-md"
+                className="group inline-flex items-center justify-center gap-2 rounded-md bg-foreground px-6 py-3 text-[14px] font-medium text-background transition-all cta-hover-gradient hover:shadow-md"
               >
                 <svg
                   className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
@@ -119,7 +119,7 @@ export const PlivoHero = ({ headline, subheadline }: PlivoHeroProps) => {
               </a>
               <a
                 href="/talk-to-agent/"
-                className="inline-flex items-center justify-center rounded-md border border-gray-300 bg-white px-6 py-3 text-[14px] font-medium text-black transition-all hover:bg-gray-50"
+                className="inline-flex items-center justify-center rounded-md border border-border-strong bg-background px-6 py-3 text-[14px] font-medium text-foreground transition-all hover:bg-surface"
               >
                 Talk to an Agent
               </a>
@@ -130,12 +130,12 @@ export const PlivoHero = ({ headline, subheadline }: PlivoHeroProps) => {
           <div className="relative">
             {/* Works on - Top Right */}
             <div className="mb-3 flex items-center justify-end gap-2">
-              <span className="text-[11px] text-gray-500">Works on:</span>
+              <span className="text-[11px] text-muted-foreground">Works on:</span>
               <div className="flex items-center gap-1.5">
                 {channels.map((channel) => (
                   <div
                     key={channel.name}
-                    className="inline-flex items-center gap-1 rounded-full border border-gray-200 bg-white px-2 py-1 text-[10px] font-medium text-gray-500"
+                    className="inline-flex items-center gap-1 rounded-full border border-border bg-background px-2 py-1 text-[10px] font-medium text-muted-foreground"
                   >
                     <channel.icon className="h-3 w-3" />
                     {channel.name}

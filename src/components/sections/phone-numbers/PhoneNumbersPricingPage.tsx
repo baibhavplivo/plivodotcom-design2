@@ -260,13 +260,22 @@ export default function PhoneNumbersPricingPage({ initialCountry }: { initialCou
   return (
     <>
       {/* Hero Header */}
-      <section className="bg-white pt-[56px] sm:pt-[64px] md:pt-[72px] pb-10">
+      <section className="bg-background border-t border-border pt-[56px] sm:pt-[64px] md:pt-[72px] pb-10">
         <div className="container mx-auto max-w-7xl px-4">
           <div className="text-center">
-            <h1 className="font-sora text-[2rem] sm:text-[2.5rem] md:text-[3rem] font-normal leading-[1.1] tracking-[-0.02em] text-black mb-4">
+            <div className="flex items-center gap-3 font-mono-ui text-[11px] uppercase tracking-[0.12em] text-muted-foreground mb-8">
+            <span className="flex items-center gap-2">
+              <span className="tabular-nums text-foreground/70">~</span>
+              <span className="h-px w-6 bg-border" />
+            </span>
+            <span>phone numbers pricing</span>
+            <span className="flex-1 border-t border-dashed border-border" />
+            <span>local · mobile · toll-free</span>
+          </div>
+          <h1 className="font-sora text-[2rem] sm:text-[2.5rem] md:text-[3rem] font-normal leading-[1.1] tracking-[-0.02em] text-foreground mb-4">
               Phone Numbers Pricing
             </h1>
-            <p className="text-gray-600 text-base sm:text-lg max-w-2xl mx-auto">
+            <p className="text-muted-foreground text-base sm:text-lg max-w-2xl">
               Competitive pay-as-you-go phone number pricing with add-on features included. Volume discounts on committed spends as you scale.
             </p>
           </div>
@@ -274,42 +283,42 @@ export default function PhoneNumbersPricingPage({ initialCountry }: { initialCou
       </section>
 
       {/* Two Column Layout */}
-      <section className="bg-white pb-12 lg:pb-20">
+      <section className="bg-background border-t border-border pb-12 lg:pb-20">
         <div className="container mx-auto max-w-7xl px-4">
           <div className="lg:grid lg:grid-cols-[256px_1fr] lg:gap-8 lg:items-start">
             {/* Left Sidebar Wrapper */}
             <div ref={sidebarWrapperRef} className="mb-8 lg:mb-0">
-              <aside className="bg-white z-30" style={sidebarStyle}>
+              <aside className="bg-background z-30" style={sidebarStyle}>
                 {/* Country Selector */}
                 <div className="relative mb-6" ref={dropdownRef}>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-foreground/80 mb-2">
                     Select Country
                   </label>
                   <button
                     ref={countryToggleRef}
-                    className="w-full flex items-center gap-3 px-4 py-2.5 bg-white border border-gray-300 rounded-lg hover:border-gray-400 transition-colors"
+                    className="w-full flex items-center gap-3 px-4 py-2.5 bg-background border border-border-strong rounded-lg hover:border-border-strong transition-colors"
                   >
                     <span className="text-xl">{selectedCountry.flag}</span>
-                    <span className="text-sm font-medium text-gray-900 flex-1 text-left">
+                    <span className="text-sm font-medium text-foreground flex-1 text-left">
                       {selectedCountry.name}
                     </span>
                     <ChevronDown
                       className={cn(
-                        "w-4 h-4 text-gray-400 transition-transform",
+                        "w-4 h-4 text-muted-foreground transition-transform",
                         isCountryOpen && "rotate-180"
                       )}
                     />
                   </button>
 
                   {isCountryOpen && (
-                    <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-10 max-h-72 overflow-hidden flex flex-col">
-                      <div className="p-2 border-b border-gray-100">
+                    <div className="absolute top-full left-0 right-0 mt-1 bg-background border border-border rounded-lg shadow-sm z-10 max-h-72 overflow-hidden flex flex-col">
+                      <div className="p-2 border-b border-border">
                         <input
                           ref={searchInputRef}
                           type="text"
                           placeholder="Search country..."
                           defaultValue={searchQuery}
-                          className="w-full px-3 py-2 text-sm text-gray-900 bg-white border border-gray-300 rounded-md focus:outline-none focus:border-gray-500 placeholder:text-gray-400"
+                          className="w-full px-3 py-2 text-sm text-foreground bg-background border border-border-strong rounded-md focus:outline-none focus:border-gray-500 placeholder:text-muted-foreground"
                           autoFocus
                         />
                       </div>
@@ -317,22 +326,22 @@ export default function PhoneNumbersPricingPage({ initialCountry }: { initialCou
                         {filteredCountries.map((country, idx) => (
                           <div key={country.code}>
                             {!country.isPriority && idx > 0 && filteredCountries[idx - 1]?.isPriority && (
-                              <div className="border-t border-gray-200 my-1" />
+                              <div className="border-t border-border my-1" />
                             )}
                             <button
                               data-country-code={country.code}
                               className={cn(
-                                "w-full flex items-center gap-2.5 px-4 py-2.5 hover:bg-gray-50 transition-colors text-left",
-                                selectedCode === country.code && "bg-[#323dfe]/5"
+                                "w-full flex items-center gap-2.5 px-4 py-2.5 hover:bg-surface transition-colors text-left",
+                                selectedCode === country.code && "bg-primary/5"
                               )}
                             >
                               <span className="text-xl">{country.flag}</span>
-                              <span className="text-sm text-gray-900">{country.name}</span>
+                              <span className="text-sm text-foreground">{country.name}</span>
                             </button>
                           </div>
                         ))}
                         {filteredCountries.length === 0 && (
-                          <div className="px-4 py-3 text-sm text-gray-500">No countries found</div>
+                          <div className="px-4 py-3 text-sm text-muted-foreground">No countries found</div>
                         )}
                       </div>
                     </div>
@@ -341,7 +350,7 @@ export default function PhoneNumbersPricingPage({ initialCountry }: { initialCou
 
                 {/* Section Navigation */}
                 <nav ref={sectionTabsRef} className="hidden lg:block">
-                  <p className="text-sm font-medium text-gray-700 mb-3">Jump to section</p>
+                  <p className="text-sm font-medium text-foreground/80 mb-3">Jump to section</p>
                   <ul className="space-y-1">
                     {sections.map((section) => (
                       <li key={section.id}>
@@ -350,8 +359,8 @@ export default function PhoneNumbersPricingPage({ initialCountry }: { initialCou
                           className={cn(
                             "w-full text-left px-3 py-2 text-sm transition-colors border-l-2",
                             activeSection === section.id
-                              ? "border-[#323dfe] text-[#323dfe] font-medium"
-                              : "border-transparent text-gray-600 hover:border-gray-300 hover:text-gray-900"
+                              ? "border-primary text-primary font-medium"
+                              : "border-transparent text-muted-foreground hover:border-border-strong hover:text-foreground"
                           )}
                         >
                           {section.label}
@@ -366,7 +375,7 @@ export default function PhoneNumbersPricingPage({ initialCountry }: { initialCou
             {/* Right Content */}
             <div ref={contentRef} className="min-w-0">
               {/* Number Rental Rates */}
-              <div id="number-rental" className="bg-white rounded-xl border border-gray-200 p-6 mb-6">
+              <div id="number-rental" className="bg-background rounded-xl border border-border p-6 mb-6">
                 {pricingLoading ? (
                   <NumberRentalShimmer />
                 ) : hasData && regularNumbers.length > 0 ? (
@@ -378,21 +387,21 @@ export default function PhoneNumbersPricingPage({ initialCountry }: { initialCou
 
               {/* Short Codes */}
               {shortCodes.length > 0 && (
-                <div id="short-codes" className="bg-white rounded-xl border border-gray-200 p-6 mb-6">
+                <div id="short-codes" className="bg-background rounded-xl border border-border p-6 mb-6">
                   <ShortCodesSection shortCodes={shortCodes} note={shortCodeNote} />
                 </div>
               )}
 
               {/* Requirements */}
               {requirements.length > 0 && (
-                <div id="requirements" className="bg-white rounded-xl border border-gray-200 p-6 mb-6">
+                <div id="requirements" className="bg-background rounded-xl border border-border p-6 mb-6">
                   <ComplianceSection requirements={requirements} />
                 </div>
               )}
 
               {/* Calculator */}
               {calcData && (
-                <div id="calculator" className="bg-white rounded-xl border border-gray-200 p-6 mb-6">
+                <div id="calculator" className="bg-background rounded-xl border border-border p-6 mb-6">
                   <CalculatorSection data={calcData} />
                 </div>
               )}
@@ -408,13 +417,13 @@ function NumberRentalShimmer() {
   return (
     <div className="animate-pulse">
       <div className="h-6 bg-gray-200 rounded w-48 mb-2" />
-      <div className="h-4 bg-gray-100 rounded w-64 mb-6" />
+      <div className="h-4 bg-muted rounded w-64 mb-6" />
       <div className="space-y-4">
         {[1, 2, 3].map((i) => (
           <div key={i} className="flex gap-4">
-            <div className="h-4 bg-gray-100 rounded w-1/3" />
-            <div className="h-4 bg-gray-100 rounded w-1/4" />
-            <div className="h-4 bg-gray-100 rounded w-1/4" />
+            <div className="h-4 bg-muted rounded w-1/3" />
+            <div className="h-4 bg-muted rounded w-1/4" />
+            <div className="h-4 bg-muted rounded w-1/4" />
           </div>
         ))}
       </div>
@@ -425,12 +434,12 @@ function NumberRentalShimmer() {
 function NoDataSection() {
   return (
     <div>
-      <h2 className="font-sans text-xl font-semibold text-black mb-2">
+      <h2 className="font-sans text-xl font-semibold text-foreground mb-2">
         Phone Number Rental
       </h2>
-      <p className="text-sm text-gray-500">
+      <p className="text-sm text-muted-foreground">
         Phone number pricing is not available for this country.{" "}
-        <a href="/contact/sales/" className="text-[#323dfe] hover:underline">
+        <a href="/contact/sales/" className="text-primary hover:underline">
           Contact sales
         </a>{" "}
         for details.
@@ -448,44 +457,44 @@ function NumberRentalSection({
 }) {
   return (
     <div>
-      <h2 className="font-sans text-xl font-semibold text-black mb-2">
+      <h2 className="font-sans text-xl font-semibold text-foreground mb-2">
         Phone Number Rental
       </h2>
 
       <div className="overflow-x-auto">
         <table className="w-full table-fixed">
           <thead>
-            <tr className="border-b border-gray-200">
-              <th className="py-3 pr-4 text-left text-sm font-semibold text-black w-[40%]">
+            <tr className="border-b border-border">
+              <th className="py-3 pr-4 text-left text-sm font-semibold text-foreground w-[40%]">
                 Route Type
               </th>
-              <th className="py-3 pr-4 text-left text-sm font-semibold text-black w-[30%]">
+              <th className="py-3 pr-4 text-left text-sm font-semibold text-foreground w-[30%]">
                 Capability
               </th>
-              <th className="py-3 text-left text-sm font-semibold text-black w-[30%]">
+              <th className="py-3 text-left text-sm font-semibold text-foreground w-[30%]">
                 Price
               </th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-gray-100">
+          <tbody className="divide-y divide-border">
             {numbers.map((number) => (
               <tr key={number.type}>
-                <td className="py-3 pr-4 text-sm text-gray-900">
+                <td className="py-3 pr-4 text-sm text-foreground">
                   {number.type}
                 </td>
-                <td className="py-3 text-sm text-gray-600">
+                <td className="py-3 text-sm text-muted-foreground">
                   <div className="flex flex-wrap gap-1.5">
                     {number.capabilities.map((cap) => (
                       <span
                         key={cap}
-                        className="inline-flex px-2 py-0.5 rounded-full text-[11px] font-medium bg-gray-100 text-gray-700"
+                        className="inline-flex px-2 py-0.5 rounded-full text-[11px] font-medium bg-muted text-foreground/80"
                       >
                         {cap}
                       </span>
                     ))}
                   </div>
                 </td>
-                <td className="py-3 pr-4 text-sm font-medium text-black">
+                <td className="py-3 pr-4 text-sm font-medium text-foreground">
                   {number.price}
                 </td>
               </tr>
@@ -510,44 +519,44 @@ function ShortCodesSection({
 }) {
   return (
     <div>
-      <h2 className="font-sans text-xl font-semibold text-black mb-2">
+      <h2 className="font-sans text-xl font-semibold text-foreground mb-2">
         Short codes
       </h2>
 
       <div className="overflow-x-auto">
         <table className="w-full table-fixed">
           <thead>
-            <tr className="border-b border-gray-200">
-              <th className="py-3 pr-4 text-left text-sm font-semibold text-black w-[40%]">
+            <tr className="border-b border-border">
+              <th className="py-3 pr-4 text-left text-sm font-semibold text-foreground w-[40%]">
                 Type
               </th>
-              <th className="py-3 pr-4 text-left text-sm font-semibold text-black w-[30%]">
+              <th className="py-3 pr-4 text-left text-sm font-semibold text-foreground w-[30%]">
                 Capability
               </th>
-              <th className="py-3 text-left text-sm font-semibold text-black w-[30%]">
+              <th className="py-3 text-left text-sm font-semibold text-foreground w-[30%]">
                 Price
               </th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-gray-100">
+          <tbody className="divide-y divide-border">
             {shortCodes.map((shortCode) => (
               <tr key={shortCode.type}>
-                <td className="py-3 pr-4 text-sm text-gray-900">
+                <td className="py-3 pr-4 text-sm text-foreground">
                   {shortCode.type}
                 </td>
-                <td className="py-3 text-sm text-gray-600">
+                <td className="py-3 text-sm text-muted-foreground">
                   <div className="flex flex-wrap gap-1.5">
                     {shortCode.capabilities.map((cap) => (
                       <span
                         key={cap}
-                        className="inline-flex px-2 py-0.5 rounded-full text-[11px] font-medium bg-gray-100 text-gray-700"
+                        className="inline-flex px-2 py-0.5 rounded-full text-[11px] font-medium bg-muted text-foreground/80"
                       >
                         {cap}
                       </span>
                     ))}
                   </div>
                 </td>
-                <td className="py-3 pr-4 text-sm font-medium text-black">
+                <td className="py-3 pr-4 text-sm font-medium text-foreground">
                   {shortCode.price}
                 </td>
               </tr>
@@ -570,29 +579,29 @@ function ComplianceSection({
 }) {
   return (
     <div>
-      <h2 className="font-sans text-xl font-semibold text-black mb-2">
+      <h2 className="font-sans text-xl font-semibold text-foreground mb-2">
         Requirements
       </h2>
 
       <div className="overflow-x-auto">
         <table className="w-full table-fixed">
           <thead>
-            <tr className="border-b border-gray-200">
-              <th className="py-3 pr-4 text-left text-sm font-semibold text-black w-[35%]">
+            <tr className="border-b border-border">
+              <th className="py-3 pr-4 text-left text-sm font-semibold text-foreground w-[35%]">
                 Number Type
               </th>
-              <th className="py-3 text-left text-sm font-semibold text-black w-[65%]">
+              <th className="py-3 text-left text-sm font-semibold text-foreground w-[65%]">
                 Compliance Requirements
               </th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-gray-100">
+          <tbody className="divide-y divide-border">
             {requirements.map((req) => (
               <tr key={req.label}>
-                <td className="py-3 pr-4 text-sm text-gray-900">
+                <td className="py-3 pr-4 text-sm text-foreground">
                   {req.label}
                 </td>
-                <td className="py-3 text-sm text-gray-600">
+                <td className="py-3 text-sm text-muted-foreground">
                   {req.detail}
                 </td>
               </tr>
@@ -661,10 +670,10 @@ function CalculatorSection({
 
   return (
     <div>
-      <h2 className="font-sans text-xl font-semibold text-black mb-2">
+      <h2 className="font-sans text-xl font-semibold text-foreground mb-2">
         Estimate
       </h2>
-      <p className="text-sm text-gray-500 mb-6">
+      <p className="text-sm text-muted-foreground mb-6">
         Select the number types you need to see the estimated monthly rental.
       </p>
 
@@ -679,16 +688,16 @@ function CalculatorSection({
             className={cn(
               "flex items-center gap-2 px-4 py-2 rounded-lg border cursor-pointer select-none transition-colors",
               active[t.key]
-                ? "border-[#323dfe] bg-[#323dfe]/5 text-[#323dfe]"
-                : "border-gray-200 bg-white text-gray-700 hover:border-gray-300"
+                ? "border-primary bg-surface text-foreground/80"
+                : "border-border bg-background text-foreground/80 hover:border-border-strong"
             )}
           >
             <div
               className={cn(
                 "w-4 h-4 rounded border flex items-center justify-center transition-colors",
                 active[t.key]
-                  ? "bg-[#323dfe] border-[#323dfe]"
-                  : "border-gray-300 bg-white"
+                  ? "bg-primary border-primary"
+                  : "border-border-strong bg-background"
               )}
             >
               {active[t.key] && (
@@ -714,10 +723,10 @@ function CalculatorSection({
           active[t.key] ? (
             <div
               key={t.key}
-              className="flex items-center justify-between py-3 border-b border-gray-100"
+              className="flex items-center justify-between py-3 border-b border-border"
             >
-              <span className="text-sm text-gray-700">{t.label} numbers</span>
-              <span className="text-sm font-medium text-black">
+              <span className="text-sm text-foreground/80">{t.label} numbers</span>
+              <span className="text-sm font-medium text-foreground">
                 {currency}{fmt(data[t.key])}/month
               </span>
             </div>
@@ -727,13 +736,13 @@ function CalculatorSection({
 
       {/* Grand total */}
       <div className="flex items-center justify-between pt-4 mt-2">
-        <span className="text-sm font-semibold text-black">Estimated total</span>
+        <span className="text-sm font-semibold text-foreground">Estimated total</span>
         <div className="text-right">
-          <span className="text-lg font-bold text-black">
+          <span className="text-lg font-bold text-foreground">
             {currency}{fmt(grandTotal)}
           </span>
-          <span className="text-sm text-gray-500 ml-1">/month</span>
-          <p className="text-xs text-gray-400 mt-0.5">{currencyLabel}</p>
+          <span className="text-sm text-muted-foreground ml-1">/month</span>
+          <p className="text-xs text-muted-foreground mt-0.5">{currencyLabel}</p>
         </div>
       </div>
     </div>
@@ -748,13 +757,13 @@ function PricingNote({
   className?: string;
 }) {
   return (
-    <p className={cn("rounded-lg bg-gray-50 px-4 py-3 text-xs text-gray-500", className)}>
+    <p className={cn("rounded-lg bg-surface px-4 py-3 text-xs text-muted-foreground", className)}>
       {note.href ? (
         <a
           href={note.href}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-[#323dfe] hover:underline"
+          className="text-primary hover:underline"
         >
           {note.text}
         </a>

@@ -80,14 +80,14 @@ function Section({
   return (
     <section id={id} className="scroll-mt-24">
       <div className="mb-6">
-        <h2 className="font-sora text-[1.75rem] font-medium tracking-[-0.02em] text-black">
+        <h2 className="font-sora text-[1.75rem] font-medium tracking-[-0.02em] text-foreground">
           {title}
         </h2>
         {description && (
-          <p className="mt-2 text-base text-gray-600">{description}</p>
+          <p className="mt-2 text-base text-muted-foreground">{description}</p>
         )}
       </div>
-      <div className="rounded-xl border border-gray-200 bg-white p-8">
+      <div className="rounded-xl border border-border bg-background p-8">
         {children}
       </div>
     </section>
@@ -108,12 +108,12 @@ function CodeBlock({ children }: { children: string }) {
     <div className="group relative mt-4">
       <button
         onClick={handleCopy}
-        className="absolute right-3 top-3 rounded-md border border-gray-200 bg-white p-1.5 text-gray-500 opacity-0 transition-opacity hover:bg-gray-50 hover:text-gray-700 group-hover:opacity-100"
+        className="absolute right-3 top-3 rounded-md border border-border bg-background p-1.5 text-muted-foreground opacity-0 transition-opacity hover:bg-surface hover:text-foreground/80 group-hover:opacity-100"
         title="Copy code"
       >
         {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
       </button>
-      <pre className="overflow-x-auto rounded-lg border border-gray-200 bg-gray-50 p-4 text-sm text-gray-800">
+      <pre className="overflow-x-auto rounded-lg border border-border bg-surface p-4 text-sm text-foreground">
         <code>{children}</code>
       </pre>
     </div>
@@ -154,7 +154,7 @@ function SyntaxCodeBlock({
         const stringMatch = remaining.match(/^(['"`])(?:(?!\1)[^\\]|\\.)*\1/);
         if (stringMatch) {
           tokens.push(
-            <span key={`${lineIndex}-${keyIndex++}`} className="text-green-600">
+            <span key={`${lineIndex}-${keyIndex++}`} className="text-green-600 dark:text-green-300">
               {stringMatch[0]}
             </span>
           );
@@ -167,7 +167,7 @@ function SyntaxCodeBlock({
         const keywordMatch = remaining.match(/^(import|export|from|function|const|let|var|return|if|else|for|while|class|extends|new|this|typeof|instanceof|async|await|try|catch|throw|finally|default|switch|case|break|continue)\b/);
         if (keywordMatch) {
           tokens.push(
-            <span key={`${lineIndex}-${keyIndex++}`} className="text-red-600">
+            <span key={`${lineIndex}-${keyIndex++}`} className="text-red-600 dark:text-red-300">
               {keywordMatch[0]}
             </span>
           );
@@ -180,7 +180,7 @@ function SyntaxCodeBlock({
         const jsxOpenMatch = remaining.match(/^<\/?([a-zA-Z][a-zA-Z0-9]*)/);
         if (jsxOpenMatch) {
           tokens.push(
-            <span key={`${lineIndex}-${keyIndex++}`} className="text-red-600">
+            <span key={`${lineIndex}-${keyIndex++}`} className="text-red-600 dark:text-red-300">
               {jsxOpenMatch[0]}
             </span>
           );
@@ -193,7 +193,7 @@ function SyntaxCodeBlock({
         const jsxCloseMatch = remaining.match(/^(\/>|>)/);
         if (jsxCloseMatch) {
           tokens.push(
-            <span key={`${lineIndex}-${keyIndex++}`} className="text-red-600">
+            <span key={`${lineIndex}-${keyIndex++}`} className="text-red-600 dark:text-red-300">
               {jsxCloseMatch[0]}
             </span>
           );
@@ -207,7 +207,7 @@ function SyntaxCodeBlock({
         if (funcMatch) {
           const isFunction = funcMatch[2] || ['useState', 'useEffect', 'useRef', 'useMemo', 'useCallback', 'setCount', 'onClick', 'onChange'].includes(funcMatch[1]);
           tokens.push(
-            <span key={`${lineIndex}-${keyIndex++}`} className={isFunction ? "text-blue-600" : "text-gray-900"}>
+            <span key={`${lineIndex}-${keyIndex++}`} className={isFunction ? "text-blue-600" : "text-foreground"}>
               {funcMatch[1]}
             </span>
           );
@@ -233,7 +233,7 @@ function SyntaxCodeBlock({
         const commentMatch = remaining.match(/^(\/\/.*|\/\*[\s\S]*?\*\/)/);
         if (commentMatch) {
           tokens.push(
-            <span key={`${lineIndex}-${keyIndex++}`} className="text-gray-400 italic">
+            <span key={`${lineIndex}-${keyIndex++}`} className="text-muted-foreground italic">
               {commentMatch[0]}
             </span>
           );
@@ -245,7 +245,7 @@ function SyntaxCodeBlock({
         // Default: single character
         if (!matched) {
           tokens.push(
-            <span key={`${lineIndex}-${keyIndex++}`} className="text-gray-700">
+            <span key={`${lineIndex}-${keyIndex++}`} className="text-foreground/80">
               {remaining[0]}
             </span>
           );
@@ -262,27 +262,27 @@ function SyntaxCodeBlock({
   };
 
   return (
-    <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm">
+    <div className="overflow-hidden rounded-xl border border-border bg-background shadow-sm">
       {/* Header */}
-      <div className="flex items-center justify-between border-b border-gray-100 px-4 py-3">
+      <div className="flex items-center justify-between border-b border-border px-4 py-3">
         <div className="flex items-center gap-3">
-          <span className="rounded-md bg-gray-100 px-2.5 py-1 text-xs font-medium text-gray-700">
+          <span className="rounded-md bg-muted px-2.5 py-1 text-xs font-medium text-foreground/80">
             {language}
           </span>
           {filename && (
-            <span className="text-sm text-gray-500">{filename}</span>
+            <span className="text-sm text-muted-foreground">{filename}</span>
           )}
         </div>
         <button
           onClick={handleCopy}
-          className="rounded-md p-1.5 text-gray-400 transition-colors hover:bg-gray-100 hover:text-gray-600"
+          className="rounded-md p-1.5 text-muted-foreground transition-colors hover:bg-muted hover:text-muted-foreground"
           title="Copy code"
         >
           {copied ? <Check className="h-4 w-4 text-green-500" /> : <Copy className="h-4 w-4" />}
         </button>
       </div>
       {/* Code */}
-      <div className="overflow-x-auto bg-white p-5">
+      <div className="overflow-x-auto bg-background p-5">
         <pre className="font-mono text-sm">
           <code>{highlightCode(code)}</code>
         </pre>
@@ -301,7 +301,7 @@ function Subsection({
 }) {
   return (
     <div className="space-y-4">
-      <h3 className="text-base font-semibold text-black">{title}</h3>
+      <h3 className="text-base font-semibold text-foreground">{title}</h3>
       {children}
     </div>
   );
@@ -330,8 +330,8 @@ function ColorSwatch({
         <span className="text-xs font-medium">{name}</span>
       </div>
       <div className="mt-2 space-y-0.5">
-        <p className="font-mono text-xs text-gray-700">{value}</p>
-        {cssVar && <p className="font-mono text-xs text-gray-400">{cssVar}</p>}
+        <p className="font-mono text-xs text-foreground/80">{value}</p>
+        {cssVar && <p className="font-mono text-xs text-muted-foreground">{cssVar}</p>}
       </div>
     </div>
   );
@@ -344,15 +344,15 @@ export default function DesignSystem() {
     <div className="container mx-auto max-w-7xl px-4 py-12">
       {/* Page Header */}
       <div className="mb-12">
-        <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-gray-100 px-3 py-1">
-          <span className="text-xs font-medium text-gray-600">
+        <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-muted px-3 py-1">
+          <span className="text-xs font-medium text-muted-foreground">
             Internal Reference
           </span>
         </div>
-        <h1 className="font-sora text-[2.5rem] font-medium leading-[1.1] tracking-[-0.03em] text-black md:text-[3.5rem]">
+        <h1 className="font-sora text-[2.5rem] font-medium leading-[1.1] tracking-[-0.03em] text-foreground md:text-[3.5rem]">
           Design System
         </h1>
-        <p className="mt-4 max-w-2xl text-lg text-gray-600">
+        <p className="mt-4 max-w-2xl text-lg text-muted-foreground">
           A comprehensive guide to building consistent, beautiful pages for
           Plivo. This page documents all available components, patterns, and
           design tokens.
@@ -360,8 +360,8 @@ export default function DesignSystem() {
       </div>
 
       {/* Table of Contents */}
-      <nav className="mb-12 rounded-xl border border-gray-200 bg-gray-50 p-6">
-        <h3 className="mb-4 text-xs font-semibold uppercase tracking-wider text-gray-500">
+      <nav className="mb-12 rounded-xl border border-border bg-surface p-6">
+        <h3 className="mb-4 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
           Quick Navigation
         </h3>
         <div className="grid gap-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5">
@@ -391,7 +391,7 @@ export default function DesignSystem() {
             <a
               key={item.href}
               href={item.href}
-              className="rounded-lg px-3 py-2 text-sm text-gray-600 transition-colors hover:bg-white hover:text-black"
+              className="rounded-lg px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-background hover:text-foreground"
             >
               {item.label}
             </a>
@@ -432,10 +432,10 @@ export default function DesignSystem() {
                     <span className="text-xs font-medium">Gradient</span>
                   </div>
                   <div className="mt-2">
-                    <p className="font-mono text-xs text-gray-700">
+                    <p className="font-mono text-xs text-foreground/80">
                       90deg, #cd3ef9 → #323dfe
                     </p>
-                    <p className="font-mono text-xs text-gray-400">
+                    <p className="font-mono text-xs text-muted-foreground">
                       bg-plivo-gradient
                     </p>
                   </div>
@@ -454,32 +454,32 @@ export default function DesignSystem() {
                 <ColorSwatch
                   name="White"
                   value="#ffffff"
-                  textColor="text-gray-900"
+                  textColor="text-foreground"
                   cssVar="Primary bg"
-                  className="border border-gray-200"
+                  className="border border-border"
                 />
                 <ColorSwatch
                   name="Gray 50"
                   value="#f9fafb"
-                  textColor="text-gray-900"
+                  textColor="text-foreground"
                   cssVar="Section alt"
                 />
                 <ColorSwatch
                   name="Gray 100"
                   value="#f3f4f6"
-                  textColor="text-gray-900"
+                  textColor="text-foreground"
                   cssVar="Cards, inputs"
                 />
                 <ColorSwatch
                   name="Indigo 50"
                   value="#eef2ff"
-                  textColor="text-gray-900"
+                  textColor="text-foreground"
                   cssVar="Feature cards"
                 />
                 <ColorSwatch
                   name="Fuchsia 50"
                   value="#fdf4ff"
-                  textColor="text-gray-900"
+                  textColor="text-foreground"
                   cssVar="Feature cards"
                 />
               </div>
@@ -487,73 +487,73 @@ export default function DesignSystem() {
 
             {/* Mesh Gradients */}
             <Subsection title="Mesh Gradients">
-              <p className="text-sm text-gray-500 mb-4">
-                Use the MeshGradient component for decorative backgrounds. Import from <code className="text-xs bg-gray-100 px-1 py-0.5 rounded">@/components/ui/mesh-gradient</code>
+              <p className="text-sm text-muted-foreground mb-4">
+                Use the MeshGradient component for decorative backgrounds. Import from <code className="text-xs bg-muted px-1 py-0.5 rounded">@/components/ui/mesh-gradient</code>
               </p>
 
               {/* Light Variants */}
-              <p className="text-xs font-medium text-gray-400 uppercase tracking-wider mb-3">Light Variants</p>
+              <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-3">Light Variants</p>
               <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-4 mb-6">
                 <div className="space-y-2">
-                  <div className="relative h-32 overflow-hidden rounded-lg border border-gray-200">
+                  <div className="relative h-32 overflow-hidden rounded-lg border border-border">
                     <MeshGradient variant="default" blur="lg" />
                   </div>
                   <div className="text-sm font-medium">Default</div>
-                  <div className="text-xs text-gray-500 font-mono">variant="default"</div>
+                  <div className="text-xs text-muted-foreground font-mono">variant="default"</div>
                 </div>
                 <div className="space-y-2">
-                  <div className="relative h-32 overflow-hidden rounded-lg border border-gray-200">
+                  <div className="relative h-32 overflow-hidden rounded-lg border border-border">
                     <MeshGradient variant="purple" blur="lg" />
                   </div>
                   <div className="text-sm font-medium">Purple</div>
-                  <div className="text-xs text-gray-500 font-mono">variant="purple"</div>
+                  <div className="text-xs text-muted-foreground font-mono">variant="purple"</div>
                 </div>
                 <div className="space-y-2">
-                  <div className="relative h-32 overflow-hidden rounded-lg border border-gray-200">
+                  <div className="relative h-32 overflow-hidden rounded-lg border border-border">
                     <MeshGradient variant="blue" blur="lg" />
                   </div>
                   <div className="text-sm font-medium">Blue</div>
-                  <div className="text-xs text-gray-500 font-mono">variant="blue"</div>
+                  <div className="text-xs text-muted-foreground font-mono">variant="blue"</div>
                 </div>
                 <div className="space-y-2">
-                  <div className="relative h-32 overflow-hidden rounded-lg border border-gray-200">
+                  <div className="relative h-32 overflow-hidden rounded-lg border border-border">
                     <MeshGradient variant="cyan" blur="lg" />
                   </div>
                   <div className="text-sm font-medium">Cyan</div>
-                  <div className="text-xs text-gray-500 font-mono">variant="cyan"</div>
+                  <div className="text-xs text-muted-foreground font-mono">variant="cyan"</div>
                 </div>
               </div>
 
               {/* Dark Variants */}
-              <p className="text-xs font-medium text-gray-400 uppercase tracking-wider mb-3">Dark Variants</p>
+              <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-3">Dark Variants</p>
               <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-4">
                 <div className="space-y-2">
-                  <div className="relative h-32 overflow-hidden rounded-lg border border-gray-200">
+                  <div className="relative h-32 overflow-hidden rounded-lg border border-border">
                     <MeshGradient variant="dark" blur="lg" />
                   </div>
                   <div className="text-sm font-medium">Dark</div>
-                  <div className="text-xs text-gray-500 font-mono">variant="dark"</div>
+                  <div className="text-xs text-muted-foreground font-mono">variant="dark"</div>
                 </div>
                 <div className="space-y-2">
-                  <div className="relative h-32 overflow-hidden rounded-lg border border-gray-200">
+                  <div className="relative h-32 overflow-hidden rounded-lg border border-border">
                     <MeshGradient variant="darkPurple" blur="lg" />
                   </div>
                   <div className="text-sm font-medium">Dark Purple</div>
-                  <div className="text-xs text-gray-500 font-mono">variant="darkPurple"</div>
+                  <div className="text-xs text-muted-foreground font-mono">variant="darkPurple"</div>
                 </div>
                 <div className="space-y-2">
-                  <div className="relative h-32 overflow-hidden rounded-lg border border-gray-200">
+                  <div className="relative h-32 overflow-hidden rounded-lg border border-border">
                     <MeshGradient variant="darkBlue" blur="lg" />
                   </div>
                   <div className="text-sm font-medium">Dark Blue</div>
-                  <div className="text-xs text-gray-500 font-mono">variant="darkBlue"</div>
+                  <div className="text-xs text-muted-foreground font-mono">variant="darkBlue"</div>
                 </div>
                 <div className="space-y-2">
-                  <div className="relative h-32 overflow-hidden rounded-lg border border-gray-200">
+                  <div className="relative h-32 overflow-hidden rounded-lg border border-border">
                     <MeshGradient variant="darkCyan" blur="lg" />
                   </div>
                   <div className="text-sm font-medium">Dark Cyan</div>
-                  <div className="text-xs text-gray-500 font-mono">variant="darkCyan"</div>
+                  <div className="text-xs text-muted-foreground font-mono">variant="darkCyan"</div>
                 </div>
               </div>
             </Subsection>
@@ -591,30 +591,30 @@ export default function DesignSystem() {
                 <ColorSwatch
                   name="Gray 200"
                   value="#e5e7eb"
-                  textColor="text-gray-900"
+                  textColor="text-foreground"
                   cssVar="Default border"
                 />
                 <ColorSwatch
                   name="Gray 300"
                   value="#d1d5db"
-                  textColor="text-gray-900"
+                  textColor="text-foreground"
                   cssVar="Button border"
                 />
                 <ColorSwatch
                   name="Gray 100"
                   value="#f3f4f6"
-                  textColor="text-gray-900"
+                  textColor="text-foreground"
                   cssVar="Subtle border"
                 />
                 <div className="flex flex-col">
-                  <div className="flex h-20 items-end rounded-lg border border-gray-200 bg-white p-3 text-gray-900">
+                  <div className="flex h-20 items-end rounded-lg border border-border bg-background p-3 text-foreground">
                     <span className="text-xs font-medium">Transparent</span>
                   </div>
                   <div className="mt-2">
-                    <p className="font-mono text-xs text-gray-700">
+                    <p className="font-mono text-xs text-foreground/80">
                       rgba(0,0,0,0.09)
                     </p>
-                    <p className="font-mono text-xs text-gray-400">
+                    <p className="font-mono text-xs text-muted-foreground">
                       Overlay borders
                     </p>
                   </div>
@@ -654,12 +654,12 @@ export default function DesignSystem() {
 }
 
 /* Common usage */
-<div className="bg-white" />           /* Primary background */
-<div className="bg-gray-50" />         /* Section alternate */
-<p className="text-black" />           /* Headlines */
-<p className="text-gray-600" />        /* Body text */
-<p className="text-gray-500" />        /* Muted text */
-<div className="border-gray-200" />    /* Borders */`}
+<div className="bg-background" /> /* Primary background */
+<div className="bg-surface" /> /* Section alternate */
+<p className="text-foreground" /> /* Headlines */
+<p className="text-muted-foreground" /> /* Body text */
+<p className="text-muted-foreground" /> /* Muted text */
+<div className="border-border" /> /* Borders */`}
             </CodeBlock>
           </div>
         </Section>
@@ -676,37 +676,37 @@ export default function DesignSystem() {
             {/* Font Families */}
             <Subsection title="Font Families">
               <div className="grid gap-6 md:grid-cols-2">
-                <div className="rounded-xl border border-gray-200 p-6">
-                  <p className="mb-1 text-xs font-medium uppercase tracking-wider text-gray-400">
+                <div className="rounded-xl border border-border p-6">
+                  <p className="mb-1 text-xs font-medium uppercase tracking-wider text-muted-foreground">
                     Display / Headlines
                   </p>
-                  <p className="font-sora text-3xl font-medium text-black">
+                  <p className="font-sora text-3xl font-medium text-foreground">
                     Sora
                   </p>
-                  <p className="mt-3 font-sora text-sm text-gray-600">
+                  <p className="mt-3 font-sora text-sm text-muted-foreground">
                     ABCDEFGHIJKLMNOPQRSTUVWXYZ
                     <br />
                     abcdefghijklmnopqrstuvwxyz
                     <br />
                     0123456789
                   </p>
-                  <p className="mt-3 font-mono text-xs text-gray-400">
+                  <p className="mt-3 font-mono text-xs text-muted-foreground">
                     font-sora or font-display
                   </p>
                 </div>
-                <div className="rounded-xl border border-gray-200 p-6">
-                  <p className="mb-1 text-xs font-medium uppercase tracking-wider text-gray-400">
+                <div className="rounded-xl border border-border p-6">
+                  <p className="mb-1 text-xs font-medium uppercase tracking-wider text-muted-foreground">
                     Body / UI
                   </p>
-                  <p className="text-3xl font-medium text-black">Inter</p>
-                  <p className="mt-3 text-sm text-gray-600">
+                  <p className="text-3xl font-medium text-foreground">Inter</p>
+                  <p className="mt-3 text-sm text-muted-foreground">
                     ABCDEFGHIJKLMNOPQRSTUVWXYZ
                     <br />
                     abcdefghijklmnopqrstuvwxyz
                     <br />
                     0123456789
                   </p>
-                  <p className="mt-3 font-mono text-xs text-gray-400">
+                  <p className="mt-3 font-mono text-xs text-muted-foreground">
                     Default (font-sans)
                   </p>
                 </div>
@@ -716,60 +716,60 @@ export default function DesignSystem() {
             {/* Heading Scale */}
             <Subsection title="Heading Scale">
               <div className="space-y-8">
-                <div className="border-b border-gray-100 pb-6">
+                <div className="border-b border-border pb-6">
                   <div className="mb-2 flex items-center gap-3">
-                    <span className="rounded bg-gray-100 px-2 py-0.5 text-xs font-medium text-gray-600">
+                    <span className="rounded bg-muted px-2 py-0.5 text-xs font-medium text-muted-foreground">
                       H1
                     </span>
-                    <span className="text-xs text-gray-400">Hero headlines</span>
+                    <span className="text-xs text-muted-foreground">Hero headlines</span>
                   </div>
-                  <h1 className="font-sora text-[2.5rem] font-medium leading-[1.1] tracking-[-0.03em] text-black md:text-[3.5rem]">
+                  <h1 className="font-sora text-[2.5rem] font-medium leading-[1.1] tracking-[-0.03em] text-foreground md:text-[3.5rem]">
                     Build human-like voice AI
                   </h1>
                 </div>
-                <div className="border-b border-gray-100 pb-6">
+                <div className="border-b border-border pb-6">
                   <div className="mb-2 flex items-center gap-3">
-                    <span className="rounded bg-gray-100 px-2 py-0.5 text-xs font-medium text-gray-600">
+                    <span className="rounded bg-muted px-2 py-0.5 text-xs font-medium text-muted-foreground">
                       H2
                     </span>
-                    <span className="text-xs text-gray-400">
+                    <span className="text-xs text-muted-foreground">
                       Section headlines
                     </span>
                   </div>
-                  <h2 className="font-sora text-[2rem] font-medium leading-[1.25] tracking-[-0.02em] text-black md:text-[2.5rem]">
+                  <h2 className="font-sora text-[2rem] font-medium leading-[1.25] tracking-[-0.02em] text-foreground md:text-[2.5rem]">
                     Why Plivo's agents are human-like
                   </h2>
                 </div>
-                <div className="border-b border-gray-100 pb-6">
+                <div className="border-b border-border pb-6">
                   <div className="mb-2 flex items-center gap-3">
-                    <span className="rounded bg-gray-100 px-2 py-0.5 text-xs font-medium text-gray-600">
+                    <span className="rounded bg-muted px-2 py-0.5 text-xs font-medium text-muted-foreground">
                       H3
                     </span>
-                    <span className="text-xs text-gray-400">Card titles</span>
+                    <span className="text-xs text-muted-foreground">Card titles</span>
                   </div>
-                  <h3 className="text-2xl font-semibold text-black">
+                  <h3 className="text-2xl font-semibold text-foreground">
                     No-code Voice AI platform
                   </h3>
                 </div>
-                <div className="border-b border-gray-100 pb-6">
+                <div className="border-b border-border pb-6">
                   <div className="mb-2 flex items-center gap-3">
-                    <span className="rounded bg-gray-100 px-2 py-0.5 text-xs font-medium text-gray-600">
+                    <span className="rounded bg-muted px-2 py-0.5 text-xs font-medium text-muted-foreground">
                       H4
                     </span>
-                    <span className="text-xs text-gray-400">Subsections</span>
+                    <span className="text-xs text-muted-foreground">Subsections</span>
                   </div>
-                  <h4 className="text-lg font-semibold text-black">
+                  <h4 className="text-lg font-semibold text-foreground">
                     Feature title here
                   </h4>
                 </div>
                 <div>
                   <div className="mb-2 flex items-center gap-3">
-                    <span className="rounded bg-gray-100 px-2 py-0.5 text-xs font-medium text-gray-600">
+                    <span className="rounded bg-muted px-2 py-0.5 text-xs font-medium text-muted-foreground">
                       H5
                     </span>
-                    <span className="text-xs text-gray-400">Small headings</span>
+                    <span className="text-xs text-muted-foreground">Small headings</span>
                   </div>
-                  <h5 className="text-base font-semibold text-black">
+                  <h5 className="text-base font-semibold text-foreground">
                     Small section heading
                   </h5>
                 </div>
@@ -780,40 +780,40 @@ export default function DesignSystem() {
             <Subsection title="Body Text">
               <div className="space-y-6">
                 <div className="flex items-start gap-6">
-                  <span className="w-20 shrink-0 text-xs text-gray-400">
+                  <span className="w-20 shrink-0 text-xs text-muted-foreground">
                     Large
                   </span>
-                  <p className="text-lg text-gray-600 md:text-xl">
+                  <p className="text-lg text-muted-foreground md:text-xl">
                     From no-code builders for teams to flexible APIs for
                     developers, deploy voice agents that actually sound human.
                   </p>
                 </div>
                 <Separator />
                 <div className="flex items-start gap-6">
-                  <span className="w-20 shrink-0 text-xs text-gray-400">
+                  <span className="w-20 shrink-0 text-xs text-muted-foreground">
                     Base
                   </span>
-                  <p className="text-base text-gray-600">
+                  <p className="text-base text-muted-foreground">
                     Build, deploy, and scale voice agents without writing a
                     single line of code. Perfect for SMBs who want results, fast.
                   </p>
                 </div>
                 <Separator />
                 <div className="flex items-start gap-6">
-                  <span className="w-20 shrink-0 text-xs text-gray-400">
+                  <span className="w-20 shrink-0 text-xs text-muted-foreground">
                     Small
                   </span>
-                  <p className="text-sm text-gray-600">
+                  <p className="text-sm text-muted-foreground">
                     Get $10 in free credits. No credit card required. Deploy your
                     first agent in minutes.
                   </p>
                 </div>
                 <Separator />
                 <div className="flex items-start gap-6">
-                  <span className="w-20 shrink-0 text-xs text-gray-400">
+                  <span className="w-20 shrink-0 text-xs text-muted-foreground">
                     Caption
                   </span>
-                  <p className="text-xs text-gray-500">
+                  <p className="text-xs text-muted-foreground">
                     *Terms and conditions apply. Free credits expire after 30
                     days.
                   </p>
@@ -824,47 +824,45 @@ export default function DesignSystem() {
             {/* Font Weights */}
             <Subsection title="Font Weights">
               <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-4">
-                <div className="rounded-lg border border-gray-200 p-4">
-                  <p className="text-2xl font-normal text-black">Normal</p>
-                  <p className="mt-1 text-xs text-gray-400">font-normal (400)</p>
+                <div className="rounded-lg border border-border p-4">
+                  <p className="text-2xl font-normal text-foreground">Normal</p>
+                  <p className="mt-1 text-xs text-muted-foreground">font-normal (400)</p>
                 </div>
-                <div className="rounded-lg border border-gray-200 p-4">
-                  <p className="text-2xl font-medium text-black">Medium</p>
-                  <p className="mt-1 text-xs text-gray-400">font-medium (500)</p>
+                <div className="rounded-lg border border-border p-4">
+                  <p className="text-2xl font-medium text-foreground">Medium</p>
+                  <p className="mt-1 text-xs text-muted-foreground">font-medium (500)</p>
                 </div>
-                <div className="rounded-lg border border-gray-200 p-4">
-                  <p className="text-2xl font-semibold text-black">Semibold</p>
-                  <p className="mt-1 text-xs text-gray-400">
+                <div className="rounded-lg border border-border p-4">
+                  <p className="text-2xl font-semibold text-foreground">Semibold</p>
+                  <p className="mt-1 text-xs text-muted-foreground">
                     font-semibold (600)
                   </p>
                 </div>
-                <div className="rounded-lg border border-gray-200 p-4">
-                  <p className="text-2xl font-bold text-black">Bold</p>
-                  <p className="mt-1 text-xs text-gray-400">font-bold (700)</p>
+                <div className="rounded-lg border border-border p-4">
+                  <p className="text-2xl font-bold text-foreground">Bold</p>
+                  <p className="mt-1 text-xs text-muted-foreground">font-bold (700)</p>
                 </div>
               </div>
             </Subsection>
 
             <CodeBlock>
               {`/* H1 - Hero */
-<h1 className="font-sora text-[2.5rem] md:text-[3.5rem] lg:text-[4rem]
-  font-medium leading-[1.1] tracking-[-0.03em] text-black">
+<h1 className="font-sora text-[2.5rem] md:text-[3.5rem] lg:text-[4rem] font-medium leading-[1.1] tracking-[-0.03em] text-foreground">
 
 /* H2 - Section */
-<h2 className="font-sora text-[2rem] md:text-[2.5rem] md:text-[3rem]
-  font-medium leading-[1.25] tracking-[-0.02em] text-black">
+<h2 className="font-sora text-[2rem] md:text-[2.5rem] md:text-[3rem] font-medium leading-[1.25] tracking-[-0.02em] text-foreground">
 
 /* H3 - Card title */
-<h3 className="text-2xl font-semibold text-black">
+<h3 className="text-2xl font-semibold text-foreground">
 
 /* Body large */
-<p className="text-lg md:text-xl text-gray-600">
+<p className="text-lg md:text-xl text-muted-foreground">
 
 /* Body base */
-<p className="text-base text-gray-600">
+<p className="text-base text-muted-foreground">
 
 /* Body small */
-<p className="text-sm text-gray-500">`}
+<p className="text-sm text-muted-foreground">`}
             </CodeBlock>
           </div>
         </Section>
@@ -883,27 +881,25 @@ export default function DesignSystem() {
               <div className="flex flex-wrap items-center gap-4">
                 <a
                   href="#"
-                  className="inline-flex items-center justify-center rounded-lg bg-black px-6 py-3 text-base font-medium text-white transition-colors cta-hover-gradient"
+                  className="inline-flex items-center justify-center rounded-lg bg-foreground px-6 py-3 text-base font-medium text-background transition-colors cta-hover-gradient"
                 >
                   Start for Free
                 </a>
                 <a
                   href="#"
-                  className="inline-flex items-center justify-center gap-2 rounded-lg bg-black px-6 py-3 text-base font-medium text-white transition-colors cta-hover-gradient"
+                  className="inline-flex items-center justify-center gap-2 rounded-lg bg-foreground px-6 py-3 text-base font-medium text-background transition-colors cta-hover-gradient"
                 >
                   Learn More <ArrowRight className="h-4 w-4" />
                 </a>
                 <a
                   href="#"
-                  className="inline-flex cursor-not-allowed items-center justify-center rounded-lg bg-gray-300 px-6 py-3 text-base font-medium text-gray-500"
+                  className="inline-flex cursor-not-allowed items-center justify-center rounded-lg bg-gray-300 px-6 py-3 text-base font-medium text-muted-foreground"
                 >
                   Disabled
                 </a>
               </div>
               <CodeBlock>
-                {`<a className="inline-flex items-center justify-center rounded-lg
-  bg-black px-6 py-3 text-base font-medium text-white
-  transition-colors cta-hover-gradient">
+                {`<a className="inline-flex items-center justify-center rounded-lg bg-foreground px-6 py-3 text-base font-medium text-background transition-colors cta-hover-gradient">
   Start for Free
 </a>`}
               </CodeBlock>
@@ -914,27 +910,25 @@ export default function DesignSystem() {
               <div className="flex flex-wrap items-center gap-4">
                 <a
                   href="#"
-                  className="inline-flex items-center justify-center rounded-lg border border-gray-300 bg-white px-6 py-3 text-base font-medium text-black transition-colors hover:bg-gray-50"
+                  className="inline-flex items-center justify-center rounded-lg border border-border-strong bg-background px-6 py-3 text-base font-medium text-foreground transition-colors hover:bg-surface"
                 >
                   Talk to Sales
                 </a>
                 <a
                   href="#"
-                  className="inline-flex items-center justify-center gap-2 rounded-lg border border-gray-300 bg-white px-6 py-3 text-base font-medium text-black transition-colors hover:bg-gray-50"
+                  className="inline-flex items-center justify-center gap-2 rounded-lg border border-border-strong bg-background px-6 py-3 text-base font-medium text-foreground transition-colors hover:bg-surface"
                 >
                   Contact Us <ArrowRight className="h-4 w-4" />
                 </a>
                 <a
                   href="#"
-                  className="inline-flex cursor-not-allowed items-center justify-center rounded-lg border border-gray-200 bg-white px-6 py-3 text-base font-medium text-gray-400"
+                  className="inline-flex cursor-not-allowed items-center justify-center rounded-lg border border-border bg-background px-6 py-3 text-base font-medium text-muted-foreground"
                 >
                   Disabled
                 </a>
               </div>
               <CodeBlock>
-                {`<a className="inline-flex items-center justify-center rounded-lg
-  border border-gray-300 bg-white px-6 py-3 text-base font-medium text-black
-  transition-colors hover:bg-gray-50">
+                {`<a className="inline-flex items-center justify-center rounded-lg border border-border-strong bg-background px-6 py-3 text-base font-medium text-foreground transition-colors hover:bg-surface">
   Talk to Sales
 </a>`}
               </CodeBlock>
@@ -967,25 +961,25 @@ hover: translateY(-2px) + box-shadow: 0 0 30px rgba(205, 62, 249, 0.4);`}
               <div className="flex flex-wrap items-end gap-4">
                 <div className="text-center">
                   <Button size="sm">Small</Button>
-                  <p className="mt-2 text-xs text-gray-400">size="sm"</p>
+                  <p className="mt-2 text-xs text-muted-foreground">size="sm"</p>
                 </div>
                 <div className="text-center">
                   <Button size="default">Default</Button>
-                  <p className="mt-2 text-xs text-gray-400">size="default"</p>
+                  <p className="mt-2 text-xs text-muted-foreground">size="default"</p>
                 </div>
                 <div className="text-center">
                   <Button size="lg">Large</Button>
-                  <p className="mt-2 text-xs text-gray-400">size="lg"</p>
+                  <p className="mt-2 text-xs text-muted-foreground">size="lg"</p>
                 </div>
                 <div className="text-center">
                   <Button size="xl">Extra Large</Button>
-                  <p className="mt-2 text-xs text-gray-400">size="xl"</p>
+                  <p className="mt-2 text-xs text-muted-foreground">size="xl"</p>
                 </div>
                 <div className="text-center">
                   <Button size="icon">
                     <Search className="h-4 w-4" />
                   </Button>
-                  <p className="mt-2 text-xs text-gray-400">size="icon"</p>
+                  <p className="mt-2 text-xs text-muted-foreground">size="icon"</p>
                 </div>
               </div>
             </Subsection>
@@ -1026,23 +1020,23 @@ hover: translateY(-2px) + box-shadow: 0 0 30px rgba(205, 62, 249, 0.4);`}
 
             {/* Dual CTA Pattern */}
             <Subsection title="Dual CTA Pattern (Hero Sections)">
-              <div className="rounded-xl border border-gray-200 bg-gray-50 p-6">
+              <div className="rounded-xl border border-border bg-surface p-6">
                 <div className="flex flex-col justify-center gap-4 sm:flex-row">
                   <a
                     href="#"
-                    className="inline-flex items-center justify-center rounded-lg border border-gray-300 bg-white px-6 py-3 text-base font-medium text-black transition-colors hover:bg-gray-50"
+                    className="inline-flex items-center justify-center rounded-lg border border-border-strong bg-background px-6 py-3 text-base font-medium text-foreground transition-colors hover:bg-surface"
                   >
                     Talk to Sales
                   </a>
                   <a
                     href="#"
-                    className="inline-flex items-center justify-center rounded-lg bg-black px-6 py-3 text-base font-medium text-white transition-colors cta-hover-gradient"
+                    className="inline-flex items-center justify-center rounded-lg bg-foreground px-6 py-3 text-base font-medium text-background transition-colors cta-hover-gradient"
                   >
                     Start for Free
                   </a>
                 </div>
               </div>
-              <p className="mt-3 text-sm text-gray-500">
+              <p className="mt-3 text-sm text-muted-foreground">
                 Always use both CTAs together in hero sections. Secondary first,
                 primary second.
               </p>
@@ -1063,33 +1057,33 @@ hover: translateY(-2px) + box-shadow: 0 0 30px rgba(205, 62, 249, 0.4);`}
             <Subsection title="Text Inputs">
               <div className="grid gap-6 md:grid-cols-2">
                 <div>
-                  <label className="mb-2 block text-sm font-medium text-gray-700">
+                  <label className="mb-2 block text-sm font-medium text-foreground/80">
                     Default Input
                   </label>
-                  <Input placeholder="Enter your email" className="bg-white border-gray-300 text-gray-900 placeholder:text-gray-400" />
+                  <Input placeholder="Enter your email" className="bg-background border-border-strong text-foreground placeholder:text-muted-foreground" />
                 </div>
                 <div>
-                  <label className="mb-2 block text-sm font-medium text-gray-700">
+                  <label className="mb-2 block text-sm font-medium text-foreground/80">
                     With Left Icon
                   </label>
                   <Input
                     placeholder="Search..."
-                    leftIcon={<Search className="h-4 w-4 text-gray-400" />}
-                    className="bg-white border-gray-300 text-gray-900 placeholder:text-gray-400"
+                    leftIcon={<Search className="h-4 w-4 text-muted-foreground" />}
+                    className="bg-background border-border-strong text-foreground placeholder:text-muted-foreground"
                   />
                 </div>
                 <div>
-                  <label className="mb-2 block text-sm font-medium text-gray-700">
+                  <label className="mb-2 block text-sm font-medium text-foreground/80">
                     With Right Icon
                   </label>
                   <Input
                     placeholder="Enter email"
-                    rightIcon={<Mail className="h-4 w-4 text-gray-400" />}
-                    className="bg-white border-gray-300 text-gray-900 placeholder:text-gray-400"
+                    rightIcon={<Mail className="h-4 w-4 text-muted-foreground" />}
+                    className="bg-background border-border-strong text-foreground placeholder:text-muted-foreground"
                   />
                 </div>
                 <div>
-                  <label className="mb-2 block text-sm font-medium text-gray-700">
+                  <label className="mb-2 block text-sm font-medium text-foreground/80">
                     Clearable
                   </label>
                   <Input
@@ -1098,20 +1092,20 @@ hover: translateY(-2px) + box-shadow: 0 0 30px rgba(205, 62, 249, 0.4);`}
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
                     onClear={() => setInputValue("")}
-                    className="bg-white border-gray-300 text-gray-900 placeholder:text-gray-400"
+                    className="bg-background border-border-strong text-foreground placeholder:text-muted-foreground"
                   />
                 </div>
                 <div>
-                  <label className="mb-2 block text-sm font-medium text-gray-700">
+                  <label className="mb-2 block text-sm font-medium text-foreground/80">
                     Password
                   </label>
-                  <Input type="password" placeholder="Enter password" className="bg-white border-gray-300 text-gray-900 placeholder:text-gray-400" />
+                  <Input type="password" placeholder="Enter password" className="bg-background border-border-strong text-foreground placeholder:text-muted-foreground" />
                 </div>
                 <div>
-                  <label className="mb-2 block text-sm font-medium text-gray-700">
+                  <label className="mb-2 block text-sm font-medium text-foreground/80">
                     Error State
                   </label>
-                  <Input placeholder="Invalid input" error className="bg-white text-gray-900 placeholder:text-gray-400" />
+                  <Input placeholder="Invalid input" error className="bg-background text-foreground placeholder:text-muted-foreground" />
                   <p className="mt-1 text-sm text-red-500">
                     This field is required
                   </p>
@@ -1121,13 +1115,13 @@ hover: translateY(-2px) + box-shadow: 0 0 30px rgba(205, 62, 249, 0.4);`}
                 {`/* Light mode input styling */
 <Input
   placeholder="Enter text..."
-  className="bg-white border-gray-300 text-gray-900 placeholder:text-gray-400"
+  className="bg-background border-border-strong text-foreground placeholder:text-muted-foreground"
 />
 
 /* With icons */
 <Input
-  leftIcon={<Search className="h-4 w-4 text-gray-400" />}
-  className="bg-white border-gray-300 text-gray-900"
+  leftIcon={<Search className="h-4 w-4 text-muted-foreground" />}
+  className="bg-background border-border-strong text-foreground"
 />`}
               </CodeBlock>
             </Subsection>
@@ -1136,28 +1130,28 @@ hover: translateY(-2px) + box-shadow: 0 0 30px rgba(205, 62, 249, 0.4);`}
             <Subsection title="Input Sizes">
               <div className="grid gap-4 md:grid-cols-4">
                 <div>
-                  <label className="mb-2 block text-xs text-gray-500">
+                  <label className="mb-2 block text-xs text-muted-foreground">
                     Small
                   </label>
-                  <Input size="sm" placeholder="Small" className="bg-white border-gray-300 text-gray-900 placeholder:text-gray-400" />
+                  <Input size="sm" placeholder="Small" className="bg-background border-border-strong text-foreground placeholder:text-muted-foreground" />
                 </div>
                 <div>
-                  <label className="mb-2 block text-xs text-gray-500">
+                  <label className="mb-2 block text-xs text-muted-foreground">
                     Default
                   </label>
-                  <Input size="default" placeholder="Default" className="bg-white border-gray-300 text-gray-900 placeholder:text-gray-400" />
+                  <Input size="default" placeholder="Default" className="bg-background border-border-strong text-foreground placeholder:text-muted-foreground" />
                 </div>
                 <div>
-                  <label className="mb-2 block text-xs text-gray-500">
+                  <label className="mb-2 block text-xs text-muted-foreground">
                     Large
                   </label>
-                  <Input size="lg" placeholder="Large" className="bg-white border-gray-300 text-gray-900 placeholder:text-gray-400" />
+                  <Input size="lg" placeholder="Large" className="bg-background border-border-strong text-foreground placeholder:text-muted-foreground" />
                 </div>
                 <div>
-                  <label className="mb-2 block text-xs text-gray-500">
+                  <label className="mb-2 block text-xs text-muted-foreground">
                     Extra Large
                   </label>
-                  <Input size="xl" placeholder="Extra Large" className="bg-white border-gray-300 text-gray-900 placeholder:text-gray-400" />
+                  <Input size="xl" placeholder="Extra Large" className="bg-background border-border-strong text-foreground placeholder:text-muted-foreground" />
                 </div>
               </div>
             </Subsection>
@@ -1166,16 +1160,16 @@ hover: translateY(-2px) + box-shadow: 0 0 30px rgba(205, 62, 249, 0.4);`}
             <Subsection title="Textarea">
               <div className="grid gap-6 md:grid-cols-2">
                 <div>
-                  <label className="mb-2 block text-sm font-medium text-gray-700">
+                  <label className="mb-2 block text-sm font-medium text-foreground/80">
                     Default
                   </label>
-                  <Textarea placeholder="Enter your message..." className="bg-white border-gray-300 text-gray-900 placeholder:text-gray-400" />
+                  <Textarea placeholder="Enter your message..." className="bg-background border-border-strong text-foreground placeholder:text-muted-foreground" />
                 </div>
                 <div>
-                  <label className="mb-2 block text-sm font-medium text-gray-700">
+                  <label className="mb-2 block text-sm font-medium text-foreground/80">
                     With Clearable
                   </label>
-                  <Textarea placeholder="Type here..." clearable className="bg-white border-gray-300 text-gray-900 placeholder:text-gray-400" />
+                  <Textarea placeholder="Type here..." clearable className="bg-background border-border-strong text-foreground placeholder:text-muted-foreground" />
                 </div>
               </div>
             </Subsection>
@@ -1184,33 +1178,33 @@ hover: translateY(-2px) + box-shadow: 0 0 30px rgba(205, 62, 249, 0.4);`}
             <Subsection title="Select">
               <div className="grid gap-6 md:grid-cols-2">
                 <div>
-                  <label className="mb-2 block text-sm font-medium text-gray-700">
+                  <label className="mb-2 block text-sm font-medium text-foreground/80">
                     Default Select
                   </label>
                   <Select>
-                    <SelectTrigger className="bg-white border-gray-300 text-gray-900">
+                    <SelectTrigger className="bg-background border-border-strong text-foreground">
                       <SelectValue placeholder="Select an option" />
                     </SelectTrigger>
-                    <SelectContent className="bg-white border-gray-200">
-                      <SelectItem value="voice" className="text-gray-900">Voice</SelectItem>
-                      <SelectItem value="sms" className="text-gray-900">SMS</SelectItem>
-                      <SelectItem value="whatsapp" className="text-gray-900">WhatsApp</SelectItem>
+                    <SelectContent className="bg-background border-border">
+                      <SelectItem value="voice" className="text-foreground">Voice</SelectItem>
+                      <SelectItem value="sms" className="text-foreground">SMS</SelectItem>
+                      <SelectItem value="whatsapp" className="text-foreground">WhatsApp</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
                 <div>
-                  <label className="mb-2 block text-sm font-medium text-gray-700">
+                  <label className="mb-2 block text-sm font-medium text-foreground/80">
                     With Icon
                   </label>
                   <Select>
-                    <SelectTrigger icon={Phone} className="bg-white border-gray-300 text-gray-900">
+                    <SelectTrigger icon={Phone} className="bg-background border-border-strong text-foreground">
                       <SelectValue placeholder="Select channel" />
                     </SelectTrigger>
-                    <SelectContent className="bg-white border-gray-200">
-                      <SelectItem value="voice" icon={Phone} className="text-gray-900">
+                    <SelectContent className="bg-background border-border">
+                      <SelectItem value="voice" icon={Phone} className="text-foreground">
                         Voice
                       </SelectItem>
-                      <SelectItem value="sms" icon={MessageSquare} className="text-gray-900">
+                      <SelectItem value="sms" icon={MessageSquare} className="text-foreground">
                         SMS
                       </SelectItem>
                     </SelectContent>
@@ -1223,13 +1217,13 @@ hover: translateY(-2px) + box-shadow: 0 0 30px rgba(205, 62, 249, 0.4);`}
             <Subsection title="Checkbox & Switch">
               <div className="grid gap-8 md:grid-cols-2">
                 <div className="space-y-4">
-                  <p className="text-sm font-medium text-gray-700">Checkboxes</p>
+                  <p className="text-sm font-medium text-foreground/80">Checkboxes</p>
                   <div className="space-y-3">
                     <div className="flex items-center gap-3">
                       <Checkbox id="check1" />
                       <label
                         htmlFor="check1"
-                        className="text-sm text-gray-700"
+                        className="text-sm text-foreground/80"
                       >
                         Accept terms and conditions
                       </label>
@@ -1238,16 +1232,16 @@ hover: translateY(-2px) + box-shadow: 0 0 30px rgba(205, 62, 249, 0.4);`}
                       <Checkbox id="check2" defaultChecked />
                       <label
                         htmlFor="check2"
-                        className="text-sm text-gray-700"
+                        className="text-sm text-foreground/80"
                       >
                         Subscribe to newsletter
                       </label>
                     </div>
                     <div className="flex items-center gap-3">
-                      <Checkbox id="check3" disabled className="border-gray-300" />
+                      <Checkbox id="check3" disabled className="border-border-strong" />
                       <label
                         htmlFor="check3"
-                        className="text-sm text-gray-400"
+                        className="text-sm text-muted-foreground"
                       >
                         Disabled option
                       </label>
@@ -1255,13 +1249,13 @@ hover: translateY(-2px) + box-shadow: 0 0 30px rgba(205, 62, 249, 0.4);`}
                   </div>
                 </div>
                 <div className="space-y-4">
-                  <p className="text-sm font-medium text-gray-700">Switches</p>
+                  <p className="text-sm font-medium text-foreground/80">Switches</p>
                   <div className="space-y-3">
                     <div className="flex items-center gap-3">
                       <Switch id="switch1" />
                       <label
                         htmlFor="switch1"
-                        className="text-sm text-gray-700"
+                        className="text-sm text-foreground/80"
                       >
                         Enable notifications
                       </label>
@@ -1270,7 +1264,7 @@ hover: translateY(-2px) + box-shadow: 0 0 30px rgba(205, 62, 249, 0.4);`}
                       <Switch id="switch2" defaultChecked />
                       <label
                         htmlFor="switch2"
-                        className="text-sm text-gray-700"
+                        className="text-sm text-foreground/80"
                       >
                         Active switch
                       </label>
@@ -1279,7 +1273,7 @@ hover: translateY(-2px) + box-shadow: 0 0 30px rgba(205, 62, 249, 0.4);`}
                       <Switch id="switch3" disabled />
                       <label
                         htmlFor="switch3"
-                        className="text-sm text-gray-400"
+                        className="text-sm text-muted-foreground"
                       >
                         Disabled
                       </label>
@@ -1301,20 +1295,20 @@ hover: translateY(-2px) + box-shadow: 0 0 30px rgba(205, 62, 249, 0.4);`}
             {/* Form Labels */}
             <Subsection title="Form Labels & Helper Text">
               <div className="max-w-md space-y-1">
-                <label className="block text-sm font-medium text-gray-700">
+                <label className="block text-sm font-medium text-foreground/80">
                   Email Address <span className="text-red-500">*</span>
                 </label>
-                <Input placeholder="you@company.com" className="bg-white border-gray-300 text-gray-900 placeholder:text-gray-400" />
-                <p className="text-xs text-gray-500">
+                <Input placeholder="you@company.com" className="bg-background border-border-strong text-foreground placeholder:text-muted-foreground" />
+                <p className="text-xs text-muted-foreground">
                   We'll never share your email with anyone else.
                 </p>
               </div>
               <CodeBlock>
-                {`<label className="block text-sm font-medium text-gray-700">
+                {`<label className="block text-sm font-medium text-foreground/80">
   Email Address <span className="text-red-500">*</span>
 </label>
 <Input placeholder="you@company.com" />
-<p className="text-xs text-gray-500">Helper text here</p>`}
+<p className="text-xs text-muted-foreground">Helper text here</p>`}
               </CodeBlock>
             </Subsection>
           </div>
@@ -1334,15 +1328,15 @@ hover: translateY(-2px) + box-shadow: 0 0 30px rgba(205, 62, 249, 0.4);`}
               <div className="grid gap-6 md:grid-cols-2">
                 <div className="overflow-hidden rounded-2xl bg-gradient-to-b from-indigo-100 via-indigo-50 via-60% to-neutral-50">
                   <div className="flex h-40 items-center justify-center bg-gradient-to-b from-indigo-100/50 to-transparent">
-                    <div className="rounded-xl bg-white p-4 shadow-lg">
+                    <div className="rounded-xl bg-background p-4 shadow-sm">
                       <Sparkles className="h-8 w-8 text-indigo-500" />
                     </div>
                   </div>
                   <div className="p-8">
-                    <h3 className="mb-2 text-xl font-semibold text-black">
+                    <h3 className="mb-2 text-xl font-semibold text-foreground">
                       No-code Voice AI
                     </h3>
-                    <p className="mb-4 text-sm text-gray-600">
+                    <p className="mb-4 text-sm text-muted-foreground">
                       Build, deploy, and scale voice agents without code.
                     </p>
                     <div className="mb-6 flex flex-wrap gap-3">
@@ -1351,7 +1345,7 @@ hover: translateY(-2px) + box-shadow: 0 0 30px rgba(205, 62, 249, 0.4);`}
                           className="h-4 w-4 text-blue-600"
                           strokeWidth={3}
                         />
-                        <span className="text-sm text-gray-700">
+                        <span className="text-sm text-foreground/80">
                           Plain English
                         </span>
                       </div>
@@ -1360,27 +1354,27 @@ hover: translateY(-2px) + box-shadow: 0 0 30px rgba(205, 62, 249, 0.4);`}
                           className="h-4 w-4 text-blue-600"
                           strokeWidth={3}
                         />
-                        <span className="text-sm text-gray-700">
+                        <span className="text-sm text-foreground/80">
                           Drag & drop
                         </span>
                       </div>
                     </div>
-                    <button className="rounded-lg bg-black px-4 py-2 text-sm font-medium text-white cta-hover-gradient">
+                    <button className="rounded-lg bg-foreground px-4 py-2 text-sm font-medium text-background cta-hover-gradient">
                       Try Builder
                     </button>
                   </div>
                 </div>
                 <div className="overflow-hidden rounded-2xl bg-gradient-to-b from-fuchsia-100 via-fuchsia-50 via-60% to-neutral-50">
                   <div className="flex h-40 items-center justify-center bg-gradient-to-b from-fuchsia-100/50 to-transparent">
-                    <div className="rounded-xl bg-white p-4 shadow-lg">
+                    <div className="rounded-xl bg-background p-4 shadow-sm">
                       <Zap className="h-8 w-8 text-fuchsia-500" />
                     </div>
                   </div>
                   <div className="p-8">
-                    <h3 className="mb-2 text-xl font-semibold text-black">
+                    <h3 className="mb-2 text-xl font-semibold text-foreground">
                       Modular Infrastructure
                     </h3>
-                    <p className="mb-4 text-sm text-gray-600">
+                    <p className="mb-4 text-sm text-muted-foreground">
                       Pick and choose voice AI components you need.
                     </p>
                     <div className="mb-6 flex flex-wrap gap-3">
@@ -1389,7 +1383,7 @@ hover: translateY(-2px) + box-shadow: 0 0 30px rgba(205, 62, 249, 0.4);`}
                           className="h-4 w-4 text-blue-600"
                           strokeWidth={3}
                         />
-                        <span className="text-sm text-gray-700">
+                        <span className="text-sm text-foreground/80">
                           Bring your LLM
                         </span>
                       </div>
@@ -1398,12 +1392,12 @@ hover: translateY(-2px) + box-shadow: 0 0 30px rgba(205, 62, 249, 0.4);`}
                           className="h-4 w-4 text-blue-600"
                           strokeWidth={3}
                         />
-                        <span className="text-sm text-gray-700">
+                        <span className="text-sm text-foreground/80">
                           Full control
                         </span>
                       </div>
                     </div>
-                    <button className="rounded-lg bg-black px-4 py-2 text-sm font-medium text-white cta-hover-gradient">
+                    <button className="rounded-lg bg-foreground px-4 py-2 text-sm font-medium text-background cta-hover-gradient">
                       Explore API
                     </button>
                   </div>
@@ -1414,48 +1408,48 @@ hover: translateY(-2px) + box-shadow: 0 0 30px rgba(205, 62, 249, 0.4);`}
             {/* Info Card */}
             <Subsection title="Info Card (Gray Background)">
               <div className="grid gap-6 md:grid-cols-2">
-                <div className="overflow-hidden rounded-2xl bg-gray-50">
+                <div className="overflow-hidden rounded-2xl bg-surface">
                   <div className="flex h-40 items-center justify-center">
                     <Globe className="h-16 w-16 text-gray-300" />
                   </div>
                   <div className="p-8">
-                    <h3 className="mb-3 text-xl font-semibold text-black">
+                    <h3 className="mb-3 text-xl font-semibold text-foreground">
                       &lt; 500ms latency
                     </h3>
                     <ul className="grid grid-cols-2 gap-2">
                       <li className="flex items-center gap-2">
-                        <Check className="h-4 w-4 text-[#323dfe]" />
-                        <span className="text-sm text-gray-600">
+                        <Check className="h-4 w-4 text-primary" />
+                        <span className="text-sm text-muted-foreground">
                           One-hop routing
                         </span>
                       </li>
                       <li className="flex items-center gap-2">
-                        <Check className="h-4 w-4 text-[#323dfe]" />
-                        <span className="text-sm text-gray-600">
+                        <Check className="h-4 w-4 text-primary" />
+                        <span className="text-sm text-muted-foreground">
                           Real-time
                         </span>
                       </li>
                     </ul>
                   </div>
                 </div>
-                <div className="overflow-hidden rounded-2xl bg-gray-50">
+                <div className="overflow-hidden rounded-2xl bg-surface">
                   <div className="flex h-40 items-center justify-center">
                     <Shield className="h-16 w-16 text-gray-300" />
                   </div>
                   <div className="p-8">
-                    <h3 className="mb-3 text-xl font-semibold text-black">
+                    <h3 className="mb-3 text-xl font-semibold text-foreground">
                       Enterprise Security
                     </h3>
                     <ul className="grid grid-cols-2 gap-2">
                       <li className="flex items-center gap-2">
-                        <Check className="h-4 w-4 text-[#323dfe]" />
-                        <span className="text-sm text-gray-600">
+                        <Check className="h-4 w-4 text-primary" />
+                        <span className="text-sm text-muted-foreground">
                           SOC 2 Type II
                         </span>
                       </li>
                       <li className="flex items-center gap-2">
-                        <Check className="h-4 w-4 text-[#323dfe]" />
-                        <span className="text-sm text-gray-600">HIPAA</span>
+                        <Check className="h-4 w-4 text-primary" />
+                        <span className="text-sm text-muted-foreground">HIPAA</span>
                       </li>
                     </ul>
                   </div>
@@ -1472,7 +1466,7 @@ hover: translateY(-2px) + box-shadow: 0 0 30px rgba(205, 62, 249, 0.4);`}
                     <CardDescription>Card with default styling</CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-sm text-gray-600">Content goes here.</p>
+                    <p className="text-sm text-muted-foreground">Content goes here.</p>
                   </CardContent>
                   <CardFooter>
                     <Button size="sm">Action</Button>
@@ -1484,7 +1478,7 @@ hover: translateY(-2px) + box-shadow: 0 0 30px rgba(205, 62, 249, 0.4);`}
                     <CardDescription>With outline variant</CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-sm text-gray-600">
+                    <p className="text-sm text-muted-foreground">
                       Different border style.
                     </p>
                   </CardContent>
@@ -1495,7 +1489,7 @@ hover: translateY(-2px) + box-shadow: 0 0 30px rgba(205, 62, 249, 0.4);`}
                     <CardDescription>Minimal styling</CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-sm text-gray-600">No visible border.</p>
+                    <p className="text-sm text-muted-foreground">No visible border.</p>
                   </CardContent>
                 </Card>
               </div>
@@ -1512,12 +1506,12 @@ hover: translateY(-2px) + box-shadow: 0 0 30px rgba(205, 62, 249, 0.4);`}
                 ].map((stat) => (
                   <div
                     key={stat.label}
-                    className="rounded-xl border border-gray-200 bg-white p-6"
+                    className="rounded-xl border border-border bg-background p-6"
                   >
-                    <div className="text-3xl font-semibold text-black">
+                    <div className="text-3xl font-semibold text-foreground">
                       {stat.value}
                     </div>
-                    <div className="mt-1 text-sm text-gray-500">
+                    <div className="mt-1 text-sm text-muted-foreground">
                       {stat.label}
                     </div>
                   </div>
@@ -1533,11 +1527,52 @@ hover: translateY(-2px) + box-shadow: 0 0 30px rgba(205, 62, 249, 0.4);`}
         <Section
           id="badges"
           title="Badges & Pills"
-          description="Labels, tags, status indicators, and channel pills."
+          description="One pill system across the whole site. Built on four utilities defined in global.css: .pill, .pill-mono, .pill-accent, .pill-active. Update global.css and every pill changes."
         >
           <div className="space-y-10">
-            {/* shadcn Badges */}
-            <Subsection title="Badge Variants">
+            {/* Canonical pill specimens */}
+            <Subsection title="Pill System (.pill / .pill-mono / .pill-accent / .pill-active)">
+              <div className="space-y-4">
+                <div>
+                  <div className="font-mono-ui mb-2 text-[10px] uppercase tracking-[0.1em] text-muted-foreground">.pill — default tag</div>
+                  <div className="flex flex-wrap gap-2">
+                    <span className="pill">English</span>
+                    <span className="pill">Customer support</span>
+                    <span className="pill">Real-time</span>
+                    <span className="pill">Hindi</span>
+                  </div>
+                </div>
+                <div>
+                  <div className="font-mono-ui mb-2 text-[10px] uppercase tracking-[0.1em] text-muted-foreground">.pill-mono — metadata / version</div>
+                  <div className="flex flex-wrap gap-2">
+                    <span className="pill-mono">v2.14</span>
+                    <span className="pill-mono">en-US</span>
+                    <span className="pill-mono">stt</span>
+                    <span className="pill-mono">&lt; 300 ms</span>
+                  </div>
+                </div>
+                <div>
+                  <div className="font-mono-ui mb-2 text-[10px] uppercase tracking-[0.1em] text-muted-foreground">.pill-accent — reply chip / soft highlight</div>
+                  <div className="flex flex-wrap gap-2">
+                    <span className="pill-accent">Serums</span>
+                    <span className="pill-accent">Gift Sets</span>
+                    <span className="pill-accent">Moisturizers</span>
+                    <span className="pill-accent">View deals</span>
+                  </div>
+                </div>
+                <div>
+                  <div className="font-mono-ui mb-2 text-[10px] uppercase tracking-[0.1em] text-muted-foreground">.pill-active — on / live / active</div>
+                  <div className="flex flex-wrap gap-2">
+                    <span className="pill-active">LIVE</span>
+                    <span className="pill-active">ON</span>
+                    <span className="pill-active">Approved</span>
+                  </div>
+                </div>
+              </div>
+            </Subsection>
+
+            {/* shadcn Badges — still available for specific cases */}
+            <Subsection title="Badge Variants (shadcn)">
               <div className="flex flex-wrap gap-3">
                 <Badge>Default</Badge>
                 <Badge variant="secondary">Secondary</Badge>
@@ -1548,27 +1583,27 @@ hover: translateY(-2px) + box-shadow: 0 0 30px rgba(205, 62, 249, 0.4);`}
 
             {/* Channel Pills */}
             <Subsection title="Channel Pills (Hero)">
-              <div className="inline-flex items-center gap-1 rounded-full bg-gray-100 px-3 py-1.5">
-                <span className="mr-1 text-xs font-medium text-gray-500">
+              <div className="inline-flex items-center gap-1 rounded-full bg-muted px-3 py-1.5">
+                <span className="mr-1 text-xs font-medium text-muted-foreground">
                   Available on
                 </span>
                 <a
                   href="#"
-                  className="inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs font-medium text-gray-600 transition-colors hover:bg-gray-200"
+                  className="inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs font-medium text-muted-foreground transition-colors hover:bg-gray-200"
                 >
                   <Phone className="h-3 w-3" />
                   Voice
                 </a>
                 <a
                   href="#"
-                  className="inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs font-medium text-gray-600 transition-colors hover:bg-gray-200"
+                  className="inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs font-medium text-muted-foreground transition-colors hover:bg-gray-200"
                 >
                   <MessageSquare className="h-3 w-3" />
                   Chat
                 </a>
                 <a
                   href="#"
-                  className="inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs font-medium text-gray-600 transition-colors hover:bg-gray-200"
+                  className="inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs font-medium text-muted-foreground transition-colors hover:bg-gray-200"
                 >
                   <MessageSquare className="h-3 w-3" />
                   SMS
@@ -1579,16 +1614,16 @@ hover: translateY(-2px) + box-shadow: 0 0 30px rgba(205, 62, 249, 0.4);`}
             {/* Tag Pills */}
             <Subsection title="Tag Pills">
               <div className="flex flex-wrap gap-2">
-                <span className="rounded-full border border-gray-200 bg-gray-50 px-2.5 py-0.5 text-xs text-gray-600">
+                <span className="rounded-full border border-border bg-surface px-2.5 py-0.5 text-xs text-muted-foreground">
                   English
                 </span>
-                <span className="rounded-full border border-gray-200 bg-gray-50 px-2.5 py-0.5 text-xs text-gray-600">
+                <span className="rounded-full border border-border bg-surface px-2.5 py-0.5 text-xs text-muted-foreground">
                   Customer Support
                 </span>
-                <span className="rounded-full border border-gray-200 bg-gray-50 px-2.5 py-0.5 text-xs text-gray-600">
+                <span className="rounded-full border border-border bg-surface px-2.5 py-0.5 text-xs text-muted-foreground">
                   Hindi
                 </span>
-                <span className="rounded-full border border-gray-200 bg-gray-50 px-2.5 py-0.5 text-xs text-gray-600">
+                <span className="rounded-full border border-border bg-surface px-2.5 py-0.5 text-xs text-muted-foreground">
                   Real-time
                 </span>
               </div>
@@ -1597,21 +1632,21 @@ hover: translateY(-2px) + box-shadow: 0 0 30px rgba(205, 62, 249, 0.4);`}
             {/* Status Indicators */}
             <Subsection title="Status Indicators">
               <div className="flex flex-wrap gap-4">
-                <div className="flex items-center gap-2 rounded-full border border-gray-200 bg-white px-3 py-1.5 shadow-sm">
+                <div className="flex items-center gap-2 rounded-full border border-border bg-background px-3 py-1.5 shadow-sm">
                   <span className="h-2 w-2 animate-pulse rounded-full bg-green-500" />
-                  <span className="text-sm font-medium text-gray-900">Online</span>
+                  <span className="text-sm font-medium text-foreground">Online</span>
                 </div>
-                <div className="flex items-center gap-2 rounded-full border border-gray-200 bg-white px-3 py-1.5 shadow-sm">
+                <div className="flex items-center gap-2 rounded-full border border-border bg-background px-3 py-1.5 shadow-sm">
                   <span className="h-2 w-2 rounded-full bg-yellow-500" />
-                  <span className="text-sm font-medium text-gray-900">Processing</span>
+                  <span className="text-sm font-medium text-foreground">Processing</span>
                 </div>
-                <div className="flex items-center gap-2 rounded-full border border-gray-200 bg-white px-3 py-1.5 shadow-sm">
+                <div className="flex items-center gap-2 rounded-full border border-border bg-background px-3 py-1.5 shadow-sm">
                   <span className="h-2 w-2 rounded-full bg-red-500" />
-                  <span className="text-sm font-medium text-gray-900">Offline</span>
+                  <span className="text-sm font-medium text-foreground">Offline</span>
                 </div>
-                <div className="flex items-center gap-2 rounded-full border border-gray-200 bg-white px-3 py-1.5 shadow-sm">
+                <div className="flex items-center gap-2 rounded-full border border-border bg-background px-3 py-1.5 shadow-sm">
                   <span className="h-2 w-2 rounded-full bg-gray-400" />
-                  <span className="text-sm font-medium text-gray-900">Unknown</span>
+                  <span className="text-sm font-medium text-foreground">Unknown</span>
                 </div>
               </div>
             </Subsection>
@@ -1622,7 +1657,7 @@ hover: translateY(-2px) + box-shadow: 0 0 30px rgba(205, 62, 249, 0.4);`}
                 <span className="inline-flex items-center gap-1 rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700">
                   <Zap className="h-3 w-3" /> New
                 </span>
-                <span className="inline-flex items-center gap-1 rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700">
+                <span className="inline-flex items-center gap-1 rounded-md bg-green-50 dark:bg-green-900/30 px-2 py-1 text-xs font-medium text-green-700 dark:text-green-300">
                   <Check className="h-3 w-3" /> Verified
                 </span>
                 <span className="inline-flex items-center gap-1 rounded-md bg-purple-50 px-2 py-1 text-xs font-medium text-purple-700">
@@ -1652,37 +1687,37 @@ hover: translateY(-2px) + box-shadow: 0 0 30px rgba(205, 62, 249, 0.4);`}
                   <Avatar size="xs">
                     <AvatarFallback>XS</AvatarFallback>
                   </Avatar>
-                  <p className="mt-2 text-xs text-gray-400">xs</p>
+                  <p className="mt-2 text-xs text-muted-foreground">xs</p>
                 </div>
                 <div className="text-center">
                   <Avatar size="sm">
                     <AvatarFallback>SM</AvatarFallback>
                   </Avatar>
-                  <p className="mt-2 text-xs text-gray-400">sm</p>
+                  <p className="mt-2 text-xs text-muted-foreground">sm</p>
                 </div>
                 <div className="text-center">
                   <Avatar size="md">
                     <AvatarFallback>MD</AvatarFallback>
                   </Avatar>
-                  <p className="mt-2 text-xs text-gray-400">md</p>
+                  <p className="mt-2 text-xs text-muted-foreground">md</p>
                 </div>
                 <div className="text-center">
                   <Avatar size="lg">
                     <AvatarFallback>LG</AvatarFallback>
                   </Avatar>
-                  <p className="mt-2 text-xs text-gray-400">lg</p>
+                  <p className="mt-2 text-xs text-muted-foreground">lg</p>
                 </div>
                 <div className="text-center">
                   <Avatar size="xl">
                     <AvatarFallback>XL</AvatarFallback>
                   </Avatar>
-                  <p className="mt-2 text-xs text-gray-400">xl</p>
+                  <p className="mt-2 text-xs text-muted-foreground">xl</p>
                 </div>
                 <div className="text-center">
                   <Avatar size="2xl">
                     <AvatarFallback>2X</AvatarFallback>
                   </Avatar>
-                  <p className="mt-2 text-xs text-gray-400">2xl</p>
+                  <p className="mt-2 text-xs text-muted-foreground">2xl</p>
                 </div>
               </div>
             </Subsection>
@@ -1725,28 +1760,28 @@ hover: translateY(-2px) + box-shadow: 0 0 30px rgba(205, 62, 249, 0.4);`}
         {/* ============================================ */}
         <Section id="tabs" title="Tabs" description="Tab navigation component.">
           <Tabs defaultValue="voice" className="w-full">
-            <TabsList className="bg-gray-100">
-              <TabsTrigger value="voice" className="text-gray-600 data-[state=active]:bg-white data-[state=active]:text-gray-900">Voice</TabsTrigger>
-              <TabsTrigger value="sms" className="text-gray-600 data-[state=active]:bg-white data-[state=active]:text-gray-900">SMS</TabsTrigger>
-              <TabsTrigger value="whatsapp" className="text-gray-600 data-[state=active]:bg-white data-[state=active]:text-gray-900">WhatsApp</TabsTrigger>
+            <TabsList className="bg-muted">
+              <TabsTrigger value="voice" className="text-muted-foreground data-[state=active]:bg-background data-[state=active]:text-foreground">Voice</TabsTrigger>
+              <TabsTrigger value="sms" className="text-muted-foreground data-[state=active]:bg-background data-[state=active]:text-foreground">SMS</TabsTrigger>
+              <TabsTrigger value="whatsapp" className="text-muted-foreground data-[state=active]:bg-background data-[state=active]:text-foreground">WhatsApp</TabsTrigger>
             </TabsList>
             <TabsContent value="voice" className="mt-4">
-              <div className="rounded-lg border border-gray-200 bg-gray-50 p-4">
-                <p className="text-sm text-gray-600">
+              <div className="rounded-lg border border-border bg-surface p-4">
+                <p className="text-sm text-muted-foreground">
                   Voice AI agents that sound human with &lt;500ms latency.
                 </p>
               </div>
             </TabsContent>
             <TabsContent value="sms" className="mt-4">
-              <div className="rounded-lg border border-gray-200 bg-gray-50 p-4">
-                <p className="text-sm text-gray-600">
+              <div className="rounded-lg border border-border bg-surface p-4">
+                <p className="text-sm text-muted-foreground">
                   Global SMS coverage in 190+ countries.
                 </p>
               </div>
             </TabsContent>
             <TabsContent value="whatsapp" className="mt-4">
-              <div className="rounded-lg border border-gray-200 bg-gray-50 p-4">
-                <p className="text-sm text-gray-600">
+              <div className="rounded-lg border border-border bg-surface p-4">
+                <p className="text-sm text-muted-foreground">
                   Reach 2B+ WhatsApp users worldwide.
                 </p>
               </div>
@@ -1754,10 +1789,10 @@ hover: translateY(-2px) + box-shadow: 0 0 30px rgba(205, 62, 249, 0.4);`}
           </Tabs>
           <CodeBlock>
             {`<Tabs defaultValue="voice">
-  <TabsList className="bg-gray-100">
+  <TabsList className="bg-muted">
     <TabsTrigger
       value="voice"
-      className="text-gray-600 data-[state=active]:bg-white data-[state=active]:text-gray-900"
+      className="text-muted-foreground data-[state=active]:bg-background data-[state=active]:text-foreground"
     >
       Voice
     </TabsTrigger>
@@ -1776,29 +1811,29 @@ hover: translateY(-2px) + box-shadow: 0 0 30px rgba(205, 62, 249, 0.4);`}
           description="Collapsible content sections for FAQs."
         >
           <Accordion type="single" collapsible className="w-full">
-            <AccordionItem value="item-1" className="border-gray-200">
-              <AccordionTrigger className="text-gray-900 hover:text-[#323dfe] hover:no-underline">
+            <AccordionItem value="item-1" className="border-border">
+              <AccordionTrigger className="text-foreground hover:text-primary hover:no-underline">
                 What is Plivo?
               </AccordionTrigger>
-              <AccordionContent className="text-gray-600">
+              <AccordionContent className="text-muted-foreground">
                 Plivo is a cloud communications platform that enables businesses
                 to build voice and messaging applications using APIs.
               </AccordionContent>
             </AccordionItem>
-            <AccordionItem value="item-2" className="border-gray-200">
-              <AccordionTrigger className="text-gray-900 hover:text-[#323dfe] hover:no-underline">
+            <AccordionItem value="item-2" className="border-border">
+              <AccordionTrigger className="text-foreground hover:text-primary hover:no-underline">
                 How does pricing work?
               </AccordionTrigger>
-              <AccordionContent className="text-gray-600">
+              <AccordionContent className="text-muted-foreground">
                 Plivo offers pay-as-you-go pricing with no minimum commitments.
                 You only pay for what you use.
               </AccordionContent>
             </AccordionItem>
-            <AccordionItem value="item-3" className="border-gray-200">
-              <AccordionTrigger className="text-gray-900 hover:text-[#323dfe] hover:no-underline">
+            <AccordionItem value="item-3" className="border-border">
+              <AccordionTrigger className="text-foreground hover:text-primary hover:no-underline">
                 Do you offer a free trial?
               </AccordionTrigger>
-              <AccordionContent className="text-gray-600">
+              <AccordionContent className="text-muted-foreground">
                 Yes! Sign up and get $10 in free credits. No credit card
                 required.
               </AccordionContent>
@@ -1806,11 +1841,11 @@ hover: translateY(-2px) + box-shadow: 0 0 30px rgba(205, 62, 249, 0.4);`}
           </Accordion>
           <CodeBlock>
             {`<Accordion type="single" collapsible>
-  <AccordionItem value="item-1" className="border-gray-200">
-    <AccordionTrigger className="text-gray-900 hover:text-[#323dfe]">
+  <AccordionItem value="item-1" className="border-border">
+    <AccordionTrigger className="text-foreground hover:text-primary">
       Question here?
     </AccordionTrigger>
-    <AccordionContent className="text-gray-600">
+    <AccordionContent className="text-muted-foreground">
       Answer here.
     </AccordionContent>
   </AccordionItem>
@@ -1829,33 +1864,33 @@ hover: translateY(-2px) + box-shadow: 0 0 30px rgba(205, 62, 249, 0.4);`}
           <div className="overflow-x-auto">
             <table className="w-full text-left text-sm">
               <thead>
-                <tr className="border-b border-gray-200">
-                  <th className="pb-3 font-semibold text-gray-900">Feature</th>
-                  <th className="pb-3 font-semibold text-gray-900">Starter</th>
-                  <th className="pb-3 font-semibold text-gray-900">Pro</th>
-                  <th className="pb-3 font-semibold text-gray-900">
+                <tr className="border-b border-border">
+                  <th className="pb-3 font-semibold text-foreground">Feature</th>
+                  <th className="pb-3 font-semibold text-foreground">Starter</th>
+                  <th className="pb-3 font-semibold text-foreground">Pro</th>
+                  <th className="pb-3 font-semibold text-foreground">
                     Enterprise
                   </th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-100">
+              <tbody className="divide-y divide-border">
                 <tr>
-                  <td className="py-3 text-gray-600">Voice minutes</td>
-                  <td className="py-3 text-gray-900">1,000</td>
-                  <td className="py-3 text-gray-900">10,000</td>
-                  <td className="py-3 text-gray-900">Unlimited</td>
+                  <td className="py-3 text-muted-foreground">Voice minutes</td>
+                  <td className="py-3 text-foreground">1,000</td>
+                  <td className="py-3 text-foreground">10,000</td>
+                  <td className="py-3 text-foreground">Unlimited</td>
                 </tr>
                 <tr>
-                  <td className="py-3 text-gray-600">AI Agents</td>
-                  <td className="py-3 text-gray-900">1</td>
-                  <td className="py-3 text-gray-900">5</td>
-                  <td className="py-3 text-gray-900">Unlimited</td>
+                  <td className="py-3 text-muted-foreground">AI Agents</td>
+                  <td className="py-3 text-foreground">1</td>
+                  <td className="py-3 text-foreground">5</td>
+                  <td className="py-3 text-foreground">Unlimited</td>
                 </tr>
                 <tr>
-                  <td className="py-3 text-gray-600">Support</td>
-                  <td className="py-3 text-gray-900">Email</td>
-                  <td className="py-3 text-gray-900">Priority</td>
-                  <td className="py-3 text-gray-900">Dedicated</td>
+                  <td className="py-3 text-muted-foreground">Support</td>
+                  <td className="py-3 text-foreground">Email</td>
+                  <td className="py-3 text-foreground">Priority</td>
+                  <td className="py-3 text-foreground">Dedicated</td>
                 </tr>
               </tbody>
             </table>
@@ -1863,13 +1898,13 @@ hover: translateY(-2px) + box-shadow: 0 0 30px rgba(205, 62, 249, 0.4);`}
           <CodeBlock>
             {`<table className="w-full text-left text-sm">
   <thead>
-    <tr className="border-b border-gray-200">
-      <th className="pb-3 font-semibold text-gray-900">Header</th>
+    <tr className="border-b border-border">
+      <th className="pb-3 font-semibold text-foreground">Header</th>
     </tr>
   </thead>
-  <tbody className="divide-y divide-gray-100">
+  <tbody className="divide-y divide-border">
     <tr>
-      <td className="py-3 text-gray-600">Cell</td>
+      <td className="py-3 text-muted-foreground">Cell</td>
     </tr>
   </tbody>
 </table>`}
@@ -1887,28 +1922,28 @@ hover: translateY(-2px) + box-shadow: 0 0 30px rgba(205, 62, 249, 0.4);`}
           <div className="grid gap-8 md:grid-cols-2">
             {/* Check List */}
             <div>
-              <h4 className="mb-4 text-sm font-semibold text-gray-900">
+              <h4 className="mb-4 text-sm font-semibold text-foreground">
                 Check List
               </h4>
               <ul className="space-y-2">
                 {["Feature one", "Feature two", "Feature three"].map((item) => (
                   <li key={item} className="flex items-center gap-2">
-                    <Check className="h-4 w-4 text-[#323dfe]" />
-                    <span className="text-sm text-gray-600">{item}</span>
+                    <Check className="h-4 w-4 text-primary" />
+                    <span className="text-sm text-muted-foreground">{item}</span>
                   </li>
                 ))}
               </ul>
             </div>
             {/* Check List Bold */}
             <div>
-              <h4 className="mb-4 text-sm font-semibold text-gray-900">
+              <h4 className="mb-4 text-sm font-semibold text-foreground">
                 Check List (Bold)
               </h4>
               <ul className="space-y-2">
                 {["Feature one", "Feature two", "Feature three"].map((item) => (
                   <li key={item} className="flex items-center gap-2">
                     <Check className="h-4 w-4 text-blue-600" strokeWidth={3} />
-                    <span className="text-sm font-medium text-gray-700">
+                    <span className="text-sm font-medium text-foreground/80">
                       {item}
                     </span>
                   </li>
@@ -1917,7 +1952,7 @@ hover: translateY(-2px) + box-shadow: 0 0 30px rgba(205, 62, 249, 0.4);`}
             </div>
             {/* Grid Check List */}
             <div className="md:col-span-2">
-              <h4 className="mb-4 text-sm font-semibold text-gray-900">
+              <h4 className="mb-4 text-sm font-semibold text-foreground">
                 Grid Check List
               </h4>
               <ul className="grid grid-cols-2 gap-x-6 gap-y-2 md:grid-cols-4">
@@ -1932,8 +1967,8 @@ hover: translateY(-2px) + box-shadow: 0 0 30px rgba(205, 62, 249, 0.4);`}
                   "Silence detection",
                 ].map((item) => (
                   <li key={item} className="flex items-center gap-2">
-                    <Check className="h-4 w-4 flex-shrink-0 text-[#323dfe]" />
-                    <span className="text-sm text-gray-600">{item}</span>
+                    <Check className="h-4 w-4 flex-shrink-0 text-primary" />
+                    <span className="text-sm text-muted-foreground">{item}</span>
                   </li>
                 ))}
               </ul>
@@ -1951,36 +1986,36 @@ hover: translateY(-2px) + box-shadow: 0 0 30px rgba(205, 62, 249, 0.4);`}
         >
           <div className="space-y-6">
             <div className="flex flex-wrap items-center gap-6">
-              <a href="#" className="text-sm text-gray-600 hover:text-gray-900">
+              <a href="#" className="text-sm text-muted-foreground hover:text-foreground">
                 Default Link
               </a>
               <a
                 href="#"
-                className="text-sm text-[#323dfe] hover:text-[#2832cc] hover:underline"
+                className="text-sm text-primary hover:text-primary hover:underline"
               >
                 Plivo Blue Link
               </a>
               <a
                 href="#"
-                className="inline-flex items-center gap-1 text-sm text-[#323dfe] hover:text-[#2832cc]"
+                className="inline-flex items-center gap-1 text-sm text-primary hover:text-primary"
               >
                 With Arrow <ChevronRight className="h-4 w-4" />
               </a>
               <a
                 href="#"
-                className="inline-flex items-center gap-1 text-sm text-[#323dfe] hover:text-[#2832cc]"
+                className="inline-flex items-center gap-1 text-sm text-primary hover:text-primary"
               >
                 External <ExternalLink className="h-3 w-3" />
               </a>
             </div>
-            <div className="rounded-lg bg-gray-50 p-4">
-              <p className="text-sm text-gray-600">
+            <div className="rounded-lg bg-surface p-4">
+              <p className="text-sm text-muted-foreground">
                 Inline link example: Learn more about our{" "}
-                <a href="#" className="text-[#323dfe] hover:underline">
+                <a href="#" className="text-primary hover:underline">
                   pricing plans
                 </a>{" "}
                 or{" "}
-                <a href="#" className="text-[#323dfe] hover:underline">
+                <a href="#" className="text-primary hover:underline">
                   contact sales
                 </a>{" "}
                 for enterprise options.
@@ -1988,12 +2023,12 @@ hover: translateY(-2px) + box-shadow: 0 0 30px rgba(205, 62, 249, 0.4);`}
             </div>
             <CodeBlock>
               {`/* Plivo Blue links */
-<a className="text-[#323dfe] hover:text-[#2832cc] hover:underline">
+<a className="text-primary hover:text-primary hover:underline">
   Link text
 </a>
 
 /* With icon */
-<a className="inline-flex items-center gap-1 text-[#323dfe]">
+<a className="inline-flex items-center gap-1 text-primary">
   Link <ChevronRight className="h-4 w-4" />
 </a>`}
             </CodeBlock>
@@ -2018,29 +2053,29 @@ hover: translateY(-2px) + box-shadow: 0 0 30px rgba(205, 62, 249, 0.4);`}
                 </p>
               </div>
             </div>
-            <div className="flex items-start gap-3 rounded-lg border border-green-200 bg-green-50 p-4">
-              <CheckCircle className="mt-0.5 h-5 w-5 flex-shrink-0 text-green-600" />
+            <div className="flex items-start gap-3 rounded-lg border border-green-200 dark:border-green-900/50 bg-green-50 dark:bg-green-900/30 p-4">
+              <CheckCircle className="mt-0.5 h-5 w-5 flex-shrink-0 text-green-600 dark:text-green-300" />
               <div>
                 <p className="font-medium text-green-900">Success</p>
-                <p className="text-sm text-green-700">
+                <p className="text-sm text-green-700 dark:text-green-300">
                   Your action was completed successfully.
                 </p>
               </div>
             </div>
-            <div className="flex items-start gap-3 rounded-lg border border-yellow-200 bg-yellow-50 p-4">
-              <AlertCircle className="mt-0.5 h-5 w-5 flex-shrink-0 text-yellow-600" />
+            <div className="flex items-start gap-3 rounded-lg border border-yellow-200 dark:border-yellow-900/50 bg-yellow-50 dark:bg-yellow-900/30 p-4">
+              <AlertCircle className="mt-0.5 h-5 w-5 flex-shrink-0 text-yellow-600 dark:text-yellow-300" />
               <div>
                 <p className="font-medium text-yellow-900">Warning</p>
-                <p className="text-sm text-yellow-700">
+                <p className="text-sm text-yellow-700 dark:text-yellow-300">
                   Please review before proceeding.
                 </p>
               </div>
             </div>
-            <div className="flex items-start gap-3 rounded-lg border border-red-200 bg-red-50 p-4">
-              <X className="mt-0.5 h-5 w-5 flex-shrink-0 text-red-600" />
+            <div className="flex items-start gap-3 rounded-lg border border-red-200 dark:border-red-900/50 bg-red-50 dark:bg-red-900/30 p-4">
+              <X className="mt-0.5 h-5 w-5 flex-shrink-0 text-red-600 dark:text-red-300" />
               <div>
                 <p className="font-medium text-red-900">Error</p>
-                <p className="text-sm text-red-700">
+                <p className="text-sm text-red-700 dark:text-red-300">
                   Something went wrong. Please try again.
                 </p>
               </div>
@@ -2058,19 +2093,19 @@ hover: translateY(-2px) + box-shadow: 0 0 30px rgba(205, 62, 249, 0.4);`}
         >
           <div className="space-y-8">
             <div>
-              <p className="mb-4 text-sm text-gray-500">Horizontal</p>
+              <p className="mb-4 text-sm text-muted-foreground">Horizontal</p>
               <Separator />
             </div>
             <div>
-              <p className="mb-4 text-sm text-gray-500">With Text</p>
+              <p className="mb-4 text-sm text-muted-foreground">With Text</p>
               <div className="flex items-center gap-4">
                 <Separator className="flex-1" />
-                <span className="text-sm text-gray-400">OR</span>
+                <span className="text-sm text-muted-foreground">OR</span>
                 <Separator className="flex-1" />
               </div>
             </div>
             <div>
-              <p className="mb-4 text-sm text-gray-500">Vertical</p>
+              <p className="mb-4 text-sm text-muted-foreground">Vertical</p>
               <div className="flex h-8 items-center gap-4">
                 <span className="text-sm">Item 1</span>
                 <Separator orientation="vertical" />
@@ -2091,21 +2126,21 @@ hover: translateY(-2px) + box-shadow: 0 0 30px rgba(205, 62, 249, 0.4);`}
           description="Elevation levels for cards and components."
         >
           <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-4">
-            <div className="rounded-lg border border-gray-100 bg-white p-6 shadow-sm">
-              <p className="font-medium text-gray-900">shadow-sm</p>
-              <p className="mt-1 text-xs text-gray-500">Subtle</p>
+            <div className="rounded-lg border border-border bg-background p-6 shadow-sm">
+              <p className="font-medium text-foreground">shadow-sm</p>
+              <p className="mt-1 text-xs text-muted-foreground">Subtle</p>
             </div>
-            <div className="rounded-lg border border-gray-100 bg-white p-6 shadow-md">
-              <p className="font-medium text-gray-900">shadow-md</p>
-              <p className="mt-1 text-xs text-gray-500">Default cards</p>
+            <div className="rounded-lg border border-border bg-background p-6 shadow-sm">
+              <p className="font-medium text-foreground">shadow-sm</p>
+              <p className="mt-1 text-xs text-muted-foreground">Default cards</p>
             </div>
-            <div className="rounded-lg border border-gray-100 bg-white p-6 shadow-lg">
-              <p className="font-medium text-gray-900">shadow-lg</p>
-              <p className="mt-1 text-xs text-gray-500">Hover states</p>
+            <div className="rounded-lg border border-border bg-background p-6 shadow-sm">
+              <p className="font-medium text-foreground">shadow-sm</p>
+              <p className="mt-1 text-xs text-muted-foreground">Hover states</p>
             </div>
-            <div className="rounded-lg border border-gray-100 bg-white p-6 shadow-xl">
-              <p className="font-medium text-gray-900">shadow-xl</p>
-              <p className="mt-1 text-xs text-gray-500">Modals, dropdowns</p>
+            <div className="rounded-lg border border-border bg-background p-6 ">
+              <p className="font-medium text-foreground"></p>
+              <p className="mt-1 text-xs text-muted-foreground">Modals, dropdowns</p>
             </div>
           </div>
         </Section>
@@ -2120,30 +2155,30 @@ hover: translateY(-2px) + box-shadow: 0 0 30px rgba(205, 62, 249, 0.4);`}
         >
           <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-5">
             <div className="flex flex-col items-center gap-3">
-              <div className="h-16 w-16 rounded-sm border border-gray-200 bg-[#323dfe]" />
-              <p className="text-xs text-gray-600">rounded-sm</p>
+              <div className="h-16 w-16 rounded-sm border border-border bg-primary" />
+              <p className="text-xs text-muted-foreground">rounded-sm</p>
             </div>
             <div className="flex flex-col items-center gap-3">
-              <div className="h-16 w-16 rounded-md border border-gray-200 bg-[#323dfe]" />
-              <p className="text-xs text-gray-600">rounded-md</p>
+              <div className="h-16 w-16 rounded-md border border-border bg-primary" />
+              <p className="text-xs text-muted-foreground">rounded-md</p>
             </div>
             <div className="flex flex-col items-center gap-3">
-              <div className="h-16 w-16 rounded-lg border border-gray-200 bg-[#323dfe]" />
-              <p className="text-xs text-gray-600">rounded-lg</p>
+              <div className="h-16 w-16 rounded-lg border border-border bg-primary" />
+              <p className="text-xs text-muted-foreground">rounded-lg</p>
             </div>
             <div className="flex flex-col items-center gap-3">
-              <div className="h-16 w-16 rounded-xl border border-gray-200 bg-[#323dfe]" />
-              <p className="text-xs text-gray-600">rounded-xl</p>
+              <div className="h-16 w-16 rounded-xl border border-border bg-primary" />
+              <p className="text-xs text-muted-foreground">rounded-xl</p>
             </div>
             <div className="flex flex-col items-center gap-3">
-              <div className="h-16 w-16 rounded-2xl border border-gray-200 bg-[#323dfe]" />
-              <p className="text-xs text-gray-600">rounded-2xl</p>
+              <div className="h-16 w-16 rounded-2xl border border-border bg-primary" />
+              <p className="text-xs text-muted-foreground">rounded-2xl</p>
             </div>
           </div>
-          <p className="mt-4 text-sm text-gray-600">
-            Use <code className="rounded bg-gray-100 px-1 text-gray-700">rounded-lg</code> for
+          <p className="mt-4 text-sm text-muted-foreground">
+            Use <code className="rounded bg-muted px-1 text-foreground/80">rounded-lg</code> for
             buttons and inputs,{" "}
-            <code className="rounded bg-gray-100 px-1 text-gray-700">rounded-xl</code> for
+            <code className="rounded bg-muted px-1 text-foreground/80">rounded-xl</code> for
             cards and sections.
           </p>
         </Section>
@@ -2160,19 +2195,19 @@ hover: translateY(-2px) + box-shadow: 0 0 30px rgba(205, 62, 249, 0.4);`}
             <Subsection title="Section Gaps">
               <div className="space-y-2 text-sm">
                 <p>
-                  <code className="rounded bg-gray-100 px-1">gap-[160px]</code> -
+                  <code className="rounded bg-muted px-1">gap-[160px]</code> -
                   Between major page sections
                 </p>
                 <p>
-                  <code className="rounded bg-gray-100 px-1">mb-12</code> -
+                  <code className="rounded bg-muted px-1">mb-12</code> -
                   Section heading to content
                 </p>
                 <p>
-                  <code className="rounded bg-gray-100 px-1">gap-5</code> - Card
+                  <code className="rounded bg-muted px-1">gap-5</code> - Card
                   grid gaps
                 </p>
                 <p>
-                  <code className="rounded bg-gray-100 px-1">gap-4</code> -
+                  <code className="rounded bg-muted px-1">gap-4</code> -
                   Button groups, form fields
                 </p>
               </div>
@@ -2226,10 +2261,10 @@ hover: translateY(-2px) + box-shadow: 0 0 30px rgba(205, 62, 249, 0.4);`}
                 ].map(({ Icon, name }) => (
                   <div
                     key={name}
-                    className="flex flex-col items-center gap-2 rounded-lg border border-gray-100 p-3"
+                    className="flex flex-col items-center gap-2 rounded-lg border border-border p-3"
                   >
-                    <Icon className="h-5 w-5 text-gray-700" />
-                    <span className="text-[10px] text-gray-400">{name}</span>
+                    <Icon className="h-5 w-5 text-foreground/80" />
+                    <span className="text-[10px] text-muted-foreground">{name}</span>
                   </div>
                 ))}
               </div>
@@ -2237,24 +2272,24 @@ hover: translateY(-2px) + box-shadow: 0 0 30px rgba(205, 62, 249, 0.4);`}
             <Subsection title="Icon Sizes">
               <div className="flex items-end gap-8">
                 <div className="flex flex-col items-center gap-2">
-                  <Check className="h-3 w-3 text-gray-700" />
-                  <span className="text-xs text-gray-500">h-3 w-3</span>
+                  <Check className="h-3 w-3 text-foreground/80" />
+                  <span className="text-xs text-muted-foreground">h-3 w-3</span>
                 </div>
                 <div className="flex flex-col items-center gap-2">
-                  <Check className="h-4 w-4 text-gray-700" />
-                  <span className="text-xs text-gray-500">h-4 w-4</span>
+                  <Check className="h-4 w-4 text-foreground/80" />
+                  <span className="text-xs text-muted-foreground">h-4 w-4</span>
                 </div>
                 <div className="flex flex-col items-center gap-2">
-                  <Check className="h-5 w-5 text-gray-700" />
-                  <span className="text-xs text-gray-500">h-5 w-5</span>
+                  <Check className="h-5 w-5 text-foreground/80" />
+                  <span className="text-xs text-muted-foreground">h-5 w-5</span>
                 </div>
                 <div className="flex flex-col items-center gap-2">
-                  <Check className="h-6 w-6 text-gray-700" />
-                  <span className="text-xs text-gray-500">h-6 w-6</span>
+                  <Check className="h-6 w-6 text-foreground/80" />
+                  <span className="text-xs text-muted-foreground">h-6 w-6</span>
                 </div>
                 <div className="flex flex-col items-center gap-2">
-                  <Check className="h-8 w-8 text-gray-700" />
-                  <span className="text-xs text-gray-500">h-8 w-8</span>
+                  <Check className="h-8 w-8 text-foreground/80" />
+                  <span className="text-xs text-muted-foreground">h-8 w-8</span>
                 </div>
               </div>
             </Subsection>
@@ -2373,14 +2408,14 @@ npm run build`}
 
             {/* Inline code */}
             <Subsection title="Inline Code">
-              <p className="text-gray-700">
-                Use the <code className="rounded bg-gray-100 px-1.5 py-0.5 font-mono text-sm text-gray-800">Button</code> component
-                with <code className="rounded bg-gray-100 px-1.5 py-0.5 font-mono text-sm text-gray-800">variant="primary"</code> for
+              <p className="text-foreground/80">
+                Use the <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm text-foreground">Button</code> component
+                with <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm text-foreground">variant="primary"</code> for
                 the main call-to-action.
               </p>
               <CodeBlock>
                 {`/* Inline code styling */
-<code className="rounded bg-gray-100 px-1.5 py-0.5 font-mono text-sm text-gray-800">
+<code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm text-foreground">
   code here
 </code>`}
               </CodeBlock>
@@ -2399,39 +2434,39 @@ npm run build`}
           <div className="space-y-8">
             <Subsection title="Built-in Animations">
               <div className="grid gap-6 md:grid-cols-3">
-                <div className="rounded-lg border border-gray-200 p-6 text-center">
+                <div className="rounded-lg border border-border p-6 text-center">
                   <div className="mb-4 flex justify-center">
-                    <div className="h-8 w-8 animate-pulse rounded-full bg-[#cd3ef9]" />
+                    <div className="h-8 w-8 animate-pulse rounded-full bg-primary" />
                   </div>
-                  <p className="font-medium text-gray-900">animate-pulse</p>
+                  <p className="font-medium text-foreground">animate-pulse</p>
                 </div>
-                <div className="rounded-lg border border-gray-200 p-6 text-center">
+                <div className="rounded-lg border border-border p-6 text-center">
                   <div className="mb-4 flex justify-center">
-                    <div className="animate-appear h-8 w-8 rounded-lg bg-[#323dfe]" />
+                    <div className="animate-appear h-8 w-8 rounded-lg bg-primary" />
                   </div>
-                  <p className="font-medium text-gray-900">animate-appear</p>
+                  <p className="font-medium text-foreground">animate-appear</p>
                 </div>
-                <div className="rounded-lg border border-gray-200 p-6 text-center">
+                <div className="rounded-lg border border-border p-6 text-center">
                   <div className="mb-4 flex justify-center">
-                    <Loader2 className="h-8 w-8 animate-spin text-[#323dfe]" />
+                    <Loader2 className="h-8 w-8 animate-spin text-primary" />
                   </div>
-                  <p className="font-medium text-gray-900">animate-spin</p>
+                  <p className="font-medium text-foreground">animate-spin</p>
                 </div>
               </div>
             </Subsection>
             <Subsection title="Hover Effects">
               <div className="flex flex-wrap gap-4">
-                <div className="cursor-pointer rounded-lg border border-gray-200 bg-white p-4 text-sm text-gray-700 transition-transform hover:-translate-y-1">
+                <div className="cursor-pointer rounded-lg border border-border bg-background p-4 text-sm text-foreground/80 transition-transform hover:-translate-y-1">
                   hover:-translate-y-1
                 </div>
-                <div className="cursor-pointer rounded-lg border border-gray-200 bg-white p-4 text-sm text-gray-700 transition-shadow hover:shadow-lg">
+                <div className="cursor-pointer rounded-lg border border-border bg-background p-4 text-sm text-foreground/80 transition-shadow hover:shadow-lg">
                   hover:shadow-lg
                 </div>
-                <div className="cursor-pointer rounded-lg border border-gray-200 bg-white p-4 text-sm text-gray-700 transition-colors hover:bg-gray-50">
-                  hover:bg-gray-50
+                <div className="cursor-pointer rounded-lg border border-border bg-background p-4 text-sm text-foreground/80 transition-colors hover:bg-surface">
+                  hover:bg-surface
                 </div>
-                <div className="cursor-pointer rounded-lg border border-gray-200 bg-white p-4 text-sm text-gray-700 transition-colors hover:border-[#323dfe] hover:text-[#323dfe]">
-                  hover:border-[#323dfe]
+                <div className="cursor-pointer rounded-lg border border-border bg-background p-4 text-sm text-foreground/80 transition-colors hover:border-primary hover:text-primary">
+                  hover:border-primary
                 </div>
               </div>
             </Subsection>
@@ -2449,34 +2484,34 @@ npm run build`}
           <div className="space-y-10">
             {/* Centered Hero */}
             <Subsection title="Hero Section (Centered)">
-              <div className="rounded-xl border border-gray-200 bg-white p-8 text-center">
+              <div className="rounded-xl border border-border bg-background p-8 text-center">
                 <div className="mb-4 flex justify-center">
-                  <div className="inline-flex items-center gap-1 rounded-full bg-gray-100 px-3 py-1">
-                    <span className="text-xs text-gray-500">Available on</span>
-                    <span className="text-xs text-gray-600">Voice</span>
+                  <div className="inline-flex items-center gap-1 rounded-full bg-muted px-3 py-1">
+                    <span className="text-xs text-muted-foreground">Available on</span>
+                    <span className="text-xs text-muted-foreground">Voice</span>
                   </div>
                 </div>
-                <h1 className="font-sora text-[2.5rem] md:text-[3.5rem] lg:text-[4rem] font-medium leading-[1.1] tracking-[-0.03em] text-black">
+                <h1 className="font-sora text-[2.5rem] md:text-[3.5rem] lg:text-[4rem] font-medium leading-[1.1] tracking-[-0.03em] text-foreground">
                   Build human-like voice AI
                 </h1>
-                <p className="mx-auto mt-3 max-w-lg text-gray-600">
+                <p className="mt-3 max-w-lg text-muted-foreground">
                   Deploy voice agents that actually sound human.
                 </p>
                 <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
                   <a
                     href="#"
-                    className="rounded-lg border border-gray-300 px-5 py-2 text-sm font-medium text-black hover:bg-gray-50"
+                    className="rounded-lg border border-border-strong px-5 py-2 text-sm font-medium text-foreground hover:bg-surface"
                   >
                     Talk to Sales
                   </a>
                   <a
                     href="#"
-                    className="rounded-lg bg-black px-5 py-2 text-sm font-medium text-white cta-hover-gradient"
+                    className="rounded-lg bg-foreground px-5 py-2 text-sm font-medium text-background cta-hover-gradient"
                   >
                     Start for Free
                   </a>
                 </div>
-                <p className="mt-4 text-xs text-gray-500">
+                <p className="mt-4 text-xs text-muted-foreground">
                   $10 in free credits. No credit card required.
                 </p>
               </div>
@@ -2484,47 +2519,47 @@ npm run build`}
 
             {/* Split Hero - Left Text, Right Asset */}
             <Subsection title="Hero Section (Split - Left Text, Right Asset)">
-              <div className="rounded-xl border border-gray-200 bg-white p-8">
+              <div className="rounded-xl border border-border bg-background p-8">
                 <div className="grid items-center gap-8 lg:grid-cols-2">
                   {/* Left: Text Content */}
                   <div>
-                    <div className="mb-4 inline-flex items-center gap-1 rounded-full bg-gray-100 px-3 py-1">
-                      <span className="text-xs text-gray-500">Available on</span>
-                      <span className="text-xs text-gray-600">Voice</span>
+                    <div className="mb-4 inline-flex items-center gap-1 rounded-full bg-muted px-3 py-1">
+                      <span className="text-xs text-muted-foreground">Available on</span>
+                      <span className="text-xs text-muted-foreground">Voice</span>
                     </div>
-                    <h1 className="font-sora text-[2.5rem] md:text-[3.5rem] lg:text-[4rem] font-medium leading-[1.1] tracking-[-0.03em] text-black">
+                    <h1 className="font-sora text-[2.5rem] md:text-[3.5rem] lg:text-[4rem] font-medium leading-[1.1] tracking-[-0.03em] text-foreground">
                       Build human-like voice AI agents
                     </h1>
-                    <p className="mt-4 max-w-lg text-gray-600">
+                    <p className="mt-4 max-w-lg text-muted-foreground">
                       From no-code builders for teams to flexible APIs for
                       developers, deploy voice agents that actually sound human.
                     </p>
                     <div className="mt-6 flex flex-col gap-3 sm:flex-row">
                       <a
                         href="#"
-                        className="inline-flex items-center justify-center rounded-lg border border-gray-300 px-5 py-2.5 text-sm font-medium text-black hover:bg-gray-50"
+                        className="inline-flex items-center justify-center rounded-lg border border-border-strong px-5 py-2.5 text-sm font-medium text-foreground hover:bg-surface"
                       >
                         Talk to Sales
                       </a>
                       <a
                         href="#"
-                        className="inline-flex items-center justify-center rounded-lg bg-black px-5 py-2.5 text-sm font-medium text-white cta-hover-gradient"
+                        className="inline-flex items-center justify-center rounded-lg bg-foreground px-5 py-2.5 text-sm font-medium text-background cta-hover-gradient"
                       >
                         Start for Free
                       </a>
                     </div>
-                    <p className="mt-4 text-xs text-gray-500">
+                    <p className="mt-4 text-xs text-muted-foreground">
                       $10 in free credits. No credit card required.
                     </p>
                   </div>
                   {/* Right: Asset/Image Placeholder */}
                   <div className="flex items-center justify-center rounded-2xl bg-gradient-to-br from-indigo-50 to-fuchsia-50 p-8">
-                    <div className="flex h-48 w-full items-center justify-center rounded-xl border border-gray-200 bg-white shadow-lg">
+                    <div className="flex h-48 w-full items-center justify-center rounded-xl border border-border bg-background shadow-sm">
                       <div className="text-center">
-                        <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-r from-[#cd3ef9] to-[#323dfe]">
+                        <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-r from-[#cd3ef9] to-primary">
                           <Sparkles className="h-6 w-6 text-white" />
                         </div>
-                        <p className="text-sm text-gray-400">
+                        <p className="text-sm text-muted-foreground">
                           Product mockup / illustration
                         </p>
                       </div>
@@ -2534,19 +2569,19 @@ npm run build`}
               </div>
               <CodeBlock>
                 {`/* Split Hero Pattern */
-<section className="bg-white py-16 lg:py-24">
+<section className="bg-background py-16 lg:py-24">
   <div className="container mx-auto max-w-7xl px-4">
     <div className="grid items-center gap-8 lg:grid-cols-2">
       {/* Left: Text */}
       <div>
         <div className="mb-4 inline-flex ...">Channel pills</div>
-        <h1 className="font-sora text-[2.5rem] md:text-[3.5rem] lg:text-[4rem] font-medium leading-[1.1] tracking-[-0.03em] text-black">
+        <h1 className="font-sora text-[2.5rem] md:text-[3.5rem] lg:text-[4rem] font-medium leading-[1.1] tracking-[-0.03em] text-foreground">
           Headline
         </h1>
-        <p className="mt-4 text-gray-600">Subheadline</p>
+        <p className="mt-4 text-muted-foreground">Subheadline</p>
         <div className="mt-6 flex gap-3">
           <a className="... border ...">Secondary CTA</a>
-          <a className="... bg-black ...">Primary CTA</a>
+          <a className="... bg-foreground ...">Primary CTA</a>
         </div>
       </div>
       {/* Right: Asset */}
@@ -2561,16 +2596,16 @@ npm run build`}
 
             {/* CTA Section */}
             <Subsection title="CTA Section">
-              <div className="rounded-xl bg-gray-50 p-8 text-center">
-                <h2 className="font-sora text-[2rem] md:text-[2.5rem] font-medium leading-[1.25] tracking-[-0.02em] text-black">
+              <div className="rounded-xl bg-surface p-8 text-center">
+                <h2 className="font-sora text-[2rem] md:text-[2.5rem] font-medium leading-[1.25] tracking-[-0.02em] text-foreground">
                   Start building your agent today
                 </h2>
-                <p className="mx-auto mt-3 max-w-lg text-gray-600">
+                <p className="mt-3 max-w-lg text-muted-foreground">
                   Get $10 in free credits. No credit card required.
                 </p>
                 <a
                   href="#"
-                  className="mt-6 inline-block rounded-lg bg-black px-6 py-3 text-sm font-medium text-white cta-hover-gradient"
+                  className="mt-6 inline-block rounded-lg bg-foreground px-6 py-3 text-sm font-medium text-background cta-hover-gradient"
                 >
                   Sign up now
                 </a>
@@ -2579,8 +2614,8 @@ npm run build`}
 
             {/* Feature Grid */}
             <Subsection title="Feature Grid Section">
-              <div className="rounded-xl border border-gray-200 bg-white p-8">
-                <h2 className="font-sora mb-8 text-center text-[2rem] md:text-[2.5rem] font-medium leading-[1.25] tracking-[-0.02em] text-black">
+              <div className="rounded-xl border border-border bg-background p-8">
+                <h2 className="font-sora mb-8 text-center text-[2rem] md:text-[2.5rem] font-medium leading-[1.25] tracking-[-0.02em] text-foreground">
                   Section Title
                 </h2>
                 <div className="grid gap-6 md:grid-cols-3">
@@ -2591,13 +2626,13 @@ npm run build`}
                   ].map((feature) => (
                     <div
                       key={feature.title}
-                      className="rounded-xl border border-gray-200 bg-gray-50 p-6"
+                      className="rounded-xl border border-border bg-surface p-6"
                     >
-                      <feature.icon className="mb-4 h-8 w-8 text-[#323dfe]" />
-                      <h3 className="mb-2 text-lg font-semibold text-black">
+                      <feature.icon className="mb-4 h-8 w-8 text-primary" />
+                      <h3 className="mb-2 text-lg font-semibold text-foreground">
                         {feature.title}
                       </h3>
-                      <p className="text-sm text-gray-600">{feature.desc}</p>
+                      <p className="text-sm text-muted-foreground">{feature.desc}</p>
                     </div>
                   ))}
                 </div>
@@ -2608,8 +2643,8 @@ npm run build`}
       </div>
 
       {/* Footer */}
-      <div className="mt-20 border-t border-gray-200 pt-8 text-center">
-        <p className="text-sm text-gray-500">
+      <div className="mt-20 border-t border-border pt-8 text-center">
+        <p className="text-sm text-muted-foreground">
           Plivo Design System v1.0 | For internal use only
         </p>
       </div>

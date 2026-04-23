@@ -10,14 +10,22 @@ const complianceLogos = [
 
 export default function VerifyCompliance() {
   return (
-    <section className="bg-white py-12 lg:py-16">
+    <section className="bg-background border-t border-border py-12 lg:py-16">
       <div className="container mx-auto max-w-7xl px-4">
         {/* Section Header - Centered */}
-        <div className="text-center mb-10">
-          <h2 className="font-sora text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] font-normal leading-[1.25] tracking-[-0.02em] text-black mb-4">
+        <div className="mb-10">
+          <div className="flex items-center gap-3 font-mono-ui text-[11px] uppercase tracking-[0.12em] text-muted-foreground mb-8">
+          <span className="flex items-center gap-2">
+            <span className="tabular-nums text-foreground/70">~</span>
+            <span className="h-px w-6 bg-border" />
+          </span>
+          <span>compliance</span>
+          <span className="flex-1 border-t border-dashed border-border" />
+        </div>
+        <h2 className="font-sora text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] font-normal leading-[1.04] tracking-[-0.035em] text-foreground mb-4">
             Simplify compliance and go-live instantly
           </h2>
-          <p className="text-gray-600 text-base sm:text-lg leading-relaxed max-w-3xl mx-auto">
+          <p className="text-muted-foreground text-base sm:text-lg leading-relaxed max-w-3xl">
             Bypass regulatory paperwork and go live instantly in countries like the US, India, and the UK using pre-registered sender IDs (e.g., PLVRFY, PLVSMS) and templates. Send OTPs globally in multiple languages.
           </p>
         </div>
@@ -29,12 +37,11 @@ export default function VerifyCompliance() {
               key={index}
               className="flex flex-col items-center justify-center p-4"
             >
-              <img
-                src={logo.src}
+              <img src={logo.src}
                 alt={logo.alt}
-                className="h-12 w-auto object-contain grayscale opacity-70"
+                className="h-12 w-auto object-contain grayscale opacity-70 dark:invert"
               />
-              <span className="text-xs text-gray-500 mt-2">{logo.name}</span>
+              <span className="text-xs text-muted-foreground mt-2">{logo.name}</span>
             </div>
           ))}
         </div>

@@ -1,92 +1,91 @@
 ---
-// ClientLogos.astro - Logo grid (mobile) / flex rows (desktop)
-// Shows different logo sets based on visitor country (IN vs RoW)
+// ClientLogos.astro - Section 02 / customers
+// Editorial "trusted by" framing. Logos desaturated and theme-adaptive.
 ---
 
-<section class="relative bg-white">
+<section id="section-customers" class="relative w-full border-t border-border">
+  <div class="container mx-auto max-w-7xl px-4 sm:px-6 py-10 sm:py-14">
+    <!-- Kicker strip -->
+    <div class="flex items-center gap-3 font-mono-ui text-[11px] uppercase tracking-[0.12em] text-muted-foreground">
+      <span class="flex items-center gap-2">
+        <span class="tabular-nums text-foreground/70">02</span>
+        <span class="h-px w-6 bg-border"></span>
+      </span>
+      <span>customers</span>
+      <span class="flex-1 border-t border-dashed border-border"></span>
+      <span class="text-muted-foreground">trusted by teams at</span>
+    </div>
 
-  <!-- Static logos - India set (shown for IN visitors) -->
-  <div id="logos-india" style="display:none;">
-    <div class="mx-auto max-w-7xl px-4 py-12 sm:py-16">
-      <!-- Mobile: 3-column grid -->
-      <div class="grid grid-cols-3 gap-y-8 gap-x-4 sm:hidden">
-        <div class="flex items-center justify-center"><img src="/images/client-logos/meta.svg" alt="Meta" class="h-12 w-auto opacity-80" /></div>
-        <div class="flex items-center justify-center"><img src="/images/client-logos/atomberg.svg" alt="Atomberg" class="h-12 w-auto opacity-80" /></div>
-        <div class="flex items-center justify-center"><img src="/images/client-logos/uber.svg" alt="Uber" class="h-12 w-auto opacity-80" /></div>
-        <div class="flex items-center justify-center"><img src="/images/client-logos/trip.com.svg" alt="Trip.com" class="h-12 w-auto opacity-80" /></div>
-        <div class="flex items-center justify-center"><img src="/images/client-logos/zomato.svg" alt="Zomato" class="h-12 w-auto opacity-80" /></div>
-        <div class="flex items-center justify-center"><img src="/images/client-logos/masai.svg" alt="Masai" class="h-12 w-auto opacity-80" /></div>
-        <div class="flex items-center justify-center"><img src="/images/client-logos/discord.svg" alt="Discord" class="h-12 w-auto opacity-80" /></div>
-        <div class="flex items-center justify-center"><img src="/images/client-logos/great-learning.svg" alt="Great Learning" class="h-12 w-auto opacity-80" /></div>
-        <div class="flex items-center justify-center"><img src="/images/client-logos/amul.svg" alt="Amul" class="h-12 w-auto opacity-80" /></div>
-        <div class="flex items-center justify-center"><img src="/images/client-logos/zolve.svg" alt="Zolve" class="h-12 w-auto opacity-80" /></div>
-        <div class="flex items-center justify-center"><img src="/images/client-logos/godaddy.svg" alt="GoDaddy" class="h-12 w-auto opacity-80" /></div>
-        <div class="flex items-center justify-center"><img src="/images/client-logos/tata-1mg.svg" alt="Tata 1mg" class="h-12 w-auto opacity-80" /></div>
-        <div class="flex items-center justify-center"><img src="/images/client-logos/yahoo.svg" alt="Yahoo" class="h-12 w-auto opacity-80" /></div>
-        <div class="flex items-center justify-center"><img src="/images/client-logos/healthify.svg" alt="Healthify" class="h-12 w-auto opacity-80" /></div>
+    <!-- India logos -->
+    <div id="logos-india" style="display:none;" class="mt-10 sm:mt-14 [&_img]:brightness-0 dark:[&_img]:invert [&_img]:opacity-60 hover:[&_img]:opacity-100 [&_img]:transition-opacity">
+      <!-- Mobile 3-col grid -->
+      <div class="grid grid-cols-3 gap-y-10 gap-x-6 sm:hidden">
+        <div class="flex items-center justify-center"><img src="/images/client-logos/meta.svg" alt="Meta" class="h-14 sm:h-16 w-auto" /></div>
+        <div class="flex items-center justify-center"><img src="/images/client-logos/atomberg.svg" alt="Atomberg" class="h-14 sm:h-16 w-auto" /></div>
+        <div class="flex items-center justify-center"><img src="/images/client-logos/uber.svg" alt="Uber" class="h-14 sm:h-16 w-auto" /></div>
+        <div class="flex items-center justify-center"><img src="/images/client-logos/trip.com.svg" alt="Trip.com" class="h-14 sm:h-16 w-auto" /></div>
+        <div class="flex items-center justify-center"><img src="/images/client-logos/zomato.svg" alt="Zomato" class="h-14 sm:h-16 w-auto" /></div>
+        <div class="flex items-center justify-center"><img src="/images/client-logos/masai.svg" alt="Masai" class="h-14 sm:h-16 w-auto" /></div>
+        <div class="flex items-center justify-center"><img src="/images/client-logos/discord.svg" alt="Discord" class="h-14 sm:h-16 w-auto" /></div>
+        <div class="flex items-center justify-center"><img src="/images/client-logos/great-learning.svg" alt="Great Learning" class="h-14 sm:h-16 w-auto" /></div>
+        <div class="flex items-center justify-center"><img src="/images/client-logos/amul.svg" alt="Amul" class="h-14 sm:h-16 w-auto" /></div>
+        <div class="flex items-center justify-center"><img src="/images/client-logos/zolve.svg" alt="Zolve" class="h-14 sm:h-16 w-auto" /></div>
+        <div class="flex items-center justify-center"><img src="/images/client-logos/godaddy.svg" alt="GoDaddy" class="h-14 sm:h-16 w-auto" /></div>
+        <div class="flex items-center justify-center"><img src="/images/client-logos/tata-1mg.svg" alt="Tata 1mg" class="h-14 sm:h-16 w-auto" /></div>
+        <div class="flex items-center justify-center"><img src="/images/client-logos/yahoo.svg" alt="Yahoo" class="h-14 sm:h-16 w-auto" /></div>
+        <div class="flex items-center justify-center"><img src="/images/client-logos/healthify.svg" alt="Healthify" class="h-14 sm:h-16 w-auto" /></div>
       </div>
-      <!-- Desktop: two flex rows -->
-      <div class="hidden sm:block">
-        <div class="flex flex-wrap items-center justify-center gap-x-8 gap-y-2">
-          <img src="/images/client-logos/meta.svg" alt="Meta" class="h-16 w-auto opacity-80 hover:opacity-100 transition-opacity" />
-          <img src="/images/client-logos/atomberg.svg" alt="Atomberg" class="h-16 w-auto opacity-80 hover:opacity-100 transition-opacity" />
-          <img src="/images/client-logos/uber.svg" alt="Uber" class="h-16 w-auto opacity-80 hover:opacity-100 transition-opacity" />
-          <img src="/images/client-logos/trip.com.svg" alt="Trip.com" class="h-16 w-auto opacity-80 hover:opacity-100 transition-opacity" />
-          <img src="/images/client-logos/zomato.svg" alt="Zomato" class="h-16 w-auto opacity-80 hover:opacity-100 transition-opacity" />
-          <img src="/images/client-logos/masai.svg" alt="Masai" class="h-16 w-auto opacity-80 hover:opacity-100 transition-opacity" />
-          <img src="/images/client-logos/discord.svg" alt="Discord" class="h-16 w-auto opacity-80 hover:opacity-100 transition-opacity" />
-        </div>
-        <div class="flex flex-wrap items-center justify-center gap-x-8 gap-y-2 mt-1">
-          <img src="/images/client-logos/great-learning.svg" alt="Great Learning" class="h-16 w-auto opacity-80 hover:opacity-100 transition-opacity" />
-          <img src="/images/client-logos/amul.svg" alt="Amul" class="h-16 w-auto opacity-80 hover:opacity-100 transition-opacity" />
-          <img src="/images/client-logos/zolve.svg" alt="Zolve" class="h-16 w-auto opacity-80 hover:opacity-100 transition-opacity" />
-          <img src="/images/client-logos/godaddy.svg" alt="GoDaddy" class="h-16 w-auto opacity-80 hover:opacity-100 transition-opacity" />
-          <img src="/images/client-logos/tata-1mg.svg" alt="Tata 1mg" class="h-16 w-auto opacity-80 hover:opacity-100 transition-opacity" />
-          <img src="/images/client-logos/yahoo.svg" alt="Yahoo" class="h-16 w-auto opacity-80 hover:opacity-100 transition-opacity" />
-          <img src="/images/client-logos/healthify.svg" alt="Healthify" class="h-16 w-auto opacity-80 hover:opacity-100 transition-opacity" />
-        </div>
+      <!-- Desktop - rhythmic 7 per row -->
+      <div class="hidden sm:grid sm:grid-cols-7 sm:gap-x-10 sm:gap-y-10">
+        <div class="flex items-center justify-center"><img src="/images/client-logos/meta.svg" alt="Meta" class="h-14 sm:h-16 w-auto" /></div>
+        <div class="flex items-center justify-center"><img src="/images/client-logos/atomberg.svg" alt="Atomberg" class="h-14 sm:h-16 w-auto" /></div>
+        <div class="flex items-center justify-center"><img src="/images/client-logos/uber.svg" alt="Uber" class="h-14 sm:h-16 w-auto" /></div>
+        <div class="flex items-center justify-center"><img src="/images/client-logos/trip.com.svg" alt="Trip.com" class="h-14 sm:h-16 w-auto" /></div>
+        <div class="flex items-center justify-center"><img src="/images/client-logos/zomato.svg" alt="Zomato" class="h-14 sm:h-16 w-auto" /></div>
+        <div class="flex items-center justify-center"><img src="/images/client-logos/masai.svg" alt="Masai" class="h-14 sm:h-16 w-auto" /></div>
+        <div class="flex items-center justify-center"><img src="/images/client-logos/discord.svg" alt="Discord" class="h-14 sm:h-16 w-auto" /></div>
+        <div class="flex items-center justify-center"><img src="/images/client-logos/great-learning.svg" alt="Great Learning" class="h-14 sm:h-16 w-auto" /></div>
+        <div class="flex items-center justify-center"><img src="/images/client-logos/amul.svg" alt="Amul" class="h-14 sm:h-16 w-auto" /></div>
+        <div class="flex items-center justify-center"><img src="/images/client-logos/zolve.svg" alt="Zolve" class="h-14 sm:h-16 w-auto" /></div>
+        <div class="flex items-center justify-center"><img src="/images/client-logos/godaddy.svg" alt="GoDaddy" class="h-14 sm:h-16 w-auto" /></div>
+        <div class="flex items-center justify-center"><img src="/images/client-logos/tata-1mg.svg" alt="Tata 1mg" class="h-14 sm:h-16 w-auto" /></div>
+        <div class="flex items-center justify-center"><img src="/images/client-logos/yahoo.svg" alt="Yahoo" class="h-14 sm:h-16 w-auto" /></div>
+        <div class="flex items-center justify-center"><img src="/images/client-logos/healthify.svg" alt="Healthify" class="h-14 sm:h-16 w-auto" /></div>
+      </div>
+    </div>
+
+    <!-- International logos -->
+    <div id="logos-international" class="mt-10 sm:mt-14 [&_img]:brightness-0 dark:[&_img]:invert [&_img]:opacity-60 hover:[&_img]:opacity-100 [&_img]:transition-opacity">
+      <!-- Mobile 3-col grid -->
+      <div class="grid grid-cols-3 gap-y-10 gap-x-6 sm:hidden">
+        <div class="flex items-center justify-center"><img src="/images/client-logos/meta.svg" alt="Meta" class="h-14 sm:h-16 w-auto" /></div>
+        <div class="flex items-center justify-center"><img src="/images/client-logos/decker-brands.svg" alt="Decker Brands" class="h-14 sm:h-16 w-auto" /></div>
+        <div class="flex items-center justify-center"><img src="/images/client-logos/adobe.svg" alt="Adobe" class="h-14 sm:h-16 w-auto" /></div>
+        <div class="flex items-center justify-center"><img src="/images/client-logos/trip.com.svg" alt="Trip.com" class="h-14 sm:h-16 w-auto" /></div>
+        <div class="flex items-center justify-center"><img src="/images/client-logos/uber.svg" alt="Uber" class="h-14 sm:h-16 w-auto" /></div>
+        <div class="flex items-center justify-center"><img src="/images/client-logos/laz-parking.svg" alt="Laz Parking" class="h-14 sm:h-16 w-auto" /></div>
+        <div class="flex items-center justify-center"><img src="/images/client-logos/discord.svg" alt="Discord" class="h-14 sm:h-16 w-auto" /></div>
+        <div class="flex items-center justify-center"><img src="/images/client-logos/atlassian.svg" alt="Atlassian" class="h-14 sm:h-16 w-auto" /></div>
+        <div class="flex items-center justify-center"><img src="/images/client-logos/godaddy.svg" alt="GoDaddy" class="h-14 sm:h-16 w-auto" /></div>
+        <div class="flex items-center justify-center"><img src="/images/client-logos/docusign.svg" alt="DocuSign" class="h-14 sm:h-16 w-auto" /></div>
+        <div class="flex items-center justify-center"><img src="/images/client-logos/yahoo.svg" alt="Yahoo" class="h-14 sm:h-16 w-auto" /></div>
+      </div>
+      <!-- Desktop - 6 per row -->
+      <div class="hidden sm:grid sm:grid-cols-6 sm:gap-x-10 sm:gap-y-10">
+        <div class="flex items-center justify-center"><img src="/images/client-logos/meta.svg" alt="Meta" class="h-14 sm:h-16 w-auto" /></div>
+        <div class="flex items-center justify-center"><img src="/images/client-logos/decker-brands.svg" alt="Decker Brands" class="h-14 sm:h-16 w-auto" /></div>
+        <div class="flex items-center justify-center"><img src="/images/client-logos/adobe.svg" alt="Adobe" class="h-14 sm:h-16 w-auto" /></div>
+        <div class="flex items-center justify-center"><img src="/images/client-logos/trip.com.svg" alt="Trip.com" class="h-14 sm:h-16 w-auto" /></div>
+        <div class="flex items-center justify-center"><img src="/images/client-logos/uber.svg" alt="Uber" class="h-14 sm:h-16 w-auto" /></div>
+        <div class="flex items-center justify-center"><img src="/images/client-logos/laz-parking.svg" alt="Laz Parking" class="h-14 sm:h-16 w-auto" /></div>
+        <div class="flex items-center justify-center"><img src="/images/client-logos/discord.svg" alt="Discord" class="h-14 sm:h-16 w-auto" /></div>
+        <div class="flex items-center justify-center"><img src="/images/client-logos/atlassian.svg" alt="Atlassian" class="h-14 sm:h-16 w-auto" /></div>
+        <div class="flex items-center justify-center"><img src="/images/client-logos/godaddy.svg" alt="GoDaddy" class="h-14 sm:h-16 w-auto" /></div>
+        <div class="flex items-center justify-center"><img src="/images/client-logos/docusign.svg" alt="DocuSign" class="h-14 sm:h-16 w-auto" /></div>
+        <div class="flex items-center justify-center"><img src="/images/client-logos/yahoo.svg" alt="Yahoo" class="h-14 sm:h-16 w-auto" /></div>
       </div>
     </div>
   </div>
-
-  <!-- Static logos - International set (default, shown for US/RoW visitors) -->
-  <div id="logos-international">
-    <div class="mx-auto max-w-7xl px-4 py-12 sm:py-16">
-      <!-- Mobile: 3-column grid -->
-      <div class="grid grid-cols-3 gap-y-8 gap-x-4 sm:hidden">
-        <div class="flex items-center justify-center"><img src="/images/client-logos/meta.svg" alt="Meta" class="h-12 w-auto opacity-80" /></div>
-        <div class="flex items-center justify-center"><img src="/images/client-logos/decker-brands.svg" alt="Decker Brands" class="h-12 w-auto opacity-80" /></div>
-        <div class="flex items-center justify-center"><img src="/images/client-logos/adobe.svg" alt="Adobe" class="h-12 w-auto opacity-80" /></div>
-        <div class="flex items-center justify-center"><img src="/images/client-logos/trip.com.svg" alt="Trip.com" class="h-12 w-auto opacity-80" /></div>
-        <div class="flex items-center justify-center"><img src="/images/client-logos/uber.svg" alt="Uber" class="h-12 w-auto opacity-80" /></div>
-        <div class="flex items-center justify-center"><img src="/images/client-logos/laz-parking.svg" alt="Laz Parking" class="h-12 w-auto opacity-80" /></div>
-        <div class="flex items-center justify-center"><img src="/images/client-logos/discord.svg" alt="Discord" class="h-12 w-auto opacity-80" /></div>
-        <div class="flex items-center justify-center"><img src="/images/client-logos/atlassian.svg" alt="Atlassian" class="h-12 w-auto opacity-80" /></div>
-        <div class="flex items-center justify-center"><img src="/images/client-logos/godaddy.svg" alt="GoDaddy" class="h-12 w-auto opacity-80" /></div>
-        <div class="flex items-center justify-center"><img src="/images/client-logos/docusign.svg" alt="DocuSign" class="h-12 w-auto opacity-80" /></div>
-        <div class="flex items-center justify-center"><img src="/images/client-logos/yahoo.svg" alt="Yahoo" class="h-12 w-auto opacity-80" /></div>
-      </div>
-      <!-- Desktop: two flex rows -->
-      <div class="hidden sm:block">
-        <div class="flex flex-wrap items-center justify-center gap-x-8 gap-y-2">
-          <img src="/images/client-logos/meta.svg" alt="Meta" class="h-16 w-auto opacity-80 hover:opacity-100 transition-opacity" />
-          <img src="/images/client-logos/decker-brands.svg" alt="Decker Brands" class="h-16 w-auto opacity-80 hover:opacity-100 transition-opacity" />
-          <img src="/images/client-logos/adobe.svg" alt="Adobe" class="h-16 w-auto opacity-80 hover:opacity-100 transition-opacity" />
-          <img src="/images/client-logos/trip.com.svg" alt="Trip.com" class="h-16 w-auto opacity-80 hover:opacity-100 transition-opacity" />
-          <img src="/images/client-logos/uber.svg" alt="Uber" class="h-16 w-auto opacity-80 hover:opacity-100 transition-opacity" />
-          <img src="/images/client-logos/laz-parking.svg" alt="Laz Parking" class="h-16 w-auto opacity-80 hover:opacity-100 transition-opacity" />
-        </div>
-        <div class="flex flex-wrap items-center justify-center gap-x-8 gap-y-2 mt-1">
-          <img src="/images/client-logos/discord.svg" alt="Discord" class="h-16 w-auto opacity-80 hover:opacity-100 transition-opacity" />
-          <img src="/images/client-logos/atlassian.svg" alt="Atlassian" class="h-16 w-auto opacity-80 hover:opacity-100 transition-opacity" />
-          <img src="/images/client-logos/godaddy.svg" alt="GoDaddy" class="h-16 w-auto opacity-80 hover:opacity-100 transition-opacity" />
-          <img src="/images/client-logos/docusign.svg" alt="DocuSign" class="h-16 w-auto opacity-80 hover:opacity-100 transition-opacity" />
-          <img src="/images/client-logos/yahoo.svg" alt="Yahoo" class="h-16 w-auto opacity-80 hover:opacity-100 transition-opacity" />
-        </div>
-      </div>
-    </div>
-  </div>
-
 </section>
 
 <script>
@@ -102,26 +101,19 @@
       }
     };
 
-    // 1. Server-injected CF-IPCountry (instant, no network call)
     const cfCountry = (window as any).__CF_COUNTRY;
-    if (cfCountry) {
-      show(cfCountry);
-      return;
-    }
+    if (cfCountry) { show(cfCountry); return; }
 
-    // 2. Primary geo system (useGeoCountry hook stores here via ipapi.co)
     try {
       const geoCountry = sessionStorage.getItem("plivo_geo_country");
       if (geoCountry) { show(geoCountry); return; }
     } catch {}
 
-    // 3. Secondary geo system (ipinfo.io / intl-tel-input cache)
     try {
       const cached = sessionStorage.getItem("plivo_ip_info");
       if (cached) { show(JSON.parse(cached).country); return; }
     } catch {}
 
-    // 4. Poll for either key (geo detection is async)
     let attempts = 0;
     const poll = setInterval(() => {
       attempts++;

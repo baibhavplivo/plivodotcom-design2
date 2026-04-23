@@ -88,7 +88,7 @@ export default function MetafiFeaturesTabs({
   const { ref: imgLockRef, height: imgH } = useLockedAspectHeight(3 / 2);
 
   return (
-    <section id="metafi-features-tabs" className="bg-background px-6 lg:px-0">
+    <section id="metafi-features-tabs" className="bg-background border-t border-border px-6 lg:px-0">
       <div className="container px-0 py-16 sm:py-20 md:px-6 md:py-24">
         <div className="max-w-3xl">
           <p className="text-tagline text-sm sm:text-base">{tagline}</p>

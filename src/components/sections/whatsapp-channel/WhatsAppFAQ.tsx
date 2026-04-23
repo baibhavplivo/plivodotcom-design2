@@ -77,13 +77,13 @@ const faqs: FAQItem[] = [
 
 export default function WhatsAppFAQ() {
   return (
-    <section className="bg-white py-12 sm:py-16 md:py-20">
+    <section className="bg-background border-t border-border py-12 sm:py-16 md:py-20">
       <div className="container mx-auto max-w-3xl px-4">
         {/* Section Header */}
-        <h2 className="font-sora text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] font-normal leading-[1.25] tracking-[-0.02em] text-black text-center mb-4">
+        <h2 className="font-sora text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] font-normal leading-[1.25] tracking-[-0.02em] text-foreground mb-4">
           Frequently asked questions
         </h2>
-        <p className="text-gray-600 text-center mb-10 md:mb-12">
+        <p className="text-muted-foreground mb-10 md:mb-12">
           Everything you need to know about WhatsApp AI Agents - chat and voice.
         </p>
 
@@ -93,15 +93,15 @@ export default function WhatsAppFAQ() {
             <AccordionItem
               key={index}
               value={`item-${index}`}
-              className="border-b border-gray-200 bg-white first:rounded-t-lg last:rounded-b-lg"
+              className="border-b border-border bg-background first:rounded-t-lg last:rounded-b-lg"
             >
               <AccordionTrigger className="px-6 py-4 hover:no-underline text-left">
-                <span className="text-base font-medium text-black pr-4">
+                <span className="text-base font-medium text-foreground pr-4">
                   {faq.question}
                 </span>
               </AccordionTrigger>
               <AccordionContent className="px-6 pb-4">
-                <p className="text-sm text-gray-600 leading-relaxed">
+                <p className="text-sm text-muted-foreground leading-relaxed">
                   {faq.answer}
                 </p>
               </AccordionContent>

@@ -8,8 +8,8 @@ import WorldMap from "@/components/ui/world-map";
 function CheckItem({ children }: { children: React.ReactNode }) {
   return (
     <li className="flex items-center gap-2">
-      <Check className="h-4 w-4 flex-shrink-0 text-[#323dfe]" />
-      <span className="text-sm text-gray-600">{children}</span>
+      <Check className="h-4 w-4 flex-shrink-0 text-primary" />
+      <span className="text-sm text-muted-foreground">{children}</span>
     </li>
   );
 }
@@ -88,16 +88,16 @@ function AudioPlayer({
   const isGray = variant === "gray";
 
   return (
-    <div className="overflow-hidden rounded-lg bg-white shadow-md">
+    <div className="overflow-hidden rounded-lg bg-background shadow-sm">
       {/* Card Header */}
-      <div className="border-b border-gray-100 px-4 py-3">
-        <h4 className="text-xs font-semibold text-black">{title}</h4>
+      <div className="border-b border-border px-4 py-3">
+        <h4 className="text-xs font-semibold text-foreground">{title}</h4>
         {/* Tags */}
         <div className="mt-2 flex flex-wrap gap-1.5">
-          <span className="rounded-full border border-gray-200 bg-gray-50 px-2 py-0.5 text-[10px] text-gray-600">
+          <span className="rounded-full border border-border bg-surface px-2 py-0.5 text-[10px] text-muted-foreground">
             🇮🇳 {language}
           </span>
-          <span className="rounded-full border border-gray-200 bg-gray-50 px-2 py-0.5 text-[10px] text-gray-600">
+          <span className="rounded-full border border-border bg-surface px-2 py-0.5 text-[10px] text-muted-foreground">
             Customer Support
           </span>
         </div>
@@ -131,7 +131,7 @@ function AudioPlayer({
           </div>
         </div>
 
-        <span className="flex-shrink-0 text-right text-[10px] text-gray-400">
+        <span className="flex-shrink-0 text-right text-[10px] text-muted-foreground">
           {duration > 0 ? `${Math.floor(currentTime)}s/${Math.floor(duration)}s` : "0s/0s"}
         </span>
       </div>
@@ -183,14 +183,14 @@ function VoiceListItem({
   showPlayButton?: boolean;
 }) {
   return (
-    <div className={`flex items-center gap-3 px-4 py-3 ${isSelected ? "bg-gray-100 rounded-lg" : ""}`}>
+    <div className={`flex items-center gap-3 px-4 py-3 ${isSelected ? "bg-muted rounded-lg" : ""}`}>
       <VoiceAvatar gender={gender} color={color} />
       <div className="flex-1 min-w-0">
-        <p className="text-sm font-semibold text-black">{name}</p>
-        <p className="text-xs text-gray-500 truncate">{description}</p>
+        <p className="text-sm font-semibold text-foreground">{name}</p>
+        <p className="text-xs text-muted-foreground truncate">{description}</p>
       </div>
       {showPlayButton && (
-        <button className="flex h-8 w-8 items-center justify-center rounded-full bg-black text-white">
+        <button className="flex h-8 w-8 items-center justify-center rounded-full bg-foreground text-background">
           <Play className="h-3.5 w-3.5 ml-0.5" />
         </button>
       )}
@@ -231,7 +231,7 @@ function LanguageCard({
   isCenter?: boolean;
 }) {
   return (
-    <div className={`flex-shrink-0 flex items-center gap-4 rounded-2xl bg-white px-6 py-5 w-full max-w-[360px] transition-all duration-500 shadow-[0_4px_20px_rgba(0,0,0,0.08)] ${isCenter ? '' : 'opacity-50'}`}>
+    <div className={`flex-shrink-0 flex items-center gap-4 rounded-2xl bg-background px-6 py-5 w-full max-w-[360px] transition-all duration-500 shadow-[0_4px_20px_rgba(0,0,0,0.08)] ${isCenter ? '' : 'opacity-50'}`}>
       {/* Play button - gradient circle */}
       <button
         onClick={onPlayToggle}
@@ -253,13 +253,13 @@ function LanguageCard({
       {/* Text content */}
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-2 flex-wrap">
-          <span className="text-lg font-semibold text-gray-900">{language}</span>
+          <span className="text-lg font-semibold text-foreground">{language}</span>
           <span className="text-xl">{flag}</span>
-          <span className="rounded-full border border-gray-200 bg-gray-50 px-3 py-1 text-xs text-gray-500">
+          <span className="rounded-full border border-border bg-surface px-3 py-1 text-xs text-muted-foreground">
             {gender}
           </span>
         </div>
-        <p className="text-sm text-gray-500 mt-1.5">{description}</p>
+        <p className="text-sm text-muted-foreground mt-1.5">{description}</p>
       </div>
     </div>
   );
@@ -306,10 +306,10 @@ function LanguageSelectorAsset() {
   return (
     <div className="relative w-full h-full flex flex-col items-center justify-center">
       {/* Left fade - positioned on parent to reach edge */}
-      <div className="pointer-events-none absolute left-0 top-0 bottom-0 z-20 w-20 bg-gradient-to-r from-gray-50 to-transparent" />
+      <div className="pointer-events-none absolute left-0 top-0 bottom-0 z-20 w-20 bg-gradient-to-r from-surface to-transparent" />
 
       {/* Right fade - positioned on parent to reach edge */}
-      <div className="pointer-events-none absolute right-0 top-0 bottom-0 z-20 w-20 bg-gradient-to-l from-gray-50 to-transparent" />
+      <div className="pointer-events-none absolute right-0 top-0 bottom-0 z-20 w-20 bg-gradient-to-l from-surface to-transparent" />
 
       {/* Cards container */}
       <div className="relative flex items-center justify-center w-full py-4">
@@ -349,7 +349,7 @@ function LanguageSelectorAsset() {
       <div className="flex items-center justify-center gap-3 mt-4">
         <button
           onClick={handlePrev}
-          className="flex h-9 w-9 items-center justify-center rounded-full border border-gray-300 bg-white text-gray-600 hover:bg-gray-50 transition-colors"
+          className="flex h-9 w-9 items-center justify-center rounded-full border border-border-strong bg-background text-muted-foreground hover:bg-surface transition-colors"
         >
           <ChevronLeft className="h-4 w-4" />
         </button>
@@ -365,7 +365,7 @@ function LanguageSelectorAsset() {
               }}
               className={`h-1.5 rounded-full transition-all duration-300 ${
                 idx === currentIndex
-                  ? "w-4 bg-[#323dfe]"
+                  ? "w-4 bg-primary"
                   : "w-1.5 bg-gray-300 hover:bg-gray-400"
               }`}
             />
@@ -373,7 +373,7 @@ function LanguageSelectorAsset() {
         </div>
         <button
           onClick={handleNext}
-          className="flex h-9 w-9 items-center justify-center rounded-full border border-gray-300 bg-white text-gray-600 hover:bg-gray-50 transition-colors"
+          className="flex h-9 w-9 items-center justify-center rounded-full border border-border-strong bg-background text-muted-foreground hover:bg-surface transition-colors"
         >
           <ChevronRight className="h-4 w-4" />
         </button>
@@ -399,9 +399,17 @@ function LanguageSelectorAsset() {
 
 export default function VoiceFeatures() {
   return (
-    <section className="bg-white py-12 sm:py-16 md:py-20">
+    <section className="bg-background border-t border-border py-12 sm:py-16 md:py-20">
       <div className="container mx-auto max-w-7xl px-4">
-        <h2 className="font-sora mb-8 sm:mb-10 text-center text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] font-normal leading-[1.25] tracking-[-0.02em] text-black">
+        <div className="flex items-center gap-3 font-mono-ui text-[11px] uppercase tracking-[0.12em] text-muted-foreground mb-8">
+          <span className="flex items-center gap-2">
+            <span className="tabular-nums text-foreground/70">~</span>
+            <span className="h-px w-6 bg-border" />
+          </span>
+          <span>features</span>
+          <span className="flex-1 border-t border-dashed border-border" />
+        </div>
+        <h2 className="font-sora mb-8 sm:mb-10 text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] font-normal leading-[1.04] tracking-[-0.035em] text-foreground">
           Build best in class voice AI
           <br />
           agents with Plivo
@@ -421,7 +429,7 @@ export default function VoiceFeatures() {
 
 function LatencyCard() {
   return (
-    <div className="overflow-hidden rounded-lg bg-gray-50">
+    <div className="overflow-hidden rounded-lg bg-surface">
       {/* Visual - Top - Same height as other cards */}
       <div className="relative h-64 overflow-hidden">
         <WorldMap
@@ -454,17 +462,17 @@ function LatencyCard() {
           ]}
         />
         <div className="absolute right-3 top-3 sm:right-6 sm:top-6 flex flex-col items-center gap-1">
-          <div className="flex items-center gap-2 rounded-full bg-white px-3 py-1.5 shadow-md">
+          <div className="flex items-center gap-2 rounded-full bg-background px-3 py-1.5 shadow-sm">
             <span className="h-2 w-2 animate-pulse rounded-full bg-green-500" />
-            <span className="text-sm font-medium text-black">500 ms</span>
+            <span className="text-sm font-medium text-foreground">500 ms</span>
           </div>
-          <span className="text-xs text-gray-500">1 hop</span>
+          <span className="text-xs text-muted-foreground">1 hop</span>
         </div>
       </div>
 
       {/* Content - Bottom */}
       <div className="p-4 sm:p-6 md:p-8">
-        <h3 className="mb-3 text-xl sm:text-2xl font-semibold text-black">
+        <h3 className="mb-3 text-xl sm:text-2xl font-semibold text-foreground">
           Sub-500ms Latency
         </h3>
         <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2">
@@ -480,15 +488,15 @@ function LatencyCard() {
 
 function TurnTakingCard() {
   return (
-    <div className="overflow-hidden rounded-lg bg-gray-50">
+    <div className="overflow-hidden rounded-lg bg-surface">
       {/* Visual - Top: Split background with cards on top */}
       <div className="relative h-64">
         {/* Split background */}
         <div className="absolute inset-0 flex">
           {/* Left half - Gray gradient (faded downward) */}
-          <div className="w-1/2 bg-gradient-to-b from-gray-300/70 via-gray-200/40 to-white/0" />
+          <div className="w-1/2 bg-gradient-to-b from-gray-300/70 via-gray-200/40 to-background/0" />
           {/* Right half - Purple gradient (faded downward) */}
-          <div className="w-1/2 bg-gradient-to-b from-blue-500/70 via-fuchsia-500/40 to-white/0" />
+          <div className="w-1/2 bg-gradient-to-b from-blue-500/70 via-fuchsia-500/40 to-background/0" />
         </div>
 
         {/* Cards container */}
@@ -520,7 +528,7 @@ function TurnTakingCard() {
 
       {/* Content - Bottom */}
       <div className="p-4 sm:p-6 md:p-8">
-        <h3 className="mb-3 text-xl sm:text-2xl font-semibold text-black">
+        <h3 className="mb-3 text-xl sm:text-2xl font-semibold text-foreground">
           Natural Turn-Taking
         </h3>
         <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2">
@@ -536,15 +544,15 @@ function TurnTakingCard() {
 
 function NoiseCancellationCard() {
   return (
-    <div className="overflow-hidden rounded-lg bg-gray-50">
+    <div className="overflow-hidden rounded-lg bg-surface">
       {/* Visual - Top: Split background with cards on top */}
       <div className="relative h-64">
         {/* Split background */}
         <div className="absolute inset-0 flex">
           {/* Left half - Gray gradient (faded downward) */}
-          <div className="w-1/2 bg-gradient-to-b from-gray-300/70 via-gray-200/40 to-white/0" />
+          <div className="w-1/2 bg-gradient-to-b from-gray-300/70 via-gray-200/40 to-background/0" />
           {/* Right half - Purple gradient (faded downward) */}
-          <div className="w-1/2 bg-gradient-to-b from-blue-500/70 via-fuchsia-500/40 to-white/0" />
+          <div className="w-1/2 bg-gradient-to-b from-blue-500/70 via-fuchsia-500/40 to-background/0" />
         </div>
 
         {/* Cards container */}
@@ -574,7 +582,7 @@ function NoiseCancellationCard() {
 
       {/* Content - Bottom */}
       <div className="p-4 sm:p-6 md:p-8">
-        <h3 className="mb-3 text-xl sm:text-2xl font-semibold text-black">
+        <h3 className="mb-3 text-xl sm:text-2xl font-semibold text-foreground">
           Noise Cancellation
         </h3>
         <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2">
@@ -590,7 +598,7 @@ function NoiseCancellationCard() {
 
 function LanguagesCard() {
   return (
-    <div className="overflow-hidden rounded-lg bg-gray-50">
+    <div className="overflow-hidden rounded-lg bg-surface">
       {/* Visual - Top - Same height as other cards */}
       <div className="relative h-64 overflow-visible">
         <LanguageSelectorAsset />
@@ -598,7 +606,7 @@ function LanguagesCard() {
 
       {/* Content - Bottom */}
       <div className="p-4 sm:p-6 md:p-8">
-        <h3 className="mb-3 text-xl sm:text-2xl font-semibold text-black">
+        <h3 className="mb-3 text-xl sm:text-2xl font-semibold text-foreground">
           50+ Languages
         </h3>
         <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2">

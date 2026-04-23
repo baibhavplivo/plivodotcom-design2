@@ -51,7 +51,7 @@ export default function CaseStudyScrollQuote({
   return (
     <section
       ref={sectionRef}
-      className="py-10 sm:py-12 md:py-16 bg-white"
+      className="py-10 sm:py-12 md:py-16 bg-background border-t border-border"
     >
       <div className="container mx-auto max-w-4xl px-4 text-center">
         {/* Quote */}
@@ -86,18 +86,18 @@ export default function CaseStudyScrollQuote({
               <img
                 src={avatar}
                 alt={name}
-                className="w-14 h-14 rounded-full object-cover border border-gray-200"
+                className="w-14 h-14 rounded-full object-cover border border-border"
               />
             ) : (
-              <div className="flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-[#323dfe] to-[#0f1117] text-white font-semibold text-lg">
+              <div className="flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-primary to-surface-2 text-white font-semibold text-lg">
                 {name.charAt(0).toUpperCase()}
               </div>
             )}
             <div>
-              <p className="text-sm font-medium text-gray-900">
+              <p className="text-sm font-medium text-foreground">
                 <cite className="not-italic">{name}</cite>
               </p>
-              <p className="text-sm text-gray-500">{role}</p>
+              <p className="text-sm text-muted-foreground">{role}</p>
             </div>
           </footer>
         </blockquote>

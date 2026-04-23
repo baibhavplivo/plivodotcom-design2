@@ -76,19 +76,19 @@ const faqItems = [
 
 export default function VerifyFAQ() {
   return (
-    <section className="bg-white py-12 lg:py-16">
+    <section className="bg-background border-t border-border py-12 lg:py-16">
       <div className="container mx-auto max-w-4xl px-4">
-        <h2 className="font-sora text-center text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] font-normal leading-[1.25] tracking-[-0.02em] text-black mb-10">
+        <h2 className="font-sora text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] font-normal leading-[1.25] tracking-[-0.02em] text-foreground mb-10">
           Frequently asked questions
         </h2>
 
         <Accordion type="single" collapsible className="w-full">
           {faqItems.map((item, i) => (
-            <AccordionItem key={i} value={`faq-${i}`} className="border-b border-gray-200">
-              <AccordionTrigger className="text-left text-base font-medium text-black hover:no-underline py-5">
+            <AccordionItem key={i} value={`faq-${i}`} className="border-b border-border">
+              <AccordionTrigger className="text-left text-base font-medium text-foreground hover:no-underline py-5">
                 {item.question}
               </AccordionTrigger>
-              <AccordionContent className="text-gray-600 text-[15px] leading-relaxed pb-5">
+              <AccordionContent className="text-muted-foreground text-[15px] leading-relaxed pb-5">
                 {item.answer}
               </AccordionContent>
             </AccordionItem>

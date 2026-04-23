@@ -30,12 +30,12 @@ function RCSPhoneIllustration() {
       {/* Dotted Grid Background */}
       <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
         <div className="relative w-full h-full">
-          <div className="h-full w-full" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }} />
+          <div className="h-full w-full" style={{ backgroundImage: 'radial-gradient(circle, hsl(var(--border)) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }} />
           <div
             className="absolute inset-0 pointer-events-none"
             style={{
               background:
-                "radial-gradient(ellipse at center, transparent 20%, white 70%)",
+                "radial-gradient(ellipse at center, transparent 20%, hsl(var(--background)) 70%)",
             }}
           />
         </div>
@@ -46,33 +46,33 @@ function RCSPhoneIllustration() {
         <div className="w-[288px] sm:w-[320px]">
           {/* Phone outer frame */}
           <div
-            className="relative rounded-[36px] p-1.5 shadow-2xl border border-gray-300 bg-gray-100"
+            className="relative rounded-[36px] p-1.5 border border-border-strong bg-muted"
           >
 
             {/* Screen */}
-            <div className="relative rounded-[30px] overflow-hidden bg-white shadow-inner">
+            <div className="relative rounded-[30px] overflow-hidden bg-background shadow-inner">
               {/* Status bar */}
-              <div className="h-7 bg-gray-100 flex items-center justify-between px-5 text-xs font-medium rounded-t-[30px]">
+              <div className="h-7 bg-muted flex items-center justify-between px-5 text-xs font-medium rounded-t-[30px]">
                 <div className="flex items-center gap-1 opacity-50">
                   <div className="flex gap-0.5">
-                    <span className="w-1 h-1 rounded-full bg-black" />
-                    <span className="w-1 h-1 rounded-full bg-black" />
-                    <span className="w-1 h-1 rounded-full bg-black" />
-                    <span className="w-1 h-1 rounded-full bg-black" />
+                    <span className="w-1 h-1 rounded-full bg-foreground" />
+                    <span className="w-1 h-1 rounded-full bg-foreground" />
+                    <span className="w-1 h-1 rounded-full bg-foreground" />
+                    <span className="w-1 h-1 rounded-full bg-foreground" />
                     <span className="w-1 h-1 rounded-full bg-gray-300" />
                   </div>
-                  <span className="ml-1 text-black">Plivo</span>
+                  <span className="ml-1 text-foreground">Plivo</span>
                 </div>
-                <span className="text-black opacity-50">9:41 AM</span>
+                <span className="text-foreground opacity-50">9:41 AM</span>
                 <div className="flex items-center gap-1 opacity-50">
-                  <span className="text-black text-[10px]">100%</span>
-                  <div className="w-5 h-2.5 rounded-sm bg-black" />
+                  <span className="text-foreground text-[10px]">100%</span>
+                  <div className="w-5 h-2.5 rounded-sm bg-foreground" />
                 </div>
               </div>
 
               {/* Chat Header - Branded Sender */}
-              <div className="px-4 py-3 border-b border-gray-100 flex items-center gap-3">
-                <div className="w-9 h-9 rounded-full bg-gray-100 flex items-center justify-center flex-shrink-0">
+              <div className="px-4 py-3 border-b border-border flex items-center gap-3">
+                <div className="w-9 h-9 rounded-full bg-muted flex items-center justify-center flex-shrink-0">
                   <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="url(#cartGradient)" strokeWidth={1.5}>
                     <defs>
                       <linearGradient id="cartGradient" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -85,19 +85,19 @@ function RCSPhoneIllustration() {
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-1.5">
-                    <span className="text-sm font-semibold text-gray-900">StyleCart</span>
-                    <svg className="w-4 h-4 text-[#323dfe]" viewBox="0 0 24 24" fill="currentColor">
+                    <span className="text-sm font-semibold text-foreground">StyleCart</span>
+                    <svg className="w-4 h-4 text-primary" viewBox="0 0 24 24" fill="currentColor">
                       <path fillRule="evenodd" d="M8.603 3.799A4.49 4.49 0 0112 2.25c1.357 0 2.573.6 3.397 1.549a4.49 4.49 0 013.498 1.307 4.491 4.491 0 011.307 3.497A4.49 4.49 0 0121.75 12a4.49 4.49 0 01-1.549 3.397 4.491 4.491 0 01-1.307 3.497 4.491 4.491 0 01-3.497 1.307A4.49 4.49 0 0112 21.75a4.49 4.49 0 01-3.397-1.549 4.49 4.49 0 01-3.498-1.306 4.491 4.491 0 01-1.307-3.498A4.49 4.49 0 012.25 12c0-1.357.6-2.573 1.549-3.397a4.49 4.49 0 011.307-3.497 4.49 4.49 0 013.497-1.307zm7.007 6.387a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z" clipRule="evenodd" />
                     </svg>
                   </div>
-                  <span className="text-xs text-gray-400">Verified business</span>
+                  <span className="text-xs text-muted-foreground">Verified business</span>
                 </div>
               </div>
 
               {/* Chat Content */}
-              <div className="px-3 pt-3 pb-4 min-h-[440px] bg-gray-50 space-y-3">
+              <div className="px-3 pt-3 pb-4 min-h-[440px] bg-surface space-y-3">
                 {/* Rich Card - Product Promotion */}
-                <div className="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100 max-w-[260px]">
+                <div className="bg-background rounded-xl overflow-hidden shadow-sm border border-border max-w-[260px]">
                   {/* Product image - actual shoe photo */}
                   <div className="h-36 relative overflow-hidden" style={{ background: "linear-gradient(135deg, #f0f4ff 0%, #e8eeff 100%)" }}>
                     <img
@@ -105,24 +105,24 @@ function RCSPhoneIllustration() {
                       alt="Summer collection sneaker"
                       className="w-full h-full object-cover"
                     />
-                    <div className="absolute top-2 right-2 w-6 h-6 rounded-full bg-white shadow-sm flex items-center justify-center">
+                    <div className="absolute top-2 right-2 w-6 h-6 rounded-full bg-background shadow-sm flex items-center justify-center">
                       <span className="text-[7px] font-bold text-indigo-600">NEW</span>
                     </div>
                   </div>
                   {/* Card content */}
                   <div className="p-3">
-                    <p className="text-xs font-semibold text-gray-900 mb-1">Summer collection is here!</p>
-                    <p className="text-[11px] text-gray-500 leading-snug">
+                    <p className="text-xs font-semibold text-foreground mb-1">Summer collection is here!</p>
+                    <p className="text-[11px] text-muted-foreground leading-snug">
                       Free shipping on orders over $50
                     </p>
                   </div>
                   {/* Card actions */}
-                  <div className="border-t border-gray-100 flex">
-                    <button className="flex-1 py-2 text-[11px] font-semibold text-[#323dfe]">
+                  <div className="border-t border-border flex">
+                    <button className="flex-1 py-2 text-[11px] font-semibold text-primary">
                       Shop now
                     </button>
-                    <div className="w-px bg-gray-100" />
-                    <button className="flex-1 py-2 text-[11px] font-semibold text-[#323dfe]">
+                    <div className="w-px bg-muted" />
+                    <button className="flex-1 py-2 text-[11px] font-semibold text-primary">
                       View all
                     </button>
                   </div>
@@ -130,32 +130,32 @@ function RCSPhoneIllustration() {
 
                 {/* Suggested Replies */}
                 <div className="flex flex-wrap gap-1.5">
-                  <span className="px-3 py-1.5 rounded-full border border-gray-300 text-[11px] font-medium text-gray-700 bg-white">
+                  <span className="px-3 py-1.5 rounded-full border border-border-strong text-[11px] font-medium text-foreground/80 bg-background">
                     View deals
                   </span>
-                  <span className="px-3 py-1.5 rounded-full border border-gray-300 text-[11px] font-medium text-gray-700 bg-white">
+                  <span className="px-3 py-1.5 rounded-full border border-border-strong text-[11px] font-medium text-foreground/80 bg-background">
                     Track order
                   </span>
                 </div>
 
                 {/* Delivery update message */}
-                <div className="bg-white rounded-xl p-3 shadow-sm border border-gray-100 max-w-[260px]">
+                <div className="bg-background rounded-xl p-3 shadow-sm border border-border max-w-[260px]">
                   <div className="flex items-center gap-2 mb-2">
-                    <div className="w-5 h-5 rounded-full bg-green-100 flex items-center justify-center">
-                      <svg className="w-3 h-3 text-green-600" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+                    <div className="w-5 h-5 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center">
+                      <svg className="w-3 h-3 text-green-600 dark:text-green-300" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
                     </div>
-                    <p className="text-[11px] font-medium text-gray-900">Order shipped!</p>
+                    <p className="text-[11px] font-medium text-foreground">Order shipped!</p>
                   </div>
-                  <p className="text-[10px] text-gray-500">Your order #4829 is on its way. Arriving Feb 18.</p>
-                  <button className="mt-2 w-full py-1.5 rounded-lg border border-gray-200 text-[10px] font-medium text-gray-700">
+                  <p className="text-[10px] text-muted-foreground">Your order #4829 is on its way. Arriving Feb 18.</p>
+                  <button className="mt-2 w-full py-1.5 rounded-lg border border-border text-[10px] font-medium text-foreground/80">
                     Track shipment
                   </button>
                 </div>
               </div>
 
               {/* Home indicator */}
-              <div className="h-7 bg-gray-50 flex items-center justify-center">
-                <div className="w-28 h-1 rounded-full bg-black/20" />
+              <div className="h-7 bg-surface flex items-center justify-center">
+                <div className="w-28 h-1 rounded-full bg-foreground/$1" />
               </div>
             </div>
           </div>
@@ -166,7 +166,7 @@ function RCSPhoneIllustration() {
           className="absolute inset-x-0 bottom-0 h-32 pointer-events-none"
           style={{
             background:
-              "linear-gradient(to top, white 0%, white 20%, rgba(255,255,255,0.9) 50%, transparent 100%)",
+              "linear-gradient(to top, hsl(var(--background)) 0%, hsl(var(--background)) 20%, hsl(var(--background) / 0.9) 50%, transparent 100%)",
           }}
         />
       </div>
@@ -177,48 +177,63 @@ function RCSPhoneIllustration() {
 // ── Hero ────────────────────────────────────────────────────────────────────
 function RCSHero() {
   return (
-    <section className="bg-white pt-[56px] sm:pt-[64px] md:pt-[72px] pb-8">
-      <div className="container mx-auto max-w-7xl px-4">
-        <div className="grid gap-8 lg:grid-cols-2 lg:gap-12 items-center">
-          {/* Left Content */}
-          <div className="order-1 lg:order-1 max-w-[820px] text-center lg:text-left">
-            <h1 className="font-sora text-[2rem] sm:text-[2.5rem] md:text-[3rem] font-normal leading-[1.1] tracking-[-0.02em] text-black">
-              The future of{" "}
-              <br className="hidden sm:block" />
-              messaging: RCS API
+    <section className="relative w-full overflow-hidden">
+      <div className="pointer-events-none absolute inset-0 dev-grid-bg opacity-[0.3] [mask-image:linear-gradient(to_bottom,black_40%,transparent_95%)]" />
+      <div className="relative container mx-auto max-w-7xl px-4 sm:px-6 pt-10 pb-14 sm:pt-14 sm:pb-20 md:pt-20 md:pb-24">
+        <div className="flex items-center gap-3 font-mono-ui text-[11px] uppercase tracking-[0.12em] text-muted-foreground">
+          <span className="flex items-center gap-2">
+            <span className="tabular-nums text-foreground/70">~</span>
+            <span className="h-px w-6 bg-border" />
+          </span>
+          <span>rcs api</span>
+          <span className="flex-1 border-t border-dashed border-border" />
+          <span>rich messaging · verified brands · carrier-native</span>
+        </div>
+
+        <div className="mt-10 grid grid-cols-1 items-center gap-10 lg:mt-14 lg:grid-cols-12 lg:gap-12">
+          <div className="lg:col-span-7">
+            <h1 className="font-sora text-[2.25rem] font-normal leading-[1.02] tracking-[-0.04em] text-foreground sm:text-[3rem] md:text-[3.5rem]">
+              The future of <span className="[text-decoration-line:underline] decoration-primary/25 [text-decoration-thickness:0.14em] [text-underline-offset:0.12em]">messaging: RCS API</span>
             </h1>
-            <p className="text-base sm:text-lg text-gray-600 mt-4 max-w-[540px] mx-auto lg:mx-0 leading-relaxed">
-              Connect with customers like never before. Deliver interactive, branded
-              messages that boost engagement and drive conversions-all with our RCS
-              APIs.
+            <p className="mt-5 max-w-xl text-[15px] leading-relaxed text-muted-foreground sm:text-base">
+              Connect with customers like never before. Deliver interactive, branded messages that boost engagement and drive conversions, all with our RCS APIs.
             </p>
-            <div className="flex flex-col sm:flex-row gap-3 mt-8 justify-center lg:justify-start">
+
+            <div className="mt-7 flex flex-wrap items-center gap-3">
               <a
                 href="/contact/sales/"
-                className="inline-flex items-center justify-center rounded-md bg-black px-6 py-3 text-base font-medium text-white cta-hover-gradient transition-colors"
+                className="group inline-flex items-center rounded-md bg-foreground px-4 py-2.5 text-[13.5px] font-medium text-background transition-colors hover:bg-primary hover:text-white"
               >
                 Talk to sales
+                <svg className="ml-1.5 h-4 w-4 transition-transform group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M5 12h14" /><path d="m12 5 7 7-7 7" />
+                </svg>
+              </a>
+              <a
+                href="/pricing/"
+                className="inline-flex items-center rounded-md border border-border bg-background px-4 py-2.5 text-[13.5px] font-medium text-foreground transition-colors hover:border-border-strong hover:bg-surface"
+              >
+                See pricing
               </a>
             </div>
-            {/* Feature badges */}
-            <div className="flex items-center justify-center lg:justify-start gap-6 mt-6">
-              <span className="inline-flex items-center gap-2 text-sm text-gray-600">
-                <svg className="w-4 h-4 text-[#323dfe]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                </svg>
-                Branded messages
-              </span>
-              <span className="inline-flex items-center gap-2 text-sm text-gray-600">
-                <svg className="w-4 h-4 text-[#323dfe]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                </svg>
-                Rich media support
-              </span>
-            </div>
+
+            <dl className="mt-10 grid grid-cols-3 gap-4 border-t border-border pt-6 sm:max-w-lg">
+              <div>
+                <dt className="font-mono-ui text-[10px] uppercase tracking-[0.12em] text-muted-foreground">cta types</dt>
+                <dd className="mt-1 font-mono-ui text-xl font-semibold tabular-nums text-foreground">11<span className="text-muted-foreground text-sm">+</span></dd>
+              </div>
+              <div>
+                <dt className="font-mono-ui text-[10px] uppercase tracking-[0.12em] text-muted-foreground">media</dt>
+                <dd className="mt-1 font-mono-ui text-xl font-semibold tabular-nums text-foreground">rich</dd>
+              </div>
+              <div>
+                <dt className="font-mono-ui text-[10px] uppercase tracking-[0.12em] text-muted-foreground">support</dt>
+                <dd className="mt-1 font-mono-ui text-xl font-semibold tabular-nums text-foreground">24/7</dd>
+              </div>
+            </dl>
           </div>
 
-          {/* Right Content - RCS Phone Illustration */}
-          <div className="order-2 lg:order-2">
+          <div className="lg:col-span-5">
             <RCSPhoneIllustration />
           </div>
         </div>
@@ -257,24 +272,32 @@ const FEATURES = [
 
 function RCSFeatures() {
   return (
-    <section className="bg-gray-50 py-12 lg:py-16">
+    <section className="bg-surface border-t border-border py-12 lg:py-16">
       <div className="container mx-auto max-w-7xl px-4">
-        <h2 className="font-sora text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] font-normal leading-[1.25] tracking-[-0.02em] text-black text-center mb-12">
+        <div className="flex items-center gap-3 font-mono-ui text-[11px] uppercase tracking-[0.12em] text-muted-foreground mb-8">
+          <span className="flex items-center gap-2">
+            <span className="tabular-nums text-foreground/70">~</span>
+            <span className="h-px w-6 bg-border" />
+          </span>
+          <span>page</span>
+          <span className="flex-1 border-t border-dashed border-border" />
+        </div>
+        <h2 className="font-sora text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] font-normal leading-[1.04] tracking-[-0.035em] text-foreground mb-12">
           Send richer, more rewarding messages with RCS
         </h2>
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {FEATURES.map((feature, i) => (
             <div
               key={i}
-              className="bg-white rounded-lg border border-gray-200 p-6 hover:-translate-y-1 transition-transform duration-200"
+              className="bg-background rounded-lg border border-border p-6 hover:-translate-y-1 transition-transform duration-200"
             >
-              <div className="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-4">
-                <feature.icon className="w-5 h-5 text-[#323dfe]" />
+              <div className="w-10 h-10 rounded-lg bg-muted flex items-center justify-center mb-4">
+                <feature.icon className="w-5 h-5 text-primary" />
               </div>
-              <h3 className="text-base font-semibold text-black mb-2">
+              <h3 className="text-base font-semibold text-foreground mb-2">
                 {feature.title}
               </h3>
-              <p className="text-sm text-gray-600 leading-relaxed">
+              <p className="text-sm text-muted-foreground leading-relaxed">
                 {feature.description}
               </p>
             </div>
@@ -288,7 +311,7 @@ function RCSFeatures() {
 // ── Use case illustrations ──────────────────────────────────────────────────
 function RCSIllustrationWrapper({ children, className }: { children: React.ReactNode; className?: string }) {
   return (
-    <div className={`relative h-56 w-full rounded-xl overflow-hidden ${className || ""}`} style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
+    <div className={`relative h-56 w-full rounded-xl overflow-hidden ${className || ""}`} style={{ backgroundImage: 'radial-gradient(circle, hsl(var(--border)) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="relative h-full w-full px-6 py-5 flex flex-col items-center justify-center">
         <div className="w-full max-w-[220px] flex flex-col">
           {children}
@@ -301,24 +324,24 @@ function RCSIllustrationWrapper({ children, className }: { children: React.React
 function ProductShowcaseIllustration() {
   return (
     <RCSIllustrationWrapper>
-      <div className="bg-white rounded-lg overflow-hidden shadow-sm border border-gray-100 flex-1 flex flex-col">
+      <div className="bg-background rounded-lg overflow-hidden shadow-sm border border-border flex-1 flex flex-col">
         <div className="h-20 bg-gradient-to-br from-blue-50 to-indigo-50 relative overflow-hidden">
           <div className="absolute top-1.5 left-1.5 z-10 text-white text-[8px] font-bold px-1.5 py-0.5 rounded" style={{ background: "linear-gradient(135deg, #323dfe, #000000)" }}>NEW</div>
           <img src="/images/shoe-product.jpg" alt="Product" className="w-full h-full object-cover" />
         </div>
         <div className="p-2.5 flex-1">
-          <p className="text-[10px] font-semibold text-gray-900">Summer collection is here!</p>
-          <p className="text-[9px] text-gray-500 mt-0.5">Free shipping on orders over $50</p>
+          <p className="text-[10px] font-semibold text-foreground">Summer collection is here!</p>
+          <p className="text-[9px] text-muted-foreground mt-0.5">Free shipping on orders over $50</p>
         </div>
-        <div className="border-t border-gray-100 flex">
-          <button className="flex-1 py-1.5 text-[10px] font-semibold text-[#323dfe]">Shop now</button>
-          <div className="w-px bg-gray-100" />
-          <button className="flex-1 py-1.5 text-[10px] font-semibold text-[#323dfe]">View all</button>
+        <div className="border-t border-border flex">
+          <button className="flex-1 py-1.5 text-[10px] font-semibold text-primary">Shop now</button>
+          <div className="w-px bg-muted" />
+          <button className="flex-1 py-1.5 text-[10px] font-semibold text-primary">View all</button>
         </div>
       </div>
       <div className="flex flex-wrap gap-1.5 mt-2">
-        <span className="px-2.5 py-1 rounded-full border border-gray-300 text-[9px] font-medium text-gray-600 bg-white">View deals</span>
-        <span className="px-2.5 py-1 rounded-full border border-gray-300 text-[9px] font-medium text-gray-600 bg-white">Track order</span>
+        <span className="px-2.5 py-1 rounded-full border border-border-strong text-[9px] font-medium text-muted-foreground bg-background">View deals</span>
+        <span className="px-2.5 py-1 rounded-full border border-border-strong text-[9px] font-medium text-muted-foreground bg-background">Track order</span>
       </div>
     </RCSIllustrationWrapper>
   );
@@ -327,9 +350,9 @@ function ProductShowcaseIllustration() {
 function AppointmentReminderIllustration() {
   return (
     <RCSIllustrationWrapper>
-      <div className="bg-white rounded-lg shadow-sm border border-gray-100 flex flex-col p-3">
+      <div className="bg-background rounded-lg shadow-sm border border-border flex flex-col p-3">
         <div className="flex items-start gap-2 mb-3">
-          <div className="w-8 h-8 rounded-lg bg-gray-100 flex items-center justify-center flex-shrink-0">
+          <div className="w-8 h-8 rounded-lg bg-muted flex items-center justify-center flex-shrink-0">
             <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="url(#apptGradient)" strokeWidth={1.5}>
               <defs>
                 <linearGradient id="apptGradient" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -341,14 +364,14 @@ function AppointmentReminderIllustration() {
             </svg>
           </div>
           <div>
-            <p className="text-[11px] font-semibold text-gray-900">Appointment reminder</p>
-            <p className="text-[10px] text-gray-500 mt-0.5">Dr. Smith - Feb 18, 10:30 AM</p>
-            <p className="text-[9px] text-[#323dfe]/60 mt-0.5">Dental checkup &amp; cleaning</p>
+            <p className="text-[11px] font-semibold text-foreground">Appointment reminder</p>
+            <p className="text-[10px] text-muted-foreground mt-0.5">Dr. Smith - Feb 18, 10:30 AM</p>
+            <p className="text-[9px] text-primary/60 mt-0.5">Dental checkup &amp; cleaning</p>
           </div>
         </div>
         <div className="mt-auto flex gap-2">
           <button className="flex-1 py-2 rounded-lg bg-gray-800 text-white text-[10px] font-semibold">Confirm</button>
-          <button className="flex-1 py-2 rounded-lg border border-gray-200 text-gray-700 text-[10px] font-semibold">Reschedule</button>
+          <button className="flex-1 py-2 rounded-lg border border-border text-foreground/80 text-[10px] font-semibold">Reschedule</button>
         </div>
       </div>
     </RCSIllustrationWrapper>
@@ -358,41 +381,41 @@ function AppointmentReminderIllustration() {
 function TicketsPassesIllustration() {
   return (
     <RCSIllustrationWrapper>
-      <div className="bg-white rounded-lg shadow-sm border border-gray-100 flex-1 flex flex-col overflow-hidden">
+      <div className="bg-background rounded-lg shadow-sm border border-border flex-1 flex flex-col overflow-hidden">
         <div className="px-3 py-2.5" style={{ background: "linear-gradient(135deg, rgba(205,62,249,0.1), rgba(50,61,254,0.12))" }}>
-          <p className="text-[9px] font-bold text-gray-500 uppercase tracking-wider">Boarding pass</p>
+          <p className="text-[9px] font-bold text-muted-foreground font-mono-ui uppercase tracking-[0.1em]">Boarding pass</p>
           <div className="flex justify-between items-end mt-1.5">
             <div>
-              <p className="text-[16px] font-bold text-black leading-none">SFO</p>
-              <p className="text-[8px] text-gray-500">San Francisco</p>
+              <p className="text-[16px] font-bold text-foreground leading-none">SFO</p>
+              <p className="text-[8px] text-muted-foreground">San Francisco</p>
             </div>
-            <svg className="w-4 h-4 text-gray-400" viewBox="0 0 24 24" fill="currentColor">
+            <svg className="w-4 h-4 text-muted-foreground" viewBox="0 0 24 24" fill="currentColor">
               <path d="M3.478 2.405a.75.75 0 00-.926.94l2.432 7.905H13.5a.75.75 0 010 1.5H4.984l-2.432 7.905a.75.75 0 00.926.94 60.519 60.519 0 0018.445-8.986.75.75 0 000-1.218A60.517 60.517 0 003.478 2.405z" />
             </svg>
             <div className="text-right">
-              <p className="text-[16px] font-bold text-black leading-none">NYC</p>
-              <p className="text-[8px] text-gray-500">New York</p>
+              <p className="text-[16px] font-bold text-foreground leading-none">NYC</p>
+              <p className="text-[8px] text-muted-foreground">New York</p>
             </div>
           </div>
         </div>
-        <div className="p-3 flex justify-between items-center border-b border-dashed border-gray-200">
+        <div className="p-3 flex justify-between items-center border-b border-dashed border-border">
           <div>
-            <p className="text-[8px] text-gray-400 uppercase">Gate</p>
-            <p className="text-[12px] font-bold text-black">B42</p>
+            <p className="text-[8px] text-muted-foreground uppercase">Gate</p>
+            <p className="text-[12px] font-bold text-foreground">B42</p>
           </div>
           <div>
-            <p className="text-[8px] text-gray-400 uppercase">Seat</p>
-            <p className="text-[12px] font-bold text-black">14A</p>
+            <p className="text-[8px] text-muted-foreground uppercase">Seat</p>
+            <p className="text-[12px] font-bold text-foreground">14A</p>
           </div>
           <div>
-            <p className="text-[8px] text-gray-400 uppercase">Boards</p>
-            <p className="text-[12px] font-bold text-black">9:15 AM</p>
+            <p className="text-[8px] text-muted-foreground uppercase">Boards</p>
+            <p className="text-[12px] font-bold text-foreground">9:15 AM</p>
           </div>
         </div>
         <div className="px-3 py-2 flex items-center justify-center">
           <div className="flex gap-px">
             {[3,1,2,1,3,1,1,2,1,3,1,2,1,1,3,2,1,1,3,1].map((w, i) => (
-              <div key={i} className="bg-black" style={{ width: `${w}px`, height: "20px" }} />
+              <div key={i} className="bg-foreground" style={{ width: `${w}px`, height: "20px" }} />
             ))}
           </div>
         </div>
@@ -404,37 +427,37 @@ function TicketsPassesIllustration() {
 function OrderUpdatesIllustration() {
   return (
     <RCSIllustrationWrapper>
-      <div className="bg-white rounded-lg shadow-sm border border-gray-100 flex-1 flex flex-col p-3">
-        <p className="text-[11px] font-semibold text-gray-900 mb-2">Your order is on the way!</p>
+      <div className="bg-background rounded-lg shadow-sm border border-border flex-1 flex flex-col p-3">
+        <p className="text-[11px] font-semibold text-foreground mb-2">Your order is on the way!</p>
         {/* Progress tracker */}
         <div className="flex items-center gap-1 mb-3">
-          <div className="w-4 h-4 rounded-full bg-[#323dfe] flex items-center justify-center">
+          <div className="w-4 h-4 rounded-full bg-primary flex items-center justify-center">
             <svg className="w-2.5 h-2.5 text-white" fill="none" viewBox="0 0 24 24" strokeWidth={3} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
           </div>
-          <div className="flex-1 h-1 bg-[#323dfe] rounded-full" />
-          <div className="w-4 h-4 rounded-full bg-[#323dfe] flex items-center justify-center">
+          <div className="flex-1 h-1 bg-primary rounded-full" />
+          <div className="w-4 h-4 rounded-full bg-primary flex items-center justify-center">
             <svg className="w-2.5 h-2.5 text-white" fill="none" viewBox="0 0 24 24" strokeWidth={3} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
           </div>
-          <div className="flex-1 h-1 bg-[#323dfe] rounded-full" />
-          <div className="w-4 h-4 rounded-full bg-[#323dfe] flex items-center justify-center ring-2 ring-blue-200">
+          <div className="flex-1 h-1 bg-primary rounded-full" />
+          <div className="w-4 h-4 rounded-full bg-primary flex items-center justify-center ring-2 ring-blue-200">
             <PackageCheck className="w-2.5 h-2.5 text-white" />
           </div>
           <div className="flex-1 h-1 bg-gray-200 rounded-full" />
           <div className="w-4 h-4 rounded-full bg-gray-200" />
         </div>
-        <div className="flex justify-between text-[8px] text-gray-400 mb-3">
+        <div className="flex justify-between text-[8px] text-muted-foreground mb-3">
           <span>Ordered</span>
           <span>Shipped</span>
-          <span className="text-[#323dfe] font-medium">Out for delivery</span>
+          <span className="text-primary font-medium">Out for delivery</span>
           <span>Delivered</span>
         </div>
         <div className="bg-blue-50 rounded-lg p-2 flex items-center gap-2 mt-auto">
           <div className="w-8 h-8 rounded bg-blue-100 flex items-center justify-center">
-            <PackageCheck className="w-4 h-4 text-[#323dfe]" />
+            <PackageCheck className="w-4 h-4 text-primary" />
           </div>
           <div>
-            <p className="text-[10px] font-medium text-gray-900">Order #82941</p>
-            <p className="text-[9px] text-gray-500">Arriving today by 5 PM</p>
+            <p className="text-[10px] font-medium text-foreground">Order #82941</p>
+            <p className="text-[9px] text-muted-foreground">Arriving today by 5 PM</p>
           </div>
         </div>
       </div>
@@ -447,14 +470,14 @@ function CustomerSupportIllustration() {
     <RCSIllustrationWrapper>
       <div className="flex-1 flex flex-col gap-2">
         <div className="max-w-[85%] self-start">
-          <div className="bg-white rounded-xl rounded-bl-sm px-3 py-2 shadow-sm border border-gray-100">
-            <p className="text-[11px] text-gray-900">Hi! How can I help you today?</p>
+          <div className="bg-background rounded-xl rounded-bl-sm px-3 py-2 shadow-sm border border-border">
+            <p className="text-[11px] text-foreground">Hi! How can I help you today?</p>
           </div>
         </div>
         <div className="flex flex-wrap gap-1.5">
-          <span className="px-2.5 py-1 rounded-full border border-blue-200 text-[9px] font-medium text-[#323dfe] bg-blue-50">Return an item</span>
-          <span className="px-2.5 py-1 rounded-full border border-blue-200 text-[9px] font-medium text-[#323dfe] bg-blue-50">Track order</span>
-          <span className="px-2.5 py-1 rounded-full border border-blue-200 text-[9px] font-medium text-[#323dfe] bg-blue-50">Billing help</span>
+          <span className="px-2.5 py-1 rounded-full border border-border text-[9px] font-medium text-foreground/80 bg-surface">Return an item</span>
+          <span className="px-2.5 py-1 rounded-full border border-border text-[9px] font-medium text-foreground/80 bg-surface">Track order</span>
+          <span className="px-2.5 py-1 rounded-full border border-border text-[9px] font-medium text-foreground/80 bg-surface">Billing help</span>
         </div>
         <div className="max-w-[85%] self-end">
           <div className="rounded-xl rounded-br-sm px-3 py-2" style={{ background: "linear-gradient(135deg, #323dfe, #4f5aff)" }}>
@@ -462,8 +485,8 @@ function CustomerSupportIllustration() {
           </div>
         </div>
         <div className="max-w-[85%] self-start">
-          <div className="bg-white rounded-xl rounded-bl-sm px-3 py-2 shadow-sm border border-gray-100">
-            <p className="text-[11px] text-gray-900">Sure! Please share your order number and I'll get that started.</p>
+          <div className="bg-background rounded-xl rounded-bl-sm px-3 py-2 shadow-sm border border-border">
+            <p className="text-[11px] text-foreground">Sure! Please share your order number and I'll get that started.</p>
           </div>
         </div>
       </div>
@@ -511,32 +534,40 @@ const USE_CASES = [
 
 function RCSUseCases() {
   return (
-    <section className="bg-white py-12 lg:py-16">
+    <section className="bg-background border-t border-border py-12 lg:py-16">
       <div className="container mx-auto max-w-7xl px-4">
-        <h2 className="font-sora text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] font-normal leading-[1.25] tracking-[-0.02em] text-black text-center mb-4">
+        <div className="flex items-center gap-3 font-mono-ui text-[11px] uppercase tracking-[0.12em] text-muted-foreground mb-8">
+          <span className="flex items-center gap-2">
+            <span className="tabular-nums text-foreground/70">~</span>
+            <span className="h-px w-6 bg-border" />
+          </span>
+          <span>page</span>
+          <span className="flex-1 border-t border-dashed border-border" />
+        </div>
+        <h2 className="font-sora text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] font-normal leading-[1.04] tracking-[-0.035em] text-foreground mb-4">
           Real-world applications, powered by RCS
         </h2>
-        <p className="text-gray-600 text-center text-base sm:text-lg max-w-2xl mx-auto mb-12">
+        <p className="text-muted-foreground text-base sm:text-lg max-w-2xl mb-12">
           From product showcases to customer support, RCS transforms how you
           engage with customers.
         </p>
         <div className="grid gap-x-6 gap-y-14 sm:gap-y-16 sm:grid-cols-2 lg:grid-cols-3">
           {USE_CASES.map((useCase, i) => (
             <div key={i} className="group">
-              <div className="mb-4 overflow-hidden rounded-xl border border-gray-200 transition-all">
+              <div className="mb-4 overflow-hidden rounded-xl border border-border transition-all">
                 {useCase.illustration}
               </div>
-              <h3 className="mb-2 text-lg font-semibold text-black">
+              <h3 className="mb-2 text-lg font-semibold text-foreground">
                 {useCase.title}
               </h3>
-              <p className="text-sm text-gray-600 leading-relaxed mb-3">
+              <p className="text-sm text-muted-foreground leading-relaxed mb-3">
                 {useCase.description}
               </p>
               <div className="flex flex-wrap gap-1">
                 {useCase.tags.map((tag, j) => (
                   <span
                     key={j}
-                    className="inline-flex items-center rounded-full border border-gray-200 px-2.5 py-0.5 text-xs text-gray-600"
+                    className="inline-flex items-center rounded-full border border-border px-2.5 py-0.5 text-xs text-muted-foreground"
                   >
                     {tag}
                   </span>
@@ -580,25 +611,33 @@ const BENEFITS = [
 
 function RCSBenefits() {
   return (
-    <section className="bg-gray-50 py-12 lg:py-16">
+    <section className="bg-surface border-t border-border py-12 lg:py-16">
       <div className="container mx-auto max-w-7xl px-4">
-        <h2 className="font-sora text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] font-normal leading-[1.25] tracking-[-0.02em] text-black text-center mb-12">
+        <div className="flex items-center gap-3 font-mono-ui text-[11px] uppercase tracking-[0.12em] text-muted-foreground mb-8">
+          <span className="flex items-center gap-2">
+            <span className="tabular-nums text-foreground/70">~</span>
+            <span className="h-px w-6 bg-border" />
+          </span>
+          <span>page</span>
+          <span className="flex-1 border-t border-dashed border-border" />
+        </div>
+        <h2 className="font-sora text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] font-normal leading-[1.04] tracking-[-0.035em] text-foreground mb-12">
           Benefits of RCS over SMS
         </h2>
         <div className="grid sm:grid-cols-2 gap-6 max-w-4xl mx-auto">
           {BENEFITS.map((benefit, i) => (
             <div
               key={i}
-              className="bg-white rounded-lg border border-gray-200 p-6 flex gap-4"
+              className="bg-background rounded-lg border border-border p-6 flex gap-4"
             >
-              <div className="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center flex-shrink-0">
-                <benefit.icon className="w-5 h-5 text-[#323dfe]" />
+              <div className="w-10 h-10 rounded-lg bg-muted flex items-center justify-center flex-shrink-0">
+                <benefit.icon className="w-5 h-5 text-primary" />
               </div>
               <div>
-                <h3 className="text-base font-semibold text-black mb-1">
+                <h3 className="text-base font-semibold text-foreground mb-1">
                   {benefit.title}
                 </h3>
-                <p className="text-sm text-gray-600 leading-relaxed">
+                <p className="text-sm text-muted-foreground leading-relaxed">
                   {benefit.description}
                 </p>
               </div>
@@ -815,24 +854,32 @@ function RCSEarlyAccess() {
   }, []);
 
   return (
-    <section id="early-access" className="bg-white py-12 lg:py-16">
+    <section id="early-access" className="bg-background border-t border-border py-12 lg:py-16">
       <div className="container mx-auto max-w-7xl px-4">
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-start">
           {/* Left - Content & Stats */}
           <div>
-            <h2 className="font-sora text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] font-normal leading-[1.25] tracking-[-0.02em] text-black mb-4">
+            <div className="flex items-center gap-3 font-mono-ui text-[11px] uppercase tracking-[0.12em] text-muted-foreground mb-8">
+          <span className="flex items-center gap-2">
+            <span className="tabular-nums text-foreground/70">~</span>
+            <span className="h-px w-6 bg-border" />
+          </span>
+          <span>page</span>
+          <span className="flex-1 border-t border-dashed border-border" />
+        </div>
+        <h2 className="font-sora text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] font-normal leading-[1.04] tracking-[-0.035em] text-foreground mb-4">
               Request early access to RCS messaging
             </h2>
-            <p className="text-sm sm:text-base text-gray-600 leading-relaxed max-w-lg mb-8">
+            <p className="text-sm sm:text-base text-muted-foreground leading-relaxed max-w-lg mb-8">
               Be among the first to unlock the power of RCS. Our team will help you get started with branded, interactive messaging.
             </p>
             <div className="space-y-5">
               {RCS_STATS.map((stat, i) => (
                 <div key={i} className="flex items-start gap-3">
-                  <span className="text-xl sm:text-2xl font-semibold text-black flex-shrink-0">
+                  <span className="text-xl sm:text-2xl font-semibold text-foreground flex-shrink-0">
                     {stat.value}
                   </span>
-                  <p className="text-gray-600 text-sm leading-relaxed pt-0.5">
+                  <p className="text-muted-foreground text-sm leading-relaxed pt-0.5">
                     {stat.label}
                   </p>
                 </div>
@@ -841,62 +888,62 @@ function RCSEarlyAccess() {
           </div>
 
           {/* Right - Form Card */}
-          <div className="rounded-xl border border-gray-200 bg-white p-5 sm:p-6">
+          <div className="rounded-xl border border-border bg-background p-5 sm:p-6">
             {submitted ? (
               <div className="text-center py-12">
-                <div className="w-14 h-14 rounded-full bg-emerald-50 flex items-center justify-center mx-auto mb-4">
-                  <svg className="w-7 h-7 text-emerald-500" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
+                <div className="w-14 h-14 rounded-full bg-emerald-50 dark:bg-emerald-900/30 flex items-center justify-center mx-auto mb-4">
+                  <svg className="w-7 h-7 text-emerald-500 dark:text-emerald-400" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
                     <polyline points="20 6 9 17 4 12" />
                   </svg>
                 </div>
-                <h3 className="text-xl font-normal text-black">
+                <h3 className="text-xl font-normal text-foreground">
                   Thank you for your interest!
                 </h3>
-                <p className="text-sm text-gray-500 mt-2 max-w-xs mx-auto leading-relaxed">
+                <p className="text-sm text-muted-foreground mt-2 max-w-xs leading-relaxed">
                   We'll reach out to you soon with early access details for RCS messaging.
                 </p>
               </div>
             ) : (
               <div className="space-y-3.5">
-                <h3 className="text-xl font-semibold text-black mb-3">
+                <h3 className="text-xl font-semibold text-foreground mb-3">
                   Talk to sales
                 </h3>
 
                 <div>
-                  <label htmlFor="rcs-fullName" className="text-[13px] font-medium text-gray-700 mb-1 block">
+                  <label htmlFor="rcs-fullName" className="text-[13px] font-medium text-foreground/80 mb-1 block">
                     Full name <span className="text-red-400">*</span>
                   </label>
                   <input
                     id="rcs-fullName"
                     type="text"
                     placeholder="Jane Smith"
-                    className={`w-full h-10 rounded-lg border bg-white px-3 py-2 text-sm text-gray-900 placeholder:text-gray-400 hover:border-gray-400 focus:outline-none focus:border-blue-400 focus:ring-[3px] focus:ring-blue-100 transition-all ${errors.fullName ? "border-red-400 focus:border-red-400 focus:ring-red-100" : "border-gray-300"}`}
+                    className={`w-full h-10 rounded-lg border bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground hover:border-border-strong focus:outline-none focus:border-blue-400 focus:ring-[3px] focus:ring-blue-100 transition-all ${errors.fullName ? "border-red-400 focus:border-red-400 focus:ring-red-100" : "border-border-strong"}`}
                   />
                   {errors.fullName && <p className="text-xs text-red-500 mt-1">{errors.fullName}</p>}
                 </div>
 
                 <div>
-                  <label htmlFor="rcs-email" className="text-[13px] font-medium text-gray-700 mb-1 block">
+                  <label htmlFor="rcs-email" className="text-[13px] font-medium text-foreground/80 mb-1 block">
                     Work email <span className="text-red-400">*</span>
                   </label>
                   <input
                     id="rcs-email"
                     type="email"
                     placeholder="jane@company.com"
-                    className={`w-full h-10 rounded-lg border bg-white px-3 py-2 text-sm text-gray-900 placeholder:text-gray-400 hover:border-gray-400 focus:outline-none focus:border-blue-400 focus:ring-[3px] focus:ring-blue-100 transition-all ${errors.email ? "border-red-400 focus:border-red-400 focus:ring-red-100" : "border-gray-300"}`}
+                    className={`w-full h-10 rounded-lg border bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground hover:border-border-strong focus:outline-none focus:border-blue-400 focus:ring-[3px] focus:ring-blue-100 transition-all ${errors.email ? "border-red-400 focus:border-red-400 focus:ring-red-100" : "border-border-strong"}`}
                   />
                   {errors.email && <p className="text-xs text-red-500 mt-1">{errors.email}</p>}
                 </div>
 
                 <div>
-                  <label htmlFor="rcs-phone" className="text-[13px] font-medium text-gray-700 mb-1 block">
+                  <label htmlFor="rcs-phone" className="text-[13px] font-medium text-foreground/80 mb-1 block">
                     Phone number <span className="text-red-400">*</span>
                   </label>
                   <div className="flex gap-2">
                     <select
                       id="rcs-country-select"
                       defaultValue={selectedCode}
-                      className="flex-shrink-0 h-10 w-28 rounded-lg border border-gray-300 bg-white px-2 text-sm text-gray-900 cursor-pointer focus:outline-none focus:border-blue-400 focus:ring-[3px] focus:ring-blue-100 hover:border-gray-400"
+                      className="flex-shrink-0 h-10 w-28 rounded-lg border border-border-strong bg-background px-2 text-sm text-foreground cursor-pointer focus:outline-none focus:border-blue-400 focus:ring-[3px] focus:ring-blue-100 hover:border-border-strong"
                     >
                       {RCS_COUNTRY_CODES.map((c) => (
                         <option key={c.code} value={c.code}>
@@ -908,20 +955,20 @@ function RCSEarlyAccess() {
                       id="rcs-phone"
                       type="tel"
                       placeholder="888888 88888"
-                      className={`flex-1 h-10 rounded-lg border bg-white px-3 py-2 text-sm text-gray-900 placeholder:text-gray-400 hover:border-gray-400 focus:outline-none focus:border-blue-400 focus:ring-[3px] focus:ring-blue-100 transition-all ${errors.phone ? "border-red-400 focus:border-red-400 focus:ring-red-100" : "border-gray-300"}`}
+                      className={`flex-1 h-10 rounded-lg border bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground hover:border-border-strong focus:outline-none focus:border-blue-400 focus:ring-[3px] focus:ring-blue-100 transition-all ${errors.phone ? "border-red-400 focus:border-red-400 focus:ring-red-100" : "border-border-strong"}`}
                     />
                   </div>
                   {errors.phone && <p className="text-xs text-red-500 mt-1">{errors.phone}</p>}
                 </div>
 
                 <div>
-                  <label htmlFor="rcs-requirement" className="text-[13px] font-medium text-gray-700 mb-1 block">
+                  <label htmlFor="rcs-requirement" className="text-[13px] font-medium text-foreground/80 mb-1 block">
                     Tell us about your use case <span className="text-red-400">*</span>
                   </label>
                   <textarea
                     id="rcs-requirement"
                     placeholder="Describe your messaging needs, target audience, and expected volume"
-                    className={`w-full min-h-[88px] rounded-lg border bg-white px-3 py-2 text-sm text-gray-900 placeholder:text-gray-400 resize-none hover:border-gray-400 focus:outline-none focus:border-blue-400 focus:ring-[3px] focus:ring-blue-100 transition-all ${errors.requirement ? "border-red-400 focus:border-red-400 focus:ring-red-100" : "border-gray-300"}`}
+                    className={`w-full min-h-[88px] rounded-lg border bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground resize-none hover:border-border-strong focus:outline-none focus:border-blue-400 focus:ring-[3px] focus:ring-blue-100 transition-all ${errors.requirement ? "border-red-400 focus:border-red-400 focus:ring-red-100" : "border-border-strong"}`}
                   />
                   {errors.requirement && <p className="text-xs text-red-500 mt-1">{errors.requirement}</p>}
                 </div>
@@ -929,16 +976,16 @@ function RCSEarlyAccess() {
                 <button
                   id="rcs-submit-btn"
                   type="button"
-                  className="w-full rounded-md bg-black px-5 py-2.5 text-sm font-medium text-white transition-colors cta-hover-gradient"
+                  className="w-full rounded-md bg-foreground px-5 py-2.5 text-sm font-medium text-background transition-colors cta-hover-gradient"
                 >
                   Get access
                 </button>
 
-                <p className="text-[11px] text-gray-400 text-center leading-relaxed">
+                <p className="text-[11px] text-muted-foreground leading-relaxed">
                   By submitting, you agree to our{" "}
-                  <a href="/legal/tos/" className="underline hover:text-gray-600">terms of service</a>{" "}
+                  <a href="/legal/tos/" className="underline hover:text-muted-foreground">terms of service</a>{" "}
                   and{" "}
-                  <a href="/legal/privacy/" className="underline hover:text-gray-600">privacy policy</a>
+                  <a href="/legal/privacy/" className="underline hover:text-muted-foreground">privacy policy</a>
                 </p>
               </div>
             )}
@@ -954,7 +1001,7 @@ const FAQS = [
   {
     question: "What is RCS messaging?",
     answer:
-      'Rich Communications Services (RCS) is the next generation of SMS messaging. It combines the global reach and reliability of SMS with the rich, interactive features of chat apps like WhatsApp and WeChat. Read more about RCS messaging in our blog post: <a href="https://www.plivo.com/blog/what-is-rcs-messaging/" target="_blank" rel="noopener noreferrer" class="text-[#323dfe] hover:underline">What is RCS Messaging? A Complete Guide</a>.',
+      'Rich Communications Services (RCS) is the next generation of SMS messaging. It combines the global reach and reliability of SMS with the rich, interactive features of chat apps like WhatsApp and WeChat. Read more about RCS messaging in our blog post: <a href="https://www.plivo.com/blog/what-is-rcs-messaging/" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">What is RCS Messaging? A Complete Guide</a>.',
   },
   {
     question:
@@ -1006,16 +1053,16 @@ function FAQItem({
   }, [onToggle]);
 
   return (
-    <div className="border-b border-gray-200">
+    <div className="border-b border-border">
       <button
         ref={btnRef}
         className="w-full flex items-center justify-between py-5 text-left"
       >
-        <span className="text-base font-medium text-black pr-4">
+        <span className="text-base font-medium text-foreground pr-4">
           {question}
         </span>
         <ChevronDown
-          className={`w-5 h-5 text-gray-400 flex-shrink-0 transition-transform duration-200 ${
+          className={`w-5 h-5 text-muted-foreground flex-shrink-0 transition-transform duration-200 ${
             isOpen ? "rotate-180" : ""
           }`}
         />
@@ -1025,7 +1072,7 @@ function FAQItem({
           {answer.split("\n\n").map((para, i) => (
             <p
               key={i}
-              className="text-sm text-gray-600 leading-relaxed mb-3 last:mb-0"
+              className="text-sm text-muted-foreground leading-relaxed mb-3 last:mb-0"
               dangerouslySetInnerHTML={{ __html: sanitizeHtml(para) }}
             />
           ))}
@@ -1039,9 +1086,17 @@ function RCSFAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section className="bg-white py-12 lg:py-16">
+    <section className="bg-background border-t border-border py-12 lg:py-16">
       <div className="container mx-auto max-w-3xl px-4">
-        <h2 className="font-sora text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] font-normal leading-[1.25] tracking-[-0.02em] text-black text-center mb-4">
+        <div className="flex items-center gap-3 font-mono-ui text-[11px] uppercase tracking-[0.12em] text-muted-foreground mb-8">
+          <span className="flex items-center gap-2">
+            <span className="tabular-nums text-foreground/70">~</span>
+            <span className="h-px w-6 bg-border" />
+          </span>
+          <span>page</span>
+          <span className="flex-1 border-t border-dashed border-border" />
+        </div>
+        <h2 className="font-sora text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] font-normal leading-[1.04] tracking-[-0.035em] text-foreground mb-4">
           FAQs about RCS
         </h2>
         <div className="mt-8">
@@ -1063,28 +1118,36 @@ function RCSFAQ() {
 // ── Pre-footer CTA ──────────────────────────────────────────────────────────
 function RCSPreFooter() {
   return (
-    <section className="relative overflow-hidden bg-white py-12 sm:py-16 md:py-20">
+    <section className="relative overflow-hidden bg-background border-t border-border py-12 sm:py-16 md:py-20">
       {/* Dotted Grid Background */}
-      <div className="pointer-events-none absolute inset-0 z-[1]" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }} />
+      <div className="pointer-events-none absolute inset-0 z-[1]" style={{ backgroundImage: 'radial-gradient(circle, hsl(var(--border)) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }} />
 
       {/* Content */}
-      <div className="container relative z-10 mx-auto flex max-w-7xl flex-col items-center px-4 text-center">
-        <h2 className="font-sora text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] font-normal leading-[1.25] tracking-[-0.02em] text-black">
+      <div className="container relative z-10 mx-auto flex max-w-7xl flex-col items-center px-4">
+        <div className="flex items-center gap-3 font-mono-ui text-[11px] uppercase tracking-[0.12em] text-muted-foreground mb-8">
+          <span className="flex items-center gap-2">
+            <span className="tabular-nums text-foreground/70">~</span>
+            <span className="h-px w-6 bg-border" />
+          </span>
+          <span>page</span>
+          <span className="flex-1 border-t border-dashed border-border" />
+        </div>
+        <h2 className="font-sora text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] font-normal leading-[1.04] tracking-[-0.035em] text-foreground">
           Ready to transform your messaging?
         </h2>
-        <p className="mx-auto max-w-2xl text-base sm:text-lg text-gray-600 mt-3">
+        <p className="max-w-2xl text-base sm:text-lg text-muted-foreground mt-3">
           Be among the first to unlock the power of RCS messaging with Plivo.
         </p>
         <div className="flex flex-col sm:flex-row gap-3 mt-6">
           <a
             href="/contact/sales/"
-            className="inline-flex items-center justify-center rounded-md border border-gray-300 bg-white px-6 py-3 text-base font-medium text-black transition-colors hover:bg-gray-50"
+            className="inline-flex items-center justify-center rounded-md border border-border-strong bg-background px-6 py-3 text-base font-medium text-foreground transition-colors hover:bg-surface"
           >
             Talk to sales
           </a>
           <a
             href="#early-access"
-            className="inline-flex items-center justify-center rounded-md bg-black px-6 py-3 text-base font-medium text-white transition-colors cta-hover-gradient"
+            className="inline-flex items-center justify-center rounded-md bg-foreground px-6 py-3 text-base font-medium text-background transition-colors cta-hover-gradient"
           >
             Request early access
           </a>

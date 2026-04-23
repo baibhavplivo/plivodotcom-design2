@@ -27,13 +27,21 @@ export default function CostComparison() {
   const { url: signupUrl, label: signupLabel } = useSignupUrl();
 
   return (
-    <section className="py-12 lg:py-16 bg-white">
+    <section className="py-12 lg:py-16 bg-background border-t border-border">
       <div className="container mx-auto max-w-7xl px-4">
-        <div className="text-center mb-12">
-          <h2 className="font-sora text-[2rem] sm:text-[2.5rem] font-normal leading-[1.25] tracking-[-0.02em] text-black">
+        <div className="mb-12">
+          <div className="flex items-center gap-3 font-mono-ui text-[11px] uppercase tracking-[0.12em] text-muted-foreground mb-8">
+          <span className="flex items-center gap-2">
+            <span className="tabular-nums text-foreground/70">~</span>
+            <span className="h-px w-6 bg-border" />
+          </span>
+          <span>cost comparison</span>
+          <span className="flex-1 border-t border-dashed border-border" />
+        </div>
+        <h2 className="font-sora text-[2rem] sm:text-[2.5rem] font-normal leading-[1.04] tracking-[-0.035em] text-foreground">
             Lower your total costs significantly
           </h2>
-          <p className="text-base sm:text-lg text-gray-600 mt-3 max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg text-muted-foreground mt-3 max-w-2xl">
             Switch from Twilio and save on every message and call — without compromising on quality or reliability.
           </p>
         </div>
@@ -42,21 +50,21 @@ export default function CostComparison() {
           {COMPARISONS.map((item) => (
             <div
               key={item.title}
-              className="rounded-lg border border-gray-200 bg-white p-6 sm:p-8 hover:border-gray-300 transition-colors"
+              className="rounded-lg border border-border bg-background p-6 sm:p-8 hover:border-border-strong transition-colors"
             >
-              <div className="text-sm font-medium text-[#323dfe] uppercase tracking-wider mb-3">
+              <div className="text-sm font-medium text-primary font-mono-ui uppercase tracking-[0.1em] mb-3">
                 {item.title}
               </div>
-              <div className="font-sora text-xl sm:text-2xl font-normal text-black leading-tight">
+              <div className="font-sora text-xl sm:text-2xl font-normal text-foreground leading-tight">
                 {item.highlight}
               </div>
-              <p className="text-sm text-gray-500 mt-1.5">{item.description}</p>
+              <p className="text-sm text-muted-foreground mt-1.5">{item.description}</p>
 
               <div className="mt-6 space-y-2.5">
                 {item.features.map((feature) => (
                   <div key={feature} className="flex items-start gap-2.5">
                     <svg
-                      className="w-4 h-4 text-[#323dfe] mt-[2px] flex-shrink-0"
+                      className="w-4 h-4 text-primary mt-[2px] flex-shrink-0"
                       viewBox="0 0 24 24"
                       fill="none"
                       stroke="currentColor"
@@ -66,7 +74,7 @@ export default function CostComparison() {
                     >
                       <polyline points="20 6 9 17 4 12" />
                     </svg>
-                    <span className="text-sm text-gray-700">{feature}</span>
+                    <span className="text-sm text-foreground/80">{feature}</span>
                   </div>
                 ))}
               </div>
@@ -77,7 +85,7 @@ export default function CostComparison() {
         <div className="text-center mt-10">
           <a
             href="/contact/sales/"
-            className="inline-flex items-center justify-center px-6 py-3 text-sm font-medium bg-black text-white rounded-md cta-hover-gradient transition-colors"
+            className="inline-flex items-center justify-center px-6 py-3 text-sm font-medium bg-foreground text-background rounded-md cta-hover-gradient transition-colors"
           >
             Get Volume Pricing
           </a>

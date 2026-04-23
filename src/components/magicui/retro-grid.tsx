@@ -36,7 +36,7 @@ export function RetroGrid({ className, angle = 65 }: RetroGridProps) {
       `}</style>
 
       {/* Background Gradient - fade to white at bottom */}
-      <div className="absolute inset-0 bg-gradient-to-t from-white via-white/60 via-20% to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 via-20% to-transparent" />
     </div>
   );
 }

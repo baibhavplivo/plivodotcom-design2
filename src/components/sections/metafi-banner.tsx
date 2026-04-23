@@ -48,7 +48,7 @@ const Banner = ({ url = "https://shadcnblocks.com" }: { url?: string }) => {
           className={cn(
             "absolute right-4 top-1/2 -translate-y-1/2 rounded-sm p-1.5",
             "text-primary-foreground/70 hover:text-primary-foreground",
-            "transition-all duration-200 hover:scale-110 hover:bg-white/10",
+            "transition-all duration-200 hover:scale-110 hover:bg-background/10",
             "focus:outline-none focus:ring-2 focus:ring-white/30",
           )}
           aria-label="Close banner"

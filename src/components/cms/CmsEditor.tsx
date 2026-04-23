@@ -585,20 +585,20 @@ export default function CmsEditor({ slug, onBack }: CmsEditorProps) {
   if (loading) {
     return (
       <div className="flex min-h-screen items-center justify-center">
-        <Loader2 className="h-8 w-8 animate-spin text-gray-400" />
-        <span className="ml-3 text-sm text-gray-500">Loading post...</span>
+        <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
+        <span className="ml-3 text-sm text-muted-foreground">Loading post...</span>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-surface">
       {/* Top bar */}
-      <header className="sticky top-0 z-10 border-b border-gray-200 bg-white">
+      <header className="sticky top-0 z-10 border-b border-border bg-background">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6">
           <button
             ref={backBtnRef}
-            className="flex items-center gap-1.5 text-sm text-gray-600 transition-colors hover:text-gray-900"
+            className="flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
           >
             <ArrowLeft className="h-4 w-4" />
             Back
@@ -614,7 +614,7 @@ export default function CmsEditor({ slug, onBack }: CmsEditorProps) {
             <button
               ref={saveBtnRef}
               disabled={saving}
-              className="flex items-center gap-1.5 rounded-md border border-gray-300 px-3 py-1.5 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 disabled:opacity-50"
+              className="flex items-center gap-1.5 rounded-md border border-border-strong px-3 py-1.5 text-sm font-medium text-foreground/80 transition-colors hover:bg-surface disabled:opacity-50"
             >
               {saving ? (
                 <Loader2 className="h-4 w-4 animate-spin" />
@@ -626,7 +626,7 @@ export default function CmsEditor({ slug, onBack }: CmsEditorProps) {
             <button
               ref={publishBtnRef}
               disabled={saving}
-              className="flex items-center gap-1.5 rounded-md bg-black px-3 py-1.5 text-sm font-medium text-white transition-colors cta-hover-gradient disabled:opacity-50"
+              className="flex items-center gap-1.5 rounded-md bg-foreground px-3 py-1.5 text-sm font-medium text-background transition-colors cta-hover-gradient disabled:opacity-50"
             >
               {saving ? (
                 <Loader2 className="h-4 w-4 animate-spin" />
@@ -654,10 +654,10 @@ export default function CmsEditor({ slug, onBack }: CmsEditorProps) {
                 data-step={s.num}
                 className={`flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-medium transition-colors ${
                   step === s.num
-                    ? "bg-black text-white"
+                    ? "bg-foreground text-background"
                     : step > s.num
                       ? "bg-green-50 text-green-700 border border-green-200"
-                      : "bg-gray-100 text-gray-400"
+                      : "bg-muted text-muted-foreground"
                 }`}
               >
                 {step > s.num ? <CheckCircle2 className="h-3.5 w-3.5" /> : s.icon}
@@ -670,7 +670,7 @@ export default function CmsEditor({ slug, onBack }: CmsEditorProps) {
         {/* ──── STEP 1: Content ──── */}
         {step === 1 && (
           <div className="space-y-4">
-            <div className="rounded-lg border border-gray-200 bg-white p-5 space-y-4">
+            <div className="rounded-lg border border-border bg-background p-5 space-y-4">
               <FieldInput
                 label="Title"
                 value={fm.title}
@@ -706,11 +706,11 @@ export default function CmsEditor({ slug, onBack }: CmsEditorProps) {
                 }}
               />
             </div>
-            <div className="overflow-hidden rounded-lg border border-gray-200 bg-white">
+            <div className="overflow-hidden rounded-lg border border-border bg-background">
               {/* Toolbar */}
               <div
                 ref={toolbarRef}
-                className="flex flex-wrap gap-0.5 border-b border-gray-200 bg-gray-50 px-2 py-1.5"
+                className="flex flex-wrap gap-0.5 border-b border-border bg-surface px-2 py-1.5"
               >
                 <ToolbarButton tool="bold" icon={<Bold className="h-4 w-4" />} title="Bold" active={editor?.isActive("bold")} />
                 <ToolbarButton tool="italic" icon={<Italic className="h-4 w-4" />} title="Italic" active={editor?.isActive("italic")} />
@@ -767,7 +767,7 @@ export default function CmsEditor({ slug, onBack }: CmsEditorProps) {
                 <textarea
                   ref={sourceTextareaRef}
                   defaultValue={sourceHtml}
-                  className="w-full h-[500px] px-4 py-3 font-mono text-sm text-gray-800 bg-gray-50 outline-none focus:outline-none resize-none overflow-y-auto"
+                  className="w-full h-[500px] px-4 py-3 font-mono text-sm text-foreground bg-surface outline-none focus:outline-none resize-none overflow-y-auto"
                   spellCheck={false}
                 />
               ) : (
@@ -777,7 +777,7 @@ export default function CmsEditor({ slug, onBack }: CmsEditorProps) {
               )}
 
               {/* Word counter */}
-              <div className="flex items-center justify-end border-t border-gray-100 px-3 py-1.5 text-[11px] text-gray-400">
+              <div className="flex items-center justify-end border-t border-border px-3 py-1.5 text-[11px] text-muted-foreground">
                 {wordCount.toLocaleString()} words · {Math.max(1, Math.round(wordCount / 238))} min read
               </div>
             </div>
@@ -788,8 +788,8 @@ export default function CmsEditor({ slug, onBack }: CmsEditorProps) {
         {step === 2 && (
           <div className="mx-auto max-w-2xl space-y-6">
             {/* Description */}
-            <div className="rounded-lg border border-gray-200 bg-white p-5 space-y-4">
-              <h3 className="font-sora text-sm font-semibold text-gray-900">Description & Meta</h3>
+            <div className="rounded-lg border border-border bg-background p-5 space-y-4">
+              <h3 className="font-sora text-sm font-semibold text-foreground">Description & Meta</h3>
               <FieldTextareaWithCount
                 label="Description"
                 value={fm.description}
@@ -822,18 +822,18 @@ export default function CmsEditor({ slug, onBack }: CmsEditorProps) {
             </div>
 
             {/* Categories */}
-            <div className="rounded-lg border border-gray-200 bg-white p-5 space-y-3">
-              <h3 className="font-sora text-sm font-semibold text-gray-900">Categories</h3>
+            <div className="rounded-lg border border-border bg-background p-5 space-y-3">
+              <h3 className="font-sora text-sm font-semibold text-foreground">Categories</h3>
               <div className="flex flex-wrap gap-1.5">
                 {fm.categories.map((cat) => (
                   <span
                     key={cat}
-                    className="flex items-center gap-1 rounded-full bg-gray-100 px-2.5 py-1 text-xs text-gray-700"
+                    className="flex items-center gap-1 rounded-full bg-muted px-2.5 py-1 text-xs text-foreground/80"
                   >
                     {cat}
                     <button
                       data-remove-cat={cat}
-                      className="ml-0.5 rounded-full p-0.5 text-gray-400 hover:bg-gray-200 hover:text-gray-600"
+                      className="ml-0.5 rounded-full p-0.5 text-muted-foreground hover:bg-gray-200 hover:text-muted-foreground"
                     >
                       <X className="h-3 w-3" />
                     </button>
@@ -847,7 +847,7 @@ export default function CmsEditor({ slug, onBack }: CmsEditorProps) {
                     type="text"
                     value={newCategory}
                     placeholder="Search or add category"
-                    className="flex-1 rounded-md border border-gray-300 bg-white px-2.5 py-1.5 text-sm text-gray-900 placeholder-gray-400 outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-100"
+                    className="flex-1 rounded-md border border-border-strong bg-background px-2.5 py-1.5 text-sm text-foreground placeholder-muted-foreground outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-100"
                     onChange={(e) => {
                       setNewCategory(e.target.value);
                       setShowCatSuggestions(true);
@@ -859,13 +859,13 @@ export default function CmsEditor({ slug, onBack }: CmsEditorProps) {
                   />
                   <button
                     ref={addCatBtnRef}
-                    className="rounded-md border border-gray-300 px-2.5 py-1.5 text-gray-500 hover:bg-gray-50"
+                    className="rounded-md border border-border-strong px-2.5 py-1.5 text-muted-foreground hover:bg-surface"
                   >
                     <Plus className="h-4 w-4" />
                   </button>
                 </div>
                 {showCatSuggestions && (
-                  <div className="absolute left-0 right-12 top-full z-20 mt-1 max-h-48 overflow-y-auto rounded-md border border-gray-200 bg-white shadow-lg">
+                  <div className="absolute left-0 right-12 top-full z-20 mt-1 max-h-48 overflow-y-auto rounded-md border border-border bg-background shadow-lg">
                     {EXISTING_CATEGORIES
                       .filter(
                         (cat) =>
@@ -877,7 +877,7 @@ export default function CmsEditor({ slug, onBack }: CmsEditorProps) {
                         <button
                           key={cat}
                           type="button"
-                          className="block w-full px-3 py-2 text-left text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700"
+                          className="block w-full px-3 py-2 text-left text-sm text-foreground/80 hover:bg-blue-50 hover:text-blue-700"
                           onMouseDown={(e) => {
                             e.preventDefault();
                             updateFm("categories", [...fm.categories, cat]);
@@ -893,7 +893,7 @@ export default function CmsEditor({ slug, onBack }: CmsEditorProps) {
                       !fm.categories.includes(newCategory.trim().toLowerCase()) && (
                         <button
                           type="button"
-                          className="block w-full border-t border-gray-100 px-3 py-2 text-left text-sm font-medium text-blue-600 hover:bg-blue-50"
+                          className="block w-full border-t border-border px-3 py-2 text-left text-sm font-medium text-blue-600 hover:bg-blue-50"
                           onMouseDown={(e) => {
                             e.preventDefault();
                             updateFm("categories", [...fm.categories, newCategory.trim().toLowerCase()]);
@@ -910,15 +910,15 @@ export default function CmsEditor({ slug, onBack }: CmsEditorProps) {
             </div>
 
             {/* Author Profile */}
-            <div className="rounded-lg border border-gray-200 bg-white p-5 space-y-4">
-              <h3 className="font-sora text-sm font-semibold text-gray-900">Author</h3>
+            <div className="rounded-lg border border-border bg-background p-5 space-y-4">
+              <h3 className="font-sora text-sm font-semibold text-foreground">Author</h3>
 
               {/* Toggle: Select existing / Create new */}
-              <div className="flex rounded-md border border-gray-200 overflow-hidden text-xs font-medium">
+              <div className="flex rounded-md border border-border overflow-hidden text-xs font-medium">
                 <button
                   type="button"
                   className={`flex-1 px-3 py-2 transition-colors ${
-                    authorMode === "select" ? "bg-black text-white" : "bg-white text-gray-600 hover:bg-gray-50"
+                    authorMode === "select" ? "bg-foreground text-background" : "bg-background text-muted-foreground hover:bg-surface"
                   }`}
                   onMouseDown={(e) => { e.preventDefault(); setAuthorMode("select"); }}
                 >
@@ -927,7 +927,7 @@ export default function CmsEditor({ slug, onBack }: CmsEditorProps) {
                 <button
                   type="button"
                   className={`flex-1 px-3 py-2 transition-colors ${
-                    authorMode === "create" ? "bg-black text-white" : "bg-white text-gray-600 hover:bg-gray-50"
+                    authorMode === "create" ? "bg-foreground text-background" : "bg-background text-muted-foreground hover:bg-surface"
                   }`}
                   onMouseDown={(e) => { e.preventDefault(); setAuthorMode("create"); }}
                 >
@@ -939,7 +939,7 @@ export default function CmsEditor({ slug, onBack }: CmsEditorProps) {
               {authorMode === "select" && (
                 <div className="space-y-2">
                   {authorProfiles.length === 0 ? (
-                    <p className="text-xs text-gray-400 text-center py-4">
+                    <p className="text-xs text-muted-foreground text-center py-4">
                       No saved authors yet.{" "}
                       <button
                         type="button"
@@ -959,7 +959,7 @@ export default function CmsEditor({ slug, onBack }: CmsEditorProps) {
                           className={`flex w-full items-center gap-3 rounded-md border px-3 py-2.5 text-left transition-colors ${
                             isSelected
                               ? "border-blue-400 bg-blue-50 ring-1 ring-blue-200"
-                              : "border-gray-200 bg-white hover:border-gray-300 hover:bg-gray-50"
+                              : "border-border bg-background hover:border-border-strong hover:bg-surface"
                           }`}
                           onMouseDown={(e) => {
                             e.preventDefault();
@@ -969,15 +969,15 @@ export default function CmsEditor({ slug, onBack }: CmsEditorProps) {
                           }}
                         >
                           {author.image ? (
-                            <img src={author.image} alt={author.name} className="h-10 w-10 rounded-full object-cover border border-gray-200 shrink-0" />
+                            <img src={author.image} alt={author.name} className="h-10 w-10 rounded-full object-cover border border-border shrink-0" />
                           ) : (
-                            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-r from-[#323dfe] to-black text-white font-semibold text-sm shrink-0">
+                            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-r from-primary to-black text-white font-semibold text-sm shrink-0">
                               {author.name.charAt(0).toUpperCase()}
                             </div>
                           )}
                           <div className="min-w-0 flex-1">
-                            <div className="text-sm font-medium text-gray-900 truncate">{author.name}</div>
-                            {author.bio && <div className="text-xs text-gray-500 truncate">{author.bio}</div>}
+                            <div className="text-sm font-medium text-foreground truncate">{author.name}</div>
+                            {author.bio && <div className="text-xs text-muted-foreground truncate">{author.bio}</div>}
                           </div>
                           {isSelected && <CheckCircle2 className="h-4 w-4 text-blue-600 shrink-0" />}
                         </button>
@@ -993,9 +993,9 @@ export default function CmsEditor({ slug, onBack }: CmsEditorProps) {
                   <div className="flex items-start gap-4">
                     <div className="shrink-0">
                       {fm.authorImage ? (
-                        <img src={authorImagePreview || fm.authorImage} alt={fm.authorName} className="h-14 w-14 rounded-full object-cover border border-gray-200" />
+                        <img src={authorImagePreview || fm.authorImage} alt={fm.authorName} className="h-14 w-14 rounded-full object-cover border border-border" />
                       ) : (
-                        <div className="flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-r from-[#323dfe] to-black text-white font-semibold text-lg">
+                        <div className="flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-r from-primary to-black text-white font-semibold text-lg">
                           {(fm.authorName || "T").charAt(0).toUpperCase()}
                         </div>
                       )}
@@ -1017,18 +1017,18 @@ export default function CmsEditor({ slug, onBack }: CmsEditorProps) {
                     </div>
                   </div>
                   <div>
-                    <label className="mb-1 block text-xs font-medium text-gray-700">Profile Photo</label>
+                    <label className="mb-1 block text-xs font-medium text-foreground/80">Profile Photo</label>
                     <div className="flex gap-1">
                       <input
                         type="text"
                         value={fm.authorImage}
-                        className="flex-1 rounded-md border border-gray-300 bg-white px-2.5 py-1.5 text-sm text-gray-900 placeholder-gray-400 outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-100"
+                        className="flex-1 rounded-md border border-border-strong bg-background px-2.5 py-1.5 text-sm text-foreground placeholder-muted-foreground outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-100"
                         onChange={(e) => updateFm("authorImage", e.target.value)}
                         placeholder="URL or upload"
                       />
                       <button
                         data-upload-target="author-photo"
-                        className="rounded-md border border-gray-300 px-2.5 py-1.5 text-gray-500 hover:bg-gray-50"
+                        className="rounded-md border border-border-strong px-2.5 py-1.5 text-muted-foreground hover:bg-surface"
                       >
                         <ImageIcon className="h-4 w-4" />
                       </button>
@@ -1039,7 +1039,7 @@ export default function CmsEditor({ slug, onBack }: CmsEditorProps) {
                   {fm.authorName && !authorProfiles.some((a) => a.name === fm.authorName) && (
                     <button
                       type="button"
-                      className="flex w-full items-center justify-center gap-1.5 rounded-md bg-gray-100 py-2 text-xs font-medium text-gray-700 transition-colors hover:bg-gray-200"
+                      className="flex w-full items-center justify-center gap-1.5 rounded-md bg-muted py-2 text-xs font-medium text-foreground/80 transition-colors hover:bg-gray-200"
                       onMouseDown={async (e) => {
                         e.preventDefault();
                         const newAuthor: AuthorProfile = {
@@ -1069,8 +1069,8 @@ export default function CmsEditor({ slug, onBack }: CmsEditorProps) {
             </div>
 
             {/* Publishing Options */}
-            <div className="rounded-lg border border-gray-200 bg-white p-5 space-y-3">
-              <h3 className="font-sora text-sm font-semibold text-gray-900">Publishing Options</h3>
+            <div className="rounded-lg border border-border bg-background p-5 space-y-3">
+              <h3 className="font-sora text-sm font-semibold text-foreground">Publishing Options</h3>
               <FieldToggle
                 label="Draft"
                 checked={fm.draft}
@@ -1121,7 +1121,7 @@ export default function CmsEditor({ slug, onBack }: CmsEditorProps) {
             )}
 
             {/* Banner Generator — inline, primary */}
-            <div className="rounded-lg border border-gray-200 bg-white p-5">
+            <div className="rounded-lg border border-border bg-background p-5">
               <CmsBannerGenerator
                 initialTitle={fm.title}
                 initialSubtitle={fm.description}
@@ -1133,12 +1133,12 @@ export default function CmsEditor({ slug, onBack }: CmsEditorProps) {
             </div>
 
             {/* Upload manually — secondary, collapsed */}
-            <details className="group rounded-lg border border-gray-200 bg-white">
-              <summary className="flex cursor-pointer items-center justify-between px-5 py-3 text-sm text-gray-400 hover:text-gray-600">
+            <details className="group rounded-lg border border-border bg-background">
+              <summary className="flex cursor-pointer items-center justify-between px-5 py-3 text-sm text-muted-foreground hover:text-muted-foreground">
                 <span>Or upload your own image instead</span>
                 <ChevronRight className="h-4 w-4 transition-transform group-open:rotate-90" />
               </summary>
-              <div className="border-t border-gray-100 px-5 py-4 space-y-3">
+              <div className="border-t border-border px-5 py-4 space-y-3">
                 <FieldInput
                   label="Image URL"
                   value={fm.image}
@@ -1147,7 +1147,7 @@ export default function CmsEditor({ slug, onBack }: CmsEditorProps) {
                 />
                 <button
                   data-upload-target="featured"
-                  className="flex w-full items-center justify-center gap-2 rounded-md border border-dashed border-gray-200 py-2.5 text-xs font-medium text-gray-400 transition-colors hover:border-blue-400 hover:bg-blue-50 hover:text-blue-600"
+                  className="flex w-full items-center justify-center gap-2 rounded-md border border-dashed border-border py-2.5 text-xs font-medium text-muted-foreground transition-colors hover:border-blue-400 hover:bg-blue-50 hover:text-blue-600"
                 >
                   <ImageIcon className="h-3.5 w-3.5" />
                   Upload from computer
@@ -1178,13 +1178,13 @@ export default function CmsEditor({ slug, onBack }: CmsEditorProps) {
       </main>
 
       {/* ──── Step Navigation (fixed bottom) ──── */}
-      <div className="fixed bottom-0 left-0 right-0 z-10 border-t border-gray-200 bg-white shadow-[0_-2px_8px_rgba(0,0,0,0.06)]">
+      <div className="fixed bottom-0 left-0 right-0 z-10 border-t border-border bg-background shadow-[0_-2px_8px_rgba(0,0,0,0.06)]">
         <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3 sm:px-6">
           <div>
             {step > 1 && (
               <button
                 data-nav="prev"
-                className="flex items-center gap-1.5 rounded-md border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50"
+                className="flex items-center gap-1.5 rounded-md border border-border-strong px-4 py-2 text-sm font-medium text-foreground/80 transition-colors hover:bg-surface"
               >
                 <ChevronLeft className="h-4 w-4" />
                 Back
@@ -1197,7 +1197,7 @@ export default function CmsEditor({ slug, onBack }: CmsEditorProps) {
             {step < 4 ? (
               <button
                 data-nav="next"
-                className="flex items-center gap-1.5 rounded-md bg-black px-4 py-2 text-sm font-medium text-white transition-colors cta-hover-gradient"
+                className="flex items-center gap-1.5 rounded-md bg-foreground px-4 py-2 text-sm font-medium text-background transition-colors cta-hover-gradient"
               >
                 Next
                 <ChevronRight className="h-4 w-4" />
@@ -1206,14 +1206,14 @@ export default function CmsEditor({ slug, onBack }: CmsEditorProps) {
               <>
                 <button
                   data-action="save-draft-blog"
-                  className="flex items-center gap-1.5 rounded-md border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 disabled:opacity-50"
+                  className="flex items-center gap-1.5 rounded-md border border-border-strong px-4 py-2 text-sm font-medium text-foreground/80 transition-colors hover:bg-surface disabled:opacity-50"
                 >
                   <Save className="h-4 w-4" />
                   Save Draft
                 </button>
                 <button
                   data-action="publish-blog"
-                  className="flex items-center gap-1.5 rounded-md bg-black px-4 py-2 text-sm font-medium text-white transition-colors cta-hover-gradient disabled:opacity-50"
+                  className="flex items-center gap-1.5 rounded-md bg-foreground px-4 py-2 text-sm font-medium text-background transition-colors cta-hover-gradient disabled:opacity-50"
                 >
                   {saving ? <Loader2 className="h-4 w-4 animate-spin" /> : <Send className="h-4 w-4" />}
                   {saving ? "Publishing..." : "Publish Blog"}
@@ -1270,7 +1270,7 @@ function FieldInput({
 }) {
   return (
     <div>
-      <label className="mb-1 block text-xs font-medium text-gray-700">
+      <label className="mb-1 block text-xs font-medium text-foreground/80">
         {label} {required && <span className="text-red-400">*</span>}
       </label>
       <input
@@ -1279,9 +1279,9 @@ function FieldInput({
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
         disabled={disabled}
-        className="w-full rounded-md border border-gray-300 bg-white px-2 py-1.5 text-sm text-gray-900 placeholder-gray-400 outline-none transition-colors hover:border-gray-400 focus:border-blue-500 focus:ring-1 focus:ring-blue-100 disabled:bg-gray-50 disabled:text-gray-500"
+        className="w-full rounded-md border border-border-strong bg-background px-2 py-1.5 text-sm text-foreground placeholder-muted-foreground outline-none transition-colors hover:border-border-strong focus:border-blue-500 focus:ring-1 focus:ring-blue-100 disabled:bg-surface disabled:text-muted-foreground"
       />
-      {hint && <p className="mt-0.5 text-xs text-gray-400">{hint}</p>}
+      {hint && <p className="mt-0.5 text-xs text-muted-foreground">{hint}</p>}
     </div>
   );
 }
@@ -1301,7 +1301,7 @@ function FieldTextarea({
 }) {
   return (
     <div>
-      <label className="mb-1 block text-xs font-medium text-gray-700">
+      <label className="mb-1 block text-xs font-medium text-foreground/80">
         {label}
       </label>
       <textarea
@@ -1309,7 +1309,7 @@ function FieldTextarea({
         onChange={(e) => onChange(e.target.value)}
         rows={rows}
         placeholder={placeholder}
-        className="w-full rounded-md border border-gray-300 bg-white px-2 py-1.5 text-sm text-gray-900 placeholder-gray-400 outline-none transition-colors hover:border-gray-400 focus:border-blue-500 focus:ring-1 focus:ring-blue-100"
+        className="w-full rounded-md border border-border-strong bg-background px-2 py-1.5 text-sm text-foreground placeholder-muted-foreground outline-none transition-colors hover:border-border-strong focus:border-blue-500 focus:ring-1 focus:ring-blue-100"
       />
     </div>
   );
@@ -1335,7 +1335,7 @@ function FieldTextareaWithCount({
   const len = value.length;
   const color =
     len === 0
-      ? "text-gray-400"
+      ? "text-muted-foreground"
       : len >= idealMin && len <= idealMax
         ? "text-green-600"
         : len >= idealMin - 20 && len <= idealMax + 20
@@ -1345,7 +1345,7 @@ function FieldTextareaWithCount({
   return (
     <div>
       <div className="mb-1 flex items-center justify-between">
-        <label className="text-xs font-medium text-gray-700">{label}</label>
+        <label className="text-xs font-medium text-foreground/80">{label}</label>
         <span className={`text-[10px] ${color}`}>
           {len}/{idealMax}
         </span>
@@ -1355,7 +1355,7 @@ function FieldTextareaWithCount({
         onChange={(e) => onChange(e.target.value)}
         rows={rows}
         placeholder={placeholder}
-        className="w-full rounded-md border border-gray-300 bg-white px-2 py-1.5 text-sm text-gray-900 placeholder-gray-400 outline-none transition-colors hover:border-gray-400 focus:border-blue-500 focus:ring-1 focus:ring-blue-100"
+        className="w-full rounded-md border border-border-strong bg-background px-2 py-1.5 text-sm text-foreground placeholder-muted-foreground outline-none transition-colors hover:border-border-strong focus:border-blue-500 focus:ring-1 focus:ring-blue-100"
       />
     </div>
   );
@@ -1382,7 +1382,7 @@ function FieldToggle({
 
   return (
     <div className="flex items-center justify-between">
-      <span className="text-xs text-gray-700">{label}</span>
+      <span className="text-xs text-foreground/80">{label}</span>
       <button
         ref={ref}
         className={`relative h-5 w-9 rounded-full transition-colors ${
@@ -1390,7 +1390,7 @@ function FieldToggle({
         }`}
       >
         <span
-          className={`absolute left-0.5 top-0.5 h-4 w-4 rounded-full bg-white shadow transition-transform ${
+          className={`absolute left-0.5 top-0.5 h-4 w-4 rounded-full bg-background shadow transition-transform ${
             checked ? "translate-x-4" : ""
           }`}
         />
@@ -1416,8 +1416,8 @@ function ToolbarButton({
       title={title}
       className={`rounded p-1.5 transition-colors ${
         active
-          ? "bg-gray-200 text-gray-900"
-          : "text-gray-500 hover:bg-gray-200 hover:text-gray-700"
+          ? "bg-gray-200 text-foreground"
+          : "text-muted-foreground hover:bg-gray-200 hover:text-foreground/80"
       }`}
     >
       {icon}

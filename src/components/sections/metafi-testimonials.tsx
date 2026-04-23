@@ -141,7 +141,7 @@ export default function MetafiTestimonials() {
           Customers Are Saying
         </h2>
 
-        <p className="mx-auto mt-4 max-w-2xl text-center text-base font-normal text-muted-foreground sm:text-lg">
+        <p className="mt-4 max-w-2xl text-base font-normal text-muted-foreground sm:text-lg">
           Here&apos;s what some of our customers say about our platform.
         </p>
 

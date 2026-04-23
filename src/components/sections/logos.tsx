@@ -17,7 +17,7 @@ export default function Logos() {
     <div className="relative py-4 lg:py-6">
       {/* Heading */}
       <div className="mb-4 text-center">
-        <p className="text-[15px] font-normal text-gray-600 lg:text-[16px]">
+        <p className="text-[15px] font-normal text-muted-foreground lg:text-[16px]">
           Trusted by 10,000+ startups and enterprises worldwide
         </p>
       </div>
@@ -26,9 +26,9 @@ export default function Logos() {
       <div
         style={{
           maskImage:
-            "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.15) 5%, rgba(0,0,0,0.4) 10%, rgba(0,0,0,0.7) 18%, rgba(0,0,0,0.9) 25%, black 35%, black 65%, rgba(0,0,0,0.9) 75%, rgba(0,0,0,0.7) 82%, rgba(0,0,0,0.4) 90%, rgba(0,0,0,0.15) 95%, transparent 100%)",
+            "linear-gradient(to right, transparent 0%, hsl(var(--border)) 5%, rgba(0,0,0,0.4) 10%, rgba(0,0,0,0.7) 18%, rgba(0,0,0,0.9) 25%, black 35%, black 65%, rgba(0,0,0,0.9) 75%, rgba(0,0,0,0.7) 82%, rgba(0,0,0,0.4) 90%, hsl(var(--border)) 95%, transparent 100%)",
           WebkitMaskImage:
-            "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.15) 5%, rgba(0,0,0,0.4) 10%, rgba(0,0,0,0.7) 18%, rgba(0,0,0,0.9) 25%, black 35%, black 65%, rgba(0,0,0,0.9) 75%, rgba(0,0,0,0.7) 82%, rgba(0,0,0,0.4) 90%, rgba(0,0,0,0.15) 95%, transparent 100%)",
+            "linear-gradient(to right, transparent 0%, hsl(var(--border)) 5%, rgba(0,0,0,0.4) 10%, rgba(0,0,0,0.7) 18%, rgba(0,0,0,0.9) 25%, black 35%, black 65%, rgba(0,0,0,0.9) 75%, rgba(0,0,0,0.7) 82%, rgba(0,0,0,0.4) 90%, hsl(var(--border)) 95%, transparent 100%)",
         }}
       >
         <Marquee

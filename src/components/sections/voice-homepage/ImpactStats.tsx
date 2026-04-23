@@ -25,16 +25,13 @@ const STATS = [
   { value: "150+", label: "Countries connected" },
 ];
 
-// Calculate a realistic base number that grows over time
 function getBaseCounter(): number {
   const launchDate = new Date("2024-01-01").getTime();
   const now = Date.now();
   const daysSinceLaunch = Math.floor((now - launchDate) / (1000 * 60 * 60 * 24));
-  // Starting from 50 million, growing ~15k per day
   return 50_000_000 + daysSinceLaunch * 15_234;
 }
 
-// Smooth animated digit with 9→0 wrap-around support
 function SmoothDigit({ digit }: { digit: number }) {
   const prevRef = useRef(digit);
   const [pos, setPos] = useState(digit);
@@ -45,11 +42,9 @@ function SmoothDigit({ digit }: { digit: number }) {
     prevRef.current = digit;
 
     if (prev === 9 && digit === 0) {
-      // Wrap-around: roll forward to extra "0" at position 10
       setAnimate(true);
       setPos(10);
       const timer = setTimeout(() => {
-        // Snap back to position 0 without transition
         setAnimate(false);
         setPos(0);
       }, 600);
@@ -65,9 +60,7 @@ function SmoothDigit({ digit }: { digit: number }) {
       <span
         className="absolute inset-x-0 flex flex-col"
         style={{
-          transition: animate
-            ? "transform 600ms cubic-bezier(0.4, 0, 0.2, 1)"
-            : "none",
+          transition: animate ? "transform 600ms cubic-bezier(0.4, 0, 0.2, 1)" : "none",
           transform: `translateY(-${pos}em)`,
         }}
       >
@@ -81,18 +74,16 @@ function SmoothDigit({ digit }: { digit: number }) {
   );
 }
 
-// Counter with smooth animated digits
 function LiveCounter({ value }: { value: number }) {
   const formatted = value.toLocaleString("en-US");
-
   return (
     <span className="inline-flex items-baseline">
       {formatted.split("").map((char, i) =>
         char === "," ? (
-          <span key={`comma-${i}`}>,</span>
+          <span key={`c-${i}`}>,</span>
         ) : (
-          <SmoothDigit key={`digit-${i}`} digit={parseInt(char)} />
-        )
+          <SmoothDigit key={`d-${i}`} digit={parseInt(char)} />
+        ),
       )}
     </span>
   );
@@ -101,41 +92,61 @@ function LiveCounter({ value }: { value: number }) {
 export default function ImpactStats() {
   const [counter, setCounter] = useState(() => getBaseCounter());
 
-  // Slow counter: random 2-digit increment every 2-4 seconds
   useEffect(() => {
     let timer: ReturnType<typeof setTimeout>;
-
     const tick = () => {
-      const increment = Math.floor(Math.random() * 90) + 10; // 10–99
-      const delay = 2000 + Math.random() * 2000; // 2–4 seconds
+      const increment = Math.floor(Math.random() * 90) + 10;
+      const delay = 2000 + Math.random() * 2000;
       setCounter((prev) => prev + increment);
       timer = setTimeout(tick, delay);
     };
-
     timer = setTimeout(tick, 2500);
     return () => clearTimeout(timer);
   }, []);
 
   return (
-    <section className="impact-section bg-white py-12 sm:py-16 md:py-20">
+    <section id="section-scale" className="relative w-full border-t border-border">
       <style>{`
-        .use-cases-marquee {
-          animation: marquee-scroll 20s linear infinite;
-        }
+        .use-cases-marquee { animation: marquee-scroll 22s linear infinite; }
         @keyframes marquee-scroll {
           0% { transform: translateX(0); }
           100% { transform: translateX(-50%); }
         }
       `}</style>
-      <div className="container mx-auto max-w-7xl px-4">
-        <h2 className="font-sora mb-6 text-center text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] font-normal leading-[1.25] tracking-[-0.02em] text-black">
-          Plivo is built to scale
-        </h2>
+      <div className="container mx-auto max-w-7xl px-4 sm:px-6 py-14 sm:py-20 md:py-24">
+        {/* Kicker */}
+        <div className="flex items-center gap-3 font-mono-ui text-[11px] uppercase tracking-[0.12em] text-muted-foreground">
+          <span className="flex items-center gap-2">
+            <span className="tabular-nums text-foreground/70">04</span>
+            <span className="h-px w-6 bg-border" />
+          </span>
+          <span>scale</span>
+          <span className="flex-1 border-t border-dashed border-border" />
+          <span>
+            <span className="font-mono-ui inline-flex items-center gap-1.5">
+              <span className="relative flex h-1.5 w-1.5">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75" />
+                <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-primary" />
+              </span>
+              live · realtime counter
+            </span>
+          </span>
+        </div>
 
-        {/* Unified Container with Globe */}
-        <div className="relative overflow-hidden rounded-lg border border-gray-200 bg-white">
-          {/* Globe - Positioned absolute on right, cropped */}
-          <div className="absolute -right-28 top-1/2 hidden lg:block z-30" style={{ transform: 'translateY(calc(-50% + 40px))' }}>
+        {/* Heading */}
+        <div className="mt-8 max-w-3xl">
+          <h2 className="font-sora text-[2rem] font-normal leading-[1.04] tracking-[-0.035em] text-foreground sm:text-[2.5rem] md:text-[3rem]">
+            Plivo is built to scale
+          </h2>
+        </div>
+
+        {/* Unified container */}
+        <div className="relative mt-10 overflow-hidden rounded-lg border border-border bg-surface">
+          {/* Globe - right side */}
+          <div
+            className="absolute -right-28 top-1/2 z-20 hidden lg:block"
+            style={{ transform: "translateY(calc(-50% + 40px))" }}
+          >
             <Globe
               size={504}
               baseColor={[1, 1, 1]}
@@ -145,57 +156,61 @@ export default function ImpactStats() {
               interactive={true}
             />
           </div>
+          <div className="pointer-events-none absolute bottom-0 right-0 top-0 z-10 hidden w-[340px] bg-gradient-to-l from-surface via-surface/85 to-transparent lg:block" />
 
-          {/* Fade overlay for lines near globe */}
-          <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-[350px] hidden lg:block z-20 bg-gradient-to-l from-white via-white/80 to-transparent" />
-
-          {/* Stats Content */}
-          <div className="relative flex flex-col z-20">
-            {/* Large Counter Block */}
-            <div className="flex flex-col justify-center px-6 py-8 sm:px-8 lg:px-10 lg:py-10 lg:pr-[380px]">
-              <div className="mb-2 text-[2rem] font-semibold tabular-nums tracking-[-0.04em] text-black sm:text-[3rem] md:text-5xl lg:text-7xl">
+          <div className="relative z-10 flex flex-col">
+            {/* Counter */}
+            <div className="flex flex-col gap-3 px-6 py-8 sm:px-8 sm:py-10 lg:px-10 lg:pr-[380px]">
+              <div className="font-mono-ui text-[2rem] font-semibold tabular-nums leading-none tracking-[-0.04em] text-foreground sm:text-[3rem] md:text-5xl lg:text-[5.5rem]">
                 <LiveCounter value={counter} />
               </div>
-              <div className="text-base sm:text-lg font-medium text-gray-600">
+              <div className="text-base sm:text-lg font-medium text-muted-foreground">
                 minutes of customer conversations handled by our AI Agents
               </div>
             </div>
 
-            {/* Stats Row */}
-            <div className="relative border-t border-gray-200 lg:mr-[380px]">
-              {/* Right fade overlay */}
-              <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-24 hidden lg:block bg-gradient-to-l from-white to-transparent z-10" />
-              <div className="grid grid-cols-2 sm:grid-cols-4">
-                {STATS.map((stat, index) => (
-                  <div
-                    key={`${stat.label}-${index}`}
-                    className={`flex flex-col justify-center px-4 py-4 sm:px-6 sm:py-5 ${
-                      index < STATS.length - 1 ? "border-r border-gray-200" : ""
-                    } ${index >= 2 ? "border-t sm:border-t-0 border-gray-200" : ""}`}
-                  >
-                    <div className="text-xl font-semibold text-black sm:text-2xl">
+            {/* Stats row */}
+            <div className="relative grid grid-cols-2 border-t border-border lg:mr-[380px] sm:grid-cols-4">
+              {STATS.map((stat, index) => {
+                const mobileRight = index % 2 === 0; // 0,2 → right border on mobile
+                const mobileBottom = index < 2;       // 0,1 → bottom border on mobile
+                const desktopRight = index < STATS.length - 1; // 0,1,2 → right border on desktop
+                const cls = [
+                  "flex flex-col gap-1 px-5 py-5 sm:px-6 sm:py-6",
+                  mobileRight ? "border-r border-border" : "",
+                  mobileBottom ? "border-b border-border" : "",
+                  "sm:border-b-0",
+                  desktopRight ? "sm:border-r sm:border-border" : "sm:border-r-0",
+                ]
+                  .filter(Boolean)
+                  .join(" ");
+                return (
+                  <div key={stat.label} className={cls}>
+                    <div className="font-mono-ui text-xl font-semibold tabular-nums tracking-tight text-foreground sm:text-2xl">
                       {stat.value}
                     </div>
-                    <div className="text-sm text-gray-500">{stat.label}</div>
+                    <div className="font-mono-ui text-[10.5px] uppercase tracking-[0.08em] text-muted-foreground">
+                      {stat.label}
+                    </div>
                   </div>
-                ))}
-              </div>
+                );
+              })}
             </div>
 
-            {/* Use Cases Marquee */}
-            <div className="relative overflow-hidden border-t border-gray-200 py-4 lg:mr-[380px]">
-              {/* Right fade overlay */}
-              <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-24 hidden lg:block bg-gradient-to-l from-white to-transparent z-10" />
-              <div className="use-cases-marquee flex cursor-default select-none items-center gap-8">
-                {[...USE_CASES, ...USE_CASES, ...USE_CASES, ...USE_CASES].map((useCase, i) => {
-                  const Icon = useCase.icon;
+            {/* Use-case marquee */}
+            <div className="relative overflow-hidden border-t border-border py-4 lg:mr-[380px]">
+              <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-surface to-transparent" />
+              <div className="pointer-events-none absolute inset-y-0 right-0 z-10 hidden w-24 bg-gradient-to-l from-surface to-transparent lg:block" />
+              <div className="use-cases-marquee flex cursor-default select-none items-center gap-10 pl-4">
+                {[...USE_CASES, ...USE_CASES, ...USE_CASES, ...USE_CASES].map((uc, i) => {
+                  const Icon = uc.icon;
                   return (
                     <span
-                      key={`${useCase.label}-${i}`}
-                      className="flex items-center gap-1.5 whitespace-nowrap text-sm text-gray-600"
+                      key={`${uc.label}-${i}`}
+                      className="flex items-center gap-2 whitespace-nowrap font-mono-ui text-[11.5px] uppercase tracking-[0.08em] text-muted-foreground"
                     >
-                      <Icon className="h-3.5 w-3.5 text-[#323DFE]" />
-                      {useCase.label}
+                      <Icon className="h-3.5 w-3.5 text-primary" />
+                      {uc.label}
                     </span>
                   );
                 })}

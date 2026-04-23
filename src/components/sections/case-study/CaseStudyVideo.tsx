@@ -137,21 +137,21 @@ export default function CaseStudyVideo({
   }, []);
 
   return (
-    <section className="bg-white relative overflow-hidden" ref={wrapperRef}>
+    <section className="bg-background border-t border-border relative overflow-hidden" ref={wrapperRef}>
       {/* Dotted wave canvas backdrop */}
       <canvas ref={canvasRef} className="pointer-events-none absolute inset-0 z-[1]" />
 
       {/* Edge fades */}
-      <div className="pointer-events-none absolute inset-y-0 left-0 z-[2] w-16 sm:w-24 bg-gradient-to-r from-white to-transparent" />
-      <div className="pointer-events-none absolute inset-y-0 right-0 z-[2] w-16 sm:w-24 bg-gradient-to-l from-white to-transparent" />
-      <div className="pointer-events-none absolute inset-x-0 top-0 z-[2] h-16 bg-gradient-to-b from-white to-transparent" />
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[2] h-16 bg-gradient-to-t from-white to-transparent" />
+      <div className="pointer-events-none absolute inset-y-0 left-0 z-[2] w-16 sm:w-24 bg-gradient-to-r from-background to-transparent" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 z-[2] w-16 sm:w-24 bg-gradient-to-l from-background to-transparent" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 z-[2] h-16 bg-gradient-to-b from-background to-transparent" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[2] h-16 bg-gradient-to-t from-background to-transparent" />
 
       {/* Video container */}
       <div className="container relative z-10 mx-auto max-w-5xl px-4 py-12 sm:py-16 md:py-20">
         <div
           id="video"
-          className="relative aspect-video rounded-lg overflow-hidden bg-gray-900 shadow-2xl"
+          className="relative aspect-video rounded-lg overflow-hidden bg-gray-900 "
         >
           {showIframe ? (
             <iframe
@@ -177,14 +177,14 @@ export default function CaseStudyVideo({
               )}
 
               {/* Dark overlay for contrast with play button */}
-              <div className="absolute inset-0 bg-black/30" />
+              <div className="absolute inset-0 bg-foreground/$1" />
 
               {/* Center content */}
               <div className="absolute inset-0 flex flex-col items-center justify-center z-10">
                 {/* Play button */}
                 <button
                   ref={buttonRef}
-                  className="group relative flex items-center justify-center w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 transition-all duration-300 hover:bg-white/20 hover:scale-105 cursor-pointer"
+                  className="group relative flex items-center justify-center w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-background/10 backdrop-blur-sm border border-white/20 transition-all duration-300 hover:bg-background/20 hover:scale-105 cursor-pointer"
                   aria-label="Play video"
                 >
                   <svg
@@ -206,7 +206,7 @@ export default function CaseStudyVideo({
                 </button>
 
                 {/* Label */}
-                <p className="mt-4 text-sm text-white/70 font-medium tracking-wide uppercase">
+                <p className="mt-4 text-sm text-white/70 font-medium font-mono-ui uppercase tracking-[0.1em]">
                   Watch the Story
                 </p>
               </div>

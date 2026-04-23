@@ -31,3 +31,6 @@ npm-debug.log*
 
 # Templates (too large)
 templates/
+
+# Cloudflare Workers runtime cache
+.wrangler/

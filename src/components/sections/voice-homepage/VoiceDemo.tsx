@@ -394,25 +394,25 @@ export default function VoiceDemo() {
   const statusText = STATUS_TEXT[demoState];
 
   return (
-    <section className="voice-demo-section relative z-20 bg-white overflow-hidden pt-2 pb-20">
+    <section className="voice-demo-section relative z-20 bg-background overflow-hidden pt-2 pb-20">
       {/* Dotted Grid Background */}
-      <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center', maskImage: 'linear-gradient(to bottom, transparent 0%, rgba(255,255,255,0.3) 15%, rgba(255,255,255,0.7) 30%, white 45%, white 55%, rgba(255,255,255,0.7) 70%, rgba(255,255,255,0.3) 85%, transparent 100%)', WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, rgba(255,255,255,0.3) 15%, rgba(255,255,255,0.7) 30%, white 45%, white 55%, rgba(255,255,255,0.7) 70%, rgba(255,255,255,0.3) 85%, transparent 100%)' }} />
+      <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle, hsl(var(--border)) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center', maskImage: 'linear-gradient(to bottom, transparent 0%, rgba(255,255,255,0.3) 15%, rgba(255,255,255,0.7) 30%, white 45%, white 55%, rgba(255,255,255,0.7) 70%, rgba(255,255,255,0.3) 85%, transparent 100%)', WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, rgba(255,255,255,0.3) 15%, rgba(255,255,255,0.7) 30%, white 45%, white 55%, rgba(255,255,255,0.7) 70%, rgba(255,255,255,0.3) 85%, transparent 100%)' }} />
 
       {/* Fade Edges */}
-      <div className="absolute inset-y-0 left-0 z-[5] w-8 sm:w-16 md:w-32 bg-gradient-to-r from-white to-transparent" />
-      <div className="absolute inset-y-0 right-0 z-[5] w-8 sm:w-16 md:w-32 bg-gradient-to-l from-white to-transparent" />
+      <div className="absolute inset-y-0 left-0 z-[5] w-8 sm:w-16 md:w-32 bg-gradient-to-r from-background to-transparent" />
+      <div className="absolute inset-y-0 right-0 z-[5] w-8 sm:w-16 md:w-32 bg-gradient-to-l from-background to-transparent" />
 
       {/* Content */}
       <div className="relative z-10 flex flex-col items-center justify-center gap-3 py-12">
         {/* Language Selector */}
-        <div className="flex rounded-full bg-white p-0.5 shadow-sm">
+        <div className="flex rounded-full bg-background p-0.5 shadow-sm">
           <button
             onClick={() => handleLanguageChange("hindi")}
             disabled={demoState === "calling" || demoState === "active"}
             className={`rounded-full px-3 py-1 text-xs font-medium transition-colors ${
               selectedLanguage === "hindi"
                 ? "text-white"
-                : "text-gray-500 hover:text-black"
+                : "text-muted-foreground hover:text-foreground"
             } ${demoState === "calling" || demoState === "active" ? "opacity-50 cursor-not-allowed" : ""}`}
             style={
               selectedLanguage === "hindi"
@@ -428,7 +428,7 @@ export default function VoiceDemo() {
             className={`rounded-full px-3 py-1 text-xs font-medium transition-colors ${
               selectedLanguage === "english"
                 ? "text-white"
-                : "text-gray-500 hover:text-black"
+                : "text-muted-foreground hover:text-foreground"
             } ${demoState === "calling" || demoState === "active" ? "opacity-50 cursor-not-allowed" : ""}`}
             style={
               selectedLanguage === "english"
@@ -444,7 +444,7 @@ export default function VoiceDemo() {
         <button
           onClick={handleTalk}
           disabled={isLoading || isCalling}
-          className={`flex items-center gap-3 sm:gap-5 rounded-[80px] bg-white pl-3 pr-8 sm:pl-4 sm:pr-14 py-3 sm:py-4 shadow-xl transition-all duration-200 ${
+          className={`flex items-center gap-3 sm:gap-5 rounded-[80px] bg-background pl-3 pr-8 sm:pl-4 sm:pr-14 py-3 sm:py-4 shadow-xl transition-all duration-200 ${
             isClickable
               ? "hover:-translate-y-1 hover:shadow-2xl cursor-pointer"
               : "cursor-default"
@@ -480,7 +480,7 @@ export default function VoiceDemo() {
                   {[1, 2, 3, 4, 5].map((i) => (
                     <span
                       key={i}
-                      className={`w-[3px] rounded-full bg-white ${
+                      className={`w-[3px] rounded-full bg-background ${
                         isActive ? "animate-wave-bar-fast" : "animate-wave-bar"
                       }`}
                       style={{
@@ -494,14 +494,14 @@ export default function VoiceDemo() {
             </div>
           </div>
 
-          <span className="text-base sm:text-xl font-semibold text-black">
+          <span className="text-base sm:text-xl font-semibold text-foreground">
             {BUTTON_TEXT[demoState]}
           </span>
         </button>
 
         {/* Status text */}
         {statusText && (
-          <p className="text-xs text-black animate-fade-in">
+          <p className="text-xs text-foreground animate-fade-in">
             {statusText}
           </p>
         )}

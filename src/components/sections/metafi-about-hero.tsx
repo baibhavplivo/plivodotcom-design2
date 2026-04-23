@@ -22,7 +22,7 @@ export default function MetafiAboutHero({
   imageAlt = "Metafi team working together",
 }: MetafiAboutHeroProps) {
   return (
-    <section id="metafi-about-hero" className="bg-background px-6 lg:px-0">
+    <section id="metafi-about-hero" className="bg-background border-t border-border px-6 lg:px-0">
       <div className="container px-0 md:px-6">
         <div className="bg-features-hero relative overflow-hidden">
           <div className="mx-auto max-w-4xl px-6 py-14 text-center sm:px-8 sm:py-18 md:py-20">
@@ -32,7 +32,7 @@ export default function MetafiAboutHero({
               {title}
             </h1>
 
-            <p className="mx-auto mt-4 max-w-2xl text-base text-muted-foreground sm:text-lg">
+            <p className="mt-4 max-w-2xl text-base text-muted-foreground sm:text-lg">
               {subtitle}
             </p>
 

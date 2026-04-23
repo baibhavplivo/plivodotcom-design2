@@ -35,12 +35,20 @@ const agents = [
 ];
 ---
 
-<section class="py-12 lg:py-16 bg-white">
+<section class="py-12 lg:py-16 bg-background border-t border-border">
   <div class="container mx-auto max-w-7xl px-4 mb-10">
-    <h2 class="font-sora text-[2rem] sm:text-[2.5rem] font-normal leading-[1.25] tracking-[-0.02em] text-black text-center">
+    <div class="flex items-center gap-3 font-mono-ui text-[11px] uppercase tracking-[0.12em] text-muted-foreground mb-8">
+          <span class="flex items-center gap-2">
+            <span class="tabular-nums text-foreground/70">~</span>
+            <span class="h-px w-6 bg-border"></span>
+          </span>
+          <span>agent carousel</span>
+          <span class="flex-1 border-t border-dashed border-border"></span>
+        </div>
+        <h2 class="font-sora text-[2rem] sm:text-[2.5rem] font-normal leading-[1.04] tracking-[-0.035em] text-foreground">
       Vibe create your agents for your use case <br class="hidden sm:block" />in plain English
     </h2>
-    <p class="text-base sm:text-lg text-gray-600 text-center mt-4 max-w-2xl mx-auto leading-relaxed">
+    <p class="text-base sm:text-lg text-muted-foreground mt-4 max-w-2xl leading-relaxed">
       Explore the top AI agents that streamline operations, boost CSAT, and cut resolution times - no training required.
     </p>
   </div>
@@ -49,7 +57,7 @@ const agents = [
     <div class="agent-marquee-content flex gap-6 px-4">
       {/* First set */}
       {agents.map((agent) => (
-        <div class="agent-card flex-shrink-0 w-[320px] sm:w-[360px] rounded-xl border border-gray-200 bg-white p-6 hover:shadow-lg transition-shadow duration-300">
+        <div class="agent-card flex-shrink-0 w-[320px] sm:w-[360px] rounded-xl border border-border bg-background p-6 hover:shadow-lg transition-shadow duration-300">
           {/* Icon */}
           <div class="w-12 h-12 rounded-lg flex items-center justify-center mb-4" style={`background: ${agent.color}10;`}>
             {agent.icon === "funnel" && (
@@ -80,68 +88,68 @@ const agents = [
           </div>
 
           {/* CSS Mockup illustration */}
-          <div class="rounded-lg bg-gray-50 border border-gray-100 p-3 mb-4 h-[140px] overflow-hidden">
+          <div class="rounded-lg bg-surface border border-border p-3 mb-4 h-[140px] overflow-hidden">
             {agent.icon === "funnel" && (
               <div class="space-y-2">
                 <div class="flex items-center gap-2">
-                  <div class="w-6 h-6 rounded-full bg-gradient-to-br from-[#323dfe] to-black flex-shrink-0" />
+                  <div class="w-6 h-6 rounded-full bg-gradient-to-br from-primary to-black flex-shrink-0" />
                   <div class="flex-1 rounded bg-gray-200 h-3" />
                 </div>
                 <div class="flex gap-2 text-[10px]">
                   <span class="px-2 py-0.5 rounded-full bg-blue-100 text-blue-700">High intent</span>
-                  <span class="px-2 py-0.5 rounded-full bg-green-100 text-green-700">Qualified</span>
+                  <span class="px-2 py-0.5 rounded-full bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300">Qualified</span>
                 </div>
                 <div class="space-y-1.5 mt-1">
                   <div class="flex items-center gap-2">
                     <div class="w-4 h-4 rounded bg-gray-200 flex-shrink-0" />
                     <div class="h-2 rounded bg-gray-200 flex-1" />
-                    <span class="text-[9px] text-green-600 font-medium">92%</span>
+                    <span class="text-[9px] text-green-600 dark:text-green-300 font-medium">92%</span>
                   </div>
                   <div class="flex items-center gap-2">
                     <div class="w-4 h-4 rounded bg-gray-200 flex-shrink-0" />
                     <div class="h-2 rounded bg-gray-200 w-3/4" />
-                    <span class="text-[9px] text-yellow-600 font-medium">67%</span>
+                    <span class="text-[9px] text-yellow-600 dark:text-yellow-300 font-medium">67%</span>
                   </div>
                   <div class="flex items-center gap-2">
                     <div class="w-4 h-4 rounded bg-gray-200 flex-shrink-0" />
                     <div class="h-2 rounded bg-gray-200 w-1/2" />
-                    <span class="text-[9px] text-gray-400 font-medium">34%</span>
+                    <span class="text-[9px] text-muted-foreground font-medium">34%</span>
                   </div>
                 </div>
               </div>
             )}
             {agent.icon === "headset" && (
               <div class="space-y-2">
-                <div class="flex items-center justify-between text-[10px] text-gray-500">
+                <div class="flex items-center justify-between text-[10px] text-muted-foreground">
                   <span>Active conversation</span>
                   <span class="flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-green-500" />Live</span>
                 </div>
                 <div class="flex justify-start">
-                  <div class="rounded-lg rounded-bl-sm px-2.5 py-1.5 bg-white border border-gray-200 shadow-sm text-[11px] text-gray-700 max-w-[85%]">Your order #4821 shipped today via FedEx.</div>
+                  <div class="rounded-lg rounded-bl-sm px-2.5 py-1.5 bg-background border border-border shadow-sm text-[11px] text-foreground/80 max-w-[85%]">Your order #4821 shipped today via FedEx.</div>
                 </div>
                 <div class="flex justify-end">
-                  <div class="rounded-lg rounded-br-sm px-2.5 py-1.5 bg-[#323dfe] text-white text-[11px] max-w-[85%]">Great, when will it arrive?</div>
+                  <div class="rounded-lg rounded-br-sm px-2.5 py-1.5 bg-primary text-white text-[11px] max-w-[85%]">Great, when will it arrive?</div>
                 </div>
                 <div class="flex justify-start">
-                  <div class="rounded-lg rounded-bl-sm px-2.5 py-1.5 bg-white border border-gray-200 shadow-sm text-[11px] text-gray-700 max-w-[85%]">Expected delivery: Thursday, Jan 18.</div>
+                  <div class="rounded-lg rounded-bl-sm px-2.5 py-1.5 bg-background border border-border shadow-sm text-[11px] text-foreground/80 max-w-[85%]">Expected delivery: Thursday, Jan 18.</div>
                 </div>
               </div>
             )}
             {agent.icon === "calendar" && (
               <div class="space-y-2">
-                <div class="text-[10px] text-gray-500 font-medium">January 2025</div>
+                <div class="text-[10px] text-muted-foreground font-medium">January 2025</div>
                 <div class="grid grid-cols-7 gap-1 text-[9px] text-center">
-                  <span class="text-gray-400">M</span><span class="text-gray-400">T</span><span class="text-gray-400">W</span><span class="text-gray-400">T</span><span class="text-gray-400">F</span><span class="text-gray-400">S</span><span class="text-gray-400">S</span>
-                  <span class="text-gray-400">13</span><span class="text-gray-400">14</span><span class="text-gray-400">15</span>
-                  <span class="w-5 h-5 rounded-full bg-[#323dfe] text-white flex items-center justify-center mx-auto">16</span>
-                  <span class="text-gray-400">17</span><span class="text-gray-400">18</span><span class="text-gray-400">19</span>
-                  <span class="text-gray-400">20</span><span class="text-gray-400">21</span><span class="text-gray-400">22</span><span class="text-gray-400">23</span><span class="text-gray-400">24</span><span class="text-gray-400">25</span><span class="text-gray-400">26</span>
+                  <span class="text-muted-foreground">M</span><span class="text-muted-foreground">T</span><span class="text-muted-foreground">W</span><span class="text-muted-foreground">T</span><span class="text-muted-foreground">F</span><span class="text-muted-foreground">S</span><span class="text-muted-foreground">S</span>
+                  <span class="text-muted-foreground">13</span><span class="text-muted-foreground">14</span><span class="text-muted-foreground">15</span>
+                  <span class="w-5 h-5 rounded-full bg-primary text-white flex items-center justify-center mx-auto">16</span>
+                  <span class="text-muted-foreground">17</span><span class="text-muted-foreground">18</span><span class="text-muted-foreground">19</span>
+                  <span class="text-muted-foreground">20</span><span class="text-muted-foreground">21</span><span class="text-muted-foreground">22</span><span class="text-muted-foreground">23</span><span class="text-muted-foreground">24</span><span class="text-muted-foreground">25</span><span class="text-muted-foreground">26</span>
                 </div>
                 <div class="flex items-center gap-2 mt-1 px-1">
-                  <div class="w-1 h-6 rounded-full bg-[#323dfe]" />
+                  <div class="w-1 h-6 rounded-full bg-primary" />
                   <div>
-                    <div class="text-[10px] font-medium text-gray-800">Dr. Patel - 10:00 AM</div>
-                    <div class="text-[9px] text-gray-500">Dental Checkup</div>
+                    <div class="text-[10px] font-medium text-foreground">Dr. Patel - 10:00 AM</div>
+                    <div class="text-[9px] text-muted-foreground">Dental Checkup</div>
                   </div>
                 </div>
               </div>
@@ -154,50 +162,50 @@ const agents = [
                 <div class="space-y-1.5">
                   <div class="flex items-center gap-2 text-[11px]">
                     <svg class="w-3.5 h-3.5 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                    <span class="text-gray-700">Network connectivity verified</span>
+                    <span class="text-foreground/80">Network connectivity verified</span>
                   </div>
                   <div class="flex items-center gap-2 text-[11px]">
                     <svg class="w-3.5 h-3.5 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                    <span class="text-gray-700">DNS resolution: OK</span>
+                    <span class="text-foreground/80">DNS resolution: OK</span>
                   </div>
                   <div class="flex items-center gap-2 text-[11px]">
                     <svg class="w-3.5 h-3.5 text-yellow-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" /></svg>
-                    <span class="text-gray-700">SSL cert expiring in 3 days</span>
+                    <span class="text-foreground/80">SSL cert expiring in 3 days</span>
                   </div>
                 </div>
-                <div class="text-[10px] text-gray-500 mt-1">Routing to human agent...</div>
+                <div class="text-[10px] text-muted-foreground mt-1">Routing to human agent...</div>
               </div>
             )}
             {agent.icon === "chart" && (
               <div class="space-y-2">
-                <div class="text-[10px] text-gray-500 font-medium">CSAT Survey Results</div>
+                <div class="text-[10px] text-muted-foreground font-medium">CSAT Survey Results</div>
                 <div class="flex items-end gap-1 h-[50px]">
-                  <div class="flex-1 bg-[#323dfe]/20 rounded-t" style="height: 60%" />
-                  <div class="flex-1 bg-[#323dfe]/30 rounded-t" style="height: 45%" />
-                  <div class="flex-1 bg-[#323dfe]/40 rounded-t" style="height: 75%" />
-                  <div class="flex-1 bg-[#323dfe]/50 rounded-t" style="height: 55%" />
-                  <div class="flex-1 bg-[#323dfe] rounded-t" style="height: 90%" />
+                  <div class="flex-1 bg-primary/20 rounded-t" style="height: 60%" />
+                  <div class="flex-1 bg-primary/30 rounded-t" style="height: 45%" />
+                  <div class="flex-1 bg-primary/40 rounded-t" style="height: 75%" />
+                  <div class="flex-1 bg-primary/50 rounded-t" style="height: 55%" />
+                  <div class="flex-1 bg-primary rounded-t" style="height: 90%" />
                 </div>
-                <div class="flex items-center justify-between text-[9px] text-gray-400">
+                <div class="flex items-center justify-between text-[9px] text-muted-foreground">
                   <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span>
                 </div>
                 <div class="flex items-center gap-2">
-                  <span class="text-[10px] font-semibold text-gray-800">4.7/5.0</span>
-                  <span class="text-[9px] text-green-600">+12% this week</span>
+                  <span class="text-[10px] font-semibold text-foreground">4.7/5.0</span>
+                  <span class="text-[9px] text-green-600 dark:text-green-300">+12% this week</span>
                 </div>
               </div>
             )}
           </div>
 
           {/* Text */}
-          <h3 class="font-inter text-[1rem] font-semibold text-black mb-2">{agent.title}</h3>
-          <p class="text-[0.875rem] text-gray-600 leading-relaxed">{agent.description}</p>
+          <h3 class="font-inter text-[1rem] font-semibold text-foreground mb-2">{agent.title}</h3>
+          <p class="text-[0.875rem] text-muted-foreground leading-relaxed">{agent.description}</p>
         </div>
       ))}
 
       {/* Duplicate for seamless loop */}
       {agents.map((agent) => (
-        <div class="agent-card flex-shrink-0 w-[320px] sm:w-[360px] rounded-xl border border-gray-200 bg-white p-6 hover:shadow-lg transition-shadow duration-300">
+        <div class="agent-card flex-shrink-0 w-[320px] sm:w-[360px] rounded-xl border border-border bg-background p-6 hover:shadow-lg transition-shadow duration-300">
           <div class="w-12 h-12 rounded-lg flex items-center justify-center mb-4" style={`background: ${agent.color}10;`}>
             {agent.icon === "funnel" && (
               <svg class="w-6 h-6" style={`color: ${agent.color};`} fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
@@ -226,45 +234,45 @@ const agents = [
             )}
           </div>
 
-          <div class="rounded-lg bg-gray-50 border border-gray-100 p-3 mb-4 h-[140px] overflow-hidden">
+          <div class="rounded-lg bg-surface border border-border p-3 mb-4 h-[140px] overflow-hidden">
             {agent.icon === "funnel" && (
               <div class="space-y-2">
                 <div class="flex items-center gap-2">
-                  <div class="w-6 h-6 rounded-full bg-gradient-to-br from-[#323dfe] to-black flex-shrink-0" />
+                  <div class="w-6 h-6 rounded-full bg-gradient-to-br from-primary to-black flex-shrink-0" />
                   <div class="flex-1 rounded bg-gray-200 h-3" />
                 </div>
                 <div class="flex gap-2 text-[10px]">
                   <span class="px-2 py-0.5 rounded-full bg-blue-100 text-blue-700">High intent</span>
-                  <span class="px-2 py-0.5 rounded-full bg-green-100 text-green-700">Qualified</span>
+                  <span class="px-2 py-0.5 rounded-full bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300">Qualified</span>
                 </div>
                 <div class="space-y-1.5 mt-1">
-                  <div class="flex items-center gap-2"><div class="w-4 h-4 rounded bg-gray-200 flex-shrink-0" /><div class="h-2 rounded bg-gray-200 flex-1" /><span class="text-[9px] text-green-600 font-medium">92%</span></div>
-                  <div class="flex items-center gap-2"><div class="w-4 h-4 rounded bg-gray-200 flex-shrink-0" /><div class="h-2 rounded bg-gray-200 w-3/4" /><span class="text-[9px] text-yellow-600 font-medium">67%</span></div>
-                  <div class="flex items-center gap-2"><div class="w-4 h-4 rounded bg-gray-200 flex-shrink-0" /><div class="h-2 rounded bg-gray-200 w-1/2" /><span class="text-[9px] text-gray-400 font-medium">34%</span></div>
+                  <div class="flex items-center gap-2"><div class="w-4 h-4 rounded bg-gray-200 flex-shrink-0" /><div class="h-2 rounded bg-gray-200 flex-1" /><span class="text-[9px] text-green-600 dark:text-green-300 font-medium">92%</span></div>
+                  <div class="flex items-center gap-2"><div class="w-4 h-4 rounded bg-gray-200 flex-shrink-0" /><div class="h-2 rounded bg-gray-200 w-3/4" /><span class="text-[9px] text-yellow-600 dark:text-yellow-300 font-medium">67%</span></div>
+                  <div class="flex items-center gap-2"><div class="w-4 h-4 rounded bg-gray-200 flex-shrink-0" /><div class="h-2 rounded bg-gray-200 w-1/2" /><span class="text-[9px] text-muted-foreground font-medium">34%</span></div>
                 </div>
               </div>
             )}
             {agent.icon === "headset" && (
               <div class="space-y-2">
-                <div class="flex items-center justify-between text-[10px] text-gray-500"><span>Active conversation</span><span class="flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-green-500" />Live</span></div>
-                <div class="flex justify-start"><div class="rounded-lg rounded-bl-sm px-2.5 py-1.5 bg-white border border-gray-200 shadow-sm text-[11px] text-gray-700 max-w-[85%]">Your order #4821 shipped today via FedEx.</div></div>
-                <div class="flex justify-end"><div class="rounded-lg rounded-br-sm px-2.5 py-1.5 bg-[#323dfe] text-white text-[11px] max-w-[85%]">Great, when will it arrive?</div></div>
-                <div class="flex justify-start"><div class="rounded-lg rounded-bl-sm px-2.5 py-1.5 bg-white border border-gray-200 shadow-sm text-[11px] text-gray-700 max-w-[85%]">Expected delivery: Thursday, Jan 18.</div></div>
+                <div class="flex items-center justify-between text-[10px] text-muted-foreground"><span>Active conversation</span><span class="flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-green-500" />Live</span></div>
+                <div class="flex justify-start"><div class="rounded-lg rounded-bl-sm px-2.5 py-1.5 bg-background border border-border shadow-sm text-[11px] text-foreground/80 max-w-[85%]">Your order #4821 shipped today via FedEx.</div></div>
+                <div class="flex justify-end"><div class="rounded-lg rounded-br-sm px-2.5 py-1.5 bg-primary text-white text-[11px] max-w-[85%]">Great, when will it arrive?</div></div>
+                <div class="flex justify-start"><div class="rounded-lg rounded-bl-sm px-2.5 py-1.5 bg-background border border-border shadow-sm text-[11px] text-foreground/80 max-w-[85%]">Expected delivery: Thursday, Jan 18.</div></div>
               </div>
             )}
             {agent.icon === "calendar" && (
               <div class="space-y-2">
-                <div class="text-[10px] text-gray-500 font-medium">January 2025</div>
+                <div class="text-[10px] text-muted-foreground font-medium">January 2025</div>
                 <div class="grid grid-cols-7 gap-1 text-[9px] text-center">
-                  <span class="text-gray-400">M</span><span class="text-gray-400">T</span><span class="text-gray-400">W</span><span class="text-gray-400">T</span><span class="text-gray-400">F</span><span class="text-gray-400">S</span><span class="text-gray-400">S</span>
-                  <span class="text-gray-400">13</span><span class="text-gray-400">14</span><span class="text-gray-400">15</span>
-                  <span class="w-5 h-5 rounded-full bg-[#323dfe] text-white flex items-center justify-center mx-auto">16</span>
-                  <span class="text-gray-400">17</span><span class="text-gray-400">18</span><span class="text-gray-400">19</span>
-                  <span class="text-gray-400">20</span><span class="text-gray-400">21</span><span class="text-gray-400">22</span><span class="text-gray-400">23</span><span class="text-gray-400">24</span><span class="text-gray-400">25</span><span class="text-gray-400">26</span>
+                  <span class="text-muted-foreground">M</span><span class="text-muted-foreground">T</span><span class="text-muted-foreground">W</span><span class="text-muted-foreground">T</span><span class="text-muted-foreground">F</span><span class="text-muted-foreground">S</span><span class="text-muted-foreground">S</span>
+                  <span class="text-muted-foreground">13</span><span class="text-muted-foreground">14</span><span class="text-muted-foreground">15</span>
+                  <span class="w-5 h-5 rounded-full bg-primary text-white flex items-center justify-center mx-auto">16</span>
+                  <span class="text-muted-foreground">17</span><span class="text-muted-foreground">18</span><span class="text-muted-foreground">19</span>
+                  <span class="text-muted-foreground">20</span><span class="text-muted-foreground">21</span><span class="text-muted-foreground">22</span><span class="text-muted-foreground">23</span><span class="text-muted-foreground">24</span><span class="text-muted-foreground">25</span><span class="text-muted-foreground">26</span>
                 </div>
                 <div class="flex items-center gap-2 mt-1 px-1">
-                  <div class="w-1 h-6 rounded-full bg-[#323dfe]" />
-                  <div><div class="text-[10px] font-medium text-gray-800">Dr. Patel - 10:00 AM</div><div class="text-[9px] text-gray-500">Dental Checkup</div></div>
+                  <div class="w-1 h-6 rounded-full bg-primary" />
+                  <div><div class="text-[10px] font-medium text-foreground">Dr. Patel - 10:00 AM</div><div class="text-[9px] text-muted-foreground">Dental Checkup</div></div>
                 </div>
               </div>
             )}
@@ -272,34 +280,34 @@ const agents = [
               <div class="space-y-2">
                 <div class="flex items-center gap-2 text-[10px]"><span class="px-1.5 py-0.5 rounded bg-orange-100 text-orange-700 font-medium">Troubleshooting</span></div>
                 <div class="space-y-1.5">
-                  <div class="flex items-center gap-2 text-[11px]"><svg class="w-3.5 h-3.5 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg><span class="text-gray-700">Network connectivity verified</span></div>
-                  <div class="flex items-center gap-2 text-[11px]"><svg class="w-3.5 h-3.5 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg><span class="text-gray-700">DNS resolution: OK</span></div>
-                  <div class="flex items-center gap-2 text-[11px]"><svg class="w-3.5 h-3.5 text-yellow-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" /></svg><span class="text-gray-700">SSL cert expiring in 3 days</span></div>
+                  <div class="flex items-center gap-2 text-[11px]"><svg class="w-3.5 h-3.5 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg><span class="text-foreground/80">Network connectivity verified</span></div>
+                  <div class="flex items-center gap-2 text-[11px]"><svg class="w-3.5 h-3.5 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg><span class="text-foreground/80">DNS resolution: OK</span></div>
+                  <div class="flex items-center gap-2 text-[11px]"><svg class="w-3.5 h-3.5 text-yellow-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" /></svg><span class="text-foreground/80">SSL cert expiring in 3 days</span></div>
                 </div>
-                <div class="text-[10px] text-gray-500 mt-1">Routing to human agent...</div>
+                <div class="text-[10px] text-muted-foreground mt-1">Routing to human agent...</div>
               </div>
             )}
             {agent.icon === "chart" && (
               <div class="space-y-2">
-                <div class="text-[10px] text-gray-500 font-medium">CSAT Survey Results</div>
+                <div class="text-[10px] text-muted-foreground font-medium">CSAT Survey Results</div>
                 <div class="flex items-end gap-1 h-[50px]">
-                  <div class="flex-1 bg-[#323dfe]/20 rounded-t" style="height: 60%" /><div class="flex-1 bg-[#323dfe]/30 rounded-t" style="height: 45%" /><div class="flex-1 bg-[#323dfe]/40 rounded-t" style="height: 75%" /><div class="flex-1 bg-[#323dfe]/50 rounded-t" style="height: 55%" /><div class="flex-1 bg-[#323dfe] rounded-t" style="height: 90%" />
+                  <div class="flex-1 bg-primary/20 rounded-t" style="height: 60%" /><div class="flex-1 bg-primary/30 rounded-t" style="height: 45%" /><div class="flex-1 bg-primary/40 rounded-t" style="height: 75%" /><div class="flex-1 bg-primary/50 rounded-t" style="height: 55%" /><div class="flex-1 bg-primary rounded-t" style="height: 90%" />
                 </div>
-                <div class="flex items-center justify-between text-[9px] text-gray-400"><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span></div>
-                <div class="flex items-center gap-2"><span class="text-[10px] font-semibold text-gray-800">4.7/5.0</span><span class="text-[9px] text-green-600">+12% this week</span></div>
+                <div class="flex items-center justify-between text-[9px] text-muted-foreground"><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span></div>
+                <div class="flex items-center gap-2"><span class="text-[10px] font-semibold text-foreground">4.7/5.0</span><span class="text-[9px] text-green-600 dark:text-green-300">+12% this week</span></div>
               </div>
             )}
           </div>
 
-          <h3 class="font-inter text-[1rem] font-semibold text-black mb-2">{agent.title}</h3>
-          <p class="text-[0.875rem] text-gray-600 leading-relaxed">{agent.description}</p>
+          <h3 class="font-inter text-[1rem] font-semibold text-foreground mb-2">{agent.title}</h3>
+          <p class="text-[0.875rem] text-muted-foreground leading-relaxed">{agent.description}</p>
         </div>
       ))}
     </div>
 
     {/* Fade edges */}
-    <div class="absolute inset-y-0 left-0 w-12 sm:w-24 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
-    <div class="absolute inset-y-0 right-0 w-12 sm:w-24 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
+    <div class="absolute inset-y-0 left-0 w-12 sm:w-24 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
+    <div class="absolute inset-y-0 right-0 w-12 sm:w-24 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
   </div>
 </section>
 

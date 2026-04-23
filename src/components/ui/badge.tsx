@@ -16,7 +16,7 @@ const badgeVariants = cva(
         destructive:
           "border-transparent bg-destructive text-white [a&]:hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40",
         outline:
-          "border-gray-200 bg-white text-gray-600 [a&]:hover:bg-gray-50",
+          "border-border bg-background text-muted-foreground [a&]:hover:bg-surface",
       },
       size: {
         default: "rounded-md px-2 py-0.5 text-xs gap-1 [&>svg]:size-3",

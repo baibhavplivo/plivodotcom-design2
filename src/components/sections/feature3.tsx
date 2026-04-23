@@ -70,12 +70,12 @@ export const Feature3 = () => {
           orientation="vertical"
           className="mt-8 flex gap-4 max-lg:flex-col-reverse md:mt-12 lg:mt-20"
         >
-          <TabsList className="flex h-auto justify-start overflow-x-auto rounded-xl bg-black/[0.03] p-1.5 lg:basis-1/4 lg:flex-col">
+          <TabsList className="flex h-auto justify-start overflow-x-auto rounded-xl bg-foreground/[0.03] p-1.5 lg:basis-1/4 lg:flex-col">
             {FEATURES.map((feature) => (
               <TabsTrigger
                 key={feature.title}
                 value={feature.title}
-                className="w-full min-w-[200px] flex-1 justify-start whitespace-normal rounded-lg px-4 py-3 text-start text-gray-700 transition-colors duration-300 data-[state=active]:text-black data-[state=active]:shadow-xl dark:text-gray-300 dark:data-[state=active]:text-white lg:px-6 lg:py-4"
+                className="w-full min-w-[200px] flex-1 justify-start whitespace-normal rounded-lg px-4 py-3 text-start text-foreground/80 transition-colors duration-300 data-[state=active]:text-foreground data-[state=active]:shadow-xl dark:text-gray-300 dark:data-[state=active]:text-white lg:px-6 lg:py-4"
               >
                 <div>
                   <feature.icon className="size-7 md:size-8 lg:size-9" />

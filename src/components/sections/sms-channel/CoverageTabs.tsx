@@ -399,28 +399,37 @@ export default function CoverageTabs({ initialCountry }: { initialCountry?: stri
   }, []);
 
   return (
-    <section className="bg-white pt-[56px] sm:pt-[64px] md:pt-[72px] pb-12 lg:pb-20">
+    <section className="bg-background border-t border-border pt-[56px] sm:pt-[64px] md:pt-[72px] pb-12 lg:pb-20">
       <div className="container mx-auto max-w-7xl px-4">
         {/* Hero Header */}
         <div className="text-center mb-10">
-          <h1 className="font-sora text-[2rem] sm:text-[2.5rem] md:text-[3rem] font-normal leading-[1.1] tracking-[-0.02em] text-black mb-4">
+          <div className="flex items-center gap-3 font-mono-ui text-[11px] uppercase tracking-[0.12em] text-muted-foreground mb-8">
+            <span className="flex items-center gap-2">
+              <span className="tabular-nums text-foreground/70">~</span>
+              <span className="h-px w-6 bg-border" />
+            </span>
+            <span>sms coverage</span>
+            <span className="flex-1 border-t border-dashed border-border" />
+            <span>190+ countries</span>
+          </div>
+          <h1 className="font-sora text-[2rem] sm:text-[2.5rem] md:text-[3rem] font-normal leading-[1.1] tracking-[-0.02em] text-foreground mb-4">
             {SMS_COVERAGE_PAGE_META.heading}
           </h1>
-          <p className="text-gray-600 text-base sm:text-lg max-w-2xl mx-auto">
+          <p className="text-muted-foreground text-base sm:text-lg max-w-2xl">
             {SMS_COVERAGE_PAGE_META.subheading}
           </p>
         </div>
 
         {/* Primary Tabs: Outbound / Inbound — event delegation via ref */}
         <div className="flex justify-center mb-8">
-          <div ref={coverageToggleRef} className="inline-flex rounded-lg bg-white border border-gray-200 p-1">
+          <div ref={coverageToggleRef} className="inline-flex rounded-lg bg-background border border-border p-1">
             <button
               data-coverage-type="outbound"
               className={cn(
                 "px-6 py-2.5 rounded-md text-sm font-medium transition-all",
                 coverageType === "outbound"
-                  ? "bg-black text-white"
-                  : "text-gray-600 hover:text-black hover:bg-gray-50"
+                  ? "bg-foreground text-background"
+                  : "text-muted-foreground hover:text-foreground hover:bg-surface"
               )}
             >
               Outbound SMS
@@ -430,8 +439,8 @@ export default function CoverageTabs({ initialCountry }: { initialCountry?: stri
               className={cn(
                 "px-6 py-2.5 rounded-md text-sm font-medium transition-all",
                 coverageType === "inbound"
-                  ? "bg-black text-white"
-                  : "text-gray-600 hover:text-black hover:bg-gray-50"
+                  ? "bg-foreground text-background"
+                  : "text-muted-foreground hover:text-foreground hover:bg-surface"
               )}
             >
               Inbound SMS
@@ -440,9 +449,9 @@ export default function CoverageTabs({ initialCountry }: { initialCountry?: stri
         </div>
 
         {/* Countries Grid with Continent Tabs */}
-        <div className="bg-white rounded-xl border border-gray-200 overflow-hidden mb-8">
+        <div className="bg-background rounded-xl border border-border overflow-hidden mb-8">
           {/* Continent Tabs — event delegation via ref */}
-          <div ref={continentTabsRef} className="flex flex-wrap border-b border-gray-200">
+          <div ref={continentTabsRef} className="flex flex-wrap border-b border-border">
             {availableContinents.map((continent) => (
               <button
                 key={continent}
@@ -450,8 +459,8 @@ export default function CoverageTabs({ initialCountry }: { initialCountry?: stri
                 className={cn(
                   "px-5 py-3.5 text-sm font-medium whitespace-nowrap transition-all -mb-[1px]",
                   activeContinent === continent
-                    ? "text-black border-b-4 border-[#323dfe]"
-                    : "text-gray-600 border-b-4 border-transparent hover:text-black hover:bg-gray-50"
+                    ? "text-foreground border-b-4 border-primary"
+                    : "text-muted-foreground border-b-4 border-transparent hover:text-foreground hover:bg-surface"
                 )}
               >
                 {continentLabels[continent]}
@@ -461,7 +470,7 @@ export default function CoverageTabs({ initialCountry }: { initialCountry?: stri
 
           {/* Countries — event delegation via ref */}
           <div className="p-6">
-            <p className="text-gray-500 text-sm mb-5">
+            <p className="text-muted-foreground text-sm mb-5">
               Select to view features and capabilities
             </p>
             {filteredCountries.length > 0 ? (
@@ -475,19 +484,19 @@ export default function CoverageTabs({ initialCountry }: { initialCountry?: stri
                     className={cn(
                       "flex items-center gap-2 py-1.5 px-2 rounded text-left transition-all",
                       selectedCountry?.code === country.code
-                        ? "bg-gray-100 ring-1 ring-gray-900"
-                        : "hover:bg-gray-50"
+                        ? "bg-muted ring-1 ring-gray-900"
+                        : "hover:bg-surface"
                     )}
                   >
                     <span className="text-lg flex-shrink-0">{country.flag}</span>
-                    <span className="text-sm font-normal text-black truncate">
+                    <span className="text-sm font-normal text-foreground truncate">
                       {country.name}
                     </span>
                   </button>
                 ))}
               </div>
             ) : (
-              <div className="text-center py-12 text-gray-500">
+              <div className="text-center py-12 text-muted-foreground">
                 No countries available for {coverageType} SMS in {continentLabels[activeContinent]}.
               </div>
             )}
@@ -500,12 +509,12 @@ export default function CoverageTabs({ initialCountry }: { initialCountry?: stri
             {/* Left Sidebar Wrapper */}
             <div ref={featureSidebarWrapperRef} className="mb-6 lg:mb-0 hidden lg:block">
               <aside
-                className="bg-white z-30"
+                className="bg-background z-30"
                 style={featureSidebarStyle}
               >
                 {/* Country Selector */}
                 <div className="relative mb-6" ref={desktopDropdownRef}>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Select Country</label>
+                  <label className="block text-sm font-medium text-foreground/80 mb-2">Select Country</label>
                   <button
                     type="button"
                     ref={desktopDropdownToggleRef}
@@ -513,23 +522,23 @@ export default function CoverageTabs({ initialCountry }: { initialCountry?: stri
                       setIsDesktopCountryOpen((prev) => !prev);
                       setCountrySearchQuery("");
                     }}
-                    className="w-full flex items-center gap-3 px-4 py-2.5 bg-white border border-gray-300 rounded-lg hover:border-gray-400 transition-colors"
+                    className="w-full flex items-center gap-3 px-4 py-2.5 bg-background border border-border-strong rounded-lg hover:border-border-strong transition-colors"
                   >
                     <span className="text-xl">{selectedCountry.flag}</span>
-                    <span className="text-sm font-medium text-gray-900 flex-1 text-left truncate">{selectedCountry.name}</span>
-                    <ChevronDown className={cn("w-4 h-4 text-gray-400 transition-transform flex-shrink-0", isDesktopCountryOpen && "rotate-180")} />
+                    <span className="text-sm font-medium text-foreground flex-1 text-left truncate">{selectedCountry.name}</span>
+                    <ChevronDown className={cn("w-4 h-4 text-muted-foreground transition-transform flex-shrink-0", isDesktopCountryOpen && "rotate-180")} />
                   </button>
 
                   {isDesktopCountryOpen && (
-                    <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-10 max-h-72 overflow-hidden flex flex-col">
-                      <div className="p-2 border-b border-gray-100">
+                    <div className="absolute top-full left-0 right-0 mt-1 bg-background border border-border rounded-lg shadow-sm z-10 max-h-72 overflow-hidden flex flex-col">
+                      <div className="p-2 border-b border-border">
                         <input
                           ref={desktopSearchInputRef}
                           type="text"
                           placeholder="Search country..."
                           value={countrySearchQuery}
                           onChange={(event) => setCountrySearchQuery(event.target.value)}
-                          className="w-full px-3 py-2 text-sm text-gray-900 bg-white border border-gray-300 rounded-md focus:outline-none focus:border-gray-500 placeholder:text-gray-400"
+                          className="w-full px-3 py-2 text-sm text-foreground bg-background border border-border-strong rounded-md focus:outline-none focus:border-gray-500 placeholder:text-muted-foreground"
                           autoFocus
                         />
                       </div>
@@ -537,24 +546,24 @@ export default function CoverageTabs({ initialCountry }: { initialCountry?: stri
                         {searchFilteredCountries.map((c, idx) => (
                           <div key={c.code}>
                             {!PRIORITY_COUNTRY_CODES.includes(c.code) && idx > 0 && PRIORITY_COUNTRY_CODES.includes(searchFilteredCountries[idx - 1]?.code) && (
-                              <div className="border-t border-gray-200 my-1" />
+                              <div className="border-t border-border my-1" />
                             )}
                             <button
                               type="button"
                               data-dropdown-country-code={c.code}
                               onClick={() => handleSelectCountry(c)}
                               className={cn(
-                                "w-full flex items-center gap-2.5 px-4 py-2.5 hover:bg-gray-50 transition-colors text-left",
-                                selectedCountry?.code === c.code && "bg-[#323dfe]/5"
+                                "w-full flex items-center gap-2.5 px-4 py-2.5 hover:bg-surface transition-colors text-left",
+                                selectedCountry?.code === c.code && "bg-primary/5"
                               )}
                             >
                               <span className="text-xl">{c.flag}</span>
-                              <span className="text-sm text-gray-900">{c.name}</span>
+                              <span className="text-sm text-foreground">{c.name}</span>
                             </button>
                           </div>
                         ))}
                         {searchFilteredCountries.length === 0 && (
-                          <div className="px-4 py-3 text-sm text-gray-500">No countries found</div>
+                          <div className="px-4 py-3 text-sm text-muted-foreground">No countries found</div>
                         )}
                       </div>
                     </div>
@@ -563,7 +572,7 @@ export default function CoverageTabs({ initialCountry }: { initialCountry?: stri
 
                 {/* Section Navigation — event delegation via ref */}
                 <nav>
-                  <p className="text-sm font-medium text-gray-700 mb-3">Jump to section</p>
+                  <p className="text-sm font-medium text-foreground/80 mb-3">Jump to section</p>
                   <ul ref={featureNavRef} className="space-y-1">
                     {featureSections.map((section) => (
                       <li key={section.id}>
@@ -572,8 +581,8 @@ export default function CoverageTabs({ initialCountry }: { initialCountry?: stri
                           className={cn(
                             "w-full text-left px-3 py-2 text-sm transition-colors border-l-2",
                             activeFeatureSection === section.id
-                              ? "border-[#323dfe] text-[#323dfe] font-medium"
-                              : "border-transparent text-gray-600 hover:border-gray-300 hover:text-gray-900"
+                              ? "border-primary text-primary font-medium"
+                              : "border-transparent text-muted-foreground hover:border-border-strong hover:text-foreground"
                           )}
                         >
                           {section.label}
@@ -589,7 +598,7 @@ export default function CoverageTabs({ initialCountry }: { initialCountry?: stri
             <div ref={featureContentRef} className="min-w-0">
               {/* Mobile Country Selector */}
               <div className="lg:hidden mb-4" ref={mobileDropdownRef}>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Select Country</label>
+                <label className="block text-sm font-medium text-foreground/80 mb-2">Select Country</label>
                 <div className="relative">
                   <button
                     type="button"
@@ -598,23 +607,23 @@ export default function CoverageTabs({ initialCountry }: { initialCountry?: stri
                       setIsMobileCountryOpen((prev) => !prev);
                       setCountrySearchQuery("");
                     }}
-                    className="w-full flex items-center gap-3 px-4 py-2.5 bg-white border border-gray-300 rounded-lg hover:border-gray-400 transition-colors"
+                    className="w-full flex items-center gap-3 px-4 py-2.5 bg-background border border-border-strong rounded-lg hover:border-border-strong transition-colors"
                   >
                     <span className="text-xl">{selectedCountry.flag}</span>
-                    <span className="text-sm font-medium text-gray-900 flex-1 text-left truncate">{selectedCountry.name}</span>
-                    <ChevronDown className={cn("w-4 h-4 text-gray-400 transition-transform flex-shrink-0", isMobileCountryOpen && "rotate-180")} />
+                    <span className="text-sm font-medium text-foreground flex-1 text-left truncate">{selectedCountry.name}</span>
+                    <ChevronDown className={cn("w-4 h-4 text-muted-foreground transition-transform flex-shrink-0", isMobileCountryOpen && "rotate-180")} />
                   </button>
 
                   {isMobileCountryOpen && (
-                    <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-10 max-h-72 overflow-hidden flex flex-col">
-                      <div className="p-2 border-b border-gray-100">
+                    <div className="absolute top-full left-0 right-0 mt-1 bg-background border border-border rounded-lg shadow-sm z-10 max-h-72 overflow-hidden flex flex-col">
+                      <div className="p-2 border-b border-border">
                         <input
                           ref={mobileSearchInputRef}
                           type="text"
                           placeholder="Search country..."
                           value={countrySearchQuery}
                           onChange={(event) => setCountrySearchQuery(event.target.value)}
-                          className="w-full px-3 py-2 text-sm text-gray-900 bg-white border border-gray-300 rounded-md focus:outline-none focus:border-gray-500 placeholder:text-gray-400"
+                          className="w-full px-3 py-2 text-sm text-foreground bg-background border border-border-strong rounded-md focus:outline-none focus:border-gray-500 placeholder:text-muted-foreground"
                           autoFocus
                         />
                       </div>
@@ -622,24 +631,24 @@ export default function CoverageTabs({ initialCountry }: { initialCountry?: stri
                         {searchFilteredCountries.map((c, idx) => (
                           <div key={c.code}>
                             {!PRIORITY_COUNTRY_CODES.includes(c.code) && idx > 0 && PRIORITY_COUNTRY_CODES.includes(searchFilteredCountries[idx - 1]?.code) && (
-                              <div className="border-t border-gray-200 my-1" />
+                              <div className="border-t border-border my-1" />
                             )}
                             <button
                               type="button"
                               data-dropdown-country-code={c.code}
                               onClick={() => handleSelectCountry(c)}
                               className={cn(
-                                "w-full flex items-center gap-2.5 px-4 py-2.5 hover:bg-gray-50 transition-colors text-left",
-                                selectedCountry?.code === c.code && "bg-[#323dfe]/5"
+                                "w-full flex items-center gap-2.5 px-4 py-2.5 hover:bg-surface transition-colors text-left",
+                                selectedCountry?.code === c.code && "bg-primary/5"
                               )}
                             >
                               <span className="text-xl">{c.flag}</span>
-                              <span className="text-sm text-gray-900">{c.name}</span>
+                              <span className="text-sm text-foreground">{c.name}</span>
                             </button>
                           </div>
                         ))}
                         {searchFilteredCountries.length === 0 && (
-                          <div className="px-4 py-3 text-sm text-gray-500">No countries found</div>
+                          <div className="px-4 py-3 text-sm text-muted-foreground">No countries found</div>
                         )}
                       </div>
                     </div>
@@ -648,19 +657,19 @@ export default function CoverageTabs({ initialCountry }: { initialCountry?: stri
               </div>
 
               {/* Section Title */}
-              <h3 className="text-xl font-semibold text-black mb-6">
+              <h3 className="text-xl font-semibold text-foreground mb-6">
                 SMS Features and Capabilities in {selectedCountry.name}
               </h3>
 
               {/* Supported Number Types Section */}
-              <div id="feature-number-types" className="bg-white rounded-xl border border-gray-200 p-6 mb-6">
-                <h4 className="font-inter text-lg font-semibold text-black mb-4">Supported Number Types</h4>
+              <div id="feature-number-types" className="bg-background rounded-xl border border-border p-6 mb-6">
+                <h4 className="font-inter text-lg font-semibold text-foreground mb-4">Supported Number Types</h4>
                 {coveragePricingData && coveragePricingData.supportedNumberTypes.length > 0 ? (
                   <div className="flex flex-wrap gap-3">
                     {coveragePricingData.supportedNumberTypes.map((numberType) => (
                       <span
                         key={numberType}
-                        className="inline-flex items-center gap-1.5 px-4 py-2 bg-gray-50 rounded-full text-sm font-medium text-black"
+                        className="inline-flex items-center gap-1.5 px-4 py-2 bg-surface rounded-full text-sm font-medium text-foreground"
                       >
                         <svg className="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
@@ -670,40 +679,40 @@ export default function CoverageTabs({ initialCountry }: { initialCountry?: stri
                     ))}
                   </div>
                 ) : (
-                  <p className="text-sm text-gray-500">Contact support for available number types.</p>
+                  <p className="text-sm text-muted-foreground">Contact support for available number types.</p>
                 )}
               </div>
 
               {/* Features Section */}
-              <div id="feature-features" className="bg-white rounded-xl border border-gray-200 p-6 mb-6">
-                <h4 className="font-inter text-lg font-semibold text-black mb-4">Features</h4>
+              <div id="feature-features" className="bg-background rounded-xl border border-border p-6 mb-6">
+                <h4 className="font-inter text-lg font-semibold text-foreground mb-4">Features</h4>
                 <div className="overflow-x-auto">
                   <table className="w-full">
-                    <tbody className="divide-y divide-gray-100">
+                    <tbody className="divide-y divide-border">
                       <tr>
-                        <td className="py-3 pr-4 text-sm text-gray-600 w-1/2">Sending SMS to Mobile Numbers</td>
-                        <td className="py-3 text-sm font-medium text-black">{countryDetails.features.sendingToMobile}</td>
+                        <td className="py-3 pr-4 text-sm text-muted-foreground w-1/2">Sending SMS to Mobile Numbers</td>
+                        <td className="py-3 text-sm font-medium text-foreground">{countryDetails.features.sendingToMobile}</td>
                       </tr>
                       <tr>
-                        <td className="py-3 pr-4 text-sm text-gray-600">Sending SMS to Landline Numbers</td>
-                        <td className="py-3 text-sm font-medium text-black">{countryDetails.features.sendingToLandline}</td>
+                        <td className="py-3 pr-4 text-sm text-muted-foreground">Sending SMS to Landline Numbers</td>
+                        <td className="py-3 text-sm font-medium text-foreground">{countryDetails.features.sendingToLandline}</td>
                       </tr>
                       <tr>
-                        <td className="py-3 pr-4 text-sm text-gray-600">SMS Concatenation</td>
-                        <td className="py-3 text-sm font-medium text-black">
+                        <td className="py-3 pr-4 text-sm text-muted-foreground">SMS Concatenation</td>
+                        <td className="py-3 text-sm font-medium text-foreground">
                           {countryDetails.features.smsConcatenation}
                           {countryDetails.features.smsConcatenationNote && (
-                            <p className="text-xs text-gray-500 mt-1">{countryDetails.features.smsConcatenationNote}</p>
+                            <p className="text-xs text-muted-foreground mt-1">{countryDetails.features.smsConcatenationNote}</p>
                           )}
                         </td>
                       </tr>
                       <tr>
-                        <td className="py-3 pr-4 text-sm text-gray-600">Two-Way SMS</td>
-                        <td className="py-3 text-sm font-medium text-black">{countryDetails.features.twoWaySms}</td>
+                        <td className="py-3 pr-4 text-sm text-muted-foreground">Two-Way SMS</td>
+                        <td className="py-3 text-sm font-medium text-foreground">{countryDetails.features.twoWaySms}</td>
                       </tr>
                       <tr>
-                        <td className="py-3 pr-4 text-sm text-gray-600">Powerpack</td>
-                        <td className="py-3 text-sm font-medium text-black">{countryDetails.features.powerpack}</td>
+                        <td className="py-3 pr-4 text-sm text-muted-foreground">Powerpack</td>
+                        <td className="py-3 text-sm font-medium text-foreground">{countryDetails.features.powerpack}</td>
                       </tr>
                     </tbody>
                   </table>
@@ -711,38 +720,38 @@ export default function CoverageTabs({ initialCountry }: { initialCountry?: stri
               </div>
 
               {/* Regulations Section */}
-              <div id="feature-regulations" className="bg-white rounded-xl border border-gray-200 p-6 mb-6">
-                <h4 className="font-inter text-lg font-semibold text-black mb-4">Regulations</h4>
+              <div id="feature-regulations" className="bg-background rounded-xl border border-border p-6 mb-6">
+                <h4 className="font-inter text-lg font-semibold text-foreground mb-4">Regulations</h4>
                 <div className="overflow-x-auto">
                   <table className="w-full">
-                    <tbody className="divide-y divide-gray-100">
+                    <tbody className="divide-y divide-border">
                       <tr>
-                        <td className="py-3 pr-4 text-sm text-gray-600 w-1/2">Sender ID Type</td>
-                        <td className="py-3 text-sm font-medium text-black">{countryDetails.regulations.senderIdType}</td>
+                        <td className="py-3 pr-4 text-sm text-muted-foreground w-1/2">Sender ID Type</td>
+                        <td className="py-3 text-sm font-medium text-foreground">{countryDetails.regulations.senderIdType}</td>
                       </tr>
                       <tr>
-                        <td className="py-3 pr-4 text-sm text-gray-600">Sender ID Regulations</td>
-                        <td className="py-3 text-sm font-medium text-black">{countryDetails.regulations.senderIdRegulations}</td>
+                        <td className="py-3 pr-4 text-sm text-muted-foreground">Sender ID Regulations</td>
+                        <td className="py-3 text-sm font-medium text-foreground">{countryDetails.regulations.senderIdRegulations}</td>
                       </tr>
                       <tr>
-                        <td className="py-3 pr-4 text-sm text-gray-600">Registration Requirements</td>
-                        <td className="py-3 text-sm font-medium text-black">{countryDetails.regulations.registrationRequirements}</td>
+                        <td className="py-3 pr-4 text-sm text-muted-foreground">Registration Requirements</td>
+                        <td className="py-3 text-sm font-medium text-foreground">{countryDetails.regulations.registrationRequirements}</td>
                       </tr>
                       <tr>
-                        <td className="py-3 pr-4 text-sm text-gray-600">Content Restrictions</td>
-                        <td className="py-3 text-sm font-medium text-black">{countryDetails.regulations.contentRestrictions}</td>
+                        <td className="py-3 pr-4 text-sm text-muted-foreground">Content Restrictions</td>
+                        <td className="py-3 text-sm font-medium text-foreground">{countryDetails.regulations.contentRestrictions}</td>
                       </tr>
                       <tr>
-                        <td className="py-3 pr-4 text-sm text-gray-600">Consent Requirements</td>
-                        <td className="py-3 text-sm font-medium text-black">{countryDetails.regulations.consentRequirements}</td>
+                        <td className="py-3 pr-4 text-sm text-muted-foreground">Consent Requirements</td>
+                        <td className="py-3 text-sm font-medium text-foreground">{countryDetails.regulations.consentRequirements}</td>
                       </tr>
                       <tr>
-                        <td className="py-3 pr-4 text-sm text-gray-600">Opt-Out Requirements</td>
-                        <td className="py-3 text-sm font-medium text-black">{countryDetails.regulations.optOutRequirements}</td>
+                        <td className="py-3 pr-4 text-sm text-muted-foreground">Opt-Out Requirements</td>
+                        <td className="py-3 text-sm font-medium text-foreground">{countryDetails.regulations.optOutRequirements}</td>
                       </tr>
                       <tr>
-                        <td className="py-3 pr-4 text-sm text-gray-600">Compliance Notes</td>
-                        <td className="py-3 text-sm font-medium text-black">{countryDetails.regulations.complianceNotes}</td>
+                        <td className="py-3 pr-4 text-sm text-muted-foreground">Compliance Notes</td>
+                        <td className="py-3 text-sm font-medium text-foreground">{countryDetails.regulations.complianceNotes}</td>
                       </tr>
                     </tbody>
                   </table>
@@ -750,30 +759,30 @@ export default function CoverageTabs({ initialCountry }: { initialCountry?: stri
               </div>
 
               {/* Deliverability Section */}
-              <div id="feature-deliverability" className="bg-white rounded-xl border border-gray-200 p-6 mb-6">
-                <h4 className="font-inter text-lg font-semibold text-black mb-4">Deliverability</h4>
+              <div id="feature-deliverability" className="bg-background rounded-xl border border-border p-6 mb-6">
+                <h4 className="font-inter text-lg font-semibold text-foreground mb-4">Deliverability</h4>
                 <div className="overflow-x-auto">
                   <table className="w-full">
-                    <tbody className="divide-y divide-gray-100">
+                    <tbody className="divide-y divide-border">
                       <tr>
-                        <td className="py-3 pr-4 text-sm text-gray-600 w-1/2">Delivery Report Type and Origin</td>
-                        <td className="py-3 text-sm font-medium text-black">{countryDetails.deliverability.deliveryReportType}</td>
+                        <td className="py-3 pr-4 text-sm text-muted-foreground w-1/2">Delivery Report Type and Origin</td>
+                        <td className="py-3 text-sm font-medium text-foreground">{countryDetails.deliverability.deliveryReportType}</td>
                       </tr>
                       <tr>
-                        <td className="py-3 pr-4 text-sm text-gray-600">Delivery Report Reliability</td>
-                        <td className="py-3 text-sm font-medium text-black">{countryDetails.deliverability.deliveryReportReliability}</td>
+                        <td className="py-3 pr-4 text-sm text-muted-foreground">Delivery Report Reliability</td>
+                        <td className="py-3 text-sm font-medium text-foreground">{countryDetails.deliverability.deliveryReportReliability}</td>
                       </tr>
                       <tr>
-                        <td className="py-3 pr-4 text-sm text-gray-600">Sender IDs Provisioning Time</td>
-                        <td className="py-3 text-sm font-medium text-black">{countryDetails.deliverability.senderIdProvisioningTime}</td>
+                        <td className="py-3 pr-4 text-sm text-muted-foreground">Sender IDs Provisioning Time</td>
+                        <td className="py-3 text-sm font-medium text-foreground">{countryDetails.deliverability.senderIdProvisioningTime}</td>
                       </tr>
                       <tr>
-                        <td className="py-3 pr-4 text-sm text-gray-600">Sender IDs Registration Charges</td>
-                        <td className="py-3 text-sm font-medium text-black">{countryDetails.deliverability.senderIdRegistrationCharges}</td>
+                        <td className="py-3 pr-4 text-sm text-muted-foreground">Sender IDs Registration Charges</td>
+                        <td className="py-3 text-sm font-medium text-foreground">{countryDetails.deliverability.senderIdRegistrationCharges}</td>
                       </tr>
                       <tr>
-                        <td className="py-3 pr-4 text-sm text-gray-600">Numeric Sender IDs supported?</td>
-                        <td className="py-3 text-sm font-medium text-black">{countryDetails.deliverability.numericSenderIdSupported}</td>
+                        <td className="py-3 pr-4 text-sm text-muted-foreground">Numeric Sender IDs supported?</td>
+                        <td className="py-3 text-sm font-medium text-foreground">{countryDetails.deliverability.numericSenderIdSupported}</td>
                       </tr>
                     </tbody>
                   </table>
@@ -781,22 +790,22 @@ export default function CoverageTabs({ initialCountry }: { initialCountry?: stri
               </div>
 
               {/* Verify Coverage Section */}
-              <div id="feature-verify-coverage" className="bg-white rounded-xl border border-gray-200 p-6 mb-6">
-                <h4 className="font-inter text-lg font-semibold text-black mb-4">Verify Coverage</h4>
+              <div id="feature-verify-coverage" className="bg-background rounded-xl border border-border p-6 mb-6">
+                <h4 className="font-inter text-lg font-semibold text-foreground mb-4">Verify Coverage</h4>
                 <div className="overflow-x-auto">
                   <table className="w-full">
-                    <tbody className="divide-y divide-gray-100">
+                    <tbody className="divide-y divide-border">
                       <tr>
-                        <td className="py-3 pr-4 text-sm text-gray-600 w-1/2">Servicability</td>
-                        <td className="py-3 text-sm font-medium text-black">{countryDetails.verifyCoverage.servicability}</td>
+                        <td className="py-3 pr-4 text-sm text-muted-foreground w-1/2">Servicability</td>
+                        <td className="py-3 text-sm font-medium text-foreground">{countryDetails.verifyCoverage.servicability}</td>
                       </tr>
                       <tr>
-                        <td className="py-3 pr-4 text-sm text-gray-600">SID Used</td>
-                        <td className="py-3 text-sm font-medium text-black">{countryDetails.verifyCoverage.sidUsed}</td>
+                        <td className="py-3 pr-4 text-sm text-muted-foreground">SID Used</td>
+                        <td className="py-3 text-sm font-medium text-foreground">{countryDetails.verifyCoverage.sidUsed}</td>
                       </tr>
                       <tr>
-                        <td className="py-3 pr-4 text-sm text-gray-600">Content maintained</td>
-                        <td className="py-3 text-sm font-medium text-black">{countryDetails.verifyCoverage.contentMaintained}</td>
+                        <td className="py-3 pr-4 text-sm text-muted-foreground">Content maintained</td>
+                        <td className="py-3 text-sm font-medium text-foreground">{countryDetails.verifyCoverage.contentMaintained}</td>
                       </tr>
                     </tbody>
                   </table>
@@ -804,22 +813,22 @@ export default function CoverageTabs({ initialCountry }: { initialCountry?: stri
               </div>
 
               {/* Country Specs Section */}
-              <div id="feature-country-specs" className="bg-white rounded-xl border border-gray-200 p-6 mb-6">
-                <h4 className="font-inter text-lg font-semibold text-black mb-4">Country Specs</h4>
+              <div id="feature-country-specs" className="bg-background rounded-xl border border-border p-6 mb-6">
+                <h4 className="font-inter text-lg font-semibold text-foreground mb-4">Country Specs</h4>
                 <div className="overflow-x-auto">
                   <table className="w-full">
                     <thead>
-                      <tr className="border-b border-gray-200">
-                        <th className="py-3 pr-4 text-left text-sm font-semibold text-black">ISO Code</th>
-                        <th className="py-3 pr-4 text-left text-sm font-semibold text-black">Country Code</th>
-                        <th className="py-3 text-left text-sm font-semibold text-black">MCC (Mobile Country Code)</th>
+                      <tr className="border-b border-border">
+                        <th className="py-3 pr-4 text-left text-sm font-semibold text-foreground">ISO Code</th>
+                        <th className="py-3 pr-4 text-left text-sm font-semibold text-foreground">Country Code</th>
+                        <th className="py-3 text-left text-sm font-semibold text-foreground">MCC (Mobile Country Code)</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
-                        <td className="py-3 pr-4 text-sm font-medium text-black">{countryDetails.countrySpecs.isoCode}</td>
-                        <td className="py-3 pr-4 text-sm font-medium text-black">{countryDetails.countrySpecs.countryCode}</td>
-                        <td className="py-3 text-sm font-medium text-black">{countryDetails.countrySpecs.mcc}</td>
+                        <td className="py-3 pr-4 text-sm font-medium text-foreground">{countryDetails.countrySpecs.isoCode}</td>
+                        <td className="py-3 pr-4 text-sm font-medium text-foreground">{countryDetails.countrySpecs.countryCode}</td>
+                        <td className="py-3 text-sm font-medium text-foreground">{countryDetails.countrySpecs.mcc}</td>
                       </tr>
                     </tbody>
                   </table>
@@ -827,28 +836,28 @@ export default function CoverageTabs({ initialCountry }: { initialCountry?: stri
               </div>
 
               {/* Pricing Section */}
-              <div id="feature-pricing" className="bg-white rounded-xl border border-gray-200 p-6">
-                <h4 className="font-inter text-lg font-semibold text-black mb-2">Pricing</h4>
-                <p className="text-xs text-gray-500 mb-4">*Additional carrier charges may apply to outbound & inbound SMS rates.</p>
+              <div id="feature-pricing" className="bg-background rounded-xl border border-border p-6">
+                <h4 className="font-inter text-lg font-semibold text-foreground mb-2">Pricing</h4>
+                <p className="text-xs text-muted-foreground mb-4">*Additional carrier charges may apply to outbound & inbound SMS rates.</p>
                 {coveragePricingData && coveragePricingData.pricingRows.length > 0 ? (
                   <>
                     <div className="overflow-x-auto">
                       <table className="w-full">
                         <thead>
-                          <tr className="border-b border-gray-200">
-                            <th className="py-3 pr-4 text-left text-sm font-semibold text-black">Route Type</th>
-                            <th className="py-3 pr-4 text-left text-sm font-semibold text-black">To send SMS (Outbound)</th>
-                            <th className="py-3 text-left text-sm font-semibold text-black">To receive SMS (Inbound)</th>
+                          <tr className="border-b border-border">
+                            <th className="py-3 pr-4 text-left text-sm font-semibold text-foreground">Route Type</th>
+                            <th className="py-3 pr-4 text-left text-sm font-semibold text-foreground">To send SMS (Outbound)</th>
+                            <th className="py-3 text-left text-sm font-semibold text-foreground">To receive SMS (Inbound)</th>
                           </tr>
                         </thead>
-                        <tbody className="divide-y divide-gray-100">
+                        <tbody className="divide-y divide-border">
                           {coveragePricingData.pricingRows.map((row, i) => (
                             <tr key={i}>
-                              <td className="py-3 pr-4 text-sm text-gray-900">{row.type}</td>
-                              <td className="py-3 pr-4 text-sm font-medium text-black">
+                              <td className="py-3 pr-4 text-sm text-foreground">{row.type}</td>
+                              <td className="py-3 pr-4 text-sm font-medium text-foreground">
                                 {formatCoveragePrice(row.outbound, row.type)}
                               </td>
-                              <td className="py-3 text-sm font-medium text-black">
+                              <td className="py-3 text-sm font-medium text-foreground">
                                 {formatCoveragePrice(row.inbound, row.type)}
                               </td>
                             </tr>
@@ -858,23 +867,23 @@ export default function CoverageTabs({ initialCountry }: { initialCountry?: stri
                     </div>
                     <a
                       href={`/sms/pricing/${selectedCountry.code.toLowerCase()}/`}
-                      className="mt-4 inline-flex text-sm font-medium text-[#323dfe] hover:text-[#2832cc] hover:underline transition-colors"
+                      className="mt-4 inline-flex text-sm font-medium text-primary hover:text-primary hover:underline transition-colors"
                     >
                       View detailed pricing
                     </a>
                   </>
                 ) : (
-                  <p className="text-sm text-gray-500">
+                  <p className="text-sm text-muted-foreground">
                     <a
                       href="/contact/sales/"
-                      className="font-medium text-[#323dfe] hover:text-[#2832cc] hover:underline transition-colors"
+                      className="font-medium text-primary hover:text-primary hover:underline transition-colors"
                     >
                       Contact sales
                     </a>{" "}
                     for pricing details in {selectedCountry.name}.
                   </p>
                 )}
-                <p className="text-xs text-gray-500 mt-4">
+                <p className="text-xs text-muted-foreground mt-4">
                   Rates are subject to change. Contact sales for volume discounts and enterprise pricing.
                 </p>
               </div>

@@ -78,6 +78,11 @@ export const mainNavigation: NavDropdown[] = [
         icon: "shield-check",
       },
       {
+        title: "RCS",
+        href: "/rcs/",
+        icon: "messages-square",
+      },
+      {
         title: "Phone Numbers",
         href: "/virtual-phone-numbers/",
         icon: "smartphone",

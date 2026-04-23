@@ -8,7 +8,7 @@ const MetafiHero = () => {
   return (
     <section
       id="metafi-hero"
-      className="relative overflow-hidden border-b border-b-border bg-background px-6 lg:px-0"
+      className="relative overflow-hidden border-b border-b-border bg-background border-t border-border px-6 lg:px-0"
     >
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute inset-x-0 bottom-0 h-[530px] md:h-[686px]">
@@ -33,7 +33,7 @@ const MetafiHero = () => {
             Simplifying Payments for Growing Business
           </h1>
 
-          <p className="md:text-md mx-auto max-w-2xl text-base text-muted-foreground sm:text-lg">
+          <p className="md:text-md max-w-2xl text-base text-muted-foreground sm:text-lg">
             Streamlining transactions for expanding enterprises. Our solutions
             simplify payment processes, empowering businesses to focus on growth
             and innovation.
@@ -60,7 +60,7 @@ const MetafiHero = () => {
           </div>
         </div>
 
-        <div className="mx-auto flex w-full max-w-[994px] items-center justify-center rounded-t-[16px] bg-white/20 shadow-[0_15px_80px_-1px_rgba(8,9,10,0.04)] backdrop-blur-[20px]">
+        <div className="mx-auto flex w-full max-w-[994px] items-center justify-center rounded-t-[16px] bg-background/20 shadow-[0_15px_80px_-1px_rgba(8,9,10,0.04)] backdrop-blur-[20px]">
           <img
             src="/images/homepage/hero/Dashboard.webp"
             alt="Metafi dashboard preview"

@@ -41,30 +41,38 @@ const differentiators = [
 
 export default function VerifyDifferentiators() {
   return (
-    <section className="bg-white py-12 lg:py-16">
+    <section className="bg-background border-t border-border py-12 lg:py-16">
       <div className="container mx-auto max-w-7xl px-4">
         {/* Section Header */}
-        <div className="text-center mb-10">
-          <h2 className="font-sora text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] font-normal leading-[1.25] tracking-[-0.02em] text-black mb-3">
+        <div className="mb-10">
+          <div className="flex items-center gap-3 font-mono-ui text-[11px] uppercase tracking-[0.12em] text-muted-foreground mb-8">
+          <span className="flex items-center gap-2">
+            <span className="tabular-nums text-foreground/70">~</span>
+            <span className="h-px w-6 bg-border" />
+          </span>
+          <span>differentiators</span>
+          <span className="flex-1 border-t border-dashed border-border" />
+        </div>
+        <h2 className="font-sora text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] font-normal leading-[1.04] tracking-[-0.035em] text-foreground mb-3">
             Plivo's Key Differentiators
           </h2>
-          <p className="text-gray-600 text-base sm:text-lg max-w-3xl mx-auto">
+          <p className="text-muted-foreground text-base sm:text-lg max-w-3xl">
             Plivo is a Trusted Partner for Superior Support, Guaranteed Delivery, and Simple Pricing
           </p>
         </div>
 
         {/* Grid Layout - Single Row of 4 */}
-        <div className="rounded-xl border border-gray-200 overflow-hidden">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-gray-200">
+        <div className="rounded-xl border border-border overflow-hidden">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-border">
             {differentiators.map((item, index) => (
               <div key={index} className="p-6 lg:p-8">
-                <div className="mb-4 text-[#323dfe]">
+                <div className="mb-4 text-primary">
                   {item.icon}
                 </div>
-                <h3 className="font-semibold text-black text-base mb-2">
+                <h3 className="font-semibold text-foreground text-base mb-2">
                   {item.title}
                 </h3>
-                <p className="text-sm text-gray-600 leading-relaxed">
+                <p className="text-sm text-muted-foreground leading-relaxed">
                   {item.description}
                 </p>
               </div>

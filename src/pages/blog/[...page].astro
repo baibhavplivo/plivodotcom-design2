@@ -73,31 +73,31 @@ for (let i = 1; i <= page.lastPage; i++) {
 <PlivoLayout title="Blog" description="Explore Plivo's blog for insights on cloud communications, AI agents, SMS, voice, and customer engagement.">
 
   <!-- Hero Section -->
-  <section class="bg-white pt-16 pb-8 lg:pt-20 lg:pb-12">
+  <section class="bg-background pt-16 pb-8 lg:pt-20 lg:pb-12">
     <div class="mx-auto max-w-7xl px-4">
-      <h1 class="font-sora text-[2rem] sm:text-[2.5rem] md:text-[3rem] font-normal leading-[1.1] tracking-[-0.02em] text-black text-center">
+      <h1 class="font-sora text-[2rem] sm:text-[2.5rem] md:text-[3rem] font-normal leading-[1.1] tracking-[-0.02em] text-foreground text-center">
         Blog
       </h1>
-      <p class="text-[1.125rem] text-gray-500 text-center mt-4 max-w-2xl mx-auto">
+      <p class="text-[1.125rem] text-muted-foreground text-center mt-4 max-w-2xl mx-auto">
         Insights on cloud communications, AI agents, and customer engagement
       </p>
     </div>
   </section>
 
   <!-- Category Filter -->
-  <section class="bg-white pb-8">
+  <section class="bg-background pb-8">
     <div class="mx-auto max-w-7xl px-4">
       <div class="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-hide" id="category-filter">
         <button
           data-category="all"
-          class="category-btn shrink-0 rounded-full px-4 py-1.5 text-sm font-medium border transition-colors bg-black text-white border-black"
+          class="category-btn shrink-0 rounded-full px-4 py-1.5 text-sm font-medium border transition-colors bg-foreground text-background border-foreground"
         >
           All
         </button>
         {topCategories.map(slug => (
           <button
             data-category={slug}
-            class="category-btn shrink-0 rounded-full px-4 py-1.5 text-sm font-medium border transition-colors bg-white text-gray-600 border-gray-200 hover:border-gray-400"
+            class="category-btn shrink-0 rounded-full px-4 py-1.5 text-sm font-medium border transition-colors bg-background text-muted-foreground border-border hover:border-border-strong"
           >
             {BLOG_CATEGORIES[slug] || slug}
           </button>
@@ -108,14 +108,14 @@ for (let i = 1; i <= page.lastPage; i++) {
 
   <!-- Featured Post (first page only) -->
   {featuredPost && (
-    <section class="bg-white pb-12">
+    <section class="bg-background pb-12">
       <div class="mx-auto max-w-7xl px-4">
         <a
           href={`/blog/${featuredPost.id}/`}
-          class="group block overflow-hidden rounded-lg border border-gray-200 md:grid md:grid-cols-2 md:gap-0"
+          class="group block overflow-hidden rounded-lg border border-border md:grid md:grid-cols-2 md:gap-0"
           data-categories={featuredPost.data.categories?.join(',') || ''}
         >
-          <div class="aspect-video overflow-hidden md:aspect-auto md:h-full bg-gray-100">
+          <div class="aspect-video overflow-hidden md:aspect-auto md:h-full bg-muted">
             {(featuredPost.data.thumbnail || featuredPost.data.image) ? (
               <img
                 src={featuredPost.data.thumbnail || featuredPost.data.image}
@@ -131,17 +131,17 @@ for (let i = 1; i <= page.lastPage; i++) {
           </div>
           <div class="flex flex-col justify-center p-6 md:p-10">
             {featuredPost.data.categories?.[0] && (
-              <span class="inline-block w-fit rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-600 mb-4">
+              <span class="inline-block w-fit rounded-full bg-muted px-3 py-1 text-xs font-medium text-muted-foreground mb-4">
                 {BLOG_CATEGORIES[featuredPost.data.categories[0]] || featuredPost.data.categories[0]}
               </span>
             )}
-            <h2 class="font-sora text-xl md:text-2xl font-semibold text-black leading-tight group-hover:text-gray-700 transition-colors">
+            <h2 class="font-sora text-xl md:text-2xl font-semibold text-foreground leading-tight group-hover:text-foreground/80 transition-colors">
               {featuredPost.data.title}
             </h2>
-            <p class="mt-3 text-gray-500 text-sm md:text-base line-clamp-3">
+            <p class="mt-3 text-muted-foreground text-sm md:text-base line-clamp-3">
               {featuredPost.data.description}
             </p>
-            <div class="mt-4 flex items-center gap-3 text-sm text-gray-400">
+            <div class="mt-4 flex items-center gap-3 text-sm text-muted-foreground">
               <span>{formatDate(featuredPost.data.pubDate)}</span>
               <span>&middot;</span>
               <span>{estimateReadTime(featuredPost.data.title)}</span>
@@ -153,16 +153,16 @@ for (let i = 1; i <= page.lastPage; i++) {
   )}
 
   <!-- Post Grid -->
-  <section class="bg-white pb-16">
+  <section class="bg-background pb-16">
     <div class="mx-auto max-w-7xl px-4">
       <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3" id="post-grid">
         {gridPosts.map(post => (
           <a
             href={`/blog/${post.id}/`}
-            class="group blog-card flex flex-col overflow-hidden rounded-lg border border-gray-200 transition-shadow hover:shadow-md"
+            class="group blog-card flex flex-col overflow-hidden rounded-lg border border-border transition-shadow hover:shadow-md"
             data-categories={post.data.categories?.join(',') || ''}
           >
-            <div class="aspect-video overflow-hidden bg-gray-100">
+            <div class="aspect-video overflow-hidden bg-muted">
               {(post.data.thumbnail || post.data.image) ? (
                 <img
                   src={post.data.thumbnail || post.data.image}
@@ -178,17 +178,17 @@ for (let i = 1; i <= page.lastPage; i++) {
             </div>
             <div class="flex flex-1 flex-col p-5">
               {post.data.categories?.[0] && (
-                <span class="inline-block w-fit rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-600 mb-3">
+                <span class="inline-block w-fit rounded-full bg-muted px-3 py-1 text-xs font-medium text-muted-foreground mb-3">
                   {BLOG_CATEGORIES[post.data.categories[0]] || post.data.categories[0]}
                 </span>
               )}
-              <h3 class="text-lg font-semibold text-black leading-tight group-hover:text-gray-700 transition-colors line-clamp-2">
+              <h3 class="text-lg font-semibold text-foreground leading-tight group-hover:text-foreground/80 transition-colors line-clamp-2">
                 {post.data.title}
               </h3>
-              <p class="mt-2 text-sm text-gray-500 line-clamp-2 flex-1">
+              <p class="mt-2 text-sm text-muted-foreground line-clamp-2 flex-1">
                 {post.data.description}
               </p>
-              <div class="mt-4 flex items-center gap-3 text-xs text-gray-400">
+              <div class="mt-4 flex items-center gap-3 text-xs text-muted-foreground">
                 <span>{formatDate(post.data.pubDate)}</span>
                 <span>&middot;</span>
                 <span>{estimateReadTime(post.data.title)}</span>
@@ -200,21 +200,21 @@ for (let i = 1; i <= page.lastPage; i++) {
 
       <!-- No results message -->
       <div id="no-results" class="hidden py-16 text-center">
-        <p class="text-gray-500 text-lg">No posts found in this category on this page.</p>
-        <a href="/blog/" class="inline-block mt-4 text-sm font-medium text-black underline">View all posts</a>
+        <p class="text-muted-foreground text-lg">No posts found in this category on this page.</p>
+        <a href="/blog/" class="inline-block mt-4 text-sm font-medium text-foreground underline">View all posts</a>
       </div>
     </div>
   </section>
 
   <!-- Pagination -->
   {page.lastPage > 1 && (
-    <section class="bg-white pb-16">
+    <section class="bg-background pb-16">
       <div class="mx-auto max-w-7xl px-4">
         <nav class="flex items-center justify-center gap-2" aria-label="Pagination">
           {page.url.prev ? (
             <a
               href={page.url.prev}
-              class="inline-flex items-center gap-1 rounded-md border border-gray-200 px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
+              class="inline-flex items-center gap-1 rounded-md border border-border px-3 py-2 text-sm font-medium text-foreground/80 hover:bg-surface transition-colors"
             >
               <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
@@ -222,7 +222,7 @@ for (let i = 1; i <= page.lastPage; i++) {
               <span class="hidden sm:inline">Previous</span>
             </a>
           ) : (
-            <span class="inline-flex items-center gap-1 rounded-md border border-gray-100 px-3 py-2 text-sm font-medium text-gray-300 cursor-not-allowed">
+            <span class="inline-flex items-center gap-1 rounded-md border border-border px-3 py-2 text-sm font-medium text-gray-300 cursor-not-allowed">
               <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
               </svg>
@@ -232,15 +232,15 @@ for (let i = 1; i <= page.lastPage; i++) {
 
           {pageItems.map(item => (
             item.type === 'ellipsis' ? (
-              <span class="hidden sm:inline px-2 text-gray-400">...</span>
+              <span class="hidden sm:inline px-2 text-muted-foreground">...</span>
             ) : item.active ? (
-              <span class="inline-flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-md bg-black text-xs sm:text-sm font-medium text-white">
+              <span class="inline-flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-md bg-foreground text-xs sm:text-sm font-medium text-background">
                 {item.num}
               </span>
             ) : (
               <a
                 href={item.url}
-                class="hidden sm:inline-flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-md border border-gray-200 text-xs sm:text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
+                class="hidden sm:inline-flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-md border border-border text-xs sm:text-sm font-medium text-foreground/80 hover:bg-surface transition-colors"
               >
                 {item.num}
               </a>
@@ -250,7 +250,7 @@ for (let i = 1; i <= page.lastPage; i++) {
           {page.url.next ? (
             <a
               href={page.url.next}
-              class="inline-flex items-center gap-1 rounded-md border border-gray-200 px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
+              class="inline-flex items-center gap-1 rounded-md border border-border px-3 py-2 text-sm font-medium text-foreground/80 hover:bg-surface transition-colors"
             >
               <span class="hidden sm:inline">Next</span>
               <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -258,7 +258,7 @@ for (let i = 1; i <= page.lastPage; i++) {
               </svg>
             </a>
           ) : (
-            <span class="inline-flex items-center gap-1 rounded-md border border-gray-100 px-3 py-2 text-sm font-medium text-gray-300 cursor-not-allowed">
+            <span class="inline-flex items-center gap-1 rounded-md border border-border px-3 py-2 text-sm font-medium text-gray-300 cursor-not-allowed">
               <span class="hidden sm:inline">Next</span>
               <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
@@ -267,7 +267,7 @@ for (let i = 1; i <= page.lastPage; i++) {
           )}
         </nav>
 
-        <p class="mt-4 text-center text-sm text-gray-400">
+        <p class="mt-4 text-center text-sm text-muted-foreground">
           Page {page.currentPage} of {page.lastPage} &middot; {page.total} articles
         </p>
       </div>
@@ -295,11 +295,11 @@ for (let i = 1; i <= page.lastPage; i++) {
 
         // Update button styles
         buttons.forEach(b => {
-          b.classList.remove('bg-black', 'text-white', 'border-black');
-          b.classList.add('bg-white', 'text-gray-600', 'border-gray-200');
+          b.classList.remove('bg-foreground', 'text-white', 'border-foreground');
+          b.classList.add('bg-background', 'text-muted-foreground', 'border-border');
         });
-        btn.classList.remove('bg-white', 'text-gray-600', 'border-gray-200');
-        btn.classList.add('bg-black', 'text-white', 'border-black');
+        btn.classList.remove('bg-background', 'text-muted-foreground', 'border-border');
+        btn.classList.add('bg-foreground', 'text-white', 'border-foreground');
 
         let visibleCount = 0;
 

@@ -142,12 +142,12 @@ export default function CmsPreview({
       {/* Preview container */}
       <div
         ref={scrollRef}
-        className="overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm"
+        className="overflow-hidden rounded-lg border border-border bg-background shadow-sm"
       >
         {/* Breadcrumb */}
-        <div className="border-b border-gray-100 bg-white">
+        <div className="border-b border-border bg-background">
           <div className="mx-auto max-w-7xl px-4 py-3">
-            <nav className="flex items-center gap-1.5 text-sm text-gray-400">
+            <nav className="flex items-center gap-1.5 text-sm text-muted-foreground">
               <span>Home</span>
               <svg className="h-3.5 w-3.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
@@ -156,7 +156,7 @@ export default function CmsPreview({
               <svg className="h-3.5 w-3.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
               </svg>
-              <span className="truncate max-w-xs text-gray-600">
+              <span className="truncate max-w-xs text-muted-foreground">
                 {title || "Untitled Post"}
               </span>
             </nav>
@@ -164,14 +164,14 @@ export default function CmsPreview({
         </div>
 
         {/* Hero */}
-        <header className="bg-white pt-10 pb-8 md:pt-14 md:pb-10">
+        <header className="bg-background pt-10 pb-8 md:pt-14 md:pb-10">
           <div className="mx-auto max-w-3xl px-4 text-center">
             {categories.length > 0 && (
               <div className="mb-4 flex flex-wrap items-center justify-center gap-2">
                 {categories.slice(0, 3).map((cat) => (
                   <span
                     key={cat}
-                    className="rounded-full border border-gray-200 px-3 py-1 text-xs font-medium text-gray-500"
+                    className="rounded-full border border-border px-3 py-1 text-xs font-medium text-muted-foreground"
                   >
                     {BLOG_CATEGORIES[cat] || cat}
                   </span>
@@ -179,17 +179,17 @@ export default function CmsPreview({
               </div>
             )}
 
-            <h1 className="font-sora text-2xl sm:text-3xl md:text-4xl font-medium leading-tight tracking-[-0.02em] text-black">
+            <h1 className="font-sora text-2xl sm:text-3xl md:text-4xl font-medium leading-tight tracking-[-0.02em] text-foreground">
               {title || "Untitled Post"}
             </h1>
 
             {description && (
-              <p className="mt-4 text-base md:text-lg text-gray-500 leading-relaxed max-w-2xl mx-auto">
+              <p className="mt-4 text-base md:text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto">
                 {description}
               </p>
             )}
 
-            <div className="mt-5 flex items-center justify-center gap-3 text-sm text-gray-400">
+            <div className="mt-5 flex items-center justify-center gap-3 text-sm text-muted-foreground">
               <span>{formatDate(pubDate)}</span>
               <span>&middot;</span>
               <span>{readTime} min read</span>
@@ -202,7 +202,7 @@ export default function CmsPreview({
         {/* Featured Image */}
         {image && (
           <div className="mx-auto max-w-4xl px-4 mb-10 md:mb-14">
-            <div className="aspect-[16/9] overflow-hidden rounded-lg border border-gray-200">
+            <div className="aspect-[16/9] overflow-hidden rounded-lg border border-border">
               <img
                 src={image}
                 alt={imageAlt || title}
@@ -224,7 +224,7 @@ export default function CmsPreview({
           {hasTOC && (
             <div className="hidden lg:block">
               <aside ref={tocRef} className="sticky top-4 pt-1">
-                <p className="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-3">
+                <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-3">
                   On this page
                 </p>
                 <nav className="space-y-0.5 max-h-[calc(100vh-180px)] overflow-y-auto">
@@ -233,7 +233,7 @@ export default function CmsPreview({
                       key={h.id}
                       href={`#${h.id}`}
                       data-toc-link={h.id}
-                      className={`block text-sm leading-snug py-1.5 border-l-2 border-transparent text-gray-500 hover:text-gray-900 hover:border-gray-300 transition-colors ${
+                      className={`block text-sm leading-snug py-1.5 border-l-2 border-transparent text-muted-foreground hover:text-foreground hover:border-border-strong transition-colors ${
                         h.level === 3 ? "pl-6" : "pl-3"
                       }`}
                     >
@@ -256,11 +256,11 @@ export default function CmsPreview({
             {/* Key Takeaways */}
             {keyTakeaways && (
               <div className="rounded-lg border border-blue-100 bg-blue-50/50 p-6 mb-10">
-                <h3 className="mb-3 text-sm font-semibold uppercase tracking-wider text-gray-700">
+                <h3 className="mb-3 text-sm font-semibold uppercase tracking-wider text-foreground/80">
                   Key Takeaways
                 </h3>
                 <div
-                  className="prose prose-sm max-w-none text-gray-600 [&_ul]:list-disc [&_ul]:pl-5 [&_li]:mb-1.5"
+                  className="prose prose-sm max-w-none text-muted-foreground [&_ul]:list-disc [&_ul]:pl-5 [&_li]:mb-1.5"
                   dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(keyTakeaways) }}
                 />
               </div>
@@ -270,42 +270,42 @@ export default function CmsPreview({
             <article
               className="blog-content prose prose-lg max-w-none
                 prose-h1:hidden
-                prose-h2:font-sora prose-h2:text-2xl prose-h2:sm:text-3xl prose-h2:font-semibold prose-h2:text-black prose-h2:mt-14 prose-h2:mb-5 prose-h2:leading-tight
-                prose-h3:text-xl prose-h3:font-semibold prose-h3:text-gray-900 prose-h3:mt-10 prose-h3:mb-4
-                prose-h4:text-lg prose-h4:font-semibold prose-h4:text-gray-900 prose-h4:mt-8 prose-h4:mb-3
-                prose-p:text-base prose-p:leading-relaxed prose-p:text-gray-700 prose-p:mb-5
-                prose-a:text-[#323dfe] prose-a:no-underline hover:prose-a:underline
+                prose-h2:font-sora prose-h2:text-2xl prose-h2:sm:text-3xl prose-h2:font-semibold prose-h2:text-foreground prose-h2:mt-14 prose-h2:mb-5 prose-h2:leading-tight
+                prose-h3:text-xl prose-h3:font-semibold prose-h3:text-foreground prose-h3:mt-10 prose-h3:mb-4
+                prose-h4:text-lg prose-h4:font-semibold prose-h4:text-foreground prose-h4:mt-8 prose-h4:mb-3
+                prose-p:text-base prose-p:leading-relaxed prose-p:text-foreground/80 prose-p:mb-5
+                prose-a:text-primary prose-a:no-underline hover:prose-a:underline
                 prose-img:rounded-lg prose-img:my-8
-                prose-blockquote:border-l-[#323dfe] prose-blockquote:bg-gray-50 prose-blockquote:py-1 prose-blockquote:not-italic prose-blockquote:my-8
-                prose-strong:text-black prose-li:text-gray-700 prose-li:leading-relaxed
+                prose-blockquote:border-l-[#323dfe] prose-blockquote:bg-surface prose-blockquote:py-1 prose-blockquote:not-italic prose-blockquote:my-8
+                prose-strong:text-foreground prose-li:text-foreground/80 prose-li:leading-relaxed
                 prose-ul:my-5 prose-ol:my-5 prose-hr:my-10"
               dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(processedHtml) }}
             />
 
             {/* Author Byline */}
-            <div className="border-t border-gray-200 mt-10 pt-8">
+            <div className="border-t border-border mt-10 pt-8">
               <div className="flex items-start gap-3">
                 {authorImage ? (
                   <img
                     src={authorImage}
                     alt={authorName}
-                    className="h-11 w-11 rounded-full object-cover border border-gray-200 shrink-0"
+                    className="h-11 w-11 rounded-full object-cover border border-border shrink-0"
                   />
                 ) : (
-                  <div className="flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-r from-[#323dfe] to-black text-white font-semibold text-base shrink-0">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-r from-primary to-black text-white font-semibold text-base shrink-0">
                     {(authorName || "T").charAt(0).toUpperCase()}
                   </div>
                 )}
                 <div>
-                  <div className="font-semibold text-sm text-black">
+                  <div className="font-semibold text-sm text-foreground">
                     {authorName || "Team Plivo"}
                   </div>
                   {authorBio ? (
-                    <p className="text-xs text-gray-500 mt-0.5 leading-relaxed">
+                    <p className="text-xs text-muted-foreground mt-0.5 leading-relaxed">
                       {authorBio}
                     </p>
                   ) : (
-                    <div className="text-xs text-gray-500">Plivo Blog</div>
+                    <div className="text-xs text-muted-foreground">Plivo Blog</div>
                   )}
                 </div>
               </div>

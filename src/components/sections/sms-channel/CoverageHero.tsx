@@ -6,15 +6,15 @@ import { useSignupUrl } from "@/hooks/useSignupUrl";
 export default function CoverageHero() {
   const { url: signupUrl, label: signupLabel } = useSignupUrl();
   return (
-    <section className="bg-white py-12 lg:py-20 overflow-hidden">
+    <section className="bg-background border-t border-border py-12 lg:py-20 overflow-hidden">
       <div className="container mx-auto max-w-7xl px-4">
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Left Content */}
           <div className="order-2 lg:order-1">
-            <h1 className="font-sora text-[2rem] sm:text-[2.5rem] md:text-[3rem] font-normal leading-[1.1] tracking-[-0.02em] text-black mb-6">
+            <h1 className="font-sora text-[2rem] sm:text-[2.5rem] md:text-[3rem] font-normal leading-[1.1] tracking-[-0.02em] text-foreground mb-6">
               Guaranteed Global SMS Delivery
             </h1>
-            <p className="text-lg text-gray-600 mb-8 max-w-lg">
+            <p className="text-lg text-muted-foreground mb-8 max-w-lg">
               Reach your customers across any country in the world with reliable,
               high-quality SMS delivery powered by direct carrier connections.
             </p>
@@ -22,16 +22,16 @@ export default function CoverageHero() {
             {/* Stats */}
             <div className="flex flex-wrap gap-8 mb-8">
               <div>
-                <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-[#323dfe] to-black bg-clip-text text-transparent">
+                <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary to-black dark:to-white bg-clip-text text-transparent">
                   220+
                 </div>
-                <div className="text-gray-600 text-sm mt-1">Countries Covered</div>
+                <div className="text-muted-foreground text-sm mt-1">Countries Covered</div>
               </div>
               <div>
-                <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-[#323dfe] to-black bg-clip-text text-transparent">
+                <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary to-black dark:to-white bg-clip-text text-transparent">
                   900+
                 </div>
-                <div className="text-gray-600 text-sm mt-1">Networks Supported</div>
+                <div className="text-muted-foreground text-sm mt-1">Networks Supported</div>
               </div>
             </div>
 
@@ -40,13 +40,13 @@ export default function CoverageHero() {
               <a
                 href={signupUrl}
                 {...(signupUrl.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                className="inline-flex items-center justify-center rounded-md bg-black text-white px-6 py-3 text-sm font-medium cta-hover-gradient transition-colors"
+                className="inline-flex items-center justify-center rounded-md bg-foreground text-background px-6 py-3 text-sm font-medium cta-hover-gradient transition-colors"
               >
                 {signupLabel}
               </a>
               <a
                 href="/contact/"
-                className="inline-flex items-center justify-center rounded-md border border-gray-300 text-black px-6 py-3 text-sm font-medium hover:bg-gray-50 transition-colors"
+                className="inline-flex items-center justify-center rounded-md border border-border-strong text-foreground px-6 py-3 text-sm font-medium hover:bg-surface transition-colors"
               >
                 Contact Sales
               </a>
@@ -79,7 +79,7 @@ export default function CoverageHero() {
               <div
                 className="absolute inset-x-0 bottom-0 h-32 pointer-events-none"
                 style={{
-                  background: "linear-gradient(to top, white 0%, white 20%, transparent 100%)"
+                  background: "linear-gradient(to top, hsl(var(--background)) 0%, hsl(var(--background)) 20%, transparent 100%)"
                 }}
               />
             </div>

@@ -29,23 +29,23 @@ export default function CookiePolicyPage() {
     <LegalLayout activePage="/cookie-policy/">
       <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
         <div>
-          <h2 className="font-sora text-xl font-medium text-black">
+          <h2 className="font-sora text-xl font-medium text-foreground">
             Cookie policy
           </h2>
-          <p className="mt-2 max-w-2xl text-sm leading-6 text-gray-600">
+          <p className="mt-2 max-w-2xl text-sm leading-6 text-muted-foreground">
             This page explains how Plivo uses cookies and similar technologies,
             including local storage, session storage, scripts, and tags on
             plivo.com.
           </p>
         </div>
-        <p className="text-xs text-gray-400 sm:max-w-sm sm:text-right">
+        <p className="text-xs text-muted-foreground sm:max-w-sm sm:text-right">
           Last updated: April 2, 2026
         </p>
       </div>
 
-      <div className="space-y-8 text-sm leading-7 text-gray-700">
+      <div className="space-y-8 text-sm leading-7 text-foreground/80">
         <section>
-          <h3 className="font-sora text-lg font-medium text-black">
+          <h3 className="font-sora text-lg font-medium text-foreground">
             How we handle consent
           </h3>
           <p className="mt-2">
@@ -61,30 +61,30 @@ export default function CookiePolicyPage() {
           <button
             type="button"
             data-cookie-settings
-            className="mt-4 rounded-md border border-gray-300 px-4 py-2 text-sm font-medium text-black transition-colors hover:bg-gray-50"
+            className="mt-4 rounded-md border border-border-strong px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-surface"
           >
             Open cookie settings
           </button>
         </section>
 
         <section>
-          <h3 className="font-sora text-lg font-medium text-black">
+          <h3 className="font-sora text-lg font-medium text-foreground">
             Categories we use
           </h3>
-          <div className="mt-4 overflow-x-auto rounded-xl border border-gray-200">
+          <div className="mt-4 overflow-x-auto rounded-xl border border-border">
             <table className="w-full border-collapse text-left text-sm">
-              <thead className="bg-gray-50">
+              <thead className="bg-surface">
                 <tr>
-                  <th className="border-b border-gray-200 px-4 py-3 font-semibold text-black">
+                  <th className="border-b border-border px-4 py-3 font-semibold text-foreground">
                     Category
                   </th>
-                  <th className="border-b border-gray-200 px-4 py-3 font-semibold text-black">
+                  <th className="border-b border-border px-4 py-3 font-semibold text-foreground">
                     Technologies
                   </th>
-                  <th className="border-b border-gray-200 px-4 py-3 font-semibold text-black">
+                  <th className="border-b border-border px-4 py-3 font-semibold text-foreground">
                     Purpose
                   </th>
-                  <th className="border-b border-gray-200 px-4 py-3 font-semibold text-black">
+                  <th className="border-b border-border px-4 py-3 font-semibold text-foreground">
                     Status
                   </th>
                 </tr>
@@ -92,16 +92,16 @@ export default function CookiePolicyPage() {
               <tbody>
                 {storageRows.map((row) => (
                   <tr key={row.category}>
-                    <td className="border-b border-gray-100 px-4 py-3 font-medium text-black">
+                    <td className="border-b border-border px-4 py-3 font-medium text-foreground">
                       {row.category}
                     </td>
-                    <td className="border-b border-gray-100 px-4 py-3">
+                    <td className="border-b border-border px-4 py-3">
                       {row.technologies}
                     </td>
-                    <td className="border-b border-gray-100 px-4 py-3">
+                    <td className="border-b border-border px-4 py-3">
                       {row.purpose}
                     </td>
-                    <td className="border-b border-gray-100 px-4 py-3">
+                    <td className="border-b border-border px-4 py-3">
                       {row.required}
                     </td>
                   </tr>
@@ -112,7 +112,7 @@ export default function CookiePolicyPage() {
         </section>
 
         <section>
-          <h3 className="font-sora text-lg font-medium text-black">
+          <h3 className="font-sora text-lg font-medium text-foreground">
             Providers currently covered by consent
           </h3>
           <ul className="mt-3 list-disc space-y-2 pl-5">
@@ -128,7 +128,7 @@ export default function CookiePolicyPage() {
         </section>
 
         <section>
-          <h3 className="font-sora text-lg font-medium text-black">
+          <h3 className="font-sora text-lg font-medium text-foreground">
             What changed in our implementation
           </h3>
           <ul className="mt-3 list-disc space-y-2 pl-5">
@@ -151,18 +151,18 @@ export default function CookiePolicyPage() {
         </section>
 
         <section>
-          <h3 className="font-sora text-lg font-medium text-black">
+          <h3 className="font-sora text-lg font-medium text-foreground">
             More information
           </h3>
           <p className="mt-2">
             For broader details on how we process personal data, please review our{" "}
-            <a href="/legal/privacy/" className="text-[#323dfe] hover:underline">
+            <a href="/legal/privacy/" className="text-primary hover:underline">
               privacy policy
             </a>
             . If you have privacy questions, you can contact{" "}
             <a
               href="mailto:privacy@plivo.com"
-              className="text-[#323dfe] hover:underline"
+              className="text-primary hover:underline"
             >
               privacy@plivo.com
             </a>

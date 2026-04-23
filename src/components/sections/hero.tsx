@@ -127,7 +127,7 @@ export const Hero = () => {
         </div>
 
         {/* Right side - Carousel */}
-        <div className="relative -mr-[max(5rem,calc((100vw-80rem)/2+5rem))] shadow-xl max-lg:translate-x-10 lg:shadow-2xl">
+        <div className="relative -mr-[max(5rem,calc((100vw-80rem)/2+5rem))] max-lg:translate-x-10 lg:shadow-2xl">
           <Carousel
             className="size-full [&>div]:size-full"
             setApi={setApi}

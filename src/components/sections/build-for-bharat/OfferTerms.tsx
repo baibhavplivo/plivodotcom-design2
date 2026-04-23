@@ -104,35 +104,43 @@ const terms = [
 
 export default function OfferTerms() {
   return (
-    <section className="py-10 sm:py-12 lg:py-[60px] bg-white">
+    <section className="py-10 sm:py-12 lg:py-[60px] bg-background border-t border-border">
       <div className="container mx-auto max-w-4xl px-4">
         {/* Section header */}
-        <div className="mb-10 sm:mb-12 text-center">
-          <h2 className="font-sora text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] font-normal leading-[1.25] tracking-[-0.02em] text-black">
+        <div className="mb-10 sm:mb-12">
+          <div className="flex items-center gap-3 font-mono-ui text-[11px] uppercase tracking-[0.12em] text-muted-foreground mb-8">
+          <span className="flex items-center gap-2">
+            <span className="tabular-nums text-foreground/70">~</span>
+            <span className="h-px w-6 bg-border" />
+          </span>
+          <span>offer terms</span>
+          <span className="flex-1 border-t border-dashed border-border" />
+        </div>
+        <h2 className="font-sora text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] font-normal leading-[1.04] tracking-[-0.035em] text-foreground">
             Offer Terms
           </h2>
         </div>
 
         {/* Terms list */}
-        <div className="rounded-xl border border-gray-200 overflow-hidden">
+        <div className="rounded-xl border border-border overflow-hidden">
           {terms.map((term, idx) => (
             <div
               key={term.label}
               className={`flex gap-3 sm:gap-4 px-4 sm:px-5 py-3.5 ${
-                idx !== terms.length - 1 ? "border-b border-gray-100" : ""
+                idx !== terms.length - 1 ? "border-b border-border" : ""
               }`}
             >
-              <div className="shrink-0 mt-0.5 text-[#323DFE]">
+              <div className="shrink-0 mt-0.5 text-primary">
                 {term.icon}
               </div>
               <div className="flex flex-col sm:flex-row gap-1 sm:gap-8 flex-1">
                 <div className="sm:w-[160px] shrink-0">
-                  <span className="text-sm font-semibold text-black">
+                  <span className="text-sm font-semibold text-foreground">
                     {term.label}
                   </span>
                 </div>
                 <div className="flex-1">
-                  <p className="text-sm text-gray-600 leading-relaxed">
+                  <p className="text-sm text-muted-foreground leading-relaxed">
                     {term.value}
                   </p>
                 </div>
@@ -142,12 +150,12 @@ export default function OfferTerms() {
         </div>
 
         {/* Questions callout */}
-        <div className="mt-8 rounded-xl border border-gray-200 px-6 py-5 text-center">
-          <p className="text-sm text-gray-600">
+        <div className="mt-8 rounded-xl border border-border px-6 py-5 text-center">
+          <p className="text-sm text-muted-foreground">
             Questions? Email{" "}
             <a
               href="mailto:events@plivo.com?subject=Build%20for%20Bharat%20Inquiry"
-              className="font-medium text-black hover:text-[#323dfe] transition-colors underline underline-offset-2"
+              className="font-medium text-foreground hover:text-primary transition-colors underline underline-offset-2"
             >
               events@plivo.com
             </a>{" "}

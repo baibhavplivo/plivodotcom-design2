@@ -87,15 +87,15 @@ export default function CmsImageUpload({ onUpload, onClose }: CmsImageUploadProp
   }, [onUpload, onClose]);
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
-      <div className="w-full max-w-md rounded-lg bg-white p-6 shadow-xl">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-foreground/$1 p-4">
+      <div className="w-full max-w-md rounded-lg bg-background p-6 shadow-xl">
         <div className="mb-4 flex items-center justify-between">
-          <h3 className="font-sora text-lg font-semibold text-gray-900">
+          <h3 className="font-sora text-lg font-semibold text-foreground">
             Upload Image
           </h3>
           <button
             ref={closeBtnRef}
-            className="rounded p-1 text-gray-400 hover:bg-gray-100 hover:text-gray-600"
+            className="rounded p-1 text-muted-foreground hover:bg-muted hover:text-muted-foreground"
           >
             <X className="h-5 w-5" />
           </button>
@@ -106,24 +106,24 @@ export default function CmsImageUpload({ onUpload, onClose }: CmsImageUploadProp
           className={`flex flex-col items-center justify-center rounded-lg border-2 border-dashed p-8 transition-colors ${
             dragOver
               ? "border-blue-400 bg-blue-50"
-              : "border-gray-300 bg-gray-50"
+              : "border-border-strong bg-surface"
           }`}
         >
           {uploading ? (
             <>
-              <Loader2 className="mb-2 h-8 w-8 animate-spin text-gray-400" />
-              <p className="text-sm text-gray-500">Uploading...</p>
+              <Loader2 className="mb-2 h-8 w-8 animate-spin text-muted-foreground" />
+              <p className="text-sm text-muted-foreground">Uploading...</p>
             </>
           ) : (
             <>
-              <ImageIcon className="mb-2 h-8 w-8 text-gray-400" />
-              <p className="mb-1 text-sm text-gray-600">
+              <ImageIcon className="mb-2 h-8 w-8 text-muted-foreground" />
+              <p className="mb-1 text-sm text-muted-foreground">
                 Drag & drop an image here
               </p>
-              <p className="mb-3 text-xs text-gray-400">or</p>
+              <p className="mb-3 text-xs text-muted-foreground">or</p>
               <button
                 ref={browseBtnRef}
-                className="flex items-center gap-1.5 rounded-md border border-gray-300 px-3 py-1.5 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50"
+                className="flex items-center gap-1.5 rounded-md border border-border-strong px-3 py-1.5 text-sm font-medium text-foreground/80 transition-colors hover:bg-surface"
               >
                 <Upload className="h-4 w-4" />
                 Browse Files
@@ -138,7 +138,7 @@ export default function CmsImageUpload({ onUpload, onClose }: CmsImageUploadProp
           <p className="mt-3 text-sm text-red-500">{error}</p>
         )}
 
-        <p className="mt-3 text-xs text-gray-400">
+        <p className="mt-3 text-xs text-muted-foreground">
           Max file size: 10MB. Supported: JPG, PNG, GIF, WebP, AVIF, SVG
         </p>
       </div>

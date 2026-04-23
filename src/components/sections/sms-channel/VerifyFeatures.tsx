@@ -37,12 +37,20 @@ const features = [
 
 export default function VerifyFeatures() {
   return (
-    <section className="bg-white py-16 lg:py-24">
+    <section className="bg-background border-t border-border py-16 lg:py-24">
       <div className="container mx-auto max-w-7xl px-4">
         <div className="grid gap-12 lg:grid-cols-[1fr_2fr] lg:gap-16">
           {/* Left - Sticky Headline */}
           <div className="lg:sticky lg:top-32 lg:self-start">
-            <h2 className="font-sora text-[1.75rem] sm:text-[2rem] md:text-[2.25rem] font-normal leading-[1.2] tracking-[-0.02em] text-black">
+            <div className="flex items-center gap-3 font-mono-ui text-[11px] uppercase tracking-[0.12em] text-muted-foreground mb-8">
+          <span className="flex items-center gap-2">
+            <span className="tabular-nums text-foreground/70">~</span>
+            <span className="h-px w-6 bg-border" />
+          </span>
+          <span>features</span>
+          <span className="flex-1 border-t border-dashed border-border" />
+        </div>
+        <h2 className="font-sora text-[1.75rem] sm:text-[2rem] md:text-[2.25rem] font-normal leading-[1.2] tracking-[-0.035em] text-foreground">
               Plivo Verify is the best way to secure users & boost OTP conversions
             </h2>
           </div>
@@ -55,14 +63,14 @@ export default function VerifyFeatures() {
                 <div key={index} className="space-y-3">
                   {/* Icon */}
                   <div className="w-10 h-10 flex items-center justify-center">
-                    <Icon className="w-7 h-7 text-green-600 stroke-[1.5]" />
+                    <Icon className="w-7 h-7 text-green-600 dark:text-green-300 stroke-[1.5]" />
                   </div>
                   {/* Title */}
-                  <h3 className="text-lg font-semibold text-black leading-tight">
+                  <h3 className="text-lg font-semibold text-foreground leading-tight">
                     {feature.title}
                   </h3>
                   {/* Description */}
-                  <p className="text-gray-600 text-[15px] leading-relaxed">
+                  <p className="text-muted-foreground text-[15px] leading-relaxed">
                     {feature.description}
                   </p>
                 </div>

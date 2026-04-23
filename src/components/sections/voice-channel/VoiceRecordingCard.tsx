@@ -19,7 +19,7 @@ export default function VoiceRecordingCard() {
   const [progress, setProgress] = useState(0);
   const [duration, setDuration] = useState(0);
   const audioRef = useRef<HTMLAudioElement>(null);
-  const [waveformBars] = useState(() => generateWaveformBars(50));
+  const [waveformBars] = useState(() => generateWaveformBars(52));
   const playBtnRef = useRef<HTMLButtonElement>(null);
   const { rawCountry } = useGeoCountry();
   const isIndia = rawCountry === "IN";
@@ -59,11 +59,9 @@ export default function VoiceRecordingCard() {
     };
   }, [audioSrc]);
 
-  // Native click handler (Astro hydration safe)
   useEffect(() => {
     const playBtn = playBtnRef.current;
     const audio = audioRef.current;
-
     const handlePlay = () => {
       if (!audio) return;
       if (audio.paused) {
@@ -74,7 +72,6 @@ export default function VoiceRecordingCard() {
         setIsPlaying(false);
       }
     };
-
     playBtn?.addEventListener("click", handlePlay);
     return () => playBtn?.removeEventListener("click", handlePlay);
   }, []);
@@ -85,34 +82,56 @@ export default function VoiceRecordingCard() {
     return `${m}:${s.toString().padStart(2, "0")}`;
   };
 
+  const metrics = [
+    { label: "latency",    value: "420",    unit: "ms",    meta: "average" },
+    { label: "resolution", value: "first",  unit: "call",  meta: "no handoff" },
+    { label: "cost",       value: isIndia ? "₹3.40" : "$0.04", unit: "", meta: isIndia ? "vs ₹462 human" : "vs $5.50 human" },
+  ];
+
   return (
     <div className="flex flex-col items-center lg:items-end">
-      <div className="w-full max-w-[460px] overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm">
-        <div className="p-5 sm:p-6">
-          {/* Pills */}
-          <div className="flex items-center gap-2 mb-3">
-            <span className="inline-block rounded-full border border-gray-200 bg-gray-50 px-3 py-1 text-xs text-gray-500">
-              E-commerce &amp; Retail
+      <div className="w-full max-w-[460px] overflow-hidden rounded-lg border border-border bg-surface shadow-[0_1px_0_rgba(0,0,0,0.02),0_30px_60px_-30px_rgba(0,0,0,0.28)]">
+        {/* Terminal-style chrome header */}
+        <div className="flex items-center justify-between border-b border-border bg-background/40 px-4 py-2.5">
+          <div className="flex items-center gap-2">
+            <span className="relative flex h-1.5 w-1.5">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75" />
+              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-primary" />
             </span>
-            <span className="inline-block rounded-full border border-gray-200 bg-gray-50 px-3 py-1 text-xs text-gray-500">
-              {isIndia ? "\u{1F1EE}\u{1F1F3} Hindi" : "\u{1F1FA}\u{1F1F8} English"}
+            <span className="font-mono-ui text-[11px] text-foreground/80">
+              {isIndia ? "inbound" : "outbound"} support call
             </span>
           </div>
+          <span className="font-mono-ui tabular-nums text-[11px] text-muted-foreground">
+            {duration > 0 ? formatTime(duration) : "0:24"}
+          </span>
+          <span className="font-mono-ui text-[11px] text-muted-foreground truncate max-w-[110px]">
+            order_status
+          </span>
+        </div>
 
-          {/* Title */}
-          <h4 className="text-lg font-semibold text-black mb-5">
-            {isIndia ? "Inbound" : "Outbound"} support call &ndash; Order status
-          </h4>
+        {/* Meta tags row */}
+        <div className="flex items-center gap-1.5 border-b border-border bg-background/20 px-4 py-2">
+          <span className="font-mono-ui rounded-full border border-border bg-surface px-2 py-0.5 text-[10px] uppercase tracking-[0.08em] text-muted-foreground">
+            ecommerce · retail
+          </span>
+          <span className="font-mono-ui rounded-full border border-border bg-surface px-2 py-0.5 text-[10px] uppercase tracking-[0.08em] text-muted-foreground">
+            {isIndia ? "\u{1F1EE}\u{1F1F3} hi-IN" : "\u{1F1FA}\u{1F1F8} en-US"}
+          </span>
+          <span className="flex-1" />
+          <span className="font-mono-ui text-[10px] text-muted-foreground/60">
+            [01]
+          </span>
+        </div>
 
-          {/* Audio Player */}
-          <div className="flex items-center gap-3 mb-5">
+        {/* Audio player */}
+        <div className="relative px-5 py-6">
+          <div className="pointer-events-none absolute inset-0 dev-grid-bg-fine opacity-[0.35] [mask-image:linear-gradient(to_bottom,transparent,black_20%,black_80%,transparent)]" />
+          <div className="relative flex items-center gap-3">
             <button
               ref={playBtnRef}
-              className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full text-white transition-transform hover:scale-105"
-              style={{
-                background:
-                  "linear-gradient(135deg, #000000 0%, #323dfe 100%)",
-              }}
+              aria-label={isPlaying ? "Pause" : "Play"}
+              className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-primary text-white transition-transform hover:scale-105"
             >
               {isPlaying ? (
                 <Pause className="h-4 w-4" fill="currentColor" />
@@ -122,50 +141,64 @@ export default function VoiceRecordingCard() {
             </button>
 
             {/* Waveform */}
-            <div className="flex-1 flex items-center gap-[2px] h-9">
+            <div className="flex-1 flex items-center gap-[2px] h-10">
               {waveformBars.map((height, index) => {
                 const barProgress = (index / waveformBars.length) * 100;
                 const isPlayed = barProgress < progress;
                 return (
                   <div
                     key={index}
-                    className="flex-1 rounded-full transition-colors duration-150"
-                    style={{
-                      height: `${height * 100}%`,
-                      minWidth: "2px",
-                      maxWidth: "3px",
-                      backgroundColor: isPlayed ? "#323dfe" : "#e5e7eb",
-                    }}
+                    className={`flex-1 rounded-full transition-colors duration-150 min-w-[2px] max-w-[3px] ${
+                      isPlayed ? "bg-primary" : "bg-muted-foreground/30"
+                    }`}
+                    style={{ height: `${Math.round(height * 100)}%` }}
                   />
                 );
               })}
             </div>
 
-            <span className="flex-shrink-0 text-xs text-gray-400 font-medium tabular-nums">
-              {duration > 0 ? formatTime(duration) : "0:15"}
+            <span className="font-mono-ui flex-shrink-0 text-[11px] tabular-nums text-muted-foreground">
+              {duration > 0 ? formatTime(duration) : "0:24"}
             </span>
           </div>
+        </div>
 
-          {/* Separator */}
-          <div className="border-t border-gray-100 mb-5" />
-
-          {/* Metrics */}
-          <div className="space-y-3">
-            <div className="flex items-center justify-between">
-              <span className="text-sm text-gray-400">Latency</span>
-              <span className="text-sm font-medium text-black">420ms average</span>
-            </div>
-            <div className="flex items-center justify-between">
-              <span className="text-sm text-gray-400">Resolution</span>
-              <span className="text-sm font-medium text-black">First-call resolution</span>
-            </div>
-            <div className="flex items-center justify-between">
-              <span className="text-sm text-gray-400">Cost</span>
-              <span className="text-sm font-medium text-black">
-                {isIndia ? "\u20B93.40 vs \u20B9462 human agent" : "$0.04 vs $5.50 human agent"}
+        {/* Metrics grid — mono, tabular */}
+        <div className="grid grid-cols-3 border-t border-border">
+          {metrics.map((m, i) => (
+            <div
+              key={m.label}
+              className={`flex flex-col gap-1 px-4 py-4 ${i < metrics.length - 1 ? "border-r border-border" : ""}`}
+            >
+              <span className="font-mono-ui text-[9.5px] uppercase tracking-[0.1em] text-muted-foreground">
+                {m.label}
+              </span>
+              <div className="flex items-baseline gap-1">
+                <span className="font-mono-ui text-base font-semibold tabular-nums tracking-tight text-foreground">
+                  {m.value}
+                </span>
+                {m.unit && (
+                  <span className="font-mono-ui text-[11px] text-muted-foreground">
+                    {m.unit}
+                  </span>
+                )}
+              </div>
+              <span className="font-mono-ui text-[10px] text-muted-foreground/70">
+                {m.meta}
               </span>
             </div>
-          </div>
+          ))}
+        </div>
+
+        {/* Footer status bar */}
+        <div className="flex items-center justify-between border-t border-border bg-background/40 px-4 py-2">
+          <span className="font-mono-ui inline-flex items-center gap-1.5 text-[11px] text-muted-foreground">
+            <span className="h-1.5 w-1.5 rounded-full bg-primary/70" />
+            resolved · no handoff
+          </span>
+          <span className="font-mono-ui text-[11px] text-muted-foreground/70">
+            agent_id = ag_01HA
+          </span>
         </div>
       </div>
 

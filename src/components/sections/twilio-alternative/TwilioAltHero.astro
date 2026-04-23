@@ -2,20 +2,20 @@
 // TwilioAltHero.astro - Hero for Twilio Alternative landing page
 ---
 
-<section class="bg-white pt-16 sm:pt-20 md:pt-24 pb-0 relative overflow-hidden">
+<section class="bg-background pt-16 sm:pt-20 md:pt-24 pb-0 relative overflow-hidden">
   <div class="container mx-auto max-w-7xl px-4 relative z-10 text-center">
     <div class="max-w-3xl mx-auto">
       {/* Badge */}
-      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-gray-200 bg-gray-50 mb-6">
-        <span class="text-[13px] font-medium text-gray-700">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-border bg-surface mb-6">
+        <span class="text-[13px] font-medium text-foreground/80">
           #1 Leader — Gartner Peer Insights Customers' Choice for Global CPaaS
         </span>
       </div>
 
-      <h1 class="font-sora text-[2rem] sm:text-[2.5rem] md:text-[3rem] font-normal leading-[1.1] tracking-[-0.02em] text-black">
+      <h1 class="font-sora text-[2rem] sm:text-[2.5rem] md:text-[3rem] font-normal leading-[1.1] tracking-[-0.02em] text-foreground">
         The #1 Twilio Alternative
       </h1>
-      <p class="text-base sm:text-lg text-gray-600 mt-4 leading-relaxed max-w-2xl mx-auto">
+      <p class="text-base sm:text-lg text-muted-foreground mt-4 leading-relaxed max-w-2xl mx-auto">
         Experience award-winning CPaaS solutions that power better customer engagement. Trusted by thousands of businesses as the leading alternative to Twilio.
       </p>
     </div>
@@ -25,10 +25,10 @@
   <div class="flicker-area relative overflow-hidden" style="height:400px;">
     <canvas id="twilio-hero-dots" class="absolute inset-0 z-0 pointer-events-none"></canvas>
     {/* Top fade */}
-    <div class="absolute inset-x-0 top-0 z-[1] pointer-events-none" style="height:70%;background:linear-gradient(to bottom,white 40%,transparent);"></div>
+    <div class="absolute inset-x-0 top-0 z-[1] pointer-events-none" style="height:70%;background:linear-gradient(to bottom,hsl(var(--background)) 40%,transparent);"></div>
     {/* Side fades */}
-    <div class="absolute inset-y-0 left-0 w-20 sm:w-32 bg-gradient-to-r from-white to-transparent z-[1] pointer-events-none"></div>
-    <div class="absolute inset-y-0 right-0 w-20 sm:w-32 bg-gradient-to-l from-white to-transparent z-[1] pointer-events-none"></div>
+    <div class="absolute inset-y-0 left-0 w-20 sm:w-32 bg-gradient-to-r from-background to-transparent z-[1] pointer-events-none"></div>
+    <div class="absolute inset-y-0 right-0 w-20 sm:w-32 bg-gradient-to-l from-background to-transparent z-[1] pointer-events-none"></div>
 
     {/* CTAs + trust indicators on top of dots */}
     <div class="relative z-[2] text-center pt-6">
@@ -36,33 +36,33 @@
         <a
           href="https://cx.plivo.com/pungis2"
           data-geo-cta="signup"
-          class="inline-flex items-center justify-center px-6 py-3 text-base font-medium bg-black text-white rounded-md cta-hover-gradient transition-colors"
+          class="inline-flex items-center justify-center px-6 py-3 text-base font-medium bg-foreground text-background rounded-md cta-hover-gradient transition-colors"
         >
           Sign up for free
         </a>
         <a
           href="/contact/sales/"
-          class="inline-flex items-center justify-center px-6 py-3 text-base font-medium border border-gray-300 bg-white text-black rounded-md hover:bg-gray-50 transition-colors"
+          class="inline-flex items-center justify-center px-6 py-3 text-base font-medium border border-border-strong bg-background text-foreground rounded-md hover:bg-surface transition-colors"
         >
           Contact Sales
         </a>
       </div>
 
       <div class="mt-8 flex flex-wrap items-center justify-center gap-6">
-        <div class="flex items-center gap-2 text-sm text-gray-500">
-          <svg class="w-4 h-4 text-[#323dfe]" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12" /></svg>
+        <div class="flex items-center gap-2 text-sm text-muted-foreground">
+          <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12" /></svg>
           Up to 70% savings on SMS
         </div>
-        <div class="flex items-center gap-2 text-sm text-gray-500">
-          <svg class="w-4 h-4 text-[#323dfe]" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12" /></svg>
+        <div class="flex items-center gap-2 text-sm text-muted-foreground">
+          <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12" /></svg>
           99.99% uptime SLA
         </div>
-        <div class="flex items-center gap-2 text-sm text-gray-500">
-          <svg class="w-4 h-4 text-[#323dfe]" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12" /></svg>
+        <div class="flex items-center gap-2 text-sm text-muted-foreground">
+          <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12" /></svg>
           220+ countries
         </div>
-        <div class="flex items-center gap-2 text-sm text-gray-500">
-          <svg class="w-4 h-4 text-[#323dfe]" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12" /></svg>
+        <div class="flex items-center gap-2 text-sm text-muted-foreground">
+          <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12" /></svg>
           24/7 premium support
         </div>
       </div>

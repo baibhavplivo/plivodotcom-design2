@@ -74,7 +74,7 @@ export default function AspectPricing() {
                 checked={isAnnual}
                 onCheckedChange={setIsAnnual}
                 aria-label="Toggle annual vs. monthly billing"
-                className="data-[state=checked]:bg-white data-[state=unchecked]:bg-white [&>span]:bg-black [&>span]:data-[state=checked]:bg-black"
+                className="data-[state=checked]:bg-background data-[state=unchecked]:bg-background [&>span]:bg-foreground [&>span]:data-[state=checked]:bg-foreground"
               />
               <span className="text-sm font-medium text-foreground">
                 {isAnnual ? "Billed annually" : "Billed monthly"}

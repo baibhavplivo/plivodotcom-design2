@@ -50,7 +50,7 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.6, ease: "easeInOut" }}
-          className="inline-flex items-center rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs sm:text-sm font-medium text-gray-300 backdrop-blur-sm mb-5 sm:mb-6 tracking-wide"
+          className="inline-flex items-center rounded-full border border-white/20 bg-background/10 px-4 py-1.5 text-xs sm:text-sm font-medium text-gray-300 backdrop-blur-sm mb-5 sm:mb-6 tracking-wide"
         >
           India AI Summit 2026
         </motion.span>
@@ -93,7 +93,7 @@ export default function HeroSection() {
           <a
             href={signupUrl}
             {...(signupUrl.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-            className="inline-flex items-center justify-center px-8 sm:px-10 py-3 sm:py-4 text-base sm:text-lg font-semibold bg-white text-gray-900 rounded-lg hover:bg-gray-100 transition-all duration-200 shadow-lg hover:shadow-xl hover:-translate-y-0.5"
+            className="inline-flex items-center justify-center px-8 sm:px-10 py-3 sm:py-4 text-base sm:text-lg font-semibold bg-background text-foreground rounded-lg hover:bg-muted transition-all duration-200 shadow-sm hover:shadow-xl hover:-translate-y-0.5"
           >
             {signupLabel}
           </a>

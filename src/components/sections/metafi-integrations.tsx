@@ -80,7 +80,7 @@ function IntegrationCard({ item }: { item: Integration }) {
 
 const MetafiIntegrations = () => {
   return (
-    <section id="metafi-integrations" className="bg-background px-6 lg:px-0">
+    <section id="metafi-integrations" className="bg-background border-t border-border px-6 lg:px-0">
       <div className="container px-0 py-16 text-center sm:py-20 md:px-6 md:py-28">
         <p className="text-tagline mb-4 text-sm leading-tight sm:text-base">
           Integrations
@@ -97,7 +97,7 @@ const MetafiIntegrations = () => {
           ))}
         </ul>
 
-        <p className="text-md text-md mx-auto mt-10 max-w-3xl font-normal text-muted-foreground md:mt-20">
+        <p className="text-md text-md mt-10 max-w-3xl font-normal text-muted-foreground md:mt-20">
           Streamline your business operations with seamless integrations.
           Connect with Xero, WooCommerce, Zapier, Stripe, Shopify, QuickBooks,
           and many other platforms.

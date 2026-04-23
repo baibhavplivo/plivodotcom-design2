@@ -14,7 +14,7 @@ export default function MetafiMission({
   showDivider = true,
 }: MetafiMissionProps) {
   return (
-    <section id="metafi-mission" className="bg-background px-6 lg:px-0">
+    <section id="metafi-mission" className="bg-background border-t border-border px-6 lg:px-0">
       <div className="container px-0 py-12 sm:py-16 md:px-6 md:py-20">
         <p className="text-tagline text-sm sm:text-base">{overline}</p>
 

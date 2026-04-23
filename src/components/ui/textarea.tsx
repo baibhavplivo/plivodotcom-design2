@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 import { X } from "lucide-react";
 
 const textareaVariants = cva(
-  "flex min-h-[60px] w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 ring-offset-white placeholder:text-gray-400 hover:border-gray-400 focus-visible:outline-none focus-visible:border-blue-400 focus-visible:ring-[3px] focus-visible:ring-blue-100 disabled:cursor-not-allowed disabled:opacity-50 resize-vertical transition-all scrollbar-thin scrollbar-track-transparent scrollbar-thumb-border hover:scrollbar-thumb-muted-foreground scrollbar-corner-transparent",
+  "flex min-h-[60px] w-full rounded-lg border border-border-strong bg-background px-3 py-2 text-sm text-foreground ring-offset-background placeholder:text-muted-foreground hover:border-border-strong focus-visible:outline-none focus-visible:border-blue-400 focus-visible:ring-[3px] focus-visible:ring-blue-100 disabled:cursor-not-allowed disabled:opacity-50 resize-vertical transition-all scrollbar-thin scrollbar-track-transparent scrollbar-thumb-border hover:scrollbar-thumb-muted-foreground scrollbar-corner-transparent",
   {
     variants: {
       variant: {

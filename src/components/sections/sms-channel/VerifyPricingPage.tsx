@@ -117,39 +117,39 @@ export default function VerifyPricingPage() {
 
   return (
     <>
-      <section className="bg-white pt-28 pb-12 lg:pb-16">
+      <section className="bg-background border-t border-border pt-28 pb-12 lg:pb-16">
         <div className="container mx-auto max-w-7xl px-4 text-center">
-          <h1 className="font-sora text-[2rem] sm:text-[2.5rem] md:text-[3rem] font-normal leading-[1.1] tracking-[-0.02em] text-black mb-4">
+          <h1 className="font-sora text-[2rem] sm:text-[2.5rem] md:text-[3rem] font-normal leading-[1.1] tracking-[-0.02em] text-foreground mb-4">
             {VERIFY_PAGE_COPY.heroTitle}
           </h1>
-          <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto mb-8">
+          <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mb-8">
             {VERIFY_PAGE_COPY.heroDescription}
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-3">
-            <span className="inline-flex items-center gap-2 px-4 py-2 bg-gray-50 rounded-full text-sm font-medium text-black">
-              <span className="text-[#323dfe] font-bold">{VERIFY_PAGE_COPY.basePricingValue}</span>
+            <span className="inline-flex items-center gap-2 px-4 py-2 bg-surface rounded-full text-sm font-medium text-foreground">
+              <span className="text-primary font-bold">{VERIFY_PAGE_COPY.basePricingValue}</span>
               OTP Verification costs
             </span>
-            <span className="inline-flex items-center gap-2 px-4 py-2 bg-gray-50 rounded-full text-sm font-medium text-black">
-              <span className="text-[#323dfe] font-bold">{VERIFY_PAGE_COPY.basePricingValue}</span>
+            <span className="inline-flex items-center gap-2 px-4 py-2 bg-surface rounded-full text-sm font-medium text-foreground">
+              <span className="text-primary font-bold">{VERIFY_PAGE_COPY.basePricingValue}</span>
               Fraud Shield cost
             </span>
-            <span className="inline-flex items-center gap-2 px-4 py-2 bg-gray-50 rounded-full text-sm font-medium text-black">
+            <span className="inline-flex items-center gap-2 px-4 py-2 bg-surface rounded-full text-sm font-medium text-foreground">
               {VERIFY_PAGE_COPY.channelPricingValue} Channel Pricing
             </span>
           </div>
         </div>
       </section>
 
-      <section className="bg-gray-50 py-12 lg:py-16">
+      <section className="bg-surface border-t border-border py-12 lg:py-16">
         <div className="container mx-auto max-w-7xl px-4">
           <div className="grid gap-6 md:grid-cols-3">
             {VERIFY_PAGE_COPY.pricingHighlights.map((title, index) => (
-              <div key={title} className="bg-white rounded-lg border border-gray-200 p-6">
-                <div className="w-10 h-10 rounded-full bg-[#323dfe]/10 flex items-center justify-center mb-4">
+              <div key={title} className="bg-background rounded-lg border border-border p-6">
+                <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mb-4">
                   <svg
-                    className="w-5 h-5 text-[#323dfe]"
+                    className="w-5 h-5 text-primary"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -168,8 +168,8 @@ export default function VerifyPricingPage() {
                     />
                   </svg>
                 </div>
-                <h3 className="font-semibold text-black text-lg mb-2">{title}</h3>
-                <p className="text-sm text-gray-600">
+                <h3 className="font-semibold text-foreground text-lg mb-2">{title}</h3>
+                <p className="text-sm text-muted-foreground">
                   {pricingHighlightDescriptions[index]}
                 </p>
               </div>
@@ -178,47 +178,55 @@ export default function VerifyPricingPage() {
         </div>
       </section>
 
-      <section className="bg-white py-12 lg:py-16">
+      <section className="bg-background border-t border-border py-12 lg:py-16">
         <div className="container mx-auto max-w-7xl px-4">
-          <div className="text-center mb-8">
-            <h2 className="font-sora text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] font-normal leading-[1.25] tracking-[-0.02em] text-black mb-3">
+          <div className="mb-8">
+            <div className="flex items-center gap-3 font-mono-ui text-[11px] uppercase tracking-[0.12em] text-muted-foreground mb-8">
+          <span className="flex items-center gap-2">
+            <span className="tabular-nums text-foreground/70">~</span>
+            <span className="h-px w-6 bg-border" />
+          </span>
+          <span>pricing page</span>
+          <span className="flex-1 border-t border-dashed border-border" />
+        </div>
+        <h2 className="font-sora text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] font-normal leading-[1.04] tracking-[-0.035em] text-foreground mb-3">
               {VERIFY_PAGE_COPY.channelPricingTitle}
             </h2>
-            <p className="text-gray-600 text-base sm:text-lg max-w-2xl mx-auto">
+            <p className="text-muted-foreground text-base sm:text-lg max-w-2xl">
               {VERIFY_PAGE_COPY.channelPricingDescriptionLong}
             </p>
           </div>
 
           <div className="max-w-xs mx-auto mb-8">
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-foreground/80 mb-2">
               {VERIFY_PAGE_COPY.countrySelectorLabel}
             </label>
             <div className="relative" ref={dropdownRef}>
               <button
                 type="button"
                 onClick={() => setIsCountryOpen((open) => !open)}
-                className="w-full flex items-center justify-between px-3 py-2.5 bg-white border border-gray-300 rounded-lg hover:border-gray-400 transition-colors"
+                className="w-full flex items-center justify-between px-3 py-2.5 bg-background border border-border-strong rounded-lg hover:border-border-strong transition-colors"
               >
                 <div className="flex items-center gap-2.5">
                   <span className="text-xl">{selectedCountry.flag}</span>
-                  <span className="text-sm font-medium text-gray-900">
+                  <span className="text-sm font-medium text-foreground">
                     {selectedCountry.name}
                   </span>
                 </div>
                 <ChevronDown
-                  className={`w-4 h-4 text-gray-400 transition-transform ${isCountryOpen ? "rotate-180" : ""}`}
+                  className={`w-4 h-4 text-muted-foreground transition-transform ${isCountryOpen ? "rotate-180" : ""}`}
                 />
               </button>
 
               {isCountryOpen && (
-                <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-10 max-h-72 overflow-hidden flex flex-col">
-                  <div className="p-2 border-b border-gray-100">
+                <div className="absolute top-full left-0 right-0 mt-1 bg-background border border-border rounded-lg shadow-sm z-10 max-h-72 overflow-hidden flex flex-col">
+                  <div className="p-2 border-b border-border">
                     <input
                       type="text"
                       value={searchQuery}
                       onChange={(event) => setSearchQuery(event.target.value)}
                       placeholder="Search country..."
-                      className="w-full px-3 py-2 text-sm text-gray-900 bg-white border border-gray-300 rounded-md focus:outline-none focus:border-gray-500 placeholder:text-gray-400"
+                      className="w-full px-3 py-2 text-sm text-foreground bg-background border border-border-strong rounded-md focus:outline-none focus:border-gray-500 placeholder:text-muted-foreground"
                       autoFocus
                     />
                   </div>
@@ -228,7 +236,7 @@ export default function VerifyPricingPage() {
                         {!country.isPriority &&
                           index > 0 &&
                           filteredCountries[index - 1]?.isPriority && (
-                            <div className="border-t border-gray-200 my-1" />
+                            <div className="border-t border-border my-1" />
                           )}
                         <button
                           type="button"
@@ -237,17 +245,17 @@ export default function VerifyPricingPage() {
                             setIsCountryOpen(false);
                             setSearchQuery("");
                           }}
-                          className={`w-full flex items-center gap-2.5 px-3 py-2.5 hover:bg-gray-50 transition-colors text-left ${
-                            selectedCountry.code === country.code ? "bg-[#323dfe]/5" : ""
+                          className={`w-full flex items-center gap-2.5 px-3 py-2.5 hover:bg-surface transition-colors text-left ${
+                            selectedCountry.code === country.code ? "bg-primary/5" : ""
                           }`}
                         >
                           <span className="text-xl">{country.flag}</span>
-                          <span className="text-sm text-gray-900">{country.name}</span>
+                          <span className="text-sm text-foreground">{country.name}</span>
                         </button>
                       </div>
                     ))}
                     {filteredCountries.length === 0 && (
-                      <div className="px-3 py-3 text-sm text-gray-500">No countries found</div>
+                      <div className="px-3 py-3 text-sm text-muted-foreground">No countries found</div>
                     )}
                   </div>
                 </div>
@@ -255,53 +263,53 @@ export default function VerifyPricingPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-xl border border-gray-200 overflow-hidden max-w-3xl mx-auto">
+          <div className="bg-background rounded-xl border border-border overflow-hidden max-w-3xl mx-auto">
             <table className="w-full">
               <thead>
-                <tr className="border-b border-gray-200 bg-gray-50">
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-black">
+                <tr className="border-b border-border bg-surface">
+                  <th className="px-6 py-4 text-left text-sm font-semibold text-foreground">
                     Channel
                   </th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-black">
+                  <th className="px-6 py-4 text-left text-sm font-semibold text-foreground">
                     Rate
                   </th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-black" />
+                  <th className="px-6 py-4 text-left text-sm font-semibold text-foreground" />
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-100">
+              <tbody className="divide-y divide-border">
                 <tr>
-                  <td className="px-6 py-4 text-sm font-medium text-black">SMS</td>
-                  <td className="px-6 py-4 text-sm text-gray-600">
+                  <td className="px-6 py-4 text-sm font-medium text-foreground">SMS</td>
+                  <td className="px-6 py-4 text-sm text-muted-foreground">
                     {smsRateLabel === "Not supported" ? smsRateLabel : `Starts at ${smsRateLabel}`}
                   </td>
                   <td className="px-6 py-4 text-sm">
-                    <a href={pricingLinks.sms} className="text-[#323dfe] hover:underline font-medium">
+                    <a href={pricingLinks.sms} className="text-primary hover:underline font-medium">
                       View detailed network pricing
                     </a>
                   </td>
                 </tr>
                 <tr>
-                  <td className="px-6 py-4 text-sm font-medium text-black">Voice</td>
-                  <td className="px-6 py-4 text-sm text-gray-600">
+                  <td className="px-6 py-4 text-sm font-medium text-foreground">Voice</td>
+                  <td className="px-6 py-4 text-sm text-muted-foreground">
                     {voiceRateLabel === "Not supported"
                       ? voiceRateLabel
                       : `Starts at ${voiceRateLabel}`}
                   </td>
                   <td className="px-6 py-4 text-sm">
-                    <a href={pricingLinks.voice} className="text-[#323dfe] hover:underline font-medium">
+                    <a href={pricingLinks.voice} className="text-primary hover:underline font-medium">
                       View detailed network pricing
                     </a>
                   </td>
                 </tr>
                 <tr>
-                  <td className="px-6 py-4 text-sm font-medium text-black">WhatsApp</td>
-                  <td className="px-6 py-4 text-sm text-gray-600">
+                  <td className="px-6 py-4 text-sm font-medium text-foreground">WhatsApp</td>
+                  <td className="px-6 py-4 text-sm text-muted-foreground">
                     {`Starts at ${whatsappRateLabel}`}
                   </td>
                   <td className="px-6 py-4 text-sm">
                     <a
                       href={pricingLinks.whatsapp}
-                      className="text-[#323dfe] hover:underline font-medium"
+                      className="text-primary hover:underline font-medium"
                     >
                       View detailed network pricing
                     </a>
@@ -313,37 +321,45 @@ export default function VerifyPricingPage() {
         </div>
       </section>
 
-      <section className="bg-gray-50 py-12 lg:py-16">
+      <section className="bg-surface border-t border-border py-12 lg:py-16">
         <div className="container mx-auto max-w-5xl px-4">
-          <div className="text-center mb-8">
-            <h2 className="font-sora text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] font-normal leading-[1.25] tracking-[-0.02em] text-black mb-3">
+          <div className="mb-8">
+            <div className="flex items-center gap-3 font-mono-ui text-[11px] uppercase tracking-[0.12em] text-muted-foreground mb-8">
+          <span className="flex items-center gap-2">
+            <span className="tabular-nums text-foreground/70">~</span>
+            <span className="h-px w-6 bg-border" />
+          </span>
+          <span>pricing page</span>
+          <span className="flex-1 border-t border-dashed border-border" />
+        </div>
+        <h2 className="font-sora text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] font-normal leading-[1.04] tracking-[-0.035em] text-foreground mb-3">
               {VERIFY_PAGE_COPY.noHiddenChargesTitle}
             </h2>
           </div>
 
-          <div className="max-w-4xl mx-auto bg-white rounded-xl border border-gray-200 overflow-hidden">
+          <div className="max-w-4xl mx-auto bg-background rounded-xl border border-border overflow-hidden">
             <table className="w-full">
               <thead>
-                <tr className="border-b border-gray-200 bg-gray-50">
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-black">Charge</th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-black">Other Players</th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-black">Plivo</th>
+                <tr className="border-b border-border bg-surface">
+                  <th className="px-6 py-4 text-left text-sm font-semibold text-foreground">Charge</th>
+                  <th className="px-6 py-4 text-left text-sm font-semibold text-foreground">Other Players</th>
+                  <th className="px-6 py-4 text-left text-sm font-semibold text-foreground">Plivo</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-100">
+              <tbody className="divide-y divide-border">
                 {Object.entries(hiddenChargesByCategory).map(([category, rows]) => (
                   rows.map((row, rowIndex) => (
-                    <tr key={`${category}-${row.label}`} className={rowIndex === 0 ? "border-t border-gray-200" : ""}>
-                      <td className="px-6 py-4 text-sm text-gray-900">
+                    <tr key={`${category}-${row.label}`} className={rowIndex === 0 ? "border-t border-border" : ""}>
+                      <td className="px-6 py-4 text-sm text-foreground">
                         {rowIndex === 0 && (
-                          <div className="text-xs font-semibold uppercase tracking-wide text-gray-500 mb-2">
+                          <div className="text-xs font-semibold font-mono-ui uppercase tracking-[0.1em] text-muted-foreground mb-2">
                             {category}
                           </div>
                         )}
-                        <div className="font-medium text-black">{row.label}</div>
+                        <div className="font-medium text-foreground">{row.label}</div>
                       </td>
-                      <td className="px-6 py-4 text-sm text-gray-600">{row.others || "-"}</td>
-                      <td className="px-6 py-4 text-sm font-semibold text-[#323dfe]">
+                      <td className="px-6 py-4 text-sm text-muted-foreground">{row.others || "-"}</td>
+                      <td className="px-6 py-4 text-sm font-semibold text-primary">
                         {row.plivo || "-"}
                       </td>
                     </tr>
@@ -355,10 +371,18 @@ export default function VerifyPricingPage() {
         </div>
       </section>
 
-      <section className="bg-white py-12 lg:py-16">
+      <section className="bg-background border-t border-border py-12 lg:py-16">
         <div className="container mx-auto max-w-7xl px-4">
-          <div className="text-center mb-10">
-            <h2 className="font-sora text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] font-normal leading-[1.25] tracking-[-0.02em] text-black mb-3">
+          <div className="mb-10">
+            <div className="flex items-center gap-3 font-mono-ui text-[11px] uppercase tracking-[0.12em] text-muted-foreground mb-8">
+          <span className="flex items-center gap-2">
+            <span className="tabular-nums text-foreground/70">~</span>
+            <span className="h-px w-6 bg-border" />
+          </span>
+          <span>pricing page</span>
+          <span className="flex-1 border-t border-dashed border-border" />
+        </div>
+        <h2 className="font-sora text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] font-normal leading-[1.04] tracking-[-0.035em] text-foreground mb-3">
               {VERIFY_PAGE_COPY.roiTitle}
             </h2>
           </div>
@@ -368,12 +392,12 @@ export default function VerifyPricingPage() {
               return (
                 <div
                   key={feature}
-                  className="rounded-xl border border-gray-200 bg-gradient-to-br from-white to-gray-50 p-5 transition-colors hover:border-gray-300"
+                  className="rounded-xl border border-border bg-gradient-to-br from-background to-surface p-5 transition-colors hover:border-border-strong"
                 >
-                  <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-full bg-[#323dfe]/8 text-[#323dfe]">
+                  <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-full bg-surface text-foreground/80">
                     <Icon className="h-4 w-4" />
                   </div>
-                  <h3 className="font-semibold text-sm text-black leading-relaxed">{feature}</h3>
+                  <h3 className="font-semibold text-sm text-foreground leading-relaxed">{feature}</h3>
                 </div>
               );
             })}

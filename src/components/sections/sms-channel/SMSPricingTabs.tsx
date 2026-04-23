@@ -36,7 +36,7 @@ function getSections(opts: {
 }
 
 const Shimmer = () => (
-  <span className="inline-block h-4 w-20 bg-gray-100 rounded animate-pulse" />
+  <span className="inline-block h-4 w-20 bg-muted rounded animate-pulse" />
 );
 
 /** Helper: scroll to a section by id with offset */
@@ -243,13 +243,13 @@ export default function SMSPricingTabs({ initialCountry }: { initialCountry?: st
   return (
     <>
       {/* Hero Header */}
-      <section className="bg-white pt-[56px] sm:pt-[64px] md:pt-[72px] pb-10">
+      <section className="bg-background border-t border-border pt-[56px] sm:pt-[64px] md:pt-[72px] pb-10">
         <div className="container mx-auto max-w-7xl px-4">
           <div className="text-center">
-            <h1 className="font-sora text-[2rem] sm:text-[2.5rem] md:text-[3rem] font-normal leading-[1.1] tracking-[-0.02em] text-black mb-4">
+            <h1 className="font-sora text-[2rem] sm:text-[2.5rem] md:text-[3rem] font-normal leading-[1.1] tracking-[-0.02em] text-foreground mb-4">
               SMS/RCS Pricing
             </h1>
-            <p className="text-gray-600 text-base sm:text-lg max-w-2xl mx-auto">
+            <p className="text-muted-foreground text-base sm:text-lg max-w-2xl">
               Competitive pay-as-you-go SMS and RCS pricing. Volume discounts as you scale.
             </p>
           </div>
@@ -257,33 +257,33 @@ export default function SMSPricingTabs({ initialCountry }: { initialCountry?: st
       </section>
 
       {/* Two Column Layout */}
-      <section className="bg-white pb-12 lg:pb-20">
+      <section className="bg-background border-t border-border pb-12 lg:pb-20">
         <div className="container mx-auto max-w-7xl px-4">
           <div className="lg:grid lg:grid-cols-[256px_1fr] lg:gap-8 lg:items-start">
             {/* Left Sidebar Wrapper */}
             <div ref={sidebarWrapperRef} className="mb-8 lg:mb-0">
-              <aside className="bg-white z-30" style={sidebarStyle}>
+              <aside className="bg-background z-30" style={sidebarStyle}>
                 {/* Country Selector */}
                 <div className="relative mb-6" ref={dropdownRef}>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Select Country</label>
+                  <label className="block text-sm font-medium text-foreground/80 mb-2">Select Country</label>
                   <button
                     ref={countryToggleBtnRef}
-                    className="w-full flex items-center gap-3 px-4 py-2.5 bg-white border border-gray-300 rounded-lg hover:border-gray-400 transition-colors"
+                    className="w-full flex items-center gap-3 px-4 py-2.5 bg-background border border-border-strong rounded-lg hover:border-border-strong transition-colors"
                   >
                     <span className="text-xl">{selectedCountry.flag}</span>
-                    <span className="text-sm font-medium text-gray-900 flex-1 text-left">{selectedCountry.name}</span>
-                    <ChevronDown className={cn("w-4 h-4 text-gray-400 transition-transform", isCountryOpen && "rotate-180")} />
+                    <span className="text-sm font-medium text-foreground flex-1 text-left">{selectedCountry.name}</span>
+                    <ChevronDown className={cn("w-4 h-4 text-muted-foreground transition-transform", isCountryOpen && "rotate-180")} />
                   </button>
 
                   {isCountryOpen && (
-                    <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-10 max-h-72 overflow-hidden flex flex-col">
-                      <div className="p-2 border-b border-gray-100">
+                    <div className="absolute top-full left-0 right-0 mt-1 bg-background border border-border rounded-lg shadow-sm z-10 max-h-72 overflow-hidden flex flex-col">
+                      <div className="p-2 border-b border-border">
                         <input
                           type="text"
                           placeholder="Search country..."
                           value={searchQuery}
                           ref={countrySearchRef}
-                          className="w-full px-3 py-2 text-sm text-gray-900 bg-white border border-gray-300 rounded-md focus:outline-none focus:border-gray-500 placeholder:text-gray-400"
+                          className="w-full px-3 py-2 text-sm text-foreground bg-background border border-border-strong rounded-md focus:outline-none focus:border-gray-500 placeholder:text-muted-foreground"
                           autoFocus
                         />
                       </div>
@@ -291,22 +291,22 @@ export default function SMSPricingTabs({ initialCountry }: { initialCountry?: st
                         {filteredCountries.map((country, idx) => (
                           <div key={country.code}>
                             {!country.isPriority && idx > 0 && filteredCountries[idx - 1]?.isPriority && (
-                              <div className="border-t border-gray-200 my-1" />
+                              <div className="border-t border-border my-1" />
                             )}
                             <button
                               data-country-code={country.code}
                               className={cn(
-                                "w-full flex items-center gap-2.5 px-4 py-2.5 hover:bg-gray-50 transition-colors text-left",
-                                selectedCountry.code === country.code && "bg-[#323dfe]/5"
+                                "w-full flex items-center gap-2.5 px-4 py-2.5 hover:bg-surface transition-colors text-left",
+                                selectedCountry.code === country.code && "bg-primary/5"
                               )}
                             >
                               <span className="text-xl">{country.flag}</span>
-                              <span className="text-sm text-gray-900">{country.name}</span>
+                              <span className="text-sm text-foreground">{country.name}</span>
                             </button>
                           </div>
                         ))}
                         {filteredCountries.length === 0 && (
-                          <div className="px-4 py-3 text-sm text-gray-500">No countries found</div>
+                          <div className="px-4 py-3 text-sm text-muted-foreground">No countries found</div>
                         )}
                       </div>
                     </div>
@@ -315,7 +315,7 @@ export default function SMSPricingTabs({ initialCountry }: { initialCountry?: st
 
                 {/* Section Navigation */}
                 <nav className="hidden lg:block">
-                  <p className="text-sm font-medium text-gray-700 mb-3">Jump to section</p>
+                  <p className="text-sm font-medium text-foreground/80 mb-3">Jump to section</p>
                   <ul className="space-y-1" ref={sectionNavRef}>
                     {sections.map((section) => (
                       <li key={section.id}>
@@ -324,8 +324,8 @@ export default function SMSPricingTabs({ initialCountry }: { initialCountry?: st
                           className={cn(
                             "w-full text-left px-3 py-2 text-sm transition-colors border-l-2",
                             activeSection === section.id
-                              ? "border-[#323dfe] text-[#323dfe] font-medium"
-                              : "border-transparent text-gray-600 hover:border-gray-300 hover:text-gray-900"
+                              ? "border-primary text-primary font-medium"
+                              : "border-transparent text-muted-foreground hover:border-border-strong hover:text-foreground"
                           )}
                         >
                           {section.label}
@@ -340,27 +340,27 @@ export default function SMSPricingTabs({ initialCountry }: { initialCountry?: st
             {/* Right Content */}
             <div ref={contentRef} className="min-w-0">
               {/* SMS Section */}
-              <div id="sms" className="bg-white rounded-xl border border-gray-200 p-6 mb-6">
+              <div id="sms" className="bg-background rounded-xl border border-border p-6 mb-6">
                 <SMSSection smsRates={liveSmsRates.length > 0 ? liveSmsRates : (hardcodedRates?.sms || [])} smsNetworkRates={smsNetworkRates} hasCarrierFees={!!hardcodedRates?.hasCarrierFees} loading={loading} countryCode={selectedCountry.code} />
               </div>
 
               {/* RCS Section - US only */}
               {isUS && (
-                <div id="rcs" className="bg-white rounded-xl border border-gray-200 p-6 mb-6">
+                <div id="rcs" className="bg-background rounded-xl border border-border p-6 mb-6">
                   <RCSSection hasCarrierFees={!!hardcodedRates?.hasCarrierFees} />
                 </div>
               )}
 
               {/* MMS Section - conditional (hardcoded, US/CA only) */}
               {hardcodedRates?.mms && (
-                <div id="mms" className="bg-white rounded-xl border border-gray-200 p-6 mb-6">
+                <div id="mms" className="bg-background rounded-xl border border-border p-6 mb-6">
                   <MMSSection mmsRates={hardcodedRates.mms} hasCarrierFees={!!hardcodedRates.hasCarrierFees} />
                 </div>
               )}
 
               {/* Phone Numbers Section */}
               {(phoneNumbers.length > 0 || hardcodedRates?.phoneNumbers) && (
-                <div id="phone-numbers" className="bg-white rounded-xl border border-gray-200 p-6 mb-6">
+                <div id="phone-numbers" className="bg-background rounded-xl border border-border p-6 mb-6">
                   {phoneNumbers.length > 0 ? (
                     <LivePhoneNumbersSection phoneNumbers={phoneNumbers} loading={loading} countryCode={selectedCountry.code} />
                   ) : hardcodedRates?.phoneNumbers ? (
@@ -371,18 +371,18 @@ export default function SMSPricingTabs({ initialCountry }: { initialCountry?: st
 
               {/* Carrier Fees Section - US/CA */}
               {hardcodedRates?.hasCarrierFees && (
-                <div id="carrier-fees" className="bg-white rounded-xl border border-gray-200 p-6 mb-6">
+                <div id="carrier-fees" className="bg-background rounded-xl border border-border p-6 mb-6">
                   <CarrierFeesSection countryCode={selectedCountry.code} />
                 </div>
               )}
 
               {/* Add-on Services */}
-              <div id="add-on-services" className="bg-white rounded-xl border border-gray-200 p-6 mb-6">
+              <div id="add-on-services" className="bg-background rounded-xl border border-border p-6 mb-6">
                 <AddOnServicesSection />
               </div>
 
               {/* Cost Calculator */}
-              <div id="cost-calculator" className="bg-white rounded-xl border border-gray-200 p-6">
+              <div id="cost-calculator" className="bg-background rounded-xl border border-border p-6">
                 <SMSCostCalculator countryCode={selectedCountry.code} />
               </div>
             </div>
@@ -423,20 +423,20 @@ function SMSSection({ smsRates, smsNetworkRates, hasCarrierFees, loading, countr
 
   return (
     <div>
-      <h2 className="font-sans text-xl font-semibold text-black mb-2">SMS Text Messages</h2>
+      <h2 className="font-sans text-xl font-semibold text-foreground mb-2">SMS Text Messages</h2>
       {hasCarrierFees && (
-        <p className="text-sm text-gray-500 mb-6">
+        <p className="text-sm text-muted-foreground mb-6">
           *Additional carrier surcharge fees apply to all inbound and outbound SMS usage rates.{" "}
           <button
             ref={carrierFeeBtnRef}
-            className="text-[#323dfe] hover:underline"
+            className="text-primary hover:underline"
           >
             View carrier surcharge fee
           </button>.
         </p>
       )}
       {!hasCarrierFees && (
-        <p className="text-sm text-gray-500 mb-6">
+        <p className="text-sm text-muted-foreground mb-6">
           Per-message rates for sending and receiving SMS.
         </p>
       )}
@@ -444,32 +444,32 @@ function SMSSection({ smsRates, smsNetworkRates, hasCarrierFees, loading, countr
       <div className="overflow-x-auto">
         <table className="w-full">
           <thead>
-            <tr className="border-b border-gray-200">
-              <th className="py-3 pr-3 sm:pr-4 text-left text-xs sm:text-sm font-semibold text-black w-[40%]">Route Type</th>
-              <th className="py-3 pr-3 sm:pr-4 text-left text-xs sm:text-sm font-semibold text-black"><span className="sm:hidden">Outbound</span><span className="hidden sm:inline">To send SMS (Outbound)</span></th>
-              <th className="py-3 text-left text-xs sm:text-sm font-semibold text-black"><span className="sm:hidden">Inbound</span><span className="hidden sm:inline">To receive SMS (Inbound)</span></th>
+            <tr className="border-b border-border">
+              <th className="py-3 pr-3 sm:pr-4 text-left text-xs sm:text-sm font-semibold text-foreground w-[40%]">Route Type</th>
+              <th className="py-3 pr-3 sm:pr-4 text-left text-xs sm:text-sm font-semibold text-foreground"><span className="sm:hidden">Outbound</span><span className="hidden sm:inline">To send SMS (Outbound)</span></th>
+              <th className="py-3 text-left text-xs sm:text-sm font-semibold text-foreground"><span className="sm:hidden">Inbound</span><span className="hidden sm:inline">To receive SMS (Inbound)</span></th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-gray-100">
+          <tbody className="divide-y divide-border">
             {loading ? (
               ["Longcode", "Shortcode", "Toll-Free"].map((type) => (
                 <tr key={type}>
-                  <td className="py-3 pr-3 sm:pr-4 text-xs sm:text-sm text-gray-900">{type}</td>
-                  <td className="py-3 pr-3 sm:pr-4 text-xs sm:text-sm font-medium text-black"><Shimmer /></td>
-                  <td className="py-3 text-xs sm:text-sm font-medium text-black"><Shimmer /></td>
+                  <td className="py-3 pr-3 sm:pr-4 text-xs sm:text-sm text-foreground">{type}</td>
+                  <td className="py-3 pr-3 sm:pr-4 text-xs sm:text-sm font-medium text-foreground"><Shimmer /></td>
+                  <td className="py-3 text-xs sm:text-sm font-medium text-foreground"><Shimmer /></td>
                 </tr>
               ))
             ) : smsRates.length > 0 ? (
               smsRates.map((row) => (
                 <tr key={row.type}>
-                  <td className="py-3 pr-3 sm:pr-4 text-xs sm:text-sm text-gray-900">{row.type}</td>
-                  <td className="py-3 pr-3 sm:pr-4 text-xs sm:text-sm font-medium text-black">{convertPriceString(row.outbound, countryCode)}</td>
-                  <td className="py-3 text-xs sm:text-sm font-medium text-black">{convertPriceString(row.inbound, countryCode)}</td>
+                  <td className="py-3 pr-3 sm:pr-4 text-xs sm:text-sm text-foreground">{row.type}</td>
+                  <td className="py-3 pr-3 sm:pr-4 text-xs sm:text-sm font-medium text-foreground">{convertPriceString(row.outbound, countryCode)}</td>
+                  <td className="py-3 text-xs sm:text-sm font-medium text-foreground">{convertPriceString(row.inbound, countryCode)}</td>
                 </tr>
               ))
             ) : (
               <tr>
-                <td colSpan={3} className="py-4 text-sm text-gray-500 text-center">
+                <td colSpan={3} className="py-4 text-sm text-muted-foreground text-center">
                   SMS rates not available for this country. Contact sales for details.
                 </td>
               </tr>
@@ -480,10 +480,10 @@ function SMSSection({ smsRates, smsNetworkRates, hasCarrierFees, loading, countr
 
       {/* Network-Based Pricing */}
       {!loading && smsNetworkRates.length > 1 && !allSameRate && (
-        <div className="mt-4 border-t border-gray-100 pt-4">
+        <div className="mt-4 border-t border-border pt-4">
           <button
             ref={toggleRef}
-            className="inline-flex items-center gap-1.5 text-sm font-medium text-[#323dfe] hover:underline"
+            className="inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:underline"
           >
             {showNetworkRates ? "Hide" : "View"} network-based pricing
             <ChevronDown className={cn("h-4 w-4 transition-transform", showNetworkRates && "rotate-180")} />
@@ -493,16 +493,16 @@ function SMSSection({ smsRates, smsNetworkRates, hasCarrierFees, loading, countr
             <div className="mt-3 overflow-x-auto">
               <table className="w-full">
                 <thead>
-                  <tr className="border-b border-gray-200">
-                    <th className="py-2 pr-4 text-left text-xs sm:text-sm font-semibold text-black">Network</th>
-                    <th className="py-2 text-left text-xs sm:text-sm font-semibold text-black">Outbound Rate</th>
+                  <tr className="border-b border-border">
+                    <th className="py-2 pr-4 text-left text-xs sm:text-sm font-semibold text-foreground">Network</th>
+                    <th className="py-2 text-left text-xs sm:text-sm font-semibold text-foreground">Outbound Rate</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-gray-100">
+                <tbody className="divide-y divide-border">
                   {smsNetworkRates.map((nr) => (
                     <tr key={nr.network}>
-                      <td className="py-2 pr-4 text-xs sm:text-sm text-gray-900">{nr.network}</td>
-                      <td className="py-2 text-xs sm:text-sm font-medium text-black">{convertPriceString(nr.rate, countryCode)}</td>
+                      <td className="py-2 pr-4 text-xs sm:text-sm text-foreground">{nr.network}</td>
+                      <td className="py-2 text-xs sm:text-sm font-medium text-foreground">{convertPriceString(nr.rate, countryCode)}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -531,20 +531,20 @@ function MMSSection({ mmsRates, hasCarrierFees }: { mmsRates: SMSCountryRates["m
 
   return (
     <div>
-      <h2 className="font-sans text-xl font-semibold text-black mb-2">MMS Multimedia Messages</h2>
+      <h2 className="font-sans text-xl font-semibold text-foreground mb-2">MMS Multimedia Messages</h2>
       {hasCarrierFees && (
-        <p className="text-sm text-gray-500 mb-6">
+        <p className="text-sm text-muted-foreground mb-6">
           *Additional carrier surcharge fees apply to all inbound and outbound MMS usage rates.{" "}
           <button
             ref={carrierFeeBtnRef}
-            className="text-[#323dfe] hover:underline"
+            className="text-primary hover:underline"
           >
             View carrier surcharge fee
           </button>.
         </p>
       )}
       {!hasCarrierFees && (
-        <p className="text-sm text-gray-500 mb-6">
+        <p className="text-sm text-muted-foreground mb-6">
           Per-message rates for sending and receiving MMS.
         </p>
       )}
@@ -552,18 +552,18 @@ function MMSSection({ mmsRates, hasCarrierFees }: { mmsRates: SMSCountryRates["m
       <div className="overflow-x-auto">
         <table className="w-full">
           <thead>
-            <tr className="border-b border-gray-200">
-              <th className="py-3 pr-3 sm:pr-4 text-left text-xs sm:text-sm font-semibold text-black w-[40%]">Route Type</th>
-              <th className="py-3 pr-3 sm:pr-4 text-left text-xs sm:text-sm font-semibold text-black"><span className="sm:hidden">Outbound</span><span className="hidden sm:inline">To send MMS (Outbound)</span></th>
-              <th className="py-3 text-left text-xs sm:text-sm font-semibold text-black"><span className="sm:hidden">Inbound</span><span className="hidden sm:inline">To receive MMS (Inbound)</span></th>
+            <tr className="border-b border-border">
+              <th className="py-3 pr-3 sm:pr-4 text-left text-xs sm:text-sm font-semibold text-foreground w-[40%]">Route Type</th>
+              <th className="py-3 pr-3 sm:pr-4 text-left text-xs sm:text-sm font-semibold text-foreground"><span className="sm:hidden">Outbound</span><span className="hidden sm:inline">To send MMS (Outbound)</span></th>
+              <th className="py-3 text-left text-xs sm:text-sm font-semibold text-foreground"><span className="sm:hidden">Inbound</span><span className="hidden sm:inline">To receive MMS (Inbound)</span></th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-gray-100">
+          <tbody className="divide-y divide-border">
             {mmsRates.map((row) => (
               <tr key={row.type}>
-                <td className="py-3 pr-3 sm:pr-4 text-xs sm:text-sm text-gray-900">{row.type}</td>
-                <td className="py-3 pr-3 sm:pr-4 text-xs sm:text-sm font-medium text-black">{row.outbound}</td>
-                <td className="py-3 text-xs sm:text-sm font-medium text-black">{row.inbound}</td>
+                <td className="py-3 pr-3 sm:pr-4 text-xs sm:text-sm text-foreground">{row.type}</td>
+                <td className="py-3 pr-3 sm:pr-4 text-xs sm:text-sm font-medium text-foreground">{row.outbound}</td>
+                <td className="py-3 text-xs sm:text-sm font-medium text-foreground">{row.inbound}</td>
               </tr>
             ))}
           </tbody>
@@ -587,20 +587,20 @@ function RCSSection({ hasCarrierFees }: { hasCarrierFees: boolean }) {
 
   return (
     <div>
-      <h2 className="font-sans text-xl font-semibold text-black mb-2">RCS Messages</h2>
+      <h2 className="font-sans text-xl font-semibold text-foreground mb-2">RCS Messages</h2>
       {hasCarrierFees && (
-        <p className="text-sm text-gray-500 mb-6">
+        <p className="text-sm text-muted-foreground mb-6">
           RCS Rich text messages are charged per segment and RCS Rich Media is charged per message. *Additional carrier surcharge fees apply.{" "}
           <button
             ref={carrierFeeBtnRef}
-            className="text-[#323dfe] hover:underline"
+            className="text-primary hover:underline"
           >
             View carrier surcharge fee
           </button>.
         </p>
       )}
       {!hasCarrierFees && (
-        <p className="text-sm text-gray-500 mb-6">
+        <p className="text-sm text-muted-foreground mb-6">
           RCS Rich text messages are charged per segment and RCS Rich Media is charged per message.
         </p>
       )}
@@ -608,25 +608,25 @@ function RCSSection({ hasCarrierFees }: { hasCarrierFees: boolean }) {
       <div className="overflow-x-auto">
         <table className="w-full">
           <thead>
-            <tr className="border-b border-gray-200">
-              <th className="py-3 pr-3 sm:pr-4 text-left text-xs sm:text-sm font-semibold text-black" rowSpan={2}>Sender type</th>
-              <th className="py-2 px-2 text-center text-xs sm:text-sm font-semibold text-black border-l border-gray-200" colSpan={2}>RCS Rich</th>
-              <th className="py-2 px-2 text-center text-xs sm:text-sm font-semibold text-black border-l border-gray-200" colSpan={2}>RCS Rich Media</th>
+            <tr className="border-b border-border">
+              <th className="py-3 pr-3 sm:pr-4 text-left text-xs sm:text-sm font-semibold text-foreground" rowSpan={2}>Sender type</th>
+              <th className="py-2 px-2 text-center text-xs sm:text-sm font-semibold text-foreground border-l border-border" colSpan={2}>RCS Rich</th>
+              <th className="py-2 px-2 text-center text-xs sm:text-sm font-semibold text-foreground border-l border-border" colSpan={2}>RCS Rich Media</th>
             </tr>
-            <tr className="border-b border-gray-200">
-              <th className="py-2 px-2 text-center text-xs font-medium text-gray-600 border-l border-gray-200">Outbound</th>
-              <th className="py-2 px-2 text-center text-xs font-medium text-gray-600">Inbound</th>
-              <th className="py-2 px-2 text-center text-xs font-medium text-gray-600 border-l border-gray-200">Outbound</th>
-              <th className="py-2 px-2 text-center text-xs font-medium text-gray-600">Inbound</th>
+            <tr className="border-b border-border">
+              <th className="py-2 px-2 text-center text-xs font-medium text-muted-foreground border-l border-border">Outbound</th>
+              <th className="py-2 px-2 text-center text-xs font-medium text-muted-foreground">Inbound</th>
+              <th className="py-2 px-2 text-center text-xs font-medium text-muted-foreground border-l border-border">Outbound</th>
+              <th className="py-2 px-2 text-center text-xs font-medium text-muted-foreground">Inbound</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-gray-100">
+          <tbody className="divide-y divide-border">
             <tr>
-              <td className="py-3 pr-3 sm:pr-4 text-xs sm:text-sm text-gray-900">All sender types</td>
-              <td className="py-3 px-2 text-center text-xs sm:text-sm font-medium text-black border-l border-gray-100">$0.00750</td>
-              <td className="py-3 px-2 text-center text-xs sm:text-sm font-medium text-black">$0.00750</td>
-              <td className="py-3 px-2 text-center text-xs sm:text-sm font-medium text-black border-l border-gray-100">$0.01600</td>
-              <td className="py-3 px-2 text-center text-xs sm:text-sm font-medium text-black">$0.01440</td>
+              <td className="py-3 pr-3 sm:pr-4 text-xs sm:text-sm text-foreground">All sender types</td>
+              <td className="py-3 px-2 text-center text-xs sm:text-sm font-medium text-foreground border-l border-border">$0.00750</td>
+              <td className="py-3 px-2 text-center text-xs sm:text-sm font-medium text-foreground">$0.00750</td>
+              <td className="py-3 px-2 text-center text-xs sm:text-sm font-medium text-foreground border-l border-border">$0.01600</td>
+              <td className="py-3 px-2 text-center text-xs sm:text-sm font-medium text-foreground">$0.01440</td>
             </tr>
           </tbody>
         </table>
@@ -640,23 +640,23 @@ function LivePhoneNumbersSection({ phoneNumbers, loading, countryCode }: { phone
   const currency = "$";
   return (
     <div>
-      <h2 className="font-sans text-xl font-semibold text-black mb-2">Phone Number Rental</h2>
-      <p className="text-sm text-gray-500 mb-6">
+      <h2 className="font-sans text-xl font-semibold text-foreground mb-2">Phone Number Rental</h2>
+      <p className="text-sm text-muted-foreground mb-6">
         Monthly rental rates for SMS-enabled phone numbers.
       </p>
       <div className="overflow-x-auto">
         <table className="w-full">
           <thead>
-            <tr className="border-b border-gray-200">
-              <th className="py-3 pr-4 text-left text-sm font-semibold text-black w-[65%]">Number Type</th>
-              <th className="py-3 text-left text-sm font-semibold text-black">Price</th>
+            <tr className="border-b border-border">
+              <th className="py-3 pr-4 text-left text-sm font-semibold text-foreground w-[65%]">Number Type</th>
+              <th className="py-3 text-left text-sm font-semibold text-foreground">Price</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-gray-100">
+          <tbody className="divide-y divide-border">
             {phoneNumbers.map((pn, idx) => (
               <tr key={`${pn.type}-${idx}`}>
-                <td className="py-3 pr-4 text-sm text-gray-900">{pn.type}</td>
-                <td className="py-3 text-sm font-medium text-black">
+                <td className="py-3 pr-4 text-sm text-foreground">{pn.type}</td>
+                <td className="py-3 text-sm font-medium text-foreground">
                   {loading ? <Shimmer /> : convertPriceString(`$${Number(pn.rentalRate ?? 0).toFixed(2)}/month`, countryCode)}
                 </td>
               </tr>
@@ -672,14 +672,14 @@ function PhoneNumbersSection({ phoneNumbers, countryCode }: { phoneNumbers: NonN
   const { convertPriceString } = useExchangeRate();
   return (
     <div>
-      <h2 className="font-sans text-xl font-semibold text-black mb-2">Phone Number Rental</h2>
+      <h2 className="font-sans text-xl font-semibold text-foreground mb-2">Phone Number Rental</h2>
       {phoneNumbers.note && (
-        <p className="text-sm text-gray-500 mb-6">
+        <p className="text-sm text-muted-foreground mb-6">
           **{phoneNumbers.note}
         </p>
       )}
       {!phoneNumbers.note && (
-        <p className="text-sm text-gray-500 mb-6">
+        <p className="text-sm text-muted-foreground mb-6">
           Monthly rental rates for SMS-enabled phone numbers.
         </p>
       )}
@@ -687,26 +687,26 @@ function PhoneNumbersSection({ phoneNumbers, countryCode }: { phoneNumbers: NonN
       <div className="overflow-x-auto">
         <table className="w-full">
           <thead>
-            <tr className="border-b border-gray-200">
-              <th className="py-3 pr-4 text-left text-sm font-semibold text-black w-[65%]">Number Type</th>
-              <th className="py-3 text-left text-sm font-semibold text-black">Price</th>
+            <tr className="border-b border-border">
+              <th className="py-3 pr-4 text-left text-sm font-semibold text-foreground w-[65%]">Number Type</th>
+              <th className="py-3 text-left text-sm font-semibold text-foreground">Price</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-gray-100">
+          <tbody className="divide-y divide-border">
             {phoneNumbers.types.map((row) => (
               row.children ? (
                 <tr key={row.type}>
                   <td colSpan={2} className="py-0">
-                    <div className="py-3 text-sm text-gray-900 font-medium border-b border-gray-100">
+                    <div className="py-3 text-sm text-foreground font-medium border-b border-border">
                       {row.type}
-                      {row.note && <span className="ml-2 text-gray-400 font-normal text-xs">Plus one-time setup fee**</span>}
+                      {row.note && <span className="ml-2 text-muted-foreground font-normal text-xs">Plus one-time setup fee**</span>}
                     </div>
                     <table className="w-full">
-                      <tbody className="divide-y divide-gray-100">
+                      <tbody className="divide-y divide-border">
                         {row.children.map((child) => (
                           <tr key={child.type}>
-                            <td className="py-3 pr-4 text-sm text-gray-900 pl-6 w-[65%]">{child.type}</td>
-                            <td className="py-3 text-sm font-medium text-black">{convertPriceString(child.price, countryCode)}</td>
+                            <td className="py-3 pr-4 text-sm text-foreground pl-6 w-[65%]">{child.type}</td>
+                            <td className="py-3 text-sm font-medium text-foreground">{convertPriceString(child.price, countryCode)}</td>
                           </tr>
                         ))}
                       </tbody>
@@ -715,8 +715,8 @@ function PhoneNumbersSection({ phoneNumbers, countryCode }: { phoneNumbers: NonN
                 </tr>
               ) : (
                 <tr key={row.type}>
-                  <td className="py-3 pr-4 text-sm text-gray-900 w-[65%]">{row.type}</td>
-                  <td className="py-3 text-sm font-medium text-black">{convertPriceString(row.price, countryCode)}</td>
+                  <td className="py-3 pr-4 text-sm text-foreground w-[65%]">{row.type}</td>
+                  <td className="py-3 text-sm font-medium text-foreground">{convertPriceString(row.price, countryCode)}</td>
                 </tr>
               )
             ))}
@@ -737,25 +737,25 @@ function AddOnServicesSection() {
 
   return (
     <div>
-      <h2 className="font-sans text-xl font-semibold text-black mb-2">Add-on Services</h2>
-      <p className="text-sm text-gray-500 mb-6">
+      <h2 className="font-sans text-xl font-semibold text-foreground mb-2">Add-on Services</h2>
+      <p className="text-sm text-muted-foreground mb-6">
         Additional services included with your SMS plan.
       </p>
       <div className="overflow-x-auto">
         <table className="w-full">
           <thead>
-            <tr className="border-b border-gray-200">
-              <th className="py-3 pr-4 text-left text-sm font-semibold text-black w-[35%]">Service</th>
-              <th className="py-3 pr-4 text-left text-sm font-semibold text-black w-[45%]">Description</th>
-              <th className="py-3 text-left text-sm font-semibold text-black">Price</th>
+            <tr className="border-b border-border">
+              <th className="py-3 pr-4 text-left text-sm font-semibold text-foreground w-[35%]">Service</th>
+              <th className="py-3 pr-4 text-left text-sm font-semibold text-foreground w-[45%]">Description</th>
+              <th className="py-3 text-left text-sm font-semibold text-foreground">Price</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-gray-100">
+          <tbody className="divide-y divide-border">
             {addOns.map((addon) => (
               <tr key={addon.name}>
-                <td className="py-3 pr-4 text-sm font-medium text-gray-900">{addon.name}</td>
-                <td className="py-3 pr-4 text-sm text-gray-600">{addon.description}</td>
-                <td className="py-3 text-sm font-medium text-green-700">{addon.price}</td>
+                <td className="py-3 pr-4 text-sm font-medium text-foreground">{addon.name}</td>
+                <td className="py-3 pr-4 text-sm text-muted-foreground">{addon.description}</td>
+                <td className="py-3 text-sm font-medium text-green-700 dark:text-green-300">{addon.price}</td>
               </tr>
             ))}
           </tbody>
@@ -784,8 +784,8 @@ function SMSCostCalculator({ countryCode }: { countryCode: string }) {
   if (!calcData) {
     return (
       <div>
-        <h2 className="font-sans text-xl font-semibold text-black mb-2">Cost calculator</h2>
-        <p className="text-sm text-gray-500">
+        <h2 className="font-sans text-xl font-semibold text-foreground mb-2">Cost calculator</h2>
+        <p className="text-sm text-muted-foreground">
           Cost calculator is not available for this country. Contact sales for a custom quote.
         </p>
       </div>
@@ -804,16 +804,16 @@ function SMSCostCalculator({ countryCode }: { countryCode: string }) {
 
   return (
     <div>
-      <h2 className="font-sans text-xl font-semibold text-black mb-2">Cost calculator</h2>
-      <p className="text-sm text-gray-500 mb-6">
+      <h2 className="font-sans text-xl font-semibold text-foreground mb-2">Cost calculator</h2>
+      <p className="text-sm text-muted-foreground mb-6">
         Compare SMS costs between Plivo and other providers.
       </p>
 
       <div className="mb-8">
         {/* Volume slider */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            Monthly SMS volume: <span className="font-semibold text-black">{volume.toLocaleString()}</span>
+          <label className="block text-sm font-medium text-foreground/80 mb-2">
+            Monthly SMS volume: <span className="font-semibold text-foreground">{volume.toLocaleString()}</span>
           </label>
           <input
             type="range"
@@ -826,7 +826,7 @@ function SMSCostCalculator({ countryCode }: { countryCode: string }) {
               background: `linear-gradient(to right, #323dfe ${((volume - 100000) / 500000) * 100}%, #e5e7eb ${((volume - 100000) / 500000) * 100}%)`,
             }}
           />
-          <div className="flex justify-between text-xs text-gray-400 mt-1">
+          <div className="flex justify-between text-xs text-muted-foreground mt-1">
             <span>100K</span>
             <span>600K</span>
           </div>
@@ -837,22 +837,22 @@ function SMSCostCalculator({ countryCode }: { countryCode: string }) {
       <div className="space-y-4">
         <div>
           <div className="flex items-center justify-between mb-1.5">
-            <span className="text-sm font-medium text-black">Plivo</span>
-            <span className="text-sm font-semibold text-black">{currency}{plivoCost.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</span>
+            <span className="text-sm font-medium text-foreground">Plivo</span>
+            <span className="text-sm font-semibold text-foreground">{currency}{plivoCost.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</span>
           </div>
-          <div className="h-8 bg-gray-100 rounded-md overflow-hidden">
+          <div className="h-8 bg-muted rounded-md overflow-hidden">
             <div
-              className="h-full bg-[#323dfe] rounded-md transition-all duration-500"
+              className="h-full bg-primary rounded-md transition-all duration-500"
               style={{ width: maxCost > 0 ? `${(plivoCost / maxCost) * 100}%` : '0%' }}
             />
           </div>
         </div>
         <div>
           <div className="flex items-center justify-between mb-1.5">
-            <span className="text-sm font-medium text-gray-600">Others</span>
-            <span className="text-sm font-semibold text-gray-600">{currency}{othersCost.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</span>
+            <span className="text-sm font-medium text-muted-foreground">Others</span>
+            <span className="text-sm font-semibold text-muted-foreground">{currency}{othersCost.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</span>
           </div>
-          <div className="h-8 bg-gray-100 rounded-md overflow-hidden">
+          <div className="h-8 bg-muted rounded-md overflow-hidden">
             <div
               className="h-full bg-gray-400 rounded-md transition-all duration-500"
               style={{ width: maxCost > 0 ? `${(othersCost / maxCost) * 100}%` : '0%' }}
@@ -863,7 +863,7 @@ function SMSCostCalculator({ countryCode }: { countryCode: string }) {
 
       {/* Savings callout */}
       {savings > 0 && (
-        <div className="mt-6 p-4 bg-green-50 border border-green-200 rounded-lg">
+        <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-900/50 rounded-lg">
           <p className="text-sm text-green-800">
             Save <span className="font-semibold">{currency}{savings.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</span> per month ({savingsPercent}% less) with Plivo
           </p>
@@ -885,124 +885,124 @@ function CarrierFeesSection({ countryCode }: { countryCode: string }) {
 
   return (
     <div className="space-y-10">
-      <h2 className="font-sans text-xl font-semibold text-black">Additional Carrier Surcharge Fees</h2>
+      <h2 className="font-sans text-xl font-semibold text-foreground">Additional Carrier Surcharge Fees</h2>
 
       {/* SMS Carrier Surcharge Fee */}
       <div>
-        <h3 className="text-lg font-medium text-black mb-4">SMS Carrier Surcharge Fee</h3>
+        <h3 className="text-lg font-medium text-foreground mb-4">SMS Carrier Surcharge Fee</h3>
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
-              <tr className="border-b border-gray-200">
-                <th className="py-3 pr-4 text-left font-semibold text-black whitespace-nowrap" rowSpan={2}>Carrier</th>
-                <th className="py-2 px-2 text-center font-semibold text-black border-l border-gray-200 whitespace-nowrap" colSpan={2}>Long Codes</th>
-                <th className="py-2 px-2 text-center font-semibold text-black border-l border-gray-200 whitespace-nowrap" colSpan={2}>Short Codes</th>
-                <th className="py-2 px-2 text-center font-semibold text-black border-l border-gray-200 whitespace-nowrap" colSpan={2}>Toll-Free</th>
+              <tr className="border-b border-border">
+                <th className="py-3 pr-4 text-left font-semibold text-foreground whitespace-nowrap" rowSpan={2}>Carrier</th>
+                <th className="py-2 px-2 text-center font-semibold text-foreground border-l border-border whitespace-nowrap" colSpan={2}>Long Codes</th>
+                <th className="py-2 px-2 text-center font-semibold text-foreground border-l border-border whitespace-nowrap" colSpan={2}>Short Codes</th>
+                <th className="py-2 px-2 text-center font-semibold text-foreground border-l border-border whitespace-nowrap" colSpan={2}>Toll-Free</th>
               </tr>
-              <tr className="border-b border-gray-200">
-                <th className="py-2 px-2 text-center text-xs font-medium text-gray-600 border-l border-gray-200 whitespace-nowrap">To send SMS</th>
-                <th className="py-2 px-2 text-center text-xs font-medium text-gray-600 whitespace-nowrap">To receive SMS</th>
-                <th className="py-2 px-2 text-center text-xs font-medium text-gray-600 border-l border-gray-200 whitespace-nowrap">To send SMS</th>
-                <th className="py-2 px-2 text-center text-xs font-medium text-gray-600 whitespace-nowrap">To receive SMS</th>
-                <th className="py-2 px-2 text-center text-xs font-medium text-gray-600 border-l border-gray-200 whitespace-nowrap">To send SMS</th>
-                <th className="py-2 px-2 text-center text-xs font-medium text-gray-600 whitespace-nowrap">To receive SMS</th>
+              <tr className="border-b border-border">
+                <th className="py-2 px-2 text-center text-xs font-medium text-muted-foreground border-l border-border whitespace-nowrap">To send SMS</th>
+                <th className="py-2 px-2 text-center text-xs font-medium text-muted-foreground whitespace-nowrap">To receive SMS</th>
+                <th className="py-2 px-2 text-center text-xs font-medium text-muted-foreground border-l border-border whitespace-nowrap">To send SMS</th>
+                <th className="py-2 px-2 text-center text-xs font-medium text-muted-foreground whitespace-nowrap">To receive SMS</th>
+                <th className="py-2 px-2 text-center text-xs font-medium text-muted-foreground border-l border-border whitespace-nowrap">To send SMS</th>
+                <th className="py-2 px-2 text-center text-xs font-medium text-muted-foreground whitespace-nowrap">To receive SMS</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-100">
+            <tbody className="divide-y divide-border">
               {isCA ? (
                 <>
                   <tr>
-                    <td className="py-3 pr-4 text-gray-900">Bell & Virgin</td>
-                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0088/sms</td>
-                    <td className="py-3 px-2 text-center text-gray-400">NA</td>
-                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0054/sms</td>
-                    <td className="py-3 px-2 text-center text-black">$0.0054/sms</td>
-                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0088/sms</td>
-                    <td className="py-3 px-2 text-center text-gray-400">NA</td>
+                    <td className="py-3 pr-4 text-foreground">Bell & Virgin</td>
+                    <td className="py-3 px-2 text-center text-foreground border-l border-border">$0.0088/sms</td>
+                    <td className="py-3 px-2 text-center text-muted-foreground">NA</td>
+                    <td className="py-3 px-2 text-center text-foreground border-l border-border">$0.0054/sms</td>
+                    <td className="py-3 px-2 text-center text-foreground">$0.0054/sms</td>
+                    <td className="py-3 px-2 text-center text-foreground border-l border-border">$0.0088/sms</td>
+                    <td className="py-3 px-2 text-center text-muted-foreground">NA</td>
                   </tr>
                   <tr>
-                    <td className="py-3 pr-4 text-gray-900">Rogers & Fido</td>
-                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0097/sms</td>
-                    <td className="py-3 px-2 text-center text-gray-400">NA</td>
-                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0044/sms</td>
-                    <td className="py-3 px-2 text-center text-black">$0.0044/sms</td>
-                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0088/sms</td>
-                    <td className="py-3 px-2 text-center text-gray-400">NA</td>
+                    <td className="py-3 pr-4 text-foreground">Rogers & Fido</td>
+                    <td className="py-3 px-2 text-center text-foreground border-l border-border">$0.0097/sms</td>
+                    <td className="py-3 px-2 text-center text-muted-foreground">NA</td>
+                    <td className="py-3 px-2 text-center text-foreground border-l border-border">$0.0044/sms</td>
+                    <td className="py-3 px-2 text-center text-foreground">$0.0044/sms</td>
+                    <td className="py-3 px-2 text-center text-foreground border-l border-border">$0.0088/sms</td>
+                    <td className="py-3 px-2 text-center text-muted-foreground">NA</td>
                   </tr>
                   <tr>
-                    <td className="py-3 pr-4 text-gray-900">Telus</td>
-                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0100/sms</td>
-                    <td className="py-3 px-2 text-center text-gray-400">NA</td>
-                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0065/sms</td>
-                    <td className="py-3 px-2 text-center text-gray-400">NA</td>
-                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0100/sms</td>
-                    <td className="py-3 px-2 text-center text-gray-400">NA</td>
+                    <td className="py-3 pr-4 text-foreground">Telus</td>
+                    <td className="py-3 px-2 text-center text-foreground border-l border-border">$0.0100/sms</td>
+                    <td className="py-3 px-2 text-center text-muted-foreground">NA</td>
+                    <td className="py-3 px-2 text-center text-foreground border-l border-border">$0.0065/sms</td>
+                    <td className="py-3 px-2 text-center text-muted-foreground">NA</td>
+                    <td className="py-3 px-2 text-center text-foreground border-l border-border">$0.0100/sms</td>
+                    <td className="py-3 px-2 text-center text-muted-foreground">NA</td>
                   </tr>
                   <tr>
-                    <td className="py-3 pr-4 text-gray-900">Freedom</td>
-                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0072/sms</td>
-                    <td className="py-3 px-2 text-center text-gray-400">NA</td>
-                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0080/sms</td>
-                    <td className="py-3 px-2 text-center text-gray-400">NA</td>
-                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0072/sms</td>
-                    <td className="py-3 px-2 text-center text-gray-400">NA</td>
+                    <td className="py-3 pr-4 text-foreground">Freedom</td>
+                    <td className="py-3 px-2 text-center text-foreground border-l border-border">$0.0072/sms</td>
+                    <td className="py-3 px-2 text-center text-muted-foreground">NA</td>
+                    <td className="py-3 px-2 text-center text-foreground border-l border-border">$0.0080/sms</td>
+                    <td className="py-3 px-2 text-center text-muted-foreground">NA</td>
+                    <td className="py-3 px-2 text-center text-foreground border-l border-border">$0.0072/sms</td>
+                    <td className="py-3 px-2 text-center text-muted-foreground">NA</td>
                   </tr>
                   <tr>
-                    <td className="py-3 pr-4 text-gray-900">Videotron</td>
-                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0072/sms</td>
-                    <td className="py-3 px-2 text-center text-gray-400">NA</td>
-                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0040/sms</td>
-                    <td className="py-3 px-2 text-center text-black">$0.0040/sms</td>
-                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0072/sms</td>
-                    <td className="py-3 px-2 text-center text-gray-400">NA</td>
+                    <td className="py-3 pr-4 text-foreground">Videotron</td>
+                    <td className="py-3 px-2 text-center text-foreground border-l border-border">$0.0072/sms</td>
+                    <td className="py-3 px-2 text-center text-muted-foreground">NA</td>
+                    <td className="py-3 px-2 text-center text-foreground border-l border-border">$0.0040/sms</td>
+                    <td className="py-3 px-2 text-center text-foreground">$0.0040/sms</td>
+                    <td className="py-3 px-2 text-center text-foreground border-l border-border">$0.0072/sms</td>
+                    <td className="py-3 px-2 text-center text-muted-foreground">NA</td>
                   </tr>
                   <tr>
-                    <td className="py-3 pr-4 text-gray-900">Other Networks</td>
-                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0080/sms</td>
-                    <td className="py-3 px-2 text-center text-gray-400">NA</td>
-                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0080/sms</td>
-                    <td className="py-3 px-2 text-center text-gray-400">NA</td>
-                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0080/sms</td>
-                    <td className="py-3 px-2 text-center text-gray-400">NA</td>
+                    <td className="py-3 pr-4 text-foreground">Other Networks</td>
+                    <td className="py-3 px-2 text-center text-foreground border-l border-border">$0.0080/sms</td>
+                    <td className="py-3 px-2 text-center text-muted-foreground">NA</td>
+                    <td className="py-3 px-2 text-center text-foreground border-l border-border">$0.0080/sms</td>
+                    <td className="py-3 px-2 text-center text-muted-foreground">NA</td>
+                    <td className="py-3 px-2 text-center text-foreground border-l border-border">$0.0080/sms</td>
+                    <td className="py-3 px-2 text-center text-muted-foreground">NA</td>
                   </tr>
                 </>
               ) : (
                 <>
                   <tr>
-                    <td className="py-3 pr-4 text-gray-900">AT&T</td>
-                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0035/sms</td>
-                    <td className="py-3 px-2 text-center text-black">$0.0035/sms</td>
-                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0035/sms</td>
-                    <td className="py-3 px-2 text-center text-gray-400">NA</td>
-                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0035/sms</td>
-                    <td className="py-3 px-2 text-center text-black">$0.0035/sms</td>
+                    <td className="py-3 pr-4 text-foreground">AT&T</td>
+                    <td className="py-3 px-2 text-center text-foreground border-l border-border">$0.0035/sms</td>
+                    <td className="py-3 px-2 text-center text-foreground">$0.0035/sms</td>
+                    <td className="py-3 px-2 text-center text-foreground border-l border-border">$0.0035/sms</td>
+                    <td className="py-3 px-2 text-center text-muted-foreground">NA</td>
+                    <td className="py-3 px-2 text-center text-foreground border-l border-border">$0.0035/sms</td>
+                    <td className="py-3 px-2 text-center text-foreground">$0.0035/sms</td>
                   </tr>
                   <tr>
-                    <td className="py-3 pr-4 text-gray-900">T-Mobile</td>
-                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0045/sms</td>
-                    <td className="py-3 px-2 text-center text-black">$0.0025/sms</td>
-                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0045/sms</td>
-                    <td className="py-3 px-2 text-center text-black">$0.0025/sms</td>
-                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0045/sms</td>
-                    <td className="py-3 px-2 text-center text-black">$0.0025/sms</td>
+                    <td className="py-3 pr-4 text-foreground">T-Mobile</td>
+                    <td className="py-3 px-2 text-center text-foreground border-l border-border">$0.0045/sms</td>
+                    <td className="py-3 px-2 text-center text-foreground">$0.0025/sms</td>
+                    <td className="py-3 px-2 text-center text-foreground border-l border-border">$0.0045/sms</td>
+                    <td className="py-3 px-2 text-center text-foreground">$0.0025/sms</td>
+                    <td className="py-3 px-2 text-center text-foreground border-l border-border">$0.0045/sms</td>
+                    <td className="py-3 px-2 text-center text-foreground">$0.0025/sms</td>
                   </tr>
                   <tr>
-                    <td className="py-3 pr-4 text-gray-900">Verizon</td>
-                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0040/sms</td>
-                    <td className="py-3 px-2 text-center text-gray-400">NA</td>
-                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0040/sms</td>
-                    <td className="py-3 px-2 text-center text-gray-400">NA</td>
-                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0040/sms</td>
-                    <td className="py-3 px-2 text-center text-gray-400">NA</td>
+                    <td className="py-3 pr-4 text-foreground">Verizon</td>
+                    <td className="py-3 px-2 text-center text-foreground border-l border-border">$0.0040/sms</td>
+                    <td className="py-3 px-2 text-center text-muted-foreground">NA</td>
+                    <td className="py-3 px-2 text-center text-foreground border-l border-border">$0.0040/sms</td>
+                    <td className="py-3 px-2 text-center text-muted-foreground">NA</td>
+                    <td className="py-3 px-2 text-center text-foreground border-l border-border">$0.0040/sms</td>
+                    <td className="py-3 px-2 text-center text-muted-foreground">NA</td>
                   </tr>
                   <tr>
-                    <td className="py-3 pr-4 text-gray-900">US Cellular & Other Networks</td>
-                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0050/sms</td>
-                    <td className="py-3 px-2 text-center text-black">$0.0025/sms</td>
-                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0045/sms</td>
-                    <td className="py-3 px-2 text-center text-black">$0.0025/sms</td>
-                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0045/sms</td>
-                    <td className="py-3 px-2 text-center text-black">$0.0025/sms</td>
+                    <td className="py-3 pr-4 text-foreground">US Cellular & Other Networks</td>
+                    <td className="py-3 px-2 text-center text-foreground border-l border-border">$0.0050/sms</td>
+                    <td className="py-3 px-2 text-center text-foreground">$0.0025/sms</td>
+                    <td className="py-3 px-2 text-center text-foreground border-l border-border">$0.0045/sms</td>
+                    <td className="py-3 px-2 text-center text-foreground">$0.0025/sms</td>
+                    <td className="py-3 px-2 text-center text-foreground border-l border-border">$0.0045/sms</td>
+                    <td className="py-3 px-2 text-center text-foreground">$0.0025/sms</td>
                   </tr>
                 </>
               )}
@@ -1013,108 +1013,108 @@ function CarrierFeesSection({ countryCode }: { countryCode: string }) {
 
       {/* MMS Carrier Surcharge Fee */}
       <div className="pt-2">
-        <h3 className="text-lg font-medium text-black mb-4">MMS Carrier Surcharge Fee</h3>
+        <h3 className="text-lg font-medium text-foreground mb-4">MMS Carrier Surcharge Fee</h3>
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
-              <tr className="border-b border-gray-200">
-                <th className="py-3 pr-4 text-left font-semibold text-black whitespace-nowrap" rowSpan={2}>Carrier</th>
-                <th className="py-2 px-2 text-center font-semibold text-black border-l border-gray-200 whitespace-nowrap" colSpan={2}>Long Codes</th>
-                {!isCA && <th className="py-2 px-2 text-center font-semibold text-black border-l border-gray-200 whitespace-nowrap" colSpan={2}>Short Codes</th>}
-                <th className="py-2 px-2 text-center font-semibold text-black border-l border-gray-200 whitespace-nowrap" colSpan={2}>Toll-Free</th>
+              <tr className="border-b border-border">
+                <th className="py-3 pr-4 text-left font-semibold text-foreground whitespace-nowrap" rowSpan={2}>Carrier</th>
+                <th className="py-2 px-2 text-center font-semibold text-foreground border-l border-border whitespace-nowrap" colSpan={2}>Long Codes</th>
+                {!isCA && <th className="py-2 px-2 text-center font-semibold text-foreground border-l border-border whitespace-nowrap" colSpan={2}>Short Codes</th>}
+                <th className="py-2 px-2 text-center font-semibold text-foreground border-l border-border whitespace-nowrap" colSpan={2}>Toll-Free</th>
               </tr>
-              <tr className="border-b border-gray-200">
-                <th className="py-2 px-2 text-center text-xs font-medium text-gray-600 border-l border-gray-200 whitespace-nowrap">To send MMS</th>
-                <th className="py-2 px-2 text-center text-xs font-medium text-gray-600 whitespace-nowrap">To receive MMS</th>
-                {!isCA && <th className="py-2 px-2 text-center text-xs font-medium text-gray-600 border-l border-gray-200 whitespace-nowrap">To send MMS</th>}
-                {!isCA && <th className="py-2 px-2 text-center text-xs font-medium text-gray-600 whitespace-nowrap">To receive MMS</th>}
-                <th className="py-2 px-2 text-center text-xs font-medium text-gray-600 border-l border-gray-200 whitespace-nowrap">To send MMS</th>
-                <th className="py-2 px-2 text-center text-xs font-medium text-gray-600 whitespace-nowrap">To receive MMS</th>
+              <tr className="border-b border-border">
+                <th className="py-2 px-2 text-center text-xs font-medium text-muted-foreground border-l border-border whitespace-nowrap">To send MMS</th>
+                <th className="py-2 px-2 text-center text-xs font-medium text-muted-foreground whitespace-nowrap">To receive MMS</th>
+                {!isCA && <th className="py-2 px-2 text-center text-xs font-medium text-muted-foreground border-l border-border whitespace-nowrap">To send MMS</th>}
+                {!isCA && <th className="py-2 px-2 text-center text-xs font-medium text-muted-foreground whitespace-nowrap">To receive MMS</th>}
+                <th className="py-2 px-2 text-center text-xs font-medium text-muted-foreground border-l border-border whitespace-nowrap">To send MMS</th>
+                <th className="py-2 px-2 text-center text-xs font-medium text-muted-foreground whitespace-nowrap">To receive MMS</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-100">
+            <tbody className="divide-y divide-border">
               {isCA ? (
                 <>
                   <tr>
-                    <td className="py-3 pr-4 text-gray-900">Bell & Virgin</td>
-                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0310/mms</td>
-                    <td className="py-3 px-2 text-center text-gray-400">NA</td>
-                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0310/mms</td>
-                    <td className="py-3 px-2 text-center text-gray-400">NA</td>
+                    <td className="py-3 pr-4 text-foreground">Bell & Virgin</td>
+                    <td className="py-3 px-2 text-center text-foreground border-l border-border">$0.0310/mms</td>
+                    <td className="py-3 px-2 text-center text-muted-foreground">NA</td>
+                    <td className="py-3 px-2 text-center text-foreground border-l border-border">$0.0310/mms</td>
+                    <td className="py-3 px-2 text-center text-muted-foreground">NA</td>
                   </tr>
                   <tr>
-                    <td className="py-3 pr-4 text-gray-900">Rogers & Fido</td>
-                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0194/mms</td>
-                    <td className="py-3 px-2 text-center text-gray-400">NA</td>
-                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0176/mms</td>
-                    <td className="py-3 px-2 text-center text-gray-400">NA</td>
+                    <td className="py-3 pr-4 text-foreground">Rogers & Fido</td>
+                    <td className="py-3 px-2 text-center text-foreground border-l border-border">$0.0194/mms</td>
+                    <td className="py-3 px-2 text-center text-muted-foreground">NA</td>
+                    <td className="py-3 px-2 text-center text-foreground border-l border-border">$0.0176/mms</td>
+                    <td className="py-3 px-2 text-center text-muted-foreground">NA</td>
                   </tr>
                   <tr>
-                    <td className="py-3 pr-4 text-gray-900">Telus</td>
-                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0200/mms</td>
-                    <td className="py-3 px-2 text-center text-gray-400">NA</td>
-                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0200/mms</td>
-                    <td className="py-3 px-2 text-center text-gray-400">NA</td>
+                    <td className="py-3 pr-4 text-foreground">Telus</td>
+                    <td className="py-3 px-2 text-center text-foreground border-l border-border">$0.0200/mms</td>
+                    <td className="py-3 px-2 text-center text-muted-foreground">NA</td>
+                    <td className="py-3 px-2 text-center text-foreground border-l border-border">$0.0200/mms</td>
+                    <td className="py-3 px-2 text-center text-muted-foreground">NA</td>
                   </tr>
                   <tr>
-                    <td className="py-3 pr-4 text-gray-900">Freedom</td>
-                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0096/mms</td>
-                    <td className="py-3 px-2 text-center text-gray-400">NA</td>
-                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0096/mms</td>
-                    <td className="py-3 px-2 text-center text-gray-400">NA</td>
+                    <td className="py-3 pr-4 text-foreground">Freedom</td>
+                    <td className="py-3 px-2 text-center text-foreground border-l border-border">$0.0096/mms</td>
+                    <td className="py-3 px-2 text-center text-muted-foreground">NA</td>
+                    <td className="py-3 px-2 text-center text-foreground border-l border-border">$0.0096/mms</td>
+                    <td className="py-3 px-2 text-center text-muted-foreground">NA</td>
                   </tr>
                   <tr>
-                    <td className="py-3 pr-4 text-gray-900">Videotron</td>
-                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0096/mms</td>
-                    <td className="py-3 px-2 text-center text-gray-400">NA</td>
-                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0096/mms</td>
-                    <td className="py-3 px-2 text-center text-gray-400">NA</td>
+                    <td className="py-3 pr-4 text-foreground">Videotron</td>
+                    <td className="py-3 px-2 text-center text-foreground border-l border-border">$0.0096/mms</td>
+                    <td className="py-3 px-2 text-center text-muted-foreground">NA</td>
+                    <td className="py-3 px-2 text-center text-foreground border-l border-border">$0.0096/mms</td>
+                    <td className="py-3 px-2 text-center text-muted-foreground">NA</td>
                   </tr>
                   <tr>
-                    <td className="py-3 pr-4 text-gray-900">Other Networks</td>
-                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0160/mms</td>
-                    <td className="py-3 px-2 text-center text-gray-400">NA</td>
-                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0160/mms</td>
-                    <td className="py-3 px-2 text-center text-gray-400">NA</td>
+                    <td className="py-3 pr-4 text-foreground">Other Networks</td>
+                    <td className="py-3 px-2 text-center text-foreground border-l border-border">$0.0160/mms</td>
+                    <td className="py-3 px-2 text-center text-muted-foreground">NA</td>
+                    <td className="py-3 px-2 text-center text-foreground border-l border-border">$0.0160/mms</td>
+                    <td className="py-3 px-2 text-center text-muted-foreground">NA</td>
                   </tr>
                 </>
               ) : (
                 <>
                   <tr>
-                    <td className="py-3 pr-4 text-gray-900">AT&T</td>
-                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0090/mms</td>
-                    <td className="py-3 px-2 text-center text-black">$0.0090/mms</td>
-                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0090/mms</td>
-                    <td className="py-3 px-2 text-center text-gray-400">NA</td>
-                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0090/mms</td>
-                    <td className="py-3 px-2 text-center text-black">$0.0090/mms</td>
+                    <td className="py-3 pr-4 text-foreground">AT&T</td>
+                    <td className="py-3 px-2 text-center text-foreground border-l border-border">$0.0090/mms</td>
+                    <td className="py-3 px-2 text-center text-foreground">$0.0090/mms</td>
+                    <td className="py-3 px-2 text-center text-foreground border-l border-border">$0.0090/mms</td>
+                    <td className="py-3 px-2 text-center text-muted-foreground">NA</td>
+                    <td className="py-3 px-2 text-center text-foreground border-l border-border">$0.0090/mms</td>
+                    <td className="py-3 px-2 text-center text-foreground">$0.0090/mms</td>
                   </tr>
                   <tr>
-                    <td className="py-3 pr-4 text-gray-900">T-Mobile</td>
-                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0100/mms</td>
-                    <td className="py-3 px-2 text-center text-black">$0.0100/mms</td>
-                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0100/mms</td>
-                    <td className="py-3 px-2 text-center text-black">$0.0100/mms</td>
-                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0100/mms</td>
-                    <td className="py-3 px-2 text-center text-black">$0.0100/mms</td>
+                    <td className="py-3 pr-4 text-foreground">T-Mobile</td>
+                    <td className="py-3 px-2 text-center text-foreground border-l border-border">$0.0100/mms</td>
+                    <td className="py-3 px-2 text-center text-foreground">$0.0100/mms</td>
+                    <td className="py-3 px-2 text-center text-foreground border-l border-border">$0.0100/mms</td>
+                    <td className="py-3 px-2 text-center text-foreground">$0.0100/mms</td>
+                    <td className="py-3 px-2 text-center text-foreground border-l border-border">$0.0100/mms</td>
+                    <td className="py-3 px-2 text-center text-foreground">$0.0100/mms</td>
                   </tr>
                   <tr>
-                    <td className="py-3 pr-4 text-gray-900">Verizon</td>
-                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0065/mms</td>
-                    <td className="py-3 px-2 text-center text-gray-400">NA</td>
-                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0065/mms</td>
-                    <td className="py-3 px-2 text-center text-gray-400">NA</td>
-                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0065/mms</td>
-                    <td className="py-3 px-2 text-center text-gray-400">NA</td>
+                    <td className="py-3 pr-4 text-foreground">Verizon</td>
+                    <td className="py-3 px-2 text-center text-foreground border-l border-border">$0.0065/mms</td>
+                    <td className="py-3 px-2 text-center text-muted-foreground">NA</td>
+                    <td className="py-3 px-2 text-center text-foreground border-l border-border">$0.0065/mms</td>
+                    <td className="py-3 px-2 text-center text-muted-foreground">NA</td>
+                    <td className="py-3 px-2 text-center text-foreground border-l border-border">$0.0065/mms</td>
+                    <td className="py-3 px-2 text-center text-muted-foreground">NA</td>
                   </tr>
                   <tr>
-                    <td className="py-3 pr-4 text-gray-900">US Cellular & Other Networks</td>
-                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0100/mms</td>
-                    <td className="py-3 px-2 text-center text-black">$0.0100/mms</td>
-                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0100/mms</td>
-                    <td className="py-3 px-2 text-center text-black">$0.0100/mms</td>
-                    <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0100/mms</td>
-                    <td className="py-3 px-2 text-center text-black">$0.0100/mms</td>
+                    <td className="py-3 pr-4 text-foreground">US Cellular & Other Networks</td>
+                    <td className="py-3 px-2 text-center text-foreground border-l border-border">$0.0100/mms</td>
+                    <td className="py-3 px-2 text-center text-foreground">$0.0100/mms</td>
+                    <td className="py-3 px-2 text-center text-foreground border-l border-border">$0.0100/mms</td>
+                    <td className="py-3 px-2 text-center text-foreground">$0.0100/mms</td>
+                    <td className="py-3 px-2 text-center text-foreground border-l border-border">$0.0100/mms</td>
+                    <td className="py-3 px-2 text-center text-foreground">$0.0100/mms</td>
                   </tr>
                 </>
               )}
@@ -1126,57 +1126,57 @@ function CarrierFeesSection({ countryCode }: { countryCode: string }) {
       {/* RCS Carrier Surcharge Fee - US only */}
       {!isCA && (
         <div className="pt-2">
-          <h3 className="text-lg font-medium text-black mb-4">RCS Carrier Surcharge Fee</h3>
+          <h3 className="text-lg font-medium text-foreground mb-4">RCS Carrier Surcharge Fee</h3>
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
-                <tr className="border-b border-gray-200">
-                  <th className="py-3 pr-4 text-left font-semibold text-black whitespace-nowrap" rowSpan={2}>Carrier</th>
-                  <th className="py-2 px-2 text-center font-semibold text-black border-l border-gray-200 whitespace-nowrap" colSpan={2}>RCS Rich</th>
-                  <th className="py-2 px-2 text-center font-semibold text-black border-l border-gray-200 whitespace-nowrap" colSpan={2}>RCS Rich Media</th>
+                <tr className="border-b border-border">
+                  <th className="py-3 pr-4 text-left font-semibold text-foreground whitespace-nowrap" rowSpan={2}>Carrier</th>
+                  <th className="py-2 px-2 text-center font-semibold text-foreground border-l border-border whitespace-nowrap" colSpan={2}>RCS Rich</th>
+                  <th className="py-2 px-2 text-center font-semibold text-foreground border-l border-border whitespace-nowrap" colSpan={2}>RCS Rich Media</th>
                 </tr>
-                <tr className="border-b border-gray-200">
-                  <th className="py-2 px-2 text-center text-xs font-medium text-gray-600 border-l border-gray-200 whitespace-nowrap">Outbound*</th>
-                  <th className="py-2 px-2 text-center text-xs font-medium text-gray-600 whitespace-nowrap">Inbound*</th>
-                  <th className="py-2 px-2 text-center text-xs font-medium text-gray-600 border-l border-gray-200 whitespace-nowrap">Outbound*</th>
-                  <th className="py-2 px-2 text-center text-xs font-medium text-gray-600 whitespace-nowrap">Inbound*</th>
+                <tr className="border-b border-border">
+                  <th className="py-2 px-2 text-center text-xs font-medium text-muted-foreground border-l border-border whitespace-nowrap">Outbound*</th>
+                  <th className="py-2 px-2 text-center text-xs font-medium text-muted-foreground whitespace-nowrap">Inbound*</th>
+                  <th className="py-2 px-2 text-center text-xs font-medium text-muted-foreground border-l border-border whitespace-nowrap">Outbound*</th>
+                  <th className="py-2 px-2 text-center text-xs font-medium text-muted-foreground whitespace-nowrap">Inbound*</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-100">
+              <tbody className="divide-y divide-border">
                 <tr>
-                  <td className="py-3 pr-4 text-gray-900">AT&T</td>
-                  <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0045</td>
-                  <td className="py-3 px-2 text-center text-black">$0.0045</td>
-                  <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.01</td>
-                  <td className="py-3 px-2 text-center text-black">$0.01</td>
+                  <td className="py-3 pr-4 text-foreground">AT&T</td>
+                  <td className="py-3 px-2 text-center text-foreground border-l border-border">$0.0045</td>
+                  <td className="py-3 px-2 text-center text-foreground">$0.0045</td>
+                  <td className="py-3 px-2 text-center text-foreground border-l border-border">$0.01</td>
+                  <td className="py-3 px-2 text-center text-foreground">$0.01</td>
                 </tr>
                 <tr>
-                  <td className="py-3 pr-4 text-gray-900">T-Mobile</td>
-                  <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0062</td>
-                  <td className="py-3 px-2 text-center text-black">$0.0025</td>
-                  <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0125</td>
-                  <td className="py-3 px-2 text-center text-black">$0.0125</td>
+                  <td className="py-3 pr-4 text-foreground">T-Mobile</td>
+                  <td className="py-3 px-2 text-center text-foreground border-l border-border">$0.0062</td>
+                  <td className="py-3 px-2 text-center text-foreground">$0.0025</td>
+                  <td className="py-3 px-2 text-center text-foreground border-l border-border">$0.0125</td>
+                  <td className="py-3 px-2 text-center text-foreground">$0.0125</td>
                 </tr>
                 <tr>
-                  <td className="py-3 pr-4 text-gray-900">Verizon</td>
-                  <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.004</td>
-                  <td className="py-3 px-2 text-center text-gray-400">$0</td>
-                  <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.006</td>
-                  <td className="py-3 px-2 text-center text-gray-400">$0</td>
+                  <td className="py-3 pr-4 text-foreground">Verizon</td>
+                  <td className="py-3 px-2 text-center text-foreground border-l border-border">$0.004</td>
+                  <td className="py-3 px-2 text-center text-muted-foreground">$0</td>
+                  <td className="py-3 px-2 text-center text-foreground border-l border-border">$0.006</td>
+                  <td className="py-3 px-2 text-center text-muted-foreground">$0</td>
                 </tr>
                 <tr>
-                  <td className="py-3 pr-4 text-gray-900">US Cellular</td>
-                  <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0062</td>
-                  <td className="py-3 px-2 text-center text-black">$0.0025</td>
-                  <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0135</td>
-                  <td className="py-3 px-2 text-center text-black">$0.0135</td>
+                  <td className="py-3 pr-4 text-foreground">US Cellular</td>
+                  <td className="py-3 px-2 text-center text-foreground border-l border-border">$0.0062</td>
+                  <td className="py-3 px-2 text-center text-foreground">$0.0025</td>
+                  <td className="py-3 px-2 text-center text-foreground border-l border-border">$0.0135</td>
+                  <td className="py-3 px-2 text-center text-foreground">$0.0135</td>
                 </tr>
                 <tr>
-                  <td className="py-3 pr-4 text-gray-900">All other carriers</td>
-                  <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.0045</td>
-                  <td className="py-3 px-2 text-center text-black">$0.0045</td>
-                  <td className="py-3 px-2 text-center text-black border-l border-gray-100">$0.01</td>
-                  <td className="py-3 px-2 text-center text-black">$0.01</td>
+                  <td className="py-3 pr-4 text-foreground">All other carriers</td>
+                  <td className="py-3 px-2 text-center text-foreground border-l border-border">$0.0045</td>
+                  <td className="py-3 px-2 text-center text-foreground">$0.0045</td>
+                  <td className="py-3 px-2 text-center text-foreground border-l border-border">$0.01</td>
+                  <td className="py-3 px-2 text-center text-foreground">$0.01</td>
                 </tr>
               </tbody>
             </table>

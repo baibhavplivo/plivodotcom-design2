@@ -27,11 +27,11 @@ export default function PhoneNumbersHeroIllustration() {
       {/* Dotted Grid Background */}
       <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
         <div className="relative w-full h-full">
-          <div className="h-full w-full" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }} />
+          <div className="h-full w-full" style={{ backgroundImage: 'radial-gradient(circle, hsl(var(--border)) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }} />
           <div
             className="absolute inset-0 pointer-events-none"
             style={{
-              background: "radial-gradient(ellipse at center, transparent 20%, white 70%)",
+              background: "radial-gradient(ellipse at center, transparent 20%, hsl(var(--background)) 70%)",
             }}
           />
         </div>
@@ -43,24 +43,24 @@ export default function PhoneNumbersHeroIllustration() {
           isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
         }`}
       >
-        <div className="bg-white rounded-xl shadow-xl border border-gray-200 overflow-hidden">
+        <div className="bg-background rounded-xl border border-border overflow-hidden">
           {/* Console Header */}
-          <div className="bg-gray-50 border-b border-gray-200 px-4 py-3 flex items-center gap-2">
+          <div className="bg-surface border-b border-border px-4 py-3 flex items-center gap-2">
             <div className="flex gap-1.5">
               <div className="w-2.5 h-2.5 rounded-full bg-red-400" />
               <div className="w-2.5 h-2.5 rounded-full bg-yellow-400" />
               <div className="w-2.5 h-2.5 rounded-full bg-green-400" />
             </div>
-            <span className="text-xs font-medium text-gray-500 ml-2">Phone numbers</span>
+            <span className="text-xs font-medium text-muted-foreground ml-2">Phone numbers</span>
           </div>
 
           {/* Search Bar */}
           <div className="px-4 pt-4 pb-3">
-            <div className="flex items-center gap-2 px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg">
-              <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+            <div className="flex items-center gap-2 px-3 py-2 bg-surface border border-border rounded-lg">
+              <svg className="w-4 h-4 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
               </svg>
-              <span className="text-xs text-gray-400">Search available numbers...</span>
+              <span className="text-xs text-muted-foreground">Search available numbers...</span>
             </div>
           </div>
 
@@ -69,12 +69,12 @@ export default function PhoneNumbersHeroIllustration() {
             {["🇺🇸 US", "🇬🇧 UK", "🇮🇳 IN", "🇩🇪 DE", "🇦🇺 AU", "🇨🇦 CA"].map((c, i) => (
               <span
                 key={i}
-                className="px-2 py-1 text-[10px] font-medium rounded-full bg-gray-100 text-gray-600"
+                className="px-2 py-1 text-[10px] font-medium rounded-full bg-muted text-muted-foreground"
               >
                 {c}
               </span>
             ))}
-            <span className="px-2 py-1 text-[10px] font-medium rounded-full bg-gray-100 text-gray-500">
+            <span className="px-2 py-1 text-[10px] font-medium rounded-full bg-muted text-muted-foreground">
               +60 more
             </span>
           </div>
@@ -86,22 +86,22 @@ export default function PhoneNumbersHeroIllustration() {
                 key={i}
                 className={`flex items-center justify-between px-3 py-2.5 rounded-lg border transition-all duration-500 ${
                   activeIndex === i
-                    ? "border-[#323dfe]/30 bg-[#323dfe]/5 shadow-sm"
-                    : "border-gray-100 bg-white"
+                    ? "border-primary/30 bg-primary/5 shadow-sm"
+                    : "border-border bg-background"
                 }`}
               >
                 <div className="flex items-center gap-2.5">
                   <span className="text-base">{num.flag}</span>
                   <div>
-                    <p className="text-xs font-medium text-gray-900">{num.code}</p>
-                    <p className="text-[10px] text-gray-400">{num.type}</p>
+                    <p className="text-xs font-medium text-foreground">{num.code}</p>
+                    <p className="text-[10px] text-muted-foreground">{num.type}</p>
                   </div>
                 </div>
                 <button
                   className={`px-2.5 py-1 rounded-md text-[10px] font-medium transition-all duration-500 ${
                     activeIndex === i
-                      ? "bg-[#323dfe] text-white"
-                      : "bg-gray-100 text-gray-600"
+                      ? "bg-primary text-white"
+                      : "bg-muted text-muted-foreground"
                   }`}
                 >
                   {activeIndex === i ? "Buy" : "Select"}
@@ -111,12 +111,12 @@ export default function PhoneNumbersHeroIllustration() {
           </div>
 
           {/* Footer Stats */}
-          <div className="border-t border-gray-100 px-4 py-3 flex items-center justify-between bg-gray-50/50">
+          <div className="border-t border-border px-4 py-3 flex items-center justify-between bg-surface/50">
             <div className="flex items-center gap-1.5">
               <div className="w-1.5 h-1.5 rounded-full bg-green-400" />
-              <span className="text-[10px] text-gray-500">Instant activation</span>
+              <span className="text-[10px] text-muted-foreground">Instant activation</span>
             </div>
-            <span className="text-[10px] text-gray-400">50+ countries</span>
+            <span className="text-[10px] text-muted-foreground">50+ countries</span>
           </div>
         </div>
       </div>

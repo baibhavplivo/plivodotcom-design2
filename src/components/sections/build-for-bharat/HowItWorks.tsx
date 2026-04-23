@@ -25,14 +25,22 @@ const steps = [
 
 export default function HowItWorks() {
   return (
-    <section className="py-10 sm:py-12 lg:py-[60px] bg-white">
+    <section className="py-10 sm:py-12 lg:py-[60px] bg-background border-t border-border">
       <div className="container mx-auto max-w-7xl px-4">
         {/* Section header */}
         <div className="text-center mb-12 sm:mb-16">
-          <span className="inline-block text-sm font-medium text-[#323DFE] mb-3 tracking-wide uppercase">
+          <span className="inline-block text-sm font-medium text-primary mb-3 font-mono-ui uppercase tracking-[0.1em]">
             How It Works
           </span>
-          <h2 className="font-sora text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] font-normal leading-[1.25] tracking-[-0.02em] text-black">
+          <div className="flex items-center gap-3 font-mono-ui text-[11px] uppercase tracking-[0.12em] text-muted-foreground mb-8">
+          <span className="flex items-center gap-2">
+            <span className="tabular-nums text-foreground/70">~</span>
+            <span className="h-px w-6 bg-border" />
+          </span>
+          <span>how it works</span>
+          <span className="flex-1 border-t border-dashed border-border" />
+        </div>
+        <h2 className="font-sora text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] font-normal leading-[1.04] tracking-[-0.035em] text-foreground">
             Go live with bonus credits in minutes
           </h2>
         </div>
@@ -49,10 +57,10 @@ export default function HowItWorks() {
                 {step.number !== "04" && <div className="h-px flex-1 bg-gray-200" />}
               </div>
               {/* Step content */}
-              <h3 className="font-inter text-[1.125rem] font-semibold text-black mb-2">
+              <h3 className="font-inter text-[1.125rem] font-semibold text-foreground mb-2">
                 {step.title}
               </h3>
-              <p className="text-[0.9375rem] text-gray-600 leading-relaxed">
+              <p className="text-[0.9375rem] text-muted-foreground leading-relaxed">
                 {step.description}
               </p>
             </div>
@@ -83,7 +91,7 @@ export default function HowItWorks() {
           >
             <p className="text-gray-300 text-base sm:text-lg mb-2">
               You recharge <span className="font-semibold text-white">{"\u20B9"}10,000</span>{" "}
-              <span className="text-gray-500 mx-1">&rarr;</span> You get{" "}
+              <span className="text-muted-foreground mx-1">&rarr;</span> You get{" "}
               <span className="font-semibold text-white">{"\u20B9"}10,000 bonus</span>
             </p>
             <p className="font-inter text-xl sm:text-2xl font-bold text-white">

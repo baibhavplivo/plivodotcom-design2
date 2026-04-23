@@ -9,7 +9,7 @@ interface Feature {
 // Illustration: Global Reach
 function GlobalReachIllustration() {
   return (
-    <div className="relative h-48 w-full rounded-lg overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
+    <div className="relative h-48 w-full rounded-lg overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, hsl(var(--border)) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="relative h-full w-full">
         {/* Rotating Globe */}
         <div
@@ -35,17 +35,17 @@ function GlobalReachIllustration() {
 
         {/* 150+ Countries pill */}
         <div className="absolute right-4 top-1/2 -translate-y-1/2 z-10">
-          <div className="bg-white/95 backdrop-blur-sm rounded-full px-4 py-2 shadow-lg border border-gray-200/60">
+          <div className="bg-background/95 backdrop-blur-sm rounded-full px-4 py-2 shadow-sm border border-border/60">
             <div className="flex items-center gap-1.5">
-              <span className="text-[22px] font-semibold bg-gradient-to-r from-[#323dfe] to-black bg-clip-text text-transparent leading-none">150+</span>
-              <span className="text-[11px] text-gray-600 font-medium">Countries</span>
+              <span className="text-[22px] font-semibold bg-gradient-to-r from-primary to-black dark:to-white bg-clip-text text-transparent leading-none">150+</span>
+              <span className="text-[11px] text-muted-foreground font-medium">Countries</span>
             </div>
           </div>
         </div>
       </div>
 
       {/* Bottom fade */}
-      <div className="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-white to-transparent pointer-events-none" />
+      <div className="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-background to-transparent pointer-events-none" />
     </div>
   );
 }
@@ -53,19 +53,19 @@ function GlobalReachIllustration() {
 // Illustration: Conversion Rate
 function ConversionRateIllustration() {
   return (
-    <div className="relative h-48 w-full rounded-lg overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
+    <div className="relative h-48 w-full rounded-lg overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, hsl(var(--border)) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="relative h-full w-full p-4">
         {/* Conversion rate pill */}
         <div className="absolute right-4 top-4 z-10">
-          <div className="bg-white/95 backdrop-blur-sm rounded-full pl-2.5 pr-3 py-1.5 shadow-sm border border-gray-200/60 flex items-center gap-2">
-            <div className="w-1.5 h-1.5 rounded-full bg-[#323dfe]" />
-            <span className="text-[18px] font-semibold bg-gradient-to-r from-[#323dfe] to-black bg-clip-text text-transparent leading-none">95%</span>
+          <div className="bg-background/95 backdrop-blur-sm rounded-full pl-2.5 pr-3 py-1.5 shadow-sm border border-border/60 flex items-center gap-2">
+            <div className="w-1.5 h-1.5 rounded-full bg-primary" />
+            <span className="text-[18px] font-semibold bg-gradient-to-r from-primary to-black dark:to-white bg-clip-text text-transparent leading-none">95%</span>
           </div>
         </div>
 
         {/* Label */}
         <div className="absolute left-4 top-4">
-          <span className="text-[11px] font-medium text-gray-500">Conversion Rate</span>
+          <span className="text-[11px] font-medium text-muted-foreground">Conversion Rate</span>
         </div>
 
         {/* Chart area */}
@@ -105,14 +105,14 @@ function ConversionRateIllustration() {
 
           {/* Endpoint dot */}
           <div className="absolute right-0 top-[13%] translate-x-1/2 -translate-y-1/2">
-            <div className="w-3 h-3 rounded-full bg-[#323dfe]" />
-            <div className="absolute inset-0 w-3 h-3 rounded-full bg-[#323dfe]/20 scale-150" />
+            <div className="w-3 h-3 rounded-full bg-primary" />
+            <div className="absolute inset-0 w-3 h-3 rounded-full bg-primary/20 scale-150" />
           </div>
         </div>
       </div>
 
       {/* Bottom fade */}
-      <div className="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-white to-transparent pointer-events-none" />
+      <div className="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-background to-transparent pointer-events-none" />
     </div>
   );
 }
@@ -126,7 +126,7 @@ function MultiChannelIllustration() {
   ];
 
   const getChannelIcon = (name: string) => {
-    const iconClass = 'text-gray-500';
+    const iconClass = 'text-muted-foreground';
 
     switch (name) {
       case 'SMS':
@@ -157,23 +157,23 @@ function MultiChannelIllustration() {
   };
 
   return (
-    <div className="relative h-48 w-full rounded-lg overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
+    <div className="relative h-48 w-full rounded-lg overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, hsl(var(--border)) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="relative h-full w-full p-3 flex items-center justify-center">
-        <div className="bg-white rounded-lg border border-gray-200 h-full w-full max-w-[280px] flex flex-col p-3">
+        <div className="bg-background rounded-lg border border-border h-full w-full max-w-[280px] flex flex-col p-3">
           {/* Header */}
-          <div className="mb-3 pb-2 border-b border-gray-100">
-            <span className="text-[11px] font-semibold text-gray-800">OTP Channels</span>
+          <div className="mb-3 pb-2 border-b border-border">
+            <span className="text-[11px] font-semibold text-foreground">OTP Channels</span>
           </div>
 
           {/* Channel list */}
           <div className="flex-1 space-y-1.5">
             {channels.map((channel, i) => (
-              <div key={i} className="flex items-center justify-between px-2 py-1.5 rounded-md bg-gray-50">
+              <div key={i} className="flex items-center justify-between px-2 py-1.5 rounded-md bg-surface">
                 <div className="flex items-center gap-2">
                   {getChannelIcon(channel.name)}
-                  <span className="text-[11px] font-medium text-gray-700">{channel.name}</span>
+                  <span className="text-[11px] font-medium text-foreground/80">{channel.name}</span>
                 </div>
-                <span className={`text-[9px] font-medium px-1.5 py-0.5 rounded ${channel.status === 'active' ? 'bg-[#323dfe]/10 text-[#323dfe]' : 'bg-gray-100 text-gray-500'}`}>
+                <span className={`text-[9px] font-medium px-1.5 py-0.5 rounded ${channel.status === 'active' ? 'bg-surface border border-border text-foreground/80' : 'bg-muted text-muted-foreground'}`}>
                   {channel.status === 'active' ? 'Active' : 'Soon'}
                 </span>
               </div>
@@ -183,7 +183,7 @@ function MultiChannelIllustration() {
       </div>
 
       {/* Bottom fade */}
-      <div className="absolute inset-x-0 bottom-0 h-8 bg-gradient-to-t from-white to-transparent pointer-events-none" />
+      <div className="absolute inset-x-0 bottom-0 h-8 bg-gradient-to-t from-background to-transparent pointer-events-none" />
     </div>
   );
 }
@@ -197,18 +197,18 @@ function FraudPreventionIllustration() {
   ];
 
   return (
-    <div className="relative h-48 w-full rounded-lg overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
+    <div className="relative h-48 w-full rounded-lg overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, hsl(var(--border)) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="relative h-full w-full p-3 flex items-center justify-center">
-        <div className="bg-white rounded-lg border border-gray-200 h-full w-full max-w-[260px] flex flex-col">
+        <div className="bg-background rounded-lg border border-border h-full w-full max-w-[260px] flex flex-col">
           {/* Header */}
-          <div className="px-2.5 py-1.5 border-b border-gray-100 flex items-center justify-between">
+          <div className="px-2.5 py-1.5 border-b border-border flex items-center justify-between">
             <div className="flex items-center gap-1.5">
-              <svg className="w-3.5 h-3.5 text-gray-500" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+              <svg className="w-3.5 h-3.5 text-muted-foreground" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
               </svg>
-              <span className="text-[11px] font-semibold text-gray-800">Fraud Shield</span>
+              <span className="text-[11px] font-semibold text-foreground">Fraud Shield</span>
             </div>
-            <span className="text-[9px] px-1.5 py-0.5 rounded bg-[#323dfe]/10 text-[#323dfe] font-medium">Active</span>
+            <span className="text-[9px] px-1.5 py-0.5 rounded bg-surface border border-border text-foreground/80 font-medium">Active</span>
           </div>
 
           {/* Number list */}
@@ -216,11 +216,11 @@ function FraudPreventionIllustration() {
             {numbers.map((item, i) => (
               <div
                 key={i}
-                className={`flex items-center justify-between px-2 py-1.5 rounded-md ${item.status === "blocked" ? "bg-gray-100" : ""}`}
+                className={`flex items-center justify-between px-2 py-1.5 rounded-md ${item.status === "blocked" ? "bg-muted" : ""}`}
               >
                 <div className="flex items-center gap-2">
                   {item.status === "verified" ? (
-                    <div className="w-4 h-4 rounded-full bg-[#323dfe] flex items-center justify-center">
+                    <div className="w-4 h-4 rounded-full bg-primary flex items-center justify-center">
                       <svg className="w-2.5 h-2.5 text-white" fill="none" viewBox="0 0 24 24" strokeWidth={3} stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                       </svg>
@@ -232,12 +232,12 @@ function FraudPreventionIllustration() {
                       </svg>
                     </div>
                   )}
-                  <span className={`text-[11px] font-mono ${item.status === "blocked" ? "text-gray-700 font-medium" : "text-gray-600"}`}>
+                  <span className={`text-[11px] font-mono ${item.status === "blocked" ? "text-foreground/80 font-medium" : "text-muted-foreground"}`}>
                     {item.number}
                   </span>
                 </div>
                 {item.risk === "High" && (
-                  <span className="text-[9px] font-medium px-1.5 py-0.5 rounded bg-red-50 text-red-600">
+                  <span className="text-[9px] font-medium px-1.5 py-0.5 rounded bg-red-50 dark:bg-red-900/30 text-red-600 dark:text-red-300">
                     High risk
                   </span>
                 )}
@@ -246,15 +246,15 @@ function FraudPreventionIllustration() {
           </div>
 
           {/* Footer stats */}
-          <div className="px-2.5 py-1.5 border-t border-gray-100 flex items-center justify-between">
-            <span className="text-[10px] text-gray-500">$0 fraud cost</span>
-            <span className="text-[10px] font-medium text-gray-700">AI-powered</span>
+          <div className="px-2.5 py-1.5 border-t border-border flex items-center justify-between">
+            <span className="text-[10px] text-muted-foreground">$0 fraud cost</span>
+            <span className="text-[10px] font-medium text-foreground/80">AI-powered</span>
           </div>
         </div>
       </div>
 
       {/* Bottom fade */}
-      <div className="absolute inset-x-0 bottom-0 h-8 bg-gradient-to-t from-white to-transparent pointer-events-none" />
+      <div className="absolute inset-x-0 bottom-0 h-8 bg-gradient-to-t from-background to-transparent pointer-events-none" />
     </div>
   );
 }
@@ -262,42 +262,42 @@ function FraudPreventionIllustration() {
 // Illustration: Transparent Pricing
 function TransparentPricingIllustration() {
   return (
-    <div className="relative h-48 w-full rounded-lg overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
+    <div className="relative h-48 w-full rounded-lg overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, hsl(var(--border)) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="relative h-full w-full p-3 flex items-center justify-center">
-        <div className="bg-white rounded-lg border border-gray-200 h-full w-full max-w-[260px] flex flex-col p-3">
+        <div className="bg-background rounded-lg border border-border h-full w-full max-w-[260px] flex flex-col p-3">
           {/* Header */}
           <div className="flex items-center justify-between mb-3">
-            <span className="text-[11px] font-semibold text-gray-800">Cost Breakdown</span>
-            <span className="text-[9px] px-1.5 py-0.5 rounded bg-[#323dfe]/10 text-[#323dfe] font-medium">Transparent</span>
+            <span className="text-[11px] font-semibold text-foreground">Cost Breakdown</span>
+            <span className="text-[9px] px-1.5 py-0.5 rounded bg-surface border border-border text-foreground/80 font-medium">Transparent</span>
           </div>
 
           {/* Cost items */}
           <div className="space-y-2">
-            <div className="flex items-center justify-between p-2 rounded-md bg-gray-50">
-              <span className="text-[11px] text-gray-600">Verification fee</span>
-              <span className="text-[13px] font-semibold bg-gradient-to-r from-[#323dfe] to-black bg-clip-text text-transparent">$0.00</span>
+            <div className="flex items-center justify-between p-2 rounded-md bg-surface">
+              <span className="text-[11px] text-muted-foreground">Verification fee</span>
+              <span className="text-[13px] font-semibold bg-gradient-to-r from-primary to-black dark:to-white bg-clip-text text-transparent">$0.00</span>
             </div>
-            <div className="flex items-center justify-between p-2 rounded-md bg-gray-50">
-              <span className="text-[11px] text-gray-600">Fraud Shield</span>
-              <span className="text-[13px] font-semibold bg-gradient-to-r from-[#323dfe] to-black bg-clip-text text-transparent">$0.00</span>
+            <div className="flex items-center justify-between p-2 rounded-md bg-surface">
+              <span className="text-[11px] text-muted-foreground">Fraud Shield</span>
+              <span className="text-[13px] font-semibold bg-gradient-to-r from-primary to-black dark:to-white bg-clip-text text-transparent">$0.00</span>
             </div>
-            <div className="flex items-center justify-between p-2 rounded-md bg-[#323dfe]/5 border border-[#323dfe]/10">
-              <span className="text-[11px] text-gray-700 font-medium">Channel cost only</span>
-              <svg className="w-4 h-4 text-[#323dfe]" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
+            <div className="flex items-center justify-between p-2 rounded-md bg-primary/5 border border-primary/10">
+              <span className="text-[11px] text-foreground/80 font-medium">Channel cost only</span>
+              <svg className="w-4 h-4 text-primary" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
               </svg>
             </div>
           </div>
 
           {/* Footer */}
-          <div className="mt-auto pt-2 border-t border-gray-100">
-            <p className="text-[10px] text-gray-500 text-center">Only pay for SMS, Voice, or WhatsApp</p>
+          <div className="mt-auto pt-2 border-t border-border">
+            <p className="text-[10px] text-muted-foreground ">Only pay for SMS, Voice, or WhatsApp</p>
           </div>
         </div>
       </div>
 
       {/* Bottom fade */}
-      <div className="absolute inset-x-0 bottom-0 h-8 bg-gradient-to-t from-white to-transparent pointer-events-none" />
+      <div className="absolute inset-x-0 bottom-0 h-8 bg-gradient-to-t from-background to-transparent pointer-events-none" />
     </div>
   );
 }
@@ -305,23 +305,23 @@ function TransparentPricingIllustration() {
 // Illustration: Premium Support
 function PremiumSupportIllustration() {
   return (
-    <div className="relative h-48 w-full rounded-lg overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
+    <div className="relative h-48 w-full rounded-lg overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle, hsl(var(--border)) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }}>
       <div className="relative h-full w-full p-3 flex items-center justify-center">
-        <div className="bg-white rounded-lg border border-gray-200 h-full w-full max-w-[280px] flex flex-col overflow-hidden">
+        <div className="bg-background rounded-lg border border-border h-full w-full max-w-[280px] flex flex-col overflow-hidden">
           {/* Chat Header */}
-          <div className="flex items-center justify-between px-3 py-2 border-b border-gray-100">
-            <p className="text-[11px] font-semibold text-gray-800">Plivo Support</p>
+          <div className="flex items-center justify-between px-3 py-2 border-b border-border">
+            <p className="text-[11px] font-semibold text-foreground">Plivo Support</p>
             <div className="flex items-center gap-1">
               <div className="w-1.5 h-1.5 rounded-full bg-green-500" />
-              <span className="text-[9px] text-gray-500">Online 24/7</span>
+              <span className="text-[9px] text-muted-foreground">Online 24/7</span>
             </div>
           </div>
 
           {/* Chat Messages */}
-          <div className="flex-1 p-2 space-y-2 bg-gray-50">
+          <div className="flex-1 p-2 space-y-2 bg-surface">
             {/* User message */}
             <div className="flex justify-end">
-              <div className="bg-gradient-to-r from-[#323dfe] to-black text-white text-[10px] px-2.5 py-1.5 rounded-lg rounded-br-sm max-w-[85%]">
+              <div className="bg-gradient-to-r from-primary to-black text-white text-[10px] px-2.5 py-1.5 rounded-lg rounded-br-sm max-w-[85%]">
                 Hi, I need help with OTP delivery rates
               </div>
             </div>
@@ -329,9 +329,9 @@ function PremiumSupportIllustration() {
             {/* Support response */}
             <div className="flex justify-start gap-1.5">
               <div className="w-5 h-5 rounded-full bg-gray-200 flex items-center justify-center flex-shrink-0">
-                <span className="text-[8px] font-bold text-gray-600">P</span>
+                <span className="text-[8px] font-bold text-muted-foreground">P</span>
               </div>
-              <div className="bg-white text-gray-700 text-[10px] px-2.5 py-1.5 rounded-lg rounded-bl-sm border border-gray-200 max-w-[80%]">
+              <div className="bg-background text-foreground/80 text-[10px] px-2.5 py-1.5 rounded-lg rounded-bl-sm border border-border max-w-[80%]">
                 Hi! I'd be happy to help. Let me check your account details.
               </div>
             </div>
@@ -339,17 +339,17 @@ function PremiumSupportIllustration() {
             {/* Support follow-up */}
             <div className="flex justify-start gap-1.5">
               <div className="w-5 h-5 flex-shrink-0" />
-              <div className="bg-white text-gray-700 text-[10px] px-2.5 py-1.5 rounded-lg border border-gray-200 max-w-[80%]">
+              <div className="bg-background text-foreground/80 text-[10px] px-2.5 py-1.5 rounded-lg border border-border max-w-[80%]">
                 Your current rate is 95.2% - above average!
               </div>
             </div>
           </div>
 
           {/* Chat Input */}
-          <div className="px-2 py-1.5 border-t border-gray-200 bg-white">
-            <div className="flex items-center gap-2 bg-gray-100 rounded-full px-3 py-1">
-              <span className="text-[10px] text-gray-400 flex-1">Type a message...</span>
-              <svg className="w-3.5 h-3.5 text-gray-400" fill="currentColor" viewBox="0 0 24 24">
+          <div className="px-2 py-1.5 border-t border-border bg-background">
+            <div className="flex items-center gap-2 bg-muted rounded-full px-3 py-1">
+              <span className="text-[10px] text-muted-foreground flex-1">Type a message...</span>
+              <svg className="w-3.5 h-3.5 text-muted-foreground" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
               </svg>
             </div>
@@ -358,7 +358,7 @@ function PremiumSupportIllustration() {
       </div>
 
       {/* Bottom fade */}
-      <div className="absolute inset-x-0 bottom-0 h-8 bg-gradient-to-t from-white to-transparent pointer-events-none" />
+      <div className="absolute inset-x-0 bottom-0 h-8 bg-gradient-to-t from-background to-transparent pointer-events-none" />
     </div>
   );
 }
@@ -404,11 +404,19 @@ const features: Feature[] = [
 
 export default function VerifyFeaturesGrid() {
   return (
-    <section className="bg-white py-12 sm:py-16 md:py-20">
+    <section className="bg-background border-t border-border py-12 sm:py-16 md:py-20">
       <div className="container mx-auto max-w-7xl px-4">
         {/* Section Header */}
-        <div className="text-center mb-12 md:mb-16">
-          <h2 className="font-sora text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] font-normal leading-[1.25] tracking-[-0.02em] text-black max-w-3xl mx-auto">
+        <div className="mb-12 md:mb-16">
+          <div className="flex items-center gap-3 font-mono-ui text-[11px] uppercase tracking-[0.12em] text-muted-foreground mb-8">
+          <span className="flex items-center gap-2">
+            <span className="tabular-nums text-foreground/70">~</span>
+            <span className="h-px w-6 bg-border" />
+          </span>
+          <span>features grid</span>
+          <span className="flex-1 border-t border-dashed border-border" />
+        </div>
+        <h2 className="font-sora text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] font-normal leading-[1.04] tracking-[-0.035em] text-foreground">
             Plivo Verify is the best way to secure users & boost OTP conversions
           </h2>
         </div>
@@ -418,17 +426,17 @@ export default function VerifyFeaturesGrid() {
           {features.map((feature, index) => (
             <div
               key={index}
-              className="group rounded-xl bg-white border border-gray-200 overflow-hidden transition-all hover:shadow-lg hover:border-gray-300"
+              className="group rounded-xl bg-background border border-border overflow-hidden transition-all hover:shadow-lg hover:border-border-strong"
             >
               {/* Illustration */}
               {feature.illustration}
 
               {/* Content */}
               <div className="p-5">
-                <h3 className="text-lg font-semibold text-black mb-2">
+                <h3 className="text-lg font-semibold text-foreground mb-2">
                   {feature.title}
                 </h3>
-                <p className="text-sm text-gray-600 leading-relaxed">
+                <p className="text-sm text-muted-foreground leading-relaxed">
                   {feature.description}
                 </p>
               </div>

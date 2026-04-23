@@ -60,19 +60,27 @@ export function PlivoPricingFAQ() {
   const isIndia = country === "IN";
   const faqItems = getFaqItems(isIndia);
   return (
-    <section className="bg-white py-12 lg:py-16">
+    <section className="bg-background border-t border-border py-12 lg:py-16">
       <div className="container mx-auto max-w-4xl px-4">
-        <h2 className="font-sora text-center text-[2rem] md:text-[2.5rem] font-normal leading-[1.25] tracking-[-0.02em] text-black mb-10">
+        <div className="flex items-center gap-3 font-mono-ui text-[11px] uppercase tracking-[0.12em] text-muted-foreground mb-8">
+          <span className="flex items-center gap-2">
+            <span className="tabular-nums text-foreground/70">~</span>
+            <span className="h-px w-6 bg-border" />
+          </span>
+          <span>plivo-pricing-faq</span>
+          <span className="flex-1 border-t border-dashed border-border" />
+        </div>
+        <h2 className="font-sora text-[2rem] md:text-[2.5rem] font-normal leading-[1.04] tracking-[-0.035em] text-foreground mb-10">
           Frequently asked questions
         </h2>
 
         <Accordion type="single" collapsible className="w-full">
           {faqItems.map((item, i) => (
-            <AccordionItem key={i} value={`faq-${i}`} className="border-b border-gray-200">
-              <AccordionTrigger className="text-left text-base font-medium text-black hover:no-underline py-5">
+            <AccordionItem key={i} value={`faq-${i}`} className="border-b border-border">
+              <AccordionTrigger className="text-left text-base font-medium text-foreground hover:no-underline py-5">
                 {item.question}
               </AccordionTrigger>
-              <AccordionContent className="text-gray-600 text-[15px] leading-relaxed pb-5">
+              <AccordionContent className="text-muted-foreground text-[15px] leading-relaxed pb-5">
                 {item.answer}
               </AccordionContent>
             </AccordionItem>

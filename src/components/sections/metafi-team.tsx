@@ -26,7 +26,7 @@ export default function MetafiTeam({
           <h2 className="mt-4 text-3xl font-medium leading-tight tracking-tight text-foreground sm:text-5xl">
             {title}
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-sm text-muted-foreground sm:text-base">
+          <p className="mt-4 max-w-2xl text-sm text-muted-foreground sm:text-base">
             {subtitle}
           </p>
         </div>

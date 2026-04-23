@@ -88,33 +88,35 @@ export default function AboutPage() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-white pt-16 sm:pt-20 md:pt-24 pb-12">
-        <div className="container mx-auto max-w-7xl px-4 text-center">
-          <h1 className="font-sora text-[2rem] sm:text-[2.5rem] md:text-[3rem] font-normal leading-[1.1] tracking-[-0.02em] text-black mb-5">
-            Our mission is to simplify
-            <br className="hidden sm:block" />
-            {" "}customer engagement
-          </h1>
-          <p className="text-gray-600 text-base sm:text-lg max-w-3xl mx-auto leading-relaxed">
-            Plivo is transforming how businesses communicate with their customers by merging AI with enterprise-grade infrastructure. From autonomous communication agents to global messaging and voice APIs, we power billions of interactions every month.
-          </p>
+      <section className="relative w-full overflow-hidden bg-background border-t border-border">
+        <div className="pointer-events-none absolute inset-0 dev-grid-bg opacity-[0.3] [mask-image:linear-gradient(to_bottom,black_40%,transparent_95%)]" />
+        <div className="relative container mx-auto max-w-7xl px-4 sm:px-6 pt-10 pb-12 sm:pt-14 md:pt-20">
+          <div className="flex items-center gap-3 font-mono-ui text-[11px] uppercase tracking-[0.12em] text-muted-foreground">
+            <span className="flex items-center gap-2">
+              <span className="tabular-nums text-foreground/70">~</span>
+              <span className="h-px w-6 bg-border" />
+            </span>
+            <span>about plivo</span>
+            <span className="flex-1 border-t border-dashed border-border" />
+            <span>founded 2011 · profitable since 2015</span>
+          </div>
+          <div className="mt-10 max-w-3xl">
+            <h1 className="font-sora text-[2.25rem] font-normal leading-[1.02] tracking-[-0.04em] text-foreground sm:text-[3rem] md:text-[3.5rem]">
+              Our mission is to simplify <span className="[text-decoration-line:underline] decoration-primary/25 [text-decoration-thickness:0.14em] [text-underline-offset:0.12em]">customer engagement</span>
+            </h1>
+            <p className="mt-5 max-w-2xl text-[15px] leading-relaxed text-muted-foreground sm:text-base">
+              Plivo is transforming how businesses communicate with their customers by merging AI with enterprise-grade infrastructure. From autonomous communication agents to global messaging and voice APIs, we power billions of interactions every month.
+            </p>
+          </div>
         </div>
       </section>
 
       {/* Stats */}
-      <section className="relative overflow-hidden bg-white pb-12 lg:pb-16">
-        {/* Dotted Grid - behind the entire section */}
-        <div className="pointer-events-none absolute inset-0 z-[1]" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)', backgroundSize: '16px 16px', backgroundPosition: 'center center' }} />
-
-        {/* Side fades over the grid */}
-        <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-32 sm:w-48 md:w-64 z-[2] bg-gradient-to-r from-white to-transparent" />
-        <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-32 sm:w-48 md:w-64 z-[2] bg-gradient-to-l from-white to-transparent" />
-        {/* Top/bottom fades */}
-        <div className="pointer-events-none absolute left-0 right-0 top-0 h-12 z-[2] bg-gradient-to-b from-white to-transparent" />
-        <div className="pointer-events-none absolute left-0 right-0 bottom-0 h-12 z-[2] bg-gradient-to-t from-white to-transparent" />
+      <section className="relative overflow-hidden border-t border-border bg-background pb-12 lg:pb-16 pt-12 lg:pt-16">
+        <div className="pointer-events-none absolute inset-0 dev-grid-bg-fine opacity-[0.35] [mask-image:linear-gradient(to_bottom,transparent,black_20%,black_80%,transparent)]" />
 
         <div className="container relative z-[5] mx-auto max-w-7xl px-4">
-          <div className="relative overflow-hidden rounded-lg border border-gray-200 bg-white">
+          <div className="relative overflow-hidden rounded-lg border border-border bg-background">
             {/* Globe - right side, cropped */}
             <div className="absolute -right-28 top-1/2 hidden lg:block z-[1]" style={{ transform: 'translateY(-50%)' }}>
               <Globe
@@ -133,15 +135,15 @@ export default function AboutPage() {
                 <div
                   key={stat.label}
                   className={`flex flex-col items-center justify-center px-4 py-8 sm:py-10 md:py-12 ${
-                    index % 2 === 0 ? "border-r border-gray-200" : ""
+                    index % 2 === 0 ? "border-r border-border" : ""
                   } ${
-                    index % 2 !== 0 && index < stats.length - 1 ? "lg:border-r lg:border-gray-200" : ""
-                  } ${index >= 2 ? "border-t lg:border-t-0 border-gray-200" : ""}`}
+                    index % 2 !== 0 && index < stats.length - 1 ? "lg:border-r lg:border-border" : ""
+                  } ${index >= 2 ? "border-t lg:border-t-0 border-border" : ""}`}
                 >
-                  <div className="text-2xl sm:text-3xl md:text-4xl font-semibold text-black mb-1">
+                  <div className="text-2xl sm:text-3xl md:text-4xl font-semibold text-foreground mb-1">
                     {stat.value}
                   </div>
-                  <div className="text-sm text-gray-500">{stat.label}</div>
+                  <div className="text-sm text-muted-foreground">{stat.label}</div>
                 </div>
               ))}
             </div>
@@ -150,7 +152,7 @@ export default function AboutPage() {
       </section>
 
       {/* Trusted By - Marquee */}
-      <section className="bg-white pb-12 lg:pb-16 relative overflow-hidden">
+      <section className="bg-background border-t border-border pb-12 lg:pb-16 relative overflow-hidden">
         <style>{`
           .about-marquee-content {
             animation: about-marquee 30s linear infinite;
@@ -164,7 +166,7 @@ export default function AboutPage() {
           }
         `}</style>
         <div className="container mx-auto max-w-7xl px-4">
-          <p className="text-xs font-medium text-gray-400 uppercase tracking-wider text-center mb-6">
+          <p className="text-xs font-medium text-muted-foreground font-mono-ui uppercase tracking-[0.1em] mb-6">
             Trusted by industry leaders
           </p>
         </div>
@@ -182,17 +184,25 @@ export default function AboutPage() {
           </div>
         </div>
         {/* Fade edges */}
-        <div className="absolute inset-y-0 left-0 w-12 sm:w-24 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
-        <div className="absolute inset-y-0 right-0 w-12 sm:w-24 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
+        <div className="absolute inset-y-0 left-0 w-12 sm:w-24 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
+        <div className="absolute inset-y-0 right-0 w-12 sm:w-24 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
       </section>
 
       {/* Enterprise Stack */}
-      <section className="bg-white py-12 lg:py-16">
+      <section className="bg-background border-t border-border py-12 lg:py-16">
         <div className="container mx-auto max-w-7xl px-4">
-          <h2 className="font-sora text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] font-normal leading-[1.25] tracking-[-0.02em] text-black text-center mb-3">
+          <div className="flex items-center gap-3 font-mono-ui text-[11px] uppercase tracking-[0.12em] text-muted-foreground mb-8">
+          <span className="flex items-center gap-2">
+            <span className="tabular-nums text-foreground/70">~</span>
+            <span className="h-px w-6 bg-border" />
+          </span>
+          <span>about page</span>
+          <span className="flex-1 border-t border-dashed border-border" />
+        </div>
+        <h2 className="font-sora text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] font-normal leading-[1.04] tracking-[-0.035em] text-foreground mb-3">
             Enterprise-grade engagement stack
           </h2>
-          <p className="text-gray-600 text-sm sm:text-base max-w-2xl mx-auto text-center mb-8">
+          <p className="text-muted-foreground text-sm sm:text-base max-w-2xl mb-8">
             Three layers, one unified mission: making customer engagement effortless.
           </p>
 
@@ -200,7 +210,7 @@ export default function AboutPage() {
             {stackLayers.map((layer) => (
               <div
                 key={layer.title}
-                className="grid gap-4 lg:grid-cols-[1fr_1fr] items-center rounded-lg border border-gray-200 bg-white px-5 py-4 sm:px-6 sm:py-5"
+                className="grid gap-4 lg:grid-cols-[1fr_1fr] items-center rounded-lg border border-border bg-background px-5 py-4 sm:px-6 sm:py-5"
               >
                 {/* Left: Product cards */}
                 <div className="space-y-2">
@@ -212,20 +222,20 @@ export default function AboutPage() {
                       <Wrapper
                         key={product.name}
                         {...(!hasSub ? { href: product.href } : {})}
-                        className={`flex items-center gap-2.5 rounded-md bg-gray-50 px-3 py-2.5 transition-colors ${!hasSub ? "group hover:bg-gray-100" : ""}`}
+                        className={`flex items-center gap-2.5 rounded-md bg-surface px-3 py-2.5 transition-colors ${!hasSub ? "group hover:bg-muted" : ""}`}
                       >
-                        <div className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-md bg-white border border-gray-200">
-                          <Icon className="h-3.5 w-3.5 text-[#323dfe]" />
+                        <div className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-md bg-background border border-border">
+                          <Icon className="h-3.5 w-3.5 text-primary" />
                         </div>
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center gap-1.5">
-                            <span className="text-sm font-medium text-black">{product.name}</span>
-                            {!hasSub && <ArrowRight className="h-3 w-3 text-gray-400 transition-transform group-hover:translate-x-0.5" />}
+                            <span className="text-sm font-medium text-foreground">{product.name}</span>
+                            {!hasSub && <ArrowRight className="h-3 w-3 text-muted-foreground transition-transform group-hover:translate-x-0.5" />}
                           </div>
                           {hasSub && (
                             <div className="flex flex-wrap gap-x-2.5 gap-y-0.5 mt-0.5">
                               {(product.sub as { label: string; href: string }[]).map((s) => (
-                                <a key={s.label} href={s.href} className="text-xs text-gray-400 hover:text-[#323dfe] transition-colors">
+                                <a key={s.label} href={s.href} className="text-xs text-muted-foreground hover:text-primary transition-colors">
                                   {s.label}
                                 </a>
                               ))}
@@ -239,10 +249,10 @@ export default function AboutPage() {
 
                 {/* Right: Description */}
                 <div>
-                  <h3 className="text-base sm:text-lg font-medium text-black mb-1">
+                  <h3 className="text-base sm:text-lg font-medium text-foreground mb-1">
                     {layer.title}
                   </h3>
-                  <p className="text-sm text-gray-500 leading-relaxed">
+                  <p className="text-sm text-muted-foreground leading-relaxed">
                     {layer.desc}
                   </p>
                 </div>
@@ -253,19 +263,27 @@ export default function AboutPage() {
       </section>
 
       {/* Investors */}
-      <section className="bg-white py-12 lg:py-16">
+      <section className="bg-background border-t border-border py-12 lg:py-16">
         <div className="container mx-auto max-w-7xl px-4">
-          <h2 className="font-sora text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] font-normal leading-[1.25] tracking-[-0.02em] text-black text-center mb-3">
+          <div className="flex items-center gap-3 font-mono-ui text-[11px] uppercase tracking-[0.12em] text-muted-foreground mb-8">
+          <span className="flex items-center gap-2">
+            <span className="tabular-nums text-foreground/70">~</span>
+            <span className="h-px w-6 bg-border" />
+          </span>
+          <span>about page</span>
+          <span className="flex-1 border-t border-dashed border-border" />
+        </div>
+        <h2 className="font-sora text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] font-normal leading-[1.04] tracking-[-0.035em] text-foreground mb-3">
             Backed by the best
           </h2>
-          <p className="text-gray-600 text-base sm:text-lg max-w-xl mx-auto text-center mb-8">
+          <p className="text-muted-foreground text-base sm:text-lg max-w-xl mb-8">
             Profitable since 2015, backed by leading venture capital firms.
           </p>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl mx-auto">
             {investors.map((inv) => (
               <div
                 key={inv.name}
-                className="flex items-center justify-center bg-gray-50 rounded-lg p-6"
+                className="flex items-center justify-center bg-surface rounded-lg p-6"
               >
                 <img
                   src={inv.logo}
@@ -279,22 +297,30 @@ export default function AboutPage() {
       </section>
 
       {/* Offices */}
-      <section className="bg-white py-12 lg:py-16">
+      <section className="bg-background border-t border-border py-12 lg:py-16">
         <div className="container mx-auto max-w-7xl px-4">
-          <h2 className="font-sora text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] font-normal leading-[1.25] tracking-[-0.02em] text-black text-center mb-3">
+          <div className="flex items-center gap-3 font-mono-ui text-[11px] uppercase tracking-[0.12em] text-muted-foreground mb-8">
+          <span className="flex items-center gap-2">
+            <span className="tabular-nums text-foreground/70">~</span>
+            <span className="h-px w-6 bg-border" />
+          </span>
+          <span>about page</span>
+          <span className="flex-1 border-t border-dashed border-border" />
+        </div>
+        <h2 className="font-sora text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] font-normal leading-[1.04] tracking-[-0.035em] text-foreground mb-3">
             Our offices
           </h2>
-          <p className="text-gray-600 text-base sm:text-lg max-w-xl mx-auto text-center mb-8">
+          <p className="text-muted-foreground text-base sm:text-lg max-w-xl mb-8">
             A 100+ person team spanning two countries.
           </p>
           <div className="grid sm:grid-cols-2 gap-4 max-w-lg mx-auto">
             {offices.map((office) => (
               <div
                 key={office.country}
-                className="rounded-lg border border-gray-200 p-5 text-center"
+                className="rounded-lg border border-border p-5 text-center"
               >
                 <div className="text-3xl mb-2">{office.flag}</div>
-                <h3 className="font-inter text-base font-semibold text-black">
+                <h3 className="font-inter text-base font-semibold text-foreground">
                   {office.country}
                 </h3>
               </div>
@@ -303,7 +329,7 @@ export default function AboutPage() {
           <div className="mt-8 text-center">
             <a
               href="/jobs/"
-              className="inline-flex items-center justify-center px-5 py-2.5 text-sm font-medium rounded-md border border-gray-300 text-black hover:bg-gray-50 transition-colors"
+              className="inline-flex items-center justify-center px-5 py-2.5 text-sm font-medium rounded-md border border-border-strong text-foreground hover:bg-surface transition-colors"
             >
               See open positions
             </a>
@@ -312,53 +338,61 @@ export default function AboutPage() {
       </section>
 
       {/* Connect with us */}
-      <section className="bg-white py-12 lg:py-16">
+      <section className="bg-background border-t border-border py-12 lg:py-16">
         <div className="container mx-auto max-w-7xl px-4">
-          <h2 className="font-sora text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] font-normal leading-[1.25] tracking-[-0.02em] text-black text-center mb-3">
+          <div className="flex items-center gap-3 font-mono-ui text-[11px] uppercase tracking-[0.12em] text-muted-foreground mb-8">
+          <span className="flex items-center gap-2">
+            <span className="tabular-nums text-foreground/70">~</span>
+            <span className="h-px w-6 bg-border" />
+          </span>
+          <span>about page</span>
+          <span className="flex-1 border-t border-dashed border-border" />
+        </div>
+        <h2 className="font-sora text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] font-normal leading-[1.04] tracking-[-0.035em] text-foreground mb-3">
             Connect with us
           </h2>
-          <p className="text-gray-600 text-base sm:text-lg max-w-xl mx-auto text-center mb-8">
+          <p className="text-muted-foreground text-base sm:text-lg max-w-xl mb-8">
             Whether it's sales, support, press, or legal inquiries - we're here to help.
           </p>
 
           {/* Contact grid */}
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
-            <div className="rounded-lg border border-gray-200 p-5">
-              <h3 className="font-inter text-base font-semibold text-black mb-1.5">Sales</h3>
-              <p className="text-sm text-gray-500 leading-relaxed mb-3">
+            <div className="rounded-lg border border-border p-5">
+              <h3 className="font-inter text-base font-semibold text-foreground mb-1.5">Sales</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed mb-3">
                 For all product, coverage, and pricing-related inquiries
               </p>
-              <a href="/contact/sales/" className="inline-flex items-center gap-1.5 text-sm font-medium text-[#323dfe] hover:text-[#2a34d6] transition-colors">
+              <a href="/contact/sales/" className="inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:text-primary transition-colors">
                 Contact Sales <ArrowRight className="h-3.5 w-3.5" />
               </a>
             </div>
 
-            <div className="rounded-lg border border-gray-200 p-5">
-              <h3 className="font-inter text-base font-semibold text-black mb-1.5">Support</h3>
-              <p className="text-sm text-gray-500 leading-relaxed mb-3">
+            <div className="rounded-lg border border-border p-5">
+              <h3 className="font-inter text-base font-semibold text-foreground mb-1.5">Support</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed mb-3">
                 For technical answers, or to create a ticket
               </p>
-              <a href="https://support.plivo.com/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-sm font-medium text-[#323dfe] hover:text-[#2a34d6] transition-colors">
+              <a href="https://support.plivo.com/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:text-primary transition-colors">
                 Contact Support <ArrowRight className="h-3.5 w-3.5" />
               </a>
             </div>
 
-            <div className="rounded-lg border border-gray-200 p-5">
-              <h3 className="font-inter text-base font-semibold text-black mb-1.5">Press</h3>
-              <p className="text-sm text-gray-500 leading-relaxed mb-3">
+            <div className="rounded-lg border border-border p-5">
+              <h3 className="font-inter text-base font-semibold text-foreground mb-1.5">Press</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed mb-3">
                 For PR and media inquiries, please email us at
               </p>
-              <a href="mailto:press@plivo.com" className="inline-flex items-center gap-1.5 text-sm font-medium text-[#323dfe] hover:text-[#2a34d6] transition-colors">
+              <a href="mailto:press@plivo.com" className="inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:text-primary transition-colors">
                 press@plivo.com <ArrowRight className="h-3.5 w-3.5" />
               </a>
             </div>
 
-            <div className="rounded-lg border border-gray-200 p-5">
-              <h3 className="font-inter text-base font-semibold text-black mb-1.5">Legal</h3>
-              <p className="text-sm text-gray-500 leading-relaxed mb-3">
+            <div className="rounded-lg border border-border p-5">
+              <h3 className="font-inter text-base font-semibold text-foreground mb-1.5">Legal</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed mb-3">
                 For legal queries, please email us at
               </p>
-              <a href="mailto:legalrequests@plivo.com" className="inline-flex items-center gap-1.5 text-sm font-medium text-[#323dfe] hover:text-[#2a34d6] transition-colors">
+              <a href="mailto:legalrequests@plivo.com" className="inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:text-primary transition-colors">
                 legalrequests@plivo.com <ArrowRight className="h-3.5 w-3.5" />
               </a>
             </div>
@@ -366,35 +400,35 @@ export default function AboutPage() {
 
           {/* Bottom cards */}
           <div className="grid sm:grid-cols-2 gap-4">
-            <div className="rounded-lg bg-gray-50 p-6 flex items-start gap-4">
-              <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-white border border-gray-200">
-                <Pencil className="h-4 w-4 text-[#323dfe]" />
+            <div className="rounded-lg bg-surface p-6 flex items-start gap-4">
+              <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-background border border-border">
+                <Pencil className="h-4 w-4 text-primary" />
               </div>
               <div>
-                <h3 className="font-inter text-sm font-semibold text-black mb-1">
+                <h3 className="font-inter text-sm font-semibold text-foreground mb-1">
                   Interested in writing about Plivo?
                 </h3>
-                <p className="text-sm text-gray-500 leading-relaxed mb-2">
+                <p className="text-sm text-muted-foreground leading-relaxed mb-2">
                   We've put together some guidelines, tips, and information to help you along.
                 </p>
-                <a href="/brand/" className="inline-flex items-center gap-1.5 text-sm font-medium text-[#323dfe] hover:text-[#2a34d6] transition-colors">
+                <a href="/brand/" className="inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:text-primary transition-colors">
                   View Brand Guidelines <ArrowRight className="h-3.5 w-3.5" />
                 </a>
               </div>
             </div>
 
-            <div className="rounded-lg bg-gray-50 p-6 flex items-start gap-4">
-              <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-white border border-gray-200">
-                <Briefcase className="h-4 w-4 text-[#323dfe]" />
+            <div className="rounded-lg bg-surface p-6 flex items-start gap-4">
+              <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-background border border-border">
+                <Briefcase className="h-4 w-4 text-primary" />
               </div>
               <div>
-                <h3 className="font-inter text-sm font-semibold text-black mb-1">
+                <h3 className="font-inter text-sm font-semibold text-foreground mb-1">
                   Come join our global team
                 </h3>
-                <p className="text-sm text-gray-500 leading-relaxed mb-2">
+                <p className="text-sm text-muted-foreground leading-relaxed mb-2">
                   We're always looking for great talent to join our team.
                 </p>
-                <a href="/jobs/" className="inline-flex items-center gap-1.5 text-sm font-medium text-[#323dfe] hover:text-[#2a34d6] transition-colors">
+                <a href="/jobs/" className="inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:text-primary transition-colors">
                   View Current Openings <ArrowRight className="h-3.5 w-3.5" />
                 </a>
               </div>
