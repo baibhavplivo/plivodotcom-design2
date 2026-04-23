@@ -8,11 +8,11 @@ import {
 } from "lucide-react";
 
 const STACK = [
-  { id: "tts", icon: Volume2, name: "TTS", meta: "text-to-speech", detail: "Natural Text-to-Speech voices (or bring your own)" },
-  { id: "stt", icon: FileJson, name: "STT", meta: "speech-to-text", detail: "Speech-to-Text with 95%+ accuracy across accents" },
-  { id: "turn", icon: MessageCircle, name: "Turn detection", meta: "turn taking", detail: "Intelligent turn-taking that eliminates awkward interruptions" },
-  { id: "vad", icon: Mic, name: "VAD", meta: "voice activity", detail: "Voice Activity Detection that knows when users start and stop speaking" },
-  { id: "audio", icon: AudioWaveform, name: "Audio stream", meta: "streaming", detail: "Real-time bi-directional audio with <300ms latency" },
+  { id: "tts", icon: Volume2, name: "TTS", detail: "Natural Text-to-Speech voices (or bring your own)" },
+  { id: "stt", icon: FileJson, name: "STT", detail: "Speech-to-Text with 95%+ accuracy across accents" },
+  { id: "turn", icon: MessageCircle, name: "Turn detection", detail: "Intelligent turn-taking that eliminates awkward interruptions" },
+  { id: "vad", icon: Mic, name: "VAD", detail: "Voice Activity Detection that knows when users start and stop speaking" },
+  { id: "audio", icon: AudioWaveform, name: "Audio stream", detail: "Real-time bi-directional audio with <300ms latency" },
 ];
 
 const PROMPTS = [
@@ -75,13 +75,10 @@ export default function AgentBuilder() {
                       <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md border border-border bg-background text-primary">
                         <Icon className="h-3.5 w-3.5" />
                       </div>
-                      <div className="flex flex-1 items-baseline gap-2">
+                      <div className="w-32 shrink-0">
                         <span className="font-sora text-[13px] font-semibold text-foreground">{item.name}</span>
-                        <span className="font-mono-ui text-[10.5px] uppercase tracking-[0.08em] text-muted-foreground">
-                          {item.meta}
-                        </span>
                       </div>
-                      <span className="hidden text-[12px] text-muted-foreground sm:inline">{item.detail}</span>
+                      <span className="hidden flex-1 text-[12px] text-muted-foreground sm:inline">{item.detail}</span>
                       <span className="font-mono-ui text-[10.5px] text-muted-foreground/60">[{String(i + 1).padStart(2, "0")}]</span>
                     </li>
                   );
